@@ -68,7 +68,7 @@
 <section class="page-section clearfix">
     <div class="container">
         <div class="intro">
-            <div id="central">
+
             <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">
             <div class="intro-text border-info border-right-0 text-center bg-faded p-5 rounded">
@@ -81,7 +81,7 @@
                             Domingo 11 hs
                             </small>
                             <span class="section-heading-body bg-light" id="once">
-                <div  id="getting-started"></div>
+                <div  id="reunion-11" data-countdown="2018/04/04 10:00:00"></div>
               </span>
                             <hr/>
                             <small class="mt-2">
@@ -95,7 +95,7 @@
                     <a class="btn btn-primary btn-xl" href="#campania">Vení tal como sos</a>
                 </div>
             </div>
-            </div>
+
 
         </div>
     </div>
@@ -133,46 +133,7 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
-<script type="text/javascript">
-    $('#getting-started').countdown('2018/04/08 11:00:00', function(event) {
-        /*console.log(event.offset)*/
 
-        var semanas = event.offset.weeks;
-        var dias = event.offset.days;
-        var horas = event.offset.hours;
-        var minutos = event.offset.minutes;
-        var segundos = event.offset.seconds;
-
-        var letrasS = " semanas"
-        if (dias > 1){ var letrasD = " %d días" + "<br/>"}
-        if (dias == 1){ var letrasD = " %d día" + "<br/>"}
-        if (dias < 1){ var letrasD = " "}
-        if (semanas == 1){ var letrasW = "%w semana" + "<br/>"}
-        if (semanas < 1){ var letrasW = " "}
-        if (minutos > 1){ var letrasM = " %M minutos" + "<br/>"}
-        if (minutos == 1){ var letrasM = " %M minuto" + "<br/>"}
-        if (minutos < 1){ var letrasM = " "}
-        if (horas > 1){ var letrasH = " %H horas" + "<br/>"}
-        if (horas == 1){ var letrasH = " %H hora" + "<br/>"}
-        if (horas < 1){ var letrasH = " "}
-        if (segundos > 1){ var letrasS = " %S segundos" + "<br/>"}
-        if (segundos == 1){ var letrasS = " %S segundo" + "<br/>"}
-        if (segundos < 1){ var letrasS = " "}
-            if(dias== 0 && semanas == 0 && horas == 0 && minutos == 0 && segundos == 0){
-
-                console.log('BIen');
-
-            $('#once').html('<strong>¡BIENVENIDOS! </strong>');
-            $('#once').addClass('alert alert-info');
-                ;
-            }
-
-        $(this).append().html(event.strftime( letrasW + letrasD + letrasH + letrasM + letrasS));
-
-
-
-    });
-</script>
 <script type="text/javascript">
     $('[data-countdown]').each(function() {
         var $this = $(this), finalDate = $(this).data('countdown');
@@ -201,7 +162,7 @@
             if (segundos < 1){ var letrasS = " "}
 
             if(dias==0 && semanas == 0 && horas == 0 && minutos ==0 && segundos == 0){
-                letrasS = '<spam class="text-info ">¡BIENVENIDOS!</spam>'
+                letrasS = '<spam class="text-info bienvenido ">¡BIENVENIDOS!</spam>'
             }
             /*$(this).append().html(event.strftime( letrasW + letrasD + letrasH + letrasM + letrasS));*/
 
