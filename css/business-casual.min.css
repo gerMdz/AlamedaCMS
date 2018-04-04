@@ -100,18 +100,4 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
     }
 }
 
-/*
-#central::before{
 
-    content: '';
-    position: relative;
-    animation: shadow 10s linear infinite alternate;
-    z-index: -1;
-
-}
-
-@-webkit-keyframes shadow {
-
-    100%{ width:43rem;  background: rgba(0, 0.0)}
-
-}*/

@@ -65,12 +65,24 @@
   </div>
 </nav>-->
 
+<section class="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 mx-auto">
+    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
+                 src="imagenes/imagen auditorio.jpeg" alt="">
+    </div>
+    </div>
+    </div>
+
+</section>
+
 <section class="page-section clearfix">
     <div class="container">
         <div class="intro">
 
-            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
-                 src="imagenes/imagen auditorio.jpeg" alt="">
+            <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
+                 src="imagenes/imagen auditorio.jpeg" alt="">-->
             <div class="intro-text border-info border-right-0 text-center bg-faded p-5 rounded">
                 <h2 class="section-heading mb-4">
 
@@ -81,7 +93,7 @@
                             Domingo 11 hs
                             </small>
                             <span class="section-heading-body bg-light" id="once">
-                <div  id="reunion-11" data-countdown="2018/04/04 10:00:00"></div>
+                <div  id="reunion-11" data-countdown="2018/04/08 10:00:00"></div>
               </span>
                             <hr/>
                             <small class="mt-2">
@@ -92,7 +104,7 @@
                 </h2>
 
                 <div class="intro-button mx-auto my-auto">
-                    <a class="btn btn-primary btn-xl" href="#campania">Vení tal como sos</a>
+                    <a class="btn btn-primary btn-xl" href="#evento">Vení tal como sos</a>
                 </div>
             </div>
 
@@ -101,7 +113,7 @@
     </div>
 </section>
 
-<section class="page-section cta" id="campania">
+<section class="page-section cta" id="evento">
     <div class="container">
         <div class="row">
             <div class="col-xl-9 mx-auto">
