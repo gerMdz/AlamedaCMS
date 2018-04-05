@@ -17,6 +17,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/awasome/fa-svg-with-js.css" rel="stylesheet">
+
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -69,6 +71,37 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-8 mx-auto">
+                <nav class="navbar navbar-dark bg-dark navbar-expand-md sticky-top">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                        <!--<span class="navbar-toggler-icon"></span>-->
+                        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">
+                    </button>
+                    <a class=".d-none .d-md-block .d-lg-none" href="index.php">
+                        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
+
+                    </a>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+                    <div class="navbar-nav mr-auto text-center">
+                        <a class="nav-item nav-link active" href="#">Inicio </a>
+                        <a class="nav-item nav-link" href="#">Soy Nuevo</a>
+                        <a class="nav-item nav-link" href="#">Mucho para hacer</a>
+                        <a class="nav-item nav-link " href="#">Reviviendo Momentos</a>
+                    </div>
+                        <div id="social">
+
+                            <div class="d-flex flex-row justify-content-around ">
+                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </nav>
+
+
+
     <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">
     </div>
@@ -144,6 +177,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/awasome/fontawesome-all.min.js"></script>
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
 
 <script type="text/javascript">

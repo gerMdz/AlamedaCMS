@@ -100,4 +100,19 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
     }
 }
 
+.navbar {
+
+    /*position: absolute !important;
+    top: 6px !important;
+    width: 100% !important;
+    height: 40px !important;
+    left: -10px !important;*/
+    background-color: #5a5a5a !important;
+    background-image: url('../imagenes/imgMenu.png') !important;
+    background-repeat: repeat !important;
+    padding: 0 10px !important;
+    z-index: 500 !important;
+}
+
+}
 
