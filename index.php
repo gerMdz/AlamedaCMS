@@ -68,11 +68,31 @@
     </div>
   </div>
 </nav>-->
+<main class="container-fluid">
+    <div class="row">
 
-<section class="page-section">
-    <div class="container">
+        <section class="page-section social_links col-sm-3">
+            <div class="container">
+                <div class="intro">
+                    <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded">
+                        <h2 class="section-heading m-3">
+                            <span class="section-heading-upper">Estamos para vos</span>
+                            <hr/>
+                        </h2>
+                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Generadión Extrema </a> <br/>
+                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Iglesia Alameda </a> <br/>
+                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Jóvenes </a> <br/>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+<section class="page-section principal col-sm-6">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-8 mx-auto fondo">
+            <div class="col-xl-12 mx-auto fondo">
                 <nav class="navbar navbar-dark bg-dark navbar-expand-md sticky-top " >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <!--<span class="navbar-toggler-icon"></span>-->
@@ -112,14 +132,14 @@
 
 </section>
 
-<section class="page-section clearfix">
+<section class="page-section eventos col-sm-3">
     <div class="container">
         <div class="intro">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
-            <div class="intro-text border-info border-right-0 text-center bg-faded p-5 rounded">
-                <h2 class="section-heading mb-4">
+            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded">
+                <h2 class="section-heading m-3">
 
                     <span class="section-heading-upper">Una casa grande para una familia grande</span>
                     <hr/>
@@ -147,7 +167,8 @@
         </div>
     </div>
 </section>
-
+    </div>
+</main>
 <section class="page-section cta" id="evento">
     <div class="container">
         <div class="row">
@@ -169,6 +190,7 @@
         </div>
     </div>
 </section>
+
 
 <footer class="footer text-faded text-center py-5">
     <div class="container">
