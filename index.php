@@ -17,10 +17,12 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/business-casual.min.css" rel="stylesheet">
+    <link href="css/foundation-icons.css" rel="stylesheet">
+    <link href="css/foundation-icons.woff" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/awasome/fa-svg-with-js.css" rel="stylesheet">
-
+    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
+    <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -68,11 +70,34 @@
     </div>
   </div>
 </nav>-->
+<main class="container-fluid">
+    <div class="row">
 
-<section class="page-section">
-    <div class="container">
+        <section class="page-section social_links col-sm-3">
+        </section>
+
+        <!--<section class="page-section social_links col-sm-3">
+            <div class="container">
+                <div class="intro">
+                    <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded">
+                        <h2 class="section-heading m-3">
+                            <span class="section-heading-upper">Estamos para vos</span>
+                            <hr/>
+                        </h2>
+                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Generadión Extrema </a> <br/>
+                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Iglesia Alameda </a> <br/>
+                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Jóvenes </a> <br/>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>-->
+<section class="page-section principal col-sm-6">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-8 mx-auto fondo">
+            <div class="col-xl-12 mx-auto fondo">
                 <nav class="navbar navbar-dark bg-dark navbar-expand-md sticky-top " >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <!--<span class="navbar-toggler-icon"></span>-->
@@ -82,14 +107,15 @@
                         <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
 
                     </a>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
 
                     <div class="navbar-nav mr-auto ml-auto ">
-                        <a class="nav-item nav-link active mr-1" href="#">Inicio </a>
-                        <a class="nav-item nav-link mr-1" href="#">Soy Nuevo</a>
-                        <a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
-                        <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>
+                        <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
+                        <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>
+                        <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
+                        <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
                     </div>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                         <!--<div id="social">
 
                             <div class="d-flex flex-row justify-content-around ">
@@ -112,14 +138,14 @@
 
 </section>
 
-<section class="page-section clearfix">
+<section class="page-section eventos col-sm-3">
     <div class="container">
         <div class="intro">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
-            <div class="intro-text border-info border-right-0 text-center bg-faded p-5 rounded">
-                <h2 class="section-heading mb-4">
+            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded">
+                <h2 class="section-heading m-3">
 
                     <span class="section-heading-upper">Una casa grande para una familia grande</span>
                     <hr/>
@@ -128,13 +154,14 @@
                             Domingo 11 hs
                             </small>
                             <span class="section-heading-body bg-light" id="once">
-                <div  id="reunion-11" data-countdown="2018/04/08 11:00:00"></div>
+                <div  id="reunion-11" data-countdown="2018/04/15 11:00:00"></div>
               </span>
                             <hr/>
                             <small class="mt-2">
                                 Domingo 19 hs.
                             </small>
-                            <span class="section-heading-body bg-light"><div  id="reunion-19" data-countdown="2018/04/08 19:00:00"></div></span>
+                            <span class="section-heading-body bg-light">
+                                <div  id="reunion-19" data-countdown="2018/04/15 19:00:00"></div></span>
                     </div>
                 </h2>
 
@@ -147,7 +174,8 @@
         </div>
     </div>
 </section>
-
+    </div>
+</main>
 <section class="page-section cta" id="evento">
     <div class="container">
         <div class="row">
@@ -170,6 +198,98 @@
     </div>
 </section>
 
+<section class="page-section cta" id="ppasos">
+    <div class="container">
+        <div class="row">
+            <div class="card-group">
+                <div class="card  bg-light mx-auto " >
+                    <div class="card-header text-center">
+                    <span class="card-title "><i class="fas fa-expand-arrows-alt fa-10x text-primary"></i></span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Punto de Partida</h5>
+                        <p class="card-text">
+                            ¿Tenés pŕeguntas acerca de Dios y te gustaría conversar?<br/>
+                            Punto de partida es una experiencia conversacional creada
+                            para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
+                            <ul>
+                            <li>
+                            ¿Dios existe?
+                            </li>
+                            <li>
+                            ¿Puedo confiar en la Biblia?
+                            </li>
+
+                        </ul>
+                            En un ambiente libre de prejuicios.
+                        </p>
+                        <p class="card-text"><small class="text-muted">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
+                                <ruby>"info punto de partida"</ruby> y nos comunicaremos con vos </small></p>
+                    </div>
+                </div>
+
+                <div class="card  bg-light mx-auto " >
+                    <div class="card-header  text-center ">
+                        <span class="card-title "><i class="fas fa-seedling fa-10x text-primary"></i></span>
+                    </div>
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Charla de Bautismo</h5>
+                        <p class="card-text">
+                            Si queres seguir a Jesús por medio del bautismo venía a esta Charla de Bautismo. <br/>
+                            Una charla preparatoria para esta gran experiencia.
+
+                        </p>
+                        <p class="card-text"><small class="text-muted">Sábado 14 de abril a las 17:00 Hs</small></p>
+                    </div>
+                </div>
+                <div class="card  bg-light mx-auto " >
+                    <div class="card-header  text-center ">
+                        <span class="card-title "><i class="fas fa-link fa-10x text-primary"></i></span>
+                    </div>
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Enlace de Grupos de Amistad</h5>
+                        <p class="card-text">
+                            Si querés ser parte de un Grupo de Amistad de "Amigos Incondicionales" asistí a
+                            nuestro próximo Enlace de Grupos, el viernes 13 de abril a las 20:30 hs.
+
+                        </p>
+                        <p class="card-text"><small class="text-muted">
+                                Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                (261 517 8081)  con el texto <strong>Enlace</strong>
+                            </small></p>
+                    </div>
+                </div>
+
+                <div class="card  bg-light mx-auto " >
+                    <div class="card-header  text-center ">
+                        <span class="card-title ">
+                                            <span class="fa-stack fa-5x list-inline">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fi fi-torsos-all fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: left" aria-hidden="true"></i>
+                            <i class="fi fi-torsos-all-female fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: right" aria-hidden="true"></i>
+                            <i class="fas fa-plus-circle fa-stack-1x fa-inverse item-inline " style="font-size: 0.5em; text-align: center; margin-top:35px " aria-hidden="true"></i>
+                        </span>
+                            </span>
+                    </div>
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Charla para nuevos miembros</h5>
+                        <p class="card-text">
+                            Si ya estás bautizado y querés conocer la visión de la iglesia y cómo se miembro de esta familia de fe, vení a nuestra
+                            charla de Membresía. <br/>
+                            El sábado 13 de de abril a las 17:00 hs el pastor Fabian te espera para una conversación muy especial
+
+                        </p>
+                        <p class="card-text"><small class="text-muted">
+
+                            </small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <footer class="footer text-faded text-center py-5">
     <div class="container">
         <p class="m-0 small">Copyright &copy; Iglesia Alameda 2018</p>
@@ -179,7 +299,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="js/awasome/fontawesome-all.min.js"></script>
+
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
 
 <script type="text/javascript">
