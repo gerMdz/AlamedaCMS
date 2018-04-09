@@ -148,13 +148,14 @@
                             Domingo 11 hs
                             </small>
                             <span class="section-heading-body bg-light" id="once">
-                <div  id="reunion-11" data-countdown="2018/04/08 11:00:00"></div>
+                <div  id="reunion-11" data-countdown="2018/04/15 11:00:00"></div>
               </span>
                             <hr/>
                             <small class="mt-2">
                                 Domingo 19 hs.
                             </small>
-                            <span class="section-heading-body bg-light"><div  id="reunion-19" data-countdown="2018/04/08 19:00:00"></div></span>
+                            <span class="section-heading-body bg-light">
+                                <div  id="reunion-19" data-countdown="2018/04/15 19:00:00"></div></span>
                     </div>
                 </h2>
 
