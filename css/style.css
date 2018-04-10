@@ -118,3 +118,19 @@
     border-color:#007bff}
 .btn-alameda:hover{color:#f0e7d1;background-color:#438789;border-color:#73aba2}
 .btn-alameda.focus,.btn-alameda:focus{box-shadow:0 0 0 .2rem rgba(46,46,46,.5)}
+
+.img-punto  {
+
+    background-image:url(../imagenes/PEncuentroSinText.png) ;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:16px 16px;
+    text-indent:-1000px;
+    min-width:8px;
+}
+
+ul.punto li{
+
+    list-style: none;
+
+}

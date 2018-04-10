@@ -241,14 +241,14 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Punto de Partida</h5>
                         <p class="card-text ">
-                            ¿Tenés pŕeguntas acerca de Dios y te gustaría conversar?<br/>
+                            ¿Tenés preguntas acerca de Dios y te gustaría conversar?<br/>
                             Punto de partida es una experiencia conversacional creada
                             para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
-                            <ul>
-                            <li>
+                            <ul class="punto">
+                            <li  ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
                             ¿Dios existe?
                             </li>
-                            <li>
+                            <li> <img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
                             ¿Puedo confiar en la Biblia?
                             </li>
 
