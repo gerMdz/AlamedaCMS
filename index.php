@@ -71,7 +71,7 @@
     </div>
   </div>
 </nav>-->
-<main class="container-fluid">
+<main class="container">
     <div class="row">
 
       <!--  <section class="page-section social_links col-sm-3">
@@ -96,7 +96,7 @@
             </div>
         </section>-->
 
-<section class="page-section principal col-xl-9 mr-auto ml-auto ">
+<section class="page-section principal col-xl-12 ml-auto mr-auto ">
     <div class="container-fluid">
         <div class="row">
             <div class=" fondo">
@@ -117,16 +117,16 @@
                         <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
                         <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
                     </div>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <!--<div id="social">
-
-                            <div class="d-flex flex-row justify-content-around ">
-                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>
-                            </div>
-
-
-                        </div>-->
-                    </div>
+<!--                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
+<!--                        <div id="social">-->
+<!---->
+<!--                            <div class="d-flex flex-row justify-content-around ">-->
+<!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
+<!--                            </div>-->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
 
                 </nav>
 
@@ -140,7 +140,7 @@
 
 </section>
 
-<section class="page-section eventos col-sm-3">
+<section class="page-section eventos col-sm-12  ml-auto">
     <div class="container">
         <div class="intro">
 
