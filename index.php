@@ -198,15 +198,15 @@
                 <ul class="carousel-indicators">
                     <li data-target="#50dias" data-slide-to="0" class="active"></li>
                     <li data-target="#50dias" data-slide-to="1"></li>
-                    <li data-target="#50dias" data-slide-to="2"></li>
+                    <!--<li data-target="#50dias" data-slide-to="2"></li>-->
                 </ul>
 
                 <!-- The slideshow -->
                 <div class="carousel-inner ">
-                    <div class="carousel-item active">
+                    <!--<div class="carousel-item active">
                         <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
-                    </div>
-                    <div class="carousel-item">
+                    </div>-->
+                    <div class="carousel-item active">
                         <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block w-100" >
                     </div>
                     <div class="carousel-item">
@@ -264,7 +264,7 @@
                 <div class="card bg-point border-point ">
                     <div class="text-center pt-3 ">
                         <span class="card-title text-center ">
-                            <i class="fas fa-seedling fa-10x text-point" ></i></span>
+                            <i class="fas fa-seedling fa-9x text-point" ></i></span>
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
@@ -280,7 +280,8 @@
 
                 <div class="card bg-point border-point" >
                     <div class="text-center pt-3 ">
-                        <span class="card-title "><i class="fas fa-link fa-10x text-point"></i></span>
+                        <span class="card-title ">
+                            <i class="fas fa-link fa-9x text-point"></i></span>
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Enlace de Grupos de Amistad</h5>
@@ -300,7 +301,7 @@
                 <div class="card bg-point border-point" >
                     <div class="text-center pt-3">
                         <span class="card-title ">
-                                            <span class="fa-stack fa-5x list-inline">
+                            <span class="fa-stack list-inline" style="font-size: 4.5em">
                             <i class="fas fa-circle fa-stack-2x text-point"></i>
                             <i class="fi fi-torsos-all fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: left" aria-hidden="true"></i>
                             <i class="fi fi-torsos-all-female fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: right" aria-hidden="true"></i>
@@ -341,6 +342,11 @@
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
 
 <script type="text/javascript">
+
+    $('.carousel').carousel({
+        interval: 10000
+    })
+
     $('[data-countdown]').each(function() {
         var $this = $(this), finalDate = $(this).data('countdown');
         $this.countdown(finalDate, function(event) {
