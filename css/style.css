@@ -68,3 +68,36 @@
 
     top: -2.5rem;
 }
+
+.text-point {
+
+    color: #ca5430;
+}
+
+.border-point {
+    border-color: #2e2e2e !important;
+
+}
+
+.bg-point {
+
+    background-color: #f0e7d1;
+}
+
+.text-point-sec {
+
+    color: #438789;
+}
+
+.text-light-blue{
+    color: #73aba2;
+}
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+
+.eventos {
+
+    z-index: 2000;
+}
