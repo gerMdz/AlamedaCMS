@@ -84,6 +84,16 @@
     background-color: #f0e7d1;
 }
 
+.bg-light-blue {
+
+    background-color: #73aba2;
+}
+
+.bg-point-sec {
+
+    background-color: #438789;
+}
+
 .text-point-sec {
 
     color: #438789;
@@ -101,3 +111,10 @@
 
    /* margin-top: 20rem;*/
 }
+
+.btn-alameda{
+    color:#f0e7d1;
+    background-color:#438789;
+    border-color:#007bff}
+.btn-alameda:hover{color:#f0e7d1;background-color:#438789;border-color:#73aba2}
+.btn-alameda.focus,.btn-alameda:focus{box-shadow:0 0 0 .2rem rgba(46,46,46,.5)}

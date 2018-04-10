@@ -96,15 +96,15 @@
             </div>
         </section>-->
 
-<section class="page-section principal col-xl-12 ml-auto mr-auto ">
+<section class="page-section principal col-xl-12 ">
     <div class="container-fluid">
-        <div class="row">
-            <div class=" fondo">
-                <nav class="navbar navbar-dark bg-dark navbar-expand-md sticky-top " >
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                        <!--<span class="navbar-toggler-icon"></span>-->
+        <div class="row fondo">
+            <div class="col-sm-12 sticky-top  ">
+                <nav class="navbar navbar-dark bg-dark navbar-expand-md  " >
+                    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                         <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">
-                    </button>
+                    </button>-->
                     <a class=".d-none .d-md-block .d-lg-none" href="index.php">
                         <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
 
@@ -129,20 +129,15 @@
 <!--                    </div>-->
 
                 </nav>
+            </div>
 
 
-
+    <div class="col-sm-9">
     <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">
     </div>
-    </div>
-    </div>
 
-</section>
-
-<section class="page-section eventos col-sm-12  ml-auto">
-    <div class="container">
-        <div class="intro">
+    <div class="intro col-sm-3 my-auto">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
@@ -168,12 +163,13 @@
                 </h2>
 
                 <div class="intro-button mx-auto my-auto">
-                    <a class="btn btn-primary btn-xl" href="#evento">Vení tal como sos</a>
+                    <a class="btn btn-alameda btn-xl" href="#evento">Vení tal como sos</a>
                 </div>
             </div>
 
 
         </div>
+    </div>
     </div>
 </section>
     </div>
@@ -208,7 +204,7 @@
                 <!-- The slideshow -->
                 <div class="carousel-inner ">
                     <div class="carousel-item active">
-                        <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100" >
+                        <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
                     </div>
                     <div class="carousel-item">
                         <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block w-100" >
