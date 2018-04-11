@@ -16,10 +16,10 @@
     <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
     <!-- Bootstrap core CSS -->
-    <link href="css/business-casual.min.css" rel="stylesheet">
+    <link href="css/business-casual.min.css?v=20180411" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
     <link href="css/foundation-icons.woff" rel="stylesheet">
-    <link href="css/alameda.css" rel="stylesheet">
+    <link href="css/alameda.css?v=20180411" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
@@ -153,10 +153,10 @@
 </section>
     </div>
 </main>
-<section class="page-section cta" id="evento">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-9 mx-auto">
+<section class="page-section cta fondo-evento" id="evento">
+    <!--<div class="container">-->
+            <!--<div class="row fondo-footer">-->
+                <!--        <div class="col-xl-9 mx-auto">-->
                 <!--<div class="cta-inner text-center rounded">
                     <h2 class="section-heading mb-4">
                         <span class="section-heading-upper">01 de Abril</span>
@@ -207,11 +207,12 @@
             </div>
 
         </div>
-        </div>
+            <!--</div>-->
+            <!--</div>-->
     </div>
 </section>
 
-<section class="page-section cta" id="ppasos">
+<section class="page-section cta fondo-evento" id="ppasos">
     <div class="container">
         <div class="row">
             <div class="card-deck">
