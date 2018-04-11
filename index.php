@@ -204,13 +204,19 @@
                 <!-- The slideshow -->
                 <div class="carousel-inner ">
                     <div class="carousel-item active">
-                        <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
+                        <div class="py-auto">
+                        <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class=" bg-point-sec" >
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block w-100" >
+                        <div class="py-auto">
+                        <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block w-90 img-slider" >
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="imagenes/50dias_3.jpg" alt="50 días de Amistad" class="d-block w-100" >
+                        <div class="py-auto">
+                        <img src="imagenes/50dias_3.jpg" alt="50 días de Amistad" class="d-block w-90 img-slider" >
+                        </div>
                     </div>
                 </div>
 
