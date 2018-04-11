@@ -117,6 +117,11 @@
                         <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
                         <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
                     </div>
+                    <div id="social">
+                        <div class="d-flex flex-row justify-content-around ">
+                            <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
 <!--                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
 <!--                        <div id="social">-->
 <!---->
@@ -206,12 +211,15 @@
                     <!--<div class="carousel-item active">
                         <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
                     </div>-->
-                    <div class="carousel-item active">
-                        <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block w-100" >
+                    <div class="carousel-item active ">
+
+                        <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block " >
+
                     </div>
-                    <div class="carousel-item">
-                        <img src="imagenes/50dias_3.jpg" alt="50 días de Amistad" class="d-block w-100" >
-                    </div>
+                    <div class="carousel-item ">
+
+                        <img src="imagenes/50dias_3.jpg" alt="50 días de Amistad" class="d-block  " >
+
                 </div>
 
                 <!-- Left and right controls -->
@@ -245,7 +253,7 @@
                             Punto de partida es una experiencia conversacional creada
                             para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
                             <ul class="punto">
-                            <li  ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
+                            <li ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
                             ¿Dios existe?
                             </li>
                             <li> <img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
@@ -329,9 +337,9 @@
 </section>
 
 
-<footer class="footer text-faded text-center py-5">
+<footer class="footer text-tan text-center py-5 ">
     <div class="container">
-        <p class="m-0 small">Copyright &copy; Iglesia Alameda 2018</p>
+        <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
     </div>
 </footer>
 
