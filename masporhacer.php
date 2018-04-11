@@ -21,7 +21,7 @@
     <link href="css/business-casual.min.css" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
     <link href="css/foundation-icons.woff" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/alameda.css" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
@@ -60,7 +60,7 @@
 
     <div class="navbar-nav mr-auto ml-auto ">
         <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
-        <a class="nav-item nav-link mr-1 " href="#ppasos">Próximos pasos</a>
+        <a class="nav-item nav-link mr-1 " href="index.php#ppasos">Próximos pasos</a>
         <a class="nav-item nav-link mr-1 active" href="#">Mucho para hacer</a>
         <!--<a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
     </div>

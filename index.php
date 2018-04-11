@@ -19,7 +19,7 @@
     <link href="css/business-casual.min.css" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
     <link href="css/foundation-icons.woff" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/alameda.css" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
@@ -187,12 +187,12 @@
                     </div>-->
                     <div class="carousel-item active ">
 
-                        <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block " >
+                        <img src="imagenes/50dias_p2.png" alt="50 días de Amistad" class="d-block " >
 
                     </div>
                     <div class="carousel-item ">
 
-                        <img src="imagenes/50dias_3.jpg" alt="50 días de Amistad" class="d-block  " >
+                        <img src="imagenes/50dias_p3.jpg" alt="50 días de Amistad" class="d-block  " >
 
                 </div>
 

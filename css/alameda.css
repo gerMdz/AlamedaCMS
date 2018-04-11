@@ -107,9 +107,9 @@
     color: #73aba2;
 }
 .carousel-inner img {
-    width: 90%;
+    width: 70%;
     height: auto;
-    margin-left: 5%;
+    margin-left: 15%;
 }
 
 .eventos {
@@ -147,7 +147,7 @@ ul.punto li{
     margin-bottom: 0;
 }
 
-.carousel, .carousel-inner > .carousel-item > img {
+/*.carousel, .carousel-inner > .carousel-item > img {
 
     height: 200px;
-}
+}*/
