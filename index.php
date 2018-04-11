@@ -314,7 +314,25 @@
 
 <footer class="footer text-tan text-center py-5 fondoFranja ">
     <div class="container">
-        <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
+        <div class="row">
+        <div class="col-sm-3">
+            Nuestra Iglesia
+            <hr class="bg-point"/>
+            <a class="text-tan" href="nuestraAlameda.php"> Horarios y Direcciones</a>
+        </div>
+        <div class="col-sm-3">
+            Nuestra Iglesia
+        </div>
+        <div class="col-sm-3">
+            Nuestra Iglesia
+        </div>
+        <div class="col-sm-3">
+            Nuestra Iglesia
+        </div>
+        </div>
+        <div class="col-sm-12">
+            <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
+        </div>
     </div>
 </footer>
 
