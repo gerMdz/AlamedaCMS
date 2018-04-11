@@ -312,7 +312,7 @@
 </section>
 
 
-<footer class="footer text-tan text-center py-5 ">
+<footer class="footer text-tan text-center py-5 fondoFranja ">
     <div class="container">
         <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
     </div>

@@ -163,3 +163,19 @@ ul.punto li{
     background-color:rgba(67, 135, 137, .25)
 }
 
+.fondoFranja {
+
+    /*position: absolute !important;
+    top: 6px !important;
+
+    height: 40px !important;
+    left: -10px !important;*/
+    /*background-color: #5a5a5a !important;*/
+    background-image: url('../imagenes/imgMenu.png') !important;
+    background-repeat: repeat !important;
+    padding: 0 10px !important;
+    /*margin-left: -16px;
+    margin-right: -16px;*/
+    box-shadow: 0px 10px 10px 5px;
+
+}
