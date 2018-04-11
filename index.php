@@ -44,33 +44,7 @@
 
 </h1>
 
-<!-- Navigation -->
-<!--<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item active px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="index.html">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
-        </li>
-        <li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="products.html">Products</a>
-        </li>
-        <li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="store.html">Store</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>-->
+
 <main class="container">
     <div class="row">
 
@@ -116,6 +90,11 @@
                         <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>
                         <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
                         <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
+                    </div>
+                    <div id="social">
+                        <div class="d-flex flex-row justify-content-around ">
+                            <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
+                        </div>
                     </div>
 <!--                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
 <!--                        <div id="social">-->
@@ -198,26 +177,23 @@
                 <ul class="carousel-indicators">
                     <li data-target="#50dias" data-slide-to="0" class="active"></li>
                     <li data-target="#50dias" data-slide-to="1"></li>
-                    <li data-target="#50dias" data-slide-to="2"></li>
+                    <!--<li data-target="#50dias" data-slide-to="2"></li>-->
                 </ul>
 
                 <!-- The slideshow -->
                 <div class="carousel-inner ">
-                    <div class="carousel-item active">
-                        <div class="py-auto">
-                        <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class=" bg-point-sec" >
-                        </div>
+                    <!--<div class="carousel-item active">
+                        <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
+                    </div>-->
+                    <div class="carousel-item active ">
+
+                        <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block " >
+
                     </div>
-                    <div class="carousel-item">
-                        <div class="py-auto">
-                        <img src="imagenes/50dias_2.png" alt="50 días de Amistad" class="d-block w-90 img-slider" >
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="py-auto">
-                        <img src="imagenes/50dias_3.jpg" alt="50 días de Amistad" class="d-block w-90 img-slider" >
-                        </div>
-                    </div>
+                    <div class="carousel-item ">
+
+                        <img src="imagenes/50dias_3.jpg" alt="50 días de Amistad" class="d-block  " >
+
                 </div>
 
                 <!-- Left and right controls -->
@@ -251,7 +227,7 @@
                             Punto de partida es una experiencia conversacional creada
                             para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
                             <ul class="punto">
-                            <li  ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
+                            <li ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
                             ¿Dios existe?
                             </li>
                             <li> <img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
@@ -270,7 +246,7 @@
                 <div class="card bg-point border-point ">
                     <div class="text-center pt-3 ">
                         <span class="card-title text-center ">
-                            <i class="fas fa-seedling fa-10x text-point" ></i></span>
+                            <i class="fas fa-seedling fa-9x text-point" ></i></span>
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
@@ -286,7 +262,8 @@
 
                 <div class="card bg-point border-point" >
                     <div class="text-center pt-3 ">
-                        <span class="card-title "><i class="fas fa-link fa-10x text-point"></i></span>
+                        <span class="card-title ">
+                            <i class="fas fa-link fa-9x text-point"></i></span>
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Enlace de Grupos de Amistad</h5>
@@ -306,7 +283,7 @@
                 <div class="card bg-point border-point" >
                     <div class="text-center pt-3">
                         <span class="card-title ">
-                                            <span class="fa-stack fa-5x list-inline">
+                            <span class="fa-stack list-inline" style="font-size: 4.5em">
                             <i class="fas fa-circle fa-stack-2x text-point"></i>
                             <i class="fi fi-torsos-all fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: left" aria-hidden="true"></i>
                             <i class="fi fi-torsos-all-female fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: right" aria-hidden="true"></i>
@@ -334,9 +311,9 @@
 </section>
 
 
-<footer class="footer text-faded text-center py-5">
+<footer class="footer text-tan text-center py-5 ">
     <div class="container">
-        <p class="m-0 small">Copyright &copy; Iglesia Alameda 2018</p>
+        <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
     </div>
 </footer>
 
@@ -347,6 +324,11 @@
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
 
 <script type="text/javascript">
+
+    $('.carousel').carousel({
+        interval: 10000
+    })
+
     $('[data-countdown]').each(function() {
         var $this = $(this), finalDate = $(this).data('countdown');
         $this.countdown(finalDate, function(event) {
