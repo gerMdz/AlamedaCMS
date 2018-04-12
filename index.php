@@ -1,5 +1,6 @@
+<?php $ahora = date('Y-m-d H:i') ?>
 <!DOCTYPE html>
-<?php ?>
+
 <html lang="en">
 
 <head>
@@ -16,10 +17,10 @@
     <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
     <!-- Bootstrap core CSS -->
-    <link href="css/business-casual.min.css?v=20180411" rel="stylesheet">
+    <link href="css/business-casual.min.css?v=2018041209" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
     <link href="css/foundation-icons.woff" rel="stylesheet">
-    <link href="css/alameda.css?v=20180411" rel="stylesheet">
+    <link href="css/igle.css?v=2018041209" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
@@ -215,11 +216,13 @@
 <section class="page-section cta fondo-evento" id="ppasos">
     <div class="container">
         <div class="row">
+
             <div class="card-deck">
 
                 <div class="card bg-point border-point " >
 
-                    <img src="imagenes/PEncuentroSinText.png" class="card-img-top mt-1 pt-3 mr-auto ml-auto" style="height: 55%; width: 55%">
+                    <img src="imagenes/PEncuentroSinText.png" class="card-img-top mt-1 pt-3 mr-auto ml-auto"
+                         style="height: 36%; width: 36%">
 
                     <div class="card-body">
                         <h5 class="card-title text-center">Punto de Partida</h5>
@@ -238,16 +241,17 @@
                         </ul>
                             En un ambiente libre de prejuicios.
                         </p>
+                        <small class="text-point-sec">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
+                            <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small>
                     </div>
-                        <div class="card-footer text-center"><small class="text-point-sec">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
-                                <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small></div>
+                        <div class="card-footer text-center"></div>
 
                 </div>
 
                 <div class="card bg-point border-point ">
-                    <div class="text-center pt-3 ">
+                    <div class="text-center pt-5 ">
                         <span class="card-title text-center ">
-                            <i class="fas fa-seedling fa-9x text-point" ></i></span>
+                            <i class="fas fa-seedling fa-10x text-point" ></i></span>
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
@@ -256,11 +260,22 @@
                             Una charla preparatoria para esta gran experiencia.
 
                         </p>
-                    <small class="text-point-sec">Sábado 14 de abril a las 17:00 Hs</small>
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <?php if ($ahora < date('2018-04-14 17:00')){ ?>
+
+                                <small class="text-point-sec">Sábado 14 de abril a las 17:00 Hs</small>
+
+                        <?php } ?>
                     </div>
 
                 </div>
 
+                <div class="w-100 hidden-xs-down hidden-md-up">
+                    <!-- wrap every 2 on sm-->
+                </div>
+                <div class="w-100 hidden-md-down hidden-xl-up"><!-- wrap every 4 on lg--></div>
                 <div class="card bg-point border-point" >
                     <div class="text-center pt-3 ">
                         <span class="card-title ">
@@ -270,14 +285,22 @@
                         <h5 class="card-title text-center">Enlace de Grupos de Amistad</h5>
                         <p class="card-text">
                             Si querés ser parte de un Grupo de Amistad de "Amigos Incondicionales" asistí a
-                            nuestro próximo Enlace de Grupos, el viernes 13 de abril a las 20:30 hs.
+                            nuestro próximo Enlace de Grupos
 
                         </p>
+                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                            (261 517 8081)  con el texto <strong>Enlace</strong></small>
                     </div>
-                        <div class="card-footer text-center"><small class="text-point-sec">
-                                Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
-                                (261 517 8081)  con el texto <strong>Enlace</strong>
-                            </small></div>
+
+                        <div class="card-footer text-center">
+                            <?php if ($ahora < date('2018-04-13 20:30')){ ?>
+                            <small class="text-point-sec">
+                                Viernes 13 de abril a las 20:30 hs.<br/>
+
+                            </small>
+                            <?php } ?>
+                        </div>
+                    <?php ?>
 
                 </div>
 
@@ -297,14 +320,27 @@
                         <p class="card-text">
                             Si ya estás bautizado y querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra
                             charla de Membresía. <br/>
-                            El sábado 13 de de abril a las 17:00 hs.
+                            El pastor Fabian te espera para una conversación muy especial
+
 
                         </p>
-                    <small class="text-point-sec">
-                                El pastor Fabian te espera para una conversación muy especial
-                            </small>
                     </div>
+
+                            <div class="card-footer text-center">
+                                <?php if ($ahora < date('2018-04-13 17:00')){ ?>
+                                    <small class="text-point-sec">
+                                        Sábado 14 de de abril a las 17:00 hs.
+                                    </small>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+
+
+
+
                     </div>
+
 
             </div>
         </div>
@@ -315,21 +351,35 @@
 <footer class="footer text-tan text-center py-5 fondoFranja ">
     <div class="container">
         <div class="row">
-        <div class="col-sm-3">
-            Nuestra Iglesia
+        <!--<div class="col-sm-3">
             <hr class="bg-point"/>
-            <a class="text-tan" href="nuestraAlameda.php"> Horarios y Direcciones</a>
+
+
+            <a class="text-tan" href="nuestraAlameda.php"> Los Horarios de Nuestras Celebraciones</a>
+            <hr class="bg-point"/>
         </div>
         <div class="col-sm-3">
-            Nuestra Iglesia
+            <hr class="bg-point"/>
+
+
+            <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
+            <hr class="bg-point"/>
         </div>
         <div class="col-sm-3">
-            Nuestra Iglesia
+            <hr class="bg-point"/>
+
+
+            <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
+            <hr class="bg-point"/>
         </div>
         <div class="col-sm-3">
-            Nuestra Iglesia
+            <hr class="bg-point"/>
+
+
+            <a class="text-tan" href="masporhacer.php"> Esto es lo que se viene en la Alameda</a>
+            <hr class="bg-point"/>
         </div>
-        </div>
+        </div>-->
         <div class="col-sm-12">
             <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
         </div>
