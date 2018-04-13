@@ -214,44 +214,89 @@
 </section>
 
 <section class="page-section cta fondo-evento" id="ppasos">
-    <div class="container">
+
+
+    <div class="card bg-dark text-tan container-fluid mb-1">
         <div class="row">
+        <div class="col-sm-3 pull-left card-header">
+        <img class="card-img" src="imagenes/PuntoDePartida.jpeg" alt="Punto de Partida">
+        </div>
+        <div class="col-sm-8 pull-right text-right">
+            <h5 class="card-title"></h5>
+            <div class="card-body">
+            <p class="card-text ">
+                ¿Tenés preguntas acerca de Dios y te gustaría conversar?<br/>
+                Punto de partida es una experiencia conversacional creada
+                para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
+            <ul class="punto">
+                <li ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
+                    ¿Dios existe?
+                </li>
+                <li> <img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
+                    ¿Puedo confiar en la Biblia?
+                </li>
 
-            <div class="card-deck">
+            </ul>
+            En un ambiente libre de prejuicios.
+            </p>
+            </div>
 
-                <div class="card bg-point border-point " >
+        </div>
+        </div>
+        <div class="card-footer text-center">
+            <small class="text-point-sec">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
+                <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small>
+        </div>
+    </div>
 
-                    <img src="imagenes/PEncuentroSinText.png" class="card-img-top mt-1 pt-3 mr-auto ml-auto"
-                         style="height: 36%; width: 36%">
+            <!--<div class="card-deck">
+            <div class="col-sm-12 bg-light">
+                <div class="col-sm-3 float-left">
+                    <div class="card-header">
+                        <img src="imagenes/PuntoDePartida.jpeg" class="img-fluid"
+                        >
+                    </div>
 
+                </div>
+                <div class="col-sm-9 text-center">
                     <div class="card-body">
                         <h5 class="card-title text-center">Punto de Partida</h5>
                         <p class="card-text ">
                             ¿Tenés preguntas acerca de Dios y te gustaría conversar?<br/>
                             Punto de partida es una experiencia conversacional creada
                             para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
-                            <ul class="punto">
+                        <ul class="punto">
                             <li ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
-                            ¿Dios existe?
+                                ¿Dios existe?
                             </li>
                             <li> <img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
-                            ¿Puedo confiar en la Biblia?
+                                ¿Puedo confiar en la Biblia?
                             </li>
 
                         </ul>
-                            En un ambiente libre de prejuicios.
+                        En un ambiente libre de prejuicios.
                         </p>
+
+                    </div>
+
+                </div>
+                <div class="col-sm-12 float-none">
+                    <div class="card-footer text-center">
                         <small class="text-point-sec">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
                             <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small>
                     </div>
-                        <div class="card-footer text-center"></div>
-
                 </div>
+            </div>
+            </div>-->
 
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card-deck ">
                 <div class="card bg-point border-point ">
-                    <div class="text-center pt-5 ">
+                    <div class="text-center pt-3 ">
                         <span class="card-title text-center ">
-                            <i class="fas fa-seedling fa-10x text-point" ></i></span>
+                            <i class="fas fa-seedling fa-9x text-point" ></i></span>
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
@@ -272,10 +317,8 @@
 
                 </div>
 
-                <div class="w-100 hidden-xs-down hidden-md-up">
-                    <!-- wrap every 2 on sm-->
-                </div>
-                <div class="w-100 hidden-md-down hidden-xl-up"><!-- wrap every 4 on lg--></div>
+
+
                 <div class="card bg-point border-point" >
                     <div class="text-center pt-3 ">
                         <span class="card-title ">
@@ -342,7 +385,7 @@
                     </div>
 
 
-            </div>
+
         </div>
     </div>
 </section>
