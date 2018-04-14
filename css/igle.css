@@ -179,3 +179,12 @@ a.text-tan:hover{
 
 }
 
+.bg-teal{
+    background-color:#006064EE!important}
+a.bg-teal:focus,
+a.bg-teal:hover,
+button.bg-teal:focus,
+button.bg-teal:hover{
+    background-color:#00bcd4CC!important
+}
+

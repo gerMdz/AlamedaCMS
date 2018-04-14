@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php ?>
-
-<html lang="en">
 
 <head>
 
@@ -11,28 +8,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Iglesia Alameda</title>
-    <link rel="icon" href="imagenes/index.png" sizes="32x32" />
-    <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
-    <link rel="icon" href="imagenes/index192.png" sizes="192x192" />
-    <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
+    <title>Iglesia de la Alameda</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/business-casual.min.css" rel="stylesheet">
-    <link href="css/foundation-icons.css" rel="stylesheet">
-    <link href="css/foundation-icons.woff" rel="stylesheet">
-    <link href="css/alameda.css" rel="stylesheet">
-    <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
-    <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+    <link href="css/business-casual.min.css?v=2018041209" rel="stylesheet">
+    <link href="css/foundation-icons.css" rel="stylesheet">
+    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
 
+    <link href="css/igle.css?v=2018041209" rel="stylesheet">
 
 </head>
 
@@ -47,73 +37,30 @@
 </h1>
 
 <!-- Navigation -->
-<nav class="navbar navbar-dark bg-dark navbar-expand-xl mx-auto text-center py-lg-1 sticky-top" id="mainNav">
-    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">
-    </button>-->
-    <a class=".d-none .d-md-block .d-lg-none" href="index.php">
-        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
-
-    </a>
-
-
-    <div class="navbar-nav mr-auto ml-auto ">
-        <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
-        <a class="nav-item nav-link mr-1 " href="index.php#ppasos">Próximos pasos</a>
-        <a class="nav-item nav-link mr-1 active" href="#">Mucho para hacer</a>
-        <!--<a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
-    </div>
-    <div id="social">
-        <div class="d-flex flex-row justify-content-around ">
-            <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
-        </div>
-    </div>
-    <!--                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
-    <!--                        <div id="social">-->
-    <!---->
-    <!--                            <div class="d-flex flex-row justify-content-around ">-->
-    <!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
-    <!--                            </div>-->
-    <!---->
-    <!---->
-    <!--                        </div>-->
-    <!--                    </div>-->
-
-</nav>
-
-<!--<nav class="navbar navbar-dark bg-dark navbar-expand-xl mx-auto text-center py-lg-1 sticky-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4 " id="mainNav">
     <div class="container">
-        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">
+        <a class=".d-none .d-md-block .d-lg-none" href="index.php">
             <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
+
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <small>Menú</small>
+
+        <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav mr-auto ml-auto">
-                <li class="nav-item px-lg-4">
-                    <a class=".d-none .d-md-block .d-lg-block" href="index.php">
-                        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
 
-                    </a>
-                </li>
-                <li class="nav-item px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="index.php#ppasos">Primeros Pasos</a>
-                </li>
-                <li class="nav-item active px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="masporhacer.php">Más Por Hacer</a>
-                </li>
+        <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
+            <a class="nav-item nav-link text-tan mr-1 active" href="index.php#ppasos">Próximos pasos</a>
+            <a class="nav-item nav-link text-tan mr-1 active" href="masporhacer.php"> Lo que se viene</a>
 
-            </ul>
-            <ul id="social" >
-                <li class="d-flex flex-row justify-content-center px-lg-4 ">
-                    <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
-                </li>
-            </ul>
+        </div>
+        <div id="social">
+            <div class="d-flex flex-row justify-content-around ">
+                <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
+            </div>
         </div>
     </div>
-</nav>-->
+</nav>
 
 <section class="page-section">
     <div class="container">
@@ -121,15 +68,19 @@
             <div class="product-item-title d-flex">
                 <div class="bg-faded p-5 d-flex ml-auto rounded">
                     <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">3<sup>ER</sup> CONGRESO</span>
-                        <span class="section-heading-lower">MUJERES PROTAGONISTAS <br/> POR LA VIDA</span>
+                        <span class="section-heading-upper">Charlas de Membresía</span>
+<!--                        <span class="section-heading-lower">Membresía</span>-->
                     </h2>
                 </div>
             </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/3erCongreso.png" alt="">
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/membresia2.png" alt="Reunión Membresía">
             <div class="product-item-description d-flex mr-auto">
                 <div class="bg-faded p-5 rounded">
-                    <p class="mb-0">Ya están estamos inscribiendo para este TERCER CONGRESO!! No pierdas tiempo, vení, anotate, y <h1 style="font-variant-caps:small-caps"> sé una mujer protagonista</h1> </p>
+                    <p class="mb-0">
+                     Si querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra charla de Membresía.
+                     Este sábado 14 de abril a las 17hs. El pastor Fabián te espera para una conversación muy especial
+
+                    </p>
                 </div>
             </div>
         </div>
@@ -178,9 +129,41 @@
     </div>
 </section>-->
 
-<footer class="footer text-tan text-center py-5 ">
+<footer class="footer text-tan text-center py-5 fondoFranja ">
     <div class="container">
-        <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
+        <div class="row">
+            <!--<div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="nuestraAlameda.php"> Los Horarios de Nuestras Celebraciones</a>
+                <hr class="bg-point"/>
+            </div>
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
+                <hr class="bg-point"/>
+            </div>
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
+                <hr class="bg-point"/>
+            </div>-->
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="masporhacer.php"> Lo que se viene en la Alameda</a>
+                <hr class="bg-point"/>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
+        </div>
     </div>
 </footer>
 

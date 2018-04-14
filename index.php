@@ -8,9 +8,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Iglesia de la Alamameda">
 
-    <title>Iglesia Alameda</title>
+    <title>Iglesia de la Alameda</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="imagenes/index192.png" sizes="192x192" />
@@ -19,7 +19,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/business-casual.min.css?v=2018041209" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
-    <link href="css/foundation-icons.woff" rel="stylesheet">
+
     <link href="css/igle.css?v=2018041209" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,64 +49,47 @@
 <main class="container">
     <div class="row">
 
-      <!--  <section class="page-section social_links col-sm-3">
-        </section>-->
 
-        <!--<section class="page-section social_links col-sm-3">
-            <div class="container">
-                <div class="intro">
-                    <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded">
-                        <h2 class="section-heading m-3">
-                            <span class="section-heading-upper">Estamos para vos</span>
-                            <hr/>
-                        </h2>
-                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Generadión Extrema </a> <br/>
-                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Iglesia Alameda </a> <br/>
-                        <a class="facebook_link"><i class="fab fa-facebook text-primary"></i> Jóvenes </a> <br/>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </section>-->
 
 <section class="page-section principal col-xl-12 ">
     <div class="container-fluid">
         <div class="row fondo">
             <div class="col-sm-12 sticky-top  ">
-                <nav class="navbar navbar-dark bg-dark navbar-expand-md  " >
-                    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">
-                    </button>-->
+                <nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between" >
                     <a class=".d-none .d-md-block .d-lg-none" href="index.php">
                         <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
 
                     </a>
 
+                    <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
+                    </button>
 
-                    <div class="navbar-nav mr-auto ml-auto ">
+
+
+<!--                    <div class="navbar-nav mr-auto ml-auto ">-->
                         <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
-                        <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>
+<!--                        <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>-->
+<!--                        <a class="nav-item nav-link mr-1" href="masporhacer.php"> Esto es lo que se viene en la Alameda</a>-->
                         <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
                         <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
+<!--                    </div>-->
+
+                    <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
+                        <a class="nav-item nav-link text-tan mr-1 active" href="#ppasos">Próximos pasos</a>
+                        <a class="nav-item nav-link text-tan mr-1" href="masporhacer.php"> Lo que se viene</a>
+<!--                        <div id="social">-->
+<!--                            <div class="d-flex flex-row justify-content-around ">-->
+<!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                     <div id="social">
                         <div class="d-flex flex-row justify-content-around ">
                             <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
                         </div>
                     </div>
-<!--                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
-<!--                        <div id="social">-->
-<!---->
-<!--                            <div class="d-flex flex-row justify-content-around ">-->
-<!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
-<!--                            </div>-->
-<!---->
-<!---->
-<!--                        </div>-->
-<!--                    </div>-->
 
                 </nav>
             </div>
@@ -216,15 +199,15 @@
 <section class="page-section cta fondo-evento" id="ppasos">
 
 
-    <div class="card bg-dark text-tan container-fluid mb-1">
+    <div class="card bg-teal text-tan container-fluid mb-1">
         <div class="row">
-        <div class="col-sm-3 pull-left card-header">
+        <div class="col-sm-3 pull-left card-header px-2">
         <img class="card-img" src="imagenes/PuntoDePartida.jpeg" alt="Punto de Partida">
         </div>
-        <div class="col-sm-8 pull-right text-right">
-            <h5 class="card-title"></h5>
-            <div class="card-body">
-            <p class="card-text ">
+        <div class="col-sm-9  pull-right text-left ">
+
+            <div class="card-body ml-lg-5 5 mt-lg-5">
+            <span class="card-text ">
                 ¿Tenés preguntas acerca de Dios y te gustaría conversar?<br/>
                 Punto de partida es una experiencia conversacional creada
                 para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
@@ -238,13 +221,13 @@
 
             </ul>
             En un ambiente libre de prejuicios.
-            </p>
+            </span>
             </div>
 
         </div>
         </div>
         <div class="card-footer text-center">
-            <small class="text-point-sec">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
+            <small class="text-tan">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
                 <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small>
         </div>
     </div>
@@ -370,9 +353,9 @@
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2018-04-13 17:00')){ ?>
+                                <?php if ($ahora < date('2018-04-14 17:00')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 14 de de abril a las 17:00 hs.
+                                        Sábado 14 de de abril a las 17:00 hs. <a href="masporhacer.php"><small> >></small></a>
                                     </small>
                                 <?php } ?>
                             </div>
@@ -414,15 +397,15 @@
 
             <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
             <hr class="bg-point"/>
-        </div>
+        </div>-->
         <div class="col-sm-3">
             <hr class="bg-point"/>
 
 
-            <a class="text-tan" href="masporhacer.php"> Esto es lo que se viene en la Alameda</a>
+            <a class="text-tan" href="masporhacer.php"> Lo que se viene en la Alameda</a>
             <hr class="bg-point"/>
         </div>
-        </div>-->
+        </div>
         <div class="col-sm-12">
             <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
         </div>
