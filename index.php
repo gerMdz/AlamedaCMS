@@ -1,4 +1,8 @@
-<?php $ahora = date('Y-m-d H:i') ?>
+<?php
+    $ahora = date('Y-m-d H:i');
+    $domingo = strtotime('today');
+    include_once ('gerVendor/gerFunctions.php')
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -95,33 +99,33 @@
             </div>
 
 
-    <div class="col-sm-9">
-    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
+    <div class="col-sm-9 pr-0 " >
+    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0  "
                  src="imagenes/imagen auditorio.jpeg" alt="">
     </div>
 
-    <div class="intro col-sm-3 my-auto">
+    <div class="intro col-sm-3 p-0 ml-auto contador" style="z-index: 1">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
-            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded">
-                <h2 class="section-heading m-3">
+            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded ">
+                <h2 class="section-heading my-2">
 
-                    <span class="section-heading-upper">Una casa grande para una familia grande</span>
+                    <span class="section-heading-upper contador">Una casa grande para una familia grande</span>
                     <hr/>
                     <div class="section-body">
                         <small class="mt-2">
                             Domingo 11 hs
                             </small>
-                            <span class="section-heading-body bg-light" id="once">
-                <div  id="reunion-11" data-countdown="2018/04/15 11:00:00"></div>
+                            <span class="section-heading-body bg-light contador " id="once">
+                <div  id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
               </span>
                             <hr/>
                             <small class="mt-2">
                                 Domingo 19 hs.
                             </small>
-                            <span class="section-heading-body bg-light">
-                                <div  id="reunion-19" data-countdown="2018/04/15 19:00:00"></div></span>
+                            <span class="section-heading-body bg-light contador">
+                                <div  id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div></span>
                     </div>
                 </h2>
 
@@ -378,26 +382,28 @@
     <div class="container">
         <div class="row">
         <!--<div class="col-sm-3">
-            <hr class="bg-point"/>
+            <span class="text-left">Iglesia de la Alameda</span> <br/>
 
 
-            <a class="text-tan" href="nuestraAlameda.php"> Los Horarios de Nuestras Celebraciones</a>
-            <hr class="bg-point"/>
-        </div>
-        <div class="col-sm-3">
-            <hr class="bg-point"/>
+            <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
 
-
-            <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
-            <hr class="bg-point"/>
-        </div>
-        <div class="col-sm-3">
-            <hr class="bg-point"/>
-
-
-            <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
             <hr class="bg-point"/>
         </div>-->
+            <!--
+                <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
+                <hr class="bg-point"/>
+            </div>
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
+                <hr class="bg-point"/>
+            </div>-->
         <div class="col-sm-3">
             <hr class="bg-point"/>
 
@@ -407,7 +413,7 @@
         </div>
         </div>
         <div class="col-sm-12">
-            <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
+            <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
         </div>
     </div>
 </footer>

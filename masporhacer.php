@@ -62,7 +62,42 @@
     </div>
 </nav>
 
-<section class="page-section">
+<section class="page-section fondo-evento py-3">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">3° Congreso de Mujeres </span>
+<!--                        <span class="section-heading-lower">Membresía</span>-->
+                    </h2>
+                </div>
+            </div>
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/3erCongreso.png" alt="3° COngreso de Mujeres">
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                     ¡Nuestro 3° Congreso de Mujeres cada día está más cerca!<br/>
+                     A tan solo un mes de un nuevo tiempo para nosotras.<br/>
+
+                     Sumarte al desafío de <em>"Mujeres Protagonistas por la Vida 2018"</em>.<br/>
+                     ¡Animate a escribir una nueva página en la historia de tu #VIDA!
+
+                    </strong>
+                    <br/><br/>
+                    <div class="card-footer text-left">
+                    <small>Inscripciones y consultas al mail <a href="mailto:inscripcionescongreso.18@gmail.com"> inscripcionescongreso.18@gmail.com</a>
+                    o por mensaje de Whatsapp al "261 3 670142", también podés acercate al stand de inscripciones, a la salida de las celebraciones
+                        del domingo.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="page-section fondo-evento py-3">
     <div class="container">
         <div class="product-item">
             <div class="product-item-title d-flex">
@@ -87,47 +122,6 @@
     </div>
 </section>
 
-<!--<section class="page-section">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex mr-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Delicious Treats, Good Eats</span>
-                        <span class="section-heading-lower">Bakery &amp; Kitchen</span>
-                    </h2>
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="img/products-02.jpg" alt="">
-            <div class="product-item-description d-flex ml-auto">
-                <div class="bg-faded p-5 rounded">
-                    <p class="mb-0">Our seasonal menu features delicious snacks, baked goods, and even full meals perfect for breakfast or lunchtime. We source our ingredients from local, oragnic farms whenever possible, alongside premium vendors for specialty goods.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="page-section">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">From Around the World</span>
-                        <span class="section-heading-lower">Bulk Speciality Blends</span>
-                    </h2>
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="img/products-03.jpg" alt="">
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded">
-                    <p class="mb-0">Travelling the world for the very best quality coffee is something take pride in. When you visit us, you'll always find new blends from around the world, mainly from regions in Central and South America. We sell our blends in smaller to large bulk quantities. Please visit us in person for more details.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>-->
 
 <footer class="footer text-tan text-center py-5 fondoFranja ">
     <div class="container">
@@ -162,7 +156,7 @@
             </div>
         </div>
         <div class="col-sm-12">
-            <p class="m-0 small ">San Martín  2030 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
+            <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
         </div>
     </div>
 </footer>

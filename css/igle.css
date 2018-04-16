@@ -188,3 +188,7 @@ button.bg-teal:hover{
     background-color:#00bcd4CC!important
 }
 
+.contador {
+
+    font-size: 0.8rem !important;
+}
