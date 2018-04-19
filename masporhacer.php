@@ -68,6 +68,37 @@
             <div class="product-item-title d-flex">
                 <div class="bg-faded p-5 d-flex ml-auto rounded">
                     <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Fiesta de Jóvenes </span>
+<!--                        <span class="section-heading-lower">Membresía</span>-->
+                    </h2>
+                </div>
+            </div>
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/JA_abril_24.jpeg" alt="JA! Fiesta Electrónica">
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                     Si sos jovén y querés conocer nuevos amigos<br/>
+                        Participá de nuestra fiesta de jóvenes de la Alameda, <br/>
+                        este <sup>sábado 20</sup> a las <sup>21:30 hs</sup> <br/>
+                        en San Martín 2020 de la ciudad de Mendoza.<br/>
+                        Será una <em>fiesta</em> de <em>Música electrónica.</em>
+                    </strong>
+                    <br/><br/>
+                    <div class="card-footer text-left">
+                    <small>Entrada libre y gratuita. Vení tal como sos.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section fondo-evento py-3">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
                         <span class="section-heading-upper">3° Congreso de Mujeres </span>
 <!--                        <span class="section-heading-lower">Membresía</span>-->
                     </h2>
