@@ -50,14 +50,15 @@
 </h1>
 
 
+<main class="container">
+    <div class="row">
 
 
 
-
-
-
-
-
+<section class="page-section principal col-xl-12 ">
+    <div class="container-fluid">
+        <div class="row fondo">
+            <div class="col-sm-12 sticky-top  ">
                 <nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between" >
                     <a class=".d-none .d-md-block .d-lg-none" href="index.php">
                         <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
@@ -95,16 +96,22 @@
                     </div>
 
                 </nav>
+            </div>
 
-        <section class="page-section clearfix">
-            <div class="container">
-                <div class="intro">
-                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0"
-                         src="imagenes/imagen auditorio.jpeg" alt="">
-                    <div class="intro-text border-info border-right-0 text-center bg-faded p-5 rounded">
-                        <h2 class="section-heading mb-4">
 
-                <span class="section-heading-upper contador">Una casa grande para una familia grande</span>
+    <div class="col-sm-9 pr-0 " >
+    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0  "
+                 src="imagenes/imagen auditorio.jpeg" alt="">
+    </div>
+
+    <div class="intro col-sm-3 p-0 ml-auto contador" style="z-index: 1">
+
+            <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
+                 src="imagenes/imagen auditorio.jpeg" alt="">-->
+            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded ">
+                <h2 class="section-heading my-2">
+
+                    <span class="section-heading-upper contador">Una casa grande para una familia grande</span>
                     <hr/>
                     <div class="section-body">
                         <small class="mt-2">
@@ -115,25 +122,25 @@
               </span>
                             <hr/>
                             <small class="mt-2">
-                                <?php echo $muestroDia; ?>  Domingo 19 hs.
+                                Domingo 19 hs.
                             </small>
                             <span class="section-heading-body bg-light contador">
-
                                 <div  id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div></span>
                     </div>
                 </h2>
 
-                        <div class="intro-button mx-auto my-auto">
-                            <a class="btn btn-primary btn-xl" href="#campania">Vení tal como sos</a>
-                        </div>
-                    </div>
+                <div class="intro-button mx-auto my-auto">
+                    <a class="btn btn-alameda btn-xl" href="#evento">Vení tal como sos</a>
                 </div>
             </div>
-        </section>
 
 
-
-
+        </div>
+    </div>
+    </div>
+</section>
+    </div>
+</main>
 <section class="page-section cta fondo-evento" id="evento">
     <!--<div class="container">-->
             <!--<div class="row fondo-footer">-->
