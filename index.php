@@ -21,10 +21,10 @@
     <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
     <!-- Bootstrap core CSS -->
-    <link href="css/business-casual.min.css?v=2018041209" rel="stylesheet">
+    <link href="css/business-casual.min.css?v=2018042409" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
 
-    <link href="css/igle.css?v=2018041209" rel="stylesheet">
+    <link href="css/igle.css?v=2018042409" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
@@ -99,16 +99,16 @@
             </div>
 
 
-    <div class="col-sm-12 col-md-12 col-lg-9 pr-0 " >
+    <div class="col-sm-12 col-md-12 col-lg-9  " >
     <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0  "
                  src="imagenes/imagen auditorio.jpeg" alt="">
     </div>
 
-    <div class="intro col-sm-12 col-md-12 col-lg-3 p-0 ml-auto contador" style="z-index: 1">
+    <div class="intro col-sm-12 col-md-12 col-lg-3 ml-auto contador" style="z-index: 1">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
-            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded ">
+            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded  ">
                 <h2 class="section-heading my-2">
 
                     <span class="section-heading-upper contador">Una casa grande para una familia grande</span>
