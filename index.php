@@ -99,12 +99,12 @@
             </div>
 
 
-    <div class="col-sm-9 pr-0 " >
+    <div class="col-sm-12 col-md-12 col-lg-9 pr-0 " >
     <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0  "
                  src="imagenes/imagen auditorio.jpeg" alt="">
     </div>
 
-    <div class="intro col-sm-3 p-0 ml-auto contador" style="z-index: 1">
+    <div class="intro col-sm-12 col-md-12 col-lg-3 p-0 ml-auto contador" style="z-index: 1">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
