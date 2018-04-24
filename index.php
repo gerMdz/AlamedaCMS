@@ -48,17 +48,9 @@
 
 
 </h1>
+<div class="container-fluid">
 
-
-
-
-
-
-
-
-
-
-                <nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between" >
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md justify-content-between sticky-top " >
                     <a class=".d-none .d-md-block .d-lg-none" href="index.php">
                         <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
 
@@ -96,12 +88,14 @@
 
                 </nav>
 
-        <section class="page-section clearfix">
-            <div class="container">
-                <div class="intro">
+    <section class="page-section clearfix fondo-evento">
+            <div class="container-fluid">
+                <div class="intro ">
+                    <div class="col-md-12 col-lg-9 w-100">
                     <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0"
-                         src="imagenes/imagen auditorio.jpeg" alt="">
-                    <div class="intro-text border-info border-right-0 text-center bg-faded p-5 rounded">
+                         src="imagenes/imagen auditorio.jpeg" alt="Auditorio Alameda">
+                    </div>
+                    <div class="intro-text col-md-12 col-lg-3 border-info border-right-0 text-center bg-faded p-5 rounded">
                         <h2 class="section-heading mb-4">
 
                 <span class="section-heading-upper contador">Una casa grande para una familia grande</span>
@@ -131,10 +125,7 @@
             </div>
         </section>
 
-
-
-
-<section class="page-section cta fondo-evento" id="evento">
+    <section class="page-section cta fondo-evento" id="evento">
     <!--<div class="container">-->
             <!--<div class="row fondo-footer">-->
                 <!--        <div class="col-xl-9 mx-auto">-->
@@ -190,10 +181,10 @@
         </div>
             <!--</div>-->
             <!--</div>-->
-    </div>
+
 </section>
 
-<section class="page-section cta fondo-evento" id="ppasos">
+    <section class="page-section cta fondo-evento" id="ppasos">
 
 
     <div class="card bg-teal text-tan container-fluid mb-1">
@@ -371,7 +362,7 @@
 </section>
 
 
-<footer class="footer text-tan text-center py-5 fondoFranja ">
+    <footer class="footer text-tan text-center py-5 fondoFranja ">
     <div class="container">
         <div class="row">
         <!--<div class="col-sm-3">
@@ -410,6 +401,8 @@
         </div>
     </div>
 </footer>
+
+</div>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
