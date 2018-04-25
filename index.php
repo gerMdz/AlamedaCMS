@@ -11,7 +11,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="Iglesia Alameda, Iglesia Bautista, Celebracion, Dios">
     <meta name="author" content="Iglesia de la Alamameda">
 
     <title>Iglesia de la Alameda</title>
@@ -50,7 +50,7 @@
 </h1>
 
 
-<main class="container">
+<main class="container-fluid">
     <div class="row">
 
 
@@ -58,7 +58,7 @@
 <section class="page-section principal col-xl-12 ">
     <div class="container-fluid">
         <div class="row fondo">
-            <div class="col-sm-12 sticky-top  ">
+            <div class="col-sm-12 sticky-top jumbotron-fluid ">
                 <nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between" >
                     <a class=".d-none .d-md-block .d-lg-none" href="index.php">
                         <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
@@ -104,30 +104,33 @@
                  src="imagenes/imagen auditorio.jpeg" alt="">
     </div>
 
-    <div class="intro col-sm-12 col-md-12 col-lg-3 ml-auto contador" style="z-index: 1">
+    <div class="intro col-sm-12 col-md-12 col-lg-3 ml-auto mt-lg-5 pr-lg-3 pl-lg-1 contador" style="z-index: 1">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
-            <div class="intro-text border-info border-right-0 text-center bg-faded p-2 rounded  ">
-                <h2 class="section-heading my-2">
+            <div class="intro-text border-info border-right-0 text-center bg-faded p-2  rounded  ">
+                <div class="section-heading my-2 row">
 
-                    <span class="section-heading-upper contador">Una casa grande para una familia grande</span>
+                    <div class="section-heading-upper contador col-md-12">Una casa grande para una familia grande</div>
                     <hr/>
-                    <div class="section-body">
+                    <div class="section-body col-sm-6 col-md-6 col-lg-12">
                         <small class="mt-2">
                             Domingo 11 hs
                             </small>
                             <span class="section-heading-body bg-light contador " id="once">
                 <div  id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
-              </span>
+                            </span>
+                    </div>
                             <hr/>
+                    <div class="section-body col-sm-6 col-md-6 col-lg-12">
                             <small class="mt-2">
                                 Domingo 19 hs.
                             </small>
                             <span class="section-heading-body bg-light contador">
-                                <div  id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div></span>
+                                <div  id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div>
+                            </span>
                     </div>
-                </h2>
+                </div>
 
                 <div class="intro-button mx-auto my-auto">
                     <a class="btn btn-alameda btn-xl" href="#evento">Vení tal como sos</a>

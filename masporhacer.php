@@ -5,10 +5,14 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Iglesia Alameda, Iglesia Bautista, Eventos Ciudad Mendoza">
+    <meta name="author" content="Iglesia de la Alameda">
+
 
     <title>Iglesia de la Alameda</title>
+    <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
+    <link rel="icon" href="imagenes/index192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -68,6 +72,49 @@
             <div class="product-item-title d-flex">
                 <div class="bg-faded p-5 d-flex ml-auto rounded">
                     <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">3° Congreso de Mujeres </span>
+                        <!--                        <span class="section-heading-lower">Membresía</span>-->
+                    </h2>
+                </div>
+            </div>
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/3erCongreso.png" alt="3° COngreso de Mujeres">
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        ¡Nuestro 3° Congreso de Mujeres cada día está más cerca!<br/>
+                        A tan solo un mes de un nuevo tiempo para nosotras.<br/>
+
+                        Sumarte al desafío de <em>"Mujeres Protagonistas por la Vida 2018"</em>.<br/>
+                        ¡Animate a escribir una nueva página en la historia de tu #VIDA!
+
+                    </strong>
+                    <br/><br/>
+                    <div class="card-footer text-left">
+                        <small>Inscripciones y consultas al mail <a href="mailto:inscripcionescongreso.18@gmail.com"> inscripcionescongreso.18@gmail.com</a>
+                            o en <a href="https://mujeresprotagonistasalameda.wordpress.com" target="_blank">https://mujeresprotagonistasalameda.wordpress.com</a>
+                            o por mensaje de Whatsapp al <i class="fab fa-whatsapp text-success"></i> "261 3 670142", también podés acercate al stand de inscripciones, a la salida de las celebraciones
+                            del domingo.</small>
+                         <div class="row">
+                             <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>
+                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>
+                             </div>
+
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section fondo-evento py-3">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
                         <span class="section-heading-upper">Fiesta de Jóvenes </span>
 <!--                        <span class="section-heading-lower">Membresía</span>-->
                     </h2>
@@ -92,41 +139,6 @@
         </div>
     </div>
 </section>
-
-<section class="page-section fondo-evento py-3">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">3° Congreso de Mujeres </span>
-<!--                        <span class="section-heading-lower">Membresía</span>-->
-                    </h2>
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/3erCongreso.png" alt="3° COngreso de Mujeres">
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                     ¡Nuestro 3° Congreso de Mujeres cada día está más cerca!<br/>
-                     A tan solo un mes de un nuevo tiempo para nosotras.<br/>
-
-                     Sumarte al desafío de <em>"Mujeres Protagonistas por la Vida 2018"</em>.<br/>
-                     ¡Animate a escribir una nueva página en la historia de tu #VIDA!
-
-                    </strong>
-                    <br/><br/>
-                    <div class="card-footer text-left">
-                    <small>Inscripciones y consultas al mail <a href="mailto:inscripcionescongreso.18@gmail.com"> inscripcionescongreso.18@gmail.com</a>
-                    o por mensaje de Whatsapp al "261 3 670142", también podés acercate al stand de inscripciones, a la salida de las celebraciones
-                        del domingo.</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 <section class="page-section fondo-evento py-3">
     <div class="container">
