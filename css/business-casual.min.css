@@ -41,7 +41,7 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
 
 @media (min-width:992px){
     .intro .intro-img{
-        width:75%;float:right
+        width:100%;float:right
     }
     .intro .intro-text{
         left:0;
