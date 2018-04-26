@@ -37,29 +37,42 @@
 </h1>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark py-lg-4 " id="mainNav">
-    <div class="container">
-        <a class=".d-none .d-md-block .d-lg-none" href="index.php">
-            <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
+<nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between  mx-auto sticky-top" >
+    <a class=".d-none .d-md-block .d-lg-none" href="index.php">
+        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
 
-        </a>
+    </a>
 
-        <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
-        </button>
+    <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
+    </button>
 
-        <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
-            <a class="nav-item nav-link text-tan mr-1 active" href="index.php#ppasos">Próximos pasos</a>
-            <a class="nav-item nav-link text-tan mr-1 active" href="masporhacer.php"> Lo que se viene</a>
 
-        </div>
-        <div id="social">
-            <div class="d-flex flex-row justify-content-around ">
-                <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
-            </div>
+
+    <!--                    <div class="navbar-nav mr-auto ml-auto ">-->
+    <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
+    <!--                        <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>-->
+    <!--                        <a class="nav-item nav-link mr-1" href="masporhacer.php"> Esto es lo que se viene en la Alameda</a>-->
+    <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
+    <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
+    <!--                    </div>-->
+
+    <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
+        <a class="nav-item nav-link text-tan mr-1 active" href="#ppasos">Próximos pasos</a>
+        <a class="nav-item nav-link text-tan mr-1" href="masporhacer.php"> Lo que se viene</a>
+        <!--                        <div id="social">-->
+        <!--                            <div class="d-flex flex-row justify-content-around ">-->
+        <!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+    </div>
+    <div id="social">
+        <div class="d-flex flex-row justify-content-around ">
+            <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
         </div>
     </div>
+
 </nav>
 
 <section class="page-section about-heading">

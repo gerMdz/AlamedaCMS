@@ -1,5 +1,6 @@
 <?php
     $ahora = date('Y-m-d H:i');
+    $version = date('YmdHi');
     $domingo = strtotime('today');
     include_once ('gerVendor/gerFunctions.php')
 ?>
@@ -24,7 +25,7 @@
     <link href="css/business-casual.min.css?v=2018042409" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
 
-    <link href="css/igle.css?v=2018042409" rel="stylesheet">
+    <link href="css/igle.css?v=<?php echo $version ?>" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
@@ -33,6 +34,7 @@
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 
@@ -49,92 +51,84 @@
 
 </h1>
 
+<nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between  mx-auto sticky-top" >
+    <a class=".d-none .d-md-block .d-lg-none" href="index.php">
+        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
 
-<main class="container-fluid">
-    <div class="row">
+    </a>
 
-
-
-<section class="page-section principal col-xl-12 ">
-    <div class="container-fluid">
-        <div class="row fondo">
-            <div class="col-sm-12 sticky-top jumbotron-fluid ">
-                <nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between" >
-                    <a class=".d-none .d-md-block .d-lg-none" href="index.php">
-                        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
-
-                    </a>
-
-                    <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
-                    </button>
+    <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
+    </button>
 
 
 
-<!--                    <div class="navbar-nav mr-auto ml-auto ">-->
-                        <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
-<!--                        <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>-->
-<!--                        <a class="nav-item nav-link mr-1" href="masporhacer.php"> Esto es lo que se viene en la Alameda</a>-->
-                        <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
-                        <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
-<!--                    </div>-->
+    <!--                    <div class="navbar-nav mr-auto ml-auto ">-->
+    <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
+    <!--                        <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>-->
+    <!--                        <a class="nav-item nav-link mr-1" href="masporhacer.php"> Esto es lo que se viene en la Alameda</a>-->
+    <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
+    <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
+    <!--                    </div>-->
 
-                    <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
-                        <a class="nav-item nav-link text-tan mr-1 active" href="#ppasos">Próximos pasos</a>
-                        <a class="nav-item nav-link text-tan mr-1" href="masporhacer.php"> Lo que se viene</a>
-<!--                        <div id="social">-->
-<!--                            <div class="d-flex flex-row justify-content-around ">-->
-<!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                    </div>
-                    <div id="social">
-                        <div class="d-flex flex-row justify-content-around ">
-                            <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
-                        </div>
-                    </div>
-
-                </nav>
-            </div>
-
-
-    <div class="col-sm-12 col-md-12 col-lg-9  " >
-    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0  "
-                 src="imagenes/imagen auditorio.jpeg" alt="">
+    <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
+        <a class="nav-item nav-link text-tan mr-1 active" href="#ppasos">Próximos pasos</a>
+        <a class="nav-item nav-link text-tan mr-1" href="masporhacer.php"> Lo que se viene</a>
+        <!--                        <div id="social">-->
+        <!--                            <div class="d-flex flex-row justify-content-around ">-->
+        <!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+    </div>
+    <div id="social">
+        <div class="d-flex flex-row justify-content-around ">
+            <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
+        </div>
     </div>
 
-    <div class="intro col-sm-12 col-md-12 col-lg-3 ml-auto mt-lg-5 pr-lg-3 pl-lg-1 contador" style="z-index: 1">
+</nav>
+
+<section class="page-section about-heading">
+    <div class="container">
+        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/imagen%20auditorio.jpeg" alt="Imagen Auditorio" style="top: -70px">
+        <div class="about-heading-content ajusteIndex">
+            <div class="row">
+                <div class="col-xl-9 col-lg-10 mx-auto">
+                    <div class="bg-faded rounded p-3 row">
+                        <h4 class="section-heading mb-4 col-sm-12">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
                  src="imagenes/imagen auditorio.jpeg" alt="">-->
-            <div class="intro-text border-info border-right-0 text-center bg-faded p-2  rounded  ">
-                <div class="section-heading my-2 row">
 
-                    <div class="section-heading-upper contador col-md-12">Una casa grande para una familia grande</div>
+                Una casa grande para una familia grande
+                    <div class="row justify-content-between  mx-auto ">
                     <hr/>
-                    <div class="section-body col-sm-6 col-md-6 col-lg-12">
-                        <small class="mt-2">
+                    <div class="section-body col-sm-6 col-md-6 col-lg-6 ">
+                        <small class="mt-2 text-right">
                             Domingo 11 hs
                             </small>
-                            <span class="section-heading-body bg-light contador " id="once">
+                            <span class="section-heading-body bg-light contador text-point-sec " id="once" style="font-weight: 800;">
                 <div  id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
                             </span>
                     </div>
-                            <hr/>
-                    <div class="section-body col-sm-6 col-md-6 col-lg-12">
+                            <hr class="d-lg-none"/>
+                    <div class="section-body col-sm-6 col-md-6 col-lg-6">
                             <small class="mt-2">
                                 Domingo 19 hs.
                             </small>
-                            <span class="section-heading-body bg-light contador">
+                        <span class="section-heading-body bg-light contador text-point-sec " id="once" style="font-weight: 800;">
                                 <div  id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div>
                             </span>
                     </div>
-                </div>
+
+
 
                 <div class="intro-button mx-auto my-auto">
                     <a class="btn btn-alameda btn-xl" href="#evento">Vení tal como sos</a>
                 </div>
+                    </div>
+                    </div>
             </div>
 
 
@@ -142,8 +136,7 @@
     </div>
     </div>
 </section>
-    </div>
-</main>
+
 <section class="page-section cta fondo-evento" id="evento">
     <!--<div class="container">-->
             <!--<div class="row fondo-footer">-->
@@ -208,7 +201,7 @@
 
     <div class="card bg-teal text-tan container-fluid mb-1">
         <div class="row">
-        <div class="col-sm-3 pull-left card-header px-2">
+        <div class="col-sm-3 pull-left card-header px-2 px-lg-5">
         <img class="card-img" src="imagenes/PuntoDePartida.jpeg" alt="Punto de Partida">
         </div>
         <div class="col-sm-9  pull-right text-left ">
@@ -465,7 +458,7 @@
             /*$(this).append().html(event.strftime( letrasW + letrasD + letrasH + letrasM + letrasS));*/
 
 
-            $this.html(event.strftime(letrasW + letrasD + letrasH + letrasM + letrasS));
+            $this.html(event.strftime(letrasW + letrasD + letrasH + letrasM));
         });
     });
 

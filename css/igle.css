@@ -190,5 +190,7 @@ button.bg-teal:hover{
 
 .contador {
 
-    font-size: 0.8rem !important;
+    font-size: 1.2rem !important;
 }
+
+.ajusteIndex{margin-top:-10rem !important;}
