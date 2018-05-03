@@ -297,3 +297,7 @@ button.bg-teal:hover{
     align-items: flex-start;
 }
 
+.blockquote-point{
+    padding: .5rem 1rem;
+    border-left: .25rem solid #ca5430;
+}

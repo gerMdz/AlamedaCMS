@@ -9,7 +9,7 @@ $version = date('YmdHi');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, Iglesia Bautista, Celebracion, Dios">
+    <meta name="description" content="Iglesia Alameda, Punto de Partida, Dios, Fe, Preguntas">
     <meta name="author" content="Iglesia de la Alameda">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Punto de Partida | Iglesia de la Alameda</title>
@@ -238,8 +238,8 @@ $version = date('YmdHi');
                 <div class="card-text">
                     <br/>
 
-                    <strong>Punto de Partida está diseñado para: </strong><br/>
-                    <ul class="pp">
+                    <strong class="text-light-blue">Punto de Partida está diseñado para: </strong><br/>
+                    <ul class="pp text-point-sec">
                         <br/>
                         <li ><img class="img-fluid" src="imagenes/PEncuentroSinText.png" width="16" height="16"></img>
                             Personas que tienen preguntas acerca de Dios, La Biblia y el cristianismo
@@ -267,7 +267,7 @@ $version = date('YmdHi');
                           </div>
                           <div class="col-10">
                             <h5 class="feature-title text-light-blue">¡Todas tus preguntas son bienvenidas en Punto de Partida!</h5>
-                            <blockquote class="blockquote text-point-sec">
+                            <blockquote class="blockquote-point text-point-sec">
                                 Si deseas formar parte de esta experiencia escribinos a <a href="mailto:puntodepartidamdz@gmail.com">
                                     puntodepartidamdz@gmail.com
                                 </a> o envíanos un whatsapp al 0261 3070 443 con la frase
