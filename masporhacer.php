@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
 
+$version = date('YmdHi');
+
+?>
 <head>
 
     <meta charset="utf-8">
@@ -22,11 +26,17 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/business-casual.min.css?v=2018041209" rel="stylesheet">
+    <link href="css/business-casual.min.css?v=<?php echo $version ?>" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
 
-    <link href="css/igle.css?v=2018041209" rel="stylesheet">
+    <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+<!--    <link href="css/mdb.min.css" rel="stylesheet">-->
+    <!-- Your custom styles (optional) -->
+<!--    <link href="css/style.min.css" rel="stylesheet">-->
+
+
 
 </head>
 
@@ -41,7 +51,8 @@
 </h1>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark py-lg-4 " id="mainNav">
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fondoFranja  py-lg-4 " >-->
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
         <a class=".d-none .d-md-block .d-lg-none" href="index.php">
             <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
@@ -207,6 +218,8 @@
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
 
 </body>
 

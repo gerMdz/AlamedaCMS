@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Iglesia Alameda, Iglesia Bautista, Celebracion, Dios">
-    <meta name="author" content="Iglesia de la Alamameda">
+    <meta name="author" content="Iglesia de la Alameda">
 
     <title>Iglesia de la Alameda</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
@@ -25,10 +25,12 @@
     <link href="css/business-casual.min.css?v=2018042409" rel="stylesheet">
     <link href="css/foundation-icons.css" rel="stylesheet">
 
-    <link href="css/igle.css?v=<?php echo $version ?>" rel="stylesheet">
+    <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
 
     <!-- Custom fonts for this template -->
@@ -90,8 +92,8 @@
 </nav>
 
 <section class="page-section about-heading">
-    <div class="container">
-        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/imagen%20auditorio.jpeg" alt="Imagen Auditorio" style="top: -70px">
+    <div class="container-fluid">
+        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/imagen_auditorio_escalado_1.png" alt="Imagen Auditorio" style="top: -70px">
         <div class="about-heading-content ajusteIndex">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
@@ -104,27 +106,27 @@
                 Una casa grande para una familia grande
                     <div class="row justify-content-between  mx-auto ">
                     <hr/>
-                    <div class="section-body col-sm-6 col-md-6 col-lg-6 ">
-                        <small class="mt-2 text-right">
+                    <div class="section-body col-sm-6 col-md-6 col-lg-6 card">
+                        <small class="mt-2 text-right card-title">
                             Domingo 11 hs
                             </small>
-                            <span class="section-heading-body bg-light contador text-point-sec " id="once" style="font-weight: 800;">
-                <div  id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
-                            </span>
+                            <div class="section-heading-body bg-light contador text-point-sec h-100  " id="once" style="font-weight: 800;">
+                                <div class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
+                            </div>
                     </div>
                             <hr class="d-lg-none"/>
-                    <div class="section-body col-sm-6 col-md-6 col-lg-6">
-                            <small class="mt-2">
+                    <div class="section-body col-sm-6 col-md-6 col-lg-6 card ">
+                            <small class="mt-2 text-right card-title">
                                 Domingo 19 hs.
                             </small>
-                        <span class="section-heading-body bg-light contador text-point-sec " id="once" style="font-weight: 800;">
-                                <div  id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div>
+                        <span class="section-heading-body bg-light contador text-point-sec h-100 " id="diecinueve" style="font-weight: 800;">
+                                <div  class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div>
                             </span>
                     </div>
 
 
 
-                <div class="intro-button mx-auto my-auto">
+                <div class="intro-button mx-auto my-auto" style="z-index: 100">
                     <a class="btn btn-alameda btn-xl" href="#evento">Vení tal como sos</a>
                 </div>
                     </div>
@@ -196,13 +198,13 @@
     </div>
 </section>
 
-<section class="page-section cta fondo-evento" id="ppasos">
+<section class="page-section container cta fondo-evento" id="ppasos">
 
 
-    <div class="card bg-teal text-tan container-fluid mb-1">
+    <div class="card bg-teal text-tan container mb-1">
         <div class="row">
-        <div class="col-sm-3 pull-left card-header px-2 px-lg-5">
-        <img class="card-img" src="imagenes/PuntoDePartida.jpeg" alt="Punto de Partida">
+        <div class="col-sm-3 pull-left card-header px-2 px-lg-3">
+        <img class="w-100" src="imagenes/PuntoDePartida.jpeg" alt="Punto de Partida">
         </div>
         <div class="col-sm-9  pull-right text-left ">
 
@@ -228,7 +230,8 @@
         </div>
         <div class="card-footer text-center">
             <small class="text-tan">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
-                <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small>
+                <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small><br/>
+            <a href="puntopartida.php" class="btn btn-outline-info text-tan btn-sm">Ver detalles</a>
         </div>
     </div>
 
@@ -275,7 +278,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="card-deck ">
+            <div class="card-deck " id="'bautismo">
                 <div class="card bg-point border-point ">
                     <div class="text-center pt-3 ">
                         <span class="card-title text-center ">
@@ -284,16 +287,18 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
                         <p class="card-text">
-                            Si queres seguir a Jesús por medio del bautismo venía a esta Charla de Bautismo. <br/>
-                            Una charla preparatoria para esta gran experiencia.
+                            Si tu desición es comenzar a seguir a Jesús dando el paso inicial
+                            del bautismo, participá de la charla preparatoria que ofreceremos
+                            en la Alameda.
+
 
                         </p>
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2018-04-14 17:00')){ ?>
+                        <?php if ($ahora < date('2018-05-06 16:00')){ ?>
 
-                                <small class="text-point-sec">Sábado 14 de abril a las 17:00 Hs</small>
+                                <small class="text-point-sec">Domingo 06 de mayo a las 16:00 Hs</small>
 
                         <?php } ?>
                     </div>
@@ -453,12 +458,16 @@
             if (segundos < 1){ var letrasS = " "}
 
             if(dias==0 && semanas == 0 && horas == 0 && minutos ==0 && segundos == 0){
-                letrasS = '<spam class="text-info bienvenido ">¡BIENVENIDOS!</spam>'
+                letrasB = '¡BIENVENIDOS!'
+            }else{
+                letrasB = ''
             }
-            /*$(this).append().html(event.strftime( letrasW + letrasD + letrasH + letrasM + letrasS));*/
+            /*$(this).append().html(event.strftime(' letrasW + letrasD + letrasH + letrasM + letrasS));*/
 
 
-            $this.html(event.strftime(letrasW + letrasD + letrasH + letrasM));
+            $this.html(event.strftime('<div class="text-info card-body h-100 my-auto ">'+
+                letrasW + letrasD + letrasH + letrasM + letrasB
+                    +'</div>'));
         });
     });
 

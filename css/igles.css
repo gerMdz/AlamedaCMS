@@ -49,7 +49,7 @@
 
     height: 40px !important;
     left: -10px !important;*/
-    background-color: #5a5a5a !important;
+    background-color: #5a5a5a ;
     background-image: url('../imagenes/imgMenu.png') !important;
     background-repeat: repeat !important;
     padding: 0 10px !important;
@@ -142,6 +142,14 @@ ul.punto li{
 
 }
 
+ul.pp li{
+
+    list-style: none;
+    text-indent: 2em;
+;
+
+}
+
 .carousel{
     height: 66.67%;
     margin-bottom: 0;
@@ -193,4 +201,99 @@ button.bg-teal:hover{
     font-size: 1.2rem !important;
 }
 
-.ajusteIndex{margin-top:-10rem !important;}
+.ajusteIndex{margin-top:-2rem !important;}
+
+.fadeInRightBig {
+    -webkit-animation-name: fadeInRightBig;
+    animation-name: fadeInRightBig;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInRightBig {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(2000px, 0, 0);
+        transform: translate3d(2000px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeInRightBig {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(2000px, 0, 0);
+        transform: translate3d(2000px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.bienvenido{
+    /*background: url("../imagenes/imagen auditorio.jpeg");*/
+    background-size: cover;
+    animation:  3s linear fadeInRightBig;
+    margin: auto auto;
+    /*height: 38rem;
+
+    width: 43rem;*/
+}
+
+@-webkit-keyframes move {
+
+    from {
+        margin-left: 50%;
+        width: 150%
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+@keyframes move {
+    from {
+        margin-left: 50%;
+        width: 150%
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+.paralelox{
+
+    width:100%;
+    height:570px;
+
+    display: block;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center center;
+
+}
+
+.page-header > .container {
+    color: #000 !important ;
+}
+
+.page-header {
+    height: 105vh !important;
+
+    padding-top: 10px;
+
+    display: flex;
+    align-items: flex-start;
+}
+

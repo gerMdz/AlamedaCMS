@@ -94,39 +94,7 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
     width: 43rem;*/
 }
 
-.bienvenido{
-    /*background: url("../imagenes/imagen auditorio.jpeg");*/
-    background-size: cover;
-    animation: move 3s linear alternate ;
-    margin: auto auto;
-    /*height: 38rem;
 
-    width: 43rem;*/
-}
-
-@-webkit-keyframes move {
-
-    from {
-        margin-left: 50%;
-        width: 150%
-    }
-
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
-
-@keyframes move {
-    from {
-        margin-left: 50%;
-        width: 150%
-    }
-
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
-}
 
 
 
