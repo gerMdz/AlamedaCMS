@@ -301,3 +301,40 @@ button.bg-teal:hover{
     padding: .5rem 1rem;
     border-left: .25rem solid #ca5430;
 }
+
+.tooltip {
+    max-width: 200px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    background-color: #73aba2;
+    border-radius: .25rem;
+}
+.tooltip-inner {
+    max-width: 200px;
+    padding: 0.25rem 0.5rem;
+    color: #fff;
+    text-align: center;
+    background-color: #73aba2 !important;
+    border-radius: 0.25rem;
+}
+
+h3.quote:after, h3.quote:before {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.5em;
+}
+h3.quote:before {
+    content: '“';
+}
+h3.quote:after {
+    content: '”';
+}
+
+.mdl-card__media{
+    background-color:rgb(0,150,136) !important;
+}
+.mdl-card__white{
+    background-size:cover;background-origin:padding-box;
+    background: rgb(0, 150, 136) repeat scroll 50% 50%;
+    box-sizing:border-box;}

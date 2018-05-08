@@ -12,7 +12,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, Iglesia Bautista, Celebracion, Dios">
+    <meta name="description" content="Iglesia Alameda, Iglesia Bautista, Celebracion, Dios, Fe">
     <meta name="author" content="Iglesia de la Alameda">
 
     <title>Iglesia de la Alameda</title>
@@ -75,7 +75,11 @@
     <!--                    </div>-->
 
     <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
-        <a class="nav-item nav-link text-tan mr-1 active" href="#ppasos">Próximos pasos</a>
+        <a class="nav-item nav-link text-tan mr-1 active" href="#ppasos"
+           data-toggle="tooltip"
+           title="<h5 class='bg-light-blue'><strong>Next</strong> <br/> <em>Mis Próximos Pasos</em></h5>"
+
+        >Próximos pasos</a>
         <a class="nav-item nav-link text-tan mr-1" href="masporhacer.php"> Lo que se viene</a>
         <!--                        <div id="social">-->
         <!--                            <div class="d-flex flex-row justify-content-around ">-->
@@ -91,7 +95,7 @@
 
 </nav>
 
-<section class="page-section about-heading">
+<section class="page-section about-heading" id="contador">
     <div class="container-fluid">
         <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/imagen_auditorio_escalado_1.png" alt="Imagen Auditorio" style="top: -70px">
         <div class="about-heading-content ajusteIndex">
@@ -199,6 +203,24 @@
 </section>
 
 <section class="page-section container cta fondo-evento" id="ppasos">
+
+    <div class="row text-center">
+        <div class="col-sm-3 pull-left">
+        <img src="imagenes/next.jpg" class="img-fluid rounded" />
+        </div>
+        <div class="col-sm-9 pull-right">
+        <blockquote class="bg-dark text-tan blockquote rounded">
+
+            <h3 class="quote ">
+
+                Dios tiene un plan para tu vida <br/>
+                y queremos ayudarte a descubrirlo.
+
+            </h3>
+
+        </blockquote>
+        </div>
+    </div>
 
 
     <div class="card bg-teal text-tan container mb-1">
@@ -379,45 +401,7 @@
 </section>
 
 
-<footer class="footer text-tan text-center py-5 fondoFranja ">
-    <div class="container">
-        <div class="row">
-        <!--<div class="col-sm-3">
-            <span class="text-left">Iglesia de la Alameda</span> <br/>
-
-
-            <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
-
-            <hr class="bg-point"/>
-        </div>-->
-            <!--
-                <div class="col-sm-3">
-                <hr class="bg-point"/>
-
-
-                <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
-                <hr class="bg-point"/>
-            </div>
-            <div class="col-sm-3">
-                <hr class="bg-point"/>
-
-
-                <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
-                <hr class="bg-point"/>
-            </div>-->
-        <div class="col-sm-3">
-            <hr class="bg-point"/>
-
-
-            <a class="text-tan" href="masporhacer.php"> Lo que se viene en la Alameda</a>
-            <hr class="bg-point"/>
-        </div>
-        </div>
-        <div class="col-sm-12">
-            <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
-        </div>
-    </div>
-</footer>
+<?php include ('footer.php'); ?>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
@@ -425,6 +409,11 @@
 
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
 
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
+    });
+</script>
 <script type="text/javascript">
 
     $('.carousel').carousel({

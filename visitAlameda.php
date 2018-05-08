@@ -113,7 +113,7 @@ include_once ('gerVendor/galeria.php')
                             <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" href="" role="tab" data-toggle="tab">
-                                        <i class="material-icons">camera</i> <h3>Aquí están</h3>
+                                        <i class="material-icons">camera</i> <h3>Incondicionales</h3>
                                     </a>
                                 </li>
 
