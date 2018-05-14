@@ -295,45 +295,7 @@ $version = date('YmdHi');
   <!--Main layout-->
 <div class="clearfix"></div>
   <!--Footer-->
-  <footer class="footer text-tan text-center py-5  fondoFranja bg-dark pb-2">
-      <div class="container">
-          <div class="row">
-              <!--<div class="col-sm-3">
-                  <span class="text-left">Iglesia de la Alameda</span> <br/>
-
-
-                  <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
-
-                  <hr class="bg-point"/>
-              </div>-->
-              <!--
-                  <div class="col-sm-3">
-                  <hr class="bg-point"/>
-
-
-                  <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
-                  <hr class="bg-point"/>
-              </div>
-              <div class="col-sm-3">
-                  <hr class="bg-point"/>
-
-
-                  <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
-                  <hr class="bg-point"/>
-              </div>-->
-              <div class="col-sm-3">
-                  <hr class="bg-point"/>
-
-
-                  <a class="text-tan" href="masporhacer.php"> Lo que se viene en la Alameda</a>
-                  <hr class="bg-point"/>
-              </div>
-          </div>
-          <div class="col-sm-12">
-              <p class="m-0 pb-2 small ">San Martín  2020 de la Ciudad de Mendoza - Copyright &copy; Iglesia Alameda 2018</p>
-          </div>
-      </div>
-  </footer>
+  <?php include ('footer.php'); ?>
   <div class="modal fade " id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-centered " role="document">
           <div class="modal-content ">

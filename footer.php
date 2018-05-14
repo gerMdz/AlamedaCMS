@@ -7,7 +7,7 @@
  */
 ?>
 
-<footer class="footer text-tan text-center py-5 fondoFranja ">
+<footer class="footer text-tan text-center py-4 fondoFranja bg-dark">
     <div class="container">
         <div class="row">
             <!--<div class="col-sm-3">
@@ -38,6 +38,13 @@
 
 
                 <a class="text-tan" href="masporhacer.php"> Lo que se viene en la Alameda</a>
+                <hr class="bg-point"/>
+            </div>
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="puntopartida.php"> Punto de Partida</a>
                 <hr class="bg-point"/>
             </div>
         </div>

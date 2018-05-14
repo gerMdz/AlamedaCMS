@@ -318,9 +318,13 @@
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2018-05-06 16:00')){ ?>
+                        <?php if ($ahora < date('2018-05-19 17:00')){ ?>
 
-                                <small class="text-point-sec">Domingo 06 de mayo a las 16:00 Hs</small>
+                                <small class="text-point-sec">Sábado 19 de mayo a las 17:00 Hs</small>
+                            <a href="masporhacer.php#bautismo"
+                               data-toggle="tooltip"
+                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
+
 
                         <?php } ?>
                     </div>
@@ -380,18 +384,16 @@
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2018-04-14 17:00')){ ?>
+                                <?php if ($ahora < date('2018-05-19 17:00')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 14 de de abril a las 17:00 hs. <a href="masporhacer.php"><small> >></small></a>
+                                        Sábado 19 de mayo a las 17:00 hs. <a href="masporhacer.php"
+                                                                             data-toggle="tooltip"
+                                                                             title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
                                     </small>
                                 <?php } ?>
                             </div>
 
                         </div>
-
-
-
-
                     </div>
 
 
