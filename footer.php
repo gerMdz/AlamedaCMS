@@ -47,6 +47,13 @@
                 <a class="text-tan" href="puntopartida.php"> Punto de Partida</a>
                 <hr class="bg-point"/>
             </div>
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="nuestraalameda.php"> Dónde y Cuándo</a>
+                <hr class="bg-point"/>
+            </div>
         </div>
         <div class="col-sm-12">
             <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza <br/>

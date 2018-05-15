@@ -59,7 +59,7 @@
     </style>
   </head>
   <body>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar justify-content-between  mx-auto">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar justify-content-between  mx-auto  ">
       <div class="container">
 
           <!-- Brand -->
@@ -92,9 +92,10 @@
               </ul>
 
               <!-- Right -->
-              <ul class="navbar-nav nav-flex-icons">
 
-                  <li class="nav-item">
+              <ul class="navbar-nav nav-flex-icons mdl-navigation">
+
+                  <li class="mdl-navigation__link">
                       <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom" href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">
                           <i class="fab fa-facebook-square fa-2x"></i>
                       </a>
@@ -116,7 +117,8 @@
 
       </div>
   </nav>
-    <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
+
+  <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
@@ -184,6 +186,85 @@
               </div>
             </div>
           </div>
+            <div class="android-card-container mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                    <div class="mdl-card__media">
+                        <div class="minilogo"></div>
+                    </div>
+                    <div class="mdl-card__title">
+                        <h4 class="mdl-card__title-text">Generación Extrema</h4>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <span class="mdl-typography--font-light mdl-typography--subhead">
+                            es el programa de niños de nuestra Iglesia y  funciona  en simultáneo a las Celebraciones de adultos, a las 11 y 19 hs.
+Está organizado en dos grandes grupos de edades. </span>
+                    </div>
+<!--                    <div class="mdl-card__actions">-->
+<!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
+<!--                            Make the switch-->
+<!--                            <i class="material-icons">chevron_right</i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                </div>
+
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                    <div class="mdl-card__media">
+                        <div class="minilogo"></div>
+                    </div>
+                    <div class="mdl-card__title">
+                        <h4 class="mdl-card__title-text">Niños de 1 a 5 años. </h4>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <span class="mdl-typography--font-light mdl-typography--subhead">
+                            “El Mundo de los pequeñitos”. El ingreso y registración de los niños es por el pasillo que se encuentra al costado sur del Portal del Auditorio Alameda. Cuenta con cinco salas para niños de cada edad. </span>
+                    </div>
+<!--                    <div class="mdl-card__actions">-->
+<!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
+<!--                            androidify.com-->
+<!--                            <i class="material-icons">chevron_right</i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                </div>
+
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                    <div class="mdl-card__media">
+                        <div class="minilogo"></div>
+                    </div>
+                    <div class="mdl-card__title">
+                        <h4 class="mdl-card__title-text">Niños de 1º a 7º Grado </h4>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <span class="mdl-typography--font-light mdl-typography--subhead">
+                            Niños que asisten a la escuela Primaria. De 1º a 7º Grado. El ingreso y registración de los niños el por la puerta principal del Auditorio San Martin 2020. </span>
+                    </div>
+<!--                    <div class="mdl-card__actions">-->
+<!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
+<!--                            Download now-->
+<!--                            <i class="material-icons">chevron_right</i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                </div>
+
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                    <div class="mdl-card__media">
+                        <div class="minilogo"></div>
+                    </div>
+                    <div class="mdl-card__title">
+                        <h4 class="mdl-card__title-text"></h4>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <span class="mdl-typography--font-light mdl-typography--subhead">
+                            En ambos casos los padres que asisten por primera vez pueden visitar nuestros espacios acompañados por un integrante del Equipo de Niñez. Cuando los niños son registrados se le entrega al adulto responsable un número, que aparecerá en la pantalla en caso que necesitemos contactarlos durante el transcurso de las actividades.
+                        </span>
+                    </div>
+<!--                    <div class="mdl-card__actions">-->
+<!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
+<!--                            Find apps-->
+<!--                            <i class="material-icons">chevron_right</i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                </div>
+            </div>
 <!--          <div class="mdl-card shopping mdl-cell mdl-cell--12-col">-->
 <!--            <div class="mdl-card__media mdl-color-text--grey-50">-->
 <!--              <h3><a href="entry.html">Shopping</a></h3>-->
@@ -266,6 +347,14 @@
   </div>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="material-modal/js/material-modal.min.js?v=<?php echo $version ?>"></script>
+  <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/extras/popper.min.js"></script>
+  <!--  <script src="js/bootstrap-material-design.js"></script>-->
+
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
   </body>
   <script>
     Array.prototype.forEach.call(document.querySelectorAll('.mdl-card__media'), function(el) {
