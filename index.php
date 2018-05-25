@@ -22,10 +22,12 @@
     <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
     <!-- Bootstrap core CSS -->
-    <link href="css/business-casual.min.css?v=2018042409" rel="stylesheet">
-    <link href="css/foundation-icons.css" rel="stylesheet">
 
+    <link href="css/foundation-icons.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/business-casual.min.css?v=<?php echo $version ?>" rel="stylesheet">
     <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
+
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
@@ -47,53 +49,13 @@
 
 <h1 class="site-heading text-center text-white d-sm-block">
       <span class="section-heading-upper">
-        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid">
+        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">
       </span>
 
 
 </h1>
 
-<nav class="navbar navbar-dark bg-dark navbar-expand-md  justify-content-between  mx-auto sticky-top" >
-    <a class=".d-none .d-md-block .d-lg-none" href="index.php">
-        <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
-
-    </a>
-
-    <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
-    </button>
-
-
-
-    <!--                    <div class="navbar-nav mr-auto ml-auto ">-->
-    <!--<a class="nav-item nav-link active mr-1" href="#">Inicio </a>-->
-    <!--                        <a class="nav-item nav-link mr-1 active" href="#ppasos">Próximos pasos</a>-->
-    <!--                        <a class="nav-item nav-link mr-1" href="masporhacer.php"> Esto es lo que se viene en la Alameda</a>-->
-    <!--<a class="nav-item nav-link mr-1" href="#">Mucho para hacer</a>
-    <a class="nav-item nav-link mr-1" href="#">Reviviendo Momentos</a>-->
-    <!--                    </div>-->
-
-    <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
-        <a class="nav-item nav-link text-tan mr-1 active" href="#ppasos"
-           data-toggle="tooltip"
-           title="<h5 class='bg-light-blue'><strong>Next</strong> <br/> <em>Mis Próximos Pasos</em></h5>"
-
-        >Próximos pasos</a>
-        <a class="nav-item nav-link text-tan mr-1" href="masporhacer.php"> Lo que se viene</a>
-        <!--                        <div id="social">-->
-        <!--                            <div class="d-flex flex-row justify-content-around ">-->
-        <!--                                <a target="_blank" class="btn btn-outline-primary" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>-->
-        <!--                            </div>-->
-        <!--                        </div>-->
-    </div>
-    <div id="social">
-        <div class="d-flex flex-row justify-content-around ">
-            <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
-        </div>
-    </div>
-
-</nav>
+<?php include 'nav.php'; ?>
 
 <section class="page-section about-heading" id="contador">
     <div class="container-fluid">

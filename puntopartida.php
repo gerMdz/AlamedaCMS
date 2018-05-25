@@ -59,68 +59,14 @@ $version = date('YmdHi');
             background-size: cover;
         }
 
+
     </style>
 </head>
 
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar justify-content-between  mx-auto">
-      <div class="container">
-
-          <!-- Brand -->
-          <a class="navbar-brand" href="index.php" >
-              <strong>Iglesia de la Alameda</strong>
-          </a>
-
-          <!-- Collapse -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                  aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <!-- Links -->
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-              <!-- Left -->
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">Inicio
-                          <span class="sr-only">(current)</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="masporhacer.php" >
-                          <i class="fas fa-random"></i> Lo que se viene
-                      </a>
-                  </li>
-              </ul>
-
-              <!-- Right -->
-              <ul class="navbar-nav nav-flex-icons">
-
-                  <li class="nav-item">
-                      <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom" href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">
-                          <i class="fab fa-facebook-square fa-2x"></i>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom" href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes">
-                          <i class="fab fa-youtube-square fa-2x"></i>
-                      </a>
-                  </li>
-
-                  <li class="nav-item">
-                      <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesialameda" target="_blank" data-original-title="Seguinos en Instagram">
-                          <i class="fab fa-instagram fa-2x"></i>
-                      </a>
-                  </li>
-              </ul>
-
-          </div>
-
-      </div>
-  </nav>
+  <?php include 'nav.php'; ?>
 
   <div id="intro" class="view">
 
@@ -232,7 +178,7 @@ $version = date('YmdHi');
           <!--Grid column-->
           <div class="col-lg-6 col-md-12 text-left card ">
 
-            <div class="card card-img-top ">
+            <div class="card card-img-top " style="top: -25px">
               <img src="imagenes/SP-StyleGuide-1.jpg">
             </div>
                 <div class="card-text">

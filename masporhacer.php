@@ -23,14 +23,17 @@ $version = date('YmdHi');
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/business-casual.min.css?v=<?php echo $version ?>" rel="stylesheet">
+
     <link href="css/foundation-icons.css" rel="stylesheet">
     <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
 
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/business-casual.min.css?v=<?php echo $version ?>" rel="stylesheet">
     <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
+
     <!-- Material Design Bootstrap -->
 <!--    <link href="css/mdb.min.css" rel="stylesheet">-->
     <!-- Your custom styles (optional) -->
@@ -40,42 +43,56 @@ $version = date('YmdHi');
 
 </head>
 
-<body>
+<body style="font-family: Roboto, sans-serif">
 
-<h1 class="site-heading text-center text-white d-sm-block">
-      <span class="section-heading-upper">
-        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid">
+<h1 class="site-heading text-center text-white d-sm-block ">
+      <span class="section-heading-upper ">
+        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">
       </span>
-
-
 </h1>
 
 <!-- Navigation -->
 <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fondoFranja  py-lg-4 " >-->
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark scrolling-navbar">
-    <div class="container">
-        <a class=".d-none .d-md-block .d-lg-none" href="index.php">
-            <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
+<!--<nav class="navbar sticky-top navbar-expand-lg navbar-dark scrolling-navbar">-->
+<!--    <div class="container">-->
+<!--        <a class=".d-none .d-md-block .d-lg-none" href="index.php">-->
+<!--            <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">-->
+<!---->
+<!--        </a>-->
+<!---->
+<!--        <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--            <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->-->
+<!--        </button>-->
+<!---->
+<!--        <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">-->
+<!--            <a class="nav-item nav-link text-tan mr-1 active" href="index.php#ppasos">Próximos pasos</a>-->
+<!--            <a class="nav-item nav-link text-tan mr-1 active" href="masporhacer.php"> Lo que se viene</a>-->
+<!--            <a class="nav-item nav-link text-tan mr-1 active" href="nuestraalameda.php"> Dónde y cuándo</a>-->
+<!--            <ul class="navbar-nav nav-flex-icons">-->
+<!---->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom" href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">-->
+<!--                        <i class="fab fa-facebook-square fa-2x"></i>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom" href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes">-->
+<!--                        <i class="fab fa-youtube-square fa-2x"></i>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!---->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesialameda" target="_blank" data-original-title="Seguinos en Instagram">-->
+<!--                        <i class="fab fa-instagram fa-2x"></i>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
-        </a>
-
-        <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->
-        </button>
-
-        <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">
-            <a class="nav-item nav-link text-tan mr-1 active" href="index.php#ppasos">Próximos pasos</a>
-            <a class="nav-item nav-link text-tan mr-1 active" href="masporhacer.php"> Lo que se viene</a>
-
-        </div>
-        <div id="social">
-            <div class="d-flex flex-row justify-content-around ">
-                <a target="_blank" class="btn btn-primary" href=" https://www.facebook.com/IglesiaAlameda/"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
-</nav>
+<?php include ('nav.php'); ?>
 
 <section class="page-section fondo-evento py-3" id="bautismo">
     <div class="container">
@@ -84,7 +101,7 @@ $version = date('YmdHi');
                 <div class="bg-faded p-5 d-flex ml-auto rounded">
                     <h2 class="section-heading mb-0">
                         <span class="section-heading-upper">Talleres</span>
-                                                <span class="section-heading-lower">El bautismo de Jesús </span>
+                        <span class="section-heading-lower">El bautismo de Jesús </span>
                     </h2>
                 </div>
             </div>

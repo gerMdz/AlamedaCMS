@@ -338,3 +338,6 @@ h3.quote:after {
     background-size:cover;background-origin:padding-box;
     background: rgb(0, 150, 136) repeat scroll 50% 50%;
     box-sizing:border-box;}
+
+.section-heading .section-heading-lower{
+    display:block;font-size:2rem !important;font-weight:100}

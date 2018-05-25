@@ -20,7 +20,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Iglesia Alameda - Horarios y Lugares de Reunion">
+    <meta name="description" content="Iglesia Alameda - Horarios y Lugares de Reunión">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Iglesia Alameda | Horarios y Lugares</title>
 
@@ -37,15 +37,32 @@
     <!--
 
     -->
-    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/material.min.css">
-    <link rel="stylesheet" href="css/material.light_blue-teal.min.css">
+
+      <!-- Icon-->
+      <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link href="css/foundation-icons.css" rel="stylesheet">
+      <!-- Fin Icon -->
+
+      <!--Vendor -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/material.min.css">
+      <link rel="stylesheet" href="css/material.light_blue-teal.min.css">
+      <link href="css/mdb.min.css" rel="stylesheet">
+      <!-- Fin Vendor -->
+
+      <!-- Css Propios página -->
       <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
-    <link rel="stylesheet" href="css/estiloHorarios.css?v=<?php echo $version ?>" rel="stylesheet">
+      <link rel="stylesheet" href="css/estiloHorarios.css?v=<?php echo $version ?>" rel="stylesheet">
       <link rel="stylesheet" href="material-modal/css/material-modal.min.css?v=<?php echo $version ?>">
+      <!-- Fin Css Propios página -->
+
+      <!-- Funtes -->
+      <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+      <!-- Fin Fuentes-->
+
     <style>
     #view-source {
       position: fixed;
@@ -56,67 +73,12 @@
       margin-bottom: 40px;
       z-index: 900;
     }
+        strong{font-weight: 400 !important}
     </style>
   </head>
   <body>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar justify-content-between  mx-auto  ">
-      <div class="container">
 
-          <!-- Brand -->
-          <a class="navbar-brand flex-column " href="index.php" >
-              <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
-              <strong >Iglesia de la Alameda</strong>
-          </a>
-
-          <!-- Collapse -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                  aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <!-- Links -->
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-              <!-- Left -->
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">Inicio
-                          <span class="sr-only">(current)</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="masporhacer.php" >
-                          <i class="fas fa-random"></i> Lo que se viene
-                      </a>
-                  </li>
-              </ul>
-
-              <!-- Right -->
-
-              <ul class="navbar-nav nav-flex-icons mdl-navigation">
-
-                  <li class="mdl-navigation__link">
-                      <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom" href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">
-                          <i class="fab fa-facebook-square fa-2x"></i>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom" href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes">
-                          <i class="fab fa-youtube-square fa-2x"></i>
-                      </a>
-                  </li>
-
-                  <li class="nav-item">
-                      <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesialameda" target="_blank" data-original-title="Seguinos en Instagram">
-                          <i class="fab fa-instagram fa-2x"></i>
-                      </a>
-                  </li>
-              </ul>
-
-          </div>
-
-      </div>
-  </nav>
+  <?php include 'nav.php'; ?>
 
   <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
