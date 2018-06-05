@@ -127,8 +127,8 @@
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
-                    <li data-target="#50dias" data-slide-to="0" class="active"></li>
-                    <li data-target="#50dias" data-slide-to="1"></li>
+                    <li data-target="#RazaCampeones" data-slide-to="0" class="active"></li>
+<!--                    <li data-target="#50dias" data-slide-to="1"></li>-->
                     <!--<li data-target="#50dias" data-slide-to="2"></li>-->
                 </ul>
 
@@ -139,20 +139,20 @@
                     </div>-->
                     <div class="carousel-item active ">
 
-                        <img src="imagenes/50dias_p2.png" alt="50 días de Amistad" class="d-block " >
+                        <img src="imagenes/razaCampeonesIndex.png" alt="Raza de Campeones" class="d-block " >
 
                     </div>
-                    <div class="carousel-item ">
-
-                        <img src="imagenes/50dias_p3.jpg" alt="50 días de Amistad" class="d-block  " >
-
-                </div>
+<!--                    <div class="carousel-item ">-->
+<!---->
+<!--                        <img src="imagenes/50dias_p3.jpg" alt="50 días de Amistad" class="d-block  " >-->
+<!---->
+<!--                </div>-->
 
                 <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#50dias" data-slide="prev">
+                <a class="carousel-control-prev" href="#RazaCampeones" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </a>
-                <a class="carousel-control-next" href="#50dias" data-slide="next">
+                <a class="carousel-control-next" href="#RazaCampeones" data-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </a>
 
@@ -280,9 +280,9 @@
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2018-05-19 17:00')){ ?>
+                        <?php if ($ahora < date('2018-06-02 17:00')){ ?>
 
-                                <small class="text-point-sec">Sábado 19 de mayo a las 17:00 Hs</small>
+                                <small class="text-point-sec">Sábado 02 de junio a las 17:00 Hs</small>
                             <a href="masporhacer.php#bautismo"
                                data-toggle="tooltip"
                                title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
@@ -312,9 +312,9 @@
                     </div>
 
                         <div class="card-footer text-center">
-                            <?php if ($ahora < date('2018-04-13 20:30')){ ?>
+                            <?php if ($ahora < date('2018-05-31 20:30')){ ?>
                             <small class="text-point-sec">
-                                Viernes 13 de abril a las 20:30 hs.<br/>
+                                Jueves 31 de mayo a las 20:30 hs.<br/>
 
                             </small>
                             <?php } ?>
@@ -346,9 +346,9 @@
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2018-05-19 17:00')){ ?>
+                                <?php if ($ahora < date('2018-06-02 17:00')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 19 de mayo a las 17:00 hs. <a href="masporhacer.php"
+                                        Sábado 02 de junio a las 17:00 hs. <a href="masporhacer.php"
                                                                              data-toggle="tooltip"
                                                                              title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
                                     </small>

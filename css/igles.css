@@ -341,3 +341,17 @@ h3.quote:after {
 
 .section-heading .section-heading-lower{
     display:block;font-size:2rem !important;font-weight:100}
+
+.text-tan.card .card-body .card-text, .dark-grey-text  {
+    color: #f0e7d1 !important;
+}
+
+@media (min-width:768px) {
+    header.masthead {
+        padding-top:6rem;
+        padding-bottom:6rem;
+    }
+    header.masthead h1 {
+        font-size:3rem
+    }
+}

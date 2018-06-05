@@ -105,32 +105,32 @@ $version = date('YmdHi');
                     </h2>
                 </div>
             </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/bautismo.png" alt="Bautismo">
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/bautismoJunio18.jpeg" alt="Bautismo">
             <div class="product-item-description d-flex mr-auto">
                 <div class="bg-faded p-5 rounded text-center">
                     <strong class="mb-0 ">
                        Si tu desición es comenzar a seguir a Jesús, dando el paso inicial del bautismo<br/>
                         participá  de la charla preparatoria que ofreceremos  este próximo<br/>
 
-                        <em>sábado 19 de mayo a las 17:00 hs</em>.<br/>
+                        <em>sábado 02 de junio a las 17:00 hs</em>.<br/>
                         en La Alameda, San Martín 2020 de la Ciudad de Mendoza
 
                     </strong>
                     <br/><br/>
                     <div class="card-footer text-left">
-                        <small > Taller de bautismo de preadolescentes GEX!: <br/>
-                            <p style="text-indent: 4em">
-                            Estimada familia si tu hijo o hija desea dar este importante  paso de
-                            compromiso en su crecimiento, los esperamos el
-                            <em> sábado 19 de mayo a las 17:00 hs</em> en el edificio educacional,
-                            San Martín  2020 de la Ciudad de Mendoza. <br/>
-                            Es para todos los chicos que estén en 4° a 7°. <br/>
-                            Se solicita asistir acompañado de un adulto responsable, los esperamos <br/>
-
-                            </p>
-                            <strong style="margin-left: 33%">Pastor Sebastián</strong>
-
-                            </small>
+<!--                        <small > Taller de bautismo de preadolescentes GEX!: <br/>-->
+<!--                            <p style="text-indent: 4em">-->
+<!--                            Estimada familia si tu hijo o hija desea dar este importante  paso de-->
+<!--                            compromiso en su crecimiento, los esperamos el-->
+<!--                            <em> sábado 19 de mayo a las 17:00 hs</em> en el edificio educacional,-->
+<!--                            San Martín  2020 de la Ciudad de Mendoza. <br/>-->
+<!--                            Es para todos los chicos que estén en 4° a 7°. <br/>-->
+<!--                            Se solicita asistir acompañado de un adulto responsable, los esperamos <br/>-->
+<!---->
+<!--                            </p>-->
+<!--                            <strong style="margin-left: 33%">Pastor Sebastián</strong>-->
+<!---->
+<!--                            </small>-->
 <!--                         <div class="row">-->
 <!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
 <!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->
@@ -235,7 +235,7 @@ $version = date('YmdHi');
                 <div class="bg-faded p-5 rounded">
                     <p class="mb-0">
                      Si querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra charla de Membresía.
-                     Este sábado 19 de mayo a las 17hs. El pastor Fabián te espera para una conversación muy especial
+                     Este sábado 02 de junio a las 17hs. El pastor Fabián te espera para una conversación muy especial
 
                     </p>
                 </div>
