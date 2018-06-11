@@ -123,12 +123,13 @@
                     </p>
                 </div>
             </div>-->
-            <div id="50dias" class="carousel slide" data-ride="carousel">
+            <div id="RazaCampeones" class="carousel slide" data-ride="carousel">
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
                     <li data-target="#RazaCampeones" data-slide-to="0" class="active"></li>
-<!--                    <li data-target="#50dias" data-slide-to="1"></li>-->
+                    <li data-target="#RazaCampeones" data-slide-to="1"></li>
+<!--                    <li data-target="#RazaCampeones" data-slide-to="2"></li>-->
                     <!--<li data-target="#50dias" data-slide-to="2"></li>-->
                 </ul>
 
@@ -138,15 +139,17 @@
                         <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
                     </div>-->
                     <div class="carousel-item active ">
-
                         <img src="imagenes/razaCampeonesIndex.png" alt="Raza de Campeones" class="d-block " >
-
                     </div>
+                    <div class="carousel-item ">
+                        <img src="imagenes/RAZA-DE-CAMPEONES-WEB222.jpg" alt="Raza de Campeones" class="d-block  " >
+                    </div>
+<!--                    <div class="carousel-item active ">-->
+<!--                        <img src="imagenes/RAZA-DE-CAMPEONES-WIDE-2.jpg" alt="Raza de Campeones" class="d-block  " >-->
+<!--                    </div>-->
 <!--                    <div class="carousel-item ">-->
-<!---->
-<!--                        <img src="imagenes/50dias_p3.jpg" alt="50 días de Amistad" class="d-block  " >-->
-<!---->
-<!--                </div>-->
+<!--                        <img src="imagenes/RAZA-DE-CAMPEONES-WIDE.jpg" alt="Raza de Campeones" class="d-block  " >-->
+<!--                    </div>-->
 
                 <!-- Left and right controls -->
                 <a class="carousel-control-prev" href="#RazaCampeones" data-slide="prev">

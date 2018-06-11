@@ -94,6 +94,53 @@ $version = date('YmdHi');
 
 <?php include ('nav.php'); ?>
 
+<section class="page-section fondo-evento py-3" id="campaGEX">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Generación Extrema </span>
+                        <span class="section-heading-lower">Campamentos de Niños</span>
+                    </h2>
+                </div>
+            </div>
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/levelUp.jpeg" alt="campaGEX">
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                       Familia de fe, en Julio tendremos nuestros campamentos
+                        de invierno para Intermedios (1° a 4° grado) y Preadolescentes (5° a 7° grado). <br/>
+                        Será un tiempo de amistad, aventura y crecimiento espiritual para sus hijos, ninguno debe faltar.<br/>
+
+
+
+
+<!--                        <em>Cupos limitados</em>.<br/>-->
+<!--                        Informes e Inscripción a la salida de cada Celebración.-->
+
+                    </strong>
+                    <br/><br/>
+                    <div class="card-footer text-left">
+                        <small > <em>Cupos limitados</em>.<br/>
+                            Informes e Inscripción a la salida de cada Celebración.
+
+                            </small>
+<!--                         <div class="row">-->
+<!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->
+<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>-->
+<!--                             </div>-->
+<!---->
+<!---->
+<!--                         </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="page-section fondo-evento py-3" id="bautismo">
     <div class="container">
         <div class="product-item">
