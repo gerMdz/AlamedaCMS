@@ -127,8 +127,8 @@
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
-                    <li data-target="#RazaCampeones" data-slide-to="0" class="active"></li>
-                    <li data-target="#RazaCampeones" data-slide-to="1"></li>
+                    <li data-target="#INAMOVIBLE" data-slide-to="0" class="active"></li>
+                    <li data-target="#INAMOVIBLE" data-slide-to="1"></li>
 <!--                    <li data-target="#RazaCampeones" data-slide-to="2"></li>-->
                     <!--<li data-target="#50dias" data-slide-to="2"></li>-->
                 </ul>
@@ -139,10 +139,10 @@
                         <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
                     </div>-->
                     <div class="carousel-item active ">
-                        <img src="imagenes/razaCampeonesIndex.png" alt="Raza de Campeones" class="d-block " >
+                        <img src="imagenes/INAMOVIBLE.jpg" alt="INAMOVIBLE" class="d-block " >
                     </div>
                     <div class="carousel-item ">
-                        <img src="imagenes/RAZA-DE-CAMPEONES-WEB222.jpg" alt="Raza de Campeones" class="d-block  " >
+                        <img src="imagenes/INAMOVIBLE.jpg" alt="INAMOVIBLE" class="d-block  " >
                     </div>
 <!--                    <div class="carousel-item active ">-->
 <!--                        <img src="imagenes/RAZA-DE-CAMPEONES-WIDE-2.jpg" alt="Raza de Campeones" class="d-block  " >-->

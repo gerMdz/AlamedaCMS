@@ -181,7 +181,9 @@ body .demo-blog {
           order: -1;
 }
 .demo-blog .coffee-pic .mdl-card__media {
-  background-image: url('../imagenes/fondo_general-wide_rc.jpg');
+  /*background-image: url('../imagenes/fondo_general-wide_rc.jpg');*/
+  /*background-image: url('../imagenes/INAMOVIBLE.jpg');*/
+    background-color: transparent;
 }
 .demo-blog .something-else .mdl-card__media .mdl-card__white{
   display: -webkit-flex;
