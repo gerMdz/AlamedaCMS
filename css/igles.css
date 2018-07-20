@@ -171,6 +171,11 @@ ul.pp li{
     background-color:rgba(67, 135, 137, .25)
 }
 
+.fondo-medio{
+
+    background-color:rgba(67, 135, 137, .80)
+}
+
 .fondoFranja {
 
     background-image: url('../imagenes/imgMenu.png') !important;
@@ -348,10 +353,20 @@ h3.quote:after {
 
 @media (min-width:768px) {
     header.masthead {
-        padding-top:6rem;
-        padding-bottom:6rem;
+        padding-top:4rem;
+        padding-bottom:4rem;
     }
     header.masthead h1 {
         font-size:3rem
     }
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+#gex {
+    /*background-image: url('../imagenes/fondo_general-wide_rc.jpg');*/
+    background-image: url('../imagenes/GEX_acciones.jpg');
+    /*background-color: transparent;*/
 }

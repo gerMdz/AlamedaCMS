@@ -45,7 +45,12 @@
                   <li class="nav-item">
                       <a class="nav-link" href="nuestraalameda.php" >
                           <i class="fi-web"></i> Dónde y cuando
-</a>
+                        </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="acciones.php" >
+                          <i class="fi-foot"></i> ¡Haciendo!
+                        </a>
                   </li>
               </ul>
 

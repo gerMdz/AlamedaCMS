@@ -37,13 +37,6 @@
                 <hr class="bg-point"/>
 
 
-                <a class="text-tan" href="masporhacer.php"> Lo que se viene en la Alameda</a>
-                <hr class="bg-point"/>
-            </div>
-            <div class="col-sm-3">
-                <hr class="bg-point"/>
-
-
                 <a class="text-tan" href="puntopartida.php"> Punto de Partida</a>
                 <hr class="bg-point"/>
             </div>
@@ -51,7 +44,22 @@
                 <hr class="bg-point"/>
 
 
+                <a class="text-tan" href="masporhacer.php"> Lo que se viene en la Alameda</a>
+                <hr class="bg-point"/>
+            </div>
+
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
                 <a class="text-tan" href="nuestraalameda.php"> Dónde y Cuándo</a>
+                <hr class="bg-point"/>
+            </div>
+            <div class="col-sm-3">
+                <hr class="bg-point"/>
+
+
+                <a class="text-tan" href="acciones.php"> ¡¡Haciendo!!</a>
                 <hr class="bg-point"/>
             </div>
         </div>
