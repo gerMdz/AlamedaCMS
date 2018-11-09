@@ -52,6 +52,11 @@
                           <i class="fi-foot"></i> ¡Haciendo!
                         </a>
                   </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="seminario.php" >
+                          <i class="fas fa-book"></i> Seminario
+                        </a>
+                  </li>
               </ul>
 
               <!-- Right -->

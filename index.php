@@ -12,8 +12,13 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, Iglesia Bautista, Celebracion, Dios, Fe">
+    <meta name="description" content="Iglesia Alameda, ¿Para qué estoy aquí en la tierra?, Una vida con propósito, Iglesia Bautista, Celebracion, Dios, Fe">
     <meta name="author" content="Iglesia de la Alameda">
+    <meta property="og:title" content="Iglesia Alameda" />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/UVCP-40DCP-2018.jpg">
 
     <title>Iglesia de la Alameda</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
@@ -39,6 +44,9 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
+    <link href="css/fonts/univers/font.css?v=<?php echo $version ?>" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
 
@@ -59,7 +67,9 @@
 
 <section class="page-section about-heading" id="contador">
     <div class="container-fluid">
-        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/imagen_auditorio_escalado_1.png" alt="Imagen Auditorio" style="top: -70px">
+        <a href="unaVidaConProposito.php">
+        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/campanias/invitacion_uvcp.jpg" alt="Imagen Auditorio" style="top: -70px">
+        </a>
         <div class="about-heading-content ajusteIndex">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
@@ -105,7 +115,7 @@
     </div>
 </section>
 
-<section class="page-section cta fondo-evento" id="evento">
+<section class="page-section cta fondo-evento" id="campania">
     <!--<div class="container">-->
             <!--<div class="row fondo-footer">-->
                 <!--        <div class="col-xl-9 mx-auto">-->
@@ -123,12 +133,12 @@
                     </p>
                 </div>
             </div>-->
-            <div id="RazaCampeones" class="carousel slide" data-ride="carousel">
+            <div id="elCielo" class="carousel slide" data-ride="carousel">
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
-                    <li data-target="#INAMOVIBLE" data-slide-to="0" class="active"></li>
-                    <li data-target="#INAMOVIBLE" data-slide-to="1"></li>
+                    <li data-target="#elCielo" data-slide-to="0" class="active"></li>
+                    <li data-target="#elCielo" data-slide-to="1"></li>
 <!--                    <li data-target="#RazaCampeones" data-slide-to="2"></li>-->
                     <!--<li data-target="#50dias" data-slide-to="2"></li>-->
                 </ul>
@@ -139,10 +149,10 @@
                         <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
                     </div>-->
                     <div class="carousel-item active ">
-                        <img src="imagenes/INAMOVIBLE.jpg" alt="INAMOVIBLE" class="d-block " >
+                        <img src="imagenes/templo_escalado.png" alt="UnaVidaConProposito" class="d-block " >
                     </div>
                     <div class="carousel-item ">
-                        <img src="imagenes/INAMOVIBLE.jpg" alt="INAMOVIBLE" class="d-block  " >
+                        <img src="imagenes/templo_escalado.png" alt="UnaVidaConProposito" class="d-block  " >
                     </div>
 <!--                    <div class="carousel-item active ">-->
 <!--                        <img src="imagenes/RAZA-DE-CAMPEONES-WIDE-2.jpg" alt="Raza de Campeones" class="d-block  " >-->
@@ -152,10 +162,10 @@
 <!--                    </div>-->
 
                 <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#RazaCampeones" data-slide="prev">
+                <a class="carousel-control-prev" href="#elCielo" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </a>
-                <a class="carousel-control-next" href="#RazaCampeones" data-slide="next">
+                <a class="carousel-control-next" href="#elCielo" data-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </a>
 
@@ -283,10 +293,10 @@
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2018-06-02 17:00')){ ?>
+                        <?php if ($ahora < date('2018-11-10 18:30')){ ?>
 
-                                <small class="text-point-sec">Sábado 02 de junio a las 17:00 Hs</small>
-                            <a href="masporhacer.php#bautismo"
+                                <small class="text-point-sec">Sábado 10 de noviembre a las 18:30 Hs</small>
+                            <a href="masporhacer.php#crecimiento20181110"
                                data-toggle="tooltip"
                                title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
 
@@ -306,7 +316,7 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Enlace de Grupos de Amistad</h5>
                         <p class="card-text">
-                            Si querés ser parte de un Grupo de Amistad de "Amigos Incondicionales" asistí a
+                            Si querés ser parte de un Grupo de Amistad de "Una Vida con Propósito" asistí a
                             nuestro próximo Enlace de Grupos
 
                         </p>
@@ -315,9 +325,11 @@
                     </div>
 
                         <div class="card-footer text-center">
-                            <?php if ($ahora < date('2018-05-31 20:30')){ ?>
+                            <?php if ($ahora < date('2018-10-12 21:30')){ ?>
                             <small class="text-point-sec">
-                                Jueves 31 de mayo a las 20:30 hs.<br/>
+                                Viernes 12 de octubre a las 21:30 hs.<br/>
+                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=ENLACE"> por Whatsapp
+                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
 
                             </small>
                             <?php } ?>
@@ -342,16 +354,17 @@
                         <p class="card-text">
                             Si ya estás bautizado y querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra
                             charla de Membresía. <br/>
-                            El pastor Fabian te espera para una conversación muy especial
+                            El pastor Fabián te espera para una conversación muy especial
 
 
                         </p>
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2018-06-02 17:00')){ ?>
+                                <?php if ($ahora < date('2018-11-10 18:30')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 02 de junio a las 17:00 hs. <a href="masporhacer.php"
+                                        Sábado 10 de Noviembre a las 18:30 hs.
+                                        <a href="masporhacer.php#crecimiento20181110"
                                                                              data-toggle="tooltip"
                                                                              title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
                                     </small>
@@ -367,6 +380,70 @@
     </div>
 </section>
 
+<section class="page-section container cta fondo-evento" id="40diasConProposito">
+    <!--    <div class="row text-center">-->
+    <div class="row text-center d-flex align-items-center bg-white">
+        <div class="col-sm-5 pull-left">
+            <img src="imagenes/campanias/invitacion_uvcp.jpg" class="img-fluid rounded" />
+        </div>
+
+        <div class="col-sm-7 pt-5">
+
+
+
+
+                <blockquote class="text-white-75 rounded align-items-center px-5" >
+                    <span class="rotar90 btn-blue  ">
+                        <p class="pl-3 pr-3 mb-0">1 Pedro 4:10 (NIV)</p>
+                    </span>
+                        <div>
+                    <h2 style="text-indent: 2em; font-family: 'UniversLTStd-Obl', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
+
+                        Cada uno ponga al servicio de los demás el don que haya recibido, administrando fielmente la gracia de Dios en sus diversas formas.
+                    </h2>
+                        </div>
+
+
+                </blockquote>
+
+
+            </div>
+        <div class="col-sm-12">
+            <a href="unaVidaConProposito.php" class="text-light-blue"
+               data-toggle="tooltip"
+               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
+        </div>
+
+
+
+            </div>
+
+
+
+</section>
+
+<section class="page-section container cta fondo-evento" id="revivir">
+<!--    <div class="row text-center">-->
+            <div class="row text-center d-flex align-items-center">
+        <div class="col-sm-3 pull-left">
+            <img src="imagenes/logoYoutubeBrown.png" class="img-fluid rounded" />
+        </div>
+        <div class="col-sm-9 pull-right ">
+
+            <a  title="Reviví los mensajes" data-placement="bottom" style="text-decoration-line: none"
+                href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes"
+            >
+            <blockquote class="bg-danger text-tan blockquote rounded d-flex align-items-center">
+                            <i class="fab fa-youtube-square fa-4x" style="color: #FFF" ></i>
+                            <h3 style="color: #FFF; text-indent: 5em"  >
+                            Reviví los mensajes en Youtube
+                            </h3>
+
+            </blockquote>
+            </a>
+        </div>
+    </div>
+</section>
 
 <?php include ('footer.php'); ?>
 
@@ -428,6 +505,7 @@
     });
 
 </script>
+
 
 </body>
 

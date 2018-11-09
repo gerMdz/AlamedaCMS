@@ -87,8 +87,8 @@
 
             <div class="mdl-card__media mdl-color-text--grey-50">
 
-              <h3 class="card-img-top">Domingos<br/> 11hs y 19hs</h3><br/>
-              <h5>San Martín 2020 de la Ciudad de Mendoza</h5>
+<!--              <h3 class="card-img-top">Domingos<br/> 11hs y 19hs</h3><br/>-->
+<!--              <h5>San Martín 2020 de la Ciudad de Mendoza</h5>-->
             </div>
             <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
               <div class="minilogo"></div>
@@ -141,7 +141,12 @@
               Domingos 11hs y 19 hs
             </div>
             <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-              <div class="minilogo"></div>
+                <a href="acciones.php#gex" id="gex_horarios">
+                    <div class="minilogo"></div>
+                </a>
+                <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="gex_horarios">
+                    Ver detalles
+                </div>
               <div>
                 <strong>En simultáneo</strong>
                 <span>con la celebración general </span>
