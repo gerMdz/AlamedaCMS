@@ -182,7 +182,7 @@ body .demo-blog {
 }
 .demo-blog .coffee-pic .mdl-card__media {
   /*background-image: url('../imagenes/fondo_general-wide_rc.jpg');*/
-  background-image: url('../imagenes/INAMOVIBLE_CELESTE_5.jpg');
+  background-image: url('../imagenes/campanias/UVCP-40DCP-2018.jpg');
     /*background-color: transparent;*/
 }
 .demo-blog .something-else .mdl-card__media .mdl-card__white{
@@ -510,4 +510,10 @@ body .demo-blog {
     background-size: 50%;
     border-radius: 22px;
     background-color: #F5F5F5;
+}
+
+.bg-boletin{
+
+    background-image: url("../imagenes/campanias/fdo40.png");
+
 }

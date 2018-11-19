@@ -6,7 +6,6 @@ $version = date('YmdHi');
 
 ?>
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Iglesia Alameda, Acciones, Estamos para ayudarte ">
@@ -115,96 +114,6 @@ $version = date('YmdHi');
       </div>
     </header>
 
-<!--    Inicio Generación Extrema -->
-    <section class="features-icons bg-light text-center" id="gex">
-        <div class="android-card-container mdl-grid">
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-                <div class="minilogo"></div>
-                <h4 ">Generación Extrema </h4>
-            </div>
-<!--            <div class="mdl-card__title">-->
-<!--                <h4 class="mdl-card__title-text"></h4>-->
-<!--            </div>-->
-            <div class="mdl-card__supporting-text">
-                        <span class="mdl-typography--font-light mdl-typography--subhead">
-                            es el programa de niños de nuestra Iglesia y  funciona  en simultáneo a las Celebraciones de adultos, a las 11 y 19 hs.
-Está organizado en dos grandes grupos de edades. </span>
-            </div>
-            <!--                    <div class="mdl-card__actions">-->
-            <!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
-            <!--                            Make the switch-->
-            <!--                            <i class="material-icons">chevron_right</i>-->
-            <!--                        </a>-->
-            <!--                    </div>-->
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-                <div class="minilogo"></div>
-                <h4 >Niños de 1 a 5 años </h4>
-            </div>
-<!--            <div class="mdl-card__title">-->
-<!---->
-<!--            </div>-->
-            <div class="mdl-card__supporting-text">
-                        <span class="mdl-typography--font-light mdl-typography--subhead">
-                            “El Mundo de los pequeñitos”. El ingreso y registración de los niños es por el pasillo que se encuentra al costado sur del Portal del Auditorio Alameda. Cuenta con cinco salas para niños de cada edad. </span>
-            </div>
-            <!--                    <div class="mdl-card__actions">-->
-            <!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
-            <!--                            androidify.com-->
-            <!--                            <i class="material-icons">chevron_right</i>-->
-            <!--                        </a>-->
-            <!--                    </div>-->
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-                <div class="minilogo"></div>
-                <h4 >Niños de 1º a 7º Grado </h4>
-            </div>
-<!--            <div class="mdl-card__title">-->
-<!---->
-<!--            </div>-->
-            <div class="mdl-card__supporting-text">
-                        <span class="mdl-typography--font-light mdl-typography--subhead">
-                            Niños que asisten a la escuela Primaria. De 1º a 7º Grado. El ingreso y registración de los niños el por la puerta principal del Auditorio San Martin 2020. </span>
-            </div>
-            <!--                    <div class="mdl-card__actions">-->
-            <!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
-            <!--                            Download now-->
-            <!--                            <i class="material-icons">chevron_right</i>-->
-            <!--                        </a>-->
-            <!--                    </div>-->
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-                <div class="minilogo"></div>
-                <h4> Padres </h4>
-
-            </div>
-<!--            <div class="mdl-card__title">-->
-<!--                <h4 class="mdl-card__title-text"></h4>-->
-<!--            </div>-->
-            <div class="mdl-card__supporting-text">
-                        <span class="mdl-typography--font-light mdl-typography--subhead">
-                            En ambos casos los padres que asisten por primera vez pueden visitar nuestros espacios acompañados por un integrante del Equipo de Niñez. Cuando los niños son registrados se le entrega al adulto responsable un número, que aparecerá en la pantalla en caso que necesitemos contactarlos durante el transcurso de las actividades.
-                        </span>
-            </div>
-            <!--                    <div class="mdl-card__actions">-->
-            <!--                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">-->
-            <!--                            Find apps-->
-            <!--                            <i class="material-icons">chevron_right</i>-->
-            <!--                        </a>-->
-            <!--                    </div>-->
-        </div>
-    </div>
-    </section>
-<!--    Final Generación Extrema -->
-
-
     <!-- Inicio de Jovenes y Punto de Partida -->
     <section class="showcase">
       <div class="container-fluid p-0">
@@ -214,6 +123,7 @@ Está organizado en dos grandes grupos de edades. </span>
           <div class="col-lg-6 order-lg-1 my-auto showcase-text fondo-medio">
             <h2>Jóvenes de la Alameda</h2>
             <h4 class="mb-0">Participá de nuestros encuentros especiales para jóvenes, solteros y matrimonios</h4>
+              <a href="masporhacer.php" class="btn btn-outline-dark text-tan btn-sm">Ver actividades</a>
           </div>
         </div>
         <div class="row no-gutters ">
@@ -229,9 +139,10 @@ Está organizado en dos grandes grupos de edades. </span>
 
         </div>
 
-          <div class="row no-gutters ">
+          <div class="row no-gutters bg-white">
 
-              <div class="col-lg-6 order-lg-2 text-white bg-white showcase-img " style="background-image: url('imagenes/PetalosColorEscalado.png');"></div>
+              <div class="col-lg-6 order-lg-2 text-white bg-white showcase-img "
+                   style="background-image: url('imagenes/gp_escalado_1170.png'); height: 100vh; vertical-align: middle"></div>
               <div class="col-lg-6 order-lg-1 my-auto showcase-text fondo-medio">
                   <h2>Grupos Pequeños</h2>
                   <h4 class="mb-0">Sumate a un grupo pequeño de comunidad. Está atento a nuestro próximo enlace de grupos</h4>

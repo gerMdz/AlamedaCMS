@@ -38,14 +38,14 @@
                 <hr class="bg-point"/>
 
 
-                <a class="text-tan" href="puntopartida.php"> Punto de Partida</a>
+                <a class="text-tan" href="../puntopartida.php"> Punto de Partida</a>
                 <hr class="bg-point"/>
             </div>
             <div class="col-sm-2">
                 <hr class="bg-point"/>
 
 
-                <a class="text-tan" href="masporhacer.php"> Eventos en la Alameda</a>
+                <a class="text-tan" href="../masporhacer.php"> Eventos en la Alameda</a>
                 <hr class="bg-point"/>
             </div>
 
@@ -53,21 +53,21 @@
                 <hr class="bg-point"/>
 
 
-                <a class="text-tan" href="nuestraalameda.php"> Dónde y Cuándo</a>
+                <a class="text-tan" href="../nuestraalameda.php"> Dónde y Cuándo</a>
                 <hr class="bg-point"/>
             </div>
             <div class="col-sm-2">
                 <hr class="bg-point"/>
 
 
-                <a class="text-tan" href="acciones.php"> ¡¡Haciendo!!</a>
+                <a class="text-tan" href="../acciones.php"> ¡¡Haciendo!!</a>
                 <hr class="bg-point"/>
             </div>
             <div class="col-sm-2">
                 <hr class="bg-point"/>
 
 
-                <a class="text-tan" href="seminario.php"> Seminario</a>
+                <a class="text-tan" href="../seminario.php"> Seminario</a>
                 <hr class="bg-point"/>
             </div>
             <div class="col-sm-1"></div>

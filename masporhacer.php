@@ -14,7 +14,6 @@ $version = date('YmdHi');
 
     <meta property="og:title" content="Eventos Iglesia Alameda, Cantapueblo 30° Aniversario, Bautismo, Memebresía, Crecimiento" />
     <meta property="og:type" content="website" />
-
     <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
     <meta property="og:image" content="https://www.iglesialameda.com/imagenes/masporhacer/crecimiento.jpeg">
 

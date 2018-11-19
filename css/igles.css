@@ -173,7 +173,11 @@ ul.pp li{
 
 .fondo-medio{
 
-    background-color:rgba(67, 135, 137, .80)
+    background-color:rgba(0, 132, 137, 0.8)
+}
+.fondo-blanco-50{
+
+    background-color:rgba(256, 256, 256, .50)
 }
 
 .fondoFranja {
@@ -307,6 +311,104 @@ button.bg-teal:hover{
     border-left: .25rem solid #ca5430;
 }
 
+.blockquote-uvcp{
+    padding: 0rem 1rem;
+    border-left: .25rem solid #0f0;
+}
+
+.blockquote-uvcp_dark{
+    padding: 0rem 1rem;
+    border-left: .25rem solid rgb(4, 135, 142);
+
+
+}
+
+
+
+.blockquote-uvcp_dark .rotar90 {
+
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    -webkit-transform: rotate(-90deg);
+    overflow: auto;
+    /*padding: 0rem 1rem;*/
+    /*border-left: .25rem solid rgb(4, 135, 142);*/
+
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+
+    /* IE */
+    -ms-transform: rotate(-90deg);
+
+    /* Opera */
+    -o-transform: rotate(-90deg);
+
+    float: left;
+
+
+    margin-left: -5em;
+
+}
+
+.vertical-divider {
+    position: absolute;
+    display: table;
+    text-align: center;
+
+    height: auto;
+    width: auto;
+}
+
+.vertical-divider .center-element {
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+    -webkit-transform: rotate(-90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+
+    /* IE */
+    -ms-transform: rotate(-90deg);
+
+    /* Opera */
+    -o-transform: rotate(-90deg);
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+/*&:before, &:after {*/
+               /*position: absolute;*/
+               /*content: "";*/
+               /*width: 1px;*/
+               /*left: 50%;*/
+               /*border-left: 0px solid black;*/
+           /*}*/
+/*&:before {*/
+     /*bottom: 50%;*/
+     /*top: 0;*/
+     /*margin-bottom: 20px;*/
+
+ /*}*/
+/*&:after {*/
+     /*top: 50%;*/
+     /*bottom: 0;*/
+     /*margin-top: 20px;*/
+ /*}*/
+/*}*/
+/*}*/
+
+
+
+.finalBlock{
+    border-right: .25rem solid rgb(4, 135, 142);
+}
+
 .tooltip {
     max-width: 200px;
     padding: 3px 8px;
@@ -361,6 +463,8 @@ h3.quote:after {
     }
 }
 
+
+
 .text-white-75 {
     color: rgba(255, 255, 255, 0.75) !important;
 }
@@ -370,3 +474,123 @@ h3.quote:after {
     background-image: url('../imagenes/GEX_acciones.jpg');
     /*background-color: transparent;*/
 }
+
+.bg-boletin{
+
+    background-image: url('../imagenes/campanias/fdo40.png');
+
+}
+
+@font-face {
+    font-family: tahu;
+    font-style: italic;
+    font-weight: normal;
+    src: url("../vendor/alameda/font/Tahu.ttf") format('truetype');
+}
+
+.text-fine {
+    font-size: 48px;
+    font-weight: 100;
+    line-height: 1.2em;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-family: "Poppins", sans-serif;
+
+}
+
+.text-300 {
+    font-size: 45px;
+    font-weight: 300;
+    line-height: 48px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif;
+
+}
+
+b, i, sup, sub, u, del {
+
+    color: #6cbb23;
+
+}
+
+#paraque  b,
+#paraque  i,
+.base-marron  sup,
+.base-marron  sub,
+.base-marron  u,
+.base-marron  del {
+
+    color: #5f4339;
+
+}
+
+.text-realce{
+        font-weight: 600;
+    }
+.text-realce-verde{
+    color: #6cbb23;
+
+    font-weight: 600;
+    }
+
+.text-realce-marron{
+    color: #8d6e63;
+
+    font-weight: 600;
+    }
+
+.boxPorHacer {
+    height: 100vh;
+    background-size: cover;
+}
+
+.rgba-uvcp{
+background: rgba(108,187,35,0.85)
+}
+
+.text-100{
+    width: 100px;
+    height: 100px;
+}
+
+.rotar90 {
+
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+
+    /* IE */
+    -ms-transform: rotate(-90deg);
+
+    /* Opera */
+    -o-transform: rotate(-90deg);
+
+    float: left;
+
+
+    margin-left: -5em;
+
+}
+
+.icononos-sociales a {
+    display: inline-block;
+    height: 3.5rem;
+    width: 3.5rem;
+    background-color: #495057;
+    color: white !important;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 3.5rem;
+    margin-right: 1rem;
+}
+.icononos-sociales a:last-child {
+     margin-right: 0;
+ }
+.icononos-sociales a:hover {
+     background-color: #6cbb23;
+ }
+

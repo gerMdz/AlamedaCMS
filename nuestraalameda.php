@@ -138,10 +138,10 @@
                       ¡Acercate con ellos!</a></h3>
             </div>
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-              Domingos 11hs y 19 hs
+              Domingos 10hs y 20 hs
             </div>
             <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                <a href="acciones.php#gex" id="gex_horarios">
+                <a href="ministerios/gex.php" id="gex_horarios">
                     <div class="minilogo"></div>
                 </a>
                 <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="gex_horarios">
@@ -151,6 +151,11 @@
                 <strong>En simultáneo</strong>
                 <span>con la celebración general </span>
               </div>
+               <small class="text-right pull-right pl-5">
+                   <a href="ministerios/gex.php" id="gex_horarios">
+                       <i>  Ver detalles</i>
+                   </a>
+              </small>
             </div>
           </div>
 

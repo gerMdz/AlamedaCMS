@@ -84,19 +84,19 @@
                     <hr/>
                     <div class="section-body col-sm-6 col-md-6 col-lg-6 card">
                         <small class="mt-2 text-right card-title">
-                            Domingo 11 hs
+                            Domingo 10 hs
                             </small>
                             <div class="section-heading-body bg-light contador text-point-sec h-100  " id="once" style="font-weight: 800;">
-                                <div class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
+                                <div class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 10:00:00"></div>
                             </div>
                     </div>
                             <hr class="d-lg-none"/>
                     <div class="section-body col-sm-6 col-md-6 col-lg-6 card ">
                             <small class="mt-2 text-right card-title">
-                                Domingo 19 hs.
+                                Domingo 20 hs.
                             </small>
                         <span class="section-heading-body bg-light contador text-point-sec h-100 " id="diecinueve" style="font-weight: 800;">
-                                <div  class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div>
+                                <div  class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 20:00:00"></div>
                             </span>
                     </div>
 
@@ -392,14 +392,17 @@
 
 
 
-                <blockquote class="text-white-75 rounded align-items-center px-5" >
-                    <span class="rotar90 btn-blue  ">
-                        <p class="pl-3 pr-3 mb-0">1 Pedro 4:10 (NIV)</p>
-                    </span>
+                <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
+
+                        <div class="center-element btn btn-blue rotar90">Colosenses 4:5 (NIV) </div>
+
+
+
+
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'UniversLTStd-Obl', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
 
-                        Cada uno ponga al servicio de los demás el don que haya recibido, administrando fielmente la gracia de Dios en sus diversas formas.
+                        Compórtense sabiamente con los que no creen en Cristo,* aprovechando al máximo cada momento oportuno.
                     </h2>
                         </div>
 

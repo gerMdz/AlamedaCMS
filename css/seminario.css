@@ -1,0 +1,13 @@
+#inicio .container {
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*flex-direction: column;*/
+    /*text-align: center;*/
+    font-family: "Philosopher", sans-serif;
+}
