@@ -371,6 +371,82 @@ $version = date('YmdHi');
 				</div>
 			</div>
 		</section>
+        <hr />
+
+        <section class="relative bg-verde_claro" id="miCompromiso">
+<!--			<div class="prefondo prefondo-total"></div>-->
+
+			<div class="container">
+				<div class="row">
+                    <div class="panel panel-title bg-white col-sm-12">
+                        <h1 class="text-uppercase text-center">
+                            Una Vida con Propósito
+                        </h1>
+                    </div>
+                    <div class="col-lg-12 ">
+                        <div class="col-sm-*">
+                            <h5 class="bg-white p-4 " >
+                                <span class="text-left pull-left col-sm-5"> 1- Fui planeado para amar y ser amado por Dios
+                                </span>
+                                <strong class="text-realce-verde text-center col-sm-2 "> así que usaré este día </strong>
+
+                                <span class="text-right pull-right col-sm-5">
+                                    para conocer y amar a Dios
+                                </span>
+                            </h5>
+                        </div>
+
+                        <div class="col-sm-*">
+                            <h5 class="bg-white p-4 " >
+                                2- Fui formado para la familia de Dios
+                                <strong class="text-realce-verde  "> así que usaré este día </strong>
+                                para mostrar amor a otros creyentes
+                            </h5>
+                        </div>
+
+                        <div class="col-sm-*">
+                            <h5 class="bg-white p-4 " >
+                                3- Fui creado para llegar a ser como Cristo
+
+                                <strong class="text-realce-verde  "> así que usaré este día </strong>
+
+                                para tomar decisiones que maduren mi carácter
+                            </h5>
+                        </div>
+                        <div class="col-sm-*">
+                            <h5 class="bg-white p-4 " >
+                                4- Fui formado para servir a Dios
+
+                                <strong class="text-realce-verde  "> así que usaré este día </strong>
+
+                                para servir a Dios a través de servir a los demás
+                            </h5>
+                        </div>
+
+                        <div class="col-sm-*">
+                            <h5 class="bg-white p-4 " >
+                                5- Fui echo para una misión
+
+                                <strong class="text-realce-verde  "> así que usaré este día </strong>
+
+                                para compartir las Buenas Noticias
+                            </h5>
+                        </div>
+
+
+
+
+                            <div class="col-sm-12 col-lg-12 text-right pull-right">
+                            <label>Nombre y Apellido</label>
+                            <input id="nombre" size="30">
+                            <button class="btn-generico verde circular" id="compromiso">Me comprometo</button>
+                            </div>
+
+
+                    </div>
+				</div>
+			</div>
+		</section>
 		<!-- Start Feature Area -->
 		<!-- Start faq Area -->
 <!--		<section class="faq-area pt-100 pb-100 relative">-->
@@ -542,7 +618,34 @@ $version = date('YmdHi');
 <script>
 
 
+    $(function () {
+        $('#compromiso').click(function(){
+            var nombre = $('#nombre').val();
+            var hoy = new Date();
+            var dd =hoy.getDate();
+            var mm = hoy.getMonth()+1; //January is 0!
+            var yyyy = hoy.getFullYear();
 
+            if(dd<10) {
+                dd = '0'+dd
+            }
+
+            if(mm<10) {
+                mm = '0'+mm
+            }
+
+            hoy = dd + '/' + mm + '/' + yyyy;
+            var myJson = {
+                'Nombre': nombre,
+                'Fecha' : hoy
+            };
+             localStorage.userDetail =  JSON.stringify(myJson);
+
+
+        });
+
+
+    });
 
     $(function () {
 
