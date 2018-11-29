@@ -19,7 +19,7 @@ $version = date('YmdHi');
 	<!-- Meta Description -->
     <meta name="description" content="Iglesia Alameda, ¿Para qué estoy aquí en la tierra?, Una vida con propósito, Iglesia Bautista, Celebracion, Dios, Fe">
     <meta name="author" content="Iglesia de la Alameda">
-    <meta property="og:title" content="Iglesia Alameda" />
+    <meta property="og:title" content="Iglesia Alameda, Una Vida con propósito, compromiso " />
     <meta property="og:type" content="website" />
 
     <meta property="og:url" content="https://www.iglesialameda.com/unaVidaConProposito.php" />
@@ -373,14 +373,14 @@ $version = date('YmdHi');
 		</section>
         <hr />
 
-        <section class="relative bg-verde_claro" id="miCompromiso">
+        <section class="relative bg-verde_claro_less" id="miCompromiso">
 <!--			<div class="prefondo prefondo-total"></div>-->
 
 			<div class="container">
 				<div class="row">
                     <div class="panel panel-title bg-white col-sm-12">
-                        <h1 class="text-uppercase text-center">
-                            Una Vida con Propósito
+                        <h1 class="text-uppercase text-center text-realce-verde ">
+                            Una <b class="text-shadow">Vida </b> con <b class="text-shadow">Propósito</b>
                         </h1>
                     </div>
                     <div class="col-lg-12 ">
@@ -437,15 +437,19 @@ $version = date('YmdHi');
 
 
                             <div class="col-sm-12 col-lg-12 text-right pull-right">
-                            <label>Nombre y Apellido</label>
-                            <input id="nombre" size="30">
-                            <button class="btn-generico verde circular" id="compromiso">Me comprometo</button>
+                                <label id="nym"><button class="btn-generico verde circular">Yo</button> </label>
+                                <span id="sinfirma">
+                                    <input id="nombre"  class="input-group-sm " placeholder="Puedes poner aquí tu nombre y apellido">
+                                    <button class="btn-generico verde circular" id="compromiso">Me comprometo</button>
+                                </span>
                             </div>
+                        <br/>
 
 
                     </div>
 				</div>
 			</div>
+
 		</section>
 		<!-- Start Feature Area -->
 		<!-- Start faq Area -->
@@ -606,7 +610,7 @@ $version = date('YmdHi');
 
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="material-modal/js/material-modal.min.js?v=<?php echo $version ?>"></script>
-    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="js/extras/popper.min.js"></script>
     <!--  <script src="js/bootstrap-material-design.js"></script>-->
@@ -617,10 +621,23 @@ $version = date('YmdHi');
     <script src="js/jquery.inview.min.js"></script>
 <script>
 
+    $(function () {
+        var nombre = localStorage.getItem("alamedaUVCPNombre");
+        if (nombre != null){
+            aceptado();
+        }
+
+    });
+
 
     $(function () {
         $('#compromiso').click(function(){
             var nombre = $('#nombre').val();
+
+            if (nombre == null || nombre ==''){
+                $('#nombre').attr('placeholder', 'Aquí debés colocar tu nombre y apellido');
+                return false;
+            }
             var hoy = new Date();
             var dd =hoy.getDate();
             var mm = hoy.getMonth()+1; //January is 0!
@@ -635,17 +652,32 @@ $version = date('YmdHi');
             }
 
             hoy = dd + '/' + mm + '/' + yyyy;
-            var myJson = {
-                'Nombre': nombre,
-                'Fecha' : hoy
-            };
-             localStorage.userDetail =  JSON.stringify(myJson);
+            // var myJson = {
+            //     'Nombre': nombre,
+            //     'Fecha' : hoy
+            // };
+            localStorage.alamedaUVCPNombre =  JSON.stringify(nombre);
+            localStorage.alamedaUVCPFecha =  JSON.stringify(hoy);
 
+
+            aceptado()
 
         });
 
 
     });
+    function aceptado(){
+
+        var nombre = JSON.parse(localStorage.alamedaUVCPNombre);
+        var fecha = JSON.parse(localStorage.alamedaUVCPFecha);
+
+        $('#nym').addClass('fontTahu fa-2x');
+        $('#nym').html(nombre + ' ,' + fecha + '<br/> Mi compromiso' );
+        $('#sinfirma').hide();
+
+
+
+    }
 
     $(function () {
 

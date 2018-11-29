@@ -11,3 +11,51 @@
     /*text-align: center;*/
     font-family: "Philosopher", sans-serif;
 }
+
+.cover{
+
+    /*padding: 15rem 0;*/
+    background: -webkit-gradient(linear,left top,left bottom,from(rgba(39,93,121,.1)),color-stop(75%,rgba(39,93,121,.5)),to(#5284a2)),url(../seminario/img/sem/logo_2_sem.png);
+    background: linear-gradient(to bottom,rgba(39,93,121,.1) 0,rgba(39,93,121,.5) 75%,#5284a2 100%),url(../seminario/img/sem/logo_2_sem.png);
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+
+
+}
+@media (max-width: 640px) {
+    h1 {
+        font-size: 4rem;
+        line-height: 3.5rem;
+    }
+    .navbar{
+        padding: 0 5px !important;
+
+        margin-left: 0px !important;;
+
+        margin-right: 0px !important;;
+    }
+}
+
+.caption {
+
+
+
+    text-align: center;
+    color: #000;
+    margin-bottom: 25px;
+}
+
+.caption span.border {
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+
+    /*font-size: 25px;*/
+    letter-spacing: 10px;
+}

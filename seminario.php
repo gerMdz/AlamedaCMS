@@ -16,13 +16,13 @@ $version = date('YmdHi');
 <!-- Author Meta -->
 <meta name="author" content="Colorlib y el equipo de Iglesia Alameda">
 <!-- Meta Description -->
-<meta name="description" content="Iglesia Alameda, Seminario Liderazgo Avanzado">
+<meta name="description" content="Iglesia Alameda, Seminario Liderazgo ">
 <meta name="author" content="Iglesia de la Alameda">
 <meta property="og:title" content="Iglesia Alameda" />
 <meta property="og:type" content="website" />
 
 <meta property="og:url" content="https://www.iglesialameda.com/seminario.php" />
-<!--<meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/UVCP-40DCP-2018.jpg">-->
+--<meta property="og:image" content="https://www.iglesialameda.com/seminario/img/sem/sem_1_logo.jpeg">-->
 <!-- Meta Keyword -->
 <meta name="keywords" content="Semiario Liderzgo Avanzado">
 <!-- meta character set -->
@@ -45,12 +45,15 @@ CSS
 <link rel="stylesheet" href="material-modal/css/material-modal.min.css?v=<?php echo $version ?>">
 <!-- Fin Css Propios página -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 <!--    <link rel="stylesheet" href="css/uvcp/argon.min.css">-->
 <link rel="stylesheet" href="css/material.min.css">
 <link rel="stylesheet" href="css/material.light_blue-teal.min.css">
 <link href="css/mdb.min.css" rel="stylesheet">
 <link href="css/style2.css?v=<?php echo $version ?>" rel="stylesheet">
 <link href="css/seminario.css?v=<?php echo $version ?>" rel="stylesheet">
+
+
 
 
 
@@ -68,6 +71,9 @@ CSS
     section{
         font-family: "Poppins", sans-serif;
     }
+    b, i, sup, sub, u, del {
+        color: #3f7888 !important;
+    }
 </style>
 
 </head>
@@ -81,23 +87,26 @@ CSS
     Hero Section
   ============================-->
 
-<section class="section bg-white p-5 mt-2" id="inicio">
-    <div class="container">
+<section class="section bg-white cover" id="inicio">
+    <div class="container-fluid ">
+
+
 
 <!--        <div class="row fullscreen align-items-center justify-content-center">-->
-            <div class="col-lg-12">
+<!--            <div class="col-lg-12">-->
+<!-- -->
+<!-- -->
+<!--                <h1 class="text-realce-sca">-->
+<!--                    Seminario de Liderazgo-->
+<!--                </h1>-->
+<!-- -->
+<!-- -->
+<!--            </div>-->
 
-
-                <h1 class="text-realce-verde">
-                    Seminario Liderazgo Avanzado
-                </h1>
-
-
-            </div>
-
-            <div class="banner-left col-lg-12">
-                <img class="d-flex mx-auto img-fluid" src="seminario/img/hero-img.png" alt="SLA">
-            </div>
+<!--            <div class="banner-left col-lg-12">-->
+<!--            <div class="col-lg-12 ">-->
+<!--                <img class="figure-img cover " src="seminario/img/sem/logo_3_sem.png" alt="SDL">-->
+<!--            </div>-->
 
 <!--        </div>-->
     </div>
@@ -117,7 +126,17 @@ CSS
     <div class="container">
         <div class="section-title text-center">
 
-            <h2 class="text-300  text-realce-verde">Nuestra generación necesita </h2>
+
+            <h1 class="text-300  text-realce-sca">SEMINARIO DE LIDERAZGO </h1>
+        </div>
+    </div>
+</section>
+<hr/>
+        <section id="titulo" class=" text-center wow fadeInUp bg-white p-5">
+        <div class="section-title text-center">
+
+
+            <h1 class="text-300  text-realce-sca">Nuestra generación necesita </h1>
             <p class="separator">  de manera urgente, nuevas iglesias con la
                 capacidad intacta para conectarse  con  la  cultura,  atraer  multitudes,
                 transformar vidas y desatar un movimiento de influencia en nuestra sociedad. <br/>
@@ -140,7 +159,7 @@ CSS
             <div class="card card-image " >
 
                 <!-- Content -->
-                <div class="text-white text-center d-flex align-items-center rgba-uvcp py-5 px-4">
+                <div class="text-white text-center d-flex align-items-center rgba-seminario py-5 px-4">
                     <div>
 
                         <h2 class="card-title pt-2 ">
@@ -168,7 +187,7 @@ CSS
             <div class="card card-image" ">
 
                 <!-- Content -->
-                <div class="text-white text-center d-flex align-items-center rgba-uvcp py-5 px-4">
+                <div class="text-white text-center d-flex align-items-center rgba-seminario py-5 px-4">
                     <div>
 
                         <h2 class="card-title pt-2 ">
@@ -201,7 +220,7 @@ CSS
             <div class="card card-image" >
 
                 <!-- Content -->
-                <div class="text-white text-center d-flex align-items-center rgba-uvcp py-5 px-4">
+                <div class="text-white text-center d-flex align-items-center rgba-seminario py-5 px-4">
                     <div>
 
                         <h2 class="card-title pt-2 "><div class="feature-block">
@@ -233,7 +252,7 @@ CSS
         <div class="container">
             <div class="section-title text-center">
 
-<!--                <h2 class="text-300  text-realce-verde">Nuestra generacion necesita </h2>-->
+<!--                <h2 class="text-300  text-realce-sca">Nuestra generacion necesita </h2>-->
                 <p class="separator">
                     La modalidad de estudio será semipresencial. <br/>
                     Clases intensivas con pastores, líderes y profesionales de excelencia, <br/>
@@ -241,9 +260,13 @@ CSS
                 <br/>
                     Si te interesa formar parte de esta iniciativa conectate con nosotros a la siguiente dirección de correo
 
-                    <a href="mailto:seminario@primeramendoza.com.ar">
-                        <i> seminario@primeramendoza.com.ar</i>
+
+                    <a href="mailto:inscripciones.sdl@gmail.com">
+
+
+                        inscripciones.sdl@gmail.com
                     </a>
+
 <br/>
 <!--                    <i>Abel Schwab - Pastor de Discipulado y Formación</i>-->
                 </p>
@@ -459,10 +482,14 @@ CSS
                 <h4><i>Abel Schwab</i></h4>
                 <span>Licenciado en Teología</span>
               <ul class="list-unstyled">
-                <li><a href="mailto:seminario@primeramendoza.com.ar">
-                        <i class="fa fa-envelope"></i>
-                        <i>seminario@primeramendoza.com.ar</i>
-                    </a></li>
+                <li>
+                    <a href="mailto:inscripciones.sdl@gmail.com">
+
+
+                        inscripciones.sdl@gmail.com
+                    </a>
+                    <p>Informes e inscripción </p>
+                    </li>
 <!--                <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
 <!--                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
               </ul>

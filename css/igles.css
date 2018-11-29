@@ -173,7 +173,7 @@ ul.pp li{
 
 .fondo-medio{
 
-    background-color:rgba(0, 132, 137, 0.8)
+    background-color:rgba(0, 132, 137, 0.9)
 }
 .fondo-blanco-50{
 
@@ -463,6 +463,18 @@ h3.quote:after {
     }
 }
 
+@media (max-width:640px) {
+
+    h1 {
+        font-size: 45px !important;
+        line-height: 1.35 !important;
+        letter-spacing: -.02em !important;
+        margin: 24px 0 !important;
+
+    }
+
+}
+
 
 
 .text-white-75 {
@@ -525,6 +537,17 @@ b, i, sup, sub, u, del {
 
 }
 
+#section-azul  b,
+#section-azul  i,
+.base-azul  sup,
+.base-azul  sub,
+.base-azul  u,
+.base-azul  del {
+
+    color: #2D354F;
+
+}
+
 .text-realce{
         font-weight: 600;
     }
@@ -534,8 +557,20 @@ b, i, sup, sub, u, del {
     font-weight: 600;
     }
 
+.text-realce-sca{
+    color: #476389;
+
+    font-weight: 600;
+    }
+
 .text-realce-marron{
     color: #8d6e63;
+
+    font-weight: 600;
+    }
+
+.text-realce-azul{
+    color: #051433;
 
     font-weight: 600;
     }
@@ -547,6 +582,10 @@ b, i, sup, sub, u, del {
 
 .rgba-uvcp{
 background: rgba(108,187,35,0.85)
+}
+
+.rgba-seminario{
+background: rgba(61,112 ,141,0.85)
 }
 
 .text-100{
@@ -594,3 +633,18 @@ background: rgba(108,187,35,0.85)
      background-color: #6cbb23;
  }
 
+.fontUnivers{
+    font-family: 'UniversLTStd-Obl', cursive;
+}
+
+.fontTahu{
+    font-family: 'tahu', cursive;
+}
+.text-shadow{
+    text-shadow: -3px -1px 4px #257345;
+
+}
+
+b.text-shadow{
+    font-weight: bold;
+}

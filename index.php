@@ -67,8 +67,8 @@
 
 <section class="page-section about-heading" id="contador">
     <div class="container-fluid">
-        <a href="unaVidaConProposito.php">
-        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/campanias/invitacion_uvcp.jpg" alt="Imagen Auditorio" style="top: -70px">
+        <a href="series/navidad_lct.php">
+        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/campanias/navidad2018_index_2.png" alt="Navidad lo cambia todo" style="top: -75px; ">
         </a>
         <div class="about-heading-content ajusteIndex">
             <div class="row">

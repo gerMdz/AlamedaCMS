@@ -59,6 +59,9 @@ body,
 .btn-generico.verde{color:#fff;background:#6cbb23;border:1px solid transparent}
 .btn-generico.verde:hover{color:#6cbb23;border:1px solid #6cbb23;background:#fff}
 
+.btn-generico.azul{color:#fff;background:#051433;border:1px solid transparent}
+.btn-generico.azul:hover{color:#545567;border:1px solid #545567;background:#fff}
+
 .btn-generico.marron{color:#fff;background:#8d6e63;border:1px solid transparent}
 .btn-generico.marron:hover{color:#8d6e63;border:1px solid #8d6e63;background:#fff}
 
@@ -66,6 +69,10 @@ body,
 
 .bg-verde_claro{
    background: rgba(108,187,35,1);
+}
+
+.bg-verde_claro_less{
+   background: rgba(108,187,35,0.8);
 }
 
 .bg-marron_claro{

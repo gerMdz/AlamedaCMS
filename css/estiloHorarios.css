@@ -182,9 +182,20 @@ body .demo-blog {
 }
 .demo-blog .coffee-pic .mdl-card__media {
   /*background-image: url('../imagenes/fondo_general-wide_rc.jpg');*/
-  background-image: url('../imagenes/campanias/UVCP-40DCP-2018.jpg');
+  background-image: url('../imagenes/campanias/navidad2018_nuestra.png');
+
     /*background-color: transparent;*/
 }
+
+/*@media (max-width: 320px) {*/
+    /*.demo-blog .coffee-pic .mdl-card__media {*/
+
+        /*background-image: url('../imagenes/campanias/NAVIDAD-2018_320.jpg');*/
+
+    /*}*/
+/*}*/
+
+
 .demo-blog .something-else .mdl-card__media .mdl-card__white{
   display: -webkit-flex;
   display: -ms-flexbox;

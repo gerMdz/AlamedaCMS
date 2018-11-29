@@ -148,3 +148,18 @@
     transform: rotate(270deg);
 }
 
+.bloque2 .texto-bloque2 {
+    padding: 3rem;
+    font-size: 90%;
+}
+
+@media (min-width: 992px) {
+    .bloque2 .texto-bloque2 {
+        padding: 5rem;
+    }
+    .bloque2 .texto-bloque2 hr {
+        border-color: #64a19d;
+        border-width: .25rem;
+        width: 30%;
+    }
+}

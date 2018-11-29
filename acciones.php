@@ -8,13 +8,13 @@ $version = date('YmdHi');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, Acciones, Estamos para ayudarte ">
+    <meta name="description" content="Iglesia Alameda, Oportunidades de conectarte y vivir la alameda ">
     <meta name="author" content="Iglesia Alameda Mendoza">
-    <meta property="og:title" content="Iglesia Alameda" />
+    <meta property="og:title" content="Iglesia Alameda Bienvenido, Oportunidades de conectarte y vivir la alameda" />
     <meta property="og:type" content="website" />
 
     <meta property="og:url" content="https://www.iglesialameda.com/acciones.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/UVCP-40DCP-2018.jpg">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/auditorio.png">
 
     <title>Nuestras Acciones - Iglesia Alameda </title>
 
@@ -114,49 +114,128 @@ $version = date('YmdHi');
       </div>
     </header>
 
-    <!-- Inicio de Jovenes y Punto de Partida -->
-    <section class="showcase">
+    <!-- Inicio de Jovenes , Punto de Partida y Grupos Pequeños  -->
+    <section class="showcase bloque2 fondo-medio">
       <div class="container-fluid p-0">
-        <div class="row no-gutters ">
-
-          <div class="col-lg-6 order-lg-2 text-white showcase-img " style="background-image: url('imagenes/LOGO-JOVENES-GRIS.jpg');"></div>
-          <div class="col-lg-6 order-lg-1 my-auto showcase-text fondo-medio">
-            <h2>Jóvenes de la Alameda</h2>
-            <h4 class="mb-0">Participá de nuestros encuentros especiales para jóvenes, solteros y matrimonios</h4>
-              <a href="masporhacer.php" class="btn btn-outline-dark text-tan btn-sm">Ver actividades</a>
+          <div class="row justify-content-center no-gutters">
+              <div class="col-lg-6 bg-white">
+                  <img class="img-fluid" src="imagenes/acciones/jovenes_girs.png" alt="Jovenes Alameda!">
+              </div>
+              <div class="col-lg-6 order-lg-1 ">
+              <div class="my-auto fondo-medio text-center h-100 project">
+                  <div class="d-flex h-100">
+                      <div class="texto-bloque2 w-100 my-auto text-center text-lg-left">
+                          <h2>Jóvenes de la Alameda</h2>
+                          <h4 class="mb-0 ">Participá de nuestros encuentros especiales para jóvenes, solteros y matrimonios</h4>
+                          <a href="masporhacer.php" class="btn btn-outline-dark text-tan btn-sm">Ver actividades</a>
+                          <hr class="d-none d-lg-block mb-0 ml-0">
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="row no-gutters ">
-
-          <div class="col-lg-6 text-white showcase-img " style="background-image: url('imagenes/PuntoDePartida.png');"></div>
-<!--              <img src="imagenes/PuntoDePartida.png">-->
-<!--          </div>-->
-          <div class="col-lg-6 my-auto showcase-text fondo-medio">
+          </div>
+          <div class="row justify-content-center no-gutters">
+              <div class="col-lg-6 bg-white">
+                  <img class="img-fluid" src="imagenes/acciones/puntoDePartida.png" alt="Punto de Partida">
+              </div>
+              <div class="col-lg-6 my-auto fondo-medio order-lg-first">
+                  <div class="my-auto fondo-medio text-center h-100 project">
+                  <div class="d-flex h-100">
+                      <div class="texto-bloque2 w-100 my-auto text-center text-lg-left">
             <h2>Punto de Partida </h2>
-            <h4 >Conversa tus inquietudes y preguntas en un grupo de Punto de Partida</h4>
+            <h4 >Conversá tus inquietudes y preguntas en un grupo de Punto de Partida</h4>
               <a href="puntopartida.php" class="btn btn-outline-dark text-tan btn-sm">Ver detalles</a>
+                          <hr class="d-none d-lg-block mb-0 ml-0">
+                      </div>
+                  </div>
+              </div>
+          </div>
           </div>
 
-        </div>
+          <div class="row justify-content-center no-gutters">
 
-          <div class="row no-gutters bg-white">
-
-              <div class="col-lg-6 order-lg-2 text-white bg-white showcase-img "
-                   style="background-image: url('imagenes/gp_escalado_1170.png'); height: 100vh; vertical-align: middle"></div>
-              <div class="col-lg-6 order-lg-1 my-auto showcase-text fondo-medio">
+              <div class="col-lg-6 bg-white">
+                  <img class="img-fluid" src="imagenes/acciones/gruposPequenios.png" alt="Grupos Pequeños">
+              </div>
+              <div class="col-lg-6  my-auto  fondo-medio">
+                  <div class="my-auto fondo-medio text-center h-100 project">
+                      <div class="d-flex h-100">
+                          <div class="texto-bloque2 w-100 my-auto text-center text-lg-left">
                   <h2>Grupos Pequeños</h2>
                   <h4 class="mb-0">Sumate a un grupo pequeño de comunidad. Está atento a nuestro próximo enlace de grupos</h4>
                   <a href="masporhacer.php" class="btn btn-outline-dark text-tan btn-sm">Ver actividades</a>
+                              <hr class="d-none d-lg-block mb-0 ml-0">
+                          </div>
+                      </div>
+                  </div>
               </div>
           </div>
-<!--        <div class="row no-gutters">-->
-<!--          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>-->
-<!--          <div class="col-lg-6 order-lg-1 my-auto showcase-text">-->
-<!--            <h2>Easy to Use &amp; Customize</h2>-->
-<!--            <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>-->
-<!--          </div>-->
-<!--        </div>-->
+
       </div>
+    </section>
+
+    <section class="contact-section m-5 bg-dark p-lg-3 p-sm-5">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="mb-2">
+                                <i class="text-primary mb-2">
+                                    <img src="imagenes/acciones/whatsapp.png"/>
+                                </i>
+                            </i>
+                            <hr class="my-4">
+
+                            <div class=" text-black-50">
+                            Recibí nun mensaje de audio día por medio por Whatsapp. <br/>
+                                Agreganos primero a tus contactos y luego encianos un mensaje a
+                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Recibir audio día por medio">
+                                    <i>+542615178081</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="text-primary mb-2">
+                                <img src="imagenes/redes/rl2020.png"/>
+                            </i>
+                            <hr class="my-4">
+
+
+                            <div class=" text-black-50">
+                                Escuchanos por internet <br/>
+                                <a href="https://play.google.com/store/apps/details?id=com.quoma.linea2020&hl=es">
+                                    <i>descargando nuestra aplicación</i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="text-primary mb-2">
+                                <img class="img-fluid" src="imagenes/logoYoutubeBrown.png" />
+                            </i>
+
+                            <hr class="my-4">
+                            <div class="text-black-50">
+                                Desde nuestra aplicación obtené todos los devocionales y mensajes de manera mas simple.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Inicio Redes -->
@@ -167,21 +246,21 @@ $version = date('YmdHi');
                 <a class="text-success" href="https://www.facebook.com/IglesiaAlameda">
                   <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                   <div class="features-icons-icon d-flex">
-                    <i class="icon-social-facebook m-auto text-success"></i>
+                    <i class="icon-social-facebook m-auto "></i>
                   </div>
-                  <h3>Seguinos en la fanpage /IglesiaAlameda</h3>
-                  <p class="lead mb-0">O sumate a nuestro grupo: groups/ialameda</p>
+                      <h3><b>Seguinos en la fanpage /IglesiaAlameda</b></h3>
+                      <p class="lead mb-0"><b>O sumate a nuestro grupo: groups/ialameda</b></p>
                 </div>
                 </a>
               </div>
               <div class="col-lg-4">
-                  <a class="text-success" href="https://youtube.com/user/IglesiaAlameda">
+                  <a  href="https://youtube.com/user/IglesiaAlameda">
                 <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                   <div class="features-icons-icon d-flex">
-                    <i class="icon-social-youtube m-auto text-success"></i>
+                    <i class="icon-social-youtube m-auto "></i>
                   </div>
-                  <h3>Revive los mensajes en youtube</h3>
-                  <p class="lead mb-0">/user/IglesiaAlameda</p>
+                    <h3><b>Revive los mensajes en youtube</b></h3>
+                    <p class="lead mb-0"><b>/user/IglesiaAlameda</b></p>
                 </div>
                   </a>
               </div>
@@ -190,11 +269,11 @@ $version = date('YmdHi');
                 <div class="features-icons-item mx-auto mb-0 mb-lg-3">
 
                   <div class="features-icons-icon d-flex">
-                    <i class="icon-social-instagram m-auto text-success"></i>
+                    <i class="icon-social-instagram m-auto "></i>
                   </div>
 
-                  <h3>Seguinos en Instagram</h3>
-                  <p class="lead mb-0">@iglesiaalameda</p>
+                    <h3><b>Seguinos en Instagram</b></h3>
+                    <p class="lead mb-0"><b>@iglesiaalameda</b></p>
                 </div>
               </a>
               </div>

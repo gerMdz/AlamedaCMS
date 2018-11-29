@@ -105,9 +105,9 @@ CSS
   ============================-->
   <section id="hero" class="wow fadeIn">
     <div class="hero-container">
-      <h1>Seminario de liderazgo avanzado</h1>
+      <h1>Seminario de Liderazgo </h1>
       <!--<h2>Elegant Bootstrap Template for Startups, Apps &amp; more...</h2>-->
-      <img src="img/hero-img.png" alt="Hero Imgs">
+      <img src="img/sem/logo_2_sem.png" alt="SDL">
       <!--<a href="#get-started" class="btn-get-started scrollto">Get Started</a>-->
       <!--<div class="btns">-->
         <!--<a href="#"><i class="fa fa-apple fa-3x"></i> App Store</a>-->

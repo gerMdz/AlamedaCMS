@@ -9,13 +9,16 @@ $version = date('YmdHi');
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, Ideologia de Genero, Bautismo, Membresía, Crecimiento, Talleres, Eventos Alameda, Cultura ">
+    <meta name="description" content="Iglesia Alameda, Una Aventura de Fe, Super Domingo,
+     Ideología de Género, Cantapueblo 30° Aniversario, Enchufate, Eventos Alameda, Cultura Mendoza">
     <meta name="author" content="Iglesia de la Alameda">
 
-    <meta property="og:title" content="Eventos Iglesia Alameda, Cantapueblo 30° Aniversario, Bautismo, Memebresía, Crecimiento" />
+    <meta property="og:title" content="Eventos Iglesia Alameda,
+    Una Aventura de Fe, Super Domingo,
+     Ideología de Género, Cantapueblo 30° Aniversario, Enchufate, Eventos Alameda, Cultura Mendoza" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/masporhacer/crecimiento.jpeg">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/masporhacer/unaAventuraFe.jpeg">
 
 
     <title>Iglesia de la Alameda - Eventos</title>
@@ -98,6 +101,79 @@ $version = date('YmdHi');
 <!--</nav>-->
 
 <?php include ('nav.php'); ?>
+
+<section class="page-section fondo-evento py-3" id="aventura20181201">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Sábado de Encuentro</span>
+                        <span class="section-heading-lower">Una Aventura de Fe</span>
+                    </h2>
+                </div>
+            </div>
+
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/unaAventuraFe.jpeg" alt="aventura20181201">
+
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Con JA! podés vivir un finde diferente. <br/>
+                        Música, nuevos amigos y lo mejor<br/>
+                        <b>Un encuentro con <i>Dios</i></b>.<br/>
+                        Para todo esto: <br/>
+
+
+                        <div class="card-footer text-center">
+                            <small>
+                                Te esperamos en nuestro encuentro de Jóvenes.
+                                <em>Sábado 01 de diciembre <br/> a las 21:30 hs.</em><br/>
+                                San Martín 2020 de la Ciudad de Mendoza
+
+
+
+
+                            </small>
+
+
+
+                        </div>
+                        <div class="card-footer row  text-center">
+
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23aventura20181201" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23aventura20181201"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Google+">-->
+<!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23aventura20181201"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="page-section fondo-evento py-3" id="crecimiento20181110">
     <div class="container">
