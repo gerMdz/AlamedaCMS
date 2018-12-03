@@ -12,14 +12,16 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, ¿Para qué estoy aquí en la tierra?, Una vida con propósito, Iglesia Bautista, Celebracion, Dios, Fe">
+    <meta name="description" content="Iglesia de La Alameda, Navidad lo cambia todo, Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
+    Libertad, Servicio, Misión">
     <meta name="author" content="Iglesia de la Alameda">
+
     <meta property="og:title" content="Iglesia Alameda" />
     <meta property="og:type" content="website" />
 
     <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/UVCP-40DCP-2018.jpg">
-
+<!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/campanias/navidad2018_index.png">
     <title>Iglesia de la Alameda</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
@@ -35,7 +37,8 @@
 
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
+<!--    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
@@ -448,6 +451,84 @@
     </div>
 </section>
 
+<!--<section class="page-section container cta fondo-evento" id="conectarte">-->
+<!--    <div class="container-fluid p-0">-->
+<!--        <div class="row justify-content-center no-gutters">-->
+<!--    <div class="col-lg-6 text-center">-->
+<!--        <div class="logo">-->
+<!--            <div class="alameda">-->
+<!--        <span>-->
+<!--        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid ">-->
+<!--        </span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    <div class="col-lg-6 order-lg-first contenido ">-->
+<!--        <p>-->
+<!--            Bienvenido a La Alameda, aprovecha todas estas oportunidades de conectarte y vivir La Alameda-->
+<!--        </p>-->
+<!---->
+<!--    </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--</section>-->
+<section class="page-section container cta fondo-evento bg-white" id="epa">
+    <div class="row text-center d-flex align-items-cente ">
+        <div class="col-sm-12">
+            <h1 class="text-point-sec text-realce ">
+                ESTAMOS PARA VOS
+            </h1>
+            <strong>Contamos con un equipo de <br/>
+                consejeros pastorales <br/>
+                listos para brindarte ayudarte.
+<!--                simplemente solicita una entrevista enviando <br/>un correo eléctronico.-->
+            </strong>
+        </div>
+        <br/>
+        <div class="col-md-6 col-lg-3  ">
+            <span class="fa-stack list-inline compuesto" >
+                <i class="fas fa-circle fa-stack-2x text-point"></i>
+                <i class="fas fa-circle-notch fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; top:-0.3em" aria-hidden="true"></i>
+                <i class="fas fa-circle-notch fa-stack-1x fa-inverse fa-rotate-180 item-inline" style="font-size: 1em; text-align: center; bottom:-0.3em" aria-hidden="true"></i>
+            </span>
+            <br/>
+            <h3><a href="nuestraalameda.php#amc" class="text-point-sec"> Ayuda para matrimonios en crisis </a></h3>
+        </div>
+        <div class="col-md-6 col-lg-3  ">
+            <span class="fa-stack list-inline compuesto" >
+                <i class="fas fa-circle fa-stack-2x text-point"></i>
+                <i class="fas fa-award fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; " aria-hidden="true"></i>
+            </span>
+            <h3>
+                <a href="nuestraalameda.php#celebremos" class="text-point-sec">
+                    Ayuda para adicciones y hábitos compulsivos
+                </a>
+            </h3>
+        </div>
+        <div class="col-md-6 col-lg-3  ">
+            <span class="fa-stack list-inline compuesto" >
+                <i class="fas fa-circle fa-stack-2x text-point"></i>
+                <i class="fas fa-female fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; " aria-hidden="true"></i>
+            </span>
+            <h3>
+                <a href="nuestraalameda.php#mujer" class="text-point-sec">
+                Ayuda para escapar como mujer del maltrato o situaciones de riesgo
+                </a>
+            </h3>
+        </div>
+        <div class="col-md-6 col-lg-3  ">
+            <span class="fa-stack list-inline compuesto" ">
+                <i class="fas fa-circle fa-stack-2x text-point"></i>
+                <i class="material-icons fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; top:0.5em" aria-hidden="true">toys</i>
+            </span>
+            <h3>
+                <a href="nuestraalameda.php#acasa" class="text-point-sec">
+                Ayuda para enfrentar casos de abusos y maltratro infantil
+                </a>
+            </h3>
+        </div>
+</section>
 <?php include ('footer.php'); ?>
 
 <!-- Bootstrap core JavaScript -->

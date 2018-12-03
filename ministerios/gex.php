@@ -122,7 +122,7 @@ include ('../internos/head.php')
                     <!--              <p>GPA: 3.23</p>-->
                 </div>
                 <div class="resume-date text-md-right">
-                    <img class="rounded-circle img-fluid d-block mx-auto" src="../imagenes/pastores/sebastian-ocana.png" alt="sebastian ocaña">
+                    <img class="rounded-circle img-fluid d-block mx-auto" src="../imagenes/pastores/sebastian-ocana.png" alt="Sebastián Ocaña">
                     <!--              <span class="text-primary">August 2006 - May 2010</span>-->
                 </div>
             </div>

@@ -161,7 +161,7 @@ $version = date('YmdHi');
 <!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Google+">-->
 <!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->
                                 <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
-                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23aventura20181201"
+                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23aventura2181201"
                                    target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
                                 </a>
 

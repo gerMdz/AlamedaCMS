@@ -102,6 +102,11 @@
 
     color: #438789;
 }
+a.text-point-sec:hover {
+
+    color: #438789;
+    text-decoration: none;
+}
 
 .text-light-blue{
     color: #73aba2;
@@ -648,3 +653,80 @@ background: rgba(61,112 ,141,0.85)
 b.text-shadow{
     font-weight: bold;
 }
+
+.alameda{
+    position: relative;
+    width: 50vw;
+    height: 150px;
+    /*overflow: hidden;*/
+}
+.alameda:hover{
+    top:0;
+    right: 0;
+    width: 400%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #000, #000);
+    z-index: 3;
+    animation: animate 2s linear forwards;
+
+}
+.alameda:after{
+    content: '';
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 400%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #000, #000);
+    z-index: 3;
+    animation: animate 2s linear forwards;
+}
+@keyframes animate {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -400%;
+    }
+}
+ .alameda img{
+     position: absolute;
+     top: 0;
+     /*width: 100vw;*/
+     /*height: 100vh;*/
+     /*background: #e50815;*/
+     z-index: 1;
+     box-shadow: 0 0 40px rgba(0,0,0,1);
+     padding: 10px;
+
+     /*background: rgba(0,0,0,0.1);*/
+
+ }
+
+ .contenido{
+     text-align: center;
+     position: absolute;
+     top: 50%;
+
+     transform: translate(-50% -50%);
+     width: 100%;
+ }
+
+ .contenido p{
+     color: white;
+     font-weight: 700;
+ }
+
+ .compuesto{
+     font-size: 4.5em;
+ }
+
+
+@media (max-width:640px) {
+
+    .compuesto{
+        font-size: 3.5em;
+    }
+
+}
+

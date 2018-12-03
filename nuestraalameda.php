@@ -20,9 +20,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Iglesia Alameda - Horarios y Lugares de Reunión">
+    <meta name="description" content="Iglesia de La Alameda | Encuentros y Reuniones | Horarios y Lugares | Amistad, Arte,
+    Libertad, Servicio, Misión">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Iglesia Alameda | Horarios y Lugares</title>
+    <title>Iglesia de La Alameda | Horarios y Lugares | </title>
+
+      <meta property="og:title" content="Iglesia Alameda" />
+      <meta property="og:type" content="website" />
+
+      <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
+      <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
+      <meta property="og:image" content="https://www.iglesialameda.com/imagenes/campanias/navidad2018_index.png">
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -39,7 +47,8 @@
     -->
 
       <!-- Icon-->
-      <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">
+<!--      <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <link href="css/foundation-icons.css" rel="stylesheet">
       <!-- Fin Icon -->
@@ -183,6 +192,154 @@
 <!--              </button>-->
 <!--            </a>-->
 <!--          </nav>-->
+
+            <div class="mdl-card amazing mdl-cell mdl-cell--12-col" id="amc">
+                <div class="mdl-card__title mdl-color-text--grey-50">
+                    <span class="fa-stack list-inline compuesto" >
+                <i class="fas fa-circle fa-stack-2x text-point"></i>
+                <i class="fas fa-circle-notch fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; top:-0.3em" aria-hidden="true"></i>
+                <i class="fas fa-circle-notch fa-stack-1x fa-inverse fa-rotate-180 item-inline" style="font-size: 1em; text-align: center; bottom:-0.3em" aria-hidden="true"></i>
+            </span>
+
+                    <h3 style="z-index: 2" >Ayuda para matrimonios en crisis <br/>
+
+                    <small>Concejería matrimonial con citas pre-establecidas</small>
+                    </h3>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    Lunes 21:00 hs, en 9 de Julio 2061 Ciudad de Mendoza (Oficinas Pastorales)<br/>
+                    Otro día y horario a concertar
+                </div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+<!--                    <a href="ministerios/gex.php" id="gex_horarios">-->
+                        <div class="minilogo"></div>
+<!--                    </a>-->
+<!--                    <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="gex_horarios">-->
+<!--                        Ver detalles-->
+<!--                    </div>-->
+                    <div>
+                        <strong>Contactos</strong>
+                        <span>Franco Turrisi, Julio Asnarez, Aldo Deiana, Martín Sala, Daniel Benegas </span>
+                    </div>
+<!--                    <small class="text-right pull-right pl-5">-->
+<!--                        <a href="ministerios/gex.php" id="gex_horarios">-->
+<!--                            <i>  Ver detalles</i>-->
+<!--                        </a>-->
+<!--                    </small>-->
+                </div>
+            </div>
+
+            <div class="mdl-card amazing mdl-cell mdl-cell--12-col" id="celebremos">
+                <div class="mdl-card__title mdl-color-text--grey-50">
+                    <span class="fa-stack list-inline compuesto" >
+                <i class="fas fa-circle fa-stack-2x text-point"></i>
+                <i class="fas fa-award fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; " aria-hidden="true"></i>
+            </span>
+                    <h3 style="z-index: 2">Ayuda para adicciones y hábitos compulsivos <br/>
+
+                        <small>Celebremos la recuperación</small>
+                    </h3>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    Viernes 20:45 hs, en San Martín 2020 de la Ciudad de Mendoza.
+                </div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                    <!--                    <a href="ministerios/gex.php" id="gex_horarios">-->
+                    <div class="minilogo"></div>
+                    <!--                    </a>-->
+                    <!--                    <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="gex_horarios">-->
+                    <!--                        Ver detalles-->
+                    <!--                    </div>-->
+                    <div>
+                        <strong>Encontraras una reunión abierta para los que han decidido
+                            pelear contra sus hábitos destructivos y adicciones</strong>
+                        <span> </span>
+                    </div>
+                    <!--                    <small class="text-right pull-right pl-5">-->
+                    <!--                        <a href="ministerios/gex.php" id="gex_horarios">-->
+                    <!--                            <i>  Ver detalles</i>-->
+                    <!--                        </a>-->
+                    <!--                    </small>-->
+                </div>
+            </div>
+
+            <div class="mdl-card amazing mdl-cell mdl-cell--12-col" id="mujer">
+                <div class="mdl-card__title mdl-color-text--grey-50">
+                <span class="fa-stack list-inline compuesto" >
+                <i class="fas fa-circle fa-stack-2x text-point"></i>
+                <i class="fas fa-female fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; " aria-hidden="true"></i>
+            </span>
+                <h3 style="z-index: 2">Ayuda para escapar como mujer del maltrato o situaciones de riesgo <br/>
+
+                        <small>Casa de la mujer</small>
+                    </h3>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    Lunes y Miercoles de 17:00 hs a 20:30 hs.
+                </div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                    <!--                    <a href="ministerios/gex.php" id="gex_horarios">-->
+                    <div class="minilogo"></div>
+                    <!--                    </a>-->
+                    <!--                    <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="gex_horarios">-->
+                    <!--                        Ver detalles-->
+                    <!--                    </div>-->
+                    <div>
+                        <strong>Es un lugar que te brinda consejería personalizada, un espacio confiable, un equipo de mujeres capacitadas
+                        para abordar los temas actuales que afectan a la mujer de hoy.
+                        </strong>
+                        <span>Coordinadora: Paola Botacaulli </span>
+                    </div>
+                    <!--                    <small class="text-right pull-right pl-5">-->
+                    <!--                        <a href="ministerios/gex.php" id="gex_horarios">-->
+                    <!--                            <i>  Ver detalles</i>-->
+                    <!--                        </a>-->
+                    <!--                    </small>-->
+                </div>
+            </div>
+
+            <div class="mdl-card amazing mdl-cell mdl-cell--12-col" id="acasa">
+                <div class="mdl-card__title mdl-color-text--grey-50">
+                    <span class="fa-stack list-inline compuesto" ">
+                    <i class="fas fa-circle fa-stack-2x text-point"></i>
+                    <i class="material-icons fa-stack-1x fa-inverse item-inline" style="font-size: 1em; text-align: center; top:0.5em" aria-hidden="true">toys</i>
+                    </span>
+                    <h3 style="z-index: 2">Ayuda para enfrentar casos de abusos y maltratro infantil <br/>
+
+                        <small>A.C.A.S.A. (Atención y Contención Abuso Sexual Alameda)</small>
+                    </h3>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    Martes de 17:00 a 20:00hs, en San Martín 2020 de la Ciudad de Mendoza.
+                </div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                    <!--                    <a href="ministerios/gex.php" id="gex_horarios">-->
+                    <div class="minilogo"></div>
+                    <!--                    </a>-->
+                    <!--                    <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="gex_horarios">-->
+                    <!--                        Ver detalles-->
+                    <!--                    </div>-->
+                    <div>
+                        <strong>
+                            Es un espacio preparado para la atención y contención de víctimas
+                            de abuso sexual en las áreas de Infancia, Adolescentes, Jóvenes y Adultos.
+                        </strong>
+                        <span>Contacto: Mónica Catalá <br/>
+                            <a href="tel:2612192838" class="text-realce-verde"> <i class="fas fa-mobile-alt"></i>
+                                261 2 192838 </a>
+                            <a class="text-point-sec" href="https://api.whatsapp.com/send?phone=5492612192838&text=Quisiera saber más sobre A.C.A.S.A">  o por Whatsapp
+                                    <i class="fab fa-whatsapp"></i>  </a>
+
+                        </span>
+                    </div>
+                    <!--                    <small class="text-right pull-right pl-5">-->
+                    <!--                        <a href="ministerios/gex.php" id="gex_horarios">-->
+                    <!--                            <i>  Ver detalles</i>-->
+                    <!--                        </a>-->
+                    <!--                    </small>-->
+                </div>
+            </div>
+
         </div>
 <!--        <footer class="mdl-mini-footer">-->
 <!--          <div class="mdl-mini-footer--left-section">-->
