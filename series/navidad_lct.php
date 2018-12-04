@@ -9,6 +9,21 @@ $meta =  '
     <meta property="og:image" content="https://www.iglesialameda.com/imagenes/campanias/navidad2018_index.png">
 
     <title>La Navidad lo Cambia Todo - Iglesia Alameda </title>
+    <link href="../css/swiper.min.css" rel="stylesheet">
+    <style>
+     .swiper-container {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+    }
+        </style>
+        
 
 
 ';
@@ -119,6 +134,27 @@ include '../internos/head_series.php';
                 </div>
 		</section>
 
+        <section class="page-section container cta fondo-evento" id="dias">
+            <div class="container-fluid p-0 ">
+                <div class="swiper-container ">
+                    <div class="swiper-wrapper  ">
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia3.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia2.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia1.jpeg)"></div>
+
+                    </div>
+
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+
+        </section>
+
 
 
 
@@ -130,13 +166,39 @@ include '../internos/head_series.php';
         <?php
         include "../internos/footer.php";
         ?>
+        <script type="text/javascript" src="../js/swiper.min.js"></script>
 	</div>
 
     <?php
     include "../internos/pieJs.php";
     ?>
 
-
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows : true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            autoplay: {
+                delay: 7500,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
     <script>
 
     $(function () {
