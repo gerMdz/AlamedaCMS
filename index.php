@@ -37,6 +37,8 @@
 
     <link href="css/alameda/fontAlameda.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/swiper.min.css" rel="stylesheet">
+
 <!--    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -52,6 +54,31 @@
 
 
     <!-- Custom styles for this template -->
+
+    <style>
+        /*.swiper-container {*/
+            /*width: 100vw;*/
+            /*height: 100vh;*/
+            /*padding: 50px;*/
+        /*}*/
+        /*.swiper-slide {*/
+            /*background-position: center;*/
+            /*background-size: cover;*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+        /*}*/
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
 
 
 </head>
@@ -387,7 +414,7 @@
     <!--    <div class="row text-center">-->
     <div class="row text-center d-flex align-items-center bg-white">
         <div class="col-sm-5 pull-left">
-            <img src="imagenes/campanias/invitacion_uvcp.jpg" class="img-fluid rounded" />
+            <img src="imagenes/campanias/navidad2018_index.png" class="img-fluid rounded" />
         </div>
 
         <div class="col-sm-7 pt-5">
@@ -397,7 +424,7 @@
 
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
 
-                        <div class="center-element btn btn-blue rotar90">Colosenses 4:5 (NIV) </div>
+                        <div class="center-element btn btn-blue rotar90">Juan 1:9 (PDT) </div>
 
 
 
@@ -405,7 +432,7 @@
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'UniversLTStd-Obl', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
 
-                        Compórtense sabiamente con los que no creen en Cristo,* aprovechando al máximo cada momento oportuno.
+                        "La Luz verdadera que ilumina a todo ser humano entraba al mundo"
                     </h2>
                         </div>
 
@@ -415,7 +442,7 @@
 
             </div>
         <div class="col-sm-12">
-            <a href="unaVidaConProposito.php" class="text-light-blue"
+            <a href="series/navidad_lct.php" class="text-light-blue"
                data-toggle="tooltip"
                title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
         </div>
@@ -451,28 +478,26 @@
     </div>
 </section>
 
-<!--<section class="page-section container cta fondo-evento" id="conectarte">-->
-<!--    <div class="container-fluid p-0">-->
-<!--        <div class="row justify-content-center no-gutters">-->
-<!--    <div class="col-lg-6 text-center">-->
-<!--        <div class="logo">-->
-<!--            <div class="alameda">-->
-<!--        <span>-->
-<!--        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid ">-->
-<!--        </span>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    <div class="col-lg-6 order-lg-first contenido ">-->
-<!--        <p>-->
-<!--            Bienvenido a La Alameda, aprovecha todas estas oportunidades de conectarte y vivir La Alameda-->
-<!--        </p>-->
-<!---->
-<!--    </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!--</section>-->
+<section class="page-section container cta fondo-evento" id="dias">
+    <div class="container-fluid p-0 ">
+        <div class="swiper-container ">
+            <div class="swiper-wrapper  ">
+                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia3.jpeg)"></div>
+                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia2.jpeg)"></div>
+                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia1.jpeg)"></div>
+
+            </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Add Arrows -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
+</section>
 <section class="page-section container cta fondo-evento bg-white" id="epa">
     <div class="row text-center d-flex align-items-cente ">
         <div class="col-sm-12">
@@ -536,6 +561,7 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
 
 <script>
     $(document).ready(function(){
@@ -588,6 +614,33 @@
         });
     });
 
+</script>
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        autoplay: {
+            delay: 7500,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 </script>
 
 
