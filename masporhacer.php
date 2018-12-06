@@ -9,16 +9,17 @@ $version = date('YmdHi');
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, Una Aventura de Fe, Super Domingo,
-     Ideología de Género, Cantapueblo 30° Aniversario, Enchufate, Eventos Alameda, Cultura Mendoza">
+    <meta name="description" content="Iglesia Alameda,
+    Una Aventura Inolvidable, Una Aventura de Fe, Super Domingo,
+     Ideología de Género, Cantapueblo 30° Aniversario, Eventos Alameda, Cultura Mendoza">
     <meta name="author" content="Iglesia de la Alameda">
 
     <meta property="og:title" content="Eventos Iglesia Alameda,
-    Una Aventura de Fe, Super Domingo,
-     Ideología de Género, Cantapueblo 30° Aniversario, Enchufate, Eventos Alameda, Cultura Mendoza" />
+    Una Aventura Inolvidable , Una Aventura de Fe, Super Domingo,
+     Ideología de Género, Cantapueblo 30° Aniversario, Eventos Alameda, Cultura Mendoza" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/masporhacer/unaAventuraFe.jpeg">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/masporhacer/unaAventuraInolvidable.jpeg">
 
 
     <title>Iglesia de la Alameda - Eventos</title>
@@ -101,6 +102,79 @@ $version = date('YmdHi');
 <!--</nav>-->
 
 <?php include ('nav.php'); ?>
+
+<section class="page-section fondo-evento py-3" id="aventuraGex20181208">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Valientes</span>
+                        <span class="section-heading-lower">Una Aventura Inolvidable</span>
+                    </h2>
+                </div>
+            </div>
+
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/unaAventuraInolvidable.jpeg" alt="aventuraGex20181208">
+
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Valientes <br/>
+                        Solo para Varones Preadolescentes<br/>
+                        <smal>Organiza <a href="ministerios/gex.php"> <i>Gex</i></a></smal>.<br/>
+
+
+
+                        <div class="card-footer text-center">
+                            <small>
+
+                                <em>Sábado 08 de diciembre <br/> desde las 9:00 hs.
+                                hasta las 18:00</em><br/>
+
+                                Recordá llevar almuerzo
+
+
+                            </small>
+
+
+
+                        </div>
+                        <div class="card-footer row  text-center">
+
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23aventuraGex20181208" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23aventuraGex20181208"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Google+">-->
+<!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23aventuraGex20181208"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="page-section fondo-evento py-3" id="aventura20181201">
     <div class="container">

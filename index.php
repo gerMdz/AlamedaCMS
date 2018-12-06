@@ -482,6 +482,9 @@
     <div class="container-fluid p-0 ">
         <div class="swiper-container ">
             <div class="swiper-wrapper  ">
+                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia6.jpeg)"></div>
+                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia5.jpeg)"></div>
+                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia4.jpeg)"></div>
                 <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia3.jpeg)"></div>
                 <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia2.jpeg)"></div>
                 <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia1.jpeg)"></div>
