@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $version = date('YmdHi'); ?>
+<?php $version = date('YmdHi');
+$meta =  '
+    <meta name="description" content="Iglesia Alameda, Oportunidades de Servicio">
+    <meta name="author" content="Iglesia Alameda Mendoza, Ministerios, Servicio, Oportunidades">
+    <meta property="og:title" content="Iglesia Alameda Oportunidades de Servicio" />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:url" content="https://www.iglesialameda.com/ministerio/gex.php" />
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/index270.png">
+
+    <title>Oportunidades de Servicio - Iglesia Alameda </title>
+
+
+';
+?>
 
   <head>
 
@@ -9,7 +23,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sevicio - Iglesia de La Alameda</title>
+      <?php
+      echo $meta;
+      ?>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,9 +60,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">De qué se trata</a>
           </li>
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>-->
-<!--          </li>-->
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#experience">Servicio y Voluntariado</a>
+          </li>
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link js-scroll-trigger" href="#education">Education</a>-->
 <!--          </li>-->
@@ -102,9 +118,6 @@
       </section>
 
       <hr class="m-0">
-
-
-
 
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
 

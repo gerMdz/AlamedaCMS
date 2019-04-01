@@ -69,14 +69,16 @@
 
                 <a class="text-tan" href="../seminario.php"> Seminario</a>
                 <hr class="bg-point"/>
+                            <a class="text-tan" href="../oportunidades/index.php"> Servicio</a>
+                <hr class="bg-point"/>
             </div>
             <div class="col-sm-1"></div>
         </div>
         <div class="col-sm-12">
             <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza <br/>
                 <strong>Horario de Reuniones</strong><br/>
-                <em>Domingos por la mañana: 10hs. - Domingo por la tarde: 20hs.</em><br/>
-                Copyright &copy; Iglesia Alameda 2018</p>
+                <em>Domingos por la mañana: 11hs. - Domingo por la tarde: 19hs.</em><br/>
+                Copyright &copy; Iglesia Alameda 2019</p>
         </div>
     </div>
 </footer>

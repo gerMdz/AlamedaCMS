@@ -58,6 +58,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#habilidades">Habilidades</a>
           </li>
+            <li class="nav-item">
+            <a class="nav-link " href="index.php">Más oportunidades</a>
+          </li>
         </ul>
       </div>
     </nav>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Generación Extrema - Iglesia de La Alameda</title>
+    <title>Grupos Pequeños Comunitarios - Iglesia de La Alameda</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -59,6 +59,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#habilidades">Habilidades</a>
           </li>
+            <li class="nav-item">
+                <a class="nav-link " href="index.php">Más oportunidades</a>
+            </li>
         </ul>
       </div>
     </nav>

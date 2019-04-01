@@ -443,6 +443,18 @@ h3.quote:after {
     content: '”';
 }
 
+.quote:after, .quote:before {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.5em;
+}
+.quote:before {
+    content: '“';
+}
+.quote:after {
+    content: '”';
+}
+
 .mdl-card__media{
     background-color:rgb(0,150,136) !important;
 }
@@ -498,6 +510,22 @@ h3.quote:after {
 
 }
 
+@font-face {
+    font-family: warnock;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/WarnockPro-ItSubh.otf") format('truetype');
+}
+
+@font-face {
+    font-family: diamond;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/Black Diamond.otf") format('truetype');
+}
+.warnock{
+    font-family: warnock;
+}
 @font-face {
     font-family: tahu;
     font-style: italic;
@@ -645,8 +673,8 @@ background: rgba(61,112 ,141,0.85)
 .fontTahu{
     font-family: 'tahu', cursive;
 }
-.text-shadow{
-    text-shadow: -3px -1px 4px #257345;
+.shadow-blue{
+    box-shadow: -3px -1px 4px #2D354F;
 
 }
 

@@ -134,10 +134,74 @@ include '../internos/head_series.php';
                 </div>
 		</section>
 
+        <section class="section bg-azul_claro p-5 mdl-color-text--black" id="section-azul">
+			<div class="container">
+                <div class="row fullscreen align-items-center justify-content-center ">
+                <div class="row align-items-center bg-white ">
+                    <div class="col-lg-7">
+                        <div class="story-content">
+
+                        <br/>
+
+                            <h4 class="quote mt-0 ml-1 pl-1 base-azul warnock">
+
+                                Veni y descubrí la respuesta en nuestro Especial de Navidad. <br/>
+                                Una experiencia de música, arte en movimiento y narrativa para 
+                                recrear el Nacimiento del Salvador de una manera totalmente diferente.<br/>
+                                Atrevete a experimentar la visita de Dios en tu vida. <br/>
+                                Enterate porqué Jesús ¡sigue cambiando vidas!
+
+                            </h4>
+
+                            <p class="mt-0 ml-5 pl-5 base-azul ">
+
+                                ¡Estás Invitado! <br/>
+                                <i>23 de Diciembre, 10hs y 20hs</i> <br/> en Auditorio Alameda,
+                                <i>San Martín 2020</i> de la Ciudad de Mendoza
+
+
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <img class="img-fluid d-flex m-1 shadow-blue" src="../imagenes/campanias/especialNavidad.jpeg" alt="Navidad lo cambia todo">
+
+
+
+
+                    </div>
+                    </div>
+
+			</div>
+                </div>
+		</section>
+
         <section class="page-section container cta fondo-evento" id="dias">
             <div class="container-fluid p-0 ">
+                <a href="../dias.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>
                 <div class="swiper-container ">
                     <div class="swiper-wrapper  ">
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia25.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia24.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia23.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia22.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia21.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia20.jpg"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia19.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia18.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia17.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia16.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia15.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia14.jpg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia13.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia12.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia11.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia10.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia9.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia8.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia7.jpeg)"></div>
                         <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia6.jpeg)"></div>
                         <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia5.jpeg)"></div>
                         <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia4.jpeg)"></div>
