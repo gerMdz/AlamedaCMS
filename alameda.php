@@ -291,22 +291,29 @@
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
-                        <p class="card-text">
-                            Si tu desición es comenzar a seguir a Jesús dando el paso inicial
-                            del bautismo, participá de la charla preparatoria que ofreceremos
-                            en la Alameda.
+                        <p class="card-text text-center">
+                            <a href="ministerios/gex.php" target="_blank" class="text-realce-verde">
+                            "Generación Extrema"
+                            </a>
+                            <br/>
+<!--                            Si tu desición es comenzar a seguir a Jesús dando el paso inicial-->
+<!--                            del bautismo, participá de la charla preparatoria que ofreceremos-->
+<!--                            en la Alameda.-->
+                            En el edificio educacional (San Martín 2020).<br/>
+                            Para niños de 4° a 7° grado. Los Esperamos
+
 
 
                         </p>
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2018-11-10 18:30')){ ?>
+                        <?php if ($ahora < date('2019-04-13 17:00')){ ?>
 
-                                <small class="text-point-sec">Sábado 10 de noviembre a las 18:30 Hs</small>
-                            <a href="masporhacer.php#crecimiento20181110"
-                               data-toggle="tooltip"
-                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
+                                <small class="text-point-sec">Sábado 13 de abril a las 17:00 Hs</small>
+<!--                            <a href="masporhacer.php#crecimiento20181110"-->
+<!--                               data-toggle="tooltip"-->
+<!--                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
 
 
                         <?php } ?>
@@ -324,20 +331,24 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Enlace de Grupos de Amistad</h5>
                         <p class="card-text">
-                            Si querés ser parte de un Grupo de Amistad de "Una Vida con Propósito" asistí a
-                            nuestro próximo Enlace de Grupos
+                            Si todavía no tenes un grupo pequeño con quien experimentar 40 días de Bondad.<br/>
+                            Si queres connectarte con nuevos amigos<br/>
+                            Si no queres quedarte afuera
+
 
                         </p>
-                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
-                            (261 517 8081)  con el texto <strong>Enlace</strong></small>
+<!--                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda-->
+<!--                            (261 517 8081)  con el texto <strong>Enlace</strong></small>-->
                     </div>
 
                         <div class="card-footer text-center">
-                            <?php if ($ahora < date('2018-10-12 21:30')){ ?>
+                            <?php if ($ahora < date('2019-04-12 21:00')){ ?>
                             <small class="text-point-sec">
-                                Viernes 12 de octubre a las 21:30 hs.<br/>
-                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=ENLACE"> por Whatsapp
-                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+                                Viernes 12 de abril a las 21:00 hs.<br/>
+                                Realizaremos un nuevo "Enlace de Grupos Pequeños".
+<!--                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=ENLACE"> por Whatsapp-->
+<!--                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>-->
+
 
                             </small>
                             <?php } ?>
@@ -360,21 +371,24 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla para nuevos miembros</h5>
                         <p class="card-text">
-                            Si ya estás bautizado y querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra
-                            charla de Membresía. <br/>
-                            El pastor Fabián te espera para una conversación muy especial
+                            Si ya estás bautizado, sumate y se parte real de la Alameda.<br/>
+<!--                            y querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra-->
+<!--                            charla de Membresía. <br/>-->
+<!--                            El pastor Fabián te espera para una conversación muy especial-->
+                            El pastor Fabián te espera para esta charla para nuevos miembros. Una opoertunidad para conocerte
+                            y que conozcas todo lo que tenes que saber de nuesta familia de fe. Te esperamos.
 
 
                         </p>
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2018-11-10 18:30')){ ?>
+                                <?php if ($ahora < date('2019-04-13 17:00')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 10 de Noviembre a las 18:30 hs.
-                                        <a href="masporhacer.php#crecimiento20181110"
-                                                                             data-toggle="tooltip"
-                                                                             title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
+                                        Sábado 13 de Abril a las 17:00 hs hs.
+<!--                                        <a href="masporhacer.php#crecimiento20181110"-->
+<!--                                                                             data-toggle="tooltip"-->
+<!--                                                                             title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
                                     </small>
                                 <?php } ?>
                             </div>
@@ -402,7 +416,7 @@
 
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
 
-                        <div class="center-element btn btn-blue rotar90">Lucas 5:4 (NVI) </div>
+                        <div class="center-element btn btn-blue rotar90">Lucas 14:33 (BPD) </div>
 
 
 
@@ -410,8 +424,8 @@
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
 
-                        "... cuando acabó de hablar, le dijo a Simón: lleva la barca hacia aguas más profundas,
-                        y echen ahí las redes para pescar"
+                        "De la misma manera, cualquiera de ustedes que no renuncie a todo lo que posee,
+                        no puede ser mi discípulo"
                     </h2>
                         </div>
 
@@ -458,50 +472,85 @@
     </div>
 </section>
 
-<section class="page-section container cta fondo-evento" id="dias">
-    <div class="container-fluid p-0 ">
-        <a href="dias.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>
-        <div class="swiper-container ">
-            <div class="swiper-wrapper  ">
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia25.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia24.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia23.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia22.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia21.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia20.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia19.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia18.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia17.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia16.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia15.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia14.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia13.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia12.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia11.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia10.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia9.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia8.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia7.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia6.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia5.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia4.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia3.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia2.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia1.jpeg)"></div>
+<!--<section class="page-section container cta fondo-evento" id="dias">-->
+<!--    <div class="container-fluid p-0 ">-->
+<!--        <a href="dias.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>-->
+<!--        <div class="swiper-container ">-->
+<!--            <div class="swiper-wrapper  ">-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia25.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia24.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia23.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia22.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia21.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia20.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia19.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia18.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia17.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia16.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia15.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia14.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia13.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia12.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia11.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia10.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia9.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia8.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia7.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia6.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia5.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia4.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia3.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia2.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia1.jpeg)"></div>-->
+<!---->
+<!--            </div>-->
+<!---->
+<!--            <!-- Add Pagination -->
+<!--            <div class="swiper-pagination"></div>-->
+<!---->
+<!---->
+<!--            <!-- Add Arrows -->
+<!--            <div class="swiper-button-prev"></div>-->
+<!--            <div class="swiper-button-next"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--</section>-->
 
+<section class="page-section about-heading" id="proximaserie">
+    <div class="container-fluid">
+        <div class="row justify-content-between  mx-auto ">
+            <hr/>
+            <div class="section-body col-sm-6 col-md-6 col-lg-6 card"><br/>
+                <h2 style="font-family: joyful" class="text-center"><br/>
+                    Ya falta poco!<br/><br/>
+                    Jueves  <br/>
+                    18 de Abril<br/>
+                    20:30 hs.<br/>
+                    Encuentro de <br/>
+                    Adoración e <br/>
+                    Inspiración
+                </h2>
             </div>
-
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-
-
-            <!-- Add Arrows -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="section-body col-sm-6 col-md-6 col-lg-6 card">
+                <h2 style="font-family: joyful" class="text-center">
+                    <br/>
+                    Domingo <br/>
+                    21 de Abr. <br/>
+                    Gran Lanzamiento<br/>
+                    a las 11hs. y a las
+                    19hs.<br/>
+                    <br/>
+                    Respirando <br/>
+                    Bondad<br/>
+                    Cada día!
+                </h2>
+            </div>
         </div>
     </div>
-
 </section>
+
+
 <section class="page-section container cta fondo-evento bg-white" id="epa">
     <div class="row text-center d-flex align-items-cente ">
         <div class="col-sm-12">

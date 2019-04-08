@@ -96,16 +96,21 @@
 
             <div class="mdl-card__media mdl-color-text--grey-50">
 
-<!--              <h3 class="card-img-top">Domingos<br/> 11hs y 19hs</h3><br/>-->
+<!--              <h6 class="card-img-top ">Domingos<br/> 11hs y 19hs</h6><br/>-->
 <!--              <h5>San Martín 2020 de la Ciudad de Mendoza</h5>-->
             </div>
+
             <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+
               <div class="minilogo"></div>
-              <div>
+              <div >
+                  Domingos 11hs y 19 hs.
                 <strong>Simultáneo a este tiempo se desarrolla </strong>
                   <span>nuestro programa para niños: <em>Generación Extrema</em></span>
               </div>
+
             </div>
+
           </div>
           <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
             <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent">
@@ -147,7 +152,7 @@
                       ¡Acercate con ellos!</a></h3>
             </div>
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-              Domingos 10hs y 20 hs
+              Domingos 11hs y 19 hs
             </div>
             <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                 <a href="ministerios/gex.php" id="gex_horarios">

@@ -6,7 +6,7 @@ $meta =  '
     <meta property="og:type" content="website" />
 
     <meta property="og:url" content="https://www.iglesialameda.com/series/seguidores.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/seguidores_01.png">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/campanias/seguidores_01.png">
 
     <title>Seguidores - Iglesia Alameda </title>
     <link href="../css/swiper.min.css" rel="stylesheet">
@@ -165,6 +165,56 @@ include '../internos/head_series.php';
 			</div>
                 </div>
 		</section>
+
+        <section class="section bg-azul_claro  mdl-color-text--black page-section base-azul section-azul " id="section-youtube">
+            <div class="container ">
+                <div class="row fullscreen align-items-center justify-content-center ">
+                    <div class="row align-items-center bg-white ">
+                        <div class="col-sm-3">
+                            <img class="img-fluid d-flex m-1 shadow-blue" src="../imagenes/logoYoutubeBrown.png" alt="Seguidores">
+                        </div>
+                        <div class="col-sm-9">
+                            <h3 class="bg-white p-2">
+                                <i>
+                                    Estas son las conversaciones de nuestra serie
+                                    <br/>
+                                <strong style="font-family: diamond; font-size: 1.5em ">
+                                    Seguidores
+                                </strong>
+                                subidas a
+                                <a href="https://youtube.com/user/IglesiaAlameda" target="_blank"
+                                   class="text-realce-azul">
+                                    <i class="fab fa-youtube"></i> YouTube
+                                </a>
+                                </i>
+                            </h3>
+                        </div>
+
+                            <div class="col-sm-4 mt-2  pl-5 base-azul mx-auto">
+                                <iframe class="img-fluid "  src="https://www.youtube.com/embed/I7i3movCZMI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-sm-4 mt-2  pl-5 base-azul mx-auto">
+                                <iframe class="img-fluid " src="https://www.youtube.com/embed/a-Fp_GWXdmI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-sm-4 mt-2  pl-5 base-azul mx-auto">
+                                <iframe class="img-fluid " src="https://www.youtube.com/embed/jNgIIwkf7gU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+
+                        <div class="col-sm-12 mb-2 story-content">
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
 
 <!--        <section class="page-section container cta fondo-evento" id="dias">-->
 <!--            <div class="container-fluid p-0 ">-->

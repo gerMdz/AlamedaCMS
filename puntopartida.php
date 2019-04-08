@@ -218,6 +218,13 @@ $version = date('YmdHi');
                                     puntodepartidamdz@gmail.com
                                 </a> o envíanos un whatsapp al 0261 3070 443 con la frase
                                 <strong>"info punto de partida"</strong>, y a la brevedad nos comunicaremos con vos para informarte cómo participar
+                                <br/>
+                                Los grupos funcionan en nuestra casa
+                                <a href="https://www.google.com.ar/maps/dir/-32.8999017,-68.8346342/Iglesia+de+la+Alameda+(Primera+Iglesia+Bautista+de+Mendoza)+Avenida+San+Mart%C3%ADn+2020/@-32.889218,-68.84971,14z/data=!3m1!4b1!4m15!1m6!3m5!1s0x967e08e03c1ec8d9:0xb88453161ced0b8!2sIglesia+de+la+Alameda+(Primera+Iglesia+Bautista+de+Mendoza)!8m2!3d-32.879581!4d-68.836779!4m7!1m0!1m5!1m1!1s0x967e08e03c1ec8d9:0xb88453161ced0b8!2m2!1d-68.836779!2d-32.879581"
+                                target="_blank">
+
+                                    (San Martín 2020)</a>. <br/>
+
                                 </blockquote>
                           </div>
                         </div>
