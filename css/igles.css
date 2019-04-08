@@ -523,6 +523,13 @@ h3.quote:after {
     font-weight: normal;
     src: url("fonts/Black Diamond.otf") format('truetype');
 }
+
+@font-face {
+    font-family: joyful;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/Joyful Story.otf") format('truetype');
+}
 .warnock{
     font-family: warnock;
 }
@@ -581,11 +588,27 @@ b, i, sup, sub, u, del {
 
 }
 
+.section-azul  b,
+.section-azul  i,
+.base-azul  sup,
+.base-azul  sub,
+.base-azul  u,
+.base-azul  del {
+
+    color: #2D354F;
+
+}
+
 .text-realce{
         font-weight: 600;
     }
 .text-realce-verde{
     color: #6cbb23;
+
+    font-weight: 600;
+    }
+a.text-realce-verde:hover{
+    color: #3f8f1e;
 
     font-weight: 600;
     }
