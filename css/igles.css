@@ -781,3 +781,6 @@ b.text-shadow{
 
 }
 
+body.frontal{
+    font-family: Roboto, sans-serif;
+}
