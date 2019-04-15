@@ -63,3 +63,21 @@ header.masthead_ja .intro-text .intro-heading {
     text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
     /*text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;*/
 }
+
+section{
+    height: 100vh;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.banner .content{
+    text-align: center;
+}
+
+section.banner .content h2{
+    color: #fff;
+    text-transform: full-width;
+
+}

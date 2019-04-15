@@ -523,6 +523,17 @@ body .demo-blog {
     background-color: #F5F5F5;
 }
 
+.minijoyful {
+    width: 22px;
+    height: 22px;
+    background-image: url('../imagenes/series/bondad/SONRISA JOYFUL.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border-radius: 11px;
+    background-color: #FFF;
+}
+
 .bg-boletin{
 
     background-image: url("../imagenes/campanias/fdo40.png");

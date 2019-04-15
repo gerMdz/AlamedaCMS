@@ -599,6 +599,47 @@ b, i, sup, sub, u, del {
 
 }
 
+#section-rojo  b,
+#section-rojo  i,
+.base-rojo  sup,
+.base-rojo  sub,
+.base-rojo  u,
+.base-rojo  del {
+
+    color: #8c3654;
+
+}
+
+.section-rojo  b,
+.section-rojo  i,
+.base-rojo  sup,
+.base-rojo  sub,
+.base-rojo  u,
+.base-rojo  del {
+
+    color: #8c3654;
+
+}
+p .base-rojo{
+
+    font-size: 2em !important;
+}
+.text-invitacion {
+
+    font-size: 1.5em !important;
+}
+section,
+.base-rojo b,
+.base-rojo i,
+.base-rojo  sup,
+.base-rojo  sub,
+.base-rojo  u,
+.base-rojo  del {
+
+    color: #8c3654;
+
+}
+
 .text-realce{
         font-weight: 600;
     }
@@ -627,6 +668,12 @@ a.text-realce-verde:hover{
 
 .text-realce-azul{
     color: #051433;
+
+    font-weight: 600;
+    }
+
+.text-realce-rojo{
+    color: #8c3654;
 
     font-weight: 600;
     }
@@ -783,4 +830,13 @@ b.text-shadow{
 
 body.frontal{
     font-family: Roboto, sans-serif;
+}
+
+.tono-cromo {
+    background-image: url('../imagenes/series/bondad/IMAGENES-PREVIAS-BONDAD.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    /*width: 100vw;*/
+    align-items: center;
 }

@@ -62,6 +62,9 @@ body,
 .btn-generico.azul{color:#fff;background:#051433;border:1px solid transparent}
 .btn-generico.azul:hover{color:#545567;border:1px solid #545567;background:#fff}
 
+.btn-generico.rojo{color:#fff;background:#8c3654;border:1px solid transparent}
+.btn-generico.rojo:hover{color:#8c3654;border:1px solid #8c3654;background:#fff}
+
 .btn-generico.marron{color:#fff;background:#8d6e63;border:1px solid transparent}
 .btn-generico.marron:hover{color:#8d6e63;border:1px solid #8d6e63;background:#fff}
 
@@ -77,6 +80,11 @@ body,
 
 .bg-marron_claro{
    background: rgba(190,156,145,1);
+
+}
+
+.bg-rojo_claro{
+   background: rgba(215,134,159,0.8);
 
 }
 

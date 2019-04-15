@@ -12,7 +12,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia de La Alameda, Seguidores, Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
+    <meta name="description" content="Iglesia de La Alameda, Respirando Bondad Cada Día, Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
     Libertad, Servicio, Misión">
     <meta name="author" content="Iglesia de la Alameda">
 
@@ -21,7 +21,7 @@
 
     <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
 <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/seguidores_01.png">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/bondad_01.png">
     <title>Iglesia de la Alameda</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
@@ -97,10 +97,10 @@
 <?php include 'nav.php'; ?>
 
 <section class="page-section about-heading" id="contador">
-    <div class="container-fluid">
+    <div class="container-fluid text-center">
 <!--        <a href="series/direccionDivina.php">-->
-        <a href="series/seguidores.php">
-        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/series/seguidores/SEGUIDORES-FONDOS-000.jpg" alt="Seguidores" style="top: -75px; ">
+        <a href="series/bondad.phpp">
+        <img class="img-fluid w-100 center rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/series/bondad/bondad_03.png" alt="Bondad" style="top: -75px; ">
         </a>
         <div class="about-heading-content ajusteIndex">
             <div class="row">
@@ -135,7 +135,7 @@
 
 
                 <div class="intro-button mx-auto my-auto" style="z-index: 100">
-                    <a class="btn btn-alameda btn-xl" href="series/seguidores.php">Vení tal como sos</a>
+                    <a class="btn btn-alameda btn-xl" href="series/bondad.php">Vení tal como sos</a>
                 </div>
                     </div>
                     </div>
@@ -165,7 +165,7 @@
                         <img src="imagenes/slider/imagen%20auditorio.png" alt="La Alameda" class="img-fluid" >
                     </div>
                     <div class="carousel-item ">
-                        <img src="imagenes/slider/seguidores.png" alt="La Alameda" class="img-fluid " >
+                        <img src="imagenes/slider/bondad_04.png" alt="La Alameda" class="img-fluid " >
                     </div>
 
                     <div class="carousel-item ">
@@ -292,15 +292,15 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
                         <p class="card-text text-center">
-                            <a href="ministerios/gex.php" target="_blank" class="text-realce-verde">
-                            "Generación Extrema"
-                            </a>
-                            <br/>
-<!--                            Si tu desición es comenzar a seguir a Jesús dando el paso inicial-->
-<!--                            del bautismo, participá de la charla preparatoria que ofreceremos-->
-<!--                            en la Alameda.-->
-                            En el edificio educacional (San Martín 2020).<br/>
-                            Para niños de 4° a 7° grado. Los Esperamos
+<!--                            <a href="ministerios/gex.php" target="_blank" class="text-realce-verde">-->
+<!--                            "Generación Extrema"-->
+<!--                            </a>-->
+<!--                            <br/>-->
+                            Si tu desición es comenzar a seguir a Jesús dando el paso inicial
+                            del bautismo, participá de la charla preparatoria que ofreceremos
+                            en la Alameda.
+<!--                            En el edificio educacional (San Martín 2020).<br/>-->
+<!--                            Para niños de 4° a 7° grado. Los Esperamos-->
 
 
 
@@ -402,7 +402,7 @@
     </div>
 </section>
 
-<section class="page-section container cta fondo-evento" id="direccionDivina">
+<section class="page-section container cta fondo-evento" id="versiculoClave">
     <!--    <div class="row text-center">-->
     <div class="row text-center d-flex align-items-center bg-white">
         <div class="col-sm-5 pull-left">
@@ -416,7 +416,7 @@
 
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
 
-                        <div class="center-element btn btn-blue rotar90">Lucas 14:33 (BPD) </div>
+                        <div class="center-element btn btn-blue rotar90">Mateo 25:40 (TLA) </div>
 
 
 
@@ -424,8 +424,7 @@
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
 
-                        "De la misma manera, cualquiera de ustedes que no renuncie a todo lo que posee,
-                        no puede ser mi discípulo"
+                        "Lo que ustedes hicieron para ayudar a una de las personas menos importantes de este mundo, a quienes yo considero como hermanos, es como si lo hubieran hecho para mí."
                     </h2>
                         </div>
 
@@ -519,9 +518,10 @@
 
 <section class="page-section about-heading" id="proximaserie">
     <div class="container-fluid">
+
         <div class="row justify-content-between  mx-auto ">
             <hr/>
-            <div class="section-body col-sm-6 col-md-6 col-lg-6 card"><br/>
+            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0"><br/>
                 <h2 style="font-family: joyful" class="text-center"><br/>
                     Ya falta poco!<br/><br/>
                     Jueves  <br/>
@@ -530,23 +530,22 @@
                     Encuentro de <br/>
                     Adoración e <br/>
                     Inspiración
-                </h2>
-            </div>
-            <div class="section-body col-sm-6 col-md-6 col-lg-6 card">
-                <h2 style="font-family: joyful" class="text-center">
-                    <br/>
+
+                    <br/><br/>
                     Domingo <br/>
                     21 de Abr. <br/>
                     Gran Lanzamiento<br/>
                     a las 11hs. y a las
-                    19hs.<br/>
-                    <br/>
-                    Respirando <br/>
-                    Bondad<br/>
-                    Cada día!
+                    19hs.
                 </h2>
             </div>
+            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0  ">
+                <a href="series/bondad.php">
+                    <img class="img-fluid" style="height: 100vh; " src="imagenes/series/bondad/IMAGENES-PREVIAS-BONDAD.png"/>
+                </a>
+            </div>
         </div>
+
     </div>
 </section>
 
