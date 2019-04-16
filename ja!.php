@@ -70,22 +70,63 @@ $version = date('YmdHi');
 
 <body >
 <?php include 'nav.php'; ?>
-<section class="banner">
+
+<section class="banner mt-5 mb-0 pt-5" id="inicio">
     <div class="content">
-        <h2 class="p-3">
+        <div class="row">
+            <div class="col-12">
+        <h2 class="p-3 inicio">
             Hola!, has llegado a <br/>
             Jóvenes de la Alameda,<br/>
             aunque nos gustaría que <br/>
             nos conocieras como
      JA!
         </h2>
-    <h4 class="p-2">
+        </div>
+        <div class="col-12 text-center mx-auto p-5">
+    <h4 class="mx-5">
         Si estás buscando un <strong>PUNTO DE ENCUENTRO</strong>, <br/>
         te esperamos todos los sábados a las 21:30 hs, en San Martín 2020 en La Alameda,
         en un espacio de amistades diferentes,
-        con música, comida y lo mas importante: un momento con Dios.
+        con música, comida y lo mas importante: <br/>
+        un momento con Dios.
     </h4>
+        </div>
+        </div>
 
+    </div>
+
+</section>
+<section class="blog-post  mt-0" id="post-1">
+    <div class="post  mt-0">
+        <img src="imagenes/LOGO-JOVENES-GRIS.jpg" class="img-fluid">
+        <a href="#inicio" class="btn ant">Ant</a>
+        <a href="#post-2" class="btn sig">Sig</a>
+        <div class="post-title p-3">
+            Enchufate
+        </div>
+        <div class="post-date">
+            <span>20</span>
+            <span>Oct</span>
+            <span>2018</span>
+        </div>
+    </div>
+
+</section>
+
+<section class="blog-post mt-0 " id="post-2">
+    <div class="post mt-0">
+        <img src="imagenes/JA_abril_24.jpeg" class="img-fluid">
+        <a href="#post-1" class="btn ant">Ant</a>
+        <a href="#inicio" class="btn sig">Sig</a>
+        <div class="post-title">
+            Neon
+        </div>
+        <div class="post-date">
+            <span>20</span>
+            <span>Abr</span>
+            <span>2018</span>
+        </div>
     </div>
 
 </section>

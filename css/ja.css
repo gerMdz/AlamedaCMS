@@ -72,6 +72,11 @@ section{
     align-items: center;
 }
 
+section.banner {
+    background: url('../imagenes/ja.png');
+    background-size: cover;
+}
+
 section.banner .content{
     text-align: center;
 }
@@ -79,5 +84,120 @@ section.banner .content{
 section.banner .content h2{
     color: #fff;
     text-transform: full-width;
+    margin: 0 0 20px;
+    padding: 0;
 
 }
+
+#inicio{
+    color: #fff;
+    text-transform: full-width;
+    margin: 0 0 20px;
+    padding: 0;
+}
+
+.inicio{
+    color: #fff;
+    text-transform: full-width;
+    margin: 0 0 20px;
+    padding: 0;
+}
+
+section.banner .content h4{
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 40px;
+    font-weight: 500;
+
+}
+
+section.banner .content h4:hover{
+    background: #ffff00B3;
+    border: 2px solid #ff0;
+    color: #262626;
+
+
+}
+
+section.blog-post img{
+    height: 75vh;
+}
+
+.post{
+    position: relative;
+    /*height: 50vh;*/
+    /*width: 50vw;*/
+    background: white;
+}
+
+.post img{
+    object-fit: cover;
+}
+
+.post .btn{
+    position: absolute;
+    border: 2px solid #262626!important;
+    color: #262626 !important;
+    background: #ff0;
+    padding: 10px 40px !important;
+    font-weight: 500 !important;
+}
+
+.post .btn.ant{
+    top: 50px;
+    left: -80px;
+}
+
+.post .btn.sig{
+    bottom: 50px;
+    right: -80px;
+}
+
+.post-title{
+    position: absolute;
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    bottom: 20px;
+    left: 20px;
+    font-size: 2em;
+    line-height: 3em;
+    font-weight: 600;
+    width: calc(100% - 100px);
+    box-sizing: border-box;
+}
+.post-date{
+    position: absolute;
+    border: 2px solid #262626;
+    top: -50px;
+    right: 50px;
+    background: #ff0;
+    color: #262626;
+    padding: 20px;
+}
+
+.post-date span{
+    display: block;
+    text-align: center;
+    line-height: 2em;
+    text-transform: uppercase;
+}
+
+.post-date span:nth-child(1){
+    font-size: 2.5em;
+    font-weight: 700;
+}
+.post-date span:nth-child(2),
+.post-date span:nth-child(3){
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1em;
+}
+
+/*.blog-post{*/
+    /*background: url("../imagenes/ja.png");*/
+    /*background-size: cover;*/
+/*}*/
+/*#post-2{*/
+    /*background: url("../imagenes/JA_abril_24.jpeg");*/
+    /*background-size: cover;*/
+/*}*/
