@@ -36,9 +36,9 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-2">
                 <hr class="bg-point"/>
-
-
                 <a class="text-tan" href="../puntopartida.php"> Punto de Partida</a>
+                <hr class="bg-point"/>
+                <a class="text-tan" href="../alamedaaldia.php"> Alameda al Día</a>
                 <hr class="bg-point"/>
             </div>
             <div class="col-sm-2">

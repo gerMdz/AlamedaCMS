@@ -34,6 +34,7 @@ $version = date('YmdHi');
 
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
     <link href="css/foundation-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
@@ -43,7 +44,7 @@ $version = date('YmdHi');
     <link rel="stylesheet" href="css/material.light_blue-teal.min.css">
     <link href="css/mdb.min.css" rel="stylesheet">
     <link href="css/landing-page.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/estiloHorarios.css?v=<?php echo $version ?>" rel="stylesheet">
+<!--    <link rel="stylesheet" href="css/estiloHorarios.css?v=--><?php //echo $version ?><!--" rel="stylesheet">-->
     <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
     <link href="css/ja.css?v=<?php echo $version ?>" rel="stylesheet">
     <link href="css/acciones.css?v=<?php echo $version ?>" rel="stylesheet">
@@ -68,42 +69,52 @@ $version = date('YmdHi');
 
 </head>
 
-<body >
-<?php include 'nav.php'; ?>
+<body   >
 
-<section class="banner mt-5 mb-0 pt-5" id="inicio">
-    <div class="content">
-        <div class="row">
-            <div class="col-12">
-        <h2 class="p-3 inicio">
-            Hola!, has llegado a <br/>
-            Jóvenes de la Alameda,<br/>
-            aunque nos gustaría que <br/>
-            nos conocieras como
-     JA!
-        </h2>
-        </div>
-        <div class="col-12 text-center mx-auto p-5">
-    <h4 class="mx-5">
-        Si estás buscando un <strong>PUNTO DE ENCUENTRO</strong>, <br/>
-        te esperamos todos los sábados a las 21:30 hs, en San Martín 2020 en La Alameda,
-        en un espacio de amistades diferentes,
-        con música, comida y lo mas importante: <br/>
-        un momento con Dios.
-    </h4>
-        </div>
-        </div>
 
+<div class="container ">
+    <?php include 'nav.php'; ?>
+
+<section class="p5-5 mt-5 " id="inicio">
+    <div class="container">
+        <div class="row fullscreen align-items-center justify-content-center">
+            <div class="col-sm-12 text-center mx-auto mt-5 div-ja">
+<!--                <h2 class="">-->
+<!--                Hola!, has llegado a <br/>-->
+<!--                Jóvenes de la Alameda,<br/>-->
+<!--                aunque nos gustaría que <br/>-->
+<!--                nos conocieras como-->
+<!--                JA!-->
+<!--                </h2>-->
+                <h1 class="mt-5">
+                    <span>J</span><span>óvenes de la</span>
+                    <span>A</span><span>lameda</span>
+                    <span>!</span>
+                </h1>
+            </div>
+            <div class="col-sm-12 text-center mx-auto content">
+                <h4 class="p-sm-0 text-center">
+                    Si estás buscando un <strong>PUNTO DE ENCUENTRO</strong>, <br/>
+                    te esperamos todos los sábados a las 21:30 hs, en San Martín 2020 en La Alameda,
+                    en un espacio de amistades diferentes,
+                    con música, comida y lo mas importante: <br/>
+                    un momento con Dios.
+                </h4>
+            </div>
+        </div>
     </div>
-
 </section>
-<section class="blog-post  mt-0" id="post-1">
-    <div class="post  mt-0">
-        <img src="imagenes/LOGO-JOVENES-GRIS.jpg" class="img-fluid">
+
+    <section class="p5-5 mt-0 section-ja blog-post  mt-0" id="post-1">
+<!--        <div class="container">-->
+            <div class="row fullscreen align-items-center justify-content-center">
+    <div class="post mt-0 col-12">
+        <img src="imagenes/ja_gris.png" class="img-fluid">
         <a href="#inicio" class="btn ant">Ant</a>
         <a href="#post-2" class="btn sig">Sig</a>
         <div class="post-title p-3">
             Enchufate
+
         </div>
         <div class="post-date">
             <span>20</span>
@@ -111,11 +122,15 @@ $version = date('YmdHi');
             <span>2018</span>
         </div>
     </div>
+<!--            </div>-->
+        </div>
 
 </section>
 
-<section class="blog-post mt-0 " id="post-2">
-    <div class="post mt-0">
+    <section class="p5-5 mt-0 section-ja blog-post  mt-0" id="post-1">
+        <!--        <div class="container">-->
+        <div class="row fullscreen align-items-center justify-content-center">
+            <div class="post mt-0 col-12">
         <img src="imagenes/JA_abril_24.jpeg" class="img-fluid">
         <a href="#post-1" class="btn ant">Ant</a>
         <a href="#inicio" class="btn sig">Sig</a>
@@ -128,9 +143,11 @@ $version = date('YmdHi');
             <span>2018</span>
         </div>
     </div>
+        </div>
 
 </section>
 
+</div>
 
 
 

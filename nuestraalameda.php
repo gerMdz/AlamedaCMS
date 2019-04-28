@@ -30,7 +30,7 @@
 
       <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
       <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-      <meta property="og:image" content="https://www.iglesialameda.com/imagenes/campanias/navidad2018_index.png">
+      <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/bondad_01.png">
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -342,6 +342,78 @@
                     <!--                            <i>  Ver detalles</i>-->
                     <!--                        </a>-->
                     <!--                    </small>-->
+                </div>
+            </div>
+
+            <div class="mdl-card amazing mdl-cell mdl-cell--12-col sin-iconos " id="ja">
+
+                <div class="mdl-card__title mdl-color-text--grey-50">
+                <span class="fa-stack list-inline compuesto" >
+                    <img src="imagenes/ja_gris.png" class="img-fluid rounded rounded-circle" style="z-index: 1000">
+                </span>
+                    <h3 style="z-index: 2">Jóvenes de la Alameda!<br/>
+<!--                        <small>JA!</small>-->
+                    </h3>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    Sábados 21:30hs, San Martín 2020 de la Ciudad de Mendoza
+                </div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                    <!--                    <a href="ministerios/gex.php" id="gex_horarios">-->
+                    <div class="minilogo"></div>
+                    <!--                    </a>-->
+                    <!--                    <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="gex_horarios">-->
+                    <!--                        Ver detalles-->
+                    <!--                    </div>-->
+                    <div>
+                        <strong>
+                            Un espacio de amistades diferentes,
+                            con música, comida y lo mas importante: <br/>
+                            un momento con Dios.
+                        </strong>
+<!--                        <span>Coordinadora: Paola Botacaulli </span>-->
+                    </div>
+                                        <small class="text-right pull-right pl-5">
+                                            <a href="ja!.php" id="ja_horarios">
+                                                <i>  Ver detalles</i>
+                                            </a>
+                                        </small>
+                </div>
+            </div>
+
+            <div class="mdl-card amazing mdl-cell mdl-cell--12-col sin-iconos " id="puntodepartida">
+
+                <div class="mdl-card__title mdl-color-text--grey-50">
+                <span class="fa-stack list-inline compuesto" >
+                    <img src="imagenes/PEncuentroSinText.png" class="img-fluid " style="z-index: 1000">
+                </span>
+                    <h3 style="z-index: 2">Punto de Partida<br/>
+                                                <small>Una conversación sobre la Fe</small>
+                    </h3>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    Jueves 20:30hs, San Martín 2020 de la Ciudad de Mendoza
+                </div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                                        <a href="puntopartida.php" id="pp_horarios">
+                    <div class="minilogo"></div>
+                                        </a>
+                                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--left" for="pp_horarios">
+                                            Ver detalles
+                                        </div>
+                    <div>
+                        <strong>
+                            Punto de partida son grupos pequeños que funcionan aquí en nuestra casa para quienes vienen
+                            llegando.<br/>
+
+                        </strong>
+                        <!--                        <span>Coordinadora: Paola Botacaulli </span>-->
+                    </div>
+                    <small class="text-right pull-right pl-5">
+                        <a href="puntopartida.php" id="pp_horarios">
+                            <i>  Ver detalles</i>
+                        </a>
+                    </small>
                 </div>
             </div>
 

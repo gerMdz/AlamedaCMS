@@ -99,8 +99,9 @@
 <section class="page-section about-heading" id="contador">
     <div class="container-fluid text-center">
 <!--        <a href="series/direccionDivina.php">-->
-        <a href="series/bondad.phpp">
-        <img class="img-fluid w-100 center rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/series/bondad/bondad_03.png" alt="Bondad" style="top: -75px; ">
+        <a href="series/bondad.php">
+        <img class="img-fluid w-100 center rounded about-heading-img mb-3 mb-lg-0 mx-auto"
+             src="imagenes/series/bondad/facebookk-cabecera-BONDAD.jpg" alt="Bondad" style="top: -75px; ">
         </a>
         <div class="about-heading-content ajusteIndex">
             <div class="row">
@@ -406,25 +407,19 @@
     <!--    <div class="row text-center">-->
     <div class="row text-center d-flex align-items-center bg-white">
         <div class="col-sm-5 pull-left">
-            <img src="imagenes/series/seguidores/SEGUIDORES-FONDOS-002.jpg" class="img-fluid rounded" />
+            <img src="imagenes/series/bondad/bondad_03.png" class="img-fluid rounded" />
         </div>
 
         <div class="col-sm-7 pt-5">
-
-
-
-
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
-
-                        <div class="center-element btn btn-blue rotar90">Mateo 25:40 (TLA) </div>
-
-
-
-
+                        <div class="center-element btn btn-blue rotar90">
+                            2° Timoteo 1:10 (DHH)
+                        </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
-
-                        "Lo que ustedes hicieron para ayudar a una de las personas menos importantes de este mundo, a quienes yo considero como hermanos, es como si lo hubieran hecho para mí."
+                        "
+                        Esa bondad se ha mostrado gloriosamente ahora en Cristo Jesús nuestro Salvador, que destruyó el poder de la muerte y que, por el evangelio, sacó a la luz la vida inmortal.
+                        "
                     </h2>
                         </div>
 
@@ -435,7 +430,7 @@
             </div>
         <div class="col-sm-12">
 <!--            <a href="series/navidad_lct.php" class="text-light-blue"-->
-            <a href="series/seguidores.php" class="text-light-blue"
+            <a href="series/bondad.php" class="text-light-blue"
                data-toggle="tooltip"
                title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
         </div>
@@ -516,38 +511,38 @@
 <!---->
 <!--</section>-->
 
-<section class="page-section about-heading" id="proximaserie">
-    <div class="container-fluid">
-
-        <div class="row justify-content-between  mx-auto ">
-            <hr/>
-            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0"><br/>
-                <h2 style="font-family: joyful" class="text-center"><br/>
-                    Ya falta poco!<br/><br/>
-                    Jueves  <br/>
-                    18 de Abril<br/>
-                    20:30 hs.<br/>
-                    Encuentro de <br/>
-                    Adoración e <br/>
-                    Inspiración
-
-                    <br/><br/>
-                    Domingo <br/>
-                    21 de Abr. <br/>
-                    Gran Lanzamiento<br/>
-                    a las 11hs. y a las
-                    19hs.
-                </h2>
-            </div>
-            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0  ">
-                <a href="series/bondad.php">
-                    <img class="img-fluid" style="height: 100vh; " src="imagenes/series/bondad/IMAGENES-PREVIAS-BONDAD.png"/>
-                </a>
-            </div>
-        </div>
-
-    </div>
-</section>
+<!--<section class="page-section about-heading" id="proximaserie">-->
+<!--    <div class="container-fluid">-->
+<!---->
+<!--        <div class="row justify-content-between  mx-auto ">-->
+<!--            <hr/>-->
+<!--            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0"><br/>-->
+<!--                <h2 style="font-family: joyful" class="text-center"><br/>-->
+<!--                    Ya falta poco!<br/><br/>-->
+<!--                    Jueves  <br/>-->
+<!--                    18 de Abril<br/>-->
+<!--                    20:30 hs.<br/>-->
+<!--                    Encuentro de <br/>-->
+<!--                    Adoración e <br/>-->
+<!--                    Inspiración-->
+<!---->
+<!--                    <br/><br/>-->
+<!--                    Domingo <br/>-->
+<!--                    21 de Abr. <br/>-->
+<!--                    Gran Lanzamiento<br/>-->
+<!--                    a las 11hs. y a las-->
+<!--                    19hs.-->
+<!--                </h2>-->
+<!--            </div>-->
+<!--            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0  ">-->
+<!--                <a href="series/bondad.php">-->
+<!--                    <img class="img-fluid" style="height: 100vh; " src="imagenes/series/bondad/IMAGENES-PREVIAS-BONDAD.png"/>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--</section>-->
 
 
 <section class="page-section container cta fondo-evento bg-white" id="epa">

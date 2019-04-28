@@ -199,8 +199,11 @@ include '../internos/head_series.php';
                             <div class="col-sm-4 mt-2  pl-5 base-azul mx-auto">
                                 <iframe class="img-fluid " src="https://www.youtube.com/embed/jNgIIwkf7gU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
-                        <div class="col-sm-4 mt-2  pl-5 base-azul mx-auto">
-                            <iframe class="img-fluid" src="https://www.youtube.com/embed/XzPoydWcY4g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="col-sm-4 mt-2  pl-5 base-azul mx-auto">
+                                <iframe class="img-fluid" src="https://www.youtube.com/embed/XzPoydWcY4g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-sm-4 mt-2  pl-5 base-azul mx-auto">
+                                <iframe src="https://www.youtube.com/embed/eBsAQIgFT38" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
 
                         <div class="col-sm-12 mb-2 story-content">
@@ -215,59 +218,6 @@ include '../internos/head_series.php';
             </div>
 
         </section>
-
-
-
-
-<!--        <section class="page-section container cta fondo-evento" id="dias">-->
-<!--            <div class="container-fluid p-0 ">-->
-<!--                <a href="../dias.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>-->
-<!--                <div class="swiper-container ">-->
-<!--                    <div class="swiper-wrapper  ">-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia25.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia24.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia23.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia22.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia21.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia20.jpg"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia19.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia18.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia17.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia16.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia15.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia14.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia13.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia12.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia11.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia10.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia9.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia8.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia7.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia6.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia5.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia4.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia3.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia2.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia1.jpeg)"></div>-->
-<!-- -->
-<!--                    </div>-->
-<!-- -->
-<!--                    <!-- Add Pagination -->
-<!--                    <div class="swiper-pagination"></div>-->
-<!---->
-<!--                    <!-- Add Arrows -->
-<!--                    <div class="swiper-button-prev"></div>-->
-<!--                    <div class="swiper-button-next"></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--        </section>-->
-
-
-
-
-
-
 
 
         <hr/>

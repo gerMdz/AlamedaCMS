@@ -9,20 +9,19 @@ $version = date('YmdHi');
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda,
-    Una Aventura Inolvidable, Una Aventura de Fe, Super Domingo,
-     Ideología de Género, Cantapueblo 30° Aniversario, Eventos Alameda, Cultura Mendoza">
+    <meta name="description" content="Iglesia Alameda, Noticias,
+    Alameda al día, Primera Iglesia Bautista Mendoza, Boletín
+    ">
     <meta name="author" content="Iglesia de la Alameda">
 
-    <meta property="og:title" content="Eventos Iglesia Alameda,
-    Una Aventura Inolvidable , Una Aventura de Fe, Super Domingo,
-     Ideología de Género, Cantapueblo 30° Aniversario, Eventos Alameda, Cultura Mendoza" />
+    <meta property="og:title" content="Alameda al Día Iglesia Alameda,
+    " />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/masporhacer/unaAventuraInolvidable.jpeg">
+    <meta property="og:url" content="https://www.iglesialameda.com/alamedaaldia.php" />
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/bondad_01.png">
 
 
-    <title>Iglesia de la Alameda - Eventos</title>
+    <title>Iglesia de la Alameda - Alameda al Día</title>
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="imagenes/index192.png" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
@@ -49,7 +48,9 @@ $version = date('YmdHi');
 <!--    <link href="css/style.min.css" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
+<!--    <link href="css/modern-business.css" rel="stylesheet">-->
+
+    <link href="css/clean-blog.css" rel="stylesheet">
 
 
 
@@ -59,168 +60,86 @@ $version = date('YmdHi');
 
 <h1 class="site-heading text-center text-white d-sm-block ">
       <span class="section-heading-upper ">
-        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">
+
       </span>
 </h1>
 
-<!-- Navigation -->
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fondoFranja  py-lg-4 " >-->
-<!--<nav class="navbar sticky-top navbar-expand-lg navbar-dark scrolling-navbar">-->
-<!--    <div class="container">-->
-<!--        <a class=".d-none .d-md-block .d-lg-none" href="index.php">-->
-<!--            <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">-->
-<!---->
-<!--        </a>-->
-<!---->
-<!--        <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--            <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->-->
-<!--        </button>-->
-<!---->
-<!--        <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">-->
-<!--            <a class="nav-item nav-link text-tan mr-1 active" href="index.php#ppasos">Próximos pasos</a>-->
-<!--            <a class="nav-item nav-link text-tan mr-1 active" href="masporhacer.php"> Lo que se viene</a>-->
-<!--            <a class="nav-item nav-link text-tan mr-1 active" href="nuestraalameda.php"> Dónde y cuándo</a>-->
-<!--            <ul class="navbar-nav nav-flex-icons">-->
-<!---->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom" href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">-->
-<!--                        <i class="fab fa-facebook-square fa-2x"></i>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom" href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes">-->
-<!--                        <i class="fab fa-youtube-square fa-2x"></i>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!---->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesialameda" target="_blank" data-original-title="Seguinos en Instagram">-->
-<!--                        <i class="fab fa-instagram fa-2x"></i>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
 
 <?php include ('nav.php'); ?>
 
+<header class="masthead mb-0" style="background-image: url('imagenes/blog/taza_cafe.png')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading p-5">
+                    <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid ">
+                    <h1>Al Día</h1>
+                    <span class="subheading">
+                        Noticias de la PIB MENDOZA
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
 <!-- Page Content -->
+
+
 <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Blog Home Two
-        <small>Subheading</small>
-    </h1>
-
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Blog Home 2</li>
-    </ol>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="#">
-                        <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="card-title">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
+    <div class="row bg-white ">
+        <div class="col-lg-8 col-md-10 mx-auto ">
+            <div class="post-preview">
+                <a href="noticias/desafio_bondad_14042019.php" class="">
+                    <h2 class="post-title">
+                        Desafío de Bondad en Semana Santa
+                    </h2>
+                    <h3 class="post-subtitle">
+                        Esta semana santa queremos decirle a Mendoza que Pascua no es una
+                        serie de ritos de alimentación o un fin de semana turistico. Pascua es la
+                        celebración del mayor gesto de bondad de la historia. Cuando Jesús
+                        subió a la cruz por todos. Para hacerlo cada grupo pequeño de la
+                        Alameda realizará una actividad de bondad en acción.
+                    </h3>
+                </a>
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 14 de abril de 2019
+                                <a class="btn btn-teal float-right" href="noticias/desafio_bondad_14042019.php">Seguir leyendo</a>
+                </p>
             </div>
-        </div>
-        <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+            <hr>
+            <div class="post-preview" id="Grupos_de_pasos_de_recuperacion_para_Hombres">
+
+                    <h2 class="post-title">
+                        Grupos de pasos de recuperación para Hombres
+                    </h2>
+                    <h3 class="post-subtitle letra_a_post">
+                        Amigos de la Alameda. <a href="nuestraalameda.php#celebremos" target="_blank">
+                            Celebremos la Recuperación</a>, nuestro programa de los días viernes
+                        a las 20:45hs, en San Martín 2020, está abriendo un grupos de paso para varones, los días
+                        martes a las 20:30hs. en Pje. Villanueva 1886 Ciudad a cargo de Walter, Carlos y Fernando.<br/>
+                        Si no terminaste o no pudiste ingresar, ésta es una gran oportunidad de comenzar un nuevo proceso
+                        de restauración de tu vida. Te esperamos.
+
+
+                    </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 14 de abril de 2019
+<!--                                <a class="btn btn-teal float-right" href="noticias/desafio_bondad_14042019.php">Seguir leyendo</a>-->
+                </p>
+            </div>
+            <hr>
+
+            <!-- Pager -->
+<!--            <div class="clearfix">-->
+<!--                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>-->
+<!--            </div>-->
         </div>
     </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="#">
-                        <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="card-title">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-        </div>
-    </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="#">
-                        <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="card-title">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-        </div>
-    </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="#">
-                        <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="card-title">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-        </div>
-    </div>
-
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-        <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-    </ul>
-
-</div>
-
 </div>
 
 
@@ -231,6 +150,7 @@ $version = date('YmdHi');
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
+<script src="js/clean-blog.min.js"></script>
 
 </body>
 

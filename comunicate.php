@@ -19,8 +19,7 @@ $hoy = date('Y-m-d')
 	<meta charset="utf-8">
 <!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia de La Alameda, Navidad lo cambia todo, Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
-    Libertad, Servicio, Misión">
+    <meta name="description" content="Iglesia de La Alameda, Tarjeta de Contacto">
     <meta name="author" content="Iglesia de la Alameda">
 
     <meta property="og:title" content="Iglesia Alameda" />
@@ -28,7 +27,7 @@ $hoy = date('Y-m-d')
 
     <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
     <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/campanias/navidad2018_index.png">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/bondad_01.png">
     <title>Iglesia de la Alameda - Contacto</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />

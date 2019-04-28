@@ -14,8 +14,8 @@ $version = date('YmdHi');
     <meta property="og:type" content="website" />
 
     <meta property="og:url" content="https://www.iglesialameda.com/acciones.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/auditorio.png">
-
+<!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/auditorio.png">-->
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/bondad_01.png">
     <title>Nuestras Acciones - Iglesia Alameda </title>
 
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
@@ -115,7 +115,7 @@ $version = date('YmdHi');
     </header>
 
     <!-- Inicio de Jovenes , Punto de Partida y Grupos Pequeños  -->
-    <section class="showcase bloque2 fondo-medio">
+    <section class="showcase bloque2 fondo-medio mt-5" id="ja">
       <div class="container-fluid p-0">
           <div class="row justify-content-center no-gutters">
               <div class="col-lg-6 bg-white">
@@ -127,7 +127,7 @@ $version = date('YmdHi');
                       <div class="texto-bloque2 w-100 my-auto text-center text-lg-left">
                           <h2>Jóvenes de la Alameda</h2>
                           <h4 class="mb-0 ">Participá de nuestros encuentros especiales para jóvenes, solteros y matrimonios</h4>
-                          <a href="masporhacer.php" class="btn btn-outline-dark text-tan btn-sm">Ver actividades</a>
+                          <a href="ja!.php" class="btn btn-outline-dark text-tan btn-sm">Ver actividades</a>
                           <hr class="d-none d-lg-block mb-0 ml-0">
                       </div>
                   </div>

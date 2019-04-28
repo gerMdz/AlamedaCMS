@@ -22,6 +22,9 @@ $meta =  '
       width: 300px;
       height: 300px;
     }
+    .swiper-button-prev, .swiper-container-rtl .swiper-button-nex{
+    fill: #6cbb23 !important;
+    }
         </style>
         
 
@@ -139,13 +142,13 @@ include '../internos/head_series.php';
                 </div>
 		</section>
 
-        <section class="section bg-azul_claro p-5 mdl-color-text--black" id="section-azul">
+        <section class="section bg-cromo p-5 mdl-color-text--black" id="section-azul">
 			<div class="container">
                 <div class="row fullscreen align-items-center justify-content-center ">
                 <div class="row align-items-center bg-white ">
                     <div class="col-lg-5">
-                        <img class="img-fluid d-flex m-1 shadow-blue" src="../imagenes/series/bondad/bondad_03.png" alt="Bondad">
-
+<!--                        <img class="img-fluid d-flex m-1 shadow-blue" src="../imagenes/series/bondad/bondad_03.png" alt="Bondad">-->
+                        <img class="img-fluid d-flex m-1 " src="../imagenes/series/bondad/LIBRO_BONDAD.png" alt="Bondad">
                     </div>
                     <div class="col-lg-7">
                         <div class="story-content">
@@ -160,6 +163,7 @@ include '../internos/head_series.php';
                                 <br/>
                                 <i class="far fa-check-circle"></i> Obtené ejemplar del libro: "Respirando Bondad Cada día"<br/>
                                 <i class="far fa-check-circle"></i> Asegurate un grupo pequeño para participar de un estudio exclusivo.
+
 
 
 <!--                                    <a class=" text-realce-azul" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesialameda" target="_blank" data-original-title="Seguinos en Instagram">-->
@@ -183,108 +187,96 @@ include '../internos/head_series.php';
                         </div>
                     </div>
 
+
+
                     </div>
 
 			</div>
                 </div>
 		</section>
-
-<!--        <section class="section bg-azul_claro  mdl-color-text--black page-section base-rojo section-azul " id="section-youtube">-->
+<!--        <section class="section bg-azul_claro  mdl-color-text--black page-section base-rojo section-azul " id="section-book">-->
 <!--            <div class="container ">-->
 <!--                <div class="row fullscreen align-items-center justify-content-center ">-->
 <!--                    <div class="row align-items-center bg-white ">-->
-<!--                        <div class="col-sm-3">-->
-<!--                            <img class="img-fluid d-flex m-1 shadow-blue" src="../imagenes/logoYoutubeBrown.png" alt="Seguidores">-->
-<!--                        </div>-->
-<!--                        <div class="col-sm-9">-->
-<!--                            <h3 class="bg-white p-2 text-center">-->
-<!--                                <i>-->
-<!--                                    Estas son las conversaciones de nuestra serie-->
-<!--                                    <br/>-->
-<!--                                <strong style="font-family: diamond; font-size: 1.5em ">-->
-<!--                                    <a href="https://youtube.com/user/IglesiaAlameda" target="_blank"-->
-<!--                                       class="">-->
-<!--                                        <i>Seguidores</i>-->
-<!--                                    </a>-->
-<!--                                </strong>-->
-<!---->
-<!---->
-<!--                                </i>-->
-<!--                            </h3>-->
-<!--                        </div>-->
-<!---->
-<!--                            <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">-->
-<!--                                <iframe class="img-fluid "  src="https://www.youtube.com/embed/I7i3movCZMI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-<!--                            </div>-->
-<!--                            <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">-->
-<!--                                <iframe class="img-fluid " src="https://www.youtube.com/embed/a-Fp_GWXdmI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-<!--                            </div>-->
-<!--                            <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">-->
-<!--                                <iframe class="img-fluid " src="https://www.youtube.com/embed/jNgIIwkf7gU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-<!--                            </div>-->
-<!--                        <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">-->
-<!--                            <iframe class="img-fluid" src="https://www.youtube.com/embed/XzPoydWcY4g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-<!--                            </div>-->
-<!---->
-<!--                        <div class="col-sm-12 mb-2 story-content">-->
-<!---->
-<!---->
-<!--                        </div>-->
+<!--                        -->
 <!--                    </div>-->
-<!---->
-<!---->
-<!--                </div>-->
-<!---->
-<!--            </div>-->
-<!---->
-<!--        </section>-->
-
-
-
-
-<!--        <section class="page-section container cta fondo-evento" id="dias">-->
-<!--            <div class="container-fluid p-0 ">-->
-<!--                <a href="../dias.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>-->
-<!--                <div class="swiper-container ">-->
-<!--                    <div class="swiper-wrapper  ">-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia25.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia24.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia23.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia22.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia21.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia20.jpg"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia19.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia18.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia17.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia16.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia15.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia14.jpg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia13.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia12.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia11.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia10.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia9.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia8.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia7.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia6.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia5.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia4.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia3.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia2.jpeg)"></div>-->
-<!--                        <div class="swiper-slide" style="background-image:url(../imagenes/campanias/dia1.jpeg)"></div>-->
-<!-- -->
-<!--                    </div>-->
-<!-- -->
-<!--                    <!-- Add Pagination -->
-<!--                    <div class="swiper-pagination"></div>-->
-<!---->
-<!--                    <!-- Add Arrows -->
-<!--                    <div class="swiper-button-prev"></div>-->
-<!--                    <div class="swiper-button-next"></div>-->
 <!--                </div>-->
 <!--            </div>-->
-<!---->
 <!--        </section>-->
+        <section class="section bg-transparent p-5 mdl-color-text--black " id="section-rojo">
+
+            <div class="container ">
+                <div class="row fullscreen align-items-center justify-content-center ">
+                    <div class="row align-items-center bg-white ">
+                        <div class="col-sm-3">
+                            <img class="img-fluid d-flex m-1 shadow-blue" src="../imagenes/logoYoutubeBrown.png" alt="Seguidores">
+                        </div>
+                        <div class="col-sm-9">
+                            <h3 class="bg-white p-2 text-center">
+                                <i>
+                                    Estas son las conversaciones de nuestra serie
+                                    <br/>
+                                <strong style="font-family: joyful; font-size: 1.5em ">
+                                    <a href="https://youtube.com/user/IglesiaAlameda" target="_blank"
+                                       class="">
+                                        <i>Respirando Bondad Cada Día</i>
+                                    </a>
+                                </strong>
+
+
+                                </i>
+                            </h3>
+                        </div>
+
+                            <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
+                                <iframe  src="https://www.youtube.com/embed/ZDAOX4TCviM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+
+
+                        <div class="col-sm-12 mb-2 story-content">
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+
+        <section class="section bg-transparent p-5 mdl-color-text--black" id="imagenes">
+            <div class="container-fluid p-0 ">
+                <a href="../imagenesseries/bondad.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>
+                <div class="swiper-container ">
+                    <div class="swiper-wrapper  ">
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_01.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_02.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_03.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_04.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_05.jpeg)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/BONDAD_MOTION-800x800.png)"></div>
+
+
+
+                    </div>
+
+                    <!-- Add Pagination-->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+
+        </section>
 
 
 
