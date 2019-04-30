@@ -309,13 +309,21 @@
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2019-04-13 17:00')){ ?>
-
-                                <small class="text-point-sec">Sábado 13 de abril a las 17:00 Hs</small>
+                        <?php if ($ahora < date('2019-05-04 17:30')){ ?>
+                            <small class="text-point-sec">
+                                Sábado 04 de mayo a las 17:30 Hs
+                            <br/>
 <!--                            <a href="masporhacer.php#crecimiento20181110"-->
 <!--                               data-toggle="tooltip"-->
 <!--                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
-
+                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                                        (261 517 8081)
+                                <br/>
+                                con el texto <strong>Bautismo</strong> o por  <br/>
+                                    <a href="https://api.whatsapp.com/send?phone=5492615178081&text=BAUTISMO" class="text-realce-verde"> por Whatsapp
+                                        <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+                            </small>
+                            </small>
 
                         <?php } ?>
                     </div>
@@ -384,12 +392,24 @@
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2019-04-13 17:00')){ ?>
+                                <?php if ($ahora < date('2019-05-04 17:30')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 13 de Abril a las 17:00 hs hs.
+                                        Sábado 05 de mayo a las 17:30 hs.
 <!--                                        <a href="masporhacer.php#crecimiento20181110"-->
 <!--                                                                             data-toggle="tooltip"-->
 <!--                                                                             title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
+
+                                        <br/>
+                                        <!--                            <a href="masporhacer.php#crecimiento20181110"-->
+                                        <!--                               data-toggle="tooltip"-->
+                                        <!--                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
+                                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                            (261 517 8081)
+                                            <br/>
+                                            con el texto <strong>Membresía</strong> o por  <br/>
+                                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=BAUTISMO" class="text-realce-verde"> por Whatsapp
+                                                <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+                                        </small>
                                     </small>
                                 <?php } ?>
                             </div>
