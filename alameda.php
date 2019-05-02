@@ -407,7 +407,7 @@
                                             (261 517 8081)
                                             <br/>
                                             con el texto <strong>Membresía</strong> o por  <br/>
-                                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=BAUTISMO" class="text-realce-verde"> por Whatsapp
+                                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=MEMBRESÍA" class="text-realce-verde"> por Whatsapp
                                                 <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
                                         </small>
                                     </small>

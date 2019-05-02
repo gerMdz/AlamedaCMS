@@ -50,7 +50,7 @@ $version = date('YmdHi');
     <!-- Custom styles for this template -->
 <!--    <link href="css/modern-business.css" rel="stylesheet">-->
 
-    <link href="css/clean-blog.css" rel="stylesheet">
+    <link href="css/clean-blog.css?v=<?php echo $version ?>" rel="stylesheet">
 
 
 
@@ -90,8 +90,66 @@ $version = date('YmdHi');
 <div class="container">
     <div class="row bg-white ">
         <div class="col-lg-8 col-md-10 mx-auto ">
+
+            <div class="post-preview" id="crecimiento_mayo">
+
+                    <h2 class="post-title">
+                        Camino de Crecimiento Alameda
+                    </h2>
+                    <h3 class="post-subtitle">
+                        Simples pasos. En un solo mes. Cada Sábado uno distinto. De 17:30 a 20:00 hs.
+                    </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 28 de abril de 2019
+                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>
+                </p>
+            </div>
+            <hr>
+            <div class="post-preview" id="bautismo_gex_mayo_2019">
+
+                    <h2 class="post-title">
+                        Celebración Especial de Bautismo
+                         Generación Extrema
+                    </h2>
+                    <h3 class="post-subtitle">
+                        Familia, el jueves 02 de mayo a las 20:30hs. tendremos una Celebración Especial de Bautismos
+                        de pre-adolescentes.
+                        Será un momento para agradecer a Dios lo que Dios ha hecho en nuestros hijos este año.
+                        ¡Los esperamos a todos!
+                    </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 28 de abril de 2019
+<!--                    <a class="btn btn-teal float-right" href="noticias/desafio_bondad_14042019.php">Seguir leyendo</a>-->
+                </p>
+            </div>
+            <hr>
+            <div class="post-preview" id="presentacion_ninos_mayo_2019">
+
+                    <h2 class="post-title">
+                        Presentación de Niños en la Alameda
+
+                    </h2>
+                    <h3 class="post-subtitle">
+                        Si Dios te ha regalado un nuevo integrante a la Familia y querés
+                        agradecerle en un significativo momento o conocer el propósito de
+                        esta ceremonia, te invitamos al Taller que realizaremos el día domingo
+                        5 de mayo a las 10:00 hs en el edificio educacional, te esperamos.
+
+                    </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 28 de abril de 2019
+<!--                    <a class="btn btn-teal float-right" href="noticias/desafio_bondad_14042019.php">Seguir leyendo</a>-->
+                </p>
+            </div>
+            <hr>
             <div class="post-preview">
-                <a href="noticias/desafio_bondad_14042019.php" class="">
+
                     <h2 class="post-title">
                         Desafío de Bondad en Semana Santa
                     </h2>
@@ -102,7 +160,7 @@ $version = date('YmdHi');
                         subió a la cruz por todos. Para hacerlo cada grupo pequeño de la
                         Alameda realizará una actividad de bondad en acción.
                     </h3>
-                </a>
+
                 <p class="post-meta">Publicado
                     <a href="#">alameda al día</a>
                     el 14 de abril de 2019
@@ -110,6 +168,7 @@ $version = date('YmdHi');
                 </p>
             </div>
             <hr>
+
             <div class="post-preview" id="Grupos_de_pasos_de_recuperacion_para_Hombres">
 
                     <h2 class="post-title">

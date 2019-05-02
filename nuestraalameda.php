@@ -280,7 +280,7 @@
                     </h3>
                 </div>
                 <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                    Lunes y Miercoles de 17:00 hs a 20:30 hs.
+                    Lunes y Miercoles de 17:00 hs a 20:30 hs. en calle 9 de Julio 2061 de la Ciudad de Mendoza.
                 </div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                     <!--                    <a href="ministerios/gex.php" id="gex_horarios">-->
