@@ -10,16 +10,16 @@ $version = date('YmdHi');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Iglesia Alameda,
-    Una Aventura Inolvidable, Una Aventura de Fe, Super Domingo,
-     Ideología de Género, Cantapueblo 30° Aniversario, Eventos Alameda, Cultura Mendoza">
+    Bautismo, Sumate, Una Aventura Inolvidable, Una Aventura de Fe, Super Domingo,
+     Eventos Alameda, Cultura Mendoza">
     <meta name="author" content="Iglesia de la Alameda">
 
     <meta property="og:title" content="Eventos Iglesia Alameda,
-    Una Aventura Inolvidable , Una Aventura de Fe, Super Domingo,
-     Ideología de Género, Cantapueblo 30° Aniversario, Eventos Alameda, Cultura Mendoza" />
+   Bautismo, Sumate, Una Aventura Inolvidable , Una Aventura de Fe, Super Domingo,
+      Eventos Alameda, Cultura Mendoza" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/masporhacer/unaAventuraInolvidable.jpeg">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/logo_n1.png">
 
 
     <title>Iglesia de la Alameda - Eventos</title>
@@ -60,48 +60,149 @@ $version = date('YmdHi');
       </span>
 </h1>
 
-<!-- Navigation -->
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fondoFranja  py-lg-4 " >-->
-<!--<nav class="navbar sticky-top navbar-expand-lg navbar-dark scrolling-navbar">-->
-<!--    <div class="container">-->
-<!--        <a class=".d-none .d-md-block .d-lg-none" href="index.php">-->
-<!--            <img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">-->
-<!---->
-<!--        </a>-->
-<!---->
-<!--        <button class="navbar-toggler ml-auto mr-auto" type="button" data-toggle="collapse" data-target="#navegacionPrincipal" aria-controls="navegacionPrincipal" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--            <!--<img src="imagenes/logo_n1.png" width="30" height="30" class="d-inline-block align-top" alt="Logo Iglesia Alameda">-->-->
-<!--        </button>-->
-<!---->
-<!--        <div class="collapse navbar-collapse  text-center  nav-fill"  id="navegacionPrincipal">-->
-<!--            <a class="nav-item nav-link text-tan mr-1 active" href="index.php#ppasos">Próximos pasos</a>-->
-<!--            <a class="nav-item nav-link text-tan mr-1 active" href="masporhacer.php"> Lo que se viene</a>-->
-<!--            <a class="nav-item nav-link text-tan mr-1 active" href="nuestraalameda.php"> Dónde y cuándo</a>-->
-<!--            <ul class="navbar-nav nav-flex-icons">-->
-<!---->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom" href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">-->
-<!--                        <i class="fab fa-facebook-square fa-2x"></i>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom" href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes">-->
-<!--                        <i class="fab fa-youtube-square fa-2x"></i>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!---->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesialameda" target="_blank" data-original-title="Seguinos en Instagram">-->
-<!--                        <i class="fab fa-instagram fa-2x"></i>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-
 <?php include ('nav.php'); ?>
+
+<section class="page-section fondo-evento py-3" id="sumate_20190504">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Membresía</span>
+                        <span class="section-heading-lower">SUMATE</span>
+                    </h2>
+                </div>
+            </div>
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/sumate_20190504.jpeg" alt="sumate_20190504">
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Nos alegra verte cada domingo en la Alameda y saber que esto ha sido bueno para tu corazón. <br/>
+                        Cientos de voluntarios sirven a lo largo de cada semana para hacer realidad nuestra amada comunidad de fe.<br/>
+                        <b>¿Te atreves a ser parte? </b><br/>
+                        Si ya estás bautizado, ahora da el paso adelante y sumate a la familia.<br/>
+                        <b>¡Se miembro de la Alameda!</b><br/>
+                        Veni a esta <b>charla de bienvenida</b> y enterate la aventura de pertenecer.
+
+
+
+                        <div class="card-footer text-center">
+                            <small>
+                                <em>Sábado 04 de mayo <br/> desde las 17:30 hs.
+                                    hasta las 20:00</em><br/>
+
+                                Te esperamos en Av. San Martin 2020 de la Ciudad de Mendoza.<br/>
+                                Confirma tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                (261 517 8081)
+                                <br/>
+                                con el texto <strong>Membresía</strong> o por  <br/>
+                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Membresía" class="text-realce-verde"> por Whatsapp
+                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+
+                            </small>
+
+                        </div>
+                        <div class="card-footer row  text-center">
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23sumate_20190504" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23sumate_20190504"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23sumate_20190504"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section fondo-evento py-3" id="bautismo_20190504">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Bautismo</span>
+                        <span class="section-heading-lower">Charla Preparatoria</span>
+                    </h2>
+                </div>
+            </div>
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/bautismo_04052019.png" alt="bautismo_20190504">
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Cuando decidís ser un seguidor de Jesús, lo primero que descubrís es que sus huellas comienzan en las aguas
+                        del bautismo.<br/>
+                        <b>¡El bautismo, como Jesús lo propuso, es la marca que separa el camino de los curiosos, del camino de los
+                            seguidores!</b><br/>
+
+                        Veni a esta charla preparatoria y enterate, por qué.
+
+                        <div class="card-footer text-center">
+                            <small>
+                                <em>Sábado 04 de mayo <br/> desde las 17:30 hs.
+                                    hasta las 20:00</em><br/>
+
+                                Te esperamos en Av. San Martin 2020 de la Ciudad de Mendoza.<br/>
+                                Confirma tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                (261 517 8081)
+                                <br/>
+                                con el texto <strong>Bautismo</strong> o por  <br/>
+                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=BAUTISMO" class="text-realce-verde"> por Whatsapp
+                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+
+                            </small>
+
+                        </div>
+                        <div class="card-footer row  text-center">
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo_20190504" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23bautismo_20190504"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo_20190504"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="page-section fondo-evento py-3" id="aventuraGex20181208">
     <div class="container">
@@ -662,396 +763,396 @@ $version = date('YmdHi');
     </div>
 </section>
 
-<section class="page-section fondo-evento py-3" id="enlace20181012">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Gupos Pequeños</span>
-                        <span class="section-heading-lower">Segundo Enlace</span>
-                    </h2>
-                </div>
-            </div>
-
-
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/enlace20181012.jpeg" alt="enlace20181012">
-
-
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        Si no pudiste ir al ENLACE anterior.<br/>
-                        !Tenes una nueva oportunidad!<br/>
-
-                        Experimentá los beneficios de pertenecer a la familia de Dios.
-
-                        <em> Este Viernes 12 de Octubre
-                            a las 21:00 hs </em> <br/>
-
-                        Aquí en La Alameda<br/>
-
-
-
-
-                    </strong>
-                    <br/><br/>
-                    <div class="card-footer text-center">
-                        <small>
-                            <em>Viernes 12 de Octubre <br/> a las 21:00 hs.</em><br/>
-                            en el Auditorio de la Alameda, <br/>
-                            San Martín 2020 de la Ciudad de Mendoza<br/>
-
-
-                            Confirmanos tu asistencia, cuantas personas asistirán, para poder tener preparado tu lugar, enviándonos un mensaje con solo la palabra "ENLACE"
-                            a Conectar Alameda (261 517-8081) o
-                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=ENLACE"> por Whatsapp
-                                <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
-                        </small>
-
-
-
-                    </div>
-                    <div class="card-footer row  text-center">
-
-                        <div class="col-sm-12 d-flex flex-row justify-content-center ">
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012" target="_blank" data-original-title="Compartilo en Facebook">
-                                <i class="fab fi-social-facebook"></i>
-                            </a>
-
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012" target="_blank" data-original-title="Compartelo en Twitter">
-                                <i class="fab fi-social-twitter"></i>
-                            </a>
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012" target="_blank" data-original-title="Google+">
-                                <i class="fab fi-social-google-plus"></i>  </a>
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
-                               href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012"
-                               target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
-                            </a>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="page-section fondo-evento py-3" id="enlace20181005">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Enlace de</span>
-                        <span class="section-heading-lower">Comunidad</span>
-                    </h2>
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/comunidad.jpeg" alt="enlace20181005">
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        Si todavía no tenes un grupo pequeño y <br/>
-                        te interesaría participar de uno: <br/>
-                        <em> ¡Vení a nuestro
-                         Enlace de Comunidad </em> <br/>
-
-                        y comenzá la aventura!<br/>
-                        Te esperamos.
-
-
-
-                    </strong>
-                    <br/><br/>
-                    <div class="card-footer text-center">
-                        <small>
-                            <em>Viernes 05 de Octubre <br/> a las 20,30 hs.</em><br/>
-                            en el Auditorio de la Alameda, <br/>
-                            San Martín 2020 de la Ciudad de Mendoza<br/>
-
-
-                            Adelantamos tu asistencia enviándonos un mensaje con solo la palabra "ENLACE"
-                            al 261 307-0445 o
-                            <a href="https://api.whatsapp.com/send?phone=5492613070445&text=ENLACE"> por Whatsapp
-                                <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
-                        </small>
-
-
-
-                    </div>
-                    <div class="card-footer row  text-center">
-
-                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005" target="_blank" data-original-title="Compartilo en Facebook">
-                                    <i class="fab fi-social-facebook"></i>
-                                </a>
-
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005" target="_blank" data-original-title="Compartelo en Twitter">
-                                    <i class="fab fi-social-twitter"></i>
-                                </a>
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005" target="_blank" data-original-title="Google+">
-                                    <i class="fab fi-social-google-plus"></i>  </a>
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
-                                href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005"
-                                target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
-                            </a>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="page-section fondo-evento py-3" id="bautismo20180929">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Taller de</span>
-                        <span class="section-heading-lower">Bautismo </span>
-                    </h2>
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/BautismosGral.jpg" alt="bautismo20180929">
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        Descubrí el significado vital de nuestra experiencia y cómo vivirla intensamente
-
-
-
-                    </strong>
-                    <br/><br/>
-                    <div class="card-footer text-left">
-                        <small>
-                            <em>Sábado 29 de setiembre a las 17:00 hs</em>.<br/>
-                            en La Alameda, San Martín 2020 de la Ciudad de Mendoza
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="page-section fondo-evento py-3" id="tallerMembresia20180929">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Taller de</span>
-                        <span class="section-heading-lower">Membresía</span>
-                    </h2>
-                </div>
-            </div>
-
-<!--            <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px; margin-left: 200px; margin-top: 150px " class="img-fluid mt-5  ">-->
-
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/templo_escalado.png" alt="tallerMembresia20180929">
-
-
-
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        <small>Sábado 29 de setiembre a las 17 hs.<br/>
-                            San Martin 2020  Ciudad de Mendoza.</small>
-                        <br/>
-                        <strong>
-                            <em>El Pastor Fabián te espera para una chala de bienvenida a nuestra iglesia</em>
-
-                            <br/>
-                            Dejá de ser simplemente un asistente, convertite en un miembro de la Alameda
-                        </strong>
-
-                        <div class="card-footer text-left">
-                            <small >
-
-
-
-
-
-                            </small>
-
-
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="page-section fondo-evento py-3" id="coroCiudadMendoza">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Cultura </span>
-                        <span class="section-heading-lower">Coro de la Ciudad de Mendoza</span>
-                    </h2>
-                </div>
-            </div>
-
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/ccm.png" alt="coroCiudadMendoza">
-
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        <small>Lunes 17 de setiembre a las 21 hs en el Auditorio Alameda.<br/>
-                            San Martin 2020  Ciudad de Mendoza.</small>
-                        <br/>
-                        <strong>
-                        <em>Disfrutemos de esta conversación con la cultura mendocina</em>
-                        mientras mientras ayudamos a los que más necesitan.
-                        <br/>
-                        Este lunes recibiremos la visita del Coro de la Ciudad de Menoza presentando
-                        su repertorio 2018, preparándose para su gira por Italia.<br/>
-                        </strong>
-
-                        <div class="card-footer text-left">
-                            <small >
-
-                                Participá de esta noche única y juntos colaboremos
-                                con el trabajo de la Alameda en el desierto de Lavalle (proyectos para los niños de San José). <br/>
-
-                             <br/>
-                                100 <i class="fa fa-heart"></i>
-
-
-                            </small>
-
-
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="page-section fondo-evento py-3" id="siSoloPudieraImaginar">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Viernes de Cine </span>
-                        <span class="section-heading-lower">La historia detrás de la canción</span>
-                    </h2>
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/Imaginar2.png" alt="siSoloPudieraImaginar">
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        <small>Viernes 7 de setiembre, a las 21hs y 23 hs en el Auditorio Alameda.<br/>
-                            San Martin 2020  Ciudad de Mendoza.</small>
-                        <br/>
-
-                        <em>Viernes de Cine</em> <br/>
-                        <strong>“Si solo PUDIERA IMAGINAR”</strong><br/>
-                        Sumergiendonos en nuetros tema de mes: El Cielo <br/>
-                        Este viernes proyectaremos un estreno del cine: <br/>
-                        "Si solo pudiera imaginar", <br/>
-                        la historia detrás de una de las canciones de mayor audiencia.<br/>
-                        A las 21 y 23 hs en punto.<br/>
-                        Equiparemos nuetros auditorio con una pantalla especial y sistema de cine
-                        para vivir una gran noche.<br/>
-
-                    <div class="card-footer text-left">
-                        <small > Retira una entrada para vos y otra para tus amigos a la salida de cada celebración, canjeandolas por la
-                            mínima colaboración de $10 por cada una y así ayudar a la renta del equipamiento especial
-
-                        </small>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="page-section fondo-evento py-3" id="MendozaCantaPorLosNiños">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Festival  Solidario </span>
-                        <span class="section-heading-lower">MENDOZA CANTA POR LOS NIÑOS</span>
-                    </h2>
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/MendozaCantaPorLosNiños.png" alt="MendozaCantaPorLosNiños">
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        <small>Viernes 31 de Agosto, a las 21hs en el Auditorio Alameda.<br/>
-                            San Martin 2020  Ciudad de Mendoza.</small>
-                        <br/>
-
-                        <em>Festival  Solidario</em> <br/>
-                        <strong>“MENDOZA CANTA POR LOS NIÑOS”</strong><br/>
-                        Beneficiarios: <br/>
-                        Niños de los Barrios Olivares y Flores, <br/>
-                        de El Borbollón y del Desierto Lavalle.<br/>
-
-                        <em>Artistas Invitados:</em><br/>
-                        <strong>
-                        INI CEVERINO <br/>
-                        ANABEL MOLINA<br/>
-                        RAUL  LAYANA<br/>
-                        BALLET ALAMEDA
-                        </strong>
-
-
-
-
-
-<!--                        <em>Cupos limitados</em>.<br/>-->
-<!--                        Informes e Inscripción a la salida de cada Celebración.-->
-
-                    </strong>
-                    <br/><br/>
-                    <div class="card-footer text-left">
-                        <small > Canjea tu entrada por un JUGUETE <br/>
-                            Contactos y más información<br/>
-                            <a href="tel:2613735921">2613735921</a>
-                            <a href="tel:2616607484">2616607484</a>
-                            <a href="tel:4227044">4227044</a>
-                              <br/>
-
-                            ORGANIZA <br/> <em>FUNDACION ALAMEDA.</em>
-
-
-                        </small>
-<!--                         <div class="row">-->
-<!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
-<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->
-<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>-->
-<!--                             </div>-->
+<!--<section class="page-section fondo-evento py-3" id="enlace20181012">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Gupos Pequeños</span>-->
+<!--                        <span class="section-heading-lower">Segundo Enlace</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
 <!---->
 <!---->
-<!--                         </div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/enlace20181012.jpeg" alt="enlace20181012">-->
+<!---->
+<!---->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        Si no pudiste ir al ENLACE anterior.<br/>-->
+<!--                        !Tenes una nueva oportunidad!<br/>-->
+<!---->
+<!--                        Experimentá los beneficios de pertenecer a la familia de Dios.-->
+<!---->
+<!--                        <em> Este Viernes 12 de Octubre-->
+<!--                            a las 21:00 hs </em> <br/>-->
+<!---->
+<!--                        Aquí en La Alameda<br/>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--                    </strong>-->
+<!--                    <br/><br/>-->
+<!--                    <div class="card-footer text-center">-->
+<!--                        <small>-->
+<!--                            <em>Viernes 12 de Octubre <br/> a las 21:00 hs.</em><br/>-->
+<!--                            en el Auditorio de la Alameda, <br/>-->
+<!--                            San Martín 2020 de la Ciudad de Mendoza<br/>-->
+<!---->
+<!---->
+<!--                            Confirmanos tu asistencia, cuantas personas asistirán, para poder tener preparado tu lugar, enviándonos un mensaje con solo la palabra "ENLACE"-->
+<!--                            a Conectar Alameda (261 517-8081) o-->
+<!--                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=ENLACE"> por Whatsapp-->
+<!--                                <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>-->
+<!--                        </small>-->
+<!---->
+<!---->
+<!---->
+<!--                    </div>-->
+<!--                    <div class="card-footer row  text-center">-->
+<!---->
+<!--                        <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012" target="_blank" data-original-title="Compartilo en Facebook">-->
+<!--                                <i class="fab fi-social-facebook"></i>-->
+<!--                            </a>-->
+<!---->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012" target="_blank" data-original-title="Compartelo en Twitter">-->
+<!--                                <i class="fab fi-social-twitter"></i>-->
+<!--                            </a>-->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012" target="_blank" data-original-title="Google+">-->
+<!--                                <i class="fab fi-social-google-plus"></i>  </a>-->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"-->
+<!--                               href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181012"-->
+<!--                               target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>-->
+<!--                            </a>-->
+<!---->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<section class="page-section fondo-evento py-3" id="enlace20181005">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Enlace de</span>-->
+<!--                        <span class="section-heading-lower">Comunidad</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/comunidad.jpeg" alt="enlace20181005">-->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        Si todavía no tenes un grupo pequeño y <br/>-->
+<!--                        te interesaría participar de uno: <br/>-->
+<!--                        <em> ¡Vení a nuestro-->
+<!--                         Enlace de Comunidad </em> <br/>-->
+<!---->
+<!--                        y comenzá la aventura!<br/>-->
+<!--                        Te esperamos.-->
+<!---->
+<!---->
+<!---->
+<!--                    </strong>-->
+<!--                    <br/><br/>-->
+<!--                    <div class="card-footer text-center">-->
+<!--                        <small>-->
+<!--                            <em>Viernes 05 de Octubre <br/> a las 20,30 hs.</em><br/>-->
+<!--                            en el Auditorio de la Alameda, <br/>-->
+<!--                            San Martín 2020 de la Ciudad de Mendoza<br/>-->
+<!---->
+<!---->
+<!--                            Adelantamos tu asistencia enviándonos un mensaje con solo la palabra "ENLACE"-->
+<!--                            al 261 307-0445 o-->
+<!--                            <a href="https://api.whatsapp.com/send?phone=5492613070445&text=ENLACE"> por Whatsapp-->
+<!--                                <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>-->
+<!--                        </small>-->
+<!---->
+<!---->
+<!---->
+<!--                    </div>-->
+<!--                    <div class="card-footer row  text-center">-->
+<!---->
+<!--                            <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005" target="_blank" data-original-title="Compartilo en Facebook">-->
+<!--                                    <i class="fab fi-social-facebook"></i>-->
+<!--                                </a>-->
+<!---->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005" target="_blank" data-original-title="Compartelo en Twitter">-->
+<!--                                    <i class="fab fi-social-twitter"></i>-->
+<!--                                </a>-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005" target="_blank" data-original-title="Google+">-->
+<!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"-->
+<!--                                href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23enlace20181005"-->
+<!--                                target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>-->
+<!--                            </a>-->
+<!---->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<!--<section class="page-section fondo-evento py-3" id="bautismo20180929">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Taller de</span>-->
+<!--                        <span class="section-heading-lower">Bautismo </span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/BautismosGral.jpg" alt="bautismo20180929">-->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        Descubrí el significado vital de nuestra experiencia y cómo vivirla intensamente-->
+<!---->
+<!---->
+<!---->
+<!--                    </strong>-->
+<!--                    <br/><br/>-->
+<!--                    <div class="card-footer text-left">-->
+<!--                        <small>-->
+<!--                            <em>Sábado 29 de setiembre a las 17:00 hs</em>.<br/>-->
+<!--                            en La Alameda, San Martín 2020 de la Ciudad de Mendoza-->
+<!--                        </small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<!--<section class="page-section fondo-evento py-3" id="tallerMembresia20180929">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Taller de</span>-->
+<!--                        <span class="section-heading-lower">Membresía</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--<!--            <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px; margin-left: 200px; margin-top: 150px " class="img-fluid mt-5  ">-->
+<!---->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/templo_escalado.png" alt="tallerMembresia20180929">-->
+<!---->
+<!---->
+<!---->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        <small>Sábado 29 de setiembre a las 17 hs.<br/>-->
+<!--                            San Martin 2020  Ciudad de Mendoza.</small>-->
+<!--                        <br/>-->
+<!--                        <strong>-->
+<!--                            <em>El Pastor Fabián te espera para una chala de bienvenida a nuestra iglesia</em>-->
+<!---->
+<!--                            <br/>-->
+<!--                            Dejá de ser simplemente un asistente, convertite en un miembro de la Alameda-->
+<!--                        </strong>-->
+<!---->
+<!--                        <div class="card-footer text-left">-->
+<!--                            <small >-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--                            </small>-->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<section class="page-section fondo-evento py-3" id="coroCiudadMendoza">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Cultura </span>-->
+<!--                        <span class="section-heading-lower">Coro de la Ciudad de Mendoza</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/ccm.png" alt="coroCiudadMendoza">-->
+<!---->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        <small>Lunes 17 de setiembre a las 21 hs en el Auditorio Alameda.<br/>-->
+<!--                            San Martin 2020  Ciudad de Mendoza.</small>-->
+<!--                        <br/>-->
+<!--                        <strong>-->
+<!--                        <em>Disfrutemos de esta conversación con la cultura mendocina</em>-->
+<!--                        mientras mientras ayudamos a los que más necesitan.-->
+<!--                        <br/>-->
+<!--                        Este lunes recibiremos la visita del Coro de la Ciudad de Menoza presentando-->
+<!--                        su repertorio 2018, preparándose para su gira por Italia.<br/>-->
+<!--                        </strong>-->
+<!---->
+<!--                        <div class="card-footer text-left">-->
+<!--                            <small >-->
+<!---->
+<!--                                Participá de esta noche única y juntos colaboremos-->
+<!--                                con el trabajo de la Alameda en el desierto de Lavalle (proyectos para los niños de San José). <br/>-->
+<!---->
+<!--                             <br/>-->
+<!--                                100 <i class="fa fa-heart"></i>-->
+<!---->
+<!---->
+<!--                            </small>-->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<!--<section class="page-section fondo-evento py-3" id="siSoloPudieraImaginar">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Viernes de Cine </span>-->
+<!--                        <span class="section-heading-lower">La historia detrás de la canción</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/Imaginar2.png" alt="siSoloPudieraImaginar">-->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        <small>Viernes 7 de setiembre, a las 21hs y 23 hs en el Auditorio Alameda.<br/>-->
+<!--                            San Martin 2020  Ciudad de Mendoza.</small>-->
+<!--                        <br/>-->
+<!---->
+<!--                        <em>Viernes de Cine</em> <br/>-->
+<!--                        <strong>“Si solo PUDIERA IMAGINAR”</strong><br/>-->
+<!--                        Sumergiendonos en nuetros tema de mes: El Cielo <br/>-->
+<!--                        Este viernes proyectaremos un estreno del cine: <br/>-->
+<!--                        "Si solo pudiera imaginar", <br/>-->
+<!--                        la historia detrás de una de las canciones de mayor audiencia.<br/>-->
+<!--                        A las 21 y 23 hs en punto.<br/>-->
+<!--                        Equiparemos nuetros auditorio con una pantalla especial y sistema de cine-->
+<!--                        para vivir una gran noche.<br/>-->
+<!---->
+<!--                    <div class="card-footer text-left">-->
+<!--                        <small > Retira una entrada para vos y otra para tus amigos a la salida de cada celebración, canjeandolas por la-->
+<!--                            mínima colaboración de $10 por cada una y así ayudar a la renta del equipamiento especial-->
+<!---->
+<!--                        </small>-->
+<!---->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<!--<section class="page-section fondo-evento py-3" id="MendozaCantaPorLosNiños">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Festival  Solidario </span>-->
+<!--                        <span class="section-heading-lower">MENDOZA CANTA POR LOS NIÑOS</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/MendozaCantaPorLosNiños.png" alt="MendozaCantaPorLosNiños">-->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        <small>Viernes 31 de Agosto, a las 21hs en el Auditorio Alameda.<br/>-->
+<!--                            San Martin 2020  Ciudad de Mendoza.</small>-->
+<!--                        <br/>-->
+<!---->
+<!--                        <em>Festival  Solidario</em> <br/>-->
+<!--                        <strong>“MENDOZA CANTA POR LOS NIÑOS”</strong><br/>-->
+<!--                        Beneficiarios: <br/>-->
+<!--                        Niños de los Barrios Olivares y Flores, <br/>-->
+<!--                        de El Borbollón y del Desierto Lavalle.<br/>-->
+<!---->
+<!--                        <em>Artistas Invitados:</em><br/>-->
+<!--                        <strong>-->
+<!--                        INI CEVERINO <br/>-->
+<!--                        ANABEL MOLINA<br/>-->
+<!--                        RAUL  LAYANA<br/>-->
+<!--                        BALLET ALAMEDA-->
+<!--                        </strong>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--<!--                        <em>Cupos limitados</em>.<br/>-->
+<!--<!--                        Informes e Inscripción a la salida de cada Celebración.-->
+<!---->
+<!--                    </strong>-->
+<!--                    <br/><br/>-->
+<!--                    <div class="card-footer text-left">-->
+<!--                        <small > Canjea tu entrada por un JUGUETE <br/>-->
+<!--                            Contactos y más información<br/>-->
+<!--                            <a href="tel:2613735921">2613735921</a>-->
+<!--                            <a href="tel:2616607484">2616607484</a>-->
+<!--                            <a href="tel:4227044">4227044</a>-->
+<!--                              <br/>-->
+<!---->
+<!--                            ORGANIZA <br/> <em>FUNDACION ALAMEDA.</em>-->
+<!---->
+<!---->
+<!--                        </small>-->
+<!--<!--                         <div class="row">-->
+<!--<!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->
+<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>-->
+<!--<!--                             </div>-->
+<!--<!---->
+<!--<!---->
+<!--<!--                         </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
 <!--<section class="page-section fondo-evento py-3" id="campaGEX">-->
 <!--    <div class="container">-->
@@ -1075,8 +1176,8 @@ $version = date('YmdHi');
 <!---->
 <!---->
 <!---->
-<!--<!--                        <em>Cupos limitados</em>.<br/>-->-->
-<!--<!--                        Informes e Inscripción a la salida de cada Celebración.-->-->
+<!--<!--                        <em>Cupos limitados</em>.<br/>-->
+<!--<!--                        Informes e Inscripción a la salida de cada Celebración.-->
 <!---->
 <!--                    </strong>-->
 <!--                    <br/><br/>-->
@@ -1085,14 +1186,14 @@ $version = date('YmdHi');
 <!--                            Informes e Inscripción a la salida de cada Celebración.-->
 <!---->
 <!--                            </small>-->
-<!--<!--                         <div class="row">-->-->
-<!--<!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->-->
-<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->-->
-<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>-->-->
-<!--<!--                             </div>-->-->
-<!--<!---->-->
-<!--<!---->-->
-<!--<!--                         </div>-->-->
+<!--<!--                         <div class="row">-->
+<!--<!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->
+<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>-->
+<!--<!--                             </div>-->
+<!--<!---->
+<!--<!---->
+<!--<!--                         </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
@@ -1124,27 +1225,27 @@ $version = date('YmdHi');
 <!--                    </strong>-->
 <!--                    <br/><br/>-->
 <!--                    <div class="card-footer text-left">-->
-<!--<!--                        <small > Taller de bautismo de preadolescentes GEX!: <br/>-->-->
-<!--<!--                            <p style="text-indent: 4em">-->-->
-<!--<!--                            Estimada familia si tu hijo o hija desea dar este importante  paso de-->-->
-<!--<!--                            compromiso en su crecimiento, los esperamos el-->-->
-<!--<!--                            <em> sábado 19 de mayo a las 17:00 hs</em> en el edificio educacional,-->-->
-<!--<!--                            San Martín  2020 de la Ciudad de Mendoza. <br/>-->-->
-<!--<!--                            Es para todos los chicos que estén en 4° a 7°. <br/>-->-->
-<!--<!--                            Se solicita asistir acompañado de un adulto responsable, los esperamos <br/>-->-->
-<!--<!---->-->
-<!--<!--                            </p>-->-->
-<!--<!--                            <strong style="margin-left: 33%">Pastor Sebastián</strong>-->-->
-<!--<!---->-->
-<!--<!--                            </small>-->-->
-<!--<!--                         <div class="row">-->-->
-<!--<!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->-->
-<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->-->
-<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>-->-->
-<!--<!--                             </div>-->-->
-<!--<!---->-->
-<!--<!---->-->
-<!--<!--                         </div>-->-->
+<!--<!--                        <small > Taller de bautismo de preadolescentes GEX!: <br/>-->
+<!--<!--                            <p style="text-indent: 4em">-->
+<!--<!--                            Estimada familia si tu hijo o hija desea dar este importante  paso de-->
+<!--<!--                            compromiso en su crecimiento, los esperamos el-->
+<!--<!--                            <em> sábado 19 de mayo a las 17:00 hs</em> en el edificio educacional,-->
+<!--<!--                            San Martín  2020 de la Ciudad de Mendoza. <br/>-->
+<!--<!--                            Es para todos los chicos que estén en 4° a 7°. <br/>-->
+<!--<!--                            Se solicita asistir acompañado de un adulto responsable, los esperamos <br/>-->
+<!--<!---->
+<!--<!--                            </p>-->
+<!--<!--                            <strong style="margin-left: 33%">Pastor Sebastián</strong>-->
+<!--<!---->
+<!--<!--                            </small>-->
+<!--<!--                         <div class="row">-->
+<!--<!--                             <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-facebook-f"></i></a>-->
+<!--<!--                                 <a target="_blank" class="btn " href="https://www.facebook.com/CongresoNacionaldeMujeres"><i class="fab fa-instagram"></i></a>-->
+<!--<!--                             </div>-->
+<!--<!---->
+<!--<!---->
+<!--<!--                         </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
@@ -1158,7 +1259,7 @@ $version = date('YmdHi');
 <!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
 <!--                    <h2 class="section-heading mb-0">-->
 <!--                        <span class="section-heading-upper">3° Congreso de Mujeres </span>-->
-<!--                        <!--                        <span class="section-heading-lower">Membresía</span>-->-->
+<!--                        <!--                        <span class="section-heading-lower">Membresía</span>-->
 <!--                    </h2>-->
 <!--                </div>-->
 <!--            </div>-->
@@ -1209,7 +1310,7 @@ $version = date('YmdHi');
 <!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
 <!--                    <h2 class="section-heading mb-0">-->
 <!--                        <span class="section-heading-upper">Fiesta de Jóvenes </span>-->
-<!--<!--                        <span class="section-heading-lower">Membresía</span>-->-->
+<!--<!--                        <span class="section-heading-lower">Membresía</span>-->
 <!--                    </h2>-->
 <!--                </div>-->
 <!--            </div>-->
@@ -1240,7 +1341,7 @@ $version = date('YmdHi');
 <!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
 <!--                    <h2 class="section-heading mb-0">-->
 <!--                        <span class="section-heading-upper">Charlas de Membresía</span>-->
-<!--<!--                        <span class="section-heading-lower">Membresía</span>-->-->
+<!--<!--                        <span class="section-heading-lower">Membresía</span>-->
 <!--                    </h2>-->
 <!--                </div>-->
 <!--            </div>-->
