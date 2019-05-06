@@ -90,6 +90,139 @@ $version = date('YmdHi');
 <div class="container">
     <div class="row bg-white ">
         <div class="col-lg-8 col-md-10 mx-auto ">
+            <div class="post-preview" id="cafeteria_alameda">
+
+                <h2 class="post-title">
+                    Cafetería de la Alameda
+                </h2>
+                <h3 class="post-subtitle">
+                    En este espacio de compañerismo, encontrarás café seleccionado y
+                    exquisita pastelería para compartir un placentero momento antes y
+                    después de cada Celebración. <br/>
+                    <small>En el primer piso del portal</small>
+
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 05 de mayo de 2019
+
+
+                    <a class="shared-link waves-effect waves-light"
+                       rel="tooltip" title="Compartilo en Facebook"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23cafeteria_alameda" target="_blank" data-original-title="Compartilo en Facebook">
+                        <i class="fab fi-social-facebook fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip"
+                       title="Compartelo en Twitter"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23cafeteria_alameda"
+                       target="_blank" data-original-title="Compartelo en Twitter">
+                        <i class="fab fi-social-twitter fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="whatsapp://send?text=https%3A//www.iglesialameda.com/alamedaaldia.php%23cafeteria_alameda"
+                       target="_blank" data-original-title="Por Whatsapp">
+                        <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+<!--                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>-->
+                </p>
+            </div>
+            <hr>
+
+            <div class="post-preview" id="manos_en_africa">
+
+                <h2 class="post-title">
+                    Nuestras manos en África
+                </h2>
+                <h3 class="post-subtitle">
+                    Desde hace varios años una de las iniciativas maravillosas que
+                    desarrollamos en Guinea Bissau es apadrinar jóvenes guineanos para
+                    que puedan avanzar en sus estudios universitarios, ser discipulados y así
+                    convertirse en líderes de influencia en su nación. <br/>
+                    En los próximos días renovaremos esta empresa de bondad. <br/>
+                    Preparate para participar
+
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 05 de mayo de 2019
+
+
+                    <a class="shared-link waves-effect waves-light"
+                       rel="tooltip" title="Compartilo en Facebook"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23manos_en_africa" target="_blank" data-original-title="Compartilo en Facebook">
+                        <i class="fab fi-social-facebook fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip"
+                       title="Compartelo en Twitter"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23manos_en_africa"
+                       target="_blank" data-original-title="Compartelo en Twitter">
+                        <i class="fab fi-social-twitter fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="whatsapp://send?text=https%3A//www.iglesialameda.com/alamedaaldia.php%23manos_en_africa"
+                       target="_blank" data-original-title="Por Whatsapp">
+                        <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+<!--                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>-->
+                </p>
+            </div>
+            <hr>
+
+            <div class="post-preview" id="madurez_mayo">
+
+                <h2 class="post-title">
+                    Segundo Paso
+                </h2>
+                <h3 class="post-subtitle">
+                    Segundo Sábado de Mayo. Desarrolla hábitos de madurez.
+                    De 17:30 a 20:00 hs.
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 05 de mayo de 2019
+
+
+                        <a class="shared-link waves-effect waves-light"
+                           rel="tooltip" title="Compartilo en Facebook"
+                           data-placement="bottom" data-toggle="tooltip"
+                           href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23madurez_mayo" target="_blank" data-original-title="Compartilo en Facebook">
+                            <i class="fab fi-social-facebook fa-2x"></i>
+                        </a>
+
+                        <a class="shared-link waves-effect waves-light" rel="tooltip"
+                           title="Compartelo en Twitter"
+                           data-placement="bottom" data-toggle="tooltip"
+                           href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23madurez_mayo"
+                           target="_blank" data-original-title="Compartelo en Twitter">
+                            <i class="fab fi-social-twitter fa-2x"></i>
+                        </a>
+
+                        <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                           data-placement="bottom" data-toggle="tooltip"
+                           href="whatsapp://send?text=https%3A//www.iglesialameda.com/alamedaaldia.php%23madurez_mayo"
+                           target="_blank" data-original-title="Por Whatsapp">
+                            <i class="fab fa-whatsapp fa-2x"></i>
+                        </a>
+
+
+
+                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>
+                </p>
+            </div>
+            <hr>
 
             <div class="post-preview" id="crecimiento_mayo">
 
@@ -210,6 +343,14 @@ $version = date('YmdHi');
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script src="js/clean-blog.min.js"></script>
+<!-- Propios JavaScript -->
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
 
 </body>
 

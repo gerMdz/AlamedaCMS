@@ -68,7 +68,7 @@ $version = date('YmdHi');
 <?php include ('../internos/nav.php'); ?>
 
 <section class="page-section container cta bg-gris " id="">
-    <div class="title">
+    <div class="title text_align-center">
         <h1>
             <img src="../imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid ">
         Atravesá y Completá el <br/>
@@ -77,6 +77,8 @@ $version = date('YmdHi');
         </h1>
     </div>
     <div class="row">
+        <div class="col-md-2 mx-auto mb-3">
+        </div>
         <div class="col-md-4 mx-auto mb-3">
             <div class="camino-box">
                 <h3><i class="fas fa-water fa-2x mb-1"></i>
@@ -87,17 +89,18 @@ $version = date('YmdHi');
                     Dá el paso adelante  <br/>
                     y vivilo.
                 </h4>
-                <p> Sábado 04 de mayo, 17:30 hs</p>
-                <strong>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
-                    (261 517 8081)
-                    <br/>
-                    con el texto <strong>Bautismo</strong> o por  <br/>
-                    <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Bautismo" class="text-realce-verde"> por Whatsapp
-                        <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
-                </strong>
+                <p> Sábado 04 de mayo, 17:30 hs
+
+
+                </p>
+                <button class="btn btn-link col-sm-12">
+                    <i class="fas fa-shoe-prints  pull-right"></i>
+                </button>
+
+
             </div>
         </div>
-        <div class="col-md-4 mx-auto mb-3">
+        <div class="col-md-4 mx-auto mb-3 ">
             <div class="camino-box">
                 <h3><i class="far fa-id-card fa-2x mb-1"></i>
 
@@ -106,19 +109,23 @@ $version = date('YmdHi');
                 <h4>
                     Sumate, <br/> se miembro de la Alameda
                 </h4>
-                <p> Sábado 04 de mayo, 17:30 hs</p>
-                <strong>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
-                    (261 517 8081)
-                    <br/>
-                    con el texto <strong>Membresía</strong> o por  <br/>
-                    <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Membresía" class="text-realce-verde"> por Whatsapp
-                        <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
-                </strong>
+                <p> Sábado 04 de mayo, 17:30 hs
+                </p>
+                <button class="btn btn-link col-sm-12">
+                    <i class="fas fa-shoe-prints  pull-right"></i>
+                </button>
+
+
+
+
             </div>
+        </div>
+        <div class="col-md-2 mx-auto mb-3">
         </div>
         <div class="col-md-4 mx-auto mb-3">
             <div class="camino-box">
-                <h3><i class="fas fa-book fa-2x mb-1"></i>
+                <h3><i class="fas fa-bible fa-2x mb-1"></i>
+
 
                     Madurez
                 </h3>
@@ -126,6 +133,13 @@ $version = date('YmdHi');
                     Desarrolla <br/> los hábitos de madurez
                 </h4>
                 <p> Sábado 11 de mayo, 17:30 hs</p>
+                <button class="btn btn-outline-alameda" type="button"
+                        data-toggle="collapse" data-target="#adelantaMadurez" aria-expanded="false" aria-controls="collapseExample">
+                    Voy a asistir
+                </button>
+
+                <div class="collapse" id="adelantaMadurez">
+
                 <strong>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
                     (261 517 8081)
                     <br/>
@@ -134,6 +148,7 @@ $version = date('YmdHi');
                         <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
                 </strong>
 
+                </div>
             </div>
         </div>
         <div class="col-md-4 mx-auto mb-3">
@@ -146,6 +161,12 @@ $version = date('YmdHi');
                     Descubrí <br/>tu forma única de servir
                 </h4>
                 <p> Sábado 18 de mayo, 17:30 hs</p>
+                <button class="btn btn-outline-alameda" type="button"
+                        data-toggle="collapse" data-target="#adelantaServicio" aria-expanded="false" aria-controls="collapseExample">
+                    Voy a asistir
+                </button>
+
+                <div class="collapse" id="adelantaServicio">
                 <strong>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
                     (261 517 8081)
                     <br/>
@@ -153,6 +174,7 @@ $version = date('YmdHi');
                     <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Servicio" class="text-realce-verde"> por Whatsapp
                         <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
                 </strong>
+                </div>
             </div>
         </div>
         <div class="col-md-4 mx-auto mb-3">
@@ -165,6 +187,12 @@ $version = date('YmdHi');
                     Equipate <br/> para la misión
                 </h4>
                 <p > Sábado 25 de mayo, 17:30 hs</p>
+                <button class="btn btn-outline-alameda" type="button"
+                        data-toggle="collapse" data-target="#adelantaMisiones" aria-expanded="false" aria-controls="collapseExample">
+                    Voy a asistir
+                </button>
+
+                <div class="collapse" id="adelantaMisiones">
                 <strong>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
                     (261 517 8081)
                     <br/>
@@ -172,6 +200,7 @@ $version = date('YmdHi');
                     <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Misiones" class="text-realce-verde"> por Whatsapp
                         <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
                 </strong>
+                </div>
             </div>
         </div>
     </div>

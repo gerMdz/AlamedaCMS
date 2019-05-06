@@ -126,8 +126,25 @@ a.text-point-sec:hover {
     color:#f0e7d1;
     background-color:#438789;
     border-color:#007bff}
-.btn-alameda:hover{color:#f0e7d1;background-color:#438789;border-color:#73aba2}
+.btn-alameda:hover{color:#438789;background-color:#f0e7d1;border-color:#73aba2}
 .btn-alameda.focus,.btn-alameda:focus{box-shadow:0 0 0 .2rem rgba(46,46,46,.5)}
+
+
+.btn-outline-alameda{
+    color:#FFFFFF;
+    background-color:#f0e7d1;
+    border-color:#FFFFFF}
+.btn-outline-alameda:hover{
+    color:#438789;
+    background-color: transparent;
+    border-color:#73aba2;
+    box-shadow:0 0 0 .2rem rgba(255, 255, 255, 0.5)
+}
+.btn-outline-alameda.focus,.btn-outline-alameda:focus{
+    color:#438789;
+    background-color: #ffffff;
+    box-shadow:0 0 0 .2rem rgba(255, 255, 255, 0.5)
+}
 
 .img-punto  {
 
@@ -845,4 +862,14 @@ body.frontal{
 {
     font-weight: 300 !important;
 
+}
+
+.shared-link {
+    display: block;
+    padding: 0.5rem;
+}
+
+.finaliza{
+    margin: .375rem;
+    padding: 10px 22px;
 }

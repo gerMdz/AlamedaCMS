@@ -433,12 +433,13 @@
         <div class="col-sm-7 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
                         <div class="center-element btn btn-blue rotar90">
-                            2° Timoteo 1:10 (DHH)
+                            1° Corintios 13:7 (BAD)
                         </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        Esa bondad se ha mostrado gloriosamente ahora en Cristo Jesús nuestro Salvador, que destruyó el poder de la muerte y que, por el evangelio, sacó a la luz la vida inmortal.
+                        El que ama ... cuéstele lo que le cueste;
+                        siempre confía en la persona amada, espera de ella lo mejor y la defiende con firmeza
                         "
                     </h2>
                         </div>
