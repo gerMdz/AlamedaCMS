@@ -231,8 +231,11 @@ include '../internos/head_series.php';
                             <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
                                 <iframe  src="https://www.youtube.com/embed/ZDAOX4TCviM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
-                        <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
-                            <iframe  src="https://www.youtube.com/embed/1D0dSn8-Rpw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
+                                <iframe  src="https://www.youtube.com/embed/1D0dSn8-Rpw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
+                                <iframe src="https://www.youtube.com/embed/enFIuqusoYc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
 
 
