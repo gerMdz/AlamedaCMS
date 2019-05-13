@@ -10,12 +10,12 @@ $version = date('YmdHi');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Iglesia Alameda,
-    Bautismo, Sumate, Una Aventura Inolvidable, Una Aventura de Fe, Super Domingo,
+    Dr Clank, Madurez, Avanza, Bautismo, Sumate, Una Aventura Inolvidable,
      Eventos Alameda, Cultura Mendoza">
     <meta name="author" content="Iglesia de la Alameda">
 
     <meta property="og:title" content="Eventos Iglesia Alameda,
-   Bautismo, Sumate, Una Aventura Inolvidable , Una Aventura de Fe, Super Domingo,
+   Dr Clank, Madurez, Avanza, Bautismo, Sumate, Una Aventura Inolvidable, 
       Eventos Alameda, Cultura Mendoza" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
@@ -61,6 +61,141 @@ $version = date('YmdHi');
 </h1>
 
 <?php include ('nav.php'); ?>
+
+<section class="page-section fondo-evento py-3" id="domingo_20190512">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Domingo</span>
+                        <span class="section-heading-lower">Haciendo el bien!</span>
+                    </h2>
+                </div>
+            </div>
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/domingo_20190512.jpg" alt="domingo_20190512">
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Este domingo no te lo podes perder<br/>
+                        <i>"No dejen que el mal los venza, mas bien venzan el mal </i><br/>
+                        <b>haciendo el bien"</b>
+
+
+                        <div class="card-footer text-center">
+                            <small>
+                                <em>Domingo 12 de mayo <br/> a las 11 y 19 hs
+                                    </em><br/>
+
+                                Te esperamos en Av. San Martin 2020 de la Ciudad de Mendoza.<br/>
+
+                                <br/>
+                                <i>Contaremos con la participación especial de Dr. Clank!</i>
+                            </small>
+
+                        </div>
+                        <div class="card-footer row  text-center">
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23domingo_20190512" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23domingo_20190512"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23domingo_20190512"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section fondo-evento py-3" id="avanza_20190511">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Madurez</span>
+                        <span class="section-heading-lower">AVANZA</span>
+                    </h2>
+                </div>
+            </div>
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/avanza_20190511.jpg" alt="avanza_20190511">
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Si ya diste el paso 1 de sumarte como miembro de la Alameda, ahora viene lo mejor<br/>
+                        <b>¿Te atreves a avanzar? </b><br/>
+                        Da el paso adelante y <br/>
+                        <b>descubri los habitos que te llevarán a la madurez</b><br/>
+                        Veni a esta <b>charla</b> y enterate la aventura de crecer.
+
+
+
+                        <div class="card-footer text-center">
+                            <small>
+                                <em>Sábado 11 de mayo <br/> desde las 17:30 hs.
+                                    hasta las 20:00</em><br/>
+
+                                Te esperamos en Av. San Martin 2020 de la Ciudad de Mendoza.<br/>
+                                Confirma tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                (261 517 8081)
+                                <br/>
+                                con el texto <strong>Madurez</strong> o por  <br/>
+                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Madurez" class="text-realce-verde"> por Whatsapp
+                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+
+                            </small>
+
+                        </div>
+                        <div class="card-footer row  text-center">
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23avanza_20190511" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23avanza_20190511"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23avanza_20190511"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="page-section fondo-evento py-3" id="sumate_20190504">
     <div class="container">
@@ -633,135 +768,135 @@ $version = date('YmdHi');
     </div>
 </section>
 
-<section class="page-section fondo-evento py-3" id="membresia20181019">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Comienza tu Aventura</span>
-                        <span class="section-heading-lower">Se Miembro de La Alameda</span>
-                    </h2>
-                </div>
-            </div>
+<!--<section class="page-section fondo-evento py-3" id="membresia20181019">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Comienza tu Aventura</span>-->
+<!--                        <span class="section-heading-lower">Se Miembro de La Alameda</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!---->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/genericaPasos.png" alt="membresia20181019">-->
+<!---->
+<!---->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        Te invitamos a un momento profundamente importante<br/>-->
+<!--                        El Pastor Fabián convoca a todos los que ya se han bautizado, aquí o en otro lugar, a una charla de bienvenida a nuevos miembros.<br/>-->
+<!--                        Esta es tu oportunidad de realizar tu pacto de membresía e involucrarse en la vida de La Alameda.-->
+<!--                        <br/>-->
+<!---->
+<!---->
+<!--                        <div class="card-footer text-center">-->
+<!--                            <small>-->
+<!--                                <em>Viernes 19 de Octubre <br/> a las 20:00 hs.</em><br/>-->
+<!--                                en el Auditorio de la Alameda, <br/>-->
+<!--                                San Martín 2020 de la Ciudad de Mendoza<br/>-->
+<!---->
+<!---->
+<!---->
+<!--                            </small>-->
+<!---->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                        <div class="card-footer row  text-center">-->
+<!---->
+<!--                            <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019" target="_blank" data-original-title="Compartilo en Facebook">-->
+<!--                                    <i class="fab fi-social-facebook"></i>-->
+<!--                                </a>-->
+<!---->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019" target="_blank" data-original-title="Compartelo en Twitter">-->
+<!--                                    <i class="fab fi-social-twitter"></i>-->
+<!--                                </a>-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019" target="_blank" data-original-title="Google+">-->
+<!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"-->
+<!--                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019"-->
+<!--                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>-->
+<!--                                </a>-->
+<!---->
+<!---->
+<!---->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
-
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/genericaPasos.png" alt="membresia20181019">
-
-
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        Te invitamos a un momento profundamente importante<br/>
-                        El Pastor Fabián convoca a todos los que ya se han bautizado, aquí o en otro lugar, a una charla de bienvenida a nuevos miembros.<br/>
-                        Esta es tu oportunidad de realizar tu pacto de membresía e involucrarse en la vida de La Alameda.
-                        <br/>
-
-
-                        <div class="card-footer text-center">
-                            <small>
-                                <em>Viernes 19 de Octubre <br/> a las 20:00 hs.</em><br/>
-                                en el Auditorio de la Alameda, <br/>
-                                San Martín 2020 de la Ciudad de Mendoza<br/>
-
-
-
-                            </small>
-
-
-
-                        </div>
-                        <div class="card-footer row  text-center">
-
-                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019" target="_blank" data-original-title="Compartilo en Facebook">
-                                    <i class="fab fi-social-facebook"></i>
-                                </a>
-
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019" target="_blank" data-original-title="Compartelo en Twitter">
-                                    <i class="fab fi-social-twitter"></i>
-                                </a>
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019" target="_blank" data-original-title="Google+">
-                                    <i class="fab fi-social-google-plus"></i>  </a>
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
-                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23membresia20181019"
-                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
-                                </a>
-
-
-
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="page-section fondo-evento py-3" id="bautismo20181019">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Experimenta</span>
-                        <span class="section-heading-lower">El Bautismo de Jesús</span>
-                    </h2>
-                </div>
-            </div>
-
-
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/genericaPasos.png" alt="bautismo20181019">
-
-
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        ¿Querés saber cómo experimentar el bautismo de Jesús?<br/>
-                        Venía una charla especial de bautismo.<br/>
-                        ¡Y atrevete a este paso inicial en la aventura más grande la vida!
-                        <br/>
-
-
-                    <div class="card-footer text-center">
-                        <small>
-                            <em>Viernes 19 de Octubre <br/> a las 20:00 hs.</em><br/>
-                            en el Auditorio de la Alameda, <br/>
-                            San Martín 2020 de la Ciudad de Mendoza<br/>
-
-
-
-                        </small>
-
-
-
-                    </div>
-                    <div class="card-footer row  text-center">
-
-                        <div class="col-sm-12 d-flex flex-row justify-content-center ">
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019" target="_blank" data-original-title="Compartilo en Facebook">
-                                <i class="fab fi-social-facebook"></i>
-                            </a>
-
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019" target="_blank" data-original-title="Compartelo en Twitter">
-                                <i class="fab fi-social-twitter"></i>
-                            </a>
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019" target="_blank" data-original-title="Google+">
-                                <i class="fab fi-social-google-plus"></i>  </a>
-                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
-                               href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019"
-                               target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
-                            </a>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--<section class="page-section fondo-evento py-3" id="bautismo20181019">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Experimenta</span>-->
+<!--                        <span class="section-heading-lower">El Bautismo de Jesús</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!---->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/genericaPasos.png" alt="bautismo20181019">-->
+<!---->
+<!---->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        ¿Querés saber cómo experimentar el bautismo de Jesús?<br/>-->
+<!--                        Venía una charla especial de bautismo.<br/>-->
+<!--                        ¡Y atrevete a este paso inicial en la aventura más grande la vida!-->
+<!--                        <br/>-->
+<!---->
+<!---->
+<!--                    <div class="card-footer text-center">-->
+<!--                        <small>-->
+<!--                            <em>Viernes 19 de Octubre <br/> a las 20:00 hs.</em><br/>-->
+<!--                            en el Auditorio de la Alameda, <br/>-->
+<!--                            San Martín 2020 de la Ciudad de Mendoza<br/>-->
+<!---->
+<!---->
+<!---->
+<!--                        </small>-->
+<!---->
+<!---->
+<!---->
+<!--                    </div>-->
+<!--                    <div class="card-footer row  text-center">-->
+<!---->
+<!--                        <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019" target="_blank" data-original-title="Compartilo en Facebook">-->
+<!--                                <i class="fab fi-social-facebook"></i>-->
+<!--                            </a>-->
+<!---->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019" target="_blank" data-original-title="Compartelo en Twitter">-->
+<!--                                <i class="fab fi-social-twitter"></i>-->
+<!--                            </a>-->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019" target="_blank" data-original-title="Google+">-->
+<!--                                <i class="fab fi-social-google-plus"></i>  </a>-->
+<!--                            <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"-->
+<!--                               href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23bautismo20181019"-->
+<!--                               target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>-->
+<!--                            </a>-->
+<!---->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
 <!--<section class="page-section fondo-evento py-3" id="enlace20181012">-->
 <!--    <div class="container">-->

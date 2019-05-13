@@ -433,13 +433,12 @@
         <div class="col-sm-7 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
                         <div class="center-element btn btn-blue rotar90">
-                            1° Corintios 13:7 (BAD)
+                            Romanos 12:14-21 (NTV)
                         </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        El que ama ... cuéstele lo que le cueste;
-                        siempre confía en la persona amada, espera de ella lo mejor y la defiende con firmeza
+                        No dejen que el mal los venza, más bien venzan el mal haciendo el bien
                         "
                     </h2>
                         </div>
