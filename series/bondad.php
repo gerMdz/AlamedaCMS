@@ -237,7 +237,9 @@ include '../internos/head_series.php';
                             <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
                                 <iframe src="https://www.youtube.com/embed/enFIuqusoYc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
-
+                        <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
+                            <iframe  src="https://www.youtube.com/embed/tH28nSYJBkc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
 
                         <div class="col-sm-12 mb-2 story-content">
 
