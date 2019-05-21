@@ -433,12 +433,17 @@
         <div class="col-sm-7 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
                         <div class="center-element btn btn-blue rotar90">
-                            Romanos 12:14-21 (NTV)
+                            Oseas 10:12 (PDT)
                         </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        No dejen que el mal los venza, más bien venzan el mal haciendo el bien
+                        Siembren bondad para ustedes mismos;
+                        recojan fiel amor.
+                        Cultiven su suelo virgen,
+                        pues es el momento de buscar al SEÑOR.
+                        Él vendrá y hará que sobre ti
+                        llueva la bondad.
                         "
                     </h2>
                         </div>

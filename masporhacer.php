@@ -10,12 +10,12 @@ $version = date('YmdHi');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Iglesia Alameda,
-    Dr Clank, Madurez, Avanza, Bautismo, Sumate, Una Aventura Inolvidable,
+    Marcelo Fernandez, Servir, Dr Clank, Madurez, Avanza,
      Eventos Alameda, Cultura Mendoza">
     <meta name="author" content="Iglesia de la Alameda">
 
     <meta property="og:title" content="Eventos Iglesia Alameda,
-   Dr Clank, Madurez, Avanza, Bautismo, Sumate, Una Aventura Inolvidable, 
+   Marcelo Fernandez, Servir, Dr Clank, Madurez, Avanza,
       Eventos Alameda, Cultura Mendoza" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
@@ -61,6 +61,143 @@ $version = date('YmdHi');
 </h1>
 
 <?php include ('nav.php'); ?>
+
+<section class="page-section fondo-evento py-3" id="domingo_20190519">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Domingo</span>
+                        <span class="section-heading-lower">Siembren bondad!</span>
+                    </h2>
+                </div>
+            </div>
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/domingo_20190519.jpg" alt="domingo_20190519">
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Este domingo #RespiraBondad<br/>
+                        <b>"Siembren bondad </b><br/>
+                        <i>para ustedes mismos; recojan fiel amor..., Él vendrá y hará que </i><br/>
+                        <b>sobre ti llueva la bondad"</b>
+
+
+                        <div class="card-footer text-center">
+                            <small>
+                                <em>Domingo 19 de mayo <br/> a las 11 y 19 hs
+                                </em><br/>
+
+                                Te esperamos en Av. San Martin 2020 de la Ciudad de Mendoza.<br/>
+
+                                <br/>
+                                <i>Contaremos con la participación especial de <b>Marcelo Fernandez</b></i>
+                            </small>
+
+                        </div>
+                        <div class="card-footer row  text-center">
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23domingo_20190519" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23domingo_20190519"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text= Te esperamos, https%3A//www.iglesialameda.com/masporhacer.php%23servir_20190518%20, no te lo podes perder"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section fondo-evento py-3" id="servir_20190518">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Se más que un asistente</span>
+                        <span class="section-heading-lower">Sirve!</span>
+                    </h2>
+                </div>
+            </div>
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/servir_20190518.jpg" alt="servir_20190518">
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Si ya diste el paso 2 de compromiso con los hábitos de madurez,<br/>
+                        ahora viene lo mejor <br/>
+                        <b>¿Te atreves a avanzar?</b><br/>
+                        Da el paso adelante y <br/>
+                        <b>descubri tu forma unica para servir</b><br/>
+                        Veni a esta charla y enterate de la aventura de ser un voluntario en la Alameda.
+
+
+
+                        <div class="card-footer text-center">
+                            <small>
+                                <em>Sábado 18 de mayo <br/> desde las 17:30 hs.
+                                    hasta las 20:00</em><br/>
+
+                                Te esperamos en Av. San Martin 2020 de la Ciudad de Mendoza.<br/>
+                                Confirma tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                (261 517 8081)
+                                <br/>
+                                con el texto <strong>Servir</strong> o por  <br/>
+                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Servir" class="text-realce-verde"> por Whatsapp
+                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+
+                            </small>
+
+                        </div>
+                        <div class="card-footer row  text-center">
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23servir_20190518" target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23servir_20190518"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text= Esto te podría interesar https%3A//www.iglesialameda.com/masporhacer.php%23servir_20190518"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="page-section fondo-evento py-3" id="domingo_20190512">
     <div class="container">
@@ -635,138 +772,138 @@ $version = date('YmdHi');
     </div>
 </section>
 
-<section class="page-section fondo-evento py-3" id="cantapueblo20181108">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Anfitriones</span>
-                        <span class="section-heading-lower">cantapueblo 2018</span>
-                    </h2>
-                </div>
-            </div>
+<!--<section class="page-section fondo-evento py-3" id="cantapueblo20181108">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Anfitriones</span>-->
+<!--                        <span class="section-heading-lower">cantapueblo 2018</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!---->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/cantapueblo.png" alt="cantapueblo20181108">-->
+<!---->
+<!---->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        Este jueves seremos anfitriones de la fiesta coral de América,<br/>-->
+<!--                        <b>Cantapueblo 2018</b>.<br/>-->
+<!--                        Celebrendo su 30 aniversario<br/>-->
+<!--                        desde las 21:00 hs, participarán <br/>-->
+<!--                        <strong>Nuestro Coral Alameda,</strong><br/>-->
+<!--                        <strong>Coral Takipayai,</strong><br/>-->
+<!--                        <strong>Coro Pallay <small> (Salta)</small> ,</strong><br/>-->
+<!--                        <strong>Coro Italiano.</strong><br/>-->
+<!---->
+<!---->
+<!--                        <div class="card-footer text-center">-->
+<!--                            <small>-->
+<!--                                <em>Jueves 08 de Noviembre <br/> a las 21:00 hs.</em><br/>-->
+<!---->
+<!--                                en el Auditorio de la Alameda, <br/>-->
+<!--                                San Martín 2020 de la Ciudad de Mendoza<br/>-->
+<!---->
+<!--                            </small>-->
+<!---->
+<!--                        </div>-->
+<!--                        <div class="card-footer row  text-center">-->
+<!---->
+<!--                            <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom"-->
+<!--                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23cantapueblo20181108"-->
+<!--                                   target="_blank" data-original-title="Compartilo en Facebook">-->
+<!--                                    <i class="fab fi-social-facebook"></i>-->
+<!--                                </a>-->
+<!---->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom"-->
+<!--                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23cantapueblo20181108"-->
+<!--                                   target="_blank" data-original-title="Compartelo en Twitter">-->
+<!--                                    <i class="fab fi-social-twitter"></i>-->
+<!--                                </a>-->
+<!--                                <!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Google+">-->-->
+<!--                                <!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"-->
+<!--                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23cantapueblo20181108"-->
+<!--                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>-->
+<!--                                </a>-->
+<!---->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
-
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/masporhacer/cantapueblo.png" alt="cantapueblo20181108">
-
-
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        Este jueves seremos anfitriones de la fiesta coral de América,<br/>
-                        <b>Cantapueblo 2018</b>.<br/>
-                        Celebrendo su 30 aniversario<br/>
-                        desde las 21:00 hs, participarán <br/>
-                        <strong>Nuestro Coral Alameda,</strong><br/>
-                        <strong>Coral Takipayai,</strong><br/>
-                        <strong>Coro Pallay <small> (Salta)</small> ,</strong><br/>
-                        <strong>Coro Italiano.</strong><br/>
-
-
-                        <div class="card-footer text-center">
-                            <small>
-                                <em>Jueves 08 de Noviembre <br/> a las 21:00 hs.</em><br/>
-
-                                en el Auditorio de la Alameda, <br/>
-                                San Martín 2020 de la Ciudad de Mendoza<br/>
-
-                            </small>
-
-                        </div>
-                        <div class="card-footer row  text-center">
-
-                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom"
-                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23cantapueblo20181108"
-                                   target="_blank" data-original-title="Compartilo en Facebook">
-                                    <i class="fab fi-social-facebook"></i>
-                                </a>
-
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom"
-                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23cantapueblo20181108"
-                                   target="_blank" data-original-title="Compartelo en Twitter">
-                                    <i class="fab fi-social-twitter"></i>
-                                </a>
-                                <!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Google+">-->
-                                <!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
-                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23cantapueblo20181108"
-                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
-                                </a>
-
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="page-section fondo-evento py-3" id="jovenes20181020">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-upper">Jóvenes de La Alameda</span>
-                        <span class="section-heading-lower">¡Enchufate!</span>
-                    </h2>
-                </div>
-            </div>
-
-
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/LOGO-JOVENES-GRIS.jpg" alt="jovenes20181020">
-
-
-            <div class="product-item-description d-flex mr-auto">
-                <div class="bg-faded p-5 rounded text-center">
-                    <strong class="mb-0 ">
-                        Para toda la comunidad de Jóvenes:<br/>
-                        Sumate a nuestro gran encuentro <b>¡ENCHUFATE!</b>.<br/>
-                        Vení, conectate con nosotros aquí en La Alameda y conocé nuevos amigos y amigas
-                        <br/>
-
-
-                        <div class="card-footer text-center">
-                            <small>
-                                <em>Sábado 20 de Octubre <br/> a las 21:30 hs.</em><br/>
-                                en el Auditorio de la Alameda, <br/>
-                                San Martín 2020 de la Ciudad de Mendoza<br/>
-
-
-
-                            </small>
-
-
-
-                        </div>
-                        <div class="card-footer row  text-center">
-
-                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Compartilo en Facebook">
-                                    <i class="fab fi-social-facebook"></i>
-                                </a>
-
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Compartelo en Twitter">
-                                    <i class="fab fi-social-twitter"></i>
-                                </a>
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Google+">
-                                    <i class="fab fi-social-google-plus"></i>  </a>
-                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
-                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020"
-                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
-                                </a>
-
-
-
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--<section class="page-section fondo-evento py-3" id="jovenes20181020">-->
+<!--    <div class="container">-->
+<!--        <div class="product-item">-->
+<!--            <div class="product-item-title d-flex">-->
+<!--                <div class="bg-faded p-5 d-flex ml-auto rounded">-->
+<!--                    <h2 class="section-heading mb-0">-->
+<!--                        <span class="section-heading-upper">Jóvenes de La Alameda</span>-->
+<!--                        <span class="section-heading-lower">¡Enchufate!</span>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!---->
+<!--            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imagenes/LOGO-JOVENES-GRIS.jpg" alt="jovenes20181020">-->
+<!---->
+<!---->
+<!--            <div class="product-item-description d-flex mr-auto">-->
+<!--                <div class="bg-faded p-5 rounded text-center">-->
+<!--                    <strong class="mb-0 ">-->
+<!--                        Para toda la comunidad de Jóvenes:<br/>-->
+<!--                        Sumate a nuestro gran encuentro <b>¡ENCHUFATE!</b>.<br/>-->
+<!--                        Vení, conectate con nosotros aquí en La Alameda y conocé nuevos amigos y amigas-->
+<!--                        <br/>-->
+<!---->
+<!---->
+<!--                        <div class="card-footer text-center">-->
+<!--                            <small>-->
+<!--                                <em>Sábado 20 de Octubre <br/> a las 21:30 hs.</em><br/>-->
+<!--                                en el Auditorio de la Alameda, <br/>-->
+<!--                                San Martín 2020 de la Ciudad de Mendoza<br/>-->
+<!---->
+<!---->
+<!---->
+<!--                            </small>-->
+<!---->
+<!---->
+<!---->
+<!--                        </div>-->
+<!--                        <div class="card-footer row  text-center">-->
+<!---->
+<!--                            <div class="col-sm-12 d-flex flex-row justify-content-center ">-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Facebook" data-placement="bottom" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Compartilo en Facebook">-->
+<!--                                    <i class="fab fi-social-facebook"></i>-->
+<!--                                </a>-->
+<!---->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartelo en Twitter" data-placement="bottom" href="https://twitter.com/home?status=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Compartelo en Twitter">-->
+<!--                                    <i class="fab fi-social-twitter"></i>-->
+<!--                                </a>-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Compartilo en Google+" data-placement="bottom"  href="https://plus.google.com/share?url=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020" target="_blank" data-original-title="Google+">-->
+<!--                                    <i class="fab fi-social-google-plus"></i>  </a>-->
+<!--                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"-->
+<!--                                   href="whatsapp://send?text=https%3A//www.iglesialameda.com/masporhacer.php%23jovenes20181020"-->
+<!--                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>-->
+<!--                                </a>-->
+<!---->
+<!---->
+<!---->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
 <!--<section class="page-section fondo-evento py-3" id="membresia20181019">-->
 <!--    <div class="container">-->

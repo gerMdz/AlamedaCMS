@@ -90,6 +90,182 @@ $version = date('YmdHi');
 <div class="container">
     <div class="row bg-white ">
         <div class="col-lg-8 col-md-10 mx-auto ">
+            <div class="post-preview" id="mujeres-20190531">
+
+                <h2 class="post-title">
+                    Noche de adoración, desafío y amistad
+                </h2>
+                <h3 class="post-subtitle">
+                    Las mujeres nos reunimos el viernes 31 de mayo en el Auditorio Alameda
+                    a las 20:00hs. Para todas las edades y y todos los trasfondos, todas las personalidades y todos los
+                    estilos ... para VOS. Agendá 31M Noche de mujeres
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 19 de mayo de 2019
+
+
+                    <a class="shared-link waves-effect waves-light"
+                       rel="tooltip" title="Compartilo en Facebook"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23mujeres-20190531"
+                       target="_blank" data-original-title="Compartilo en Facebook">
+                        <i class="fab fi-social-facebook fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip"
+                       title="Compartelo en Twitter"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23mujeres-20190531"
+                       target="_blank" data-original-title="Compartelo en Twitter">
+                        <i class="fab fi-social-twitter fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="whatsapp://send?text=Camino de crecimiento https%3A//www.iglesialameda.com/alamedaaldia.php%23mujeres-20190531"
+                       target="_blank" data-original-title="Por Whatsapp">
+                        <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+                    <!--                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>-->
+                </p>
+            </div>
+            <hr>
+
+
+
+            <div class="post-preview" id="mision-20190525">
+
+                <h2 class="post-title">
+                    Cuarto Sábado
+                </h2>
+                <h3 class="post-subtitle">
+                    Equipate para la misión
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 19 de mayo de 2019
+
+
+                    <a class="shared-link waves-effect waves-light"
+                       rel="tooltip" title="Compartilo en Facebook"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23mision-20190525"
+                       target="_blank" data-original-title="Compartilo en Facebook">
+                        <i class="fab fi-social-facebook fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip"
+                       title="Compartelo en Twitter"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23mision-20190525"
+                       target="_blank" data-original-title="Compartelo en Twitter">
+                        <i class="fab fi-social-twitter fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="whatsapp://send?text=Camino de crecimiento https%3A//www.iglesialameda.com/alamedaaldia.php%23mision-201905255"
+                       target="_blank" data-original-title="Por Whatsapp">
+                        <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>
+                </p>
+            </div>
+            <hr>
+
+            <div class="post-preview" id="dia-bondad-20190525">
+
+                <h2 class="post-title">
+                    Día de bondad
+                </h2>
+                <h3 class="post-subtitle">
+                    Ya se viene el 25 de mayo y es un <br/>
+                    <span style="font-family: joyful">Día de bondad!</span><br/>
+                    Todos los grupos de La Alameda llenaremos la Ciudad de Bondad. <br/>
+                    La primera iniciativa de bondad será el próximo sábado 25 de mayo.
+                    Los grupos pequeños de La Alameda estaremos ese sábado saliendo a la calle
+                    para compartir bondad en la ciudad <br/>
+                    En varios puntos diferentes estaremos llevando un café de amistad para aliviar el frío otoñal a nuestra ciuadad.
+
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 19 de mayo de 2019
+
+
+                    <a class="shared-link waves-effect waves-light"
+                       rel="tooltip" title="Compartilo en Facebook"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23dia-bondad-20190525"
+                       target="_blank" data-original-title="Compartilo en Facebook">
+                        <i class="fab fi-social-facebook fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip"
+                       title="Compartelo en Twitter"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23dia-bondad-20190525"
+                       target="_blank" data-original-title="Compartelo en Twitter">
+                        <i class="fab fi-social-twitter fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="whatsapp://send?text=Esta es una buena noticia https%3A//www.iglesialameda.com/alamedaaldia.php%23dia-bondad-20190525"
+                       target="_blank" data-original-title="Por Whatsapp">
+                        <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+                                        <a class="btn btn-teal float-right" href="noticias/dia-bondad-20190525.php">Seguir leyendo</a>
+                </p>
+            </div>
+            <hr>
+
+            <div class="post-preview" id="adoracion-20190523">
+
+                <h2 class="post-title">
+                    Lo mejor está por venir!
+                </h2>
+                <h3 class="post-subtitle">
+                    <i class="fas fa-gift"></i> Este jueves 23 de mayo a las 20:30hs, una noche de adoración y un nuevo aniversario, el número 93,
+                    un doble motivo de celebración. En San Martín 2020 de la ciudad de Mendoza <i class="fas fa-birthday-cake"></i>
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 19 de mayo de 2019
+
+
+                    <a class="shared-link waves-effect waves-light"
+                       rel="tooltip" title="Compartilo en Facebook"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23adoracion-20190523"
+                       target="_blank" data-original-title="Compartilo en Facebook">
+                        <i class="fab fi-social-facebook fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip"
+                       title="Compartelo en Twitter"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23adoracion-20190523"
+                       target="_blank" data-original-title="Compartelo en Twitter">
+                        <i class="fab fi-social-twitter fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="whatsapp://send?text=Camino de crecimiento https%3A//www.iglesialameda.com/alamedaaldia.php%23adoracion-20190523"
+                       target="_blank" data-original-title="Por Whatsapp">
+                        <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+                    <!--                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>-->
+                </p>
+            </div>
+            <hr>
+
             <div class="post-preview" id="cafeteria_alameda">
 
                 <h2 class="post-title">

@@ -164,20 +164,11 @@ $version = date('YmdHi');
                     Descubrí <br/>tu forma única de servir
                 </h4>
                 <p> Sábado 18 de mayo, 17:30 hs</p>
-                <button class="btn btn-outline-alameda" type="button"
-                        data-toggle="collapse" data-target="#adelantaServicio" aria-expanded="false" aria-controls="collapseExample">
-                    Voy a asistir
+                <button class="btn btn-link col-sm-12">
+                    <i class="fas fa-shoe-prints  pull-right"></i>
                 </button>
 
-                <div class="collapse" id="adelantaServicio">
-                <strong>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
-                    (261 517 8081)
-                    <br/>
-                    con el texto <strong>Servicio</strong> o por  <br/>
-                    <a href="https://api.whatsapp.com/send?phone=5492615178081&text=Servicio" class="text-realce-verde"> por Whatsapp
-                        <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
-                </strong>
-                </div>
+
             </div>
         </div>
         <div class="col-md-4 mx-auto mb-3">

@@ -258,7 +258,6 @@ include '../internos/head_series.php';
 
 
 
-
         <section class="section bg-transparent p-5 mdl-color-text--black" id="imagenes">
             <div class="container-fluid p-0 ">
                 <a href="../imagenesseries/bondad.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>
