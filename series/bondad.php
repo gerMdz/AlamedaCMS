@@ -269,6 +269,7 @@ include '../internos/head_series.php';
                         <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_04.jpeg)"></div>
                         <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_05.jpeg)"></div>
                         <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/BONDAD_MOTION-800x800.png)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad-consigan-01.png)"></div>
 
 
 

@@ -146,6 +146,11 @@
                 <img src="../imagenes/slider/series/bondad/BONDAD%20MOTION-800x800.gif" />
             </a>
         </div>
+        <div class="swiper-slide" >
+            <a href="../imagenes/slider/series/bondad/bondad-consigan-01.png" download="bondad-consigan-01.png" target="_blank">
+                <img src="../imagenes/slider/series/bondad/bondad-consigan-01.png" />
+            </a>
+        </div>
 
 
 
