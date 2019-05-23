@@ -133,10 +133,7 @@ $version = date('YmdHi');
             </div>
             <hr>
 
-
-
             <div class="post-preview" id="mision-20190525">
-
                 <h2 class="post-title">
                     Cuarto Sábado
                 </h2>
@@ -225,7 +222,6 @@ $version = date('YmdHi');
             <hr>
 
             <div class="post-preview" id="adoracion-20190523">
-
                 <h2 class="post-title">
                     Lo mejor está por venir!
                 </h2>
@@ -257,11 +253,11 @@ $version = date('YmdHi');
 
                     <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
                        data-placement="bottom" data-toggle="tooltip"
-                       href="whatsapp://send?text=Camino de crecimiento https%3A//www.iglesialameda.com/alamedaaldia.php%23adoracion-20190523"
+                       href="whatsapp://send?text=Noche de Adoración y Aniversario https%3A//www.iglesialameda.com/alamedaaldia.php%23adoracion-20190523"
                        target="_blank" data-original-title="Por Whatsapp">
                         <i class="fab fa-whatsapp fa-2x"></i>
                     </a>
-                    <!--                    <a class="btn btn-teal float-right" href="noticias/cuatro_pasos_28042019.php">Seguir leyendo</a>-->
+                                        <a class="btn btn-teal float-right" href="masporhacer.php#jueves_20190523">Seguir leyendo</a>
                 </p>
             </div>
             <hr>
