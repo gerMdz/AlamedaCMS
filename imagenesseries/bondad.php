@@ -147,8 +147,13 @@
             </a>
         </div>
         <div class="swiper-slide" >
-            <a href="../imagenes/slider/series/bondad/bondad-consigan-01.png" download="bondad-consigan-01.png" target="_blank">
-                <img src="../imagenes/slider/series/bondad/bondad-consigan-01.png" />
+            <a href="../imagenes/slider/series/bondad/bondad-consigna-01.png" download="bondad-consigan-01.png" target="_blank">
+                <img src="../imagenes/slider/series/bondad/bondad-consigna-01.png" />
+            </a>
+        </div>
+        <div class="swiper-slide" >
+            <a href="../imagenes/slider/series/bondad/bondad-consigna-02.png" download="bondad-consigan-01.png" target="_blank">
+                <img src="../imagenes/slider/series/bondad/bondad-consigna-02.png" />
             </a>
         </div>
 

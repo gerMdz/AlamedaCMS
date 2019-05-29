@@ -1,6 +1,6 @@
 <?php
 $meta =  '
-    <meta name="description" content="Iglesia Alameda, Respirando la BOndad de Dios">
+    <meta name="description" content="Iglesia Alameda, Respirando la Bondad de Dios">
     <meta name="author" content="Iglesia Alameda Mendoza">
     <meta property="og:title" content="Iglesia Alameda Serie Respirando Bondad" />
     <meta property="og:type" content="website" />
@@ -240,6 +240,12 @@ include '../internos/head_series.php';
                         <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
                             <iframe  src="https://www.youtube.com/embed/tH28nSYJBkc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
+                        <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
+                            <iframe src="https://www.youtube.com/embed/CmzXCwRlJ8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-sm-4 mt-2  pl-5 base-rojo mx-auto">
+                            <iframe src="https://www.youtube.com/embed/F6Wubl47inw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
 
                         <div class="col-sm-12 mb-2 story-content">
 
@@ -269,7 +275,8 @@ include '../internos/head_series.php';
                         <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_04.jpeg)"></div>
                         <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad_05.jpeg)"></div>
                         <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/BONDAD_MOTION-800x800.png)"></div>
-                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad-consigan-01.png)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad-consigna-01.png)"></div>
+                        <div class="swiper-slide" style="background-image:url(../imagenes/slider/series/bondad/bondad-consigna-02.png)"></div>
 
 
 

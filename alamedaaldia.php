@@ -90,6 +90,52 @@ $version = date('YmdHi');
 <div class="container">
     <div class="row bg-white ">
         <div class="col-lg-8 col-md-10 mx-auto ">
+            <div class="post-preview" id="bautismo-20190602">
+
+                <h2 class="post-title">
+                    Experimenta el Bautismo de Jesús
+                </h2>
+                <h3 class="post-subtitle">
+                    Cuando decidís se un seguidor de Jesús, lo primero que descubrís es que sus huellas
+                    comienzan en las aguas del bautismo. <br/>
+                    ¡El bautismo como Jesús lo propuso, es la marca que separa el camino de los curiosos,
+                    del camino de los seguidores!<br/>
+                    Vení a la charla preparatoria y enterate porqué.<br/>
+                    Te esperamos.
+                </h3>
+
+                <p class="post-meta">Publicado
+                    <a href="#">alameda al día</a>
+                    el 26 de mayo de 2019
+
+
+                    <a class="shared-link waves-effect waves-light"
+                       rel="tooltip" title="Compartilo en Facebook"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/alamedaaldia.php%23bautismo-20190602"
+                       target="_blank" data-original-title="Compartilo en Facebook">
+                        <i class="fab fi-social-facebook fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip"
+                       title="Compartelo en Twitter"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="https://twitter.com/home?status=https%3A//iglesialameda.com/alamedaaldia.php%23bautismo-20190602"
+                       target="_blank" data-original-title="Compartelo en Twitter">
+                        <i class="fab fi-social-twitter fa-2x"></i>
+                    </a>
+
+                    <a class="shared-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp"
+                       data-placement="bottom" data-toggle="tooltip"
+                       href="whatsapp://send?text=Experimenta el Bautismo de Jesús https%3A//www.iglesialameda.com/alamedaaldia.php%23bautismo-20190602"
+                       target="_blank" data-original-title="Por Whatsapp">
+                        <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+                                        <a class="btn btn-teal float-right" href="noticias/camino-crecimiento.php">Seguir leyendo</a>
+                </p>
+            </div>
+            <hr>
+
             <div class="post-preview" id="mujeres-20190531">
 
                 <h2 class="post-title">

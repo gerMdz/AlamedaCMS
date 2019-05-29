@@ -293,13 +293,12 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
                         <p class="card-text text-center">
-<!--                            <a href="ministerios/gex.php" target="_blank" class="text-realce-verde">-->
-<!--                            "Generación Extrema"-->
-<!--                            </a>-->
-<!--                            <br/>-->
-                            Si tu desición es comenzar a seguir a Jesús dando el paso inicial
-                            del bautismo, participá de la charla preparatoria que ofreceremos
-                            en la Alameda.
+                            Cuando decidís se un seguidor de Jesús, lo primero que descubrís es que sus huellas
+                            comienzan en las aguas del bautismo. <br/>
+                            ¡El bautismo como Jesús lo propuso, es la marca que separa el camino de los curiosos,
+                            del camino de los seguidores!<br/>
+                            Vení a la charla preparatoria y enterate porqué.<br/>
+                            Te esperamos.
 <!--                            En el edificio educacional (San Martín 2020).<br/>-->
 <!--                            Para niños de 4° a 7° grado. Los Esperamos-->
 
@@ -309,9 +308,9 @@
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2019-05-04 17:30')){ ?>
+                        <?php if ($ahora < date('2019-06-02 16:30')){ ?>
                             <small class="text-point-sec">
-                                Sábado 04 de mayo a las 17:30 Hs
+                                Domingo 02 de junio a las 16:30hs
                             <br/>
 <!--                            <a href="masporhacer.php#crecimiento20181110"-->
 <!--                               data-toggle="tooltip"-->
@@ -380,21 +379,19 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla para nuevos miembros</h5>
                         <p class="card-text">
-                            Si ya estás bautizado, sumate y se parte real de la Alameda.<br/>
-<!--                            y querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra-->
-<!--                            charla de Membresía. <br/>-->
-<!--                            El pastor Fabián te espera para una conversación muy especial-->
-                            El pastor Fabián te espera para esta charla para nuevos miembros. Una opoertunidad para conocerte
-                            y que conozcas todo lo que tenes que saber de nuesta familia de fe. Te esperamos.
-
+                            Nos alegra verte cada domingo en La Alameda y saber que esto ha sido bueno para tu corazón<br/>
+                            Cientos de voluntarios sirven cada semana para hacer realidad nuestra amada comunidad de fe.<br/>
+                            <b> ¿Te atreves a ser parte?</b>
+                            Si ya estás bautizado, ahora da el paso adelante y sumate a la familia.
+                            !Se miembro de La Alameda!
 
                         </p>
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2019-05-04 17:30')){ ?>
+                                <?php if ($ahora < date('2019-06-02 16:30')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 05 de mayo a las 17:30 hs.
+                                        Domingo 02 de junio a las 16:30 hs
 <!--                                        <a href="masporhacer.php#crecimiento20181110"-->
 <!--                                                                             data-toggle="tooltip"-->
 <!--                                                                             title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
@@ -406,8 +403,8 @@
                                         <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
                                             (261 517 8081)
                                             <br/>
-                                            con el texto <strong>Membresía</strong> o por  <br/>
-                                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=MEMBRESÍA" class="text-realce-verde"> por Whatsapp
+                                            con el texto <strong>Miembro</strong> o por  <br/>
+                                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=MIEMBRO" class="text-realce-verde"> por Whatsapp
                                                 <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
                                         </small>
                                     </small>

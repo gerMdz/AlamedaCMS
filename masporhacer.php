@@ -10,12 +10,12 @@ $version = date('YmdHi');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Iglesia Alameda,
-    Lo Mejor está por Venir, Marcelo Fernandez, Servir, Dr Clank, Madurez,
+    Cristian Soloa, Respira Bondad, Lo Mejor está por Venir, Marcelo Fernandez, Servir,
      Eventos Alameda, Cultura Mendoza">
     <meta name="author" content="Iglesia de la Alameda">
 
     <meta property="og:title" content="Eventos Iglesia Alameda,
-   Lo Mejor está por Venir, Marcelo Fernandez, Servir, Dr Clank, Madurez,
+   Cristian Soloa, Respira Bondad, Lo Mejor está por Venir, Marcelo Fernandez, Servir,
       Eventos Alameda, Cultura Mendoza" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.iglesialameda.com/masporhacer.php" />
@@ -61,6 +61,72 @@ $version = date('YmdHi');
 </h1>
 
 <?php include ('nav.php'); ?>
+
+<section class="page-section fondo-evento py-3" id="domingo_20190526">
+    <div class="container">
+        <div class="product-item">
+            <div class="product-item-title d-flex">
+                <div class="bg-faded p-5 d-flex ml-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Domingo 26</span>
+                        <span class="section-heading-lower">#RespiraBondad</span>
+                    </h2>
+                </div>
+            </div>
+
+            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                 src="imagenes/masporhacer/BONDAD-INSTAGRAM-MISION.jpg" alt="domingo_20190526">
+
+            <div class="product-item-description d-flex mr-auto">
+                <div class="bg-faded p-5 rounded text-center">
+                    <strong class="mb-0 ">
+                        Hablaremos de tu inmensa <br/>
+                        <b style="font-family: joyful"> bondad</b><br/>
+
+
+
+                        <div class="card-footer text-center">
+                            <small>
+                                <em>Domingo 26 de mayo <br/> a las 11:00 y 19hs hs
+                                </em><br/>
+
+                                Te esperamos en Av. San Martin 2020 de la Ciudad de Mendoza.<br/>
+                                Contaremos con la participación especial de  Cristian Soloa
+
+                                <br/>
+
+                            </small>
+
+                        </div>
+                        <div class="card-footer row  text-center">
+                            <div class="col-sm-12 d-flex flex-row justify-content-center ">
+                                <a class="nav-link waves-effect waves-light"
+                                   rel="tooltip" title="Compartilo en Facebook"
+                                   data-placement="bottom"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.iglesialameda.com/masporhacer.php%23domingo_20190526 target="_blank" data-original-title="Compartilo en Facebook">
+                                    <i class="fab fi-social-facebook"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip"
+                                   title="Compartelo en Twitter" data-placement="bottom"
+                                   href="https://twitter.com/home?status=https%3A//iglesialameda.com/masporhacer.php%23domingo_20190526"
+                                   target="_blank" data-original-title="Compartelo en Twitter">
+                                    <i class="fab fi-social-twitter"></i>
+                                </a>
+
+                                <a class="nav-link waves-effect waves-light" rel="tooltip" title="Por Whatsapp" data-placement="bottom"
+                                   href="whatsapp://send?text= Este domingo, https%3A//www.iglesialameda.com/masporhacer.php%23domingo_20190526%20, de mañana o de tarde"
+                                   target="_blank" data-original-title="Por Whatsapp"><i class="fab fa-whatsapp"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <section class="page-section fondo-evento py-3" id="jueves_20190523">
     <div class="container">
