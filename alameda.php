@@ -21,7 +21,7 @@
 
     <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
 <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/bondad_01.png">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/og-base.png">
     <title>Iglesia de la Alameda</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />

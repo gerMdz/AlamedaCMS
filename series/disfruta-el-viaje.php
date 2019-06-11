@@ -1,14 +1,17 @@
 <?php
+$lema ='Disfruta el Viaje';
+$lemaSinEspacios='DisfrutaElViaje';
+
 $meta =  '
-    <meta name="description" content="Iglesia Alameda, Respirando la Bondad de Dios">
+    <meta name="description" content="Iglesia Alameda, Disfruta el Viaje">
     <meta name="author" content="Iglesia Alameda Mendoza">
-    <meta property="og:title" content="Iglesia Alameda Serie Respirando Bondad" />
+    <meta property="og:title" content="Iglesia Alameda Serie Disfruta el Viaje" />
     <meta property="og:type" content="website" />
 
     <meta property="og:url" content="https://www.iglesialameda.com/series/bondads.php" />
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/bondad_01.png">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/series/viaje/og-base.png">
 
-    <title>Respirando la Bondad de Dios - Iglesia Alameda </title>
+    <title>'. $lema . '- Iglesia Alameda </title>
     <link href="../css/swiper.min.css" rel="stylesheet">
     <style>
      .swiper-container {
