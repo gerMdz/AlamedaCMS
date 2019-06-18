@@ -1,4 +1,6 @@
 <?php
+    $lema = 'Disfruta el Viaje';
+    $lemaSinEspacios = 'DisfrutaElViaje';
     $ahora = date('Y-m-d H:i');
     $version = date('YmdHi');
     $domingo = strtotime('today');
@@ -12,7 +14,11 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia de La Alameda, Respirando Bondad Cada Día, Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
+    <meta name="description" content="Iglesia de La Alameda,
+     <?php
+     echo $lema;
+     ?>
+     , Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
     Libertad, Servicio, Misión">
     <meta name="author" content="Iglesia de la Alameda">
 
@@ -86,22 +92,26 @@
 
 <body>
 
-<h1 class="site-heading text-center text-white d-sm-block">
-      <span class="section-heading-upper">
-        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">
-      </span>
-
-
-</h1>
+<!--<h1 class="site-heading text-center text-white d-sm-block">-->
+<!--      <span class="section-heading-upper">-->
+<!--        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">-->
+<!--      </span>-->
+<!---->
+<!---->
+<!--</h1>-->
 
 <?php include 'nav.php'; ?>
 
-<section class="page-section about-heading" id="contador">
-    <div class="container-fluid text-center">
-<!--        <a href="series/direccionDivina.php">-->
-        <a href="series/bondad.php">
-        <img class="img-fluid w-100 center rounded about-heading-img mb-3 mb-lg-0 mx-auto"
-             src="imagenes/series/bondad/facebookk-cabecera-BONDAD.jpg" alt="Bondad" style="top: -75px; ">
+<section class="page-section about-heading mt-5" id="contador">
+    <div class="container-fluid text-center mt-5">
+        <a href="series/disfruta-el-viaje.php">
+
+        <img class="img-fluid w-100 center rounded about-heading-img mb-3 mb-lg-0 mx-auto "
+             src="imagenes/series/viaje/cabecera.jpeg" alt="
+             <?php
+        echo $lema;
+        ?>
+" style="">
         </a>
         <div class="about-heading-content ajusteIndex">
             <div class="row">
@@ -156,7 +166,7 @@
                     <li data-target="#series" data-slide-to="0" class="active"></li>
                     <li data-target="#series" data-slide-to="1"></li>
                     <li data-target="#series" data-slide-to="2"></li>
-                    <li data-target="#series" data-slide-to="3"></li>
+<!--                    <li data-target="#series" data-slide-to="3"></li>-->
 
                 </ul>
 
@@ -166,7 +176,7 @@
                         <img src="imagenes/slider/imagen%20auditorio.png" alt="La Alameda" class="img-fluid" >
                     </div>
                     <div class="carousel-item ">
-                        <img src="imagenes/slider/bondad_04.png" alt="La Alameda" class="img-fluid " >
+                        <img src="imagenes/series/viaje/DISFRUTA-DEL-VIAJE-ARTE.SQUARE-002.png" alt="La Alameda" class="img-fluid " >
                     </div>
 
                     <div class="carousel-item ">
@@ -424,23 +434,19 @@
     <!--    <div class="row text-center">-->
     <div class="row text-center d-flex align-items-center bg-white">
         <div class="col-sm-5 pull-left">
-            <img src="imagenes/series/bondad/bondad_03.png" class="img-fluid rounded" />
+            <img src="imagenes/series/viaje/DISFRUTA-DEL-VIAJE-ARTE.SQUARE-002.png" class="img-fluid rounded" />
         </div>
 
         <div class="col-sm-7 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
                         <div class="center-element btn btn-blue rotar90">
-                            Oseas 10:12 (PDT)
+                            Nehemías 4:14 (NTV)
                         </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        Siembren bondad para ustedes mismos;
-                        recojan fiel amor.
-                        Cultiven su suelo virgen,
-                        pues es el momento de buscar al SEÑOR.
-                        Él vendrá y hará que sobre ti
-                        llueva la bondad.
+                        Luego, mientras revisaba la situación, reuní a los nobles y a los demás del pueblo y les dije: «¡No le tengan miedo al enemigo! ¡Recuerden al Señor, quien es grande y glorioso, y
+                        <u>luchen por sus hermanos, sus hijos, sus hijas, sus esposas y sus casas!»</u>
                         "
                     </h2>
                         </div>
@@ -452,7 +458,7 @@
             </div>
         <div class="col-sm-12">
 <!--            <a href="series/navidad_lct.php" class="text-light-blue"-->
-            <a href="series/bondad.php" class="text-light-blue"
+            <a href="series/disfruta-el-viaje.php" class="text-light-blue"
                data-toggle="tooltip"
                title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
         </div>
@@ -478,8 +484,8 @@
             >
             <blockquote class="bg-danger text-tan blockquote rounded d-flex align-items-center">
                             <i class="fab fa-youtube-square fa-4x" style="color: #FFF" ></i>
-                            <h3 style="color: #FFF; text-indent: 5em"  >
-                            Reviví los mensajes en Youtube
+                            <h3 style="color: #FFF; text-indent: 4em"  >
+                            Reviví los mensajes en YouTube
                             </h3>
 
             </blockquote>

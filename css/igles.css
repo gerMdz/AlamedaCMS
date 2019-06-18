@@ -556,6 +556,26 @@ h3.quote:after {
     font-weight: normal;
     src: url("../vendor/alameda/font/Tahu.ttf") format('truetype');
 }
+@font-face {
+    font-family: Hoverage;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/Hoverage.otf") format('truetype');
+}
+.hoverage{
+    font-family: Hoverage;
+}
+
+@font-face {
+    font-family: Matahati Regular;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/Matahati Regular.otf") format('truetype');
+}
+.matahati{
+    font-family: Matahati Regular;
+}
+
 
 .text-fine {
     font-size: 48px;
@@ -565,6 +585,14 @@ h3.quote:after {
     margin-top: 20px;
     font-family: "Poppins", sans-serif;
 
+}
+
+.fine4 {
+
+    font-weight: 400;
+    line-height: 1.2em;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .text-300 {
@@ -872,4 +900,7 @@ body.frontal{
 .finaliza{
     margin: .375rem;
     padding: 10px 22px;
+}
+.fina{
+
 }
