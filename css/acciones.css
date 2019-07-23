@@ -1,0 +1,165 @@
+
+.boxAcciones{
+
+    position: relative;
+    /*transform: translate(-50%, -50%);*/
+    transform-style: preserve-3d;
+    /*background: rgba(4, 67, 74, 0.8);*/
+    perspective: 2000px;
+    transition: 0.5s;
+}
+
+.boxAcciones:hover  {
+
+    transform: translate(-1%, -0%);
+
+}
+
+.boxAcciones:before{
+
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-top: 10px solid #fff;
+    border-left: 10px solid #fff;
+    box-sizing: border-box;
+}
+
+.boxAcciones:after{
+
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid #fff;
+    box-sizing: border-box;
+}
+
+.boxAcciones .contenidoAcciones{
+
+    position: relative;
+    top: 30px;
+    left: -30px;
+    rigth: 10px;
+    bottom: 10px;
+    background: rgba(4, 67, 74);
+    padding: 20px;
+    overflow: hidden;
+    text-align: center;
+    border: 2px solid #fff;
+    width: calc(100% + 60px);
+    height: calc(100% - 60px);
+    transition: 0.5s;
+}
+
+.boxAcciones .contenidoAcciones:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.boxAcciones:hover .contenidoAcciones {
+
+    transform: rotateY(20deg) skewY(-5deg);
+
+}
+
+.boxAcciones:hover .contenidoAcciones:before {
+
+    left: -2%;
+
+}
+
+.boxAcciones .contenidoAcciones h3 {
+
+    margin: 0 0 10px;
+    padding: 0;
+    color: #fff;
+
+
+}
+
+.boxAcciones .contenidoAcciones h4 {
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: 50px;
+    color: #fff;
+
+}
+
+.boxAcciones span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    /*background: #000;*/
+
+}
+
+.boxAcciones span:before {
+
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #0f0;
+    transform-origin: left;
+    transition: 0.5s;
+    /*left: 0;*/
+
+}
+
+.boxAcciones:hover span:before {
+    transform: scaleX(0);
+}
+.boxAcciones:hover span:nth-child(even):before {
+    transform-origin: right;
+    transition-delay: 0.5s;
+}
+
+.boxAcciones span:nth-child(1) {
+    transform: rotate(0deg);
+}
+/*.boxAcciones span:nth-child(2) {*/
+    /*transform: rotate(90deg);*/
+/*}*/
+.boxAcciones span:nth-child(3) {
+    transform: rotate(180deg);
+}
+.boxAcciones span:nth-child(4) {
+    transform: rotate(270deg);
+}
+
+.bloque2 .texto-bloque2 {
+    padding: 3rem;
+    font-size: 90%;
+}
+
+@media (min-width: 992px) {
+    .bloque2 .texto-bloque2 {
+        padding: 5rem;
+    }
+    .bloque2 .texto-bloque2 hr {
+        border-color: #64a19d;
+        border-width: .25rem;
+        width: 30%;
+    }
+}

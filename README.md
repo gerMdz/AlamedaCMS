@@ -4,7 +4,9 @@ EL inicio de un CMS personalizado
 
 ## NO hay pre
 
+[![Iglesia Alameda Preview](http://iglesialameda.com/)](http://iglesialameda.com/)
 
+**[View Live Preview](http://iglesialameda.com/)**
 
 ## Status
 totalmente DEV

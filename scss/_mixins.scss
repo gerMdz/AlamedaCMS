@@ -1,7 +1,13 @@
-@mixin heading-font {
-  font-family: 'Raleway';
+// Mixins
+// Background Cover Mixin
+@mixin background-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
+// Font Mixins
 @mixin body-font {
-  font-family: 'Lora';
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
