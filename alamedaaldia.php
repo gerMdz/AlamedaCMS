@@ -91,10 +91,6 @@ $version = date('YmdHi');
     <div class="row bg-white ">
         <div class="col-lg-8 col-md-10 mx-auto ">
             <div class="post-preview" id="bautismo-20190602">
-
-                <h2 class="post-title">
-                    Experimenta el Bautismo de Jesús
-                </h2>
                 <h3 class="post-subtitle">
                     Cuando decidís se un seguidor de Jesús, lo primero que descubrís es que sus huellas
                     comienzan en las aguas del bautismo. <br/>

@@ -59,7 +59,7 @@
                   </li>
               </ul>
 
-              <!-- Right -->
+              <!-- ight -->
               <ul class="navbar-nav nav-flex-icons">
 
                   <li class="nav-item">

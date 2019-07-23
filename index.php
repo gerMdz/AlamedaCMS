@@ -1,4 +1,6 @@
 <?php
+    $lema = 'Disfruta el Viaje';
+    $lemaSinEspacios = 'DisfrutaElViaje';
     $ahora = date('Y-m-d H:i');
     $version = date('YmdHi');
     $domingo = strtotime('today');
@@ -12,7 +14,11 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia de La Alameda, Navidad lo cambia todo, Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
+    <meta name="description" content="Iglesia de La Alameda,
+     <?php
+     echo $lema;
+     ?>
+     , Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
     Libertad, Servicio, Misión">
     <meta name="author" content="Iglesia de la Alameda">
 
@@ -21,7 +27,7 @@
 
     <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
 <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/campanias/navidad2018_index.png">
+    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/og-base.png">
     <title>Iglesia de la Alameda</title>
     <link rel="icon" href="imagenes/index.png" sizes="32x32" />
     <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
@@ -50,6 +56,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     <link href="css/fonts/univers/font.css?v=<?php echo $version ?>" rel="stylesheet">
 
 
@@ -85,20 +92,26 @@
 
 <body>
 
-<h1 class="site-heading text-center text-white d-sm-block">
-      <span class="section-heading-upper">
-        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">
-      </span>
-
-
-</h1>
+<!--<h1 class="site-heading text-center text-white d-sm-block">-->
+<!--      <span class="section-heading-upper">-->
+<!--        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">-->
+<!--      </span>-->
+<!---->
+<!---->
+<!--</h1>-->
 
 <?php include 'nav.php'; ?>
 
-<section class="page-section about-heading" id="contador">
-    <div class="container-fluid">
-        <a href="series/navidad_lct.php">
-        <img class="img-fluid w-100 rounded about-heading-img mb-3 mb-lg-0 mx-auto" src="imagenes/campanias/navidad2018_index_2.png" alt="Navidad lo cambia todo" style="top: -75px; ">
+<section class="page-section about-heading mt-5" id="contador">
+    <div class="container-fluid text-center mt-5">
+        <a href="series/disfruta-el-viaje.php">
+
+        <img class="img-fluid w-100 center rounded about-heading-img mb-3 mb-lg-0 mx-auto "
+             src="imagenes/series/viaje/cabecera.jpeg" alt="
+             <?php
+        echo $lema;
+        ?>
+" style="">
         </a>
         <div class="about-heading-content ajusteIndex">
             <div class="row">
@@ -114,26 +127,26 @@
                     <hr/>
                     <div class="section-body col-sm-6 col-md-6 col-lg-6 card">
                         <small class="mt-2 text-right card-title">
-                            Domingo 10 hs
+                            Domingo 11 hs
                             </small>
                             <div class="section-heading-body bg-light contador text-point-sec h-100  " id="once" style="font-weight: 800;">
-                                <div class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 10:00:00"></div>
+                                <div class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
                             </div>
                     </div>
                             <hr class="d-lg-none"/>
                     <div class="section-body col-sm-6 col-md-6 col-lg-6 card ">
                             <small class="mt-2 text-right card-title">
-                                Domingo 20 hs.
+                                Domingo 19 hs.
                             </small>
                         <span class="section-heading-body bg-light contador text-point-sec h-100 " id="diecinueve" style="font-weight: 800;">
-                                <div  class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 20:00:00"></div>
+                                <div  class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-19" data-countdown="<?php echo $muestroDia; ?> 19:00:00"></div>
                             </span>
                     </div>
 
 
 
                 <div class="intro-button mx-auto my-auto" style="z-index: 100">
-                    <a class="btn btn-alameda btn-xl" href="#evento">Vení tal como sos</a>
+                    <a class="btn btn-alameda btn-xl" href="series/bondad.php">Vení tal como sos</a>
                 </div>
                     </div>
                     </div>
@@ -146,61 +159,37 @@
 </section>
 
 <section class="page-section cta fondo-evento" id="campania">
-    <!--<div class="container">-->
-            <!--<div class="row fondo-footer">-->
-                <!--        <div class="col-xl-9 mx-auto">-->
-                <!--<div class="cta-inner text-center rounded">
-                    <h2 class="section-heading mb-4">
-                        <span class="section-heading-upper">01 de Abril</span>
-                        <span class="section-heading-lower"></span>
-                    </h2>
-                    <p class="mb-0">
-                        <figure class="figure">
-                            <img src="imagenes/50BLANCO..png" class="figure-img img-fluid rounded" alt="50 días de amistad">
-                            <figcaption class="figure-caption" style="color: #000000 !important;"><br/>San Martón 2020 <br/>Ciudad de Mendoza</figcaption>
-
-                        </figure>
-                    </p>
-                </div>
-            </div>-->
-            <div id="elCielo" class="carousel slide" data-ride="carousel">
+            <div id="series" class="carousel slide" data-ride="carousel">
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
-                    <li data-target="#elCielo" data-slide-to="0" class="active"></li>
-                    <li data-target="#elCielo" data-slide-to="1"></li>
-<!--                    <li data-target="#RazaCampeones" data-slide-to="2"></li>-->
-                    <!--<li data-target="#50dias" data-slide-to="2"></li>-->
+                    <li data-target="#series" data-slide-to="0" class="active"></li>
+                    <li data-target="#series" data-slide-to="1"></li>
+                    <li data-target="#series" data-slide-to="2"></li>
+<!--                    <li data-target="#series" data-slide-to="3"></li>-->
+
                 </ul>
 
                 <!-- The slideshow -->
                 <div class="carousel-inner ">
-                    <!--<div class="carousel-item active">
-                        <img src="imagenes/50BLANCO..png" alt="50 días de Amistad" class="d-block w-100 bg-point-sec" >
-                    </div>-->
                     <div class="carousel-item active ">
-                        <img src="imagenes/templo_escalado.png" alt="UnaVidaConProposito" class="d-block " >
+                        <img src="imagenes/slider/imagen%20auditorio.png" alt="La Alameda" class="img-fluid" >
                     </div>
                     <div class="carousel-item ">
-                        <img src="imagenes/templo_escalado.png" alt="UnaVidaConProposito" class="d-block  " >
+                        <img src="imagenes/series/viaje/DISFRUTA-DEL-VIAJE-ARTE.SQUARE-002.png" alt="La Alameda" class="img-fluid " >
                     </div>
-<!--                    <div class="carousel-item active ">-->
-<!--                        <img src="imagenes/RAZA-DE-CAMPEONES-WIDE-2.jpg" alt="Raza de Campeones" class="d-block  " >-->
-<!--                    </div>-->
-<!--                    <div class="carousel-item ">-->
-<!--                        <img src="imagenes/RAZA-DE-CAMPEONES-WIDE.jpg" alt="Raza de Campeones" class="d-block  " >-->
-<!--                    </div>-->
 
+                    <div class="carousel-item ">
+                        <img src="imagenes/slider/imagen%20auditorio_noche.png" alt="La Alameda" class="img-fluid " >
+                    </div>
                 <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#elCielo" data-slide="prev">
+                <a class="carousel-control-prev" href="#series" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </a>
-                <a class="carousel-control-next" href="#elCielo" data-slide="next">
+                <a class="carousel-control-next" href="#series" data-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </a>
-
             </div>
-
         </div>
             <!--</div>-->
             <!--</div>-->
@@ -313,23 +302,37 @@
                     </div>
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla de Bautismo</h5>
-                        <p class="card-text">
-                            Si tu desición es comenzar a seguir a Jesús dando el paso inicial
-                            del bautismo, participá de la charla preparatoria que ofreceremos
-                            en la Alameda.
+                        <p class="card-text text-center">
+                            Cuando decidís se un seguidor de Jesús, lo primero que descubrís es que sus huellas
+                            comienzan en las aguas del bautismo. <br/>
+                            ¡El bautismo como Jesús lo propuso, es la marca que separa el camino de los curiosos,
+                            del camino de los seguidores!<br/>
+                            Vení a la charla preparatoria y enterate porqué.<br/>
+                            Te esperamos.
+<!--                            En el edificio educacional (San Martín 2020).<br/>-->
+<!--                            Para niños de 4° a 7° grado. Los Esperamos-->
+
 
 
                         </p>
 
                     </div>
                     <div class="card-footer text-center">
-                        <?php if ($ahora < date('2018-11-10 18:30')){ ?>
-
-                                <small class="text-point-sec">Sábado 10 de noviembre a las 18:30 Hs</small>
-                            <a href="masporhacer.php#crecimiento20181110"
-                               data-toggle="tooltip"
-                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
-
+                        <?php if ($ahora < date('2019-06-02 16:30')){ ?>
+                            <small class="text-point-sec">
+                                Domingo 02 de junio a las 16:30hs
+                            <br/>
+<!--                            <a href="masporhacer.php#crecimiento20181110"-->
+<!--                               data-toggle="tooltip"-->
+<!--                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
+                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                                        (261 517 8081)
+                                <br/>
+                                con el texto <strong>Bautismo</strong> o por  <br/>
+                                    <a href="https://api.whatsapp.com/send?phone=5492615178081&text=BAUTISMO" class="text-realce-verde"> por Whatsapp
+                                        <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+                            </small>
+                            </small>
 
                         <?php } ?>
                     </div>
@@ -346,20 +349,24 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Enlace de Grupos de Amistad</h5>
                         <p class="card-text">
-                            Si querés ser parte de un Grupo de Amistad de "Una Vida con Propósito" asistí a
-                            nuestro próximo Enlace de Grupos
+                            Si todavía no tenes un grupo pequeño con quien experimentar 40 días de Bondad.<br/>
+                            Si queres connectarte con nuevos amigos<br/>
+                            Si no queres quedarte afuera
+
 
                         </p>
-                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
-                            (261 517 8081)  con el texto <strong>Enlace</strong></small>
+<!--                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda-->
+<!--                            (261 517 8081)  con el texto <strong>Enlace</strong></small>-->
                     </div>
 
                         <div class="card-footer text-center">
-                            <?php if ($ahora < date('2018-10-12 21:30')){ ?>
+                            <?php if ($ahora < date('2019-04-12 21:00')){ ?>
                             <small class="text-point-sec">
-                                Viernes 12 de octubre a las 21:30 hs.<br/>
-                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=ENLACE"> por Whatsapp
-                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+                                Viernes 12 de abril a las 21:00 hs.<br/>
+                                Realizaremos un nuevo "Enlace de Grupos Pequeños".
+<!--                                <a href="https://api.whatsapp.com/send?phone=5492615178081&text=ENLACE"> por Whatsapp-->
+<!--                                    <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>-->
+
 
                             </small>
                             <?php } ?>
@@ -382,21 +389,34 @@
                     <div class="card-body ">
                         <h5 class="card-title text-center">Charla para nuevos miembros</h5>
                         <p class="card-text">
-                            Si ya estás bautizado y querés conocer la visión de la iglesia y cómo ser miembro de esta familia de fe, vení a nuestra
-                            charla de Membresía. <br/>
-                            El pastor Fabián te espera para una conversación muy especial
-
+                            Nos alegra verte cada domingo en La Alameda y saber que esto ha sido bueno para tu corazón<br/>
+                            Cientos de voluntarios sirven cada semana para hacer realidad nuestra amada comunidad de fe.<br/>
+                            <b> ¿Te atreves a ser parte?</b>
+                            Si ya estás bautizado, ahora da el paso adelante y sumate a la familia.
+                            !Se miembro de La Alameda!
 
                         </p>
                     </div>
 
                             <div class="card-footer text-center">
-                                <?php if ($ahora < date('2018-11-10 18:30')){ ?>
+                                <?php if ($ahora < date('2019-06-02 16:30')){ ?>
                                     <small class="text-point-sec">
-                                        Sábado 10 de Noviembre a las 18:30 hs.
-                                        <a href="masporhacer.php#crecimiento20181110"
-                                                                             data-toggle="tooltip"
-                                                                             title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>
+                                        Domingo 02 de junio a las 16:30 hs
+<!--                                        <a href="masporhacer.php#crecimiento20181110"-->
+<!--                                                                             data-toggle="tooltip"-->
+<!--                                                                             title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
+
+                                        <br/>
+                                        <!--                            <a href="masporhacer.php#crecimiento20181110"-->
+                                        <!--                               data-toggle="tooltip"-->
+                                        <!--                               title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i></a>-->
+                                        <small>Adelantá tu asistencia enviando un mensaje a nuestro número de Conectar Alameda
+                                            (261 517 8081)
+                                            <br/>
+                                            con el texto <strong>Miembro</strong> o por  <br/>
+                                            <a href="https://api.whatsapp.com/send?phone=5492615178081&text=MIEMBRO" class="text-realce-verde"> por Whatsapp
+                                                <i class="fab fa-whatsapp"></i>  haciendo clic aqui </a>
+                                        </small>
                                     </small>
                                 <?php } ?>
                             </div>
@@ -410,29 +430,24 @@
     </div>
 </section>
 
-<section class="page-section container cta fondo-evento" id="40diasConProposito">
+<section class="page-section container cta fondo-evento" id="versiculoClave">
     <!--    <div class="row text-center">-->
     <div class="row text-center d-flex align-items-center bg-white">
         <div class="col-sm-5 pull-left">
-            <img src="imagenes/campanias/navidad2018_index.png" class="img-fluid rounded" />
+            <img src="imagenes/series/viaje/DISFRUTA-DEL-VIAJE-ARTE.SQUARE-002.png" class="img-fluid rounded" />
         </div>
 
         <div class="col-sm-7 pt-5">
-
-
-
-
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
-
-                        <div class="center-element btn btn-blue rotar90">Juan 1:9 (PDT) </div>
-
-
-
-
+                        <div class="center-element btn btn-blue rotar90">
+                            Juan 14:16 (NVI)
+                        </div>
                         <div>
-                    <h2 style="text-indent: 2em; font-family: 'UniversLTStd-Obl', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
-
-                        "La Luz verdadera que ilumina a todo ser humano entraba al mundo"
+                    <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
+                        "
+                        Yo le pediré al Padre, y él les dará <b>otro consolador</b>
+                        para que los acompañe siempre:  el Espíritu de verdad
+                        "
                     </h2>
                         </div>
 
@@ -442,7 +457,8 @@
 
             </div>
         <div class="col-sm-12">
-            <a href="series/navidad_lct.php" class="text-light-blue"
+<!--            <a href="series/navidad_lct.php" class="text-light-blue"-->
+            <a href="series/disfruta-el-viaje.php" class="text-light-blue"
                data-toggle="tooltip"
                title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
         </div>
@@ -468,8 +484,8 @@
             >
             <blockquote class="bg-danger text-tan blockquote rounded d-flex align-items-center">
                             <i class="fab fa-youtube-square fa-4x" style="color: #FFF" ></i>
-                            <h3 style="color: #FFF; text-indent: 5em"  >
-                            Reviví los mensajes en Youtube
+                            <h3 style="color: #FFF; text-indent: 4em"  >
+                            Reviví los mensajes en YouTube
                             </h3>
 
             </blockquote>
@@ -478,29 +494,85 @@
     </div>
 </section>
 
-<section class="page-section container cta fondo-evento" id="dias">
-    <div class="container-fluid p-0 ">
-        <div class="swiper-container ">
-            <div class="swiper-wrapper  ">
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia6.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia5.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia4.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia3.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia2.jpeg)"></div>
-                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia1.jpeg)"></div>
+<!--<section class="page-section container cta fondo-evento" id="dias">-->
+<!--    <div class="container-fluid p-0 ">-->
+<!--        <a href="dias.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>-->
+<!--        <div class="swiper-container ">-->
+<!--            <div class="swiper-wrapper  ">-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia25.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia24.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia23.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia22.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia21.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia20.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia19.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia18.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia17.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia16.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia15.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia14.jpg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia13.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia12.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia11.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia10.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia9.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia8.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia7.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia6.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia5.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia4.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia3.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia2.jpeg)"></div>-->
+<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia1.jpeg)"></div>-->
+<!---->
+<!--            </div>-->
+<!---->
+<!--            <!-- Add Pagination -->
+<!--            <div class="swiper-pagination"></div>-->
+<!---->
+<!---->
+<!--            <!-- Add Arrows -->
+<!--            <div class="swiper-button-prev"></div>-->
+<!--            <div class="swiper-button-next"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--</section>-->
 
-            </div>
+<!--<section class="page-section about-heading" id="proximaserie">-->
+<!--    <div class="container-fluid">-->
+<!---->
+<!--        <div class="row justify-content-between  mx-auto ">-->
+<!--            <hr/>-->
+<!--            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0"><br/>-->
+<!--                <h2 style="font-family: joyful" class="text-center"><br/>-->
+<!--                    Ya falta poco!<br/><br/>-->
+<!--                    Jueves  <br/>-->
+<!--                    18 de Abril<br/>-->
+<!--                    20:30 hs.<br/>-->
+<!--                    Encuentro de <br/>-->
+<!--                    Adoración e <br/>-->
+<!--                    Inspiración-->
+<!---->
+<!--                    <br/><br/>-->
+<!--                    Domingo <br/>-->
+<!--                    21 de Abr. <br/>-->
+<!--                    Gran Lanzamiento<br/>-->
+<!--                    a las 11hs. y a las-->
+<!--                    19hs.-->
+<!--                </h2>-->
+<!--            </div>-->
+<!--            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0  ">-->
+<!--                <a href="series/bondad.php">-->
+<!--                    <img class="img-fluid" style="height: 100vh; " src="imagenes/series/bondad/IMAGENES-PREVIAS-BONDAD.png"/>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--</section>-->
 
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
 
-            <!-- Add Arrows -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </div>
-
-</section>
 <section class="page-section container cta fondo-evento bg-white" id="epa">
     <div class="row text-center d-flex align-items-cente ">
         <div class="col-sm-12">

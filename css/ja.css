@@ -120,6 +120,8 @@ header.masthead_ja .intro-text .intro-heading {
 
 .section-ja.blog-post img{
     height: 75vh;
+    max-width: 100%;
+    /*height: auto;*/
 }
 
 .post{
@@ -138,7 +140,7 @@ header.masthead_ja .intro-text .intro-heading {
     position: absolute;
     border: 2px solid #262626!important;
     color: #262626 !important;
-    background: #ff0;
+    background: #ffff00cc;
     padding: 10px 40px !important;
     font-weight: 500 !important;
 }
@@ -170,7 +172,7 @@ header.masthead_ja .intro-text .intro-heading {
     border: 2px solid #262626;
     top: -50px;
     right: 50px;
-    background: #ff0;
+    background: #ffff00cc;
     color: #262626;
     padding: 20px;
 }
@@ -265,3 +267,5 @@ h1:hover span:nth-child(4){
     transition-delay: 0.6s;
 
 }
+
+.product-item-img{position:relative;z-index:0;max-width:60vw}

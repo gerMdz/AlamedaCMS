@@ -440,13 +440,13 @@
         <div class="col-sm-7 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
                         <div class="center-element btn btn-blue rotar90">
-                            Nehemías 4:14 (NTV)
+                            Juan 14:16 (NVI)
                         </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        Luego, mientras revisaba la situación, reuní a los nobles y a los demás del pueblo y les dije: «¡No le tengan miedo al enemigo! ¡Recuerden al Señor, quien es grande y glorioso, y
-                        <u>luchen por sus hermanos, sus hijos, sus hijas, sus esposas y sus casas!»</u>
+                        Yo le pediré al Padre, y él les dará <b>otro consolador</b>
+                        para que los acompañe siempre:  el Espíritu de verdad
                         "
                     </h2>
                         </div>

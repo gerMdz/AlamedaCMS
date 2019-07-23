@@ -13,9 +13,13 @@ $version = date('YmdHi');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iglesia Alameda, Jovenes de la Alameda, JA! ">
+    <meta name="description" content="
+    Choque de ideas, Saca tu cerebro del lavarropas,
+    Iglesia Alameda, Jovenes de la Alameda, JA! ">
     <meta name="author" content="Iglesia Alameda Mendoza">
-    <meta property="og:title" content="Iglesia Alameda Bienvenido, Jovenes de la Alameda, JA!" />
+    <meta property="og:title" content="
+    Choque de ideas, Saca tu cerebro del lavarropas,
+    Iglesia Alameda Bienvenido, Jovenes de la Alameda, JA!" />
     <meta property="og:type" content="website" />
 
     <meta property="og:url" content="https://www.iglesialameda.com/ja!.php" />
@@ -104,17 +108,35 @@ $version = date('YmdHi');
         </div>
     </div>
 </section>
+    <section class="p5-5 mt-0 section-ja blog-post  mt-0" id="sabado_20190622">
+        <!--        <div class="container">-->
+        <div class="row fullscreen align-items-center justify-content-center">
+            <div class="post mt-0 col-12">
+                <img src="imagenes/masporhacer/choque-ideas-2019-06-22.jpg"
+                     class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0">
+                <a href="#inicio" class="btn ant">Ant</a>
+                <a href="#post-1" class="btn sig">Sig</a>
 
-    <section class="p5-5 mt-0 section-ja blog-post  mt-0" id="post-1">
+                <div class="post-date">
+                    <span>22</span>
+                    <span>Jun</span>
+                    <span>2019</span>
+                </div>
+            </div>
+            <!--            </div>-->
+        </div>
+
+    </section>
+
+    <section class="p-5 mt-0 section-ja blog-post  mt-0" id="post-1">
 <!--        <div class="container">-->
             <div class="row fullscreen align-items-center justify-content-center">
     <div class="post mt-0 col-12">
         <img src="imagenes/ja_gris.png" class="img-fluid">
-        <a href="#inicio" class="btn ant">Ant</a>
+        <a href="sabado_20190622" class="btn ant">Ant</a>
         <a href="#post-2" class="btn sig">Sig</a>
         <div class="post-title p-3">
             Enchufate
-
         </div>
         <div class="post-date">
             <span>20</span>
@@ -127,7 +149,7 @@ $version = date('YmdHi');
 
 </section>
 
-    <section class="p5-5 mt-0 section-ja blog-post  mt-0" id="post-1">
+    <section class="p-5 mt-0 section-ja blog-post  mt-0" id="post-2">
         <!--        <div class="container">-->
         <div class="row fullscreen align-items-center justify-content-center">
             <div class="post mt-0 col-12">
