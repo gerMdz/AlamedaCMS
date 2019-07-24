@@ -18,8 +18,8 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
     font-size:2rem;font-weight:800}
 .site-heading .site-heading-lower{font-size:5rem;font-weight:100;line-height:4rem}
 .page-section{
-    margin-top:3rem;
-    margin-bottom:3rem
+    margin-top:1rem;
+    margin-bottom:1rem
 }.section-heading{text-transform:uppercase}.section-heading .section-heading-upper{display:block;font-size:1rem;font-weight:800}
 .section-heading .section-heading-lower{
     display:block;font-size:3rem;font-weight:100}
@@ -33,7 +33,33 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
     font-weight:300;
     text-align: center;
 }
-.bg-faded{background-color:rgba(255,255,255,.85)}#mainNav{background-color:rgba(47,23,15,.9);font-family:Raleway}#mainNav .navbar-brand{color:#e6a756}#mainNav .navbar-nav .nav-item .nav-link{color:rgba(255,255,255,.7);font-weight:800}#mainNav .navbar-nav .nav-item.active .nav-link{color:#e6a756}@media (min-width:992px){#mainNav .navbar-nav .nav-item .nav-link{font-size:.9rem}#mainNav .navbar-nav .nav-item .nav-link:hover{color:rgba(255,255,255,.4)}#mainNav .navbar-nav .nav-item.active .nav-link:hover{color:#e6a756}}.btn-xl{font-weight:700;font-size:.8rem;padding-top:1.5rem;padding-bottom:1.5rem;padding-left:2rem;padding-right:2rem}.intro{position:relative}@media (min-width:992px){.intro .intro-img{width:75%;float:right}.intro .intro-text{left:0;width:60%;margin-top:3rem;position:absolute}.intro .intro-text .intro-button{width:100%;left:0;position:absolute;bottom:-2rem}}@media (min-width:1200px){.intro .intro-text{width:45%}}
+.bg-faded{background-color:rgba(255,255,255,.85)}#mainNav{background-color:rgba(47,23,15,.9);font-family:Raleway}#mainNav .navbar-brand{color:#e6a756}#mainNav .navbar-nav .nav-item .nav-link{color:rgba(255,255,255,.7);font-weight:800}#mainNav .navbar-nav .nav-item.active .nav-link{color:#e6a756}@media (min-width:992px){#mainNav .navbar-nav .nav-item .nav-link{font-size:.9rem}#mainNav .navbar-nav .nav-item .nav-link:hover{color:rgba(255,255,255,.4)}#mainNav .navbar-nav .nav-item.active .nav-link:hover{color:#e6a756}}.btn-xl{font-weight:700;font-size:.8rem;padding-top:1.5rem;padding-bottom:1.5rem;padding-left:2rem;padding-right:2rem}
+.intro{
+    position:relative
+    }
+}
+
+@media (min-width:992px){
+    .intro .intro-img{
+        width:100%;float:right
+    }
+    .intro .intro-text{
+        left:0;
+        width:100%;
+        margin-top:1rem;
+        position:absolute
+    }
+    .intro .intro-text .intro-button{
+        width:100%;
+        left:0;
+        position:absolute;
+        bottom:-1rem}
+}
+@media (min-width:1200px){
+    .intro .intro-text{
+        width:100%
+    }
+}
 .cta{
     padding-top:3rem;
     padding-bottom:3rem;
@@ -45,8 +71,10 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
     margin:.5rem;
     background-color:rgba(30, 144, 255,.85)
 }
-.cta .cta-inner:before{border-radius:.5rem;content:'';position:absolute;top:-.5rem;bottom:-.5rem;left:-.5rem;right:-.5rem;border:.25rem solid rgba(255,255,255,.85)}@media (min-width:992px){.about-heading .about-heading-img{position:relative;z-index:0}.about-heading .about-heading-content{margin-top:-3rem;position:relative;z-index:1}}@media (min-width:992px){.product-item .product-item-title{position:relative;z-index:1;margin-bottom:-3rem}.product-item .product-item-img{position:relative;z-index:0;max-width:60vw}.product-item .product-item-description{position:relative;z-index:1;margin-top:-3rem;max-width:50vw}}.list-hours{font-size:.9rem}.list-hours .list-hours-item{border-bottom:1px solid rgba(230,167,86,.5);padding-bottom:.25rem;margin-bottom:1rem;font-style:italic}.list-hours .list-hours-item.today{font-weight:700;color:#e6a756}@media (min-width:992px){.list-hours{width:50%;font-size:1.1rem}}.address strong{font-size:1.2rem}
-.footer{background-color:rgba(0, 191, 255,.25)}.text-primary{color:#e6a756!important}.bg-primary{background-color:#e6a756!important}.btn{box-shadow:0 3px 3px 0 rgba(33,37,41,.1)}
+.cta .cta-inner:before{border-radius:.5rem;content:'';position:absolute;top:-.5rem;bottom:-.5rem;left:-.5rem;right:-.5rem;border:.25rem solid rgba(255,255,255,.85)}@media (min-width:992px){.about-heading .about-heading-img{position:relative;z-index:0}
+    .about-heading .about-heading-content{margin-top:-3rem;position:relative;z-index:1}}
+@media (min-width:992px){.product-item .product-item-title{position:relative;z-index:1;margin-bottom:-3rem}.product-item .product-item-img{position:relative;z-index:0;max-width:60vw}.product-item .product-item-description{position:relative;z-index:1;margin-top:-3rem;max-width:50vw}}.list-hours{font-size:.9rem}.list-hours .list-hours-item{border-bottom:1px solid rgba(230,167,86,.5);padding-bottom:.25rem;margin-bottom:1rem;font-style:italic}.list-hours .list-hours-item.today{font-weight:700;color:#e6a756}@media (min-width:992px){.list-hours{width:50%;font-size:1.1rem}}.address strong{font-size:1.2rem}
+.footer{background-color:rgba(67, 135, 137, .25)}.text-primary{color:#e6a756!important}.bg-primary{background-color:#e6a756!important}.btn{box-shadow:0 3px 3px 0 rgba(33,37,41,.1)}
 /*.btn-primary{
     background-color:#e6a756;
     border-color:#e6a756
@@ -66,52 +94,9 @@ h1,h2,h3,h4,h5,h6{font-family:Raleway}p{line-height:1.75}.text-faded{color:rgba(
     width: 43rem;*/
 }
 
-.bienvenido{
-    /*background: url("../imagenes/imagen auditorio.jpeg");*/
-    background-size: cover;
-    animation: move 3s linear alternate ;
-    margin: auto auto;
-    /*height: 38rem;
 
-    width: 43rem;*/
-}
 
-@-webkit-keyframes move {
 
-    from {
-        margin-left: 50%;
-        width: 150%
-    }
 
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
 
-@keyframes move {
-    from {
-        margin-left: 50%;
-        width: 150%
-    }
 
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
-}
-
-/*
-#central::before{
-
-    content: '';
-    position: relative;
-    animation: shadow 10s linear infinite alternate;
-    z-index: -1;
-
-}
-
-@-webkit-keyframes shadow {
-
-    100%{ width:43rem;  background: rgba(0, 0.0)}
-
-}*/

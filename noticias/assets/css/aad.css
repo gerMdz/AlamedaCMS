@@ -1,0 +1,47 @@
+
+.bg-gris{
+    background-color: #263238CC;
+    color: #FFFFFFCC;
+}
+
+
+
+.camino-box{
+    box-shadow: 0 0 4px 0 #ffa709;
+    padding: 15px;
+    position: relative;
+}
+p{
+    text-align: right;
+    font-weight: 500;
+}
+
+.camino-box h4{
+
+    font-weight: 600;
+
+    font-size: 1.4em;
+
+    text-align: center;
+}
+
+.camino-box h4:before{
+
+    content: '"';
+}
+.camino-box h4:after{
+
+    content: '"';
+}
+
+@media (max-width:320px) {
+
+    h1 {
+        font-size: 39px !important;
+        line-height: 1.35 !important;
+        letter-spacing: -.02em !important;
+        margin: 24px 0 !important;
+
+    }
+
+}

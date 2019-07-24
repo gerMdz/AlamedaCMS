@@ -1,0 +1,23 @@
+/*!
+ * Oportunidades Iglesia de la Alameda
+ * Copyright 2013-2018 Iglesia de la Alameda
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE)
+ */
+
+
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 4rem;
+    line-height: 3.5rem;
+  }
+  .navbar{
+    padding: 0 5px !important;
+
+    margin-left: 0px !important;;
+
+    margin-right: 0px !important;;
+  }
+}
+
+
