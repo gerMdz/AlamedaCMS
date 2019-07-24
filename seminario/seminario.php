@@ -33,7 +33,7 @@ CSS
 <!-- Css Propios página -->
 <link href="../css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
 <link rel="stylesheet" href="../css/estiloHorarios.css?v=<?php echo $version ?>" rel="stylesheet">
-<link rel="stylesheet" href="../material-modal/css/material-modal.min.css?v=<?php echo $version ?>">
+<link rel="stylesheet" href="../css/material-modal.min.css?v=<?php echo $version ?>">
 <!-- Fin Css Propios página -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <!--    <link rel="stylesheet" href="css/uvcp/argon.min.css">-->
@@ -852,7 +852,7 @@ include "../footer.php";
 
 <!-- Bootstrap core JavaScript -->
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script src="../material-modal/js/material-modal.min.js?v=<?php echo $version ?>"></script>
+<script src="../js/material-modal.min.js?v=<?php echo $version ?>"></script>
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="../js/extras/popper.min.js"></script>

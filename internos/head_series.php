@@ -41,7 +41,7 @@ $version = date('YmdHi');
     <!-- Css Propios página -->
     <link href="../css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
     <link rel="stylesheet" href="../css/estiloHorarios.css?v=<?php echo $version ?>" rel="stylesheet">
-    <link rel="stylesheet" href="../material-modal/css/material-modal.min.css?v=<?php echo $version ?>">
+    <link rel="stylesheet" href="../css/material-modal.min.css?v=<?php echo $version ?>">
     <!-- Fin Css Propios página -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!--    <link rel="stylesheet" href="css/uvcp/argon.min.css">-->
