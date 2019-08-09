@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PageIndex{% endblock %}
+
+{% block body %}
+    <h1>Create new PageIndex</h1>
+
+    {{ include('page_index/_form.html.twig') }}
+
+    <a href="{{ path('page_index_index') }}">back to list</a>
+{% endblock %}

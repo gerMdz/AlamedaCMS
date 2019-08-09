@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}IndexAlameda{% endblock %}
+
+{% block body %}
+    <h1>IndexAlameda</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ index_alameda.id }}</td>
+            </tr>
+            <tr>
+                <th>Lema</th>
+                <td>{{ index_alameda.lema }}</td>
+            </tr>
+            <tr>
+                <th>LemaPrincipal</th>
+                <td>{{ index_alameda.lemaPrincipal }}</td>
+            </tr>
+            <tr>
+                <th>LemaSinEspacio</th>
+                <td>{{ index_alameda.lemaSinEspacio }}</td>
+            </tr>
+            <tr>
+                <th>Horario1</th>
+                <td>{{ index_alameda.horario1 }}</td>
+            </tr>
+            <tr>
+                <th>Horario2</th>
+                <td>{{ index_alameda.horario2 }}</td>
+            </tr>
+            <tr>
+                <th>TextoVersiculo</th>
+                <td>{{ index_alameda.textoVersiculo }}</td>
+            </tr>
+            <tr>
+                <th>Versiculo</th>
+                <td>{{ index_alameda.versiculo }}</td>
+            </tr>
+            <tr>
+                <th>MetaDescripcion</th>
+                <td>{{ index_alameda.metaDescripcion }}</td>
+            </tr>
+            <tr>
+                <th>MetaAutor</th>
+                <td>{{ index_alameda.metaAutor }}</td>
+            </tr>
+            <tr>
+                <th>MetaTitle</th>
+                <td>{{ index_alameda.metaTitle }}</td>
+            </tr>
+            <tr>
+                <th>MetaType</th>
+                <td>{{ index_alameda.metaType }}</td>
+            </tr>
+            <tr>
+                <th>MetaUrl</th>
+                <td>{{ index_alameda.metaUrl }}</td>
+            </tr>
+            <tr>
+                <th>MetaImage</th>
+                <td>{{ index_alameda.metaImage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('index_alameda_index') }}">back to list</a>
+
+    <a href="{{ path('index_alameda_edit', {'id': index_alameda.id}) }}">edit</a>
+
+    {{ include('index_alameda/_delete_form.html.twig') }}
+{% endblock %}

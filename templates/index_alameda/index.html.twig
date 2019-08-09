@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}IndexAlameda index{% endblock %}
+
+{% block body %}
+    <h1>IndexAlameda index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lema</th>
+                <th>LemaPrincipal</th>
+                <th>LemaSinEspacio</th>
+                <th>Horario1</th>
+                <th>Horario2</th>
+                <th>TextoVersiculo</th>
+                <th>Versiculo</th>
+                <th>MetaDescripcion</th>
+                <th>MetaAutor</th>
+                <th>MetaTitle</th>
+                <th>MetaType</th>
+                <th>MetaUrl</th>
+                <th>MetaImage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for index_alameda in index_alamedas %}
+            <tr>
+                <td>{{ index_alameda.id }}</td>
+                <td>{{ index_alameda.lema }}</td>
+                <td>{{ index_alameda.lemaPrincipal }}</td>
+                <td>{{ index_alameda.lemaSinEspacio }}</td>
+                <td>{{ index_alameda.horario1 }}</td>
+                <td>{{ index_alameda.horario2 }}</td>
+                <td>{{ index_alameda.textoVersiculo }}</td>
+                <td>{{ index_alameda.versiculo }}</td>
+                <td>{{ index_alameda.metaDescripcion }}</td>
+                <td>{{ index_alameda.metaAutor }}</td>
+                <td>{{ index_alameda.metaTitle }}</td>
+                <td>{{ index_alameda.metaType }}</td>
+                <td>{{ index_alameda.metaUrl }}</td>
+                <td>{{ index_alameda.metaImage }}</td>
+                <td>
+                    <a href="{{ path('index_alameda_show', {'id': index_alameda.id}) }}">show</a>
+                    <a href="{{ path('index_alameda_edit', {'id': index_alameda.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('index_alameda_new') }}">Create new</a>
+{% endblock %}

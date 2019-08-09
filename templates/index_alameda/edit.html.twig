@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit IndexAlameda{% endblock %}
+
+{% block body %}
+    <h1>Edit IndexAlameda</h1>
+
+    {{ include('index_alameda/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('index_alameda_index') }}">back to list</a>
+
+    {{ include('index_alameda/_delete_form.html.twig') }}
+{% endblock %}

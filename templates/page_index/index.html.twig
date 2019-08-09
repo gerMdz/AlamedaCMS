@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PageIndex index{% endblock %}
+
+{% block body %}
+    <h1>PageIndex index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page_index in page_indices %}
+            <tr>
+                <td>{{ page_index.id }}</td>
+                <td>{{ page_index.name }}</td>
+                <td>
+                    <a href="{{ path('page_index_show', {'id': page_index.id}) }}">show</a>
+                    <a href="{{ path('page_index_edit', {'id': page_index.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('page_index_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit PageIndex{% endblock %}
+
+{% block body %}
+    <h1>Edit PageIndex</h1>
+
+    {{ include('page_index/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('page_index_index') }}">back to list</a>
+
+    {{ include('page_index/_delete_form.html.twig') }}
+{% endblock %}
