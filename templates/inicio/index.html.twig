@@ -8,10 +8,8 @@
             <a href="series/disfruta-el-viaje.php">
 
                 <img class="img-fluid w-100 center rounded about-heading-img mb-3 mb-lg-0 mx-auto "
-                     src="imagenes/series/viaje/cabecera.jpeg" alt="
-             <?php
-        echo $lema;
-        ?>
+                     src="imagenes/series/viaje/cabecera.jpeg" alt="{{ datosIndex.lema }}
+
 " style="">
             </a>
             <div class="about-heading-content ajusteIndex">
@@ -341,13 +339,12 @@
             <div class="col-sm-7 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
                     <div class="center-element btn btn-blue rotar90">
-                        Juan 14:16 (NVI)
+                        {{ datosIndex.versiculo }}
                     </div>
                     <div>
                         <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                             "
-                            Yo le pediré al Padre, y él les dará <b>otro consolador</b>
-                            para que los acompañe siempre:  el Espíritu de verdad
+                            {{ datosIndex.textoVersiculo }}
                             "
                         </h2>
                     </div>

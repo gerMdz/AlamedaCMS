@@ -3,7 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            {% block title %}Welcome!{% endblock %}</title>
+            {% block title %}Bienvenido{% endblock %}
+        </title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content=" {{ datosIndex.lema }},
+        {{ datosIndex.metaDescripcion }}
+        ">
+        <meta name="author" content="{{ datosIndex.metaAutor }}">
+
+        <meta property="og:title" content="{{ datosIndex.metaTitle }}" />
+        <meta property="og:type" content="{{ datosIndex.metaType }}" />
+
+        <meta property="og:url" content="{{ path('index') }}" />
+        <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
+        <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/og-base.png">
+        <title>{{ datosIndex.metaTitle }}</title>
+        <link rel="icon" href="imagenes/index.png" sizes="32x32" />
+        <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
+        <link rel="icon" href="imagenes/index192.png" sizes="192x192" />
+        <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
+
         {% block stylesheets %}
             <link href="css/foundation-icons.css" rel="stylesheet">
             <link href="css/mdb.min.css" rel="stylesheet">
@@ -32,7 +53,8 @@
     </head>
     <body>
 
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
         {% block javascripts %}
             <script src="vendor/jquery/jquery.min.js"></script>
             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -137,27 +159,7 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content=",
-     <?php
-     echo $lema;
-     ?>
-     , Iglesia Bautista, Celebracion, Dios, Fe, Amistad, Arte,
-    Libertad, Servicio, Misión">
-    <meta name="author" content="Iglesia de la Alameda">
 
-    <meta property="og:title" content="Iglesia Alameda" />
-    <meta property="og:type" content="website" />
-
-    <meta property="og:url" content="https://www.iglesialameda.com/index.php" />
-    <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/og-base.png">
-    <title>Iglesia de la Alameda</title>
-    <link rel="icon" href="imagenes/index.png" sizes="32x32" />
-    <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
-    <link rel="icon" href="imagenes/index192.png" sizes="192x192" />
-    <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
     <!-- Bootstrap core CSS -->
 

@@ -20,6 +20,7 @@ class IndexAlamedaController extends AbstractController
      */
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
+
         return $this->render('index_alameda/index.html.twig', [
             'index_alamedas' => $indexAlamedaRepository->findAll(),
         ]);
