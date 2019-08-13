@@ -52,4 +52,4 @@ Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework 
 
 ## Copyright and License
 
-Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://gitlab.com/gerardo.montivero/alameda/blob/master/LICENSE) license.
+Iglesia de la Alameda Code released under the [MIT](https://gitlab.com/gerardo.montivero/alameda/blob/master/LICENSE) license.
