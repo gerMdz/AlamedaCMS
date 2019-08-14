@@ -26,17 +26,23 @@
         <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
         {% block stylesheets %}
+            <!-- Bootstrap core CSS -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+            <!-- Material Design Bootstrap -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+            {{ encore_entry_link_tags('app') }}
             <link href="css/foundation-icons.css" rel="stylesheet">
-            <link href="css/mdb.min.css" rel="stylesheet">
+
             <link href="css/business-casual.min.css?v=<?php echo $version ?>" rel="stylesheet">
             <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
 
             <link href="css/alameda/fontAlameda.css" rel="stylesheet">
-            <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <link href="css/swiper.min.css" rel="stylesheet">
 
             <!--    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                   rel="stylesheet">
             <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
@@ -56,8 +62,20 @@
         {% block body %}
         {% endblock %}
         {% block javascripts %}
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- JQuery -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{#            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>#}
+            <!-- Bootstrap tooltips -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"></script>
+
+
+
+
+
+            {{ encore_entry_script_tags('app') }}
 
             <script type="text/javascript" src="js/jquery.countdown.js"></script>
             <script type="text/javascript" src="js/swiper.min.js"></script>
