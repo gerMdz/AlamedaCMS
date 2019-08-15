@@ -20,11 +20,11 @@ class IndexAlamedaController extends AbstractController
      */
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
+//        $em = $this->getDoctrine()->getManager();
+//        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
         return $this->render('index_alameda/index.html.twig', [
             'index_alamedas' => $indexAlamedaRepository->findAll(),
-            'datosIndex'=> $indexAlameda[0]
+            'datosIndex'=> $indexAlamedaRepository->findAll()[0]
         ]);
     }
 
@@ -77,6 +77,7 @@ class IndexAlamedaController extends AbstractController
 
         return $this->render('index_alameda/edit.html.twig', [
             'index_alameda' => $indexAlameda,
+            'datosIndex'=> $indexAlameda,
             'form' => $form->createView(),
         ]);
     }

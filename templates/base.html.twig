@@ -8,21 +8,17 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content=" {{ datosIndex.lema }},
-        {{ datosIndex.metaDescripcion }}
-        ">
+        <meta name="description" content="{{ datosIndex.lema }},{{ datosIndex.metaDescripcion }}">
         <meta name="author" content="{{ datosIndex.metaAutor }}">
 
         <meta property="og:title" content="{{ datosIndex.metaTitle }}" />
         <meta property="og:type" content="{{ datosIndex.metaType }}" />
 
-        <meta property="og:url" content="{{ path('index') }}" />
+        <meta property="og:url" content="{{ datosIndex.metaUrl }}" />
         <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-        <meta property="og:image" content="https://www.iglesialameda.com/imagenes/og/og-base.png">
+        <meta property="og:image" content="{{ datosIndex.metaUrl }}{{ asset('build/images/og-base.png') }}">
         <title>{{ datosIndex.metaTitle }}</title>
-        <link rel="icon" href="imagenes/index.png" sizes="32x32" />
-        <link rel="icon" href="nueva/imagenes/index.png" sizes="32x32" />
-        <link rel="icon" href="imagenes/index192.png" sizes="192x192" />
+        <link rel="icon" href="{{ asset('build/images/index_192.png') }}" sizes="192x192" />
         <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
         {% block stylesheets %}
