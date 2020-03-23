@@ -1,0 +1,16 @@
+.btn-generico.viaje { color: #fff; background: #80552e; border: 1px solid transparent; }
+.btn-generico.viaje:hover, .btn-generico.viaje:focus, .btn-generico.viaje:active { background-color: #fff; border: 1px solid black; color: black; }
+
+.text-realce-viaje { color: #3d2d1b; font-weight: 600; }
+
+.bg-viaje_claro { background: #fadebe; }
+
+#section-viaje b, #section-viaje i, .base-viaje sup, .base-viaje sub, .base-viaje u, .base-viaje del { color: #3d2d1b; }
+
+.section-viaje b, .section-viaje i, .base-viaje sup, .base-viaje sub, .base-viaje u, .base-viaje del { color: #3d2d1b; }
+
+.text-5 { font-size: 5rem; }
+
+.text-4 { font-size: 4rem; }
+
+/*# sourceMappingURL=series.css.map */

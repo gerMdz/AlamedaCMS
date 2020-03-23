@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'alameda';
+  src:  url('fonts/alameda.eot?qdterw');
+  src:  url('fonts/alameda.eot?qdterw#iefix') format('embedded-opentype'),
+    url('fonts/alameda.ttf?qdterw') format('truetype'),
+    url('fonts/alameda.woff?qdterw') format('woff'),
+    url('fonts/alameda.svg?qdterw#alameda') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'alameda' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-PEncuentroSinText64 .path1:before {
+  content: "\e900";
+  color: rgb(253, 253, 252);
+}
+.icon-PEncuentroSinText64 .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(228, 196, 186);
+}
+.icon-PEncuentroSinText64 .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: rgb(214, 166, 154);
+}
+.icon-PEncuentroSinText64 .path4:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: rgb(199, 134, 119);
+}
+.icon-PEncuentroSinText64 .path5:before {
+  content: "\e904";
+  margin-left: -1em;
+  color: rgb(195, 118, 102);
+}
+.icon-PEncuentroSinText64 .path6:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(184, 97, 78);
+}
+.icon-PEncuentroSinText64 .path7:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(185, 78, 53);
+}
+.icon-PEncuentroSinText64 .path8:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(182, 80, 53);
+}
