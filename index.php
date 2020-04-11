@@ -482,7 +482,7 @@
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        "No tengas miedo <br/> -le dijo Eliseo.<br/> Hay más de nuestro lado <br/>
+                        No tengas miedo <br/> -le dijo Eliseo.<br/> Hay más de nuestro lado <br/>
                         que del lado de ellos ....
                         "
                     </h2>
