@@ -239,7 +239,7 @@
                 </span>
                 <div class="text-center">
                     <small class="text-tan">Sumate a un grupo pequeño desde </small><br/>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform" class="btn btn-outline-info text-tan btn-sm">aquí</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform" class="btn btn-outline-info text-tan btn-sm" target="_blank">aquí</a>
                 </div>
 <!--            <span class="card-text ">-->
 <!--                ¿Tenés preguntas acerca de Dios y te gustaría conversar?<br/>-->

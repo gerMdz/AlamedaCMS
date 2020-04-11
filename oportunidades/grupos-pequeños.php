@@ -88,7 +88,7 @@
               <div class="resume-date text-md-right">
                   <div class="bg-white">
 
-                      <a class="btn btn-outline-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform">
+                      <a class="btn btn-outline-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform" target="_blank">
                           Sumate a un grupo pequeño desde aquí
                       </a>
                   </div>
