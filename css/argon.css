@@ -5818,8 +5818,18 @@ input[type='button'].btn-block
     padding: 2rem 1rem;
 
     border-radius: .3rem; 
+
+}
+.jumbotron .default
+{
     background-color: #e9ecef;
 }
+
+.jumbotron .superhero
+{
+    background-color: #4E5D6C !important;
+}
+
 @media (min-width: 576px)
 {
     .jumbotron

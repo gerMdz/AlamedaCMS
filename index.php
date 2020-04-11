@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
                     <div class="bg-faded rounded p-3 row">
-	<iframe class="img-fluid mx-auto" src="https://www.youtube.com/embed/7L2X96Mc7JM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe class="img-fluid mx-auto" src="https://www.youtube.com/embed/5hy7kaBx_0s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <h4 class="section-heading mb-4 col-sm-12">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "
@@ -181,10 +181,10 @@
                 <!-- The slideshow -->
                 <div class="carousel-inner ">
                     <div class="carousel-item active ">
-                        <img src="../images/slider/imagen%20auditorio.png" alt="La Alameda" class="img-fluid" >
+                        <img src="../images/slider/imagen%20auditorio.png" alt="La Alameda" class="img-fluid rounded" >
                     </div>
                     <div class="carousel-item ">
-                        <img src="../images/series/levantate-y-brilla/og-serie.png" alt="La Alameda" class="img-fluid " >
+                        <img src="images/series/no-temere/No-temeré_Facebook_Cover.jpg" alt="La Alameda" class="img-fluid " >
                     </div>
 
                     <div class="carousel-item ">
@@ -228,35 +228,43 @@
     <div class="card bg-teal text-tan container mb-1">
         <div class="row">
         <div class="col-sm-3 pull-left card-header px-2 px-lg-3">
-        <img class="w-100" src="../images/PuntoDePartida.jpeg" alt="Punto de Partida">
+<!--        <img class="w-100" src="../images/PuntoDePartida.jpeg" alt="Punto de Partida">-->
+        <img class="w-100" src="images/gpc.jpg" alt="Grupos Pequeños">
         </div>
         <div class="col-sm-9  pull-right text-left ">
 
             <div class="card-body ml-lg-5 5 mt-lg-5">
-            <span class="card-text ">
-                ¿Tenés preguntas acerca de Dios y te gustaría conversar?<br/>
-                Punto de partida es una experiencia conversacional creada
-                para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>
-            <ul class="punto">
-                <li ><img class="img-fluid" src="../images/PEncuentroSinText.png" width="16" height="16"></img>
-                    ¿Dios existe?
-                </li>
-                <li> <img class="img-fluid" src="../images/PEncuentroSinText.png" width="16" height="16"></img>
-                    ¿Puedo confiar en la Biblia?
-                </li>
-
-            </ul>
-            En un ambiente libre de prejuicios.
-            </span>
+                <span class="card-text">
+                    Para que cada persona que llegue a la iglesia de La Alameda, se integre, permanezca, se desarrolle y se multiplique en un Grupo Pequeño.
+                </span>
+                <div class="text-center">
+                    <small class="text-tan">Sumate a un grupo pequeño desde </small><br/>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform" class="btn btn-outline-info text-tan btn-sm">aquí</a>
+                </div>
+<!--            <span class="card-text ">-->
+<!--                ¿Tenés preguntas acerca de Dios y te gustaría conversar?<br/>-->
+<!--                Punto de partida es una experiencia conversacional creada-->
+<!--                para vos que buscás tener un acercamiento a la fe, explorando preguntas como: <br/>-->
+<!--            <ul class="punto">-->
+<!--                <li ><img class="img-fluid" src="../images/PEncuentroSinText.png" width="16" height="16"></img>-->
+<!--                    ¿Dios existe?-->
+<!--                </li>-->
+<!--                <li> <img class="img-fluid" src="../images/PEncuentroSinText.png" width="16" height="16"></img>-->
+<!--                    ¿Puedo confiar en la Biblia?-->
+<!--                </li>-->
+<!---->
+<!--            </ul>-->
+<!--            En un ambiente libre de prejuicios.-->
+<!--            </span>-->
             </div>
 
         </div>
         </div>
-        <div class="card-footer text-center">
-            <small class="text-tan">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase
-                <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small><br/>
-            <a href="puntopartida.php" class="btn btn-outline-info text-tan btn-sm">Ver detalles</a>
-        </div>
+<!--        <div class="card-footer text-center">-->
+<!--            <small class="text-tan">Si estas interesado, envíanos un whatsapp al 0261 3070 443 con la frase-->
+<!--                <strong>"info punto de partida"</strong> y nos comunicaremos con vos </small><br/>-->
+<!--            <a href="puntopartida.php" class="btn btn-outline-info text-tan btn-sm">Ver detalles</a>-->
+<!--        </div>-->
     </div>
 
             <!--<div class="card-deck">
