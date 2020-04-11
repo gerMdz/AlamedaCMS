@@ -16,14 +16,19 @@
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+      <meta property="og:image" content="https://www.iglesiaalameda.com/images/og/og-base.png">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
+      <link rel="icon" href="images/index.png" sizes="32x32" />
+      <link rel="icon" href="images/index192.png" sizes="192x192" />
+      <link rel="apple-touch-icon-precomposed" href="images/indexapple.png" />
     <!-- Custom styles for this template -->
-    <link href="css/resume.min.css" rel="stylesheet">
+
 
       <link href="../css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
-      <link href="css/oportunidades.css" rel="stylesheet">
+
+      <link href="css/styles.css?v=<?php echo $version ?>" rel="stylesheet">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
 
   </head>
 
@@ -33,89 +38,24 @@
   include '../internos/nav.php';
   ?>
 
-<!--  <nav class="navbar navbar-expand-lg navbar-dark bg-teal fixed-top" id="">-->
-<!--      <a class="navbar-brand js-scroll-trigger" href="../index.php">-->
-<!--        <span class="d-block d-lg-none">Iglesia de La Alameda</span>-->
-<!--        <span class="d-none d-lg-block">-->
-<!--          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../imagenes/logo_n1.png" alt="">-->
-<!--        </span>-->
-<!--      </a>-->
-<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--      </button>-->
-<!--      <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--        <ul class="navbar-nav">-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link js-scroll-trigger" href="#nosotro">Nosotros</a>-->
-<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link js-scroll-trigger" href="#tareas">Tareas</a>-->
-<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link js-scroll-trigger" href="#coordinador">Coordinador</a>
-<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link js-scroll-trigger" href="#diahora">Día y Hora</a>-->
-<!--          </li>-->
-<!--<!--          <li class="nav-item">-->
-<!--<!--            <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>-->
-<!--<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link js-scroll-trigger" href="#habilidades">Habilidades</a>
-<!--          </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link " href="index.php">Más oportunidades</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--      </div>-->
-<!--    </nav>-->
-
-    <div class="container-fluid p-0">
-
-      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="nosotros">
-          <img src="../images/gp_vertical.png" class="img-fluid d-none d-sm-block" id="sideNav">
-
-        <div class="my-auto">
-            <img src="../images/gp_horizontal.jpg" class="img-fluid d-sm-none" >
-            <h1 class="mb-0">Grupos Pequeños<br/>
-                <span class="text-realce-verde">Comunitarios</span>
-            </h1>
-          <div class="subheading mb-5">
-              Que cada persona que llegue a la iglesia,
-              se integre, permanezca, se desarrolle y se multiplique en un Grupo Pequeño.
-              <br/>
-              <br/>
-              <div class="resume-date text-md-right">
-                  <div class="bg-white">
-
-                      <a class="btn btn-outline-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform" target="_blank">
-                          Sumate a un grupo pequeño desde aquí
-                      </a>
-                  </div>
+  <!-- Masthead-->
+  <header class="masthead-oportunidades">
+      <div class="container h-100">
+          <div class="row h-100 align-items-center justify-content-center text-center">
+              <div class="col-lg-10 align-self-end">
+                  <h1 class="text-uppercase text-black-50 font-weight-bold">Grupos Pequeños <small class="text-realce-verde">Comunitarios</small></h1>
+                  <hr class="divider my-4" />
               </div>
-
-
-
+              <div class="col-lg-8 align-self-baseline">
+                  <p class="text-black-50 font-weight-light mb-5">Que cada persona que llegue a la iglesia,
+                      se integre, permanezca, se desarrolle y se multiplique en un Grupo Pequeño.</p>
+                  <a class="btn btn-blue btn-xl js-scroll-trigger" href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform" target="_blank">
+                      Sumate desde aquí
+                  </a>
+              </div>
           </div>
-
-<!--          <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>-->
-<!--          <div class="social-icons">-->
-<!--            <a href="#">-->
-<!--              <i class="fab fa-linkedin-in"></i>-->
-<!--            </a>-->
-<!--            <a href="#">-->
-<!--              <i class="fab fa-github"></i>-->
-<!--            </a>-->
-<!--            <a href="#">-->
-<!--              <i class="fab fa-twitter"></i>-->
-<!--            </a>-->
-<!--            <a href="#">-->
-<!--              <i class="fab fa-facebook-f"></i>-->
-<!--            </a>-->
-<!--          </div>-->
-        </div>
-
-      </section>
+      </div>
+  </header>
 
 
 
@@ -133,8 +73,11 @@
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/resume.min.js"></script>
+
+
+  <?php
+  include '../internos/footer.php'
+  ?>
 
   </body>
 

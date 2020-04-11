@@ -29,9 +29,9 @@
 <!--    <meta property="og:image" content="https://www.iglesiaalameda.com/imagenes/meta/">-->
     <meta property="og:image" content="https://www.iglesiaalameda.com/images/og/og-base.png">
     <title>Iglesia de la Alameda</title>
-    <link rel="icon" href="../images/index.png" sizes="32x32" />
-    <link rel="icon" href="../images/index192.png" sizes="192x192" />
-    <link rel="apple-touch-icon-precomposed" href="../images/indexapple.png" />
+    <link rel="icon" href="images/index.png" sizes="32x32" />
+    <link rel="icon" href="images/index192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="images/indexapple.png" />
 
     <!-- Bootstrap core CSS -->
 
@@ -135,10 +135,10 @@
                     <hr/>
                     <div class="section-body col-sm-6 col-md-6 col-lg-6 card">
                         <small class="mt-2 text-right card-title">
-                            Domingo 10 hs
+                            Domingo 11 hs
                             </small>
                             <div class="section-heading-body bg-light contador text-point-sec h-100  " id="once" style="font-weight: 800;">
-                                <div class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 10:00:00"></div>
+                                <div class="align-self-center fadeInRightBig h-100 my-auto" id="reunion-11" data-countdown="<?php echo $muestroDia; ?> 11:00:00"></div>
                             </div>
                     </div>
                             <hr class="d-lg-none"/>
@@ -229,12 +229,14 @@
         <div class="row">
         <div class="col-sm-3 pull-left card-header px-2 px-lg-3">
 <!--        <img class="w-100" src="../images/PuntoDePartida.jpeg" alt="Punto de Partida">-->
-        <img class="w-100" src="images/gpc.jpg" alt="Grupos Pequeños">
+        <img class="w-100" src="images/gpc-sin-texto.png" alt="Grupos Pequeños">
         </div>
         <div class="col-sm-9  pull-right text-left ">
 
             <div class="card-body ml-lg-5 5 mt-lg-5">
+                <h1>Grupos Pequeños</h1>
                 <span class="card-text">
+
                     Para que cada persona que llegue a la iglesia de La Alameda, se integre, permanezca, se desarrolle y se multiplique en un Grupo Pequeño.
                 </span>
                 <div class="text-center">
@@ -468,19 +470,20 @@
 <section class="page-section container cta fondo-evento" id="versiculoClave">
     <!--    <div class="row text-center">-->
     <div class="row text-center d-flex align-items-center bg-white">
-        <div class="col-sm-5 pull-left">
-            <img src="../images/series/levantate-y-brilla/LEVANTATE-Y-BRILLA.LOGO.png" class="img-fluid rounded" />
+        <div class="col-sm-4 pull-left">
+            <img src="images/textos/texto-ppal.png" class="img-fluid rounded" />
         </div>
 
-        <div class="col-sm-7 pt-5">
+        <div class="col-sm-8 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
-                        <div class="center-element btn btn-blue rotar90">
-                            Proverbios 13:20 (NTV)
+                        <div class="center-element btn btn-blue rotar90 mt-sm-0">
+                            2 Reyes 6:16-17 (NTV)
                         </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        Camina con sabios y te harás sabio; júntate con necios y te meterás en dificultades
+                        "No tengas miedo <br/> -le dijo Eliseo.<br/> Hay más de nuestro lado <br/>
+                        que del lado de ellos ....
                         "
                     </h2>
                         </div>
@@ -491,7 +494,7 @@
 
             </div>
         <div class="col-sm-12">
-            <a href="series/ideas-venenosas.php" class="text-light-blue"
+            <a href="notas.php" class="text-light-blue"
                data-toggle="tooltip"
                title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
         </div>

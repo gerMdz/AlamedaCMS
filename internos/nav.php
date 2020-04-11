@@ -39,7 +39,7 @@
 <!--                  </li>-->
                   <li class="nav-item">
                       <a class="nav-link" href="../oportunidades/grupos-pequeños.php" >
-                          <img class="img-fluid" src="../images/gpc.jpg" width="16" height="16">
+                          <img class="img-fluid" src="../images/gpc-sin-texto.png" width="16" height="16">
                           Grupos Pequeños
                       </a>
                   </li>
