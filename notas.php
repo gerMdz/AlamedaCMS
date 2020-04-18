@@ -1,6 +1,6 @@
 <?php
-$lema = 'Notas de la Serie No Temeré';
-$lemaSinEspacios = 'No-temere';
+$lema = 'Notas de la Serie Oraciones Audaces';
+$lemaSinEspacios = 'Oraciones-Audaces';
 $ahora = date('Y-m-d H:i');
 $version = date('YmdHi');
 $domingo = strtotime('today');
@@ -29,6 +29,11 @@ include_once ('gerVendor/gerFunctions.php')
 
     <!-- Docs CSS -->
     <link href="css/small-business.css?v=<?php echo $version ?>" rel="stylesheet">
+    <style>
+        .card-title{
+            font-family: greatlakes;
+        }
+    </style>
 
 
 </head>
@@ -46,14 +51,12 @@ include_once ('gerVendor/gerFunctions.php')
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
       <div class="col-lg-7">
-        <img class="img-fluid rounded mb-4 mb-lg-0" src="series/no-temere/No-temeré_Facebook_Cover.jpg" alt="<?php echo $lemaSinEspacios?>">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="series/oraciones-audaces/oraciones-audaces-cover.jpg" alt="<?php echo $lemaSinEspacios?>">
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
-          <h1 class="font-weight-light"><sup>Serie</sup><blockquote class="ml-5 pl-5float-right greatlakes">NO TEMERÉ</blockquote> </h1>
-        <p>Una respuesta de esperanza a la pandemia global y sus efectos colaterales en la vida
-            cotidiana y social.<br /> Un antídoto contra la ansiedad que desata en nuestras vidas esta
-            situación fuera de control.</p>
+          <h1 class="font-weight-light"><sup>Serie</sup><blockquote class="ml-5 pl-5float-right greatlakes">Oraciones Audaces</blockquote> </h1>
+        <p></p>
 
       </div>
       <!-- /.col-md-4 -->
@@ -71,60 +74,24 @@ include_once ('gerVendor/gerFunctions.php')
 
     <!-- Content Row -->
     <div class="row">
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <div class="card-body">
-            <h2 class="card-title">No temeré</h2>
-              <img src="series/no-temere/no-temere.jpg" class="img-fluid" />
 
-          </div>
-          <div class="card-footer">
-              <a href="series/no-temere/01-No-Temere.pdf" class="btn btn-sm btn-outline-info" target="_blank">
-                  Descarga la hoja de notas<br/> desde aquí.
-              </a><br/>
-              <a href="https://youtu.be/Y-mUXvzSKko" class="btn btn-sm btn-outline-danger" target="_blank">
-                  Ver el Mensaje.
-              </a>
-          </div>
-        </div>
-      </div>
-      <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-5">
+        <div class="col-md-4 mb-5 mx-auto">
             <div class="card h-100">
                 <div class="card-body">
-                    <h2 class="card-title">Encerrados</h2>
-                    <img src="series/no-temere/encerrados.jpg" class="img-fluid" />
+                    <h2 class="card-title">Oraciones Audaces</h2>
+                    <img src="series/oraciones-audaces/01-Oraciones-Audaces.jpg" class="img-fluid" />
 
                 </div>
                 <div class="card-footer">
-                    <a href="series/no-temere/02-Encerrados.pdf" class="btn btn-sm btn-outline-info" target="_blank">
-                        Descarga la hoja de notas <br/>desde aquí.
-                    </a><br/>
-                    <a href="https://youtu.be/EO82NA58OyE" class="btn btn-sm btn-outline-danger" target="_blank">
-                        Ver el Mensaje.
-                    </a>
+<!--                    <a href="series/no-temere/04-Jesus-en-vivo.pdf" class="btn btn-sm btn-outline-info" target="_blank">-->
+<!--                        Descarga la hoja de notas <br/>desde aquí.-->
+<!--                    </a><br/>-->
+<!--                    <a href="#" class="btn btn-sm btn-outline-danger" target="_blank">-->
+<!--                        Ver el Mensaje.-->
+<!--                    </a>-->
                 </div>
             </div>
         </div>
-      <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Realidad Aumentada</h2>
-                    <img src="series/no-temere/realidad-aumentada.jpg" class="img-fluid" />
-
-                </div>
-                <div class="card-footer">
-                    <a href="series/no-temere/03-Realidad-Aumentada.pdf" class="btn btn-sm btn-outline-info" target="_blank">
-                        Descarga la hoja de notas <br/>desde aquí.
-                    </a><br/>
-                    <a href="https://youtu.be/5hy7kaBx_0s" class="btn btn-sm btn-outline-danger" target="_blank">
-                        Ver el Mensaje.
-                    </a>
-                </div>
-            </div>
-        </div>
-      <!-- /.col-md-4 -->
 
     </div>
     <!-- /.row -->
@@ -133,6 +100,15 @@ include_once ('gerVendor/gerFunctions.php')
   <!-- /.container -->
 
   <!-- Footer -->
+  <footer class="footer">
+          <div class="card-body">
+              <h4 class="text-darker card-text text-center">Ver series anteriores </h4>
+              <div class="col-sm-2 mx-auto text-center">
+                <a href="notas-no-temere.php" class="btn btn-xl btn-alameda"> No temeré</a>
+              </div>
+          </div>
+
+  </footer>
   <?php
   include "footer.php";
   ?>
