@@ -4,6 +4,7 @@ $lemaSinEspacios = 'Oraciones-Audaces';
 $ahora = date('Y-m-d H:i');
 $version = date('YmdHi');
 $domingo = strtotime('today');
+$msj1 = null;
 /**
  * @example pregunta si la cuarentena terminó
  */
@@ -31,7 +32,7 @@ include_once ('gerVendor/gerFunctions.php')
     <link href="css/small-business.css?v=<?php echo $version ?>" rel="stylesheet">
     <style>
         .card-title{
-            font-family: greatlakes;
+            font-family: druk_italic;
         }
     </style>
 
@@ -55,8 +56,14 @@ include_once ('gerVendor/gerFunctions.php')
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
-          <h1 class="font-weight-light"><sup>Serie</sup><blockquote class="ml-5 pl-5float-right greatlakes">Oraciones Audaces</blockquote> </h1>
-        <p></p>
+          <h1 class="font-weight-light"><sup>Serie</sup>
+              <blockquote class="ml-5 pl-5float-right druk_italic text-uppercase">Oraciones Audaces!</blockquote> </h1>
+        <p>
+            En tiempos de adversidad los hombres han encontrado un arma para lo imposible:
+            <b>Una oración</b>.<br/>
+            Pero no cualquier oración. <b>Oraciones con la fe y coraje para cambiar las cosas.</b><br/>
+            Descubrí estas poderosas <b>oraciones de personas</b> de la Biblia y tomalas en tu vida para enfrentar las presentes adversidades que enfrentas.
+        </p>
 
       </div>
       <!-- /.col-md-4 -->
@@ -78,17 +85,23 @@ include_once ('gerVendor/gerFunctions.php')
         <div class="col-md-4 mb-5 mx-auto">
             <div class="card h-100">
                 <div class="card-body">
-                    <h2 class="card-title">Oraciones Audaces</h2>
-                    <img src="series/oraciones-audaces/01-Oraciones-Audaces.jpg" class="img-fluid" />
+                    <h2 class="card-title">Ante lo Inesperado</h2>
+                    <img src="series/oraciones-audaces/01-Ante-lo-inesperado.jpg" class="img-fluid" />
 
                 </div>
                 <div class="card-footer">
-<!--                    <a href="series/no-temere/04-Jesus-en-vivo.pdf" class="btn btn-sm btn-outline-info" target="_blank">-->
-<!--                        Descarga la hoja de notas <br/>desde aquí.-->
-<!--                    </a><br/>-->
-<!--                    <a href="#" class="btn btn-sm btn-outline-danger" target="_blank">-->
-<!--                        Ver el Mensaje.-->
-<!--                    </a>-->
+                    <a href="series/oraciones-audaces/01-Ante-lo-inesperado.pdf" class="btn btn-sm btn-outline-info" target="_blank">
+                        Descarga la hoja de notas <br/>desde aquí.
+                    </a><br/>
+                    <?php
+                     if ($msj1 !== null){
+                    ?>
+                    <a href="<?php echo $msj1; ?>" class="btn btn-sm btn-outline-danger" target="_blank">
+                        Ver el Mensaje.
+                    </a>
+                    <?php
+                     }
+                    ?>
                 </div>
             </div>
         </div>

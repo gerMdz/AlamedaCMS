@@ -471,19 +471,19 @@
     <!--    <div class="row text-center">-->
     <div class="row text-center d-flex align-items-center bg-white">
         <div class="col-sm-4 pull-left">
-            <img src="images/textos/texto-ppal.png" class="img-fluid rounded" />
+            <img src="images/textos/texto-ppal.jpg" class="img-fluid rounded" />
         </div>
 
         <div class="col-sm-8 pt-5">
                 <blockquote class="blockquote-uvcp_dark text-white-75 rounded align-items-center px-5" >
                         <div class="center-element btn btn-blue rotar90 mt-sm-0">
-                            2 Reyes 6:16-17 (NTV)
+                            2 Crónicas 20:12 (NVI)
                         </div>
                         <div>
                     <h2 style="text-indent: 2em; font-family: 'Courgette', cursive; color: #000000" class="pt-sm-0 pt-lg-3 text-right"  >
                         "
-                        No tengas miedo <br/> -le dijo Eliseo.<br/> Hay más de nuestro lado <br/>
-                        que del lado de ellos ....
+                        Dios nuestro,.. Nosotros no podemos oponernos a [esto] que viene a atacarnos.
+                        ¡No sabemos qué hacer! [Pero] ¡En ti hemos puesto nuestra esperanza!"
                         "
                     </h2>
                         </div>
