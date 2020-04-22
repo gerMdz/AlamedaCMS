@@ -1,0 +1,10 @@
+@font-face {
+    font-family: druk_italic;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/druk/Druk Cond Super Italic.otf") format('truetype');
+}
+
+.druk_italic{
+    font-family: druk_italic;
+}

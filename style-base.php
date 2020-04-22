@@ -28,3 +28,4 @@
     <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     <link href="css/fonts/univers/font.css?v=<?php echo $version ?>" rel="stylesheet">
+    <link href="css/fonts.css?v=<?php echo $version ?>" rel="stylesheet">
