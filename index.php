@@ -1,6 +1,6 @@
 <?php
-    $lema = 'No Temeré';
-    $lemaSinEspacios = 'no-temere';
+    $lema = 'Oraciones Audaces';
+    $lemaSinEspacios = 'oraciones-audaces';
     $ahora = date('Y-m-d H:i');
     $version = date('YmdHi');
     $domingo = strtotime('today');
@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
                     <div class="bg-faded rounded p-3 row">
-	<iframe src="https://www.youtube.com/embed/kylp637q-3w" class="img-fluid mx-auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe src="https://www.youtube.com/embed/RpuD582M-qA" class="img-fluid mx-auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <h4 class="section-heading mb-4 col-sm-12">
 
             <!--<img class="intro-img img-fluid mb-3 mb-lg-0 rounded border border-info border-left-0 "

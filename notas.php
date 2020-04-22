@@ -4,7 +4,7 @@ $lemaSinEspacios = 'Oraciones-Audaces';
 $ahora = date('Y-m-d H:i');
 $version = date('YmdHi');
 $domingo = strtotime('today');
-$msj1 = null;
+$msj1 ="https://youtu.be/RpuD582M-qA";
 /**
  * @example pregunta si la cuarentena terminó
  */
@@ -89,7 +89,7 @@ include_once ('gerVendor/gerFunctions.php')
                     <img src="series/oraciones-audaces/01-Ante-lo-inesperado.jpg" class="img-fluid" />
 
                 </div>
-                <div class="card-footer">
+                <div class="card-footer text-center">
                     <a href="series/oraciones-audaces/01-Ante-lo-inesperado.pdf" class="btn btn-sm btn-outline-info" target="_blank">
                         Descarga la hoja de notas <br/>desde aquí.
                     </a><br/>
