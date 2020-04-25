@@ -7,8 +7,10 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
+// import '../css/igle.scss';
 require('../css/foundation-icons/foundation-icons.css');
 require('../css/business-casual.css');
+require('../fonts/univers/font.css');
 
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
