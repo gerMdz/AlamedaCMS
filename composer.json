@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
+        "ramsey/uuid-doctrine": "^1.6",
         "sensio/framework-extra-bundle": "^5.4",
         "sensiolabs/security-checker": "^6.0",
         "symfony/apache-pack": "^1.0",
@@ -20,14 +21,15 @@
         "symfony/security-bundle": "4.4.*",
         "symfony/twig-bundle": "4.4.*",
         "symfony/validator": "4.4.*",
-        "symfony/web-server-bundle": "4.4.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "fzaninotto/faker": "^1.9",
         "symfony/maker-bundle": "^1.12",
-        "symfony/profiler-pack": "^1.0"
+        "symfony/profiler-pack": "^1.0",
+        "symfony/web-server-bundle": "^4.4.7"
     },
     "config": {
         "preferred-install": {
