@@ -15,10 +15,7 @@ class UserFixtures extends BaseFixture
 //        $manager->flush();
 //    }
 
-    protected $pn =
 
-["man", "ger", "ready", "remain", "idle", "shell", "river", "wild", "sharpen", "greed"]
-    ;
 
 
     protected function loadData(ObjectManager $manager)
