@@ -34,11 +34,17 @@ class User implements UserInterface
      */
     private $primerNombre;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    
     public function getEmail(): ?string
     {
         return $this->email;
@@ -85,7 +91,7 @@ class User implements UserInterface
      */
     public function getPassword()
     {
-        // not needed for apps that do not check user passwords
+        return $this->password;
     }
 
     /**
@@ -113,6 +119,13 @@ class User implements UserInterface
     public function setPrimerNombre(?string $primerNombre): self
     {
         $this->primerNombre = $primerNombre;
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
