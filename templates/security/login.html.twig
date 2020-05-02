@@ -3,6 +3,7 @@
 {% block title %}Ingreso{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+    {{ encore_entry_link_tags('loginStyle') }}
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
@@ -45,4 +46,5 @@
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('login') }}
 {% endblock %}
