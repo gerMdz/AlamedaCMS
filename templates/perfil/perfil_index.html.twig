@@ -1,15 +1,54 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Perfil {{ app.user.username}} {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('perfil') }}
+{% endblock %}
+
 
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Este es tu perfil ✅</h1>
-</div>
+    <div class="container mt-5">
+        <div class="row user-menu-container square mt-5">
+            <div class="col-md-12 user-details mt-5">
+                <div class="row spacepurplebg white">
+                    <div class="col-md-2 no-pad">
+                        <div class="user-image">
+                            <img src="https://robohash.org/{{app.user.email}}" class="img-responsive thumbnail">
+                        </div>
+                    </div>
+                    <div class="col-md-10 no-pad">
+                        <div class="user-pad">
+                            <h3>Bienvenido {{ app.user.primerNombre }}</h3>
+                            <h4 class="white"><i class="fas fa-envelope"></i> </h4>
+                            <a class="btn btn-labeled btn-info" href="#">
+                                <span class="btn-label"><i class="fa fa-pencil"></i></span>Update
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row overview">
+                    <div class="col-md-4 user-pad text-center">
+                        <h3>COMMENTS</h3>
+                        <h4>184</h4>
+                    </div>
+                    <div class="col-md-4 user-pad text-center">
+                        <h3>ARTICLES READ</h3>
+                        <h4>1,910</h4>
+                    </div>
+                    <div class="col-md-4 user-pad text-center">
+                        <h3>LIKES</h3>
+                        <h4>3,892</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('perfil') }}
 {% endblock %}

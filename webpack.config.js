@@ -25,8 +25,10 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('login', './assets/js/login.js')
+    .addEntry('perfil', './assets/js/perfil.js')
     //.addEntry('page1', './assets/js/page1.js')
     .addStyleEntry('loginStyle', './assets/css/styles.css')
+    .addStyleEntry('perfilStyle', './assets/css/account.css')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

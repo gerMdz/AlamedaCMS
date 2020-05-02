@@ -19,22 +19,19 @@ class IndexAlamedaRepository extends ServiceEntityRepository
         parent::__construct($registry, IndexAlameda::class);
     }
 
-    // /**
-    //  * @return IndexAlameda[] Returns an array of IndexAlameda objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findLemaField()
     {
+        $value = 'index';
         return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
+            ->andWhere('i.base = :val')
             ->setParameter('val', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('i.base', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?IndexAlameda

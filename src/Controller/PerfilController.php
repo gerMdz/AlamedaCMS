@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\IndexAlameda;
+use App\Entity\User;
 use App\Repository\IndexAlamedaRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @IsGranted("ROLE_USER")
+ * @method User|null getUser()
  */
 class PerfilController extends AbstractController
 {
@@ -20,6 +22,8 @@ class PerfilController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
+
+        $user = $this->getUser()->getEmail();
         return $this->render('perfil/perfil_index.html.twig', [
             'datosIndex'=> $indexAlamedaRepository->findAll()[0]
         ]);

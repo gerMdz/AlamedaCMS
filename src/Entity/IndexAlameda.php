@@ -81,6 +81,11 @@ class IndexAlameda
      */
     private $metaImage;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $base;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -238,6 +243,18 @@ class IndexAlameda
     public function setMetaImage(string $metaImage): self
     {
         $this->metaImage = $metaImage;
+
+        return $this;
+    }
+
+    public function getBase(): ?string
+    {
+        return $this->base;
+    }
+
+    public function setBase(string $base): self
+    {
+        $this->base = $base;
 
         return $this;
     }
