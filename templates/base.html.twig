@@ -54,6 +54,30 @@
         {% endblock %}
     </head>
     <body>
+    {% block nav %}
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-bg mb-5">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item dropdown" style="margin-right: 75px;">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="nav-profile-img rounded-circle"> <i class="fas fa-user-circle"></i> </img>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
+                        </div>
+                    </li>
+
+                    {% endif %}
+
+                </ul>
+            </div>
+        </nav>
+    {% endblock %}
 
         {% block body %}
         {% endblock %}

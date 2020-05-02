@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/index/alameda")
- * @IsGranted('ROLE_ADMIN')
+ * @IsGranted("ROLE_ADMIN")
  */
 class IndexAlamedaController extends AbstractController
 {
