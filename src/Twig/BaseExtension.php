@@ -32,6 +32,8 @@ class BaseExtension extends AbstractExtension
     {
         return [
             new TwigFunction('base_lema', [$this, 'lema']),
+            new TwigFunction('base_metaDescripcion', [$this, 'metaDescripcion']),
+            new TwigFunction('base_base', [$this, 'base']),
         ];
     }
 
@@ -40,5 +42,19 @@ class BaseExtension extends AbstractExtension
         $lema = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
 
         return $lema->getLema();
+    }
+
+    public function metaDescripcion()
+    {
+        $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
+
+        return $base->getMetaDescripcion();
+    }
+
+    public function base()
+    {
+        $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
+
+        return $base;
     }
 }

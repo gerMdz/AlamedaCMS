@@ -23,8 +23,11 @@
                         <div class="user-pad">
                             <h3>Bienvenido {{ app.user.primerNombre }}</h3>
                             <h4 class="white"><i class="fas fa-envelope"></i> </h4>
+                            {% if app.user.twitterUsername %}
+                                <h4 class="white"><i class="fab fa-twitter"></i> {{ app.user.twitterUsername }}</h4>
+                            {% endif %}
                             <a class="btn btn-labeled btn-info" href="#">
-                                <span class="btn-label"><i class="fa fa-pencil"></i></span>Update
+                                <span class="btn-label"><i class="fa fa-pencil"></i></span>Actualizar
                             </a>
                         </div>
                     </div>

@@ -5,11 +5,14 @@
         <title>
             {% block title %}Bienvenido{% endblock %}
         </title>
-    {% set base = 'base' %}
+    {% set index = 'base' %}
+        {% set base = base_base() %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{{ base_lema() }},{{ datosIndex.metaDescripcion }}">
+        <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
         <meta name="author" content="{{ datosIndex.metaAutor }}">
+        <meta name="author" content="{{ base.metaAutor }}">
+{#        <meta name="author" content="{{ base['autor'] }}">#}
 
         <meta property="og:title" content="{{ datosIndex.metaTitle }}" />
         <meta property="og:type" content="{{ datosIndex.metaType }}" />
@@ -165,7 +168,7 @@
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item dropdown" style="margin-right: 75px;">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="nav-profile-img rounded-circle"> <i class="fas fa-user-circle"></i> </img>
+                                <img src="{{ app.user.avatarUrl(32) }}" class="nav-profile-img rounded-circle img-fluid img-thumbnail">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>

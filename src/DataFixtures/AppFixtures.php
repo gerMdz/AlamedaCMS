@@ -30,6 +30,7 @@ class AppFixtures extends Fixture
         $inicio->setTextoVersiculo('Dios nuestro,.. Nosotros no podemos oponernos a [esto] que viene a atacarnos.
                         ¡No sabemos qué hacer! [Pero] ¡En ti hemos puesto nuestra esperanza!"');
         $inicio->setVersiculo('2 Crónicas 20:12 (NVI)');
+        $inicio->setBase('index');
 
         $manager->persist($inicio);
 
