@@ -14,8 +14,8 @@ totalmente DEV
 ## Download and Installation
 
 
-* Clone the repo: `git git@gitlab.com:gerardo.montivero/alameda.git`
-* [Fork, Clone, or Download on GitLab](https://gitlab.com/gerardo.montivero/alameda)
+* Clone the repo: `git clone https://github.com/gerMdz/alameda.git`
+* [Fork, Clone, or Download on GitHub](https://github.com/gerMdz/alameda)
 
 ## Usage
 
