@@ -57,6 +57,7 @@
         {% endblock %}
     </head>
     <body>
+
     {% block nav %}
         <style>
             .bg-verde{
@@ -180,12 +181,27 @@
                     </li>
 
                     {% endif %}
+                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                        <div class="alert alert-warning"  >
+                            Temporalemte
+                            <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+                        </div>
+                    {% endif %}
 
                 </ul>
             </div>
             </div>
         </nav>
+
+
     {% endblock %}
+    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+        <div class="alert alert-warning" style="position: fixed; bottom: 50px"  >
+            Temporalemte
+            <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+        </div>
+    {% endif %}
+
 
         {% block body %}
         {% endblock %}
