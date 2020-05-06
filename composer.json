@@ -19,6 +19,7 @@
         "symfony/orm-pack": "^1.0",
         "symfony/polyfill-php72": "^1.15",
         "symfony/security-bundle": "4.4.*",
+        "symfony/serializer-pack": "^1.0",
         "symfony/twig-bundle": "4.4.*",
         "symfony/validator": "4.4.*",
         "symfony/webpack-encore-bundle": "^1.7",

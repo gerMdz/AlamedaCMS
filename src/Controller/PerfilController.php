@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\IndexAlameda;
 use App\Entity\User;
 use App\Repository\IndexAlamedaRepository;
+use Psr\Container\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,6 +27,17 @@ class PerfilController extends AbstractController
         $user = $this->getUser()->getEmail();
         return $this->render('perfil/perfil_index.html.twig', [
             'datosIndex'=> $indexAlamedaRepository->findAll()[0]
+        ]);
+    }
+
+    /**
+     * @Route("/api/perfil", name="api_perfil")
+     */
+    public function apiPerfil()
+    {
+        $user = $this->getUser();
+        return $this->json($user, 200, [],[
+            'groups'=>['perfil'],
         ]);
     }
 }
