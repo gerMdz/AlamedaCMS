@@ -10,17 +10,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
-        <meta name="author" content="{{ datosIndex.metaAutor }}">
+        <meta name="author" content="{{ base.metaAutor }}">
         <meta name="author" content="{{ base.metaAutor }}">
 {#        <meta name="author" content="{{ base['autor'] }}">#}
 
-        <meta property="og:title" content="{{ datosIndex.metaTitle }}" />
-        <meta property="og:type" content="{{ datosIndex.metaType }}" />
+        <meta property="og:title" content="{{ base.metaTitle }}" />
+        <meta property="og:type" content="{{ base.metaType }}" />
 
-        <meta property="og:url" content="{{ datosIndex.metaUrl }}" />
+        <meta property="og:url" content="{{ base.metaUrl }}" />
         <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-        <meta property="og:image" content="{{ datosIndex.metaUrl }}{{ asset('build/images/og-base.png') }}">
-        <title>{{ datosIndex.metaTitle }}</title>
+        <meta property="og:image" content="{{ base.metaUrl }}{{ asset('build/images/og-base.png') }}">
+        <title>{{ base.metaTitle }}</title>
         <link rel="icon" href="{{ asset('build/images/index_192.png') }}" sizes="192x192" />
         <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
