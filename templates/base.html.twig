@@ -53,6 +53,19 @@
             <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 {#            <link href="css/fonts/univers/font.css?v=<?php echo $version ?>" rel="stylesheet">#}
+            <style>
+            .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            }
+            .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 300px;
+            }
+            </style>
 
         {% endblock %}
     </head>
@@ -68,7 +81,7 @@
             <div class="container">
 
                 <!-- Brand -->
-                <a class="navbar-brand flex-column " href="index.php" >
+                <a class="navbar-brand flex-column " href="{{ path('index') }}" >
                     <img src="images/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
                     <strong >Iglesia de la Alameda</strong>
                 </a>
@@ -231,6 +244,87 @@
             </script>
 
         {% endblock %}
+    {% block footer %}
+        <footer class="footer text-tan text-center py-4 fondoFranja bg-dark">
+            <div class="container">
+                <div class="row">
+                    <!--<div class="col-sm-3">
+                        <span class="text-left">Iglesia de la Alameda</span> <br/>
+
+
+                        <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
+
+                        <hr class="bg-point"/>
+                    </div>-->
+                    <!--
+                        <div class="col-sm-3">
+                        <hr class="bg-point"/>
+
+
+                        <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
+                        <hr class="bg-point"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <hr class="bg-point"/>
+
+
+                        <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
+                        <hr class="bg-point"/>
+                    </div>-->
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-2">
+                        <hr class="bg-point"/>
+                        <a class="text-tan" href="puntopartida.php"> Punto de Partida</a>
+                        <hr class="bg-point"/>
+                        <a class="text-tan" href="alamedaaldia.php"> Alameda al Día</a>
+                        <hr class="bg-point"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <hr class="bg-point"/>
+
+
+                        <a class="text-tan" href="masporhacer.php"> Eventos en la Alameda</a>
+                        <hr class="bg-point"/>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <hr class="bg-point"/>
+
+
+                        <a class="text-tan" href="nuestraalameda.php"> Dónde y Cuándo</a>
+                        <hr class="bg-point"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <hr class="bg-point"/>
+
+
+                        <a class="text-tan" href="acciones.php"> ¡¡Haciendo!!</a>
+                        <hr class="bg-point"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <hr class="bg-point"/>
+
+
+                        <a class="text-tan" href="seminario.php"> Seminario</a>
+                        <hr class="bg-point"/>
+
+
+
+
+                        <a class="text-tan" href="oportunidades/index.php"> Servicio</a>
+                        <hr class="bg-point"/>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="col-sm-12">
+                    <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza <br/>
+                        <strong>Horario de Reuniones</strong><br/>
+                        <em>Domingos por la mañana: 11hs. - Domingo por la tarde: 19hs.</em><br/>
+                        Copyright &copy; Iglesia Alameda 2018</p>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
     </body>
 </html>
 
@@ -238,73 +332,9 @@
     $lema = 'Disfruta el Viaje';
     $lemaSinEspacios = 'DisfrutaElViaje';
     $ahora = date('Y-m-d H:i');
-    $version = date('YmdHi');
+
     $domingo = strtotime('today');
     include_once ('gerVendor/gerFunctions.php')
 ?>
-<!DOCTYPE html>
 
-<html lang="en">
-
-<head>
-
-
-
-    <!-- Bootstrap core CSS -->
-
-
-
-
-    <!-- Custom styles for this template -->
-
-    <style>
-        /*.swiper-container {*/
-        /*width: 100vw;*/
-        /*height: 100vh;*/
-        /*padding: 50px;*/
-        /*}*/
-        /*.swiper-slide {*/
-        /*background-position: center;*/
-        /*background-size: cover;*/
-        /*width: 100%;*/
-        /*height: 100%;*/
-        /*}*/
-        .swiper-container {
-            width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-        .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 300px;
-        }
-    </style>
-
-
-</head>
-
-<body>
-
-<!--<h1 class="site-heading text-center text-white d-sm-block">-->
-<!--      <span class="section-heading-upper">-->
-<!--        <img src="imagenes/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid mt-5">-->
-<!--      </span>-->
-<!---->
-<!---->
-<!--</h1>-->
-
-<?php include 'nav.php'; ?>
-
-
-<?php include ('footer.php'); ?>
-
-<!-- Bootstrap core JavaScript -->
-
-
-
-</body>
-
-</html>
 

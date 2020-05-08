@@ -2,38 +2,72 @@
 
 namespace App\Security;
 
+use App\Entity\ApiToken;
+use App\Repository\ApiTokenRepository;
+use Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 {
+
+
+    private $apiTokenRepository;
+
+    public function __construct(ApiTokenRepository $apiTokenRepository)
+    {
+        $this->apiTokenRepository = $apiTokenRepository;
+    }
+
     public function supports(Request $request)
     {
-        // todo
+        // Reviso las cabeceras "Authorization: Bearer <token>"
+        return $request->headers->has('Authorization')
+            && 0 === strpos($request->headers->get('Authorization'), 'Bearer ');
     }
 
     public function getCredentials(Request $request)
     {
-        // todo
+        $authorizationHeader = $request->headers->get('Authorization');
+
+        // Salto todo el "Bearer "
+        return substr($authorizationHeader, 7);
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        // todo
+        $token = $this->apiTokenRepository->findOneBy([
+            'token' => $credentials
+        ]);
+        if (!$token) {
+            throw new CustomUserMessageAuthenticationException(
+                'API Token inválida'
+            );
+        }
+        if ($token->isExpired()) {
+            throw new CustomUserMessageAuthenticationException(
+                'Token expirado'
+            );
+        }
+        return $token->getUser();
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // todo
+        return true;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        // todo
+        return new JsonResponse([
+            'message' => $exception->getMessageKey()
+        ], 401);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -43,11 +77,11 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        // todo
+        throw new Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
     }
 
     public function supportsRememberMe()
     {
-        // todo
+        return false;
     }
 }

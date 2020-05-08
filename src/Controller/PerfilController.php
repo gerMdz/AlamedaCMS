@@ -8,6 +8,7 @@ use App\Repository\IndexAlamedaRepository;
 use Psr\Container\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -18,6 +19,8 @@ class PerfilController extends AbstractController
 {
     /**
      * @Route("/perfil", name="app_perfil")
+     * @param IndexAlamedaRepository $indexAlamedaRepository
+     * @return Response
      */
     public function index(IndexAlamedaRepository $indexAlamedaRepository)
     {

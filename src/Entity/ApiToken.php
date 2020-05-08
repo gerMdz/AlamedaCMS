@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 
@@ -56,7 +57,7 @@ class ApiToken
         return $this->token;
     }
 
-    public function getExpiraAt(): ?\DateTimeInterface
+    public function getExpiraAt(): ?DateTimeInterface
     {
         return $this->expiraAt;
     }
@@ -69,5 +70,11 @@ class ApiToken
     public function renuevaExpirasAt()
     {
         $this->expiraAt = new DateTime('+1 hour');
+    }
+
+    public function isExpired(): bool
+    {
+        return false;
+        return $this->getExpiraAt() <= new DateTime();
     }
 }
