@@ -1,0 +1,50 @@
+{% extends 'meta_base/metabase.html.twig' %}
+
+{% block title %}Datos Metabase{% endblock %}
+
+{% block body %}
+    <h1>MetaBase index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lema</th>
+                <th>Lema Principal</th>
+                <th>Meta Descripcion</th>
+                <th>Meta Autor</th>
+                <th>Meta Title</th>
+                <th>Meta Type</th>
+                <th>Meta Url</th>
+                <th>Site Name</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for meta_base in meta_bases %}
+            <tr>
+                <td>{{ meta_base.id }}</td>
+                <td>{{ meta_base.lema }}</td>
+                <td>{{ meta_base.lemaPrincipal }}</td>
+                <td>{{ meta_base.metaDescripcion }}</td>
+                <td>{{ meta_base.metaAutor }}</td>
+                <td>{{ meta_base.metaTitle }}</td>
+                <td>{{ meta_base.metaType }}</td>
+                <td>{{ meta_base.metaUrl }}</td>
+                <td>{{ meta_base.siteName }}</td>
+                <td>
+                    <a href="{{ path('meta_base_show', {'id': meta_base.id}) }}">ver</a>
+                    <a href="{{ path('meta_base_edit', {'id': meta_base.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Todavía no tienes metabase</td>
+                <td><a href="{{ path('meta_base_new') }}">Crea tu primer metabase</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

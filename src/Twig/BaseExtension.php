@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Entity\IndexAlameda;
+use App\Entity\MetaBase;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Twig\Extension\AbstractExtension;
@@ -53,7 +54,7 @@ class BaseExtension extends AbstractExtension
 
     public function base()
     {
-        $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
+        $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
 
         return $base;
     }

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrada index{% endblock %}
+
+{% block body %}
+    <div class="mt-5"><span><hr/></span></div>
+    <h1 class="mt-5">Listado de Entradas</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Contenido</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entrada in entradas %}
+            <tr>
+                <td>{{ entrada.id }}</td>
+                <td>{{ entrada.titulo }}</td>
+                <td>{{ entrada.contenido }}</td>
+                <td>
+                    <a href="{{ path('entrada_show', {'id': entrada.id}) }}">show</a>
+                    <a href="{{ path('entrada_edit', {'id': entrada.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('entrada_new') }}">Create new</a>
+{% endblock %}

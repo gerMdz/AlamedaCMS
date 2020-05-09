@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MetaBase{% endblock %}
+
+{% block body %}
+    <h1>Edit MetaBase</h1>
+
+    {{ include('meta_base/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('meta_base_index') }}">back to list</a>
+
+    {{ include('meta_base/_delete_form.html.twig') }}
+{% endblock %}

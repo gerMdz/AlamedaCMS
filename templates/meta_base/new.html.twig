@@ -1,0 +1,11 @@
+{% extends 'meta_base/metabase.html.twig' %}
+
+{% block title %}New MetaBase{% endblock %}
+
+{% block body %}
+    <h1>Create new MetaBase</h1>
+
+    {{ include('meta_base/_form.html.twig') }}
+
+    <a href="{{ path('meta_base_index') }}">back to list</a>
+{% endblock %}

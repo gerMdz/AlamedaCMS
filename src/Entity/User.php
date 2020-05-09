@@ -61,11 +61,27 @@ class User implements UserInterface
      */
     private $apiTokens;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PageIndex", mappedBy="autor")
+     */
+    private $pageIndices;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Entrada", mappedBy="autor")
+     */
+    private $entradas;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
+        $this->pageIndices = new ArrayCollection();
+        $this->entradas = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getPrimerNombre();
+    }
 
 
     public function getId(): ?string
@@ -212,6 +228,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($apiToken->getUser() === $this) {
                 $apiToken->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PageIndex[]
+     */
+    public function getPageIndices(): Collection
+    {
+        return $this->pageIndices;
+    }
+
+    public function addPageIndex(PageIndex $pageIndex): self
+    {
+        if (!$this->pageIndices->contains($pageIndex)) {
+            $this->pageIndices[] = $pageIndex;
+            $pageIndex->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removePageIndex(PageIndex $pageIndex): self
+    {
+        if ($this->pageIndices->contains($pageIndex)) {
+            $this->pageIndices->removeElement($pageIndex);
+            // set the owning side to null (unless already changed)
+            if ($pageIndex->getAutor() === $this) {
+                $pageIndex->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entrada[]
+     */
+    public function getEntradas(): Collection
+    {
+        return $this->entradas;
+    }
+
+    public function addEntrada(Entrada $entrada): self
+    {
+        if (!$this->entradas->contains($entrada)) {
+            $this->entradas[] = $entrada;
+            $entrada->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrada(Entrada $entrada): self
+    {
+        if ($this->entradas->contains($entrada)) {
+            $this->entradas->removeElement($entrada);
+            // set the owning side to null (unless already changed)
+            if ($entrada->getAutor() === $this) {
+                $entrada->setAutor(null);
             }
         }
 

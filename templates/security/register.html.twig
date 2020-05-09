@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ingreso {{ base.siteName}} {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('loginStyle') }}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    {# TODO hacer form espedífico#}
+    <form class="form-signin" method="post">
+
+
+        {% if app.user %}
+            <div class="mb-3">
+                Usted a ingresado como {{ app.user.username }}, <a href="{{ path('app_logout') }}">Salir</a>
+            </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Por favor, ingrese</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="" name="email" id="inputEmail" class="form-control" required autofocus>
+        <label for="inputPassword">Contraseña</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" requerido>
+        <label for="inputPrimerNombre">Nombre</label>
+        <input type="text" name="primernombre" id="inputPrimerNombre" class="form-control" requerido>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+        #}
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Acepto los términos que seguro leí (Serás parte de la comunidad virtual {{ base.siteName }})
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit">
+            Resgistrar
+        </button>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('login') }}
+{% endblock %}

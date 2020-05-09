@@ -13,7 +13,7 @@
     <div class="container mt-5">
         <div class="row user-menu-container square mt-5">
             <div class="col-md-12 user-details mt-5">
-                <div class="row spacepurplebg white">
+                <div class="row spacepurplebg ">
                     <div class="col-md-2 no-pad">
                         <div class="user-image">
                             <img src="https://robohash.org/{{app.user.email}}" class="img-responsive thumbnail">
@@ -21,8 +21,8 @@
                     </div>
                     <div class="col-md-10 no-pad">
                         <div class="user-pad">
-                            <h3>Bienvenido {{ app.user.primerNombre }}</h3>
-                            <h4 class="white"><i class="fas fa-envelope"></i> </h4>
+                            <h3>Hola {{ app.user.primerNombre }}</h3>
+                            <h4 class="text-info"><i class="fas fa-envelope"></i> {{ app.user.email}} </h4>
                             {% if app.user.twitterUsername %}
                                 <h4 class="white"><i class="fab fa-twitter"></i> {{ app.user.twitterUsername }}</h4>
                             {% endif %}

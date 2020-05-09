@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PageIndexRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
  */
-class PageIndex
+class Entrada
 {
     /**
      * @ORM\Id()
@@ -19,10 +19,15 @@ class PageIndex
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $titulo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="pageIndices")
+     * @ORM\Column(type="string", length=4000)
+     */
+    private $contenido;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="entradas")
      * @ORM\JoinColumn(nullable=false)
      */
     private $autor;
@@ -32,14 +37,26 @@ class PageIndex
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getTitulo(): ?string
     {
-        return $this->name;
+        return $this->titulo;
     }
 
-    public function setName(string $name): self
+    public function setTitulo(string $titulo): self
     {
-        $this->name = $name;
+        $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    public function getContenido(): ?string
+    {
+        return $this->contenido;
+    }
+
+    public function setContenido(string $contenido): self
+    {
+        $this->contenido = $contenido;
 
         return $this;
     }

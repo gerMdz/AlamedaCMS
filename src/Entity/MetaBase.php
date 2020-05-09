@@ -51,6 +51,21 @@ class MetaBase
      */
     private $metaUrl;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $siteName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $base;
+
+    public function __construct()
+    {
+        $this->base = 'index';
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +151,30 @@ class MetaBase
     public function setMetaUrl(string $metaUrl): self
     {
         $this->metaUrl = $metaUrl;
+
+        return $this;
+    }
+
+    public function getSiteName(): ?string
+    {
+        return $this->siteName;
+    }
+
+    public function setSiteName(string $siteName): self
+    {
+        $this->siteName = $siteName;
+
+        return $this;
+    }
+
+    public function getBase(): ?string
+    {
+        return $this->base;
+    }
+
+    public function setBase(string $base): self
+    {
+        $this->base = $base;
 
         return $this;
     }

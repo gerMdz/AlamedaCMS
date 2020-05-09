@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% set base = base_base() %}
         <meta charset="UTF-8">
         <title>
-            {% block title %}Bienvenido a {{ base.siteName}} {% endblock %}
+            {% block title %}Bienvenido{% endblock %}
         </title>
-    {% set index = 'base' %}
+
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
-        <meta name="author" content="{{ base.metaAutor }}">
-        <meta name="author" content="{{ base.metaAutor }}">
-{#        <meta name="author" content="{{ base['autor'] }}">#}
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="author" content="">
+       <meta property="og:title" content="" />
+        <meta property="og:type" content="" />
 
-        <meta property="og:title" content="{{ base.metaTitle }}" />
-        <meta property="og:type" content="{{ base.metaType }}" />
-
-        <meta property="og:url" content="{{ base.metaUrl }}" />
-        <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-        <meta property="og:image" content="{{ base.metaUrl }}{{ asset('build/images/og-base.png') }}">
-        <title>{{ base.metaTitle }}</title>
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="">
+        <title></title>
         <link rel="icon" href="{{ asset('build/images/index_192.png') }}" sizes="192x192" />
         <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
 
@@ -189,8 +185,7 @@
                             <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
                             {% if is_granted('ROLE_ADMIN') %}
                             <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
-                            <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>
-                            <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
+                                <a href="{{ path('meta_base_index') }}">Editar metadatos</a>
                             {% endif %}
                             <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
                         </div>
@@ -217,7 +212,6 @@
             <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
         </div>
     {% endif %}
-
 
 
         {% block body %}

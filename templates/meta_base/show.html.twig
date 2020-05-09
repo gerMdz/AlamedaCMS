@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MetaBase{% endblock %}
+
+{% block body %}
+    <h1>MetaBase</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ meta_base.id }}</td>
+            </tr>
+            <tr>
+                <th>Lema</th>
+                <td>{{ meta_base.lema }}</td>
+            </tr>
+            <tr>
+                <th>LemaPrincipal</th>
+                <td>{{ meta_base.lemaPrincipal }}</td>
+            </tr>
+            <tr>
+                <th>MetaDescripcion</th>
+                <td>{{ meta_base.metaDescripcion }}</td>
+            </tr>
+            <tr>
+                <th>MetaAutor</th>
+                <td>{{ meta_base.metaAutor }}</td>
+            </tr>
+            <tr>
+                <th>MetaTitle</th>
+                <td>{{ meta_base.metaTitle }}</td>
+            </tr>
+            <tr>
+                <th>MetaType</th>
+                <td>{{ meta_base.metaType }}</td>
+            </tr>
+            <tr>
+                <th>MetaUrl</th>
+                <td>{{ meta_base.metaUrl }}</td>
+            </tr>
+            <tr>
+                <th>SiteName</th>
+                <td>{{ meta_base.siteName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('meta_base_index') }}">back to list</a>
+
+    <a href="{{ path('meta_base_edit', {'id': meta_base.id}) }}">edit</a>
+
+    {{ include('meta_base/_delete_form.html.twig') }}
+{% endblock %}
