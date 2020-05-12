@@ -34,7 +34,7 @@ class UserFixtures extends BaseFixture
         $this->createMany(10, 'main_users', function ($i) use ($manager){
 
             $user = new User();
-            $user->setEmail(sprintf('alameda%d@example.com', $i));
+            $user->setEmail(sprintf('alameda%d@alameda.com', $i));
             $user->setPrimerNombre($this->faker->firstName);
             $user->setPassword($this->userPasswordEncoder->encodePassword(
                 $user,
@@ -57,7 +57,7 @@ class UserFixtures extends BaseFixture
         $this->createMany(3, 'admin_users', function ($i){
 
             $user = new User();
-            $user->setEmail(sprintf('admin%d@example.com', $i));
+            $user->setEmail(sprintf('admin%d@alameda.com', $i));
             $user->setPrimerNombre($this->faker->firstName);
             if ($this->faker->boolean) {
                 $user->setTwitterUsername($this->faker->userName);

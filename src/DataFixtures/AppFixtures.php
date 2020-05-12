@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\IndexAlameda;
+use App\Entity\MetaBase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -32,7 +33,19 @@ class AppFixtures extends Fixture
         $inicio->setVersiculo('2 Crónicas 20:12 (NVI)');
         $inicio->setBase('index');
 
+        $base = new MetaBase();
+        $base->setBase('index') ;
+        $base->setLema('Oraciones Audaces');
+        $base->setLemaPrincipal('Vení tal como sos');
+        $base->setMetaAutor('Diseño Alameda');
+        $base->setMetaDescripcion('Jesús, Dios, Igelsia, Amor, Esperanza, Fe, Arte');
+        $base->setMetaTitle('Iglesia de la Alameda');
+        $base->setMetaType('website');
+        $base->setMetaUrl('https://iglesiaalameda.com');
+        $base->setSiteName('Iglesia Alameda');
+
         $manager->persist($inicio);
+        $manager->persist($base);
 
         $manager->flush();
 
