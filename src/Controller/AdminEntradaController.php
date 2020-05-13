@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,12 +23,12 @@ class AdminEntradaController extends AbstractController
     /**
      * @param Entrada $entrada
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
+     * @IsGranted("ROLE_ADMIN_ENTRADAS", subject="entrada")
      */
     public function edit(Entrada $entrada){
 
-        if ($entrada->getAutor() != $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('No permitido');
-        }
-        dd($entrada);
+//        Usesé en caso de que no sepamos que subjet se envía
+//        $this->denyAccessUnlessGranted('ROLE_ADMIN_ENTRADAS', $entrada);
+        return $this->redirectToRoute('entrada_edit',['id'=>$entrada->getId()]);
     }
 }

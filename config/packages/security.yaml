@@ -11,7 +11,7 @@ security:
                 class: App\Entity\User
                 property: email
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_ADMIN_COMMENT, ROLE_ADMIN_ARTICLE, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN: [ROLE_ADMIN_COMENTARIOS, ROLE_ADMIN_ENTRADAS, ROLE_ALLOWED_TO_SWITCH]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

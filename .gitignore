@@ -1,5 +1,6 @@
 node_modules
 **/.idea/workspace.xml
+.idea
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -8,7 +9,6 @@ node_modules
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-/bin
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
