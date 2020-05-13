@@ -22,7 +22,7 @@ class EntradaVoter extends Voter
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ROLE_ADMIN_ENTRADAS'])
+        return in_array($attribute, ['MANAGE'])
             && $subject instanceof Entrada;
     }
 
@@ -39,13 +39,16 @@ class EntradaVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case 'ROLE_ADMIN_ENTRADAS':
+            case 'MANAGE':
                 // logic to determine if the user can EDIT
                 // return true or false
                 if ($subject->getAutor() == $user) {
                     return true;
                 }
                 if ($this->security->isGranted('ROLE_ADMIN_ENTRADAS')) {
+                    return true;
+                }
+                if ($this->security->isGranted('ROLE_EDITOR')) {
                     return true;
                 }
                  return false;

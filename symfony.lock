@@ -99,6 +99,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "knplabs/knp-markdown-bundle": {
+        "version": "1.8.1"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -107,6 +110,9 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.3"
+    },
+    "michelf/php-markdown": {
+        "version": "1.9.0"
     },
     "nikic/php-parser": {
         "version": "v4.4.0"

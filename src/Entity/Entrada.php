@@ -32,6 +32,21 @@ class Entrada
      */
     private $autor;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageFilename;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $publicadoAt;
+
+    public function __construct()
+    {
+        $this->publicadoAt = new DateTime('now');
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +84,30 @@ class Entrada
     public function setAutor(?User $autor): self
     {
         $this->autor = $autor;
+
+        return $this;
+    }
+
+    public function getImageFilename(): ?string
+    {
+        return $this->imageFilename;
+    }
+
+    public function setImageFilename(?string $imageFilename): self
+    {
+        $this->imageFilename = $imageFilename;
+
+        return $this;
+    }
+
+    public function getPublicadoAt(): ?\DateTimeInterface
+    {
+        return $this->publicadoAt;
+    }
+
+    public function setPublicadoAt(\DateTimeInterface $publicadoAt): self
+    {
+        $this->publicadoAt = $publicadoAt;
 
         return $this;
     }
