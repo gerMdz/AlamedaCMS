@@ -18,8 +18,4 @@ node_modules
 /public/build/
 npm-debug.log
 yarn-error.log
-/assets/css/foundation-icons.css
-/assets/css/foundation-icons.woff
-###< symfony/webpack-encore-bundle ###
-/assets/css/foundation-icons/
 /assets/css/business-casual.min.css
