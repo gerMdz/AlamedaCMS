@@ -114,6 +114,9 @@
     "michelf/php-markdown": {
         "version": "1.9.0"
     },
+    "monolog/monolog": {
+        "version": "1.25.3"
+    },
     "nikic/php-parser": {
         "version": "v4.4.0"
     },
@@ -226,6 +229,21 @@
     "symfony/debug": {
         "version": "v4.4.7"
     },
+    "symfony/debug-bundle": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "f8863cbad2f2e58c4b65fa1eac892ab189971bea"
+        },
+        "files": [
+            "config/packages/dev/debug.yaml"
+        ]
+    },
+    "symfony/debug-pack": {
+        "version": "v1.0.8"
+    },
     "symfony/dependency-injection": {
         "version": "v4.4.7"
     },
@@ -314,6 +332,23 @@
     },
     "symfony/mime": {
         "version": "v4.4.7"
+    },
+    "symfony/monolog-bridge": {
+        "version": "v4.4.8"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "a89f4cd8a232563707418eea6c2da36acd36a917"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
     },
     "symfony/options-resolver": {
         "version": "v4.4.7"
@@ -418,6 +453,9 @@
             "templates/base.html.twig"
         ]
     },
+    "symfony/twig-pack": {
+        "version": "v1.0.0"
+    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -481,6 +519,9 @@
     },
     "symfony/yaml": {
         "version": "v4.4.7"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.0.3"
     },
     "twig/twig": {
         "version": "v3.0.3"

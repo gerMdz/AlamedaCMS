@@ -19,3 +19,5 @@ node_modules
 npm-debug.log
 yarn-error.log
 /assets/css/business-casual.min.css
+/public/uploads/
+/src/Migrations/
