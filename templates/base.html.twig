@@ -27,7 +27,12 @@
 
         {% block stylesheets %}
             <!-- Bootstrap core CSS -->
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+            <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+
+            <!-- Theme Styles -->
+            <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+
             <!-- Font Awesome -->
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
             <!-- Material Design Bootstrap -->
@@ -223,14 +228,13 @@
         {% block body %}
         {% endblock %}
         {% block javascripts %}
-            <!-- JQuery -->
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-{#            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>#}
-            <!-- Bootstrap tooltips -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-            <!-- MDB core JavaScript -->
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"></script>
+            <script src="vendors/{{ asset('vendors/jquery.min.js') }}"></script>
+            <script src="vendors/{{ asset('vendors/jquery.migrate.min.js') }}"></script>
+            <script src="vendors/{{ asset('vendors/popper.min.js') }}"></script>
+            <script src="vendors/bootstrap/js/{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+
+            <!-- Theme Settings and Calls -->
+            <script src="js/{{ asset('js/global.js') }}"></script>
 
 
 
