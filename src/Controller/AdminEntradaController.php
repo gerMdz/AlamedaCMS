@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Entrada;
 use App\Repository\EntradaRepository;
+use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -48,7 +49,9 @@ class AdminEntradaController extends AbstractController
     public function temporalUploadAction(Request $request){
         /** @var UploadedFile $uploadedFile */
         $uploadedFile = $request->files->get('image');
+        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $newFilename =  Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
         $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
-        dd($uploadedFile->move($destination));
+        dd($uploadedFile->move($destination, $newFilename));
     }
 }

@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "brick/math": {
         "version": "0.8.15"
     },
@@ -95,6 +98,9 @@
     },
     "fzaninotto/faker": {
         "version": "v1.9.1"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.41"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
