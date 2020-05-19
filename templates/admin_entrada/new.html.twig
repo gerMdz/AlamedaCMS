@@ -1,0 +1,14 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block title %}New Entrada{% endblock %}
+
+{% block contenido_body %}
+
+    <h1>Nueva Entrada</h1>
+
+    <div class="form-container">
+    {{ include('admin_entrada/_form.html.twig') }}
+    </div>
+
+    <a href="{{ path('admin_entrada_index') }}">Volver al listado</a>
+{% endblock %}

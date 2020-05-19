@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminEntradaController extends AbstractController
 {
     /**
-     * @Route("/admin/entrada", name="admin_entrada")
+     * @Route("/admin/entrada", name="admin_entrada_index")
      * @param EntradaRepository $entradaRepository
      * @return Response
      * @IsGranted("ROLE_ESCRITOR")
@@ -30,28 +32,88 @@ class AdminEntradaController extends AbstractController
     }
 
     /**
+     * @param Request $request
      * @param Entrada $entrada
+     * @return RedirectResponse
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
-     * @return RedirectResponse
      */
-    public function edit(Entrada $entrada){
+    public function edit(Request $request, Entrada $entrada): Response{
 
-//        Usesé en caso de que no sepamos que subjet se envía
-//        $this->denyAccessUnlessGranted('ROLE_ADMIN_ENTRADAS', $entrada);
-        return $this->redirectToRoute('entrada_edit',['id'=>$entrada->getId()]);
+        $form = $this->createForm(EntradaType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+
+            if ($uploadedFile) {
+                $newFilename = $this->moveFile($uploadedFile, 'image_entrada');
+                $entrada->setImageFilename($newFilename);
+            }
+
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_entrada_index');
+        }
+
+        return $this->render('entrada/edit.html.twig', [
+            'entrada' => $entrada,
+            'entradaForm' => $form->createView(),
+        ]);
     }
 
+
+
     /**
-     * @Route("/admin/upload/prueba" , name="upload_prueba")
+     * @Route("/admin/entrada/new", name="admin_entrada_new")
+     * @IsGranted("ROLE_ESCRITOR")
+     * @param EntityManagerInterface $em
      * @param Request $request
+     * @return RedirectResponse|Response
      */
-    public function temporalUploadAction(Request $request){
-        /** @var UploadedFile $uploadedFile */
-        $uploadedFile = $request->files->get('image');
+    public function new(EntityManagerInterface $em, Request $request)
+    {
+        $form = $this->createForm(EntradaType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Entrada $entrada */
+            $entrada = $form->getData();
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+
+            if ($uploadedFile) {
+                $newFilename = $this->moveFile($uploadedFile, 'image_entrada');
+                $entrada->setImageFilename($newFilename);
+            }
+
+
+
+            $em->persist($entrada);
+            $em->flush();
+
+            $this->addFlash('success', 'Se agregó una entrada al sitio');
+
+            return $this->redirectToRoute('admin_entrada_index');
+        }
+
+        return $this->render('admin_entrada/new.html.twig', [
+            'entradaForm' => $form->createView()
+        ]);
+    }
+
+    public function moveFile($uploadedFile, $destination){
+        $destination = $this->getParameter('kernel.project_dir').'/public/uploads/'. $destination;
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename =  Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
-        $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
-        dd($uploadedFile->move($destination, $newFilename));
+
+        $uploadedFile->move(
+            $destination,
+            $newFilename
+        );
+        return $newFilename;
     }
 }

@@ -31,7 +31,7 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 
             <!-- Theme Styles -->
-            <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+{#            <link rel="stylesheet" type="text/css" href="assets/css/styles.css">#}
 
             <!-- Font Awesome -->
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -40,11 +40,11 @@
             {{ encore_entry_link_tags('app') }}
 {#            <link href="css/foundation-icons.css" rel="stylesheet">#}
 
-            <link href="css/business-casual.min.css?v=<?php echo $version ?>" rel="stylesheet">
-            <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">
 
-            <link href="css/alameda/fontAlameda.css" rel="stylesheet">
-            <link href="css/swiper.min.css" rel="stylesheet">
+{#            <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">#}
+
+{#            <link href="css/alameda/fontAlameda.css" rel="stylesheet">#}
+{#            <link href="css/swiper.min.css" rel="stylesheet">#}
 
             <!--    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
 
@@ -88,7 +88,7 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand flex-column " href="{{ path('index') }}" >
-                    <img src="images/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
+                    <img src="{{ asset('build/images/logo_n1.png') }}" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
                     <strong >Iglesia de la Alameda</strong>
                 </a>
 
@@ -110,7 +110,7 @@
                         <!--                  </li>-->
                         <li class="nav-item">
                             <a class="nav-link" href="oportunidades/grupos-pequeños.php" >
-                                <img class="img-fluid" src="images/gpc-sin-texto.png" width="16" height="16">
+                                <img class="img-fluid" src="{{ asset('build/images/gpc-sin-texto.png') }}" width="16" height="16">
                                 Grupos Pequeños
                             </a>
                         </li>
@@ -228,13 +228,13 @@
         {% block body %}
         {% endblock %}
         {% block javascripts %}
-            <script src="vendors/{{ asset('vendors/jquery.min.js') }}"></script>
-            <script src="vendors/{{ asset('vendors/jquery.migrate.min.js') }}"></script>
-            <script src="vendors/{{ asset('vendors/popper.min.js') }}"></script>
-            <script src="vendors/bootstrap/js/{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('vendors/jquery.min.js') }}"></script>
+            <script src="{{ asset('vendors/jquery.migrate.min.js') }}"></script>
+            <script src="{{ asset('vendors/popper.min.js') }}"></script>
+            <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
 
             <!-- Theme Settings and Calls -->
-            <script src="js/{{ asset('js/global.js') }}"></script>
+            <script src="{{ asset('js/global.js') }}"></script>
 
 
 
