@@ -24,7 +24,7 @@
                     <td>
                         <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span>
                         {% if entrada.publicadoAt  %}
-                            {{ entrada.publicadoAt | date('d-m-Y H:m') }}
+                            {{ entrada.publicadoAt | date('d-m-Y H:i') }}
                         {% endif %}
                     </td>
                     <td>
