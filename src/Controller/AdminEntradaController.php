@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -34,11 +35,12 @@ class AdminEntradaController extends AbstractController
     /**
      * @param Request $request
      * @param Entrada $entrada
+     * @param UploaderHelper $uploaderHelper
      * @return RedirectResponse
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
      */
-    public function edit(Request $request, Entrada $entrada): Response{
+    public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper): Response{
 
         $form = $this->createForm(EntradaType::class, $entrada);
         $form->handleRequest($request);
@@ -49,7 +51,7 @@ class AdminEntradaController extends AbstractController
             $uploadedFile = $form['imageFile']->getData();
 
             if ($uploadedFile) {
-                $newFilename = $this->moveFile($uploadedFile, 'image_entrada');
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);
                 $entrada->setImageFilename($newFilename);
             }
 
@@ -66,15 +68,15 @@ class AdminEntradaController extends AbstractController
     }
 
 
-
     /**
      * @Route("/admin/entrada/new", name="admin_entrada_new")
      * @IsGranted("ROLE_ESCRITOR")
      * @param EntityManagerInterface $em
      * @param Request $request
+     * @param UploaderHelper $uploaderHelper
      * @return RedirectResponse|Response
      */
-    public function new(EntityManagerInterface $em, Request $request)
+    public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
         $form = $this->createForm(EntradaType::class);
         $form->handleRequest($request);
@@ -86,7 +88,7 @@ class AdminEntradaController extends AbstractController
             $uploadedFile = $form['imageFile']->getData();
 
             if ($uploadedFile) {
-                $newFilename = $this->moveFile($uploadedFile, 'image_entrada');
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);
                 $entrada->setImageFilename($newFilename);
             }
 
@@ -105,15 +107,5 @@ class AdminEntradaController extends AbstractController
         ]);
     }
 
-    public function moveFile($uploadedFile, $destination){
-        $destination = $this->getParameter('kernel.project_dir').'/public/uploads/'. $destination;
-        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $newFilename =  Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
 
-        $uploadedFile->move(
-            $destination,
-            $newFilename
-        );
-        return $newFilename;
-    }
 }
