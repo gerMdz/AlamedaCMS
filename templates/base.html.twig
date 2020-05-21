@@ -13,6 +13,7 @@
         <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
         <meta name="author" content="{{ base.metaAutor }}">
         <meta name="author" content="{{ base.metaAutor }}">
+
 {#        <meta name="author" content="{{ base['autor'] }}">#}
 
         <meta property="og:title" content="{{ base.metaTitle }}" />
@@ -22,8 +23,7 @@
         <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
         <meta property="og:image" content="{{ base.metaUrl }}{{ asset('build/images/og-base.png') }}">
         <title>{{ base.metaTitle }}</title>
-        <link rel="icon" href="{{ asset('build/images/index_192.png') }}" sizes="192x192" />
-        <link rel="apple-touch-icon-precomposed" href="../imagenes/indexapple.png" />
+        {% include('inicio/_favicon_html.twig') %}
 
         {% block stylesheets %}
             <!-- Bootstrap core CSS -->
@@ -78,143 +78,7 @@
     <body>
 
     {% block nav %}
-        <style>
-            .bg-verde{
-                background-color: rgb(168, 228, 112)
-            }
-        </style>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar justify-content-between  mx-auto">
-            <div class="container">
-
-                <!-- Brand -->
-                <a class="navbar-brand flex-column " href="{{ path('index') }}" >
-                    <img src="{{ asset('build/images/logo_n1.png') }}" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
-                    <strong >Iglesia de la Alameda</strong>
-                </a>
-
-                <!-- Collapse -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Links -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    <!-- Left -->
-                    <ul class="navbar-nav mr-auto">
-                        <!--                  <li class="nav-item active">-->
-                        <!--                      <a class="nav-link" href="#">Inicio-->
-                        <!--                          <span class="sr-only">(current)</span>-->
-                        <!--                      </a>-->
-                        <!--                  </li>-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="oportunidades/grupos-pequeños.php" >
-                                <img class="img-fluid" src="{{ asset('build/images/gpc-sin-texto.png') }}" width="16" height="16">
-                                Grupos Pequeños
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ofrenda.php" >
-                                <i class="fas fa-hand-holding"></i> Ofrenda
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="notas.php" >
-                                <i class="fas fa-pencil-alt"></i> Notas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="oracion.php" >
-                                <!--                          <i class="fas fa-praying-hands"></i> Necesitas Oración?-->
-
-                                <img class="img-fluid img-circle bg-verde" src="images/institucional/LOGO-ORACION.png" width="16" height="16">
-                                Necesitas Oración?
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="alamedaaldia.php" >
-                                <i class="fas fa-location-arrow"></i> Oportunidades
-                            </a>
-                        </li>
-                        <!--                  <li class="nav-item">-->
-                        <!--                      <a class="nav-link" href="masporhacer.php" >-->
-                        <!--                          <i class="fas fa-random"></i> Lo que se viene-->
-                        <!--                      </a>-->
-                        <!--                  </li>-->
-                        <!--                  <li class="nav-item">-->
-                        <!--                      <a class="nav-link" href="nuestraalameda.php" >-->
-                        <!--                          <i class="fi-web"></i> Dónde y cuando-->
-                        <!--                        </a>-->
-                        <!--                  </li>-->
-                        <!--                  <li class="nav-item">-->
-                        <!--                      <a class="nav-link" href="acciones.php" >-->
-                        <!--                          <i class="fi-foot"></i> ¡Haciendo!-->
-                        <!--                        </a>-->
-                        <!--                  </li>-->
-                        <!--                  <li class="nav-item">-->
-                        <!--                      <a class="nav-link" href="seminario.php" >-->
-                        <!--                          <i class="fas fa-book"></i> Seminario-->
-                        <!--                        </a>-->
-                        <!--                  </li>-->
-
-                    </ul>
-
-                    <!--RIght -->
-                    <ul class="navbar-nav nav-flex-icons">
-
-                        <li class="nav-item">
-                            <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom"
-                               href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">
-                                <i class="fab fa-facebook-square fa-2x"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom"
-                               href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes">
-                                <i class="fab fa-youtube-square fa-2x"></i>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesiaalameda" target="_blank" data-original-title="Seguinos en Instagram">
-                                <i class="fab fa-instagram fa-2x"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-
-                <ul class="navbar-nav ml-auto">
-                    {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item dropdown" style="margin-right: 75px;">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ app.user.avatarUrl(32) }}" class="nav-profile-img rounded-circle img-fluid img-thumbnail">
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
-                            <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>
-                            <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
-                            {% endif %}
-                            <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
-                        </div>
-                    </li>
-
-                    {% endif %}
-                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                        <div class="alert alert-warning"  >
-                            Temporalemte
-                            <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
-                        </div>
-                    {% endif %}
-
-                </ul>
-            </div>
-            </div>
-        </nav>
-
-
+       {% include('inicio/_nav.html.twig') %}
     {% endblock %}
     {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
         <div class="alert alert-warning" style="position: fixed; bottom: 50px"  >

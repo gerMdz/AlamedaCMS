@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class EntradaType extends AbstractType
 {
@@ -29,6 +30,13 @@ class EntradaType extends AbstractType
             ->add('imageFile', FileType::class,[
                 'mapped'=>false,
                 'required'=>false,
+                'constraints'=>[
+                    new Image([
+                        'maxSize'=>'2M',
+                        'maxSizeMessage'=>'La imagen no debe superar los 2MB',
+                        'mimeTypesMessage'=>'El archivo no es considerada una imagen',
+                    ])
+                ]
             ])
         ;
     }
