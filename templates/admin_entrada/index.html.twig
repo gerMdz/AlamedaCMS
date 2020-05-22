@@ -20,7 +20,11 @@
             {% for entrada in entradas %}
                 <tr>
                     <td>{{ entrada.titulo }}</td>
-                    <td>{{ entrada.autor.email }}</td>
+                    <td>
+                        {{ entrada.autor }} --
+                        {{ entrada.autor.email }}
+
+                    </td>
                     <td>
                         <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span>
                         {% if entrada.publicadoAt  %}

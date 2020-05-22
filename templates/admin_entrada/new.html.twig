@@ -7,8 +7,20 @@
     <h1>Nueva Entrada</h1>
 
     <div class="form-container">
-    {{ include('admin_entrada/_form.html.twig') }}
+        {{ include('admin_entrada/_form.html.twig') }}
     </div>
 
-    <a href="{{ path('admin_entrada_index') }}">Volver al listado</a>
+    <a class="btn btn-link" href="{{ path('admin_entrada_index') }}"><i class="fas fa-backspace"></i> Volver al listado</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.custom-file-input').on('change', function (event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
 {% endblock %}

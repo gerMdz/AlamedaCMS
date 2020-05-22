@@ -78,7 +78,12 @@ class AdminEntradaController extends AbstractController
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
-        $form = $this->createForm(EntradaType::class);
+        $entrada = new Entrada();
+        $user = $this->getUser();
+        $entrada->setAutor($user);
+
+        $form = $this->createForm(EntradaType::class, $entrada);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Entrada $entrada */
@@ -103,7 +108,8 @@ class AdminEntradaController extends AbstractController
         }
 
         return $this->render('admin_entrada/new.html.twig', [
-            'entradaForm' => $form->createView()
+            'entradaForm' => $form->createView(),
+            'entrada'=>$entrada
         ]);
     }
 
