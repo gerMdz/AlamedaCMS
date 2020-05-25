@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use App\Service\ObtenerDatosHelper;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
@@ -36,11 +37,12 @@ class AdminEntradaController extends AbstractController
      * @param Request $request
      * @param Entrada $entrada
      * @param UploaderHelper $uploaderHelper
+     * @param ObtenerDatosHelper $datosHelper
      * @return RedirectResponse
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
      */
-    public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper): Response{
+    public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper, ObtenerDatosHelper $datosHelper): Response{
 
         $form = $this->createForm(EntradaType::class, $entrada);
         $form->handleRequest($request);
@@ -61,9 +63,12 @@ class AdminEntradaController extends AbstractController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
+        $ip = $datosHelper->getIpCliente();
+
         return $this->render('entrada/edit.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
+            'ip'=>$ip
         ]);
     }
 
