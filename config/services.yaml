@@ -34,3 +34,6 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }
+
+
+    Symfony\Component\Asset\Context\RequestStackContext: '@assets.context'

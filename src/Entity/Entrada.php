@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\UploaderHelper;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -111,5 +112,10 @@ class Entrada
         $this->publicadoAt = $publicadoAt;
 
         return $this;
+    }
+
+    public function getImagePath()
+    {
+        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 }

@@ -5,6 +5,7 @@
 {% block body %}
     <div class="mt-5"><span><hr/></span></div>
     <div class="mt-5"><span><hr/></span></div>
+    <div class="container">
     <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
 
 
@@ -15,5 +16,6 @@
         <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
 
         {{ include('entrada/_delete_form.html.twig') }}
+    </div>
     </div>
 {% endblock %}
