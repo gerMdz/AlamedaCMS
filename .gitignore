@@ -27,3 +27,10 @@ yarn-error.log
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+/public/vendors/tilt/.babelrc
+/public/vendors/tilt/.jshintrc
+/public/vendors/tilt/.travis.yml
+/assets/images/series/no-temere/01-No-Temere.pdf
+/assets/images/series/no-temere/02-Encerrados.pdf
+/assets/images/series/no-temere/03-Realidad-Aumentada.pdf
+/public/vendors/bootstrap/
