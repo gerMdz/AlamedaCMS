@@ -24,3 +24,7 @@ yarn-error.log
 /assets/fonts/univers/
 /assets/css/foundation-icons/.DS_Store
 
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
