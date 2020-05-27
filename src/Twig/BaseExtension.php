@@ -4,19 +4,28 @@ namespace App\Twig;
 
 use App\Entity\IndexAlameda;
 use App\Entity\MetaBase;
-use Doctrine\ORM\EntityManager;
+use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Container\ContainerInterface;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
-class BaseExtension extends AbstractExtension
+class BaseExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
     protected $em;
+    private $container;
 
-    public function __construct(EntityManagerInterface $em)
+    /**
+     * BaseExtension constructor.
+     * @param EntityManagerInterface $em
+     * @param ContainerInterface $container
+     */
+    public function __construct(EntityManagerInterface $em, ContainerInterface $container)
     {
         $this->em = $em;
+        $this->container = $container;
     }
 
     public function getFilters(): array
@@ -35,6 +44,7 @@ class BaseExtension extends AbstractExtension
             new TwigFunction('base_lema', [$this, 'lema']),
             new TwigFunction('base_metaDescripcion', [$this, 'metaDescripcion']),
             new TwigFunction('base_base', [$this, 'base']),
+            new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath'])
         ];
     }
 
@@ -57,5 +67,19 @@ class BaseExtension extends AbstractExtension
         $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
 
         return $base;
+    }
+
+    public function getUploadedAssetPath(string $path): string
+    {
+        return $this->container
+            ->get(UploaderHelper::class)
+            ->getPublicPath($path);
+    }
+
+    public static function getSubscribedServices()
+    {
+        return [
+            UploaderHelper::class,
+        ];
     }
 }

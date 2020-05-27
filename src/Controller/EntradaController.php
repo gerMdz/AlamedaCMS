@@ -59,26 +59,6 @@ class EntradaController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="entrada_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Entrada $entrada): Response
-    {
-        $form = $this->createForm(EntradaType::class, $entrada);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('entrada_index');
-        }
-
-        return $this->render('entrada/edit.html.twig', [
-            'entrada' => $entrada,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="entrada_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Entrada $entrada): Response

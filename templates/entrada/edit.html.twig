@@ -5,19 +5,17 @@
 {% block body %}
     <div class="mt-5"><span><hr/></span></div>
     <div class="mt-5"><span><hr/></span></div>
-    <h4>Edición de {{ entrada.titulo }}</h4>
+    <div class="container">
+    <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
 
-    <form method="POST" action="{{ path('upload_prueba') }}" enctype="multipart/form-data" >
-        <input type="file" name="image">
-        <button type="submit" class="btn btn-primary">Subir</button>
-    </form>
-    <hr>
+
 
     <div class="">
-        {{ include('entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
+        {{ include('admin_entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-        <a href="{{ path('entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
+        <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
 
         {{ include('entrada/_delete_form.html.twig') }}
+    </div>
     </div>
 {% endblock %}

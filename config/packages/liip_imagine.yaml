@@ -1,0 +1,15 @@
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+
+    filter_sets:
+        #
+        #        # an example thumbnail transformation definition
+        #        # https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html#create-thumbnails
+        squared_thumbnail_small:
+            filters:
+                thumbnail:
+                    size:          [200, 200]
+                    mode:          outbound
+                    allow_upscale: true

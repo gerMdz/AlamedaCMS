@@ -11,6 +11,9 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+        bind:
+            $uploadsPath: '%kernel.project_dir%/public/uploads'
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -31,3 +34,6 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }
+
+
+    Symfony\Component\Asset\Context\RequestStackContext: '@assets.context'

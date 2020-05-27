@@ -1,8 +1,8 @@
 {% extends 'contenido_base.html.twig' %}
 
 {% block contenido_body %}
-    <a href="#" class="btn btn-sm btn-primary pull-right">
-        Crear Entrada <span class="fa fa-plus-circle"></span>
+    <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary pull-right">
+        Agregar Entrada <span class="fa fa-plus-circle"></span>
     </a>
     <h4>Todas las entradas</h4>
 
@@ -12,6 +12,7 @@
                 <th>Titulo</th>
                 <th>Autor</th>
                 <th>Publicado?</th>
+                <th>Imagen</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
@@ -19,9 +20,20 @@
             {% for entrada in entradas %}
                 <tr>
                     <td>{{ entrada.titulo }}</td>
-                    <td>{{ entrada.autor.email }}</td>
                     <td>
-{#                        <span class="fa fa-{{ entrada.isPublished ? 'check' : 'times' }}"></span>#}
+                        {{ entrada.autor }} --
+                        {{ entrada.autor.email }}
+
+                    </td>
+                    <td>
+                        <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span>
+                        {% if entrada.publicadoAt  %}
+                            {{ entrada.publicadoAt | date('d-m-Y H:i') }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <img class="article-img" src="{{ uploaded_asset(entrada.imagePath)|imagine_filter('squared_thumbnail_small')}}">
+                        {{ entrada.imageFilename }}
                     </td>
                     <td>
                         <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
