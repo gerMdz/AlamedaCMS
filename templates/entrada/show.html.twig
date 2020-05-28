@@ -1,12 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
-{% block title %}Entrada{% endblock %}
+{% block title %}Edición Entrada {{ entrada.titulo }}{% endblock %}
 
-{% block body %}
+{% block contenido_body %}
     <h1>Entrada</h1>
 
     <table class="table">
         <tbody>
+        <tr>
+            <th>Imagen</th>
+            <td>
+                <img class="show-article-img" src="{{ uploaded_asset(entrada.imagePath)|imagine_filter('squared_thumbnail_medium') }}"></td>
+        </tr>
             <tr>
                 <th>Id</th>
                 <td>{{ entrada.id }}</td>
@@ -19,12 +24,13 @@
                 <th>Contenido</th>
                 <td>{{ entrada.contenido }}</td>
             </tr>
+
         </tbody>
     </table>
 
-    <a href="{{ path('entrada_index') }}">back to list</a>
+    <a class="btn btn-info" href="{{ path('admin_entrada_index') }}">Volver al listado</a>
 
-    <a href="{{ path('entrada_edit', {'id': entrada.id}) }}">edit</a>
+    <a class="btn btn-outline-warning" href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">Editar</a>
 
     {{ include('entrada/_delete_form.html.twig') }}
 {% endblock %}

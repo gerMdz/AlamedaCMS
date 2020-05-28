@@ -19,6 +19,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminEntradaController extends AbstractController
 {
+
+    private $isDebug;
+
+    /**
+     * NO usado es opcional
+     * @param bool $isDebug
+     */
+    public function __construct(bool $isDebug)
+    {
+
+        $this->isDebug = $isDebug;
+    }
+
     /**
      * @Route("/admin/entrada", name="admin_entrada_index")
      * @param EntradaRepository $entradaRepository
