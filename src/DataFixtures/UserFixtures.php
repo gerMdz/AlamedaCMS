@@ -72,6 +72,24 @@ class UserFixtures extends BaseFixture
 
         });
 
+        $this->createMany(5, 'escitor_users', function ($i){
+
+            $user = new User();
+            $user->setEmail(sprintf('escritor%d@alameda.com', $i));
+            $user->setPrimerNombre($this->faker->firstName);
+            if ($this->faker->boolean) {
+                $user->setTwitterUsername($this->faker->userName);
+            }
+            $user->setRoles(['ROLE_ESCRITOR']);
+            $user->setPassword($this->userPasswordEncoder->encodePassword(
+                $user,
+                'Ninguna'
+            ));
+
+            return $user;
+
+        });
+
         $manager->flush();
     }
 }

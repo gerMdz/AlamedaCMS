@@ -35,3 +35,6 @@ yarn-error.log
 /assets/images/series/no-temere/03-Realidad-Aumentada.pdf
 /public/vendors/bootstrap/
 /public/include/scss/
+/src/DataFixtures/images/01-Ante-lo-inesperado.jpg
+/src/DataFixtures/images/02-Indomita.jpg
+/src/DataFixtures/images/03-Rescate-en-las-llamas.jpg
