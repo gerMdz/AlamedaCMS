@@ -3,12 +3,10 @@
 
 namespace App\Service;
 
-
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class ObtenerDatosHelper
 {
-
     private $requestStack;
 
     /**
@@ -25,11 +23,11 @@ class ObtenerDatosHelper
     {
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             if ($_SERVER['HTTP_X_FORWARDED_FOR'] != '') {
-                $client_ip = (!empty($_SERVER['REMOTE_ADDR']) ) ?
+                $client_ip = (!empty($_SERVER['REMOTE_ADDR'])) ?
                     $_SERVER['REMOTE_ADDR'] :
-                    ( (!empty($_ENV['REMOTE_ADDR']) ) ?
+                    ((!empty($_ENV['REMOTE_ADDR'])) ?
                         $_ENV['REMOTE_ADDR'] :
-                        "unknown" );
+                        "unknown");
 
                 // los proxys van añadiendo al final de esta cabecera
                 // las direcciones ip que van "ocultando". Para localizar la ip real
@@ -60,11 +58,11 @@ class ObtenerDatosHelper
                     }
                 }
             } else {
-                $client_ip = (!empty($_SERVER['REMOTE_ADDR']) ) ?
+                $client_ip = (!empty($_SERVER['REMOTE_ADDR'])) ?
                     $_SERVER['REMOTE_ADDR'] :
-                    ( (!empty($_ENV['REMOTE_ADDR']) ) ?
+                    ((!empty($_ENV['REMOTE_ADDR'])) ?
                         $_ENV['REMOTE_ADDR'] :
-                        "unknown" );
+                        "unknown");
             }
         } else {
             $client_ip = $this->requestStack->getCurrentRequest()->getClientIps();
@@ -72,5 +70,4 @@ class ObtenerDatosHelper
 
         return $client_ip[0];
     }
-
 }

@@ -19,7 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminEntradaController extends AbstractController
 {
-
     private $isDebug;
 
     /**
@@ -28,7 +27,6 @@ class AdminEntradaController extends AbstractController
      */
     public function __construct(bool $isDebug)
     {
-
         $this->isDebug = $isDebug;
     }
 
@@ -43,7 +41,6 @@ class AdminEntradaController extends AbstractController
         return $this->render('admin_entrada/index.html.twig', [
             'entradas' => $entradaRepository->findAll(),
         ]);
-
     }
 
     /**
@@ -55,8 +52,8 @@ class AdminEntradaController extends AbstractController
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
      */
-    public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper, ObtenerDatosHelper $datosHelper): Response{
-
+    public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper, ObtenerDatosHelper $datosHelper): Response
+    {
         $form = $this->createForm(EntradaType::class, $entrada);
         $form->handleRequest($request);
 
@@ -130,6 +127,4 @@ class AdminEntradaController extends AbstractController
             'entrada'=>$entrada
         ]);
     }
-
-
 }

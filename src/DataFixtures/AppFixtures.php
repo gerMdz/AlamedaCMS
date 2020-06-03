@@ -14,8 +14,8 @@ class AppFixtures extends Fixture
         $this->creaDatosIndex($manager);
     }
 
-    private function creaDatosIndex(ObjectManager $manager){
-
+    private function creaDatosIndex(ObjectManager $manager)
+    {
         $inicio = new IndexAlameda();
         $inicio->setHorario1('11:00');
         $inicio->setHorario2('20:00');
@@ -48,6 +48,5 @@ class AppFixtures extends Fixture
         $manager->persist($base);
 
         $manager->flush();
-
     }
 }

@@ -39,7 +39,7 @@ class PerfilController extends AbstractController
     public function apiPerfil()
     {
         $user = $this->getUser();
-        return $this->json($user, 200, [],[
+        return $this->json($user, 200, [], [
             'groups'=>['perfil'],
         ]);
     }

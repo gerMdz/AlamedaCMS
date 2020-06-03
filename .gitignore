@@ -38,3 +38,8 @@ yarn-error.log
 /src/DataFixtures/images/01-Ante-lo-inesperado.jpg
 /src/DataFixtures/images/02-Indomita.jpg
 /src/DataFixtures/images/03-Rescate-en-las-llamas.jpg
+/public/vendors/
+/assets/images/
+/assets/fonts/
+/public/js/
+/.php_cs.cache

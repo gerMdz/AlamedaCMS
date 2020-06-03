@@ -59,7 +59,8 @@ abstract class BaseFixture extends Fixture
         }
     }
 
-    protected function getRandomReference(string $groupName) {
+    protected function getRandomReference(string $groupName)
+    {
         if (!isset($this->referencesIndex[$groupName])) {
             $this->referencesIndex[$groupName] = [];
 

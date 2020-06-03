@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\Asset\Context\RequestStackContext;
 use Symfony\Component\HttpFoundation\File\File;
@@ -26,7 +25,8 @@ class UploaderHelper
         $this->context = $context;
     }
 
-    public function uploadEntradaImage(File $file):string {
+    public function uploadEntradaImage(File $file):string
+    {
         $destination = $this->uploadsPath.'/'.self::IMAGE_ENTRADA;
         if ($file instanceof UploadedFile) {
             $originalFilename = $file->getClientOriginalName();
@@ -46,5 +46,4 @@ class UploaderHelper
     {
         return $this->context->getBasePath(). '/uploads/'.$path;
     }
-
 }

@@ -38,7 +38,7 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_articles', function($count) use ($manager) {
+        $this->createMany(10, 'main_articles', function ($count) use ($manager) {
             $entrada = new Entrada();
             $entrada->setTitulo($this->faker->randomElement(self::$entradaTitles))
                 ->setContenido('Una dato más');

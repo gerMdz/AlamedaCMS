@@ -48,7 +48,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function getCredentials(Request $request)
     {
-
         $credentials = [
             'email' => $request->request->get('email'),
             'password' => $request->request->get('password'),
@@ -64,7 +63,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
@@ -88,7 +86,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             throw new CustomUserMessageAuthenticationException('Credenciales no válidas.');
         }
         return $valid;
-
     }
 
     /**
@@ -114,6 +111,4 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-
-
 }

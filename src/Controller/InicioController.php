@@ -26,6 +26,6 @@ class InicioController extends AbstractController
      */
     public function contacto()
     {
-        return $this->render('inicio/contacto.html.twig',[]);
+        return $this->render('inicio/contacto.html.twig', []);
     }
 }

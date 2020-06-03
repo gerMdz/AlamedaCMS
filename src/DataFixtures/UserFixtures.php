@@ -31,8 +31,7 @@ class UserFixtures extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_users', function ($i) use ($manager){
-
+        $this->createMany(10, 'main_users', function ($i) use ($manager) {
             $user = new User();
             $user->setEmail(sprintf('alameda%d@alameda.com', $i));
             $user->setPrimerNombre($this->faker->firstName);
@@ -40,6 +39,7 @@ class UserFixtures extends BaseFixture
                 $user,
                 'Ninguna'
             ));
+            $user->setRoles(['ROLE_USER']);
             if ($this->faker->boolean) {
                 $user->setTwitterUsername($this->faker->userName);
             }
@@ -51,11 +51,9 @@ class UserFixtures extends BaseFixture
 
 
             return $user;
-
         });
 
-        $this->createMany(3, 'admin_users', function ($i){
-
+        $this->createMany(3, 'admin_users', function ($i) {
             $user = new User();
             $user->setEmail(sprintf('admin%d@alameda.com', $i));
             $user->setPrimerNombre($this->faker->firstName);
@@ -69,11 +67,9 @@ class UserFixtures extends BaseFixture
             ));
 
             return $user;
-
         });
 
-        $this->createMany(5, 'escitor_users', function ($i){
-
+        $this->createMany(5, 'escitor_users', function ($i) {
             $user = new User();
             $user->setEmail(sprintf('escritor%d@alameda.com', $i));
             $user->setPrimerNombre($this->faker->firstName);
@@ -87,7 +83,6 @@ class UserFixtures extends BaseFixture
             ));
 
             return $user;
-
         });
 
         $manager->flush();

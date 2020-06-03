@@ -36,7 +36,6 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-
         $em = $this->getDoctrine()->getManager();
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -65,7 +64,7 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        if ($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $user = new User();
             $user->setEmail($request->request->get('email'));
             $user->setPrimerNombre($request->request->get('primernombre'));
@@ -73,6 +72,7 @@ class SecurityController extends AbstractController
                 $user,
                 $request->request->get('password')
             ));
+            $user->setRoles(['ROLE_USER']);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

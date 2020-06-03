@@ -18,25 +18,25 @@ class EntradaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo',TextType::class,[
+            ->add('titulo', TextType::class, [
                 'required'=>true,
                 'attr'=>[
                     'class'=>'form-control'
                 ]
             ])
-            ->add('contenido',TextareaType::class,[
+            ->add('contenido', TextareaType::class, [
                 'required'=>true,
                 'attr'=>[
                     'class'=>'form-control'
                 ]
             ])
-            ->add('autor',HiddenType::class,[
+            ->add('autor', HiddenType::class, [
                 'property_path'=>'autor.id',
                 'attr'=>[
                     'class'=>'hidden'
                 ]
             ])
-            ->add('imageFile', FileType::class,[
+            ->add('imageFile', FileType::class, [
                 'mapped'=>false,
                 'required'=>false,
                 'constraints'=>[
