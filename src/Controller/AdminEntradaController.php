@@ -74,7 +74,7 @@ class AdminEntradaController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->loggerClient->logMessage('Se editó la entrada \"'. $entrada->getTitulo() . '\"','' );
+            $this->loggerClient->logMessage('Se editó la entrada \"'. $entrada->getTitulo() . '\"', '');
 
             return $this->redirectToRoute('admin_entrada_index');
         }

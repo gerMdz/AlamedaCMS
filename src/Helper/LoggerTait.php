@@ -3,7 +3,6 @@
 
 namespace App\Helper;
 
-
 use Psr\Log\LoggerInterface;
 
 trait LoggerTait
@@ -28,5 +27,4 @@ trait LoggerTait
             $this->logger->info($message, $context);
         }
     }
-
 }
