@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
-use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -21,13 +21,17 @@ class AdminEntradaController extends AbstractController
 {
     private $isDebug;
 
+    private $loggerClient;
+
     /**
      * NO usado es opcional
      * @param bool $isDebug
+     * @param LoggerClient $loggerClient
      */
-    public function __construct(bool $isDebug)
+    public function __construct(bool $isDebug, LoggerClient $loggerClient)
     {
         $this->isDebug = $isDebug;
+        $this->loggerClient = $loggerClient;
     }
 
     /**
@@ -70,6 +74,8 @@ class AdminEntradaController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->loggerClient->logMessage('Se editó la entrada \"'. $entrada->getTitulo() . '\"','' );
+
             return $this->redirectToRoute('admin_entrada_index');
         }
 
@@ -81,7 +87,6 @@ class AdminEntradaController extends AbstractController
             'ip'=>$ip
         ]);
     }
-
 
     /**
      * @Route("/admin/entrada/new", name="admin_entrada_new")
@@ -111,8 +116,6 @@ class AdminEntradaController extends AbstractController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);
                 $entrada->setImageFilename($newFilename);
             }
-
-
 
             $em->persist($entrada);
             $em->flush();
