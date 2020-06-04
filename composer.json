@@ -35,7 +35,7 @@
         "fzaninotto/faker": "^1.9",
         "sensiolabs/security-checker": "^6.0",
         "symfony/debug-bundle": "*",
-        "symfony/maker-bundle": "^1.12",
+        "symfony/maker-bundle": "^1.19",
         "symfony/monolog-bundle": "^3.0",
         "symfony/profiler-pack": "*",
         "symfony/var-dumper": "*",
