@@ -4,6 +4,7 @@
 namespace App\Service;
 
 use Gedmo\Sluggable\Util\Urlizer;
+use League\Flysystem\FilesystemInterface;
 use Symfony\Component\Asset\Context\RequestStackContext;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -11,23 +12,23 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class UploaderHelper
 {
     const IMAGE_ENTRADA = 'image_entrada';
-    private $uploadsPath;
+
     private $context;
+    private $filesystem;
 
     /**
      * UploaderHelper constructor.
-     * @param string $uploadsPath
+     * @param FilesystemInterface $publicUploadsFilesystem
      * @param RequestStackContext $context
      */
-    public function __construct(string $uploadsPath, RequestStackContext $context)
+    public function __construct(FilesystemInterface $publicUploadsFilesystem, RequestStackContext $context)
     {
-        $this->uploadsPath = $uploadsPath;
         $this->context = $context;
+        $this->filesystem = $publicUploadsFilesystem;
     }
 
     public function uploadEntradaImage(File $file):string
     {
-        $destination = $this->uploadsPath.'/'.self::IMAGE_ENTRADA;
         if ($file instanceof UploadedFile) {
             $originalFilename = $file->getClientOriginalName();
         } else {
@@ -35,9 +36,9 @@ class UploaderHelper
         }
         $newFilename = Urlizer::urlize(pathinfo($originalFilename, PATHINFO_FILENAME)).'-'.uniqid().'.'.$file->guessExtension();
 
-        $file->move(
-            $destination,
-            $newFilename
+        $this->filesystem->write(
+            self::IMAGE_ENTRADA.'/'.$newFilename,
+            file_get_contents($file->getPathname())
         );
         return $newFilename;
     }
