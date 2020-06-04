@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use App\Service\BoleanToDateHelper;
 use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
 use App\Service\UploaderHelper;
@@ -22,16 +23,19 @@ class AdminEntradaController extends AbstractController
     private $isDebug;
 
     private $loggerClient;
+    private $boleanToDateHelper;
 
     /**
      * NO usado es opcional
      * @param bool $isDebug
      * @param LoggerClient $loggerClient
+     * @param BoleanToDateHelper $boleanToDateHelper
      */
-    public function __construct(bool $isDebug, LoggerClient $loggerClient)
+    public function __construct(bool $isDebug, LoggerClient $loggerClient, BoleanToDateHelper $boleanToDateHelper)
     {
         $this->isDebug = $isDebug;
         $this->loggerClient = $loggerClient;
+        $this->boleanToDateHelper = $boleanToDateHelper;
     }
 
     /**
@@ -65,6 +69,11 @@ class AdminEntradaController extends AbstractController
 
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
+            $boolean = $form['publicar']->getData();
+
+            $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
+            $entrada->setPublicadoAt($publicado);
+
 
             if ($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);
@@ -74,7 +83,7 @@ class AdminEntradaController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->loggerClient->logMessage('Se editó la entrada \"'. $entrada->getTitulo() . '\"', '');
+            $this->loggerClient->logMessage('Se editó la entrada \"' . $entrada->getTitulo() . '\"', '');
 
             return $this->redirectToRoute('admin_entrada_index');
         }
@@ -84,7 +93,7 @@ class AdminEntradaController extends AbstractController
         return $this->render('entrada/edit.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
-            'ip'=>$ip
+            'ip' => $ip
         ]);
     }
 
@@ -117,6 +126,11 @@ class AdminEntradaController extends AbstractController
                 $entrada->setImageFilename($newFilename);
             }
 
+            $boolean = $form['publicar']->getData();
+
+            $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
+            $entrada->setPublicadoAt($publicado);
+
             $em->persist($entrada);
             $em->flush();
 
@@ -127,7 +141,7 @@ class AdminEntradaController extends AbstractController
 
         return $this->render('admin_entrada/new.html.twig', [
             'entradaForm' => $form->createView(),
-            'entrada'=>$entrada
+            'entrada' => $entrada
         ]);
     }
 }

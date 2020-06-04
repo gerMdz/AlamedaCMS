@@ -44,9 +44,14 @@ class Entrada
      */
     private $publicadoAt;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $creadaAt;
+
     public function __construct()
     {
-        $this->publicadoAt = new DateTime('now');
+        $this->creadaAt = new DateTime('now');
     }
 
     public function getId(): ?int
@@ -107,7 +112,7 @@ class Entrada
         return $this->publicadoAt;
     }
 
-    public function setPublicadoAt(\DateTimeInterface $publicadoAt): self
+    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
     {
         $this->publicadoAt = $publicadoAt;
 
@@ -117,5 +122,17 @@ class Entrada
     public function getImagePath()
     {
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
+    }
+
+    public function getCreadaAt(): ?\DateTimeInterface
+    {
+        return $this->creadaAt;
+    }
+
+    public function setCreadaAt(?\DateTimeInterface $creadaAt): self
+    {
+        $this->creadaAt = $creadaAt;
+
+        return $this;
     }
 }
