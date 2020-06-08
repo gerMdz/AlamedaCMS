@@ -1,0 +1,12 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block title %}Lo lamentamos {{ base.siteName}}{% endblock %}
+
+{% block contenido_body %}
+    <h1>Página No Encontrada</h1>
+
+    <p>
+        No se pudo encontrar la página que buscaba. Por favor revise URL
+        o dirijase a <a href="{{ path('index') }}">la página de inicio</a>.
+    </p>
+{% endblock %}

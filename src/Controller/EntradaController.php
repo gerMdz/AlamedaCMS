@@ -17,6 +17,8 @@ class EntradaController extends AbstractController
 {
     /**
      * @Route("/", name="entrada_index", methods={"GET"})
+     * @param EntradaRepository $entradaRepository
+     * @return Response
      */
     public function index(EntradaRepository $entradaRepository): Response
     {
@@ -49,12 +51,35 @@ class EntradaController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="entrada_show", methods={"GET"})
-     * @param Entrada $entrada
+     * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
+     * @param string $linkRoute
+     * @param EntradaRepository $er
      * @return Response
      */
-    public function show(Entrada $entrada): Response
+    public function ver(string $linkRoute, EntradaRepository $er): Response
     {
+        $entrada = $er->findOneBy(['linkRoute' => $linkRoute]);
+        if (!$entrada) {
+            throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $linkRoute));
+        }
+
+        return $this->render('entrada/show.html.twig', [
+            'entrada' => $entrada,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/show", name="entrada_show", methods={"GET"})
+     * @param Entrada $entrada
+     * @param EntradaRepository $er
+     * @return Response
+     */
+    public function show(Entrada $entrada, EntradaRepository $er): Response
+    {
+        $entrada = $er->findOneBy(['linkRoute' => $entrada]);
+        if (!$entrada) {
+            throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
+        }
         return $this->render('entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);
@@ -65,7 +90,7 @@ class EntradaController extends AbstractController
      */
     public function delete(Request $request, Entrada $entrada): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $entrada->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($entrada);
             $entityManager->flush();

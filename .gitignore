@@ -47,3 +47,6 @@ yarn-error.log
 /public/business-casual/
 /public/material-kit/
 /public/shards-ui/
+/public/media/
+/public/media/cache
+/public/media/

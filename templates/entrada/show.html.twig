@@ -1,29 +1,47 @@
 {% extends 'contenido_base.html.twig' %}
 
-{% block title %}Edición Entrada {{ entrada.titulo }}{% endblock %}
+{% block title %}Vista {{ entrada.titulo }}{% endblock %}
 
 {% block contenido_body %}
-    <h1>Entrada</h1>
+    <h4>Entrada: <strong class="ml-5"> {{ entrada.titulo }} </strong></h4>
 
     <table class="table">
         <tbody>
         <tr>
             <th>Imagen</th>
             <td>
-                <img class="show-article-img" src="{{ uploaded_asset(entrada.imagePath)|imagine_filter('squared_thumbnail_medium') }}"></td>
+                <img class="show-article-img" src="{{entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"></td>
         </tr>
             <tr>
                 <th>Id</th>
                 <td>{{ entrada.id }}</td>
+                <th>linkRoute</th>
+                <td>{{ entrada.linkRoute }}</td>
             </tr>
             <tr>
                 <th>Titulo</th>
                 <td>{{ entrada.titulo }}</td>
+                <th>Autor</th>
+                <td>
+                    {{ entrada.autor }} <br/>
+                    {{ entrada.autor.email }}
+                </td>
             </tr>
             <tr>
                 <th>Contenido</th>
                 <td>{{ entrada.contenido }}</td>
             </tr>
+            <tr>
+                <th>Publicado</th>
+                <td>
+                {% if(entrada.publicadoAt | default) %}
+                {{ entrada.publicadoAt | date('d-m-Y H:i') }}
+                    {% else %}
+                        <i class="fas fa-times text-danger"></i>
+                    {% endif %}
+                </td>
+            </tr>
+
 
         </tbody>
     </table>
