@@ -49,6 +49,11 @@ class Entrada
      */
     private $creadaAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
+     */
+    private $linkRoute;
+
     public function __construct()
     {
         $this->creadaAt = new DateTime('now');
@@ -132,6 +137,18 @@ class Entrada
     public function setCreadaAt(?\DateTimeInterface $creadaAt): self
     {
         $this->creadaAt = $creadaAt;
+
+        return $this;
+    }
+
+    public function getLinkRoute(): ?string
+    {
+        return $this->linkRoute;
+    }
+
+    public function setLinkRoute(?string $linkRoute): self
+    {
+        $this->linkRoute = $linkRoute;
 
         return $this;
     }

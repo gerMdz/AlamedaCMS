@@ -10,6 +10,7 @@
         <thead>
             <tr>
                 <th>Titulo</th>
+                <th>Linkroute</th>
                 <th>Autor</th>
                 <th>Creado</th>
                 <th>Publicado?</th>
@@ -21,6 +22,7 @@
             {% for entrada in entradas %}
                 <tr>
                     <td>{{ entrada.titulo }}</td>
+                    <td>{{ entrada.linkRoute }}</td>
                     <td>
                         {{ entrada.autor }} --
                         {{ entrada.autor.email }}

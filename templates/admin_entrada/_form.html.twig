@@ -2,15 +2,21 @@
 
 {#    {{ form_widget(entradaForm) }}#}
 <div class="row">
-    <div class="col-sm-10">
+    <div class="col-sm-5">
         {{ form_row(entradaForm.titulo) }}
     </div>
+    <div class="col-sm-5">
+        {{ form_row(entradaForm.linkRoute) }}
+    </div>
+
     <div class="col-sm-2 checkbox ">
         <label for="entrada_publicar" class="required">
             Publicar?<br/>
+            {% if entradaForm.vars.data.PublicadoAt | default  %}
+                {{form_row(entradaForm.publicar, { 'attr': {'checked': 'checked'} }) }}
+            {% else %}
             {{form_row(entradaForm.publicar)}}
-
-
+            {% endif %}
         </label>
     </div>
 

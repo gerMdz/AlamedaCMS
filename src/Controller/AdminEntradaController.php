@@ -70,10 +70,18 @@ class AdminEntradaController extends AbstractController
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             $boolean = $form['publicar']->getData();
+            $link = $form['linkRoute']->getData();
+            $titulo = $form['titulo']->getData();
 
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $entrada->setPublicadoAt($publicado);
 
+            if($link !='' ){
+                $link = strtolower(str_replace(' ','-',trim($link)));
+            }else{
+                $link = strtolower(str_replace(' ','-',trim($titulo)));
+            }
+            $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);
@@ -120,6 +128,16 @@ class AdminEntradaController extends AbstractController
 
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
+
+            $link = $form['linkRoute']->getData();
+            $titulo = $form['titulo']->getData();
+
+            if($link !='' ){
+                $link = strtolower(str_replace(' ','-',trim($link)));
+            }else{
+                $link = strtolower(str_replace(' ','-',trim($titulo)));
+            }
+            $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);

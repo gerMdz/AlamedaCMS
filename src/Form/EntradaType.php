@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\IsFalse;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class EntradaType extends AbstractType
 {
@@ -23,6 +25,12 @@ class EntradaType extends AbstractType
         $builder
             ->add('titulo', TextType::class, [
                 'required'=>true,
+                'attr'=>[
+                    'class'=>'form-control'
+                ]
+            ])
+            ->add('linkRoute', TextType::class, [
+                'required'=>false,
                 'attr'=>[
                     'class'=>'form-control'
                 ]

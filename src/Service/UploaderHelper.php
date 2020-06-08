@@ -3,6 +3,7 @@
 
 namespace App\Service;
 
+use Exception;
 use Gedmo\Sluggable\Util\Urlizer;
 use League\Flysystem\FilesystemInterface;
 use Symfony\Component\Asset\Context\RequestStackContext;
@@ -36,10 +37,17 @@ class UploaderHelper
         }
         $newFilename = Urlizer::urlize(pathinfo($originalFilename, PATHINFO_FILENAME)).'-'.uniqid().'.'.$file->guessExtension();
 
-        $this->filesystem->write(
+        $stream = fopen($file->getPathname(), 'r');
+        $result = $this->filesystem->writeStream(
             self::IMAGE_ENTRADA.'/'.$newFilename,
-            file_get_contents($file->getPathname())
+            $stream
         );
+        if ($result === false) {
+            throw new Exception(sprintf('No se pudo grabar la imagen "%s"', $newFilename));
+        }
+        if (is_resource($stream)) {
+            fclose($stream);
+        }
         return $newFilename;
     }
 
