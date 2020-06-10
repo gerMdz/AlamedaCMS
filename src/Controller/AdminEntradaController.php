@@ -46,8 +46,18 @@ class AdminEntradaController extends AbstractController
      */
     public function index(EntradaRepository $entradaRepository): Response
     {
+
+        if($this->isGranted('ROLE_EDITOR')){
+            $entrada = $entradaRepository->findBy([], ['creadaAt' => 'DESC']);
+
+        }else{
+            $user = $this->getUser();
+            $entrada = $entradaRepository->findByAutor($user);
+        }
+
+
         return $this->render('admin_entrada/index.html.twig', [
-            'entradas' => $entradaRepository->findAll(),
+            'entradas' => $entrada
         ]);
     }
 

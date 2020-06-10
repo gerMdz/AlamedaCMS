@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Service\UploaderHelper;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,9 +56,15 @@ class Entrada
      */
     private $linkRoute;
 
+    /**
+     * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
+     */
+    private $entradaReferences;
+
     public function __construct()
     {
         $this->creadaAt = new DateTime('now');
+        $this->entradaReferences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,4 +160,13 @@ class Entrada
 
         return $this;
     }
+
+    /**
+     * @return Collection|EntradaReference[]
+     */
+    public function getEntradaReferences(): Collection
+    {
+        return $this->entradaReferences;
+    }
+
 }

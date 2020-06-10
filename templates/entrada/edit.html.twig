@@ -1,20 +1,28 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
-{% block title %}Edición Entrada {{ entrada.id}} {% endblock %}
+{% block title %}Edición Entrada {{ entrada.id }} {% endblock %}
 
 {% block body %}
     <div class="mt-5"><span><hr/></span></div>
     <div class="mt-5"><span><hr/></span></div>
     <div class="container">
-    <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
-
-
-
-    <div class="">
-        {{ include('admin_entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
-        <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
-        {{ include('entrada/_delete_form.html.twig') }}
-    </div>
+        <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
+        <hr>
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>Detalles</h3>
+                {{ include('admin_entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
+                <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
+                {{ include('entrada/_delete_form.html.twig') }}
+            </div>
+            <div class="col-sm-4">
+                <h3>Referencias</h3>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="reference">
+                    <button type="submit" class="btn btn-sm btn-primary">Subir</button>
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block javascripts %}
