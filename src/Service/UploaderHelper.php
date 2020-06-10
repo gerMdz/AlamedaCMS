@@ -16,16 +16,19 @@ class UploaderHelper
 
     private $context;
     private $filesystem;
+    private $uploadedAssetsBaseUrl;
 
     /**
      * UploaderHelper constructor.
      * @param FilesystemInterface $publicUploadsFilesystem
      * @param RequestStackContext $context
+     * @param string $uploadedAssetsBaseUrl
      */
-    public function __construct(FilesystemInterface $publicUploadsFilesystem, RequestStackContext $context)
+    public function __construct(FilesystemInterface $publicUploadsFilesystem, RequestStackContext $context, string $uploadedAssetsBaseUrl)
     {
         $this->context = $context;
         $this->filesystem = $publicUploadsFilesystem;
+        $this->uploadedAssetsBaseUrl = $uploadedAssetsBaseUrl;
     }
 
     public function uploadEntradaImage(File $file):string
@@ -53,6 +56,6 @@ class UploaderHelper
 
     public function getPublicPath(string $path): string
     {
-        return $this->context->getBasePath(). '/uploads/'.$path;
+        return $this->context->getBasePath(). $this->uploadedAssetsBaseUrl.'/'.$path;
     }
 }

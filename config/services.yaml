@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    uploads_dir_name: 'uploads'
+    uploads_base_url: '%env(SITE_BASE_URL)%/%uploads_dir_name%'
 
 services:
     # default configuration for services in *this* file
@@ -15,6 +17,7 @@ services:
             $uploadsPath: '%kernel.project_dir%/public/uploads'
             $isDebug: '%kernel.debug%'
             $publicUploadsFilesystem: '@oneup_flysystem.public_uploads_filesystem_filesystem'
+            $uploadedAssetsBaseUrl: '%uploads_base_url%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

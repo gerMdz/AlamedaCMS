@@ -32,7 +32,10 @@
     </div>
     <div class="col-sm-3">
         {% if entradaForm.vars.data.imageFilename | default  %}
-            <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100">
+            <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
+                <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100">
+            </a>
+
         {% endif %}
     </div>
 </div>

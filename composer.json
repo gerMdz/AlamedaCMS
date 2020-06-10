@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "gedmo/doctrine-extensions": "^2.4",
         "knplabs/knp-markdown-bundle": "^1.8",
+        "knplabs/knp-time-bundle": "^1.11",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
         "liip/imagine-bundle": "^2.3",

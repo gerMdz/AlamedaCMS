@@ -111,6 +111,9 @@
     "knplabs/knp-markdown-bundle": {
         "version": "1.8.1"
     },
+    "knplabs/knp-time-bundle": {
+        "version": "v1.11.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },

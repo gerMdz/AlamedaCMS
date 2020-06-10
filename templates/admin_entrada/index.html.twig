@@ -29,14 +29,14 @@
                     </td>
                     <td>
                         {% if entrada.creadaAt  %}
-                            {{ entrada.creadaAt | date('d-m-Y H:i') }}
+                            {{ entrada.creadaAt ? entrada.creadaAt | ago : 'No fue creada' }}
                         {% endif %}
                     </td>
                     <td>
                         <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span>
-                        {% if entrada.publicadoAt  %}
-                            {{ entrada.publicadoAt | date('d-m-Y H:i') }}
-                        {% endif %}
+
+                            {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
+
                     </td>
                     <td>
                         <img class="article-img" src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small')}}">
