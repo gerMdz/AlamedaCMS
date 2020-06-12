@@ -37,6 +37,11 @@ class EntradaReference
      */
     private $mimeType;
 
+    public function __construct(Entrada $entrada)
+    {
+        $this->entrada = $entrada;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,12 +52,7 @@ class EntradaReference
         return $this->entrada;
     }
 
-    public function setEntrada(?Entrada $entrada): self
-    {
-        $this->entrada = $entrada;
 
-        return $this;
-    }
 
     public function getFilename(): ?string
     {

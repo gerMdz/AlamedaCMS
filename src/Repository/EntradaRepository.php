@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Entrada;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -35,16 +36,44 @@ class EntradaRepository extends ServiceEntityRepository
         ;
     }
 
-
-    /*
-    public function findOneBySomeField($value): ?Entrada
+    /**
+     * @param null $user
+     * @return Entrada[]
+     */
+    public function findAllPublicadosOrderedByPublicacion($user = null)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
+        return $this->addIsPublishedQueryBuilder(null,$user)
+            ->orderBy('e.publicadoAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    /*
+    public function findOneBySomeField($value): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
     */
+    private function addIsPublishedQueryBuilder(QueryBuilder $qb = null, $user = null)
+    {
+        $qb = $this->getOrCreateQueryBuilder($qb)
+            ->andWhere('e.publicadoAt IS NOT NULL');
+        if($user != null){
+            $qb->andWhere('e.autor = :val')
+                ->setParameter('val', $user);
+        }
+
+        return $qb;
+
+
+    }
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    {
+        return $qb ?: $this->createQueryBuilder('e');
+    }
 }

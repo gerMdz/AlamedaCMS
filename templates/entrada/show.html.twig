@@ -3,7 +3,9 @@
 {% block title %}Vista {{ entrada.titulo }}{% endblock %}
 
 {% block contenido_body %}
-    <h4>Entrada: <strong class="ml-5"> {{ entrada.titulo }} </strong></h4>
+    <h4>Entrada: <strong class="ml-5"> {{ entrada.titulo }} </strong>
+        {{ entrada.likes }}
+    </h4>
 
     <table class="table">
         <tbody>

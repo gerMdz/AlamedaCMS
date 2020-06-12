@@ -58,4 +58,11 @@ class UploaderHelper
     {
         return $this->context->getBasePath(). $this->uploadedAssetsBaseUrl.'/'.$path;
     }
+
+    public function uploadEntradaReference(File $file): string
+    {
+        dd($file);
+    }
+
+
 }

@@ -56,9 +56,9 @@ class EntradaController extends AbstractController
      * @param EntradaRepository $er
      * @return Response
      */
-    public function ver(string $linkRoute, EntradaRepository $er): Response
+    public function ver(Entrada $entrada, EntradaRepository $er): Response
     {
-        $entrada = $er->findOneBy(['linkRoute' => $linkRoute]);
+        $entrada = $er->findOneBy(['linkRoute' => $entrada->getLinkRoute()]);
         if (!$entrada) {
             throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $linkRoute));
         }
@@ -76,7 +76,7 @@ class EntradaController extends AbstractController
      */
     public function show(Entrada $entrada, EntradaRepository $er): Response
     {
-        $entrada = $er->findOneBy(['linkRoute' => $entrada]);
+//        $entrada = $er->findOneBy(['linkRoute' => $entrada]);
         if (!$entrada) {
             throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
         }

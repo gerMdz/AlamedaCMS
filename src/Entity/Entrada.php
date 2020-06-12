@@ -61,6 +61,11 @@ class Entrada
      */
     private $entradaReferences;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $likes = 0;
+
     public function __construct()
     {
         $this->creadaAt = new DateTime('now');
@@ -167,6 +172,18 @@ class Entrada
     public function getEntradaReferences(): Collection
     {
         return $this->entradaReferences;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
     }
 
 }

@@ -10,6 +10,7 @@ use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -47,14 +48,30 @@ class AdminEntradaController extends AbstractController
     public function index(EntradaRepository $entradaRepository): Response
     {
 
-        if($this->isGranted('ROLE_EDITOR')){
+        if ($this->isGranted('ROLE_EDITOR')) {
             $entrada = $entradaRepository->findBy([], ['creadaAt' => 'DESC']);
 
-        }else{
+        } else {
             $user = $this->getUser();
             $entrada = $entradaRepository->findByAutor($user);
         }
 
+
+        return $this->render('admin_entrada/index.html.twig', [
+            'entradas' => $entrada
+        ]);
+    }
+
+    /**
+     * @Route("/admin/entrada/publicadas", name="admin_entrada_publicadas")
+     * @param EntradaRepository $entradaRepository
+     * @return Response
+     * @IsGranted("ROLE_ESCRITOR")
+     */
+    public function listadoPublicado(EntradaRepository $entradaRepository): Response
+    {
+
+        $this->isGranted('ROLE_EDITOR') ? $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion() : $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion($this->getUser());
 
         return $this->render('admin_entrada/index.html.twig', [
             'entradas' => $entrada
@@ -69,6 +86,7 @@ class AdminEntradaController extends AbstractController
      * @return RedirectResponse
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
+     * @throws Exception
      */
     public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper, ObtenerDatosHelper $datosHelper): Response
     {
@@ -86,10 +104,10 @@ class AdminEntradaController extends AbstractController
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $entrada->setPublicadoAt($publicado);
 
-            if($link !='' ){
-                $link = strtolower(str_replace(' ','-',trim($link)));
-            }else{
-                $link = strtolower(str_replace(' ','-',trim($titulo)));
+            if ($link != '') {
+                $link = strtolower(str_replace(' ', '-', trim($link)));
+            } else {
+                $link = strtolower(str_replace(' ', '-', trim($titulo)));
             }
             $entrada->setLinkRoute($link);
 
@@ -142,10 +160,10 @@ class AdminEntradaController extends AbstractController
             $link = $form['linkRoute']->getData();
             $titulo = $form['titulo']->getData();
 
-            if($link !='' ){
-                $link = strtolower(str_replace(' ','-',trim($link)));
-            }else{
-                $link = strtolower(str_replace(' ','-',trim($titulo)));
+            if ($link != '') {
+                $link = strtolower(str_replace(' ', '-', trim($link)));
+            } else {
+                $link = strtolower(str_replace(' ', '-', trim($titulo)));
             }
             $entrada->setLinkRoute($link);
 
@@ -170,6 +188,23 @@ class AdminEntradaController extends AbstractController
         return $this->render('admin_entrada/new.html.twig', [
             'entradaForm' => $form->createView(),
             'entrada' => $entrada
+        ]);
+    }
+
+    /**
+     * @Route("admin/entrada/{linkRoute}", name="entrada_news")
+     * @param Entrada $entrada
+     * @return Response
+     */
+    public function show(Entrada $entrada)
+    {
+        if ($entrada->getLinkRoute() === 'khaaaaaan') {
+            $ok = 'ok';
+        }
+
+        return $this->render('entrada/show.html.twig', [
+            'entrada' => $entrada,
+
         ]);
     }
 }
