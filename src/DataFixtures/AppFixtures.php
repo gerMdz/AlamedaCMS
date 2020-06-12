@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
         $inicio->setBase('index');
 
         $base = new MetaBase();
-        $base->setBase('index') ;
+        $base->setBase('index');
         $base->setLema('Oraciones Audaces');
         $base->setLemaPrincipal('Vení tal como sos');
         $base->setMetaAutor('Diseño Alameda');

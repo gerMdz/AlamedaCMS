@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Service;
 
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -11,23 +10,21 @@ class ObtenerDatosHelper
 
     /**
      * ObtenerDatosHelper constructor.
-     * @param RequestStack $requestStack
      */
     public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
     }
 
-
-    public function getIpCliente():string
+    public function getIpCliente(): string
     {
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            if ($_SERVER['HTTP_X_FORWARDED_FOR'] != '') {
+            if ('' != $_SERVER['HTTP_X_FORWARDED_FOR']) {
                 $client_ip = (!empty($_SERVER['REMOTE_ADDR'])) ?
                     $_SERVER['REMOTE_ADDR'] :
                     ((!empty($_ENV['REMOTE_ADDR'])) ?
                         $_ENV['REMOTE_ADDR'] :
-                        "unknown");
+                        'unknown');
 
                 // los proxys van añadiendo al final de esta cabecera
                 // las direcciones ip que van "ocultando". Para localizar la ip real
@@ -42,12 +39,12 @@ class ObtenerDatosHelper
                     $entry = trim($entry);
                     if (preg_match("/^([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/", $entry, $ip_list)) {
                         // http://www.faqs.org/rfcs/rfc1918.html
-                        $private_ip = array(
+                        $private_ip = [
                             '/^0\./',
                             '/^127\.0\.0\.1/',
                             '/^192\.168\..*/',
                             '/^172\.((1[6-9])|(2[0-9])|(3[0-1]))\..*/',
-                            '/^10\..*/');
+                            '/^10\..*/', ];
 
                         $found_ip = preg_replace($private_ip, $client_ip, $ip_list[1]);
 
@@ -62,7 +59,7 @@ class ObtenerDatosHelper
                     $_SERVER['REMOTE_ADDR'] :
                     ((!empty($_ENV['REMOTE_ADDR'])) ?
                         $_ENV['REMOTE_ADDR'] :
-                        "unknown");
+                        'unknown');
             }
         } else {
             $client_ip = $this->requestStack->getCurrentRequest()->getClientIps();

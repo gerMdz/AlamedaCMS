@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,8 +19,6 @@ class EntradaController extends AbstractController
 {
     /**
      * @Route("/", name="entrada_index", methods={"GET"})
-     * @param EntradaRepository $entradaRepository
-     * @return Response
      */
     public function index(EntradaRepository $entradaRepository): Response
     {
@@ -52,9 +52,8 @@ class EntradaController extends AbstractController
 
     /**
      * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
+     *
      * @param string $linkRoute
-     * @param EntradaRepository $er
-     * @return Response
      */
     public function ver(Entrada $entrada, EntradaRepository $er): Response
     {
@@ -70,9 +69,6 @@ class EntradaController extends AbstractController
 
     /**
      * @Route("/{id}/show", name="entrada_show", methods={"GET"})
-     * @param Entrada $entrada
-     * @param EntradaRepository $er
-     * @return Response
      */
     public function show(Entrada $entrada, EntradaRepository $er): Response
     {
@@ -80,6 +76,7 @@ class EntradaController extends AbstractController
         if (!$entrada) {
             throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
         }
+
         return $this->render('entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);
@@ -90,12 +87,25 @@ class EntradaController extends AbstractController
      */
     public function delete(Request $request, Entrada $entrada): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $entrada->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($entrada);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('entrada_index');
+    }
+
+    /**
+     * @Route("/count/{id}/like", name="entrada_toggle_like", methods={"POST"})
+     *
+     * @return JsonResponse
+     */
+    public function toggleArticleHeart(Entrada $entrada, EntityManagerInterface $em)
+    {
+        $entrada->incrementaLikeCount();
+        $em->flush();
+
+        return new JsonResponse(['like' => $entrada->getLikes()]);
     }
 }

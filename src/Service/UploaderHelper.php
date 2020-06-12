@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Service;
 
 use Exception;
@@ -20,9 +19,6 @@ class UploaderHelper
 
     /**
      * UploaderHelper constructor.
-     * @param FilesystemInterface $publicUploadsFilesystem
-     * @param RequestStackContext $context
-     * @param string $uploadedAssetsBaseUrl
      */
     public function __construct(FilesystemInterface $publicUploadsFilesystem, RequestStackContext $context, string $uploadedAssetsBaseUrl)
     {
@@ -31,7 +27,7 @@ class UploaderHelper
         $this->uploadedAssetsBaseUrl = $uploadedAssetsBaseUrl;
     }
 
-    public function uploadEntradaImage(File $file):string
+    public function uploadEntradaImage(File $file): string
     {
         if ($file instanceof UploadedFile) {
             $originalFilename = $file->getClientOriginalName();
@@ -45,24 +41,23 @@ class UploaderHelper
             self::IMAGE_ENTRADA.'/'.$newFilename,
             $stream
         );
-        if ($result === false) {
+        if (false === $result) {
             throw new Exception(sprintf('No se pudo grabar la imagen "%s"', $newFilename));
         }
         if (is_resource($stream)) {
             fclose($stream);
         }
+
         return $newFilename;
     }
 
     public function getPublicPath(string $path): string
     {
-        return $this->context->getBasePath(). $this->uploadedAssetsBaseUrl.'/'.$path;
+        return $this->context->getBasePath().$this->uploadedAssetsBaseUrl.'/'.$path;
     }
 
     public function uploadEntradaReference(File $file): string
     {
         dd($file);
     }
-
-
 }

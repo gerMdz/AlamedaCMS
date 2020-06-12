@@ -15,13 +15,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Titulo</th>
-                <th>Linkroute</th>
-                <th>Autor</th>
+                <th>
+                    Titulo <br/>
+                    Linkroute
+                </th>
+                <th>Likes</th>
+                <th>
+                    Autor<br/>
+                    email
+                </th>
                 <th>Creado</th>
                 <th>Publicado?</th>
                 <th>Imagen</th>
-                <th>&nbsp;</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -29,9 +35,11 @@
                 <tr>
                     <td>
                         {{ entrada.titulo }}<br/>
+                        {{ entrada.linkRoute }}
+                    </td>
+                    <td>
                         {{ entrada.likes }}
                     </td>
-                    <td>{{ entrada.linkRoute }}</td>
                     <td>
                         {{ entrada.autor }} --
                         {{ entrada.autor.email }}
@@ -42,16 +50,20 @@
                         {% endif %}
                     </td>
                     <td>
-                        <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span>
-
+                        <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>
                             {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
-
                     </td>
                     <td>
-                        <img class="article-img" src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small')}}">
+                        <img class="article-img"
+                             src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small')}}">
+                        <br/>
                         {{ entrada.imageFilename }}
                     </td>
                     <td>
+                        <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                            <i class="fi fi-eye"></i> Ver
+                        </a>
+                        <br/>
                         <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
                             <i class="fi fi-page-edit"></i> Editar
                         </a>

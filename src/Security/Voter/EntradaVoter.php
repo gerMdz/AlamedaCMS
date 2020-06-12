@@ -50,9 +50,8 @@ class EntradaVoter extends Voter
                 if ($this->security->isGranted('ROLE_EDITOR')) {
                     return true;
                 }
+
                  return false;
-
-
         }
 
         return false;

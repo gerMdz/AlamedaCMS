@@ -38,16 +38,18 @@ class EntradaRepository extends ServiceEntityRepository
 
     /**
      * @param null $user
+     *
      * @return Entrada[]
      */
     public function findAllPublicadosOrderedByPublicacion($user = null)
     {
-        return $this->addIsPublishedQueryBuilder(null,$user)
+        return $this->addIsPublishedQueryBuilder(null, $user)
             ->orderBy('e.publicadoAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;
     }
+
     /*
     public function findOneBySomeField($value): ?Article
     {
@@ -63,15 +65,14 @@ class EntradaRepository extends ServiceEntityRepository
     {
         $qb = $this->getOrCreateQueryBuilder($qb)
             ->andWhere('e.publicadoAt IS NOT NULL');
-        if($user != null){
+        if (null != $user) {
             $qb->andWhere('e.autor = :val')
                 ->setParameter('val', $user);
         }
 
         return $qb;
-
-
     }
+
     private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
     {
         return $qb ?: $this->createQueryBuilder('e');

@@ -186,4 +186,10 @@ class Entrada
         return $this;
     }
 
+    public function incrementaLikeCount(): self
+    {
+        $this->likes = $this->likes + 1;
+
+        return $this;
+    }
 }

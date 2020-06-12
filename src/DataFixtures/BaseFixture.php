@@ -28,7 +28,7 @@ abstract class BaseFixture extends Fixture
     }
 
     /**
-     * Create many objects at once:
+     * Create many objects at once:.
      *
      *      $this->createMany(10, function(int $i) {
      *          $user = new User();
@@ -37,15 +37,13 @@ abstract class BaseFixture extends Fixture
      *           return $user;
      *      });
      *
-     * @param int      $count
-     * @param string   $groupName Tag these created objects with this group name,
-     *                            and use this later with getRandomReference(s)
-     *                            to fetch only from this specific group.
-     * @param callable $factory
+     * @param string $groupName tag these created objects with this group name,
+     *                          and use this later with getRandomReference(s)
+     *                          to fetch only from this specific group
      */
     protected function createMany(int $count, string $groupName, callable $factory)
     {
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $entity = $factory($i);
 
             if (null === $entity) {
@@ -65,7 +63,7 @@ abstract class BaseFixture extends Fixture
             $this->referencesIndex[$groupName] = [];
 
             foreach ($this->referenceRepository->getReferences() as $key => $ref) {
-                if (strpos($key, $groupName.'_') === 0) {
+                if (0 === strpos($key, $groupName.'_')) {
                     $this->referencesIndex[$groupName][] = $key;
                 }
             }

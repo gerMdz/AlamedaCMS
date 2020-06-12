@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\IndexAlameda;
 use App\Entity\User;
 use App\Security\LoginFormAuthenticator;
-use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,8 +30,6 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/ingreso", name="app_login")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -56,10 +53,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/registro", name="app_registro")
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param GuardAuthenticatorHandler $authenticatorHandler
-     * @param LoginFormAuthenticator $formAuthenticator
+     *
      * @return Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator)
@@ -76,6 +70,7 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
             return $authenticatorHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
@@ -83,6 +78,7 @@ class SecurityController extends AbstractController
                 'main'
             );
         }
+
         return $this->render('security/register.html.twig');
     }
 }

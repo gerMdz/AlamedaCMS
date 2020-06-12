@@ -1,20 +1,16 @@
 <?php
 
-
 namespace App\Service;
-
-
 
 use DateTime;
 
 class BoleanToDateHelper
 {
-
     private $boolean;
 
     public function setDatatimeForTrue(bool $boolean): ?DateTime
     {
-        if($boolean == true){
+        if (true == $boolean) {
             return new DateTime('now');
         }
 

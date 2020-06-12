@@ -2,7 +2,6 @@
 
 namespace App\Security;
 
-use App\Entity\ApiToken;
 use App\Repository\ApiTokenRepository;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -41,18 +40,15 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = $this->apiTokenRepository->findOneBy([
-            'token' => $credentials
+            'token' => $credentials,
         ]);
         if (!$token) {
-            throw new CustomUserMessageAuthenticationException(
-                'API Token inválida'
-            );
+            throw new CustomUserMessageAuthenticationException('API Token inválida');
         }
         if ($token->isExpired()) {
-            throw new CustomUserMessageAuthenticationException(
-                'Token expirado'
-            );
+            throw new CustomUserMessageAuthenticationException('Token expirado');
         }
+
         return $token->getUser();
     }
 
@@ -64,7 +60,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         return new JsonResponse([
-            'message' => $exception->getMessageKey()
+            'message' => $exception->getMessageKey(),
         ], 401);
     }
 

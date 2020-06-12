@@ -27,10 +27,7 @@ class AdminEntradaController extends AbstractController
     private $boleanToDateHelper;
 
     /**
-     * NO usado es opcional
-     * @param bool $isDebug
-     * @param LoggerClient $loggerClient
-     * @param BoleanToDateHelper $boleanToDateHelper
+     * NO usado es opcional.
      */
     public function __construct(bool $isDebug, LoggerClient $loggerClient, BoleanToDateHelper $boleanToDateHelper)
     {
@@ -41,51 +38,40 @@ class AdminEntradaController extends AbstractController
 
     /**
      * @Route("/admin/entrada", name="admin_entrada_index")
-     * @param EntradaRepository $entradaRepository
-     * @return Response
      * @IsGranted("ROLE_ESCRITOR")
      */
     public function index(EntradaRepository $entradaRepository): Response
     {
-
         if ($this->isGranted('ROLE_EDITOR')) {
             $entrada = $entradaRepository->findBy([], ['creadaAt' => 'DESC']);
-
         } else {
             $user = $this->getUser();
             $entrada = $entradaRepository->findByAutor($user);
         }
 
-
         return $this->render('admin_entrada/index.html.twig', [
-            'entradas' => $entrada
+            'entradas' => $entrada,
         ]);
     }
 
     /**
      * @Route("/admin/entrada/publicadas", name="admin_entrada_publicadas")
-     * @param EntradaRepository $entradaRepository
-     * @return Response
      * @IsGranted("ROLE_ESCRITOR")
      */
     public function listadoPublicado(EntradaRepository $entradaRepository): Response
     {
-
         $this->isGranted('ROLE_EDITOR') ? $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion() : $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion($this->getUser());
 
         return $this->render('admin_entrada/index.html.twig', [
-            'entradas' => $entrada
+            'entradas' => $entrada,
         ]);
     }
 
     /**
-     * @param Request $request
-     * @param Entrada $entrada
-     * @param UploaderHelper $uploaderHelper
-     * @param ObtenerDatosHelper $datosHelper
      * @return RedirectResponse
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
+     *
      * @throws Exception
      */
     public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper, ObtenerDatosHelper $datosHelper): Response
@@ -94,7 +80,6 @@ class AdminEntradaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             $boolean = $form['publicar']->getData();
@@ -104,7 +89,7 @@ class AdminEntradaController extends AbstractController
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $entrada->setPublicadoAt($publicado);
 
-            if ($link != '') {
+            if ('' != $link) {
                 $link = strtolower(str_replace(' ', '-', trim($link)));
             } else {
                 $link = strtolower(str_replace(' ', '-', trim($titulo)));
@@ -116,10 +101,9 @@ class AdminEntradaController extends AbstractController
                 $entrada->setImageFilename($newFilename);
             }
 
-
             $this->getDoctrine()->getManager()->flush();
 
-            $this->loggerClient->logMessage('Se editó la entrada \"' . $entrada->getTitulo() . '\"', '');
+            $this->loggerClient->logMessage('Se editó la entrada \"'.$entrada->getTitulo().'\"', '');
 
             return $this->redirectToRoute('admin_entrada_index');
         }
@@ -129,16 +113,14 @@ class AdminEntradaController extends AbstractController
         return $this->render('entrada/edit.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
-            'ip' => $ip
+            'ip' => $ip,
         ]);
     }
 
     /**
      * @Route("/admin/entrada/new", name="admin_entrada_new")
      * @IsGranted("ROLE_ESCRITOR")
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @param UploaderHelper $uploaderHelper
+     *
      * @return RedirectResponse|Response
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
@@ -160,7 +142,7 @@ class AdminEntradaController extends AbstractController
             $link = $form['linkRoute']->getData();
             $titulo = $form['titulo']->getData();
 
-            if ($link != '') {
+            if ('' != $link) {
                 $link = strtolower(str_replace(' ', '-', trim($link)));
             } else {
                 $link = strtolower(str_replace(' ', '-', trim($titulo)));
@@ -187,24 +169,23 @@ class AdminEntradaController extends AbstractController
 
         return $this->render('admin_entrada/new.html.twig', [
             'entradaForm' => $form->createView(),
-            'entrada' => $entrada
+            'entrada' => $entrada,
         ]);
     }
 
     /**
      * @Route("admin/entrada/{linkRoute}", name="entrada_news")
-     * @param Entrada $entrada
+     *
      * @return Response
      */
     public function show(Entrada $entrada)
     {
-        if ($entrada->getLinkRoute() === 'khaaaaaan') {
+        if ('khaaaaaan' === $entrada->getLinkRoute()) {
             $ok = 'ok';
         }
 
         return $this->render('entrada/show.html.twig', [
             'entrada' => $entrada,
-
         ]);
     }
 }

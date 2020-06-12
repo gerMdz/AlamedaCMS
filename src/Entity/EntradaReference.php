@@ -52,8 +52,6 @@ class EntradaReference
         return $this->entrada;
     }
 
-
-
     public function getFilename(): ?string
     {
         return $this->filename;

@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
@@ -80,11 +79,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        $valid =  $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        $valid = $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
         if (!$valid) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Credenciales no válidas.');
         }
+
         return $valid;
     }
 
@@ -101,6 +101,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
+
         return new RedirectResponse($this->urlGenerator->generate('index'));
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));

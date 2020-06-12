@@ -19,10 +19,8 @@ class UserFixtures extends BaseFixture
 
     private $userPasswordEncoder;
 
-
     /**
      * UserFixtures constructor.
-     * @param UserPasswordEncoderInterface $userPasswordEncoder
      */
     public function __construct(UserPasswordEncoderInterface $userPasswordEncoder)
     {
@@ -48,7 +46,6 @@ class UserFixtures extends BaseFixture
             $apiToken2 = new ApiToken($user);
             $manager->persist($apiToken1);
             $manager->persist($apiToken2);
-
 
             return $user;
         });
