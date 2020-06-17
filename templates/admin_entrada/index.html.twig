@@ -45,8 +45,8 @@
                         {{ entrada.autor.email }}
                     </td>
                     <td>
-                        {% if entrada.creadaAt  %}
-                            {{ entrada.creadaAt ? entrada.creadaAt | ago : 'No fue creada' }}
+                        {% if entrada.createdAt  %}
+                            {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}
                         {% endif %}
                     </td>
                     <td>

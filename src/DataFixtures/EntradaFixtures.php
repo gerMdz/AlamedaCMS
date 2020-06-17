@@ -72,7 +72,7 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
         $fs->copy(__DIR__.'/images/'.$randomImage, $targetPath, true);
 
         return $this->uploaderHelper
-            ->uploadEntradaImage(new File($targetPath));
+            ->uploadEntradaImage(new File($targetPath), false);
     }
 
     public function getDependencies()

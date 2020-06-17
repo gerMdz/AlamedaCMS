@@ -3,17 +3,18 @@
 namespace App\Entity;
 
 use App\Service\UploaderHelper;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
  */
 class Entrada
 {
+    use TimestampableEntity;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -47,10 +48,7 @@ class Entrada
      */
     private $publicadoAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $creadaAt;
+
 
     /**
      * @Gedmo\Slug(fields={"titulo"})
@@ -68,9 +66,10 @@ class Entrada
      */
     private $likes = 0;
 
+
+
     public function __construct()
     {
-        $this->creadaAt = new DateTime('now');
         $this->entradaReferences = new ArrayCollection();
     }
 
@@ -144,17 +143,9 @@ class Entrada
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 
-    public function getCreadaAt(): ?\DateTimeInterface
-    {
-        return $this->creadaAt;
-    }
 
-    public function setCreadaAt(?\DateTimeInterface $creadaAt): self
-    {
-        $this->creadaAt = $creadaAt;
 
-        return $this;
-    }
+
 
     public function getLinkRoute(): ?string
     {
@@ -194,4 +185,6 @@ class Entrada
 
         return $this;
     }
+
+
 }

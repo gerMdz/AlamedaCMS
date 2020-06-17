@@ -29,7 +29,7 @@ class EntradaRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->andWhere('e.autor = :val')
             ->setParameter('val', $user)
-            ->orderBy('e.creadaAt', 'DESC')
+            ->orderBy('e.createdAt', 'DESC')
 //            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
