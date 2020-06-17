@@ -19,6 +19,10 @@ class EntradaReferenciaAdminController extends AbstractController
      * @Route("/admin/entrada/{id}/referencia", name="admin_entrada_add_referencia", methods={"POST"})
      * @IsGranted("MANAGE", subject="entrada")
      *
+     * @param Entrada $entrada
+     * @param Request $request
+     * @param UploaderHelper $helper
+     * @param EntityManagerInterface $em
      * @return RedirectResponse
      */
     public function uploadArticleReference(Entrada $entrada, Request $request, UploaderHelper $helper, EntityManagerInterface $em)

@@ -97,7 +97,7 @@ class AdminEntradaController extends AbstractController
             $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $entrada->getImageFilename());
                 $entrada->setImageFilename($newFilename);
             }
 

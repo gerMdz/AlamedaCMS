@@ -7,6 +7,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
@@ -52,6 +53,7 @@ class Entrada
     private $creadaAt;
 
     /**
+     * @Gedmo\Slug(fields={"titulo"})
      * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     private $linkRoute;

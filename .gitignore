@@ -5,6 +5,7 @@ node_modules
 /.env.local
 /.env.local.php
 /.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/
@@ -50,3 +51,4 @@ yarn-error.log
 /public/media/
 /public/media/cache
 /public/media/
+/public/pre/uploads/entrada_reference/

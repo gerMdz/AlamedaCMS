@@ -29,4 +29,36 @@ class InicioController extends AbstractController
     {
         return $this->render('inicio/contacto.html.twig', []);
     }
+
+    /**
+     * @Route("/grupospequeños", name="gpc", options = {"utf8": true })
+     */
+    public function gpc()
+    {
+        return $this->render('inicio/gpc.html.twig', []);
+    }
+
+    /**
+     * @Route("/ofrenda", name="ofrenda", options = {"utf8": true })
+     */
+    public function ofrenda()
+    {
+        return $this->render('inicio/ofrenda.html.twig', []);
+    }
+
+    /**
+     * @Route("/notas", name="notas", options = {"utf8": true })
+     */
+    public function notas()
+    {
+        return $this->render('inicio/notas.html.twig', []);
+    }
+
+    /**
+     * @Route("/oracion", name="oracion", options = {"utf8": true })
+     */
+    public function oracion()
+    {
+        return $this->render('inicio/oracion.html.twig', []);
+    }
 }
