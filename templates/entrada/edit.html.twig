@@ -5,6 +5,11 @@
 {% block body %}
     <div class="mt-5"><span><hr/></span></div>
     <div class="mt-5"><span><hr/></span></div>
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="container">
         <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
         <hr>

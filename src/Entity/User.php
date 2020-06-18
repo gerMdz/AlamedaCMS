@@ -70,11 +70,23 @@ class User implements UserInterface
      */
     private $entradas;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="autor")
+     */
+    private $principal;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="autor")
+     */
+    private $comentarios;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
         $this->pageIndices = new ArrayCollection();
         $this->entradas = new ArrayCollection();
+        $this->principal = new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     public function __toString()
@@ -288,6 +300,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($entrada->getAutor() === $this) {
                 $entrada->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Principal[]
+     */
+    public function getPrincipal(): Collection
+    {
+        return $this->principal;
+    }
+
+    public function addPrincipals(Principal $principals): self
+    {
+        if (!$this->principal->contains($principals)) {
+            $this->principal[] = $principals;
+            $principals->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrincipals(Principal $principals): self
+    {
+        if ($this->principal->contains($principals)) {
+            $this->principal->removeElement($principals);
+            // set the owning side to null (unless already changed)
+            if ($principals->getAutor() === $this) {
+                $principals->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->contains($comentario)) {
+            $this->comentarios->removeElement($comentario);
+            // set the owning side to null (unless already changed)
+            if ($comentario->getAutor() === $this) {
+                $comentario->setAutor(null);
             }
         }
 

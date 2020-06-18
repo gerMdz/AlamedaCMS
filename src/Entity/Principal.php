@@ -2,18 +2,18 @@
 
 namespace App\Entity;
 
-use App\Service\UploaderHelper;
+use App\Repository\PrincipalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
+ * @ORM\Entity(repositoryClass=PrincipalRepository::class)
  */
-class Entrada
+class Principal
 {
+
     use TimestampableEntity;
     /**
      * @ORM\Id()
@@ -23,20 +23,25 @@ class Entrada
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="principal")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $autor;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $titulo;
 
     /**
-     * @ORM\Column(type="string", length=4000)
+     * @ORM\Column(type="string", length=2550)
      */
     private $contenido;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="entradas")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=150)
      */
-    private $autor;
+    private $linkRoute;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -44,44 +49,35 @@ class Entrada
     private $imageFilename;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $publicadoAt;
-
-
+    private $likes;
 
     /**
-     * @Gedmo\Slug(fields={"titulo"})
-     * @ORM\Column(type="string", length=150, nullable=true, unique=true)
-     */
-    private $linkRoute;
-
-    /**
-     * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
-     */
-    private $entradaReferences;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $likes = 0;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada")
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="principal")
      */
     private $comentarios;
 
-
-
     public function __construct()
     {
-        $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getAutor(): ?User
+    {
+        return $this->autor;
+    }
+
+    public function setAutor(?User $autor): self
+    {
+        $this->autor = $autor;
+
+        return $this;
     }
 
     public function getTitulo(): ?string
@@ -108,15 +104,15 @@ class Entrada
         return $this;
     }
 
-    public function getAutor(): ?User
+    public function getLinkRoute(): ?string
     {
-        return $this->autor;
+        return $this->linkRoute;
     }
 
-    public function setAutor(?User $autor): self
+    public function setLinkRoute(?string $linkRoute): self
     {
-        $this->autor = $autor;
-
+        ($linkRoute ==null ? $linkRoute = strtolower(str_replace(' ', '-', trim($this->titulo().'-'.$this->gId()))) : $linkRoute = $linkRoute);
+        $this->linkRoute = $linkRoute;
         return $this;
     }
 
@@ -132,62 +128,14 @@ class Entrada
         return $this;
     }
 
-    public function getPublicadoAt(): ?\DateTimeInterface
-    {
-        return $this->publicadoAt;
-    }
-
-    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
-    {
-        $this->publicadoAt = $publicadoAt;
-
-        return $this;
-    }
-
-    public function getImagePath()
-    {
-        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
-    }
-
-
-
-
-
-    public function getLinkRoute(): ?string
-    {
-        return $this->linkRoute;
-    }
-
-    public function setLinkRoute(?string $linkRoute): self
-    {
-        $this->linkRoute = $linkRoute;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|EntradaReference[]
-     */
-    public function getEntradaReferences(): Collection
-    {
-        return $this->entradaReferences;
-    }
-
     public function getLikes(): ?int
     {
         return $this->likes;
     }
 
-    public function setLikes(int $likes): self
+    public function setLikes(?int $likes): self
     {
         $this->likes = $likes;
-
-        return $this;
-    }
-
-    public function incrementaLikeCount(): self
-    {
-        $this->likes = $this->likes + 1;
 
         return $this;
     }
@@ -204,7 +152,7 @@ class Entrada
     {
         if (!$this->comentarios->contains($comentario)) {
             $this->comentarios[] = $comentario;
-            $comentario->setEntrada($this);
+            $comentario->setPrincipal($this);
         }
 
         return $this;
@@ -215,13 +163,11 @@ class Entrada
         if ($this->comentarios->contains($comentario)) {
             $this->comentarios->removeElement($comentario);
             // set the owning side to null (unless already changed)
-            if ($comentario->getEntrada() === $this) {
-                $comentario->setEntrada(null);
+            if ($comentario->getPrincipal() === $this) {
+                $comentario->setPrincipal(null);
             }
         }
 
         return $this;
     }
-
-
 }
