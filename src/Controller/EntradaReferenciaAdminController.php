@@ -78,4 +78,14 @@ class EntradaReferenciaAdminController extends AbstractController
             'id' => $entrada->getId(),
         ]);
     }
+
+    /**
+     * @Route("/admin/entrada/referencias/{id}/download", name="admin_entrada_download_reference", methods={"GET"})
+     * @param EntradaReference $reference
+     * @param UploaderHelper $uploaderHelper
+     */
+    public function downloadEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper)
+    {
+        dd($reference);
+    }
 }

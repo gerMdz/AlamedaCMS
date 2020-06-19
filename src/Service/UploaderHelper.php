@@ -99,4 +99,16 @@ class UploaderHelper
         return $newFilename;
     }
 
+    public function readStream(string $path, bool $isPublic)
+    {
+        $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
+        $resource = $filesystem->readStream($path);
+
+        if ($resource === false) {
+            throw new \Exception(sprintf('Error al abrir secuencia para "%s"', $path));
+        }
+        return $resource;
+
+    }
+
 }
