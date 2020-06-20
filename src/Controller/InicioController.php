@@ -31,6 +31,14 @@ class InicioController extends AbstractController
     }
 
     /**
+     * @Route("/avanza", name="avanza")
+     */
+    public function avanza()
+    {
+        return $this->render('inicio/avanza.html.twig', []);
+    }
+
+    /**
      * @Route("/grupospequeños", name="gpc", options = {"utf8": true })
      */
     public function gpc()

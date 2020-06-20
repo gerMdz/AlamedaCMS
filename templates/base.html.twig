@@ -1,220 +1,208 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% set base = base_base() %}
-        <meta charset="UTF-8">
-        <title>
-            {% block title %}{{ base.siteName}} Bienvenido! {% endblock %}
-        </title>
+<head>
+    {% set base = base_base() %}
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
+    </title>
     {% set index = 'base' %}
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
-        <meta name="author" content="{{ base.metaAutor }}">
-        <meta name="author" content="{{ base.metaAutor }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
+    <meta name="author" content="{{ base.metaAutor }}">
+    <meta name="author" content="{{ base.metaAutor }}">
 
-{#        <meta name="author" content="{{ base['autor'] }}">#}
+    {#        <meta name="author" content="{{ base['autor'] }}">#}
 
-        <meta property="og:title" content="{{ base.metaTitle }}" />
-        <meta property="og:type" content="{{ base.metaType }}" />
+    <meta property="og:title" content="{{ base.metaTitle }}"/>
+    <meta property="og:type" content="{{ base.metaType }}"/>
 
-        <meta property="og:url" content="{{ base.metaUrl }}" />
-        <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-        <meta property="og:image" content="{{ base.metaUrl }}{{ asset('build/images/og-base.png') }}">
-        <title>{{ base.metaTitle }}</title>
-        {% include('inicio/_favicon_html.twig') %}
+    <meta property="og:url" content="{{ base.metaUrl }}"/>
+    <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
+    <meta property="og:image" content="{{ base.metaUrl }}{{ asset('build/images/og-base.png') }}">
+    <title>{{ base.metaTitle }}</title>
+    {% include('inicio/_favicon_html.twig') %}
 
-        {% block stylesheets %}
-            <!-- Bootstrap core CSS -->
-            <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.css') }}">
-            <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
-            <link rel="stylesheet" type="text/css" href="{{ asset('business-casual/css/business-casual.min.css') }}">
-{#            <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/assets/css/material-kit.min.css') }}">#}
-            <link rel="stylesheet" type="text/css" href="{{ asset('shards-ui/dist/css/shards-extras.min.css') }}">
-            <link rel="stylesheet" type="text/css" href="{{ asset('shards-ui/dist/css/shards-demo.css') }}">
-            <link rel="stylesheet" type="text/css" href="{{ asset('shards-ui/dist/css/shards.min.css') }}">
-            <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.min.css') }}">
+    {% block stylesheets %}
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('business-casual/css/business-casual.min.css') }}">
+        {#            <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/assets/css/material-kit.min.css') }}">#}
+        <link rel="stylesheet" type="text/css" href="{{ asset('shards-ui/dist/css/shards-extras.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('shards-ui/dist/css/shards-demo.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('shards-ui/dist/css/shards.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.min.css') }}">
 
-            <!-- Theme Styles -->
-{#            <link rel="stylesheet" type="text/css" href="assets/css/styles.css">#}
+        <!-- Theme Styles -->
+        {#            <link rel="stylesheet" type="text/css" href="assets/css/styles.css">#}
 
-            <!-- Font Awesome -->
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-            <!-- Material Design Bootstrap -->
-{#            <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">#}
-            {{ encore_entry_link_tags('app') }}
-{#            <link href="css/foundation-icons.css" rel="stylesheet">#}
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Material Design Bootstrap -->
+        {#            <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">#}
+        {{ encore_entry_link_tags('app') }}
+        {#            <link href="css/foundation-icons.css" rel="stylesheet">#}
 
 
-{#            <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">#}
+        {#            <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet">#}
 
-{#            <link href="css/alameda/fontAlameda.css" rel="stylesheet">#}
-{#            <link href="css/swiper.min.css" rel="stylesheet">#}
+        {#            <link href="css/alameda/fontAlameda.css" rel="stylesheet">#}
+        {#            <link href="css/swiper.min.css" rel="stylesheet">#}
 
-            <!--    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
+        <!--    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
 
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                  rel="stylesheet">
-            <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
+        <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
 
-            <!-- Custom fonts for this template -->
-            <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
-{#            <link href="css/fonts/univers/font.css?v=<?php echo $version ?>" rel="stylesheet">#}
-            <style>
+        <!-- Custom fonts for this template -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+        {#            <link href="css/fonts/univers/font.css?v=<?php echo $version ?>" rel="stylesheet">#}
+        <style>
             .swiper-container {
-            width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
+                width: 100%;
+                padding-top: 50px;
+                padding-bottom: 50px;
             }
+
             .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 300px;
+                background-position: center;
+                background-size: cover;
+                width: 300px;
+                height: 300px;
             }
-            </style>
+        </style>
 
-        {% endblock %}
-    </head>
-    <body>
-
-    {% block nav %}
-       {% include('inicio/_nav.html.twig') %}
     {% endblock %}
-    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-        <div class="alert alert-warning" style="position: fixed; bottom: 50px"  >
-            Temporalemte
-            <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
-        </div>
-    {% endif %}
+</head>
+<body>
+
+{% block nav %}
+    {% include('inicio/_nav.html.twig') %}
+{% endblock %}
+{% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+    <div class="alert alert-warning" style="position: fixed; bottom: 50px">
+        Temporalemte
+        <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+    </div>
+{% endif %}
 
 
 
-        {% block body %}
-        {% endblock %}
+{% block body %}
+{% endblock %}
 
-        {% block javascripts %}
-            <script src="{{ asset('vendors/jquery.min.js') }}"></script>
-            <script src="{{ asset('vendors/jquery.migrate.min.js') }}"></script>
-            <script src="{{ asset('vendors/popper.min.js') }}"></script>
-            <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+{% block javascripts %}
+    <script src="{{ asset('vendors/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendors/jquery.migrate.min.js') }}"></script>
+    <script src="{{ asset('vendors/popper.min.js') }}"></script>
+    <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
 
-            <!-- Theme Settings and Calls -->
-            <script src="{{ asset('js/global.js') }}"></script>
-
-
+    <!-- Theme Settings and Calls -->
+    <script src="{{ asset('js/global.js') }}"></script>
 
 
 
-            {{ encore_entry_script_tags('app') }}
-
-            <script type="text/javascript" src="js/jquery.countdown.js"></script>
-            <script type="text/javascript" src="js/swiper.min.js"></script>
-
-            <script>
-                $(document).ready(function(){
-                    $('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
-                });
-            </script>
-
-        {% endblock %}
-    {% block footer %}
-        <footer class="footer text-tan text-center py-4 fondoFranja bg-dark">
-            <div class="container">
-                <div class="row">
-                    <!--<div class="col-sm-3">
-                        <span class="text-left">Iglesia de la Alameda</span> <br/>
 
 
-                        <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
+    {{ encore_entry_script_tags('app') }}
 
-                        <hr class="bg-point"/>
-                    </div>-->
-                    <!--
-                        <div class="col-sm-3">
-                        <hr class="bg-point"/>
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
+        });
+    </script>
+
+{% endblock %}
+{% block footer %}
+    <footer class="footer text-tan text-center py-4 fondoFranja bg-dark">
+        <div class="container">
+            <div class="row">
+                <!--<div class="col-sm-3">
+                    <span class="text-left">Iglesia de la Alameda</span> <br/>
 
 
-                        <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
-                        <hr class="bg-point"/>
-                    </div>
+                    <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
+
+                    <hr class="bg-point"/>
+                </div>-->
+                <!--
                     <div class="col-sm-3">
-                        <hr class="bg-point"/>
+                    <hr class="bg-point"/>
 
 
-                        <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
-                        <hr class="bg-point"/>
-                    </div>-->
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-2">
-                        <hr class="bg-point"/>
-                        <a class="text-tan" href="puntopartida.php"> Punto de Partida</a>
-                        <hr class="bg-point"/>
-                        <a class="text-tan" href="alamedaaldia.php"> Alameda al Día</a>
-                        <hr class="bg-point"/>
-                    </div>
-                    <div class="col-sm-2">
-                        <hr class="bg-point"/>
-
-
-                        <a class="text-tan" href="masporhacer.php"> Eventos en la Alameda</a>
-                        <hr class="bg-point"/>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <hr class="bg-point"/>
-
-
-                        <a class="text-tan" href="nuestraalameda.php"> Dónde y Cuándo</a>
-                        <hr class="bg-point"/>
-                    </div>
-                    <div class="col-sm-2">
-                        <hr class="bg-point"/>
-
-
-                        <a class="text-tan" href="acciones.php"> ¡¡Haciendo!!</a>
-                        <hr class="bg-point"/>
-                    </div>
-                    <div class="col-sm-2">
-                        <hr class="bg-point"/>
-
-
-                        <a class="text-tan" href="seminario.php"> Seminario</a>
-                        <hr class="bg-point"/>
-
-
-
-
-                        <a class="text-tan" href="oportunidades/index.php"> Servicio</a>
-                        <hr class="bg-point"/>
-                    </div>
-                    <div class="col-sm-1"></div>
+                    <a class="text-tan" href="masporhacer.php"> Involocrarse ¡Hay mucho por hacer!</a>
+                    <hr class="bg-point"/>
                 </div>
-                <div class="col-sm-12">
-                    <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza <br/>
-                        <strong>Horario de Reuniones</strong><br/>
-                        <em>Domingos por la mañana: 11hs. - Domingo por la tarde: 19hs.</em><br/>
-                        Copyright &copy; Iglesia Alameda 2018</p>
+                <div class="col-sm-3">
+                    <hr class="bg-point"/>
+
+
+                    <a class="text-tan" href="contacto.php"> Estamos cerca tuyo, Aqui podrás encontrarnos </a>
+                    <hr class="bg-point"/>
+                </div>-->
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <hr class="bg-point"/>
+                    <a class="text-tan" href="puntopartida.php"> Punto de Partida</a>
+                    <hr class="bg-point"/>
+                    <a class="text-tan" href="alamedaaldia.php"> Alameda al Día</a>
+                    <hr class="bg-point"/>
                 </div>
+                <div class="col-sm-2">
+                    <hr class="bg-point"/>
+
+
+                    <a class="text-tan" href="masporhacer.php"> Eventos en la Alameda</a>
+                    <hr class="bg-point"/>
+                </div>
+
+                <div class="col-sm-2">
+                    <hr class="bg-point"/>
+
+
+                    <a class="text-tan" href="nuestraalameda.php"> Dónde y Cuándo</a>
+                    <hr class="bg-point"/>
+                </div>
+                <div class="col-sm-2">
+                    <hr class="bg-point"/>
+
+
+                    <a class="text-tan" href="acciones.php"> ¡¡Haciendo!!</a>
+                    <hr class="bg-point"/>
+                </div>
+                <div class="col-sm-2">
+                    <hr class="bg-point"/>
+
+
+                    <a class="text-tan" href="seminario.php"> Seminario</a>
+                    <hr class="bg-point"/>
+
+
+                    <a class="text-tan" href="oportunidades/index.php"> Servicio</a>
+                    <hr class="bg-point"/>
+                </div>
+                <div class="col-sm-1"></div>
             </div>
-        </footer>
-    {% endblock %}
-
-    </body>
+            <div class="col-sm-12">
+                <p class="m-0 small ">San Martín 2020 de la Ciudad de Mendoza <br/>
+                    <strong>Horario de Reuniones</strong><br/>
+                    <em>Domingos por la mañana: 11hs. - Domingo por la tarde: 19hs.</em><br/>
+                    Copyright &copy; Iglesia Alameda 2018</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+</body>
 </html>
-
-<?php
-    $lema = 'Disfruta el Viaje';
-    $lemaSinEspacios = 'DisfrutaElViaje';
-    $ahora = date('Y-m-d H:i');
-
-    $domingo = strtotime('today');
-    include_once ('gerVendor/gerFunctions.php')
-?>
-
-
