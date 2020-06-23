@@ -43,7 +43,7 @@ class AdminEntradaController extends AbstractController
     public function index(EntradaRepository $entradaRepository): Response
     {
         if ($this->isGranted('ROLE_EDITOR')) {
-            $entrada = $entradaRepository->findBy([], ['creadaAt' => 'DESC']);
+            $entrada = $entradaRepository->findBy([], ['createdAt' => 'DESC']);
         } else {
             $user = $this->getUser();
             $entrada = $entradaRepository->findByAutor($user);

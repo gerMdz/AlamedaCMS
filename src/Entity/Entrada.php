@@ -67,7 +67,8 @@ class Entrada
     private $likes = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada")
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada", fetch="EXTRA_LAZY")
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $comentarios;
 

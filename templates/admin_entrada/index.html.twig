@@ -19,7 +19,8 @@
                     Titulo <br/>
                     Linkroute
                 </th>
-                <th>Likes</th>
+                <th>Likes<br/>
+                Comentarios</th>
                 <th>
                     Autor<br/>
                     email
@@ -38,7 +39,8 @@
                         {{ entrada.linkRoute }}
                     </td>
                     <td>
-                        {{ entrada.likes }}
+                        {{ entrada.likes }} Likes <br/>
+                        <small>({{ entrada.comentarios | length }} Comentarios)</small>
                     </td>
                     <td>
                         {{ entrada.autor }} --
