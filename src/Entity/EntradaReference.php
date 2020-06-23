@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EntradaReferenceRepository;
+use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -86,5 +87,10 @@ class EntradaReference
         $this->mimeType = $mimeType;
 
         return $this;
+    }
+
+    public function getImagePath()
+    {
+        return UploaderHelper::ENTRADA_REFERENCE.'/'.$this->getFilename();
     }
 }

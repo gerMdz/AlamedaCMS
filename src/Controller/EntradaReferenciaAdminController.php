@@ -9,8 +9,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -35,29 +37,29 @@ class EntradaReferenciaAdminController extends AbstractController
         $uploadedFile = $request->files->get('reference');
 
         $nopermitidos = $validator->validate(
-            $uploadedFile,[
+            $uploadedFile, [
                 new NotBlank([
-                    'message'=>'Por favor seleccione una archivo 📁'
+                        'message' => 'Por favor seleccione una archivo 📁'
                     ]
                 ),
-            new File([
-                'maxSize' => '5M',
-                'mimeTypes'=>[
-                    'image/*',
-                    'application/pdf',
-                    'application/msword',
-                    'application/vnd.ms-excel',
-                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                    'text/plain'
-                ]
-            ])
-                ]
+                new File([
+                    'maxSize' => '5M',
+                    'mimeTypes' => [
+                        'image/*',
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.ms-excel',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                        'text/plain'
+                    ]
+                ])
+            ]
         );
 
         if ($nopermitidos->count() > 0) {
-            $nopermitido =  $nopermitidos[0];
+            $nopermitido = $nopermitidos[0];
             $this->addFlash('error', $nopermitido->getMessage());
             return $this->redirectToRoute('admin_entrada_edit', [
                 'id' => $entrada->getId(),
@@ -86,6 +88,21 @@ class EntradaReferenciaAdminController extends AbstractController
      */
     public function downloadEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper)
     {
-        dd($reference);
+        $response = new StreamedResponse(function () use ($reference, $uploaderHelper) {
+            $outputStream = fopen('php://output', 'wb');
+            $fileStream = $uploaderHelper->readStream($reference->getImagePath(), false);
+            stream_copy_to_stream($fileStream, $outputStream);
+        });
+        $response->headers->set('Content-Type', $reference->getMimeType());
+        $disposition = HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+//Si queremos previzualizar el documento comentar la fila anterior y descomentar la siguiente
+//            HeaderUtils::DISPOSITION_INLINE,
+            $reference->getOrginalFilename()
+        );
+        $response->headers->set('Content-Disposition', $disposition);
+
+//        dd($reference);
+        return $response;
     }
 }

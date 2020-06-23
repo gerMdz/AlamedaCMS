@@ -39,7 +39,7 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_articles', function ($count) use ($manager) {
+        $this->createMany(10, 'main_entradas', function ($count) use ($manager) {
             $entrada = new Entrada();
             $entrada->setTitulo($this->faker->randomElement(self::$entradaTitles))
                 ->setContenido('Una dato más');
@@ -54,19 +54,10 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
                 ->setImageFilename($imageFilename)
                 ->setLinkRoute($link);
 
-            $comentario1 = new Comentario();
-            $comentario1->setAutor($this->getRandomReference('main_users'))
-                ->setContenido('Me encantó, gracias')
-                ->setEntrada($entrada)
-            ;
-            $manager->persist($comentario1);
 
-            $comentario2 = new Comentario();
-            $comentario2->setAutor($this->getRandomReference('main_users'))
-                ->setContenido('Sigan así')
-                ->setEntrada($entrada)
-            ;
-            $manager->persist($comentario2);
+
+
+
 
 //            $tags = $this->getRandomReferences('main_tags', $this->faker->numberBetween(0, 5));
 //            foreach ($tags as $tag) {
