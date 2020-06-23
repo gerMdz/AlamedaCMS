@@ -53,7 +53,9 @@ class EntradaController extends AbstractController
     /**
      * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
      *
-     * @param string $linkRoute
+     * @param Entrada $entrada
+     * @param EntradaRepository $er
+     * @return Response
      */
     public function ver(Entrada $entrada, EntradaRepository $er): Response
     {

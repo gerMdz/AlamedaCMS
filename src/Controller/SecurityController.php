@@ -29,7 +29,7 @@ class SecurityController extends AbstractController
 //    }
 
     /**
-     * @Route("/ingreso", name="app_login")
+     * @Route("/ingreso/admin", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {

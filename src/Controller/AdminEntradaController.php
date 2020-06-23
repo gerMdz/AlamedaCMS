@@ -122,6 +122,7 @@ class AdminEntradaController extends AbstractController
      * @IsGranted("ROLE_ESCRITOR")
      *
      * @return RedirectResponse|Response
+     * @throws Exception
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
