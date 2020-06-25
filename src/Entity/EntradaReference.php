@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EntradaReferenceRepository;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=EntradaReferenceRepository::class)
@@ -15,6 +16,7 @@ class EntradaReference
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("main")
      */
     private $id;
 
@@ -25,16 +27,19 @@ class EntradaReference
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $filename;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $orginalFilename;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $mimeType;
 

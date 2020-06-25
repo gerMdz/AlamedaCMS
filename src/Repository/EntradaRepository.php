@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Entrada;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,15 +42,28 @@ class EntradaRepository extends ServiceEntityRepository
      * @param null $user
      *
      * @return Entrada[]
+     * @throws QueryException
      */
     public function findAllPublicadosOrderedByPublicacion($user = null)
     {
+        $this->createQueryBuilder('e')
+            ->addCriteria(self::createNoDeletedCriteria());
+
         return $this->addIsPublishedQueryBuilder(null, $user)
             ->orderBy('e.publicadoAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;
     }
+
+    public static function createNoDeletedCriteria():Criteria
+    {
+        return Criteria::create()
+            ->andWhere(Criteria::expr()->eq('isDeleted', false))
+            ->orderBy(['createdAt'=>'DESC'])
+        ;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Article

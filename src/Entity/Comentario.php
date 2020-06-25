@@ -40,6 +40,11 @@ class Comentario
      */
     private $principal;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isDeleted = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +94,18 @@ class Comentario
     public function setPrincipal(?Principal $principal): self
     {
         $this->principal = $principal;
+
+        return $this;
+    }
+
+    public function getIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(?bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }

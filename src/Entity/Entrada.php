@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
@@ -150,10 +153,6 @@ class Entrada
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 
-
-
-
-
     public function getLinkRoute(): ?string
     {
         return $this->linkRoute;
@@ -191,6 +190,15 @@ class Entrada
         $this->likes = $this->likes + 1;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentariosNoDeleted(): Collection
+    {
+        $criterio = EntradaRepository::createNoDeletedCriteria();
+        return $this->comentarios->matching($criterio);
     }
 
     /**

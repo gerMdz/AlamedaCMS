@@ -20,7 +20,8 @@ class ComentarioFixtures extends BaseFixture implements DependentFixtureInterfac
             );
             $comment->setAutor($this->getRandomReference('main_users'))
                 ->setCreatedAt($this->faker->dateTimeBetween('-1 months', '-1 seconds'))
-                ->setEntrada($this->getRandomReference('main_entradas'));
+                ->setEntrada($this->getRandomReference('main_entradas'))
+                ->setIsDeleted($this->faker->boolean(20));
 
             return $comment;
 

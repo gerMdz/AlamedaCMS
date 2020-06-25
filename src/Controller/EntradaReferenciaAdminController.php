@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\File;
@@ -29,7 +30,6 @@ class EntradaReferenciaAdminController extends AbstractController
      * @param UploaderHelper $helper
      * @param EntityManagerInterface $em
      * @param ValidatorInterface $validator
-     * @return RedirectResponse
      */
     public function uploadEntradaReference(Entrada $entrada, Request $request, UploaderHelper $helper, EntityManagerInterface $em, ValidatorInterface $validator)
     {
@@ -59,11 +59,12 @@ class EntradaReferenciaAdminController extends AbstractController
         );
 
         if ($nopermitidos->count() > 0) {
-            $nopermitido = $nopermitidos[0];
-            $this->addFlash('error', $nopermitido->getMessage());
-            return $this->redirectToRoute('admin_entrada_edit', [
-                'id' => $entrada->getId(),
-            ]);
+            return $this->json($nopermitidos, 400);
+//            $nopermitido = $nopermitidos[0];
+//            $this->addFlash('error', $nopermitido->getMessage());
+//            return $this->redirectToRoute('admin_entrada_edit', [
+//                'id' => $entrada->getId(),
+//            ]);
         }
 
         $filename = $helper->uploadEntradaReference($uploadedFile);
@@ -76,9 +77,20 @@ class EntradaReferenciaAdminController extends AbstractController
         $em->persist($entradaReference);
         $em->flush();
 
-        return $this->redirectToRoute('admin_entrada_edit', [
-            'id' => $entrada->getId(),
-        ]);
+        return $this->json(
+            $entradaReference,
+            201,
+            [],
+            [
+                'groups'=>['main']
+            ]
+
+
+        );
+
+//        return $this->redirectToRoute('admin_entrada_edit', [
+//            'id' => $entrada->getId(),
+//        ]);
     }
 
     /**

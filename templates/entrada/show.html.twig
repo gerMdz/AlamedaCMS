@@ -61,14 +61,17 @@
                     </table>
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentarios|length }} Comentarios</h3>
-                            {% for comentario in entrada.comentarios %}
+                            <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios</h3>
+                            {% for comentario in entrada.comentariosNoDeleted %}
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="comment-container d-inline-block pl-3 align-top">
                                             <span class="commenter-name">{{ comentario.autor }}</span>
-                                            <small>realizado {{ comentario.createdAt|ago }}</small><br/>
-
+                                            <small>realizado {{ comentario.createdAt|ago }}</small>
+                                            {% if comentario.isDeleted %}
+                                                <span class="fas fa-times-circle text-danger"></span> Borrado
+                                            {% endif %}
+                                            <br/>
                                             <span class="comment"> {{ comentario.contenido }}</span>
                                             <hr class="border-bottom" />
                                         </div>
