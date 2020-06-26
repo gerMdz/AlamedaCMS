@@ -1,0 +1,48 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block title %}Administrar Comentarios{% endblock %}
+
+{% block content_class %}{{ parent() }} show-article-container-border-green{% endblock %}
+
+{% block contenido_body %}
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Gestionar Comentarios</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Entrada</th>
+                    <th>Autor</th>
+                    <th>Comentario</th>
+                    <th>Creado</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comentario in comentarios %}
+                    <tr>
+                       <td style="width: 25%">
+                            <a href="{{ path('entrada_ver', { 'linkRoute': comentario.entrada.linkRoute }) }}">
+                                {{ comentario.entrada.titulo }}
+                            </a>
+                       </td>
+                        <td>
+                            {{ comentario.autor }}
+                        </td>
+                        <td style="width: 35%">
+                            {{ comentario.contenido | u.truncate(30, '...')  }}
+                        </td>
+                        <td>
+                            {{ comentario.createdAt | ago }}<br/>
+                            {{ comentario.createdAt | date('d-m-y h:i') }}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

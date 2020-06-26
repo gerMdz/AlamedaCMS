@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
-{% block title %}Edit IndexAlameda{% endblock %}
+{% block title %}Edición IndexAlameda{% endblock %}
 
-{% block body %}
-    <h1>Edit IndexAlameda</h1>
+{% block contenido_body %}
+    <h1>Editar IndexAlameda</h1>
 
     {{ include('index_alameda/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('index_alameda_index') }}">back to list</a>
+    <a href="{{ path('index_alameda_index') }}">Volver al listado</a>
 
     {{ include('index_alameda/_delete_form.html.twig') }}
 {% endblock %}

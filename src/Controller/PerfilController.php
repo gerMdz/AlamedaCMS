@@ -20,6 +20,7 @@ class PerfilController extends AbstractController
     /**
      * @Route("web/perfil", name="app_perfil")
      *
+     * @param IndexAlamedaRepository $indexAlamedaRepository
      * @return Response
      */
     public function index(IndexAlamedaRepository $indexAlamedaRepository)

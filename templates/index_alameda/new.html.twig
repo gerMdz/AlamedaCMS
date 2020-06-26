@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
-{% block title %}New IndexAlameda{% endblock %}
+{% block title %}Nuevo IndexAlameda{% endblock %}
 
-{% block body %}
+{% block contenido_body %}
     <h1>Crear nueva IndexAlameda</h1>
 
     {{ include('index_alameda/_form.html.twig') }}
 
-    <a href="{{ path('index_alameda_index') }}">back to list</a>
+    <a href="{{ path('index_alameda_index') }}">Volver al listado</a>
 {% endblock %}
