@@ -6,6 +6,7 @@ use Exception;
 use Gedmo\Sluggable\Util\Urlizer;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\FilesystemInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Asset\Context\RequestStackContext;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -109,6 +110,16 @@ class UploaderHelper
         }
         return $resource;
 
+    }
+
+
+    public function deleteFile(string $path, bool $isPublic)
+    {
+        $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
+        $result = $filesystem->delete($path);
+        if ($result === false) {
+            throw new \Exception(sprintf('Error borrando "%s"', $path));
+        }
     }
 
 }

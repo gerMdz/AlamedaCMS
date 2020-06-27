@@ -94,9 +94,26 @@ class EntradaReferenciaAdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/entrada/{id}/referencia", methods="GET", name="admin_entrada_list_referencia")
+     * @param Entrada $entrada
+     */
+    public function getEntradaReferences(Entrada $entrada)
+    {
+        return $this->json(
+            $entrada->getEntradaReferences(),
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
      * @Route("/admin/entrada/referencias/{id}/download", name="admin_entrada_download_reference", methods={"GET"})
      * @param EntradaReference $reference
      * @param UploaderHelper $uploaderHelper
+     * @return StreamedResponse
      */
     public function downloadEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper)
     {
@@ -116,5 +133,24 @@ class EntradaReferenciaAdminController extends AbstractController
 
 //        dd($reference);
         return $response;
+    }
+
+    /**
+     * @Route("/admin/entrada/references/{id}", name="admin_entrada_delete_reference", methods={"DELETE"})
+     * @param EntradaReference $reference
+     * @param UploaderHelper $uploaderHelper
+     * @param EntityManagerInterface $entityManager
+     */
+    public function deleteEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager)
+    {
+        $entrada = $reference->getEntrada();
+        $this->denyAccessUnlessGranted('MANAGE', $entrada);
+
+        $entityManager->remove($reference);
+        $entityManager->flush();
+
+        $uploaderHelper->deleteFile($reference->getImagePath(), false);
+
+        return new Response(null, 204);
     }
 }
