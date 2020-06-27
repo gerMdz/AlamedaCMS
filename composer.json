@@ -8,6 +8,7 @@
         "antishov/doctrine-extensions-bundle": "^1.4",
         "gedmo/doctrine-extensions": "^2.4",
         "knplabs/knp-markdown-bundle": "^1.8",
+        "knplabs/knp-paginator-bundle": "^5.2",
         "knplabs/knp-time-bundle": "^1.11",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",

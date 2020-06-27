@@ -9,7 +9,8 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <h1>Gestionar Comentarios</h1>
+            <h1>Gestionar Comentarios <small>{{ comentarios.getTotalItemCount }}</small></h1>
+            {% include('default/_search.html.twig') %}
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -39,9 +40,18 @@
                         </td>
 
                     </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No se encontraron comentarios
+                        </td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            <div class="text-center align-items-center">
+            {{ knp_pagination_render(comentarios) }}
+            </div>
         </div>
     </div>
 

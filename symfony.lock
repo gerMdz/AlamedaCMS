@@ -120,8 +120,14 @@
     "imagine/imagine": {
         "version": "1.2.3"
     },
+    "knplabs/knp-components": {
+        "version": "v2.3.6"
+    },
     "knplabs/knp-markdown-bundle": {
         "version": "1.8.1"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.2.0"
     },
     "knplabs/knp-time-bundle": {
         "version": "v1.11.0"
