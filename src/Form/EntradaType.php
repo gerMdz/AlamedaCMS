@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,38 +18,53 @@ class EntradaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo',TextType::class,[
-                'required'=>true,
-                'attr'=>[
-                    'class'=>'form-control'
-                ]
+            ->add('titulo', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
-            ->add('contenido',TextareaType::class,[
-                'required'=>true,
-                'attr'=>[
-                    'class'=>'form-control'
-                ]
+            ->add('linkRoute', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
-            ->add('autor',HiddenType::class,[
-                'property_path'=>'autor.id',
-                'attr'=>[
-                    'class'=>'hidden'
-                ]
+            ->add('contenido', TextareaType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
-            ->add('imageFile', FileType::class,[
-                'mapped'=>false,
-                'required'=>false,
-                'constraints'=>[
+            ->add('autor', HiddenType::class, [
+                'property_path' => 'autor.id',
+                'attr' => [
+                    'class' => 'hidden',
+                ],
+            ])
+            ->add('imageFile', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
                     new Image([
-                        'maxSize'=>'2M',
-                        'maxSizeMessage'=>'La imagen no debe superar los 2MB',
-                        'mimeTypesMessage'=>'El archivo no es considerada una imagen',
-                    ])
+                        'maxSize' => '2M',
+                        'maxSizeMessage' => 'La imagen no debe superar los 2MB',
+                        'mimeTypesMessage' => 'El archivo no es considerada una imagen',
+                    ]),
                 ],
 
-                'attr'=>[
-                    'placeholder'=> 'Ingrese una imagen para esta entrada'
-                ]
+                'attr' => [
+                    'placeholder' => 'Ingrese una imagen para esta entrada',
+                ],
+            ])
+            ->add('publicar', CheckboxType::class, [
+                'mapped' => false,
+                'label' => false,
+                'required' => false,
+                'help' => 'Habilitada para publicar.',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
         ;
     }

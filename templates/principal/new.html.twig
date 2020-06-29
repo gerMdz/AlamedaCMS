@@ -1,0 +1,11 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block title %}Crear Página Principal{% endblock %}
+
+{% block body %}
+    <h1>Crea una nueva página Principal</h1>
+
+    {{ include('principal/_form.html.twig') }}
+
+    <a href="{{ path('principal_index') }}">Volver al listado</a>
+{% endblock %}

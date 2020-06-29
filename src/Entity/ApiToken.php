@@ -37,7 +37,9 @@ class ApiToken
 
     /**
      * ApiToken constructor.
+     *
      * @param $user
+     *
      * @throws Exception
      */
     public function __construct(User $user)
@@ -75,6 +77,7 @@ class ApiToken
     public function isExpired(): bool
     {
         return false;
+
         return $this->getExpiraAt() <= new DateTime();
     }
 }

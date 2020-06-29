@@ -1,0 +1,16 @@
+<form>
+    <div class="input-group mb-3">
+        <input type="text"
+               name="q"
+               class="form-control"
+               placeholder="Buscar..."
+               value="{{ app.request.query.get('q') }}"
+        >
+        <div class="input-group-append">
+            <button type="submit"
+                    class="btn btn-outline-secondary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,30 +1,100 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
-{% block title %}Entrada{% endblock %}
+{% block title %}Vista {{ entrada.titulo }}{% endblock %}
 
-{% block body %}
-    <h1>Entrada</h1>
+{% block contenido_body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="show-article-container p-3 mt-4">
+                    <h4>Entrada: <strong class="ml-5"> {{ entrada.titulo }} </strong>
+                        <small>
+                            Le gustó a:
+                            <span class="js-like-entrada-count">{{ entrada.likes }}</span>
+                            <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"
+                               class="fas fa-heart like-entrada js-like-entrada">
+                            </a>
+                        </small>
+                    </h4>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entrada.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ entrada.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Contenido</th>
-                <td>{{ entrada.contenido }}</td>
-            </tr>
-        </tbody>
-    </table>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Imagen</th>
+                            <td>
+                                <img class="show-article-img"
+                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ entrada.id }}</td>
+                            <th>linkRoute</th>
+                            <td>{{ entrada.linkRoute }}</td>
+                        </tr>
+                        <tr>
+                            <th>Titulo</th>
+                            <td>{{ entrada.titulo }}</td>
+                            <th>Autor</th>
+                            <td>
+                                {{ entrada.autor }} <br/>
+                                {{ entrada.autor.email }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Contenido</th>
+                            <td>{{ entrada.contenido }}</td>
+                        </tr>
+                        <tr>
+                            <th>Publicado</th>
+                            <td>
+                                {% if(entrada.publicadoAt | default) %}
+                                    {{ entrada.publicadoAt | date('d-m-Y H:i') }}
+                                {% else %}
+                                    <i class="fas fa-times text-danger"></i>
+                                {% endif %}
+                            </td>
+                        </tr>
 
-    <a href="{{ path('entrada_index') }}">back to list</a>
 
-    <a href="{{ path('entrada_edit', {'id': entrada.id}) }}">edit</a>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios</h3>
+                            {% for comentario in entrada.comentariosNoDeleted %}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="comment-container d-inline-block pl-3 align-top">
+                                            <span class="commenter-name">{{ comentario.autor }}</span>
+                                            <small>realizado {{ comentario.createdAt|ago }}</small>
+                                            {% if comentario.isDeleted %}
+                                                <span class="fas fa-times-circle text-danger"></span> Borrado
+                                            {% endif %}
+                                            <br/>
+                                            <span class="comment"> {{ comentario.contenido }}</span>
+                                            <hr class="border-bottom" />
+                                        </div>
 
-    {{ include('entrada/_delete_form.html.twig') }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="btn btn-info" href="{{ path('admin_entrada_index') }}">Volver al listado</a>
+
+        <a class="btn btn-outline-warning" href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">Editar</a>
+
+        {{ include('entrada/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/entrada_show.js') }}"></script>
 {% endblock %}

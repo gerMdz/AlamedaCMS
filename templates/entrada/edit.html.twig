@@ -1,21 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
-{% block title %}Edit Entrada{% endblock %}
+{% block title %}Edición Entrada {{ entrada.id }} {% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css" integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous" />
+{% endblock %}
+
+{% block contenido_body %}
     <div class="mt-5"><span><hr/></span></div>
     <div class="mt-5"><span><hr/></span></div>
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="container">
-    <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
+        <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
+        <hr>
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>Detalles</h3>
+                {{ include('admin_entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
+                <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
+                {{ include('entrada/_delete_form.html.twig') }}
+            </div>
+            <div class="col-sm-4">
+                <h3>Referencias</h3>
+                <ul class="list-group small js-reference-list" data-url="{{ path('admin_entrada_list_referencia', {id: entrada.id}) }}">
 
+                </ul>
 
-
-    <div class="">
-        {{ include('admin_entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
-
-        <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
-
-        {{ include('entrada/_delete_form.html.twig') }}
+                <form action="{{ path('admin_entrada_add_referencia',{
+                    id: entrada.id
+                }) }}" method="POST" enctype="multipart/form-data" class="dropzone js-reference-dropzone">
+{#                    <input type="file" name="reference">#}
+{#                    <button type="submit" class="btn btn-sm btn-primary">Subir</button>#}
+                </form>
+            </div>
+        </div>
     </div>
-    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js" integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
+    <script>
+        $('.custom-file-input').on('change', function (event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
+    <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
 {% endblock %}

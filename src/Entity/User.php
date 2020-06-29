@@ -18,7 +18,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=40)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     *
      */
     private $id;
 
@@ -71,11 +70,23 @@ class User implements UserInterface
      */
     private $entradas;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="autor")
+     */
+    private $principal;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="autor")
+     */
+    private $comentarios;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
         $this->pageIndices = new ArrayCollection();
         $this->entradas = new ArrayCollection();
+        $this->principal = new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     public function __toString()
@@ -83,13 +94,11 @@ class User implements UserInterface
         return $this->getPrimerNombre();
     }
 
-
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    
     public function getEmail(): ?string
     {
         return $this->email;
@@ -190,8 +199,9 @@ class User implements UserInterface
     public function getAvatarUrl(string $size = null): ?string
     {
         $url = 'https://robohash.org/'.$this->getEmail();
-        if ($size)
+        if ($size) {
             $url .= sprintf('?size=%dx%d', $size, $size);
+        }
 
         return $url;
     }
@@ -296,5 +306,65 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Principal[]
+     */
+    public function getPrincipal(): Collection
+    {
+        return $this->principal;
+    }
 
+    public function addPrincipals(Principal $principals): self
+    {
+        if (!$this->principal->contains($principals)) {
+            $this->principal[] = $principals;
+            $principals->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrincipals(Principal $principals): self
+    {
+        if ($this->principal->contains($principals)) {
+            $this->principal->removeElement($principals);
+            // set the owning side to null (unless already changed)
+            if ($principals->getAutor() === $this) {
+                $principals->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->contains($comentario)) {
+            $this->comentarios->removeElement($comentario);
+            // set the owning side to null (unless already changed)
+            if ($comentario->getAutor() === $this) {
+                $comentario->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
 }

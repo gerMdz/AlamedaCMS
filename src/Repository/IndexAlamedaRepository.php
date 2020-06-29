@@ -19,10 +19,10 @@ class IndexAlamedaRepository extends ServiceEntityRepository
         parent::__construct($registry, IndexAlameda::class);
     }
 
-
     public function findLemaField()
     {
         $value = 'index';
+
         return $this->createQueryBuilder('i')
             ->andWhere('i.base = :val')
             ->setParameter('val', $value)
@@ -31,7 +31,6 @@ class IndexAlamedaRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
 
     /*
     public function findOneBySomeField($value): ?IndexAlameda

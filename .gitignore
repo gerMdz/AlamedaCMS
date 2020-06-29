@@ -5,6 +5,7 @@ node_modules
 /.env.local
 /.env.local.php
 /.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/
@@ -23,5 +24,32 @@ yarn-error.log
 /assets/fonts/univers/
 /assets/css/foundation-icons/.DS_Store
 
-/public/vendors/tilt/.npmignore
-/public/vendors/tilt/
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
+/public/vendors/tilt/.babelrc
+/public/vendors/tilt/.jshintrc
+/public/vendors/tilt/.travis.yml
+/assets/images/series/no-temere/01-No-Temere.pdf
+/assets/images/series/no-temere/02-Encerrados.pdf
+/assets/images/series/no-temere/03-Realidad-Aumentada.pdf
+/public/vendors/bootstrap/
+/public/include/scss/
+/src/DataFixtures/images/01-Ante-lo-inesperado.jpg
+/src/DataFixtures/images/02-Indomita.jpg
+/src/DataFixtures/images/03-Rescate-en-las-llamas.jpg
+/public/vendors/
+/assets/images/
+/assets/fonts/
+/public/js/
+/.php_cs.cache
+/public/stream-ui-kit/
+/public/business-casual/
+/public/material-kit/
+/public/shards-ui/
+/public/media/
+/public/media/cache
+/public/media/
+/public/pre/uploads/entrada_reference/
+/migrations/Version20200617115938.php

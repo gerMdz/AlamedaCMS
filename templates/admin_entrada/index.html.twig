@@ -1,41 +1,72 @@
 {% extends 'contenido_base.html.twig' %}
+{% block title %}Listado Entradas{% endblock %}
 
 {% block contenido_body %}
     <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary pull-right">
         Agregar Entrada <span class="fa fa-plus-circle"></span>
     </a>
-    <h4>Todas las entradas</h4>
+    <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-primary pull-right">
+        Ver Publicados <span class="fa fa-eye"></span>
+    </a>
+    <h4>
+        Todas las entradas
+
+    </h4>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Titulo</th>
-                <th>Autor</th>
+                <th>
+                    Titulo <br/>
+                    Linkroute
+                </th>
+                <th>Likes<br/>
+                Comentarios</th>
+                <th>
+                    Autor<br/>
+                    email
+                </th>
+                <th>Creado</th>
                 <th>Publicado?</th>
                 <th>Imagen</th>
-                <th>&nbsp;</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for entrada in entradas %}
                 <tr>
-                    <td>{{ entrada.titulo }}</td>
+                    <td>
+                        {{ entrada.titulo }}<br/>
+                        {{ entrada.linkRoute }}
+                    </td>
+                    <td>
+                        {{ entrada.likes }} Likes <br/>
+                        <small>({{ entrada.comentariosNoDeleted | length }} Comentarios)</small>
+                    </td>
                     <td>
                         {{ entrada.autor }} --
                         {{ entrada.autor.email }}
-
                     </td>
                     <td>
-                        <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span>
-                        {% if entrada.publicadoAt  %}
-                            {{ entrada.publicadoAt | date('d-m-Y H:i') }}
+                        {% if entrada.createdAt  %}
+                            {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}
                         {% endif %}
                     </td>
                     <td>
-                        <img class="article-img" src="{{ uploaded_asset(entrada.imagePath) }}">
+                        <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>
+                            {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
+                    </td>
+                    <td>
+                        <img class="article-img"
+                             src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small')}}">
+                        <br/>
                         {{ entrada.imageFilename }}
                     </td>
                     <td>
+                        <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                            <i class="fi fi-eye"></i> Ver
+                        </a>
+                        <br/>
                         <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
                             <i class="fi fi-page-edit"></i> Editar
                         </a>

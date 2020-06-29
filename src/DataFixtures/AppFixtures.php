@@ -14,8 +14,8 @@ class AppFixtures extends Fixture
         $this->creaDatosIndex($manager);
     }
 
-    private function creaDatosIndex(ObjectManager $manager){
-
+    private function creaDatosIndex(ObjectManager $manager)
+    {
         $inicio = new IndexAlameda();
         $inicio->setHorario1('11:00');
         $inicio->setHorario2('20:00');
@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
         $inicio->setBase('index');
 
         $base = new MetaBase();
-        $base->setBase('index') ;
+        $base->setBase('index');
         $base->setLema('Oraciones Audaces');
         $base->setLemaPrincipal('Vení tal como sos');
         $base->setMetaAutor('Diseño Alameda');
@@ -48,6 +48,5 @@ class AppFixtures extends Fixture
         $manager->persist($base);
 
         $manager->flush();
-
     }
 }

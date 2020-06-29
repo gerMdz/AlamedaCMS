@@ -2,15 +2,22 @@
 
 namespace App\Entity;
 
+use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
-use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
  */
 class Entrada
 {
+    use TimestampableEntity;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -44,9 +51,36 @@ class Entrada
      */
     private $publicadoAt;
 
+
+
+    /**
+     * @Gedmo\Slug(fields={"titulo"})
+     * @ORM\Column(type="string", length=150, nullable=true, unique=true)
+     */
+    private $linkRoute;
+
+    /**
+     * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
+     */
+    private $entradaReferences;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $likes = 0;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada", fetch="EXTRA_LAZY")
+     * @ORM\OrderBy({"createdAt" = "DESC"})
+     */
+    private $comentarios;
+
+
+
     public function __construct()
     {
-        $this->publicadoAt = new DateTime('now');
+        $this->entradaReferences = new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,7 +141,7 @@ class Entrada
         return $this->publicadoAt;
     }
 
-    public function setPublicadoAt(\DateTimeInterface $publicadoAt): self
+    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
     {
         $this->publicadoAt = $publicadoAt;
 
@@ -118,4 +152,85 @@ class Entrada
     {
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
+
+    public function getLinkRoute(): ?string
+    {
+        return $this->linkRoute;
+    }
+
+    public function setLinkRoute(?string $linkRoute): self
+    {
+        $this->linkRoute = $linkRoute;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EntradaReference[]
+     */
+    public function getEntradaReferences(): Collection
+    {
+        return $this->entradaReferences;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function incrementaLikeCount(): self
+    {
+        $this->likes = $this->likes + 1;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentariosNoDeleted(): Collection
+    {
+        $criterio = EntradaRepository::createNoDeletedCriteria();
+        return $this->comentarios->matching($criterio);
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->contains($comentario)) {
+            $this->comentarios->removeElement($comentario);
+            // set the owning side to null (unless already changed)
+            if ($comentario->getEntrada() === $this) {
+                $comentario->setEntrada(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

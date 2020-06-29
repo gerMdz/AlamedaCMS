@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\IndexAlameda;
 use App\Entity\User;
 use App\Security\LoginFormAuthenticator;
-use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,13 +29,10 @@ class SecurityController extends AbstractController
 //    }
 
     /**
-     * @Route("/ingreso", name="app_login")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return Response
+     * @Route("/ingreso/admin", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-
         $em = $this->getDoctrine()->getManager();
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -57,15 +53,12 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/registro", name="app_registro")
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param GuardAuthenticatorHandler $authenticatorHandler
-     * @param LoginFormAuthenticator $formAuthenticator
+     *
      * @return Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        if ($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $user = new User();
             $user->setEmail($request->request->get('email'));
             $user->setPrimerNombre($request->request->get('primernombre'));
@@ -73,9 +66,11 @@ class SecurityController extends AbstractController
                 $user,
                 $request->request->get('password')
             ));
+            $user->setRoles(['ROLE_USER']);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
             return $authenticatorHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
@@ -83,6 +78,7 @@ class SecurityController extends AbstractController
                 'main'
             );
         }
+
         return $this->render('security/register.html.twig');
     }
 }

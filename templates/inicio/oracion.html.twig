@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block title %} Dar {{ base.siteName }} {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+    <section class="p5-5 mt-1 " id="inicio">
+        <div class="container">
+            <div class="row fullscreen align-items-center justify-content-center">
+                <div class="col-sm-12 text-center mx-auto mt-1">
+
+                    <header class="jumbotron my-1">
+                        <a class="btn btn-blue btn-xl js-scroll-trigger mx-auto"
+                           href="https://forms.gle/DuJvVG374UMNjCuv7" target="_blank">
+                            Podés hacerlo
+                            desde aqui
+                        </a>
+
+                        <h1 class="text-uppercase text-black-50 font-weight-bold">
+                            Motivos de Oración
+                        </h1>
+                        <span class="divider-new my-1">
+                        <img src="images/institucional/LOGO-ORACION.png"
+                             class="resize img-fluid rounded-circle"></span>
+
+
+                        <h5 class="text-black-50 font-weight-light my-1 p-1">
+                            <b>Ningún</b> problema es demasiado grande para Dios,<br/>
+                            ni insignificante para su cuidado <b>Paternal</b>. <br/>
+                            Dejanos <b>tu motivo</b> de oración específico, <br/>
+                            tenemos un equipo de personas que <b>estará orando</b> por vos.
+                        </h5>
+
+
+
+
+
+                    </header>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="vacio mb-3">
+
+    </section>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}

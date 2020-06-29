@@ -1,0 +1,13 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block title %}Ediicón {{ principal.linkRoute | upper }}{% endblock %}
+
+{% block contenido_body %}
+    <h1>Editar {{ principal.linkRoute | upper }}</h1>
+
+    {{ include('principal/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a href="{{ path('principal_index') }}">Volver al listado</a>
+
+    {{ include('principal/_delete_form.html.twig') }}
+{% endblock %}

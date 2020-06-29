@@ -19,8 +19,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
     /**
      * BaseExtension constructor.
-     * @param EntityManagerInterface $em
-     * @param ContainerInterface $container
      */
     public function __construct(EntityManagerInterface $em, ContainerInterface $container)
     {
@@ -44,27 +42,28 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('base_lema', [$this, 'lema']),
             new TwigFunction('base_metaDescripcion', [$this, 'metaDescripcion']),
             new TwigFunction('base_base', [$this, 'base']),
-            new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath'])
+            new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath']),
         ];
     }
 
     public function lema()
     {
-        $lema = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
+        $lema = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
 
         return $lema->getLema();
     }
 
     public function metaDescripcion()
     {
-        $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
+        $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
 
         return $base->getMetaDescripcion();
     }
 
     public function base()
     {
-        $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
+        $base = $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(['base' => 'index']);
+//        $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
 
         return $base;
     }
@@ -80,6 +79,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     {
         return [
             UploaderHelper::class,
+            EntityManagerInterface::class,
         ];
     }
 }

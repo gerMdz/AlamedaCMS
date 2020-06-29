@@ -1,108 +1,133 @@
 <style>
-    .bg-verde{
+    .bg-verde {
         background-color: rgb(168, 228, 112)
     }
+    .dropdown-menu{
+        margin-left: -100px !important;
+    }
+    .fa, .fab, .fal, .far, .fa{
+
+        line-height: 1.5 !important;
+    }
+    .navbar-toggler-icon{
+        color: #6cbb23 !important;
+        width: 1.1em !important;
+        height: 1.5em !important;
+    }
+
+
 </style>
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar justify-content-between  mx-auto">
-    <div class="container">
+{#<nav class="js-navbar-scroll navbar fixed-top navbar-expand-lg navbar-dark bg-dark mx-1">#}
+<nav class="js-navbar-scroll navbar navbar-dark bg-dark fixed-top navbar-expand-lg mx-1" id="sectionsNav">
+    <div class="container-fluid">
 
         <!-- Brand -->
-        <a class="navbar-brand flex-column " href="{{ path('index') }}" >
-            <img src="{{ asset('build/images/logo_n1.png') }}" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
-            <strong >Iglesia de la Alameda</strong>
+        <a class="navbar-brand" href="{{ path('index') }}">
+            <img class="rounded-circle" src="{{ asset('build/images/logo_n1.png') }}" style="width: 30px;" alt="Logo Iglesia Alameda">
+            <small>Iglesia de la Alameda</small>
         </a>
 
         <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+            <i class="navbar-toggler-icon fas fa-bars" style="line-height: 1.5em"></i>
+
         </button>
 
         <!-- Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <!-- Left -->
-            <ul class="navbar-nav mr-auto">
-                <!--                  <li class="nav-item active">-->
-                <!--                      <a class="nav-link" href="#">Inicio-->
-                <!--                          <span class="sr-only">(current)</span>-->
-                <!--                      </a>-->
-                <!--                  </li>-->
-                <li class="nav-item">
-                    <a class="nav-link" href="oportunidades/grupos-pequeños.php" >
-                        <img class="img-fluid" src="{{ asset('build/images/gpc-sin-texto.png') }}" width="16" height="16">
-                        Grupos Pequeños
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="ofrenda.php" >
-                        <i class="fas fa-hand-holding"></i> Ofrenda
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="notas.php" >
-                        <i class="fas fa-pencil-alt"></i> Notas
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="oracion.php" >
-                        <!--                          <i class="fas fa-praying-hands"></i> Necesitas Oración?-->
 
-                        <img class="img-fluid img-circle bg-verde" src="images/institucional/LOGO-ORACION.png" width="16" height="16">
-                        Necesitas Oración?
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('contacto') }}" >
-                        <i class="far fa-id-badge"></i> Contacto
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="alamedaaldia.php" >
-                        <i class="fas fa-location-arrow"></i> Oportunidades
-                    </a>
-                </li>
-                <!--                  <li class="nav-item">-->
-                <!--                      <a class="nav-link" href="masporhacer.php" >-->
-                <!--                          <i class="fas fa-random"></i> Lo que se viene-->
-                <!--                      </a>-->
-                <!--                  </li>-->
-                <!--                  <li class="nav-item">-->
-                <!--                      <a class="nav-link" href="nuestraalameda.php" >-->
-                <!--                          <i class="fi-web"></i> Dónde y cuando-->
-                <!--                        </a>-->
-                <!--                  </li>-->
-                <!--                  <li class="nav-item">-->
-                <!--                      <a class="nav-link" href="acciones.php" >-->
-                <!--                          <i class="fi-foot"></i> ¡Haciendo!-->
-                <!--                        </a>-->
-                <!--                  </li>-->
-                <!--                  <li class="nav-item">-->
-                <!--                      <a class="nav-link" href="seminario.php" >-->
-                <!--                          <i class="fas fa-book"></i> Seminario-->
-                <!--                        </a>-->
-                <!--                  </li>-->
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
+                <li class="nav-item ml-auto mb-2 mb-lg-0">
+                    <a class="nav-link" href="https://online.iglesiaalameda.com">
+                        <small>
+                            <i class="fas fa-globe"></i> En vivo!
+                        </small>
+                    </a>
+                </li>
+                <li class="nav-item ml-auto mb-2 mb-lg-0">
+                    <a class="nav-link" href="{{ path('gpc') }}">
+                        <small>
+                            <img class="img-fluid" src="{{ asset('build/images/gpc-sin-texto.png') }}" width="16" height="16">
+                            Grupos Pequeños
+                        </small>
+                    </a>
+                </li>
+                <li class="nav-item ml-auto mb-2 mb-lg-0">
+                    <a class="nav-link" href="{{ path('ofrenda') }}">
+                        <small>
+                            <i class="fas fa-hand-holding"></i> Dar
+                        </small>
+                    </a>
+                </li>
+                <li class="nav-item ml-auto mb-2 mb-lg-0">
+                    <a class="nav-link" href="{{ path('notas') }}">
+                        <small>
+                            <i class="fas fa-pencil-alt"></i> Notas
+                        </small>
+                    </a>
+                </li>
+                <li class="nav-item ml-auto mb-2 mb-lg-0">
+                    <a class="nav-link" href="{{ path('oracion') }}">
+                        <small>
+                            <i class="fas fa-praying-hands"></i> Oración
+                        </small>
+                    </a>
+                </li>
+                <li class="nav-item ml-auto mb-2 mb-lg-0">
+                    <a class="nav-link" href="{{ path('contacto') }}">
+                        <small>
+                            <i class="fas fa-file-contract"></i> Tarjeta de Conexión
+                        </small>
+                    </a>
+                </li>
+                <li class="nav-item dropdown ml-auto mb-2 mb-lg-0">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-angle-down"></i> Más
+                    </a>
+                    <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item " href="{{ path('avanza') }}">
+                            <small>
+                                <i class="fas fa-road"></i> Avanza
+                            </small>
+                        </a>
+                        <a class="dropdown-item" href="http://sitiosimple.com/libreria-alameda/">
+                            <small>
+                                <i class="fas fa-book-open"></i> Librería
+                            </small>
+                        </a>
+                    </div>
+                </li>
             </ul>
 
-            <!--RIght -->
-            <ul class="navbar-nav nav-flex-icons">
+            <!--Right -->
+            <ul class="navbar-nav nav-flex-icons ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom"
-                       href="https://www.facebook.com/IglesiaAlameda" target="_blank" data-original-title="Seguinos en la fanpage">
+                       href="https://www.facebook.com/IglesiaAlameda" target="_blank"
+                       data-original-title="Seguinos en la fanpage">
                         <i class="fab fa-facebook-square fa-2x"></i>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom"
-                       href="https://youtube.com/user/IglesiaAlameda" target="_blank" data-original-title="Reviví los mensajes">
+                       href="https://youtube.com/user/IglesiaAlameda" target="_blank"
+                       data-original-title="Reviví los mensajes">
                         <i class="fab fa-youtube-square fa-2x"></i>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom" href="https://www.instagram.com/iglesiaalameda" target="_blank" data-original-title="Seguinos en Instagram">
+                    <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom"
+                       href="https://www.instagram.com/iglesialameda" target="_blank"
+                       data-original-title="Seguinos en Instagram">
                         <i class="fab fa-instagram fa-2x"></i>
                     </a>
                 </li>
