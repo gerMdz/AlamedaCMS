@@ -24,3 +24,4 @@ yarn-error.log
 /assets/css/foundation-icons/.DS_Store
 
 /public/vendors/tilt/.npmignore
+/public/vendors/tilt/
