@@ -17,6 +17,8 @@ class DerivadaController extends AbstractController
 {
     /**
      * @Route("/", name="derivada_index", methods={"GET"})
+     * @param DerivadaRepository $derivadaRepository
+     * @return Response
      */
     public function index(DerivadaRepository $derivadaRepository): Response
     {
@@ -27,6 +29,8 @@ class DerivadaController extends AbstractController
 
     /**
      * @Route("/new", name="derivada_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class DerivadaController extends AbstractController
 
     /**
      * @Route("/{id}", name="derivada_show", methods={"GET"})
+     * @param Derivada $derivada
+     * @return Response
      */
     public function show(Derivada $derivada): Response
     {
@@ -60,6 +66,9 @@ class DerivadaController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="derivada_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Derivada $derivada
+     * @return Response
      */
     public function edit(Request $request, Derivada $derivada): Response
     {
@@ -80,6 +89,9 @@ class DerivadaController extends AbstractController
 
     /**
      * @Route("/{id}", name="derivada_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Derivada $derivada
+     * @return Response
      */
     public function delete(Request $request, Derivada $derivada): Response
     {
