@@ -80,6 +80,11 @@ class Entrada
      */
     private $principals;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Derivada::class, mappedBy="entrada")
+     */
+    private $derivadas;
+
 
 
     public function __construct()
@@ -87,6 +92,12 @@ class Entrada
         $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
+        $this->derivadas = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->titulo;
     }
 
     public function getId(): ?int
@@ -261,6 +272,34 @@ class Entrada
         if ($this->principals->contains($principal)) {
             $this->principals->removeElement($principal);
             $principal->removeEntrada($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Derivada[]
+     */
+    public function getDerivadas(): Collection
+    {
+        return $this->derivadas;
+    }
+
+    public function addDerivada(Derivada $derivada): self
+    {
+        if (!$this->derivadas->contains($derivada)) {
+            $this->derivadas[] = $derivada;
+            $derivada->addEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDerivada(Derivada $derivada): self
+    {
+        if ($this->derivadas->contains($derivada)) {
+            $this->derivadas->removeElement($derivada);
+            $derivada->removeEntrada($this);
         }
 
         return $this;

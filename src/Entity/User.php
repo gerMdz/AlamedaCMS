@@ -80,6 +80,11 @@ class User implements UserInterface
      */
     private $comentarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Derivada::class, mappedBy="autor")
+     */
+    private $derivadas;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -87,6 +92,7 @@ class User implements UserInterface
         $this->entradas = new ArrayCollection();
         $this->principal = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->derivadas = new ArrayCollection();
     }
 
     public function __toString()
@@ -362,6 +368,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($comentario->getAutor() === $this) {
                 $comentario->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Derivada[]
+     */
+    public function getDerivadas(): Collection
+    {
+        return $this->derivadas;
+    }
+
+    public function addDerivada(Derivada $derivada): self
+    {
+        if (!$this->derivadas->contains($derivada)) {
+            $this->derivadas[] = $derivada;
+            $derivada->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDerivada(Derivada $derivada): self
+    {
+        if ($this->derivadas->contains($derivada)) {
+            $this->derivadas->removeElement($derivada);
+            // set the owning side to null (unless already changed)
+            if ($derivada->getAutor() === $this) {
+                $derivada->setAutor(null);
             }
         }
 

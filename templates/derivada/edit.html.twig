@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Derivada{% endblock %}
+
+{% block body %}
+    <h1>Edit Derivada</h1>
+
+    {{ include('derivada/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('derivada_index') }}">back to list</a>
+
+    {{ include('derivada/_delete_form.html.twig') }}
+{% endblock %}

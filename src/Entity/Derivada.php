@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\PrincipalRepository;
+use App\Repository\DerivadaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,12 +10,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @ORM\Entity(repositoryClass=PrincipalRepository::class)
+ * @ORM\Entity(repositoryClass=DerivadaRepository::class)
  */
-class Principal
+class Derivada
 {
-
     use TimestampableEntity;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -24,7 +24,7 @@ class Principal
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="principal")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="derivadas")
      * @ORM\JoinColumn(nullable=false)
      */
     private $autor;
@@ -40,7 +40,7 @@ class Principal
     private $contenido;
 
     /**
-     * @ORM\Column(type="string", length=150, unique=true, nullable=true)
+     * @ORM\Column(type="string", length=150, unique=true)
      * @Gedmo\Slug(fields={"titulo"})
      */
     private $linkRoute;
@@ -56,30 +56,34 @@ class Principal
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="principal")
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="derivada")
      */
-    private $comentarios;
+    private $comenttarios;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="principals")
+     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="derivadas")
      */
-    private $entradas;
+    private $entrada;
 
     /**
-     * @ORM\OneToMany(targetEntity=Derivada::class, mappedBy="principal")
+     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="derivadas")
      */
-    private $derivadas;
+    private $principal;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $publicadoAt;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $activa;
 
     public function __construct()
     {
-        $this->comentarios = new ArrayCollection();
-        $this->entradas = new ArrayCollection();
-        $this->derivadas = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return $this->titulo;
+        $this->comenttarios = new ArrayCollection();
+        $this->entrada = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,10 +132,10 @@ class Principal
         return $this->linkRoute;
     }
 
-    public function setLinkRoute(?string $linkRoute): self
+    public function setLinkRoute(string $linkRoute): self
     {
-        ($linkRoute ==null ? $linkRoute = strtolower(str_replace(' ', '-', trim($this->titulo().'-'.$this->gId()))) : $linkRoute = $linkRoute);
         $this->linkRoute = $linkRoute;
+
         return $this;
     }
 
@@ -162,28 +166,28 @@ class Principal
     /**
      * @return Collection|Comentario[]
      */
-    public function getComentarios(): Collection
+    public function getComenttarios(): Collection
     {
-        return $this->comentarios;
+        return $this->comenttarios;
     }
 
-    public function addComentario(Comentario $comentario): self
+    public function addComenttario(Comentario $comenttario): self
     {
-        if (!$this->comentarios->contains($comentario)) {
-            $this->comentarios[] = $comentario;
-            $comentario->setPrincipal($this);
+        if (!$this->comenttarios->contains($comenttario)) {
+            $this->comenttarios[] = $comenttario;
+            $comenttario->setDerivada($this);
         }
 
         return $this;
     }
 
-    public function removeComentario(Comentario $comentario): self
+    public function removeComenttario(Comentario $comenttario): self
     {
-        if ($this->comentarios->contains($comentario)) {
-            $this->comentarios->removeElement($comentario);
+        if ($this->comenttarios->contains($comenttario)) {
+            $this->comenttarios->removeElement($comenttario);
             // set the owning side to null (unless already changed)
-            if ($comentario->getPrincipal() === $this) {
-                $comentario->setPrincipal(null);
+            if ($comenttario->getDerivada() === $this) {
+                $comenttario->setDerivada(null);
             }
         }
 
@@ -193,15 +197,15 @@ class Principal
     /**
      * @return Collection|Entrada[]
      */
-    public function getEntradas(): Collection
+    public function getEntrada(): Collection
     {
-        return $this->entradas;
+        return $this->entrada;
     }
 
     public function addEntrada(Entrada $entrada): self
     {
-        if (!$this->entradas->contains($entrada)) {
-            $this->entradas[] = $entrada;
+        if (!$this->entrada->contains($entrada)) {
+            $this->entrada[] = $entrada;
         }
 
         return $this;
@@ -209,40 +213,45 @@ class Principal
 
     public function removeEntrada(Entrada $entrada): self
     {
-        if ($this->entradas->contains($entrada)) {
-            $this->entradas->removeElement($entrada);
+        if ($this->entrada->contains($entrada)) {
+            $this->entrada->removeElement($entrada);
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|Derivada[]
-     */
-    public function getDerivadas(): Collection
+    public function getPrincipal(): ?Principal
     {
-        return $this->derivadas;
+        return $this->principal;
     }
 
-    public function addDerivada(Derivada $derivada): self
+    public function setPrincipal(?Principal $principal): self
     {
-        if (!$this->derivadas->contains($derivada)) {
-            $this->derivadas[] = $derivada;
-            $derivada->setPrincipal($this);
-        }
+        $this->principal = $principal;
 
         return $this;
     }
 
-    public function removeDerivada(Derivada $derivada): self
+    public function getPublicadoAt(): ?\DateTimeInterface
     {
-        if ($this->derivadas->contains($derivada)) {
-            $this->derivadas->removeElement($derivada);
-            // set the owning side to null (unless already changed)
-            if ($derivada->getPrincipal() === $this) {
-                $derivada->setPrincipal(null);
-            }
-        }
+        return $this->publicadoAt;
+    }
+
+    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
+    {
+        $this->publicadoAt = $publicadoAt;
+
+        return $this;
+    }
+
+    public function getActiva(): ?bool
+    {
+        return $this->activa;
+    }
+
+    public function setActiva(?bool $activa): self
+    {
+        $this->activa = $activa;
 
         return $this;
     }
