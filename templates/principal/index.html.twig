@@ -31,7 +31,7 @@
                 <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('principal_show', {'id': principal.id}) }}">
+                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
                         <i class="fas fa-eye"></i>
                         Ver</a>
                     <a href="{{ path('principal_edit', {'id': principal.id}) }}">

@@ -75,12 +75,18 @@ class Entrada
      */
     private $comentarios;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="entradas")
+     */
+    private $principals;
+
 
 
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->principals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -227,6 +233,34 @@ class Entrada
             if ($comentario->getEntrada() === $this) {
                 $comentario->setEntrada(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Principal[]
+     */
+    public function getPrincipals(): Collection
+    {
+        return $this->principals;
+    }
+
+    public function addPrincipal(Principal $principal): self
+    {
+        if (!$this->principals->contains($principal)) {
+            $this->principals[] = $principal;
+            $principal->addEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrincipal(Principal $principal): self
+    {
+        if ($this->principals->contains($principal)) {
+            $this->principals->removeElement($principal);
+            $principal->removeEntrada($this);
         }
 
         return $this;

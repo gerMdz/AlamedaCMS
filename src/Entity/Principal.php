@@ -6,6 +6,7 @@ use App\Repository\PrincipalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
@@ -39,7 +40,8 @@ class Principal
     private $contenido;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=150, unique=true, nullable=true)
+     * @Gedmo\Slug(fields={"titulo"})
      */
     private $linkRoute;
 
@@ -58,9 +60,15 @@ class Principal
      */
     private $comentarios;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="principals")
+     */
+    private $entradas;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
+        $this->entradas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -166,6 +174,32 @@ class Principal
             if ($comentario->getPrincipal() === $this) {
                 $comentario->setPrincipal(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entrada[]
+     */
+    public function getEntradas(): Collection
+    {
+        return $this->entradas;
+    }
+
+    public function addEntrada(Entrada $entrada): self
+    {
+        if (!$this->entradas->contains($entrada)) {
+            $this->entradas[] = $entrada;
+        }
+
+        return $this;
+    }
+
+    public function removeEntrada(Entrada $entrada): self
+    {
+        if ($this->entradas->contains($entrada)) {
+            $this->entradas->removeElement($entrada);
         }
 
         return $this;
