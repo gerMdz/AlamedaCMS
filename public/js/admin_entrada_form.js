@@ -48,10 +48,12 @@ class ReferenceList {
 
         })
     }
+
     addReference(reference) {
         this.references.push(reference);
         this.render();
     }
+
     handleReferenceDelete(event) {
         const $li = $(event.currentTarget).closest('.list-group-item');
         const id = $li.data('id');
@@ -60,7 +62,7 @@ class ReferenceList {
         $.ajax({
             url: '/admin/entrada/references/' + id,
             method: 'DELETE'
-        }).then(()=> {
+        }).then(() => {
                 this.references = this.references.filter(reference => {
                     return reference.id !== id;
                 });
@@ -100,7 +102,7 @@ function initializeDropzone(referenceList) {
         paramName: 'reference',
         html: true,
         init: function () {
-            this.on('success', function(file, data) {
+            this.on('success', function (file, data) {
                 referenceList.addReference(data);
             });
             this.on('error', function (file, data) {

@@ -6,15 +6,18 @@ use App\Entity\Entrada;
 use App\Entity\EntradaReference;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -140,6 +143,8 @@ class EntradaReferenciaAdminController extends AbstractController
      * @param EntradaReference $reference
      * @param UploaderHelper $uploaderHelper
      * @param EntityManagerInterface $entityManager
+     * @return Response
+     * @throws Exception
      */
     public function deleteEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager)
     {
@@ -152,5 +157,42 @@ class EntradaReferenciaAdminController extends AbstractController
         $uploaderHelper->deleteFile($reference->getImagePath(), false);
 
         return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/admin/entrada/references/{id}", name="admin_entrada_update_reference", methods={"PUT"})
+     * @param EntradaReference $reference
+     * @param UploaderHelper $uploaderHelper
+     * @param EntityManagerInterface $entityManager
+     * @param SerializerInterface $serializer
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager, SerializerInterface $serializer, Request $request)
+    {
+        $entrada = $reference->getEntrada();
+        $this->denyAccessUnlessGranted('MANAGE', $entrada);
+
+        $serializer->deserialize(
+            $request->getContent(),
+            EntradaReference::class,
+            'json',
+            [
+                'object_to_populate' => $reference,
+                'groups' => ['input']
+                ]
+        );
+         $entityManager->persist($reference);
+         $entityManager->flush();
+
+        return $this->json(
+            $reference,
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+
     }
 }
