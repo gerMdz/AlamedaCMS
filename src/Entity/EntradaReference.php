@@ -6,6 +6,7 @@ use App\Repository\EntradaReferenceRepository;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EntradaReferenceRepository::class)
@@ -34,8 +35,10 @@ class EntradaReference
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"main", "input"})
+     * @Assert\NotBlank()
+     * @Assert\Length(max="100")
      */
-    private $orginalFilename;
+    private $originalFilename;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -70,14 +73,14 @@ class EntradaReference
         return $this;
     }
 
-    public function getOrginalFilename(): ?string
+    public function getoriginalFilename(): ?string
     {
-        return $this->orginalFilename;
+        return $this->originalFilename;
     }
 
-    public function setOrginalFilename(string $orginalFilename): self
+    public function setoriginalFilename(string $originalFilename): self
     {
-        $this->orginalFilename = $orginalFilename;
+        $this->originalFilename = $originalFilename;
 
         return $this;
     }

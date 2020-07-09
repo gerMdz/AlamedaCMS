@@ -39,6 +39,9 @@ class ReferenceList {
         this.$element.on('click', '.js-reference-delete', (event) => {
             this.handleReferenceDelete(event);
         });
+        this.$element.on('blur', '.js-edit-filename', (event) => {
+            this.handleReferenceEditFilename(event);
+        });
         $.ajax({
             url: this.$element.data('url')
         }).then(data => {
@@ -71,12 +74,33 @@ class ReferenceList {
         )
     }
 
+    handleReferenceEditFilename(event){
+        const $li = $(event.currentTarget).closest('.list-group-item');
+        const id = $li.data('id');
+        const reference = this.references.find(reference => {
+            return reference.id === id;
+        });
+        reference.originalFilename = $(event.currentTarget).val();
+        var origin = reference.originalFilename;
+        $.ajax({
+            url: '/admin/entrada/references/'+id,
+            method: 'PUT',
+            data: JSON.stringify(reference)
+        }).catch(data=>{
+
+            var msg =  JSON.parse(data.responseText).violations[0].title;
+            alert(msg);
+
+        })
+        ;
+    }
+
     render() {
         const itemsHtml = this.references.map(reference => {
             return `
-<li class="list-group-item d-flex justify-content-between align-items-center" data-id="${reference.id}">
-    ${reference.orginalFilename}
-    <span>
+<li class="list-group-item d-flex justify-content-between align-items-center" id="${reference.id}reference" data-id="${reference.id}">
+    <input type="text" value="${reference.originalFilename}" class="form-control js-edit-filename" style="width: auto;">
+    <span style="font-size: 0.7em">
         <a href="/admin/entrada/referencias/${reference.id}/download" class="btn btn-link btn-sm"><span class="fa fa-download" style="vertical-align: middle"></span></a>
         <button class="js-reference-delete btn btn-link btn-sm"><span class="fa fa-trash"></span></button>
     </span>

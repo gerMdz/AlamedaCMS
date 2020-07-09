@@ -75,7 +75,7 @@ class EntradaReferenciaAdminController extends AbstractController
 
         $entradaReference = new EntradaReference($entrada);
         $entradaReference->setFilename($filename);
-        $entradaReference->setOrginalFilename($uploadedFile->getClientOriginalName() ?? $filename);
+        $entradaReference->setoriginalFilename($uploadedFile->getClientOriginalName() ?? $filename);
         $entradaReference->setMimeType($uploadedFile->getMimeType() ?? 'application/octet-stream');
         $em->persist($entradaReference);
         $em->flush();
@@ -130,7 +130,7 @@ class EntradaReferenciaAdminController extends AbstractController
             HeaderUtils::DISPOSITION_ATTACHMENT,
 //Si queremos previzualizar el documento comentar la fila anterior y descomentar la siguiente
 //            HeaderUtils::DISPOSITION_INLINE,
-            $reference->getOrginalFilename()
+            $reference->getoriginalFilename()
         );
         $response->headers->set('Content-Disposition', $disposition);
 
@@ -166,9 +166,10 @@ class EntradaReferenciaAdminController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param SerializerInterface $serializer
      * @param Request $request
+     * @param ValidatorInterface $validator
      * @return JsonResponse
      */
-    public function updateEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager, SerializerInterface $serializer, Request $request)
+    public function updateEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager, SerializerInterface $serializer, Request $request, ValidatorInterface $validator)
     {
         $entrada = $reference->getEntrada();
         $this->denyAccessUnlessGranted('MANAGE', $entrada);
@@ -182,6 +183,10 @@ class EntradaReferenciaAdminController extends AbstractController
                 'groups' => ['input']
                 ]
         );
+        $notAssert = $validator->validate($reference);
+        if ($notAssert->count() > 0) {
+            return $this->json($notAssert, 400);
+        }
          $entityManager->persist($reference);
          $entityManager->flush();
 
