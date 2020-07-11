@@ -61,6 +61,7 @@ class Entrada
 
     /**
      * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
+     * @ORM\OrderBy({"posicion"="ASC"})
      */
     private $entradaReferences;
 

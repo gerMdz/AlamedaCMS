@@ -200,4 +200,39 @@ class EntradaReferenciaAdminController extends AbstractController
         );
 
     }
+
+    /**
+     * @Route("/admin/entrada/{id}/referencia/reorder", methods="POST", name="admin_entrada_reorder_referencia")
+     * @IsGranted("MANAGE", subject="entrada")
+     * @param Entrada $entrada
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function reorderEntradaReferences(Entrada $entrada, EntityManagerInterface $entityManager, Request $request)
+    {
+        $orderedIds = json_decode($request->getContent(), true);
+
+        if ($orderedIds === null) {
+            return $this->json(['detail' => 'Datos Inválidos'], 400);
+        }
+
+        // from (position)=>(id) to (id)=>(position)
+        $orderedIds = array_flip($orderedIds);
+
+        foreach ($entrada->getEntradaReferences() as $reference) {
+            $reference->setPosicion($orderedIds[$reference->getId()]);
+        }
+
+        $entityManager->flush();
+
+        return $this->json(
+            $entrada->getEntradaReferences(),
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
 }

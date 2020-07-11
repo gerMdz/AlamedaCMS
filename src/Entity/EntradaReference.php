@@ -46,6 +46,11 @@ class EntradaReference
      */
     private $mimeType;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $posicion = 0;
+
     public function __construct(Entrada $entrada)
     {
         $this->entrada = $entrada;
@@ -100,5 +105,17 @@ class EntradaReference
     public function getImagePath()
     {
         return UploaderHelper::ENTRADA_REFERENCE.'/'.$this->getFilename();
+    }
+
+    public function getPosicion(): ?int
+    {
+        return $this->posicion;
+    }
+
+    public function setPosicion(?int $posicion): self
+    {
+        $this->posicion = $posicion;
+
+        return $this;
     }
 }

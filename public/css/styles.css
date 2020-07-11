@@ -914,7 +914,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .u-icon-instagram[href]:hover {
-  color: color-yiq(#345e80);
+  color: #345e80;
   background-color: #345e80;
   border-color: #305777;
 }
@@ -1284,4 +1284,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .u-opacity-6 {
   opacity: .6;
+}
+/*----------
+Sorteable
+ ----------*/
+
+.sortable-ghost {
+  background-color: rgba(62, 76, 102, 0.89);
+}
+.drag-handle {
+  cursor: grab;
 }

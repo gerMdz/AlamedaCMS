@@ -6,6 +6,7 @@
     {{ parent() }}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css" integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js" integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q==" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block contenido_body %}
@@ -28,7 +29,8 @@
             </div>
             <div class="col-sm-4">
                 <h3>Referencias</h3>
-                <ul class="list-group small js-reference-list" data-url="{{ path('admin_entrada_list_referencia', {id: entrada.id}) }}">
+                <ul style="font-size: 0.7rem"
+                        class="list-group small js-reference-list" data-url="{{ path('admin_entrada_list_referencia', {id: entrada.id}) }}">
 
                 </ul>
 

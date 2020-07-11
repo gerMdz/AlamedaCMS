@@ -34,6 +34,22 @@ $(document).ready(function () {
 class ReferenceList {
     constructor($element) {
         this.$element = $element;
+        this.sortable = Sortable.create(this.$element[0],
+            {
+                handle: '.drag-handle',
+                animation: 150,
+                onEnd: () => {
+                    console.log(this.sortable.toArray());
+                    $.ajax(
+                        {
+                            url: this.$element.data('url')+'/reorder',
+                            method: 'POST',
+                            data: JSON.stringify(this.sortable.toArray())
+                        }
+                    )
+                }
+            }
+            );
         this.references = [];
         this.render();
         this.$element.on('click', '.js-reference-delete', (event) => {
@@ -98,13 +114,14 @@ class ReferenceList {
     render() {
         const itemsHtml = this.references.map(reference => {
             return `
-<li class="list-group-item d-flex justify-content-between align-items-center" id="${reference.id}reference" data-id="${reference.id}">
-    <input type="text" value="${reference.originalFilename}" class="form-control js-edit-filename" style="width: auto;">
-    <span style="font-size: 0.7em">
-        <a href="/admin/entrada/referencias/${reference.id}/download" class="btn btn-link btn-sm"><span class="fa fa-download" style="vertical-align: middle"></span></a>
-        <button class="js-reference-delete btn btn-link btn-sm"><span class="fa fa-trash"></span></button>
-    </span>
-</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center" data-id="${reference.id}">
+            <span class="drag-handle fas fa-bars ml-0 mr-1"></span>
+            <input type="text" value="${reference.originalFilename}" class="form-control js-edit-filename" style="width: auto;">
+            <span class="p-0">
+                <a href="/admin/entrada/referencias/${reference.id}/download" class=" btn-link btn-sm "><span class="fa fa-download" style="vertical-align: middle"></span></a>
+                <a class="js-reference-delete btn-link btn-sm"><span class="fa fa-trash"></span></a>
+            </span>
+        </li>
 `
         });
         this.$element.html(itemsHtml.join(''));
