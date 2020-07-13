@@ -115,8 +115,7 @@
 
                 <!-- Article Content -->
                 <div class="u-destacado__content">
-                    <iframe {{ links.index_link}} class="img-fluid linkYoutube mx-auto"
-                            frameborder="0"
+                    <iframe {{links.index_link}} class="img-fluid linkYoutube mx-auto" frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 </div>
@@ -128,12 +127,10 @@
         <!-- Invitación: Header -->
         <header class="text-center w-md-50 mx-auto  mt-2 mb-8">
             <h2 class="h1 bg-alameda">
-                <a href="notas.php" class="text-white">
+                <a href="{{ path('notas') }}" class="text-white">
                     Vení tal como SOS
                 </a>
             </h2>
-
-
         </header>
         <hr>
         <!-- End Invitación: Header -->
@@ -159,8 +156,8 @@
 
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100 rounded" src="images/slider/imagen-auditorio.jpg"
-                                 alt="<?php echo $lemaSinEspacios ?>-1-slide ">
+                            <img class="d-block w-100 rounded" src="{{ asset('images/imagen-auditorio.jpg') }}"
+                                 alt="alameda-1-slide ">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5 class="h2 font-weight-light mb-0">Igleisa de la Alameda</h5>
                                 <p class="lead">Vista del frente del Auditorio Alameda</p>
@@ -169,17 +166,17 @@
 
                         <div class="carousel-item">
                             <img class="d-block w-100 rounded"
-                                 src="series/familia-2020/familia-2020-top.jpg"
-                                 alt="<?php echo $lemaSinEspacios ?>-2-slide">
+                                 src="{{ asset('images/series/escape-a-la-libertad/escape-a-la-libertad-encabezado.jpg') }}"
+                                 alt="alameda-2-slide">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5 class="h2 font-weight-light mb-0">Serie</h5>
-                                <p class="lead"><?php echo $lema ?></p>
+                                <p class="lead">Lema</p>
                             </div>
                         </div>
 
                         <div class="carousel-item">
-                            <img class="d-block w-100 rounded" src="images/slider/imagen-auditorio-noche.jpg"
-                                 alt="<?php echo $lemaSinEspacios ?>-3-slide">
+                            <img class="d-block w-100 rounded" src="{{ asset('images/imagen-auditorio-noche.jpg') }}"
+                                 alt="alameda-3-slide">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5 class="h2 font-weight-light mb-0">Auditrio Alameda</h5>
                                 <p class="lead">Una hermosa noche!</p>
@@ -207,12 +204,12 @@
 <!--</section>-->
 <!--Fin Section Slider Fotos-->
 
-<?php if ($ahora < date('2020-06-23 18:00')) { ?>
+{% if ("now"|date("Y-m-d H:i") < '2020-06-23 18:00' ) %}
 <section class="u-destacado section" id="avanza">
     <div class="js-parallax u-content-space u-box-shadow-lg bg-white rounded-md mx-3 mx-lg-5">
         <div class="container">
             <div class="text-center w-md-50 mx-auto py-5">
-                <a class="display-4 d-inline-block mb-3 text-dark" target="_blank" href="avanza.php"
+                <a class="display-4 d-inline-block mb-3 text-dark" target="_blank" href="{{ path('avanza') }}"
                    data-toggle="tooltip" data-placement="top" title="" data-original-title="Avanza">
                     <i class="fas fa-hand-holding-heart fa-2x mb-1"></i>
 
@@ -226,14 +223,20 @@
 
 
                 <a class="btn btn-primary btn--pill u-box-shadow-lg py-3 px-4 btn-xl"
-                   href="avanza.php">
+                   href="{{ path('avanza') }}">
                     <i class="fas fa-road mr-2 text-white"></i>Sumate desde aquí
                 </a>
             </div>
         </div>
     </div>
 </section>
-<?php } ?>
+{% endif %}
+<section class="page-section" id="online">
+    <div class="container">
+
+    </div>
+
+</section>
 
 <section class="page-section bg-light" id="ppasos">
     <div class="container">
@@ -801,19 +804,23 @@ include('section-ministerios.php');
 
 
 <!-- Components Vendor  -->
-<script src="stream-ui-kit/assets/vendors/jquery.parallax.js"></script>
-<script src="stream-ui-kit/assets/vendors/typedjs/typed.min.js"></script>
-<script src="stream-ui-kit/assets/vendors/slick-carousel/slick.min.js"></script>
-<script src="stream-ui-kit/assets/vendors/counters/waypoint.min.js"></script>
-<script src="stream-ui-kit/assets/vendors/counters/counterup.min.js"></script>
+{% block javascripts %}
+    <script src="stream-ui-kit/assets/vendors/jquery.parallax.js"></script>
+    <script src="stream-ui-kit/assets/vendors/typedjs/typed.min.js"></script>
+    <script src="stream-ui-kit/assets/vendors/slick-carousel/slick.min.js"></script>
+    <script src="stream-ui-kit/assets/vendors/counters/waypoint.min.js"></script>
+    <script src="stream-ui-kit/assets/vendors/counters/counterup.min.js"></script>
 
-<!-- Theme Settings and Calls -->
-<script src="stream-ui-kit/assets/js/global.js"></script>
+    <!-- Theme Settings and Calls -->
+    <script src="stream-ui-kit/assets/js/global.js"></script>
 
-<!-- Theme Components and Settings -->
-<script src="stream-ui-kit/assets/js/vendors/parallax.js"></script>
-<script src="stream-ui-kit/assets/js/vendors/carousel.js"></script>
-<script src="stream-ui-kit/assets/js/vendors/counters.js"></script>
+    <!-- Theme Components and Settings -->
+    <script src="stream-ui-kit/assets/js/vendors/parallax.js"></script>
+    <script src="stream-ui-kit/assets/js/vendors/carousel.js"></script>
+    <script src="stream-ui-kit/assets/js/vendors/counters.js"></script>
+
+    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
+{% endblock %}
 <!-- END JAVASCRIPTS -->
 <script>
     $(document).on('ready', function () {
