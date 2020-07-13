@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php
+    $lema = 'Escape a la LIbertad';
+    $lemaSinEspacios = 'Escape-a-la-LIbertad';
+    $ahora = date('Y-m-d H:i');
+    $version = date('YmdHi');
+    $domingo = strtotime('today');
+    /**
+    * @example pregunta si la cuarentena terminó
+    */
+    $finQ = false;
+    include_once('gerVendor/gerFunctions.php');
+    include_once('links.php');
+    ?>
     {% set base = base_base() %}
     <meta charset="UTF-8">
     <title>

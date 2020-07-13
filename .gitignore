@@ -49,3 +49,24 @@ yarn-error.log
 /public/media/
 /public/pre/uploads/entrada_reference/
 /migrations/Version20200617115938.php
+
+/public/vendors/tilt/
+/public/css/stream-ui-kit/assets/vendors/
+/public/fonts/awasome/
+/public/fonts/druk/
+/public/fonts/univers/
+/public/css/stream-ui-kit/assets/img/
+/public/css/stream-ui-kit/assets/img-temp/
+/public/css/stream-ui-kit/assets/include/
+/public/fonts/UniversLTStd-Obl.otf
+/public/fonts/Joyful Story.otf
+/public/fonts/Tuesnight.otf
+/public/fonts/onlinefontconverter.com.zip
+/public/fonts/Hoverage.otf
+/public/fonts/WarnockPro-ItSubh.otf
+/public/fonts/big_noodle_titling.ttf
+/public/fonts/GreatLakesNF.ttf
+/public/fonts/Black Diamond.otf
+/public/fonts/Matahati Regular.otf
+/public/css/stream-ui-kit/assets/js/vendors/
+/public/css/stream-ui-kit/starter-template.html
