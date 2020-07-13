@@ -1,0 +1,11 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block contenido_body %}
+    <h4>Crear nueva sección! ?</h4>
+
+    {{ form_start(sectionForm) }}
+    {{ form_widget(sectionForm) }}
+    <button type="submit" class="btn btn-primary">Crear</button>
+    {{ form_end(sectionForm) }}
+
+{% endblock %}
