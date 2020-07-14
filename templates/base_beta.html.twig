@@ -237,7 +237,7 @@
     </div>
 
 </section>
-
+ <!-- Debe desaparecer -->
 <section class="page-section bg-light" id="ppasos">
     <div class="container">
         <hr/>
@@ -524,7 +524,7 @@
     </div>
 
 </section>
-
+<!-- Fin Debe desaparecer -->
 <section class="page-section fondo-evento" id="versiculoClave">
     <!--    <div class="row text-center">-->
     <div class="container">
@@ -532,7 +532,8 @@
         <div class="row text-center d-flex align-items-center bg-white">
 
             <div class="col-sm-4 pull-left">
-                <img src="series/familia-2020/00-Familia.jpg" class="img-fluid rounded"/>
+                <img src="{{ asset('images/series/escape-a-la-libertad/escape-a-la-libertad-encabezado.jpg') }}" class="img-fluid rounded"
+                alt="Iglesia Alameda"/>
             </div>
 
             <div class="col-sm-8 pt-5">
@@ -556,7 +557,7 @@
 
             </div>
             <div class="col-sm-12">
-                <a href="notas.php" class="text-light-blue"
+                <a href="{{ path('notas') }}" class="text-light-blue"
                    data-toggle="tooltip"
                    title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i
                             class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
@@ -571,9 +572,7 @@
 </section>
 
 <!-- Inicio Ministerios-->
-<?php
-include('section-ministerios.php');
-?>
+{% include 'inicio/ministerios.html.twig' %}
 
 <!-- Fin Ministerios-->
 
@@ -583,7 +582,7 @@ include('section-ministerios.php');
     <div class="container">
         <div class="row text-center d-flex align-items-center">
             <div class="col-sm-3 pull-left">
-                <img src="../images/logoYoutubeBrown.png" class="img-fluid rounded" alt="<?php echo $lemaSinEspacios ?>"/>
+                <img src="{{ asset('images/logoYoutubeBrown.png') }}" class="img-fluid rounded" alt="<?php echo $lemaSinEspacios ?>"/>
             </div>
             <div class="col-sm-9 pull-right ">
 
@@ -604,88 +603,9 @@ include('section-ministerios.php');
     </div>
 </section>
 
-<!--<section class="page-section container cta fondo-evento" id="dias">-->
-<!--    <div class="container-fluid p-0 ">-->
-<!--        <a href="dias.php"><i class="fas fa-arrows-alt"></i> <i>Ver a pantalla completa</i></a>-->
-<!--        <div class="swiper-container ">-->
-<!--            <div class="swiper-wrapper  ">-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia25.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia24.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia23.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia22.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia21.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia20.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia19.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia18.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia17.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia16.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia15.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia14.jpg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia13.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia12.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia11.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia10.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia9.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia8.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia7.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia6.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia5.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia4.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia3.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia2.jpeg)"></div>-->
-<!--                <div class="swiper-slide" style="background-image:url(imagenes/campanias/dia1.jpeg)"></div>-->
-<!---->
-<!--            </div>-->
-<!---->
-<!--            <!-- Add Pagination -->
-<!--            <div class="swiper-pagination"></div>-->
-<!---->
-<!---->
-<!--            <!-- Add Arrows -->
-<!--            <div class="swiper-button-prev"></div>-->
-<!--            <div class="swiper-button-next"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!--</section>-->
-
-<!--<section class="page-section about-heading" id="proximaserie">-->
-<!--    <div class="container-fluid">-->
-<!---->
-<!--        <div class="row justify-content-between  mx-auto ">-->
-<!--            <hr/>-->
-<!--            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0"><br/>-->
-<!--                <h2 style="font-family: joyful" class="text-center"><br/>-->
-<!--                    Ya falta poco!<br/><br/>-->
-<!--                    Jueves  <br/>-->
-<!--                    18 de Abril<br/>-->
-<!--                    20:30 hs.<br/>-->
-<!--                    Encuentro de <br/>-->
-<!--                    Adoración e <br/>-->
-<!--                    Inspiración-->
-<!---->
-<!--                    <br/><br/>-->
-<!--                    Domingo <br/>-->
-<!--                    21 de Abr. <br/>-->
-<!--                    Gran Lanzamiento<br/>-->
-<!--                    a las 10hs. y a las-->
-<!--                    20hs.-->
-<!--                </h2>-->
-<!--            </div>-->
-<!--            <div class="section-body col-sm-6 col-md-6 col-lg-6 card border-0  ">-->
-<!--                <a href="series/bondad.php">-->
-<!--                    <img class="img-fluid" style="height: 100vh; " src="imagenes/series/bondad/IMAGENES-PREVIAS-BONDAD.png"/>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--    </div>-->
-<!--</section>-->
-
-
 <section class="page-section bg-light" id="epa">
     <div class="container">
-        <div class="row text-center d-flex align-items-cente ">
+        <div class="row text-center d-flex align-items-center ">
             <div class="col-sm-12">
                 <h1 class="text-point-sec text-realce ">
                     ESTAMOS PARA VOS
@@ -733,7 +653,7 @@ include('section-ministerios.php');
                 </h3>
             </div>
             <div class="col-md-6 col-lg-3  ">
-                <span class="fa-stack list-inline compuesto" ">
+                <span class="fa-stack list-inline compuesto">
                 <i class="fas fa-circle fa-stack-2x text-point"></i>
                 <i class="material-icons fa-stack-1x fa-inverse item-inline"
                    style="font-size: 1em; text-align: center; top:0.5em" aria-hidden="true">toys</i>
@@ -745,20 +665,21 @@ include('section-ministerios.php');
                 </h3>
             </div>
         </div>
+    </div>
 </section>
-<?php include('footer.php'); ?>
+<hr />
+{% include 'inicio/_footer.html.twig' %}
 
 <!-- Bootstrap core JavaScript -->
 <!--<script src="vendor/jquery/jquery.min.js"></script>-->
 <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 <!-- Global Vendor -->
-<script src="stream-ui-kit/assets/vendors/jquery.min.js"></script>
-<script src="stream-ui-kit/assets/vendors/jquery.migrate.min.js"></script>
-<script src="stream-ui-kit/assets/vendors/popper.min.js"></script>
-<script src="stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js')}}"></script>
+<script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
+<script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script>
+<script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
 
-<script type="text/javascript" src="js/jquery.countdown.js"></script>
-<script type="text/javascript" src="js/swiper.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
@@ -805,19 +726,19 @@ include('section-ministerios.php');
 
 <!-- Components Vendor  -->
 {% block javascripts %}
-    <script src="stream-ui-kit/assets/vendors/jquery.parallax.js"></script>
-    <script src="stream-ui-kit/assets/vendors/typedjs/typed.min.js"></script>
-    <script src="stream-ui-kit/assets/vendors/slick-carousel/slick.min.js"></script>
-    <script src="stream-ui-kit/assets/vendors/counters/waypoint.min.js"></script>
-    <script src="stream-ui-kit/assets/vendors/counters/counterup.min.js"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/typedjs/typed.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/slick-carousel/slick.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/counters/waypoint.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/counters/counterup.min.js') }}"></script>
 
     <!-- Theme Settings and Calls -->
-    <script src="stream-ui-kit/assets/js/global.js"></script>
+    <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script>
 
     <!-- Theme Components and Settings -->
-    <script src="stream-ui-kit/assets/js/vendors/parallax.js"></script>
-    <script src="stream-ui-kit/assets/js/vendors/carousel.js"></script>
-    <script src="stream-ui-kit/assets/js/vendors/counters.js"></script>
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/carousel.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/counters.js') }}"></script>
 
     <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
 {% endblock %}
