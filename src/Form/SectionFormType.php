@@ -14,8 +14,10 @@ class SectionFormType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('css')
+            ->add('cssClass')
             ->add('identificador')
+            ->add('disponible')
+            ->add('columns')
             ;
 
     }
