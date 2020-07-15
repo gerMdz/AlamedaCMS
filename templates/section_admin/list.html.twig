@@ -1,11 +1,10 @@
 {% extends 'contenido_base.html.twig' %}
 
 {% block contenido_body %}
-
-    <a href="{{ path('admin_section_new') }}" class="btn btn-primary btn-sm pull-right">
-        Crear sección <span class="fa fa-plus-circle"></span>
-    </a>
-    <h4>Todas las secciones</h4>
+    <h4>Todas las secciones <a href="{{ path('admin_section_new') }}" class="btn btn-primary btn-sm pull-right">
+            Crear sección <span class="fa fa-plus-circle"></span>
+        </a>
+    </h4>
     <table class="table">
         <thead>
         <tr>

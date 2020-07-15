@@ -56,15 +56,12 @@ class SectionController extends AbstractController
             $em->persist($section);
             $em->flush();
 
+            $this->addFlash('success', 'Sección creada. Gracias por su contribución');
+
             return $this->redirectToRoute('admin_section_list');
-
-
-
         }
         return $this->render('section_admin/new.html.twig', [
             'sectionForm' => $form->createView()
         ]);
     }
-
-
 }
