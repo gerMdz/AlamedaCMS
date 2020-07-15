@@ -101,6 +101,11 @@
 {% block nav %}
     {% include('inicio/_nav.html.twig') %}
 {% endblock %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success mt-5 pt-5 mb-0 pb-0">
+        {{ message }}
+    </div>
+{% endfor %}
 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
     <div class="alert alert-warning" style="position: fixed; bottom: 50px">
         Temporalemte
