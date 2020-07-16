@@ -1,8 +1,6 @@
 body {
   font-family: 'Lora';
-  background: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65));
-  background-attachment: fixed;
-  background-position: center;
+  background: linear-gradient(rgba(5, 5, 5, 0.65), rgba(50, 50, 50, 0.65)), url('../build/images/Templo_final_frente_2.jpg') fixed center;
   background-size: cover;
 }
 

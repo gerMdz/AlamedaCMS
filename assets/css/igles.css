@@ -50,7 +50,7 @@
     height: 40px !important;
     left: -10px !important;*/
     background-color: #5a5a5a ;
-    background-image: url('../images/imgMenu.png') !important;
+    background-image: url('/public/images/imgMenu.png') !important;
     background-repeat: repeat !important;
     padding: 0 10px !important;
     margin-left: -16px;

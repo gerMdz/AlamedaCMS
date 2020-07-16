@@ -240,7 +240,7 @@ html {height:100%}
 /* FOOTER */
 
 footer {
-  /*position: absolute;*/
+  position: absolute;
   bottom: 0;
   width: 100%;
   /*height: auto; !* Set the fixed height of the footer here *!*/
