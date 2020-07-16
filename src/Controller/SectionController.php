@@ -43,16 +43,8 @@ class SectionController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid() ){
-            $data = $form->getData();
-//            dd($data);
-
-            $section = new Section();
-            $section->setColumns($data['columns']);
-            $section->setCssClass($data['cssClass']);
-            $section->setDisponible($data['disponible']);
-            $section->setIdentificador($data['identificador']);
-            $section->setName($data['name']);
-
+            /** @var Section $section */
+            $section = $form->getData();
             $em->persist($section);
             $em->flush();
 
