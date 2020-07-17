@@ -47,6 +47,11 @@ class Section
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $disponibleAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,18 @@ class Section
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDisponibleAt(): ?\DateTimeInterface
+    {
+        return $this->disponibleAt;
+    }
+
+    public function setDisponibleAt(?\DateTimeInterface $disponibleAt): self
+    {
+        $this->disponibleAt = $disponibleAt;
 
         return $this;
     }

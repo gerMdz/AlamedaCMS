@@ -1,12 +1,17 @@
 {% extends 'contenido_base.html.twig' %}
 
 {% block contenido_body %}
+
     <h4>Crear nueva sección! ?</h4>
+<div class="form-container">
 
     {{ form_start(sectionForm) }}
+
     {{ form_widget(sectionForm) }}
     <button type="submit" class="btn btn-primary">Crear</button>
+    
     {{ form_end(sectionForm) }}
+</div>
     <a class="btn btn-info" href="{{ path('admin_section_list') }}">Ir al Listado</a>
 
 {% endblock %}

@@ -239,12 +239,23 @@ html {height:100%}
 
 /* FOOTER */
 
-footer {
+.footer {
   position: absolute;
-  bottom: 0;
   width: 100%;
-  /*height: auto; !* Set the fixed height of the footer here *!*/
+  /*height: 60px; !* Set the fixed height of the footer here *!*/
   /*line-height: 60px; !* Vertically center the text there *!*/
-  /*background-color: #fff;*/
+  background-color: #fff;
   /*margin-top: 10px;*/
+
+
+
+    height: auto;
+    line-height: 60px;
+
+    margin-top: auto;
+    clear: both;
+}
+
+.bg-anuncios{
+    background-color: #41473b !important;
 }
