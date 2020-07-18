@@ -21,6 +21,7 @@
     </div>
 
     <div class="col-sm-12">
+        {{ form_row(entradaForm.autor) }}
         {{ form_row(entradaForm.contenido) }}
     </div>
     <div class="col-sm-9">
@@ -33,7 +34,7 @@
     <div class="col-sm-3">
         {% if entradaForm.vars.data.imageFilename | default  %}
             <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
-                <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100">
+                <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100" alt="Imagen">
             </a>
 
         {% endif %}

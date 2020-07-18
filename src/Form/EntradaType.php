@@ -3,10 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,11 +37,13 @@ class EntradaType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('autor', HiddenType::class, [
-                'property_path' => 'autor.id',
-                'attr' => [
-                    'class' => 'hidden',
-                ],
+            ->add('autor', EntityType::class, [
+                'class'=>User::class,
+                'choice_label' => function(User $user) {
+                    return sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail());
+                },
+                'placeholder'=> 'Seleccione Autor',
+                'invalid_message' => 'Por favor ingrese un autor'
             ])
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
