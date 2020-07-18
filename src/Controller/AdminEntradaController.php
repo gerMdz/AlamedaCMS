@@ -23,7 +23,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminEntradaController extends AbstractController
 {
     private $isDebug;
-
     private $loggerClient;
     private $boleanToDateHelper;
 
@@ -130,6 +129,9 @@ class AdminEntradaController extends AbstractController
      * @Route("/admin/entrada/new", name="admin_entrada_new")
      * @IsGranted("ROLE_ESCRITOR")
      *
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @param UploaderHelper $uploaderHelper
      * @return RedirectResponse|Response
      * @throws Exception
      */
@@ -160,7 +162,7 @@ class AdminEntradaController extends AbstractController
             $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile);
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $entrada->setImageFilename($newFilename);
             }
 
