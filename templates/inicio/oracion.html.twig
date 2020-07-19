@@ -1,7 +1,39 @@
-{% extends 'base.html.twig' %}
-{% block title %} Dar {{ base.siteName }} {% endblock %}
+{% extends 'base_beta.html.twig' %}
+{% block title %} Dar  {% endblock %}
+{% block sslocal %}
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
+    <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+    <style>
+    img.resize {
+    width: 10%; /* you can use % */
+    height: auto;
+    }
+
+    .btn-xl {
+    padding: 1.25rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none currentcolor;
+    border-radius: 10rem!important;
+    }
+    .jumbotron{
+        background-color: #e9ecef !important;
+        border-radius: .3rem !important;
+    }
+        body{
+            background-color: transparent !important;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    {% include 'inicio/_nav.html.twig' %}
 {% endblock %}
 {% block body %}
     <section class="p5-5 mt-1 " id="inicio">
@@ -10,7 +42,7 @@
                 <div class="col-sm-12 text-center mx-auto mt-1">
 
                     <header class="jumbotron my-1">
-                        <a class="btn btn-blue btn-xl js-scroll-trigger mx-auto"
+                        <a class="btn btn-blue btn-xl btn--pill js-scroll-trigger mx-auto"
                            href="https://forms.gle/DuJvVG374UMNjCuv7" target="_blank">
                             Podés hacerlo
                             desde aqui
@@ -20,11 +52,13 @@
                             Motivos de Oración
                         </h1>
                         <span class="divider-new my-1">
-                        <img src="images/institucional/LOGO-ORACION.png"
+                        <img src="{{ asset('images/logo-oracion.png') }}"
                              class="resize img-fluid rounded-circle"></span>
 
 
-                        <h5 class="text-black-50 font-weight-light my-1 p-1">
+                        <h5 class="text-black-50 font-weight-light my-1 p-1"
+                        style="font-weight: 300!important;"
+                        >
                             <b>Ningún</b> problema es demasiado grande para Dios,<br/>
                             ni insignificante para su cuidado <b>Paternal</b>. <br/>
                             Dejanos <b>tu motivo</b> de oración específico, <br/>
@@ -47,6 +81,7 @@
 
     </section>
 {% endblock %}
+
 {% block javascripts %}
 {{ parent() }}
 {% endblock %}

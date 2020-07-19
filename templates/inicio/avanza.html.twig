@@ -1,15 +1,35 @@
-{% extends 'base.html.twig' %}
-{% block title %} Avanza {{ base.siteName }} {% endblock %}
+{% extends 'base_beta.html.twig' %}
+{% block title %} Avanza  {% endblock %}
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('app') }}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+        .btn-xl {
+            padding: 1.25rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none currentcolor;
+            border-radius: 10rem !important;
+        }
+    </style>
 {% endblock %}
-{% block body %}
+{% block sslocal %}
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
+{#    <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+
+{% endblock %}
+{% block header %}
     <header>
-        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark" style="background-image: url({{ asset('build/images/contacto.png') }}); background-repeat: repeat-y ;">
+        {% include 'inicio/_nav.html.twig' %}
+        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark"
+                 style="background-image: url({{ asset('build/images/contacto.png') }}); background-repeat: repeat-y ;">
             <!-- Promo Content -->
             <div class="container u-overlay__inner u-ver-center u-content-space">
                 <div class="row justify-content-center">
@@ -17,7 +37,8 @@
                         <div class="text-center">
 
                             <div class="site-heading p-5">
-                                <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}" style="max-height: 150px" class="img-fluid ">
+                                <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}"
+                                     style="max-height: 150px" class="img-fluid ">
 
                             </div>
 
@@ -28,6 +49,9 @@
             <!-- End Promo Content -->
         </section>
     </header>
+{% endblock %}
+{% block body %}
+
     <main role="main" class="bg-white">
 
 
@@ -35,16 +59,17 @@
         <section class="a-content-space-medium">
             <div class="container">
                 <div class="text-center">
-                    <a class="btn btn-primary js-scroll-trigger mx-auto btn--pill"
+                    <a class="btn btn-primary btn-xl js-scroll-trigger mx-auto btn--pill"
                        href="https://forms.gle/J2Lz4jyyN8vUa2747" target="_blank">
                         <i class="far fa-list-alt text-white"></i> Más detalles e inscripción
                     </a>
                 </div>
                 <header class="text-center w-md-50 mx-auto mb-8 mt-1">
-                    <div class="show" id="blockquotes-center-1" role="tabpanel" aria-labelledby="blockquotes-center-tab-1">
+                    <div class="show" id="blockquotes-center-1" role="tabpanel"
+                         aria-labelledby="blockquotes-center-tab-1">
                         <!-- Centered -->
                         <blockquote class="blockquote-v1 blockquote-v1--left align-text-top">
-                            <h3 >
+                            <h3>
                                 En tiempos de PANDEMIA nuestra iglesia nunca dejó de SERVIR <br/>
                                 y es tiempo que puedas sumarte a este desafío.<br/>
                                 Tendremos nuestro seminario <br/> “Descubriendo tu F.O.R.M.A.”.
@@ -69,6 +94,6 @@
     </main>
 {% endblock %}
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
     <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
 {% endblock %}
