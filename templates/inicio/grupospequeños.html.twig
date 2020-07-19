@@ -1,15 +1,20 @@
-{% extends 'base.html.twig' %}
-{% block title %} Grupos Pequeños {{ base.siteName }} {% endblock %}
+{% extends 'base_beta.html.twig' %}
+{% block title %} Grupos Pequeños  {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+
 {% endblock %}
-{% block body %}
-    <!-- Masthead-->
-    <header class="masthead-oportunidades m-5 p-5">
+{% block sslocal %}
+{#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/styles.min.css') }}">
+{% endblock %}
+{% block header %}
+    <header class="masthead-oportunidades m-5 p-5 bg-white">
+        {% include 'inicio/_nav.html.twig' %}
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-sm-12 col-lg-12 align-self-center ">
-                    <a class="btn btn-blue btn-xl js-scroll-trigger"
+                    <a class="btn btn-blue btn-xl js-scroll-trigger btn--pill"
                        href="https://docs.google.com/forms/d/e/1FAIpQLSfuKOBEFTWx-t_wiQR7CL8Gf443RxGeAYhP1nNETb7BSNkGuA/viewform"
                        target="_blank">
                         Sumate desde aquí
@@ -33,10 +38,14 @@
 
 
     <hr class="m-0">
-
-
-    </div>
+{% endblock %}
+{% block body %}
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
+{% endblock %}
+{% block jslocal %}
 {% endblock %}

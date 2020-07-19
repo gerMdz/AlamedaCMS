@@ -13,7 +13,12 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>{% block title %} Bienvenido! {% endblock %} - Iglesia de la Alameda</title>
     {% include 'bases/_favicon.html.twig' %}
+    {% block stylesheets %}
     {% include 'bases/_css.html.twig' %}
+    {% endblock %}
+    {% block sslocal %}
+        <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">
+    {% endblock %}
     {% include 'bases/_icons.html.twig' %}
     {% include 'bases/_fonts.html.twig' %}
     {% import 'bases/_links.html.twig' as links  %}
@@ -38,6 +43,7 @@
     </style>
 </head>
 <body>
+{% block header %}
 <header>
     {% include 'inicio/_nav.html.twig' %}
     <hr class="mt-5"/>
@@ -64,7 +70,8 @@
     </section>
     <!--    FIn Section Cover-->
 </header>
-
+{% endblock %}
+{% block body %}
 <!-- Horarios - Invitación - Video -->
 <section class="bg-light page-section ">
     <div class="container">
@@ -703,16 +710,40 @@
     </div>
 </section>
 <hr />
+{% endblock %}
+{% block footer %}
 {% include 'inicio/_footer.html.twig' %}
+{% endblock %}
 
-<!-- Bootstrap core JavaScript -->
-<!--<script src="vendor/jquery/jquery.min.js"></script>-->
-<!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
-<!-- Global Vendor -->
-<script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js')}}"></script>
-<script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
-<script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script>
-<script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+{% block javascripts %}
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/typedjs/typed.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/slick-carousel/slick.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/counters/waypoint.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/counters/counterup.min.js') }}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <!--<script src="vendor/jquery/jquery.min.js"></script>-->
+    <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+    <!-- Global Vendor -->
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js')}}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- Theme Settings and Calls -->
+    <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script>
+
+    <!-- Theme Components and Settings -->
+
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/carousel.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/counters.js') }}"></script>
+
+    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
+{% endblock %}
+
+{% block jslocal %}
 
 
 
@@ -760,23 +791,7 @@
 
 
 <!-- Components Vendor  -->
-{% block javascripts %}
-    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/vendors/typedjs/typed.min.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/vendors/slick-carousel/slick.min.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/vendors/counters/waypoint.min.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/vendors/counters/counterup.min.js') }}"></script>
 
-    <!-- Theme Settings and Calls -->
-    <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script>
-
-    <!-- Theme Components and Settings -->
-    <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/js/vendors/carousel.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/js/vendors/counters.js') }}"></script>
-
-    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
-{% endblock %}
 <!-- END JAVASCRIPTS -->
 <script>
     $(document).on('ready', function () {
@@ -792,6 +807,8 @@
         });
     });
 </script>
+
+{% endblock %}
 
 
 </body>
