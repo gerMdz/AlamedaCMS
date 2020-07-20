@@ -2,15 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
@@ -18,6 +17,7 @@ use phpDocumentor\Reflection\Types\This;
 class Entrada
 {
     use TimestampableEntity;
+    use OfertTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
