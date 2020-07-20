@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PrincipalRepository::class)
@@ -31,6 +32,7 @@ class Principal
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="El título de la página, no debe estar en blanco")
      */
     private $titulo;
 
