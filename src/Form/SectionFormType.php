@@ -30,6 +30,8 @@ class SectionFormType extends AbstractType
                 'widget' => 'single_text'
             ])
             ->add('columns')
+            ->add('startAt')
+            ->add('stopAt')
 
             ;
 

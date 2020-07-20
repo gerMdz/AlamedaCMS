@@ -70,6 +70,8 @@ class EntradaType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+            ->add('startAt')
+            ->add('stopAt')
         ;
     }
 
