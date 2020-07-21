@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\DerivadaRepository;
+use App\Entity\Traits\OfertTrait;
+use App\Repository\BroteRepository;
+use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,9 +14,10 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 /**
  * @ORM\Entity(repositoryClass=DerivadaRepository::class)
  */
-class Derivada
+class Brote
 {
     use TimestampableEntity;
+    use OfertTrait;
 
     /**
      * @ORM\Id()
@@ -254,5 +257,10 @@ class Derivada
         $this->activa = $activa;
 
         return $this;
+    }
+
+    public function getImagePath()
+    {
+        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 }

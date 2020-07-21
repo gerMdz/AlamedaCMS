@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Derivada;
-use App\Form\DerivadaType;
-use App\Repository\DerivadaRepository;
+use App\Entity\Brote;
+use App\Form\BroteType;
+use App\Repository\BroteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,14 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/derivada")
  */
-class DerivadaController extends AbstractController
+class BroteController extends AbstractController
 {
     /**
      * @Route("/", name="derivada_index", methods={"GET"})
-     * @param DerivadaRepository $derivadaRepository
+     * @param BroteRepository $derivadaRepository
      * @return Response
      */
-    public function index(DerivadaRepository $derivadaRepository): Response
+    public function index(BroteRepository $derivadaRepository): Response
     {
         return $this->render('derivada/index.html.twig', [
             'derivadas' => $derivadaRepository->findAll(),
@@ -34,8 +34,8 @@ class DerivadaController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $derivada = new Derivada();
-        $form = $this->createForm(DerivadaType::class, $derivada);
+        $derivada = new Brote();
+        $form = $this->createForm(BroteType::class, $derivada);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,10 +54,10 @@ class DerivadaController extends AbstractController
 
     /**
      * @Route("/{id}", name="derivada_show", methods={"GET"})
-     * @param Derivada $derivada
+     * @param Brote $derivada
      * @return Response
      */
-    public function show(Derivada $derivada): Response
+    public function show(Brote $derivada): Response
     {
         return $this->render('derivada/show.html.twig', [
             'derivada' => $derivada,
@@ -67,12 +67,12 @@ class DerivadaController extends AbstractController
     /**
      * @Route("/{id}/edit", name="derivada_edit", methods={"GET","POST"})
      * @param Request $request
-     * @param Derivada $derivada
+     * @param Brote $derivada
      * @return Response
      */
-    public function edit(Request $request, Derivada $derivada): Response
+    public function edit(Request $request, Brote $derivada): Response
     {
-        $form = $this->createForm(DerivadaType::class, $derivada);
+        $form = $this->createForm(BroteType::class, $derivada);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,10 +90,10 @@ class DerivadaController extends AbstractController
     /**
      * @Route("/{id}", name="derivada_delete", methods={"DELETE"})
      * @param Request $request
-     * @param Derivada $derivada
+     * @param Brote $derivada
      * @return Response
      */
-    public function delete(Request $request, Derivada $derivada): Response
+    public function delete(Request $request, Brote $derivada): Response
     {
         if ($this->isCsrfTokenValid('delete'.$derivada->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

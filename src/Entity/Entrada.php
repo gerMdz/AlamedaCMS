@@ -82,9 +82,9 @@ class Entrada
     private $principals;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Derivada::class, mappedBy="entrada")
+     * @ORM\ManyToMany(targetEntity=Brote::class, mappedBy="entrada")
      */
-    private $derivadas;
+    private $brotes;
 
 
 
@@ -93,7 +93,7 @@ class Entrada
         $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
-        $this->derivadas = new ArrayCollection();
+        $this->brotes = new ArrayCollection();
     }
 
     public function __toString()
@@ -279,28 +279,28 @@ class Entrada
     }
 
     /**
-     * @return Collection|Derivada[]
+     * @return Collection|Brote[]
      */
-    public function getDerivadas(): Collection
+    public function getBrote(): Collection
     {
-        return $this->derivadas;
+        return $this->brote;
     }
 
-    public function addDerivada(Derivada $derivada): self
+    public function addBrote(Brote $brote): self
     {
-        if (!$this->derivadas->contains($derivada)) {
-            $this->derivadas[] = $derivada;
-            $derivada->addEntrada($this);
+        if (!$this->brotes->contains($brote)) {
+            $this->brotes[] = $brote;
+            $brote->addEntrada($this);
         }
 
         return $this;
     }
 
-    public function removeDerivada(Derivada $derivada): self
+    public function removebrote(Brote $brote): self
     {
-        if ($this->derivadas->contains($derivada)) {
-            $this->derivadas->removeElement($derivada);
-            $derivada->removeEntrada($this);
+        if ($this->brotes->contains($brote)) {
+            $this->brotes->removeElement($brote);
+            $brote->removeEntrada($this);
         }
 
         return $this;

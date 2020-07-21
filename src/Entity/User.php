@@ -81,9 +81,9 @@ class User implements UserInterface
     private $comentarios;
 
     /**
-     * @ORM\OneToMany(targetEntity=Derivada::class, mappedBy="autor")
+     * @ORM\OneToMany(targetEntity=Brote::class, mappedBy="autor")
      */
-    private $derivadas;
+    private $brotes;
 
     public function __construct()
     {
@@ -92,7 +92,7 @@ class User implements UserInterface
         $this->entradas = new ArrayCollection();
         $this->principal = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
-        $this->derivadas = new ArrayCollection();
+        $this->brotes = new ArrayCollection();
     }
 
     public function __toString()
@@ -375,30 +375,30 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Derivada[]
+     * @return Collection|Brote[]
      */
-    public function getDerivadas(): Collection
+    public function getbrotes(): Collection
     {
-        return $this->derivadas;
+        return $this->brotes;
     }
 
-    public function addDerivada(Derivada $derivada): self
+    public function addbrote(Brote $brote): self
     {
-        if (!$this->derivadas->contains($derivada)) {
-            $this->derivadas[] = $derivada;
-            $derivada->setAutor($this);
+        if (!$this->brotes->contains($brote)) {
+            $this->brotes[] = $brote;
+            $brote->setAutor($this);
         }
 
         return $this;
     }
 
-    public function removeDerivada(Derivada $derivada): self
+    public function removebrote(Brote $brote): self
     {
-        if ($this->derivadas->contains($derivada)) {
-            $this->derivadas->removeElement($derivada);
+        if ($this->brotes->contains($brote)) {
+            $this->brotes->removeElement($brote);
             // set the owning side to null (unless already changed)
-            if ($derivada->getAutor() === $this) {
-                $derivada->setAutor(null);
+            if ($brote->getAutor() === $this) {
+                $brote->setAutor(null);
             }
         }
 

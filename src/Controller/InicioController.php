@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Brote;
 use App\Entity\IndexAlameda;
 use App\Entity\Principal;
+use App\Repository\BroteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,13 +41,20 @@ class InicioController extends AbstractController
     /**
      * @Route("/{linkRoute}", name="principal_ver", methods={"GET"})
      * @param Principal $principal
+     * @param BroteRepository $broteRepository
      * @return Response
      */
-    public function ver(Principal $principal): Response
+    public function ver(Principal $principal, BroteRepository $broteRepository): Response
     {
         $vista = $principal->getLinkRoute();
+        /** @var Brote $brote */
+        $visual = $broteRepository->findOneBy(['principal'=>$principal->getId(), 'activa'=>true]);
+        if(!$visual){
+            $visual = $principal;
+        }
+
         return $this->render('inicio/'.$vista.'.html.twig', [
-            'principal' => $principal,
+            'principal' => $visual,
         ]);
     }
 
