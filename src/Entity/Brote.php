@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @ORM\Entity(repositoryClass=DerivadaRepository::class)
+ * @ORM\Entity(repositoryClass=BroteRepository::class)
  */
 class Brote
 {

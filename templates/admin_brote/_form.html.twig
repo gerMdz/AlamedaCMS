@@ -4,7 +4,11 @@
         {{ form_row(broteForm.titulo) }}
     </div>
     <div class="col-sm-5">
-        {{ form_row(broteForm.linkRoute) }}
+        {{ form_row(broteForm.linkRoute,{
+            label: 'linkRoute',
+            help: 'Será la ruta para acceder al elemento'
+        }
+        ) }}
     </div>
 
     <div class="col-sm-2 checkbox ">
@@ -24,6 +28,7 @@
     </div>
     <div class="col-sm-9">
         {{ form_row(broteForm.imageFile, {
+            label:'Imagen del elemento',
             attr: {
                 'placeholder': 'Seleccione una imagen para la entrada'
             }

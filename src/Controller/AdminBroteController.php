@@ -98,7 +98,34 @@ class AdminBroteController extends AbstractController
     }
 
     /**
-     * @Route("/admin/brote", name="admin_brote")
+     * @Route("/admin/brote/{linkRoute}/edit", name="admin_brote_edit")
+     * @IsGranted("ROLE_ESCRITOR")
+     * @param Brote $brote
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function edit(Brote $brote, Request $request, EntityManagerInterface $em)
+    {
+        $form = $this->createForm(BroteType::class, $brote);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($brote);
+            $em->flush();
+            $this->addFlash('success', 'Elemento Actualizado');
+            return $this->redirectToRoute('admin_brote_edit', [
+                'linkRoute'=>$brote->getLinkRoute()
+            ]);
+        }
+        return $this->render('admin_brote/edit.html.twig', [
+            'broteForm' => $form->createView(),
+            'brote' => $brote
+        ]);
+    }
+
+    /**
+     * @Route("/admin/brote", name="admin_brote_list")
      * @param BroteRepository $broteRepository
      * @return Response
      */

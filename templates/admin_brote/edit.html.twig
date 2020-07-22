@@ -1,13 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
-{% block title %}Edit Derivada{% endblock %}
+{% block title %}{{ brote.titulo }}{% endblock %}
 
-{% block body %}
-    <h1>Edit Derivada</h1>
+{% block contenido_body %}
+    <h5>Edición de "{{ brote.titulo }}" </h5>
+    <div class="form-container">
+        {{ include('admin_brote/_form.html.twig') }}
+    </div>
+    <a class="btn btn-link" href="{{ path('admin_brote_list') }}"><i class="fas fa-backspace"></i> Volver al listado de Brotes</a>
+{% endblock %}
 
-    {{ include('derivada/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('derivada_index') }}">back to list</a>
-
-    {{ include('derivada/_delete_form.html.twig') }}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.custom-file-input').on('change', function (event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
 {% endblock %}
