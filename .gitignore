@@ -10,10 +10,6 @@ node_modules
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
-
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
@@ -50,6 +46,33 @@ yarn-error.log
 /public/shards-ui/
 /public/media/
 /public/media/cache
-/public/media/
 /public/pre/uploads/entrada_reference/
 /migrations/Version20200617115938.php
+/public/css/stream-ui-kit/assets/vendors/
+/public/css/stream-ui-kit/assets/js/vendors/
+/public/css/stream-ui-kit/assets/img/
+/public/css/stream-ui-kit/assets/img-temp/
+/public/css/stream-ui-kit/assets/include/
+/public/css/stream-ui-kit/starter-template.html
+/public/fonts/awasome/
+/public/fonts/druk/
+/public/fonts/univers/
+/public/fonts/big_noodle_titling.ttf
+/public/fonts/Black Diamond.otf
+/public/fonts/GreatLakesNF.ttf
+/public/fonts/Hoverage.otf
+/public/fonts/Joyful Story.otf
+/public/fonts/Matahati Regular.otf
+/public/fonts/onlinefontconverter.com.zip
+/public/fonts/Tuesnight.otf
+/public/fonts/UniversLTStd-Obl.otf
+/public/fonts/WarnockPro-ItSubh.otf
+/public/images/imagen-auditorio.jpg
+/public/images/imagen-auditorio-noche.jpg
+/public/images/logoYoutubeBrown.png
+/public/images/a2-fdoBlanco-ltrNaranja.jpg
+/public/images/imgMenu.png
+/public/images/qr-online.png
+/public/images/a2-fdoNegro-ltrBlanca.jpg
+/public/images/iglesiaAlamedaInstagram.jpg
+/public/images/logo-oracion.png

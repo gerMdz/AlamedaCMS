@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Derivada{% endblock %}
+
+{% block body %}
+    <h1>Derivada</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ derivada.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ derivada.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Contenido</th>
+                <td>{{ derivada.contenido }}</td>
+            </tr>
+            <tr>
+                <th>LinkRoute</th>
+                <td>{{ derivada.linkRoute }}</td>
+            </tr>
+            <tr>
+                <th>ImageFilename</th>
+                <td>{{ derivada.imageFilename }}</td>
+            </tr>
+            <tr>
+                <th>Likes</th>
+                <td>{{ derivada.likes }}</td>
+            </tr>
+            <tr>
+                <th>PublicadoAt</th>
+                <td>{{ derivada.publicadoAt ? derivada.publicadoAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Activa</th>
+                <td>{{ derivada.activa ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ derivada.createdAt ? derivada.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ derivada.updatedAt ? derivada.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('derivada_index') }}">back to list</a>
+
+    <a href="{{ path('derivada_edit', {'id': derivada.id}) }}">edit</a>
+
+    {{ include('derivada/_delete_form.html.twig') }}
+{% endblock %}

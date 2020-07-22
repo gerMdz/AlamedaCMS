@@ -2,15 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
@@ -18,6 +17,7 @@ use phpDocumentor\Reflection\Types\This;
 class Entrada
 {
     use TimestampableEntity;
+    use OfertTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -61,6 +61,7 @@ class Entrada
 
     /**
      * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
+     * @ORM\OrderBy({"posicion"="ASC"})
      */
     private $entradaReferences;
 
@@ -75,12 +76,29 @@ class Entrada
      */
     private $comentarios;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="entradas")
+     */
+    private $principals;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Brote::class, mappedBy="entrada")
+     */
+    private $brotes;
+
 
 
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->principals = new ArrayCollection();
+        $this->brotes = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->titulo;
     }
 
     public function getId(): ?int
@@ -227,6 +245,62 @@ class Entrada
             if ($comentario->getEntrada() === $this) {
                 $comentario->setEntrada(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Principal[]
+     */
+    public function getPrincipals(): Collection
+    {
+        return $this->principals;
+    }
+
+    public function addPrincipal(Principal $principal): self
+    {
+        if (!$this->principals->contains($principal)) {
+            $this->principals[] = $principal;
+            $principal->addEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrincipal(Principal $principal): self
+    {
+        if ($this->principals->contains($principal)) {
+            $this->principals->removeElement($principal);
+            $principal->removeEntrada($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Brote[]
+     */
+    public function getBrote(): Collection
+    {
+        return $this->brote;
+    }
+
+    public function addBrote(Brote $brote): self
+    {
+        if (!$this->brotes->contains($brote)) {
+            $this->brotes[] = $brote;
+            $brote->addEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function removebrote(Brote $brote): self
+    {
+        if ($this->brotes->contains($brote)) {
+            $this->brotes->removeElement($brote);
+            $brote->removeEntrada($this);
         }
 
         return $this;

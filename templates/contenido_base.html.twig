@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="mt-5"><span><hr/></span></div>
+    <div class="{{ app.session.flashbag.peek('success')|length > 0 ? 'mt-0' : 'mt-5' }}">
+        <span>
+            <hr/>
+        </span>
+    </div>
 
     <div class="container">
         <div class="row">

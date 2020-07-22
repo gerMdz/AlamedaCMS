@@ -2,21 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\PrincipalRepository;
+use App\Entity\Traits\OfertTrait;
+use App\Repository\BroteRepository;
+use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=PrincipalRepository::class)
+ * @ORM\Entity(repositoryClass=DerivadaRepository::class)
  */
-class Principal
+class Brote
 {
-
     use TimestampableEntity;
+    use OfertTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -25,14 +27,13 @@ class Principal
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="principal")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="derivadas")
      * @ORM\JoinColumn(nullable=false)
      */
     private $autor;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El título de la página, no debe estar en blanco")
      */
     private $titulo;
 
@@ -42,7 +43,7 @@ class Principal
     private $contenido;
 
     /**
-     * @ORM\Column(type="string", length=150, unique=true, nullable=true)
+     * @ORM\Column(type="string", length=150, unique=true)
      * @Gedmo\Slug(fields={"titulo"})
      */
     private $linkRoute;
@@ -58,30 +59,34 @@ class Principal
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="principal")
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="derivada")
      */
-    private $comentarios;
+    private $comenttarios;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="principals")
+     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="derivadas")
      */
-    private $entradas;
+    private $entrada;
 
     /**
-     * @ORM\OneToMany(targetEntity=Brote::class, mappedBy="principal")
+     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="derivadas")
      */
-    private $brotes;
+    private $principal;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $publicadoAt;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $activa;
 
     public function __construct()
     {
-        $this->comentarios = new ArrayCollection();
-        $this->entradas = new ArrayCollection();
-        $this->brotes = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return $this->titulo;
+        $this->comenttarios = new ArrayCollection();
+        $this->entrada = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,10 +135,10 @@ class Principal
         return $this->linkRoute;
     }
 
-    public function setLinkRoute(?string $linkRoute): self
+    public function setLinkRoute(string $linkRoute): self
     {
-        ($linkRoute ==null ? $linkRoute = strtolower(str_replace(' ', '-', trim($this->titulo().'-'.$this->gId()))) : $linkRoute = $linkRoute);
         $this->linkRoute = $linkRoute;
+
         return $this;
     }
 
@@ -164,28 +169,28 @@ class Principal
     /**
      * @return Collection|Comentario[]
      */
-    public function getComentarios(): Collection
+    public function getComenttarios(): Collection
     {
-        return $this->comentarios;
+        return $this->comenttarios;
     }
 
-    public function addComentario(Comentario $comentario): self
+    public function addComenttario(Comentario $comenttario): self
     {
-        if (!$this->comentarios->contains($comentario)) {
-            $this->comentarios[] = $comentario;
-            $comentario->setPrincipal($this);
+        if (!$this->comenttarios->contains($comenttario)) {
+            $this->comenttarios[] = $comenttario;
+            $comenttario->setDerivada($this);
         }
 
         return $this;
     }
 
-    public function removeComentario(Comentario $comentario): self
+    public function removeComenttario(Comentario $comenttario): self
     {
-        if ($this->comentarios->contains($comentario)) {
-            $this->comentarios->removeElement($comentario);
+        if ($this->comenttarios->contains($comenttario)) {
+            $this->comenttarios->removeElement($comenttario);
             // set the owning side to null (unless already changed)
-            if ($comentario->getPrincipal() === $this) {
-                $comentario->setPrincipal(null);
+            if ($comenttario->getDerivada() === $this) {
+                $comenttario->setDerivada(null);
             }
         }
 
@@ -195,15 +200,15 @@ class Principal
     /**
      * @return Collection|Entrada[]
      */
-    public function getEntradas(): Collection
+    public function getEntrada(): Collection
     {
-        return $this->entradas;
+        return $this->entrada;
     }
 
     public function addEntrada(Entrada $entrada): self
     {
-        if (!$this->entradas->contains($entrada)) {
-            $this->entradas[] = $entrada;
+        if (!$this->entrada->contains($entrada)) {
+            $this->entrada[] = $entrada;
         }
 
         return $this;
@@ -211,41 +216,51 @@ class Principal
 
     public function removeEntrada(Entrada $entrada): self
     {
-        if ($this->entradas->contains($entrada)) {
-            $this->entradas->removeElement($entrada);
+        if ($this->entrada->contains($entrada)) {
+            $this->entrada->removeElement($entrada);
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|Brote[]
-     */
-    public function getBrotes(): Collection
+    public function getPrincipal(): ?Principal
     {
-        return $this->brotes;
+        return $this->principal;
     }
 
-    public function addbrote(Brote $brote): self
+    public function setPrincipal(?Principal $principal): self
     {
-        if (!$this->brotes->contains($brote)) {
-            $this->brotes[] = $brote;
-            $brote->setPrincipal($this);
-        }
+        $this->principal = $principal;
 
         return $this;
     }
 
-    public function removebrote(Brote $brote): self
+    public function getPublicadoAt(): ?\DateTimeInterface
     {
-        if ($this->brotes->contains($brote)) {
-            $this->brotes->removeElement($brote);
-            // set the owning side to null (unless already changed)
-            if ($brote->getPrincipal() === $this) {
-                $brote->setPrincipal(null);
-            }
-        }
+        return $this->publicadoAt;
+    }
+
+    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
+    {
+        $this->publicadoAt = $publicadoAt;
 
         return $this;
+    }
+
+    public function getActiva(): ?bool
+    {
+        return $this->activa;
+    }
+
+    public function setActiva(?bool $activa): self
+    {
+        $this->activa = $activa;
+
+        return $this;
+    }
+
+    public function getImagePath()
+    {
+        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 }

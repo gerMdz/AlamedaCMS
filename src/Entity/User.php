@@ -80,6 +80,11 @@ class User implements UserInterface
      */
     private $comentarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Brote::class, mappedBy="autor")
+     */
+    private $brotes;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -87,6 +92,7 @@ class User implements UserInterface
         $this->entradas = new ArrayCollection();
         $this->principal = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->brotes = new ArrayCollection();
     }
 
     public function __toString()
@@ -362,6 +368,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($comentario->getAutor() === $this) {
                 $comentario->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Brote[]
+     */
+    public function getbrotes(): Collection
+    {
+        return $this->brotes;
+    }
+
+    public function addbrote(Brote $brote): self
+    {
+        if (!$this->brotes->contains($brote)) {
+            $this->brotes[] = $brote;
+            $brote->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removebrote(Brote $brote): self
+    {
+        if ($this->brotes->contains($brote)) {
+            $this->brotes->removeElement($brote);
+            // set the owning side to null (unless already changed)
+            if ($brote->getAutor() === $this) {
+                $brote->setAutor(null);
             }
         }
 

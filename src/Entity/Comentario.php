@@ -45,6 +45,11 @@ class Comentario
      */
     private $isDeleted = false;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Brote::class, inversedBy="comenttarios")
+     */
+    private $brote;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +111,18 @@ class Comentario
     public function setIsDeleted(?bool $isDeleted): self
     {
         $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function getbrote(): ?Brote
+    {
+        return $this->brote;
+    }
+
+    public function setbrote(?Brote $brote): self
+    {
+        $this->brote = $brote;
 
         return $this;
     }

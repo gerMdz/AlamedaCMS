@@ -1,0 +1,51 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block title %}Brotes {{ base.siteName }}{% endblock %}
+
+{% block contenido_body %}
+    <h5>Listado de brotes de páginas principales</h5>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Contenido</th>
+                <th>LinkRoute</th>
+                <th>ImageFilename</th>
+                <th>Likes</th>
+                <th>PublicadoAt</th>
+                <th>Activa</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brote in brotes %}
+            <tr>
+                <td>{{ brote.id }}</td>
+                <td>{{ brote.titulo }}</td>
+                <td>{{ brote.contenido }}</td>
+                <td>{{ brote.linkRoute }}</td>
+                <td>{{ brote.imageFilename }}</td>
+                <td>{{ brote.likes }}</td>
+                <td>{{ brote.publicadoAt ? brote.publicadoAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ brote.activa ? 'Yes' : 'No' }}</td>
+                <td>{{ brote.createdAt ? brote.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ brote.updatedAt ? brote.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+{#                    <a href="{{ path('brote_show', {'id': brote.id}) }}">show</a>#}
+{#                    <a href="{{ path('brote_edit', {'id': brote.id}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_brote_new') }}">Crear brote</a>
+{% endblock %}

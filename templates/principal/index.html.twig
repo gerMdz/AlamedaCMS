@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'contenido_base.html.twig' %}
 
 {% block title %}Principal Listado{% endblock %}
 
-{% block body %}
-    <h1>Principal - Listado de páginas principaes</h1>
+{% block contenido_body %}
+    <h1>Principal - Listado de páginas principales</h1>
 
     <table class="table">
         <thead>
@@ -24,14 +24,14 @@
             <tr>
                 <td>{{ principal.id }}</td>
                 <td>{{ principal.titulo }}</td>
-                <td>{{ principal.contenido }}</td>
+                <td>{{ principal.contenido | u.truncate(15, '...')  }}</td>
                 <td>{{ principal.linkRoute }}</td>
                 <td>{{ principal.imageFilename }}</td>
                 <td>{{ principal.likes }}</td>
                 <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('principal_show', {'id': principal.id}) }}">
+                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
                         <i class="fas fa-eye"></i>
                         Ver</a>
                     <a href="{{ path('principal_edit', {'id': principal.id}) }}">

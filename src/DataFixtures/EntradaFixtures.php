@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
 {
-    private static $entradaTitles = [
-        'Ante lo Inesperado',
-        'Indomita',
-        'Rescate en las llamas',
-        'Maravillas cotidianas',
-    ];
+        private static $entradaTitles = [
+            'Ante lo Inesperado',
+            'Indomita',
+            'Rescate en las llamas',
+            'Maravillas cotidianas',
+        ];
 
     private static $entradaImages = [
         '01-Ante-lo-inesperado.jpg',

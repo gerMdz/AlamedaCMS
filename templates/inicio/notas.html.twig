@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %} Dar {{ base.siteName }} {% endblock %}
+{% block title %} {{ principal.titulo | upper}} {{ base.siteName }} {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
@@ -13,7 +13,7 @@
                     <div class="text-center">
 
                         <div class="site-heading p-5">
-                            <img src="images/LOGO_ALAMEDA_CON_TEXTO_B.png" style="max-height: 150px" class="img-fluid ">
+                            <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}" style="max-height: 150px" class="img-fluid ">
 
                         </div>
 
@@ -30,24 +30,27 @@
                 <div class="row ">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-5 mb-2 mb-lg-2 pl-lg-2 ">
-                        <h1 class="mb-3">Familia,<br/> Tu lugar en el Mundo</h1>
+
+                        <h1 class="mb-3">
+                            {{ principal.titulo }}
+                        </h1>
                         <p>
-                            Descubrir el valor inmenso de la familia. A comprender el hilo que enlaza tu vida en tu familia.
-                            Explorar y trabajar el desafío presente. Practicar algunas herramientas para destrabar los
-                            enemigos de las relaciones. Encontrar en Dios las fuerzas para un amor más valiente, más
-                            generoso, más confiado.
+                           {{ principal.contenido }}
 
                         </p>
                         <p class="blockquote-footer">
-                            "Ámense unos a otros con un afecto genuino y deléitense al honrarse mutuamente." Romanos 12:10
-                            (NTV)
+
 
                         </p>
                     </div>
 
                     <div class="col-lg-6 align-self-center">
-                        <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
-                             src="series/familia-2020/FAMILIA-2020-TAPA-001.jpg" alt="<?php echo $lemaSinEspacios ?>">
+                        <img alt="Iglesia Alameda"
+                             class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
+
+                             src="{{ principal.imagePath|imagine_filter('squared_thumbnail_large')}}">
+
+
                     </div>
                 </div>
             </div>

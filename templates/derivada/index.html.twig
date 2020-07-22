@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Derivada index{% endblock %}
+
+{% block body %}
+    <h1>Derivada index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Contenido</th>
+                <th>LinkRoute</th>
+                <th>ImageFilename</th>
+                <th>Likes</th>
+                <th>PublicadoAt</th>
+                <th>Activa</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for derivada in derivadas %}
+            <tr>
+                <td>{{ derivada.id }}</td>
+                <td>{{ derivada.titulo }}</td>
+                <td>{{ derivada.contenido }}</td>
+                <td>{{ derivada.linkRoute }}</td>
+                <td>{{ derivada.imageFilename }}</td>
+                <td>{{ derivada.likes }}</td>
+                <td>{{ derivada.publicadoAt ? derivada.publicadoAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ derivada.activa ? 'Yes' : 'No' }}</td>
+                <td>{{ derivada.createdAt ? derivada.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ derivada.updatedAt ? derivada.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('derivada_show', {'id': derivada.id}) }}">show</a>
+                    <a href="{{ path('derivada_edit', {'id': derivada.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('derivada_new') }}">Create new</a>
+{% endblock %}

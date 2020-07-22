@@ -1,0 +1,34 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block contenido_body %}
+    <h4>Todas las secciones <a href="{{ path('admin_section_new') }}" class="btn btn-primary btn-sm pull-right">
+            Crear sección <span class="fa fa-plus-circle"></span>
+        </a>
+    </h4>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Clase</th>
+            <th>Descripción</th>
+            <th>Columnas</th>
+            <th>Disponible</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for section in sections %}
+            <tr>
+                <td>{{ section.name }}</td>
+                <td>{{ section.cssClass }}</td>
+                <td>{{ section.description | u.truncate(20, '...')  }}</td>
+                <td>{{ section.columns }}</td>
+                <td>
+                    <span class="fa fa-{{ section.disponible ? 'check text-success' : 'times text-danger' }}"></span>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
