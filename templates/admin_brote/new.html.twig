@@ -5,7 +5,10 @@
 {% block contenido_body %}
     <h5>Crear brote de página principal</h5>
 <div class="form-container">
-    {{ include('admin_brote/_form.html.twig') }}
+    {{ include('admin_brote/_form.html.twig',
+        {
+            button_label:'Agregar Brote'
+        }) }}
 </div>
     <a class="btn btn-link" href="{{ path('admin_brote_list') }}"><i class="fas fa-backspace"></i> Volver al listado de Brotes</a>
 {% endblock %}

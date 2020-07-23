@@ -110,6 +110,10 @@ class AdminBroteController extends AbstractController
         $form = $this->createForm(BroteType::class, $brote);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $boolean = $form['publicar']->getData();
+
+            $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
+            $brote->setPublicadoAt($publicado);
 
             $em->persist($brote);
             $em->flush();

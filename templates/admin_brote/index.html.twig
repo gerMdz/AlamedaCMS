@@ -14,34 +14,34 @@
                 <th>LinkRoute</th>
                 <th>ImageFilename</th>
                 <th>Likes</th>
-                <th>PublicadoAt</th>
+                <th>Publicado</th>
                 <th>Activa</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Creado</th>
+                <th>Actualizado</th>
+                <th>acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for brote in brotes %}
-            <tr>
+            <tr class="text-center">
                 <td>{{ brote.id }}</td>
                 <td>{{ brote.titulo }}</td>
                 <td>{{ brote.contenido }}</td>
                 <td>{{ brote.linkRoute }}</td>
                 <td>{{ brote.imageFilename }}</td>
                 <td>{{ brote.likes }}</td>
-                <td>{{ brote.publicadoAt ? brote.publicadoAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ brote.activa ? 'Yes' : 'No' }}</td>
+                <td>{{ brote.publicadoAt ? brote.publicadoAt|date('Y-m-d H:i:s') : '<span class="fa fa-times"></span>' }}</td>
+                <td><span class="fa fa-{{ brote.activa ? 'check text-success' : 'times text-danger' }}"></span></td>
                 <td>{{ brote.createdAt ? brote.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ brote.updatedAt ? brote.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
 {#                    <a href="{{ path('brote_show', {'id': brote.id}) }}">show</a>#}
-{#                    <a href="{{ path('brote_edit', {'id': brote.id}) }}">edit</a>#}
+                    <a href="{{ path('admin_brote_edit', {'linkRoute': brote.linkRoute}) }}"><i class="fas fa-pencil-alt"></i> editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">No se encontraron resultados</td>
             </tr>
         {% endfor %}
         </tbody>
