@@ -716,6 +716,12 @@
 {% endblock %}
 
 {% block javascripts %}
+    <!-- Global Vendor -->
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js')}}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
     <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
     <script src="{{ asset('stream-ui-kit/assets/vendors/typedjs/typed.min.js') }}"></script>
@@ -726,11 +732,7 @@
     <!-- Bootstrap core JavaScript -->
     <!--<script src="vendor/jquery/jquery.min.js"></script>-->
     <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
-    <!-- Global Vendor -->
-    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js')}}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script>
-    <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+
 
     <!-- Theme Settings and Calls -->
     <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script>
@@ -740,7 +742,7 @@
     <script src="{{ asset('stream-ui-kit/assets/js/vendors/carousel.js') }}"></script>
     <script src="{{ asset('stream-ui-kit/assets/js/vendors/counters.js') }}"></script>
 
-    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
+
 {% endblock %}
 
 {% block jslocal %}
