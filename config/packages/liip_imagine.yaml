@@ -38,6 +38,12 @@ liip_imagine:
                     size:          [500, 500]
                     mode:          outbound
                     allow_upscale: true
+        squared_thumbnail_large:
+            filters:
+                thumbnail:
+                    size:          [540, 303]
+                    mode:          outbound
+                    allow_upscale: true
 
 #
 #            # set your image quality defaults

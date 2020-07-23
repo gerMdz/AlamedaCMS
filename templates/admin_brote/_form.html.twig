@@ -1,0 +1,47 @@
+{{ form_start(broteForm) }}
+<div class="row">
+    <div class="col-sm-5">
+        {{ form_row(broteForm.titulo) }}
+    </div>
+    <div class="col-sm-5">
+        {{ form_row(broteForm.linkRoute,{
+            label: 'linkRoute',
+            help: 'Será la ruta para acceder al elemento'
+        }
+        ) }}
+    </div>
+
+    <div class="col-sm-2 checkbox ">
+        <label for="entrada_publicar" class="required">
+            Publicar?<br/>
+            {% if broteForm.vars.data.PublicadoAt | default  %}
+                {{form_row(broteForm.publicar, { 'attr': {'checked': 'checked'} }) }}
+            {% else %}
+                {{form_row(broteForm.publicar)}}
+            {% endif %}
+        </label>
+    </div>
+
+    <div class="col-sm-12">
+        {{ form_row(broteForm.autor) }}
+        {{ form_row(broteForm.contenido) }}
+    </div>
+    <div class="col-sm-9">
+        {{ form_row(broteForm.imageFile, {
+            label:'Imagen del elemento',
+            attr: {
+                'placeholder': 'Seleccione una imagen para la entrada'
+            }
+        }) }}
+    </div>
+    <div class="col-sm-3">
+        {% if broteForm.vars.data.imageFilename | default  %}
+            <a href="{{ uploaded_asset(broteForm.vars.data.imagePath) }}" target="_blank">
+                <img src="{{ broteForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100">
+            </a>
+
+        {% endif %}
+    </div>
+</div>
+<button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+{{ form_end(broteForm) }}

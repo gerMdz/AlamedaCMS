@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PrincipalRepository;
+use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -68,15 +69,15 @@ class Principal
     private $entradas;
 
     /**
-     * @ORM\OneToMany(targetEntity=Derivada::class, mappedBy="principal")
+     * @ORM\OneToMany(targetEntity=Brote::class, mappedBy="principal")
      */
-    private $derivadas;
+    private $brotes;
 
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->entradas = new ArrayCollection();
-        $this->derivadas = new ArrayCollection();
+        $this->brotes = new ArrayCollection();
     }
 
     public function __toString()
@@ -219,33 +220,37 @@ class Principal
     }
 
     /**
-     * @return Collection|Derivada[]
+     * @return Collection|Brote[]
      */
-    public function getDerivadas(): Collection
+    public function getBrotes(): Collection
     {
-        return $this->derivadas;
+        return $this->brotes;
     }
 
-    public function addDerivada(Derivada $derivada): self
+    public function addbrote(Brote $brote): self
     {
-        if (!$this->derivadas->contains($derivada)) {
-            $this->derivadas[] = $derivada;
-            $derivada->setPrincipal($this);
+        if (!$this->brotes->contains($brote)) {
+            $this->brotes[] = $brote;
+            $brote->setPrincipal($this);
         }
 
         return $this;
     }
 
-    public function removeDerivada(Derivada $derivada): self
+    public function removebrote(Brote $brote): self
     {
-        if ($this->derivadas->contains($derivada)) {
-            $this->derivadas->removeElement($derivada);
+        if ($this->brotes->contains($brote)) {
+            $this->brotes->removeElement($brote);
             // set the owning side to null (unless already changed)
-            if ($derivada->getPrincipal() === $this) {
-                $derivada->setPrincipal(null);
+            if ($brote->getPrincipal() === $this) {
+                $brote->setPrincipal(null);
             }
         }
 
         return $this;
+    }
+    public function getImagePath()
+    {
+        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 }

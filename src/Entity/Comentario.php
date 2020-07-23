@@ -46,9 +46,9 @@ class Comentario
     private $isDeleted = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Derivada::class, inversedBy="comenttarios")
+     * @ORM\ManyToOne(targetEntity=Brote::class, inversedBy="comenttarios")
      */
-    private $derivada;
+    private $brote;
 
     public function getId(): ?int
     {
@@ -115,14 +115,14 @@ class Comentario
         return $this;
     }
 
-    public function getDerivada(): ?Derivada
+    public function getbrote(): ?Brote
     {
-        return $this->derivada;
+        return $this->brote;
     }
 
-    public function setDerivada(?Derivada $derivada): self
+    public function setbrote(?Brote $brote): self
     {
-        $this->derivada = $derivada;
+        $this->brote = $brote;
 
         return $this;
     }

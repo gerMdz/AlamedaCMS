@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Derivada;
+use App\Entity\Brote;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Derivada|null find($id, $lockMode = null, $lockVersion = null)
- * @method Derivada|null findOneBy(array $criteria, array $orderBy = null)
- * @method Derivada[]    findAll()
- * @method Derivada[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Brote|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Brote|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Brote[]    findAll()
+ * @method Brote[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DerivadaRepository extends ServiceEntityRepository
+class BroteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Derivada::class);
+        parent::__construct($registry, Brote::class);
     }
 
     // /**
-    //  * @return Derivada[] Returns an array of Derivada objects
+    //  * @return Brote[] Returns an array of Brote objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class DerivadaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Derivada
+    public function findOneBySomeField($value): ?Brote
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.exampleField = :val')
