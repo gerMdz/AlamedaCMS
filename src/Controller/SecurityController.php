@@ -72,7 +72,7 @@ class SecurityController extends AbstractController
             /** @var User $user */
             $user = $form->getData();
             $user->setPassword(
-                $passwordEncoder->encodePassword($user, $user->getPassword())
+                $passwordEncoder->encodePassword($user, $form['plainPassword']->getData())
             );
             $user->setRoles(['ROLE_USER']);
             $user->setPrimerNombre($user->getPrimerNombre());
