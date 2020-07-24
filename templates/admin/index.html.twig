@@ -20,3 +20,11 @@
     {% include 'admin/list_metabase.html.twig' %}
     </div>
 {% endblock %}
+
+{% block jslocal %}
+{{ parent() }}
+    <script>
+        $('#admin').addClass('active');
+    </script>
+
+{% endblock %}

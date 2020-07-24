@@ -19,14 +19,14 @@
 <body>
 
   <div class="wrapper ">
-    <div class="sidebar" data-color="green" data-background-color="white" data-image="{{ asset('images/imagen-auditorio.jpg') }}">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('images/imagen-auditorio.jpg') }}">
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
       Tip 2: you can also add an image using data-image tag
   -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="{{ path('index') }}" class="simple-text logo-mini">
           <img src="{{ asset('build/images/logo_n1.png') }}" height="30px" width="30px" />
         </a>
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
@@ -35,15 +35,7 @@
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="#0">
-              <i class="material-icons">dashboard</i>
-              <p>Inicio</p>
-            </a>
-          </li>
-          <!-- your sidebar here -->
-        </ul>
+        {% include 'admin/_sidebar.html.twig' %}
       </div>
     </div>
     <div class="main-panel">
@@ -69,8 +61,8 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
+                <a href="{{ path('index') }}">
+                  {{ base.siteName }}
                 </a>
               </li>
             </ul>
@@ -79,8 +71,8 @@
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            </script>
+            <a href="{{ path('index') }}" target="_blank">{{ base.siteName }}a</a>
           </div>
           <!-- your footer here -->
             {% endblock %}
