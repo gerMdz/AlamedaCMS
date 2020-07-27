@@ -93,6 +93,11 @@ class User implements UserInterface
      */
     private $brotes;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $aceptaTerminosAt;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -411,5 +416,16 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    public function getAceptaTerminosAt(): ?\DateTimeInterface
+    {
+        return $this->aceptaTerminosAt;
+    }
+
+
+    public function aceptaTerminos()
+    {
+        $this->aceptaTerminosAt = new \DateTime();
     }
 }

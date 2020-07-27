@@ -76,6 +76,9 @@ class SecurityController extends AbstractController
             );
             $user->setRoles(['ROLE_USER']);
             $user->setPrimerNombre($user->getPrimerNombre());
+            if(true === $form['aceptaTerminos']->getData()){
+                $user->aceptaTerminos();
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
