@@ -1,4 +1,19 @@
 {% extends 'contenido_base.html.twig' %}
+{% form_theme regristroForm _self %}
+{% block form_row %}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+
+    {{- form_label(form, null, {
+        label_attr: { class: 'sr-only' }
+    }) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form, widget_attr) -}}
+        {{- form_help(form) -}}
+
+{% endblock %}
 
 {% block title %}Ingreso {{ base.siteName}} {% endblock %}
 {% block stylesheets %}
@@ -16,9 +31,28 @@
         </div>
     {% endif %}
 
-    {{ form_start(regristroForm) }}
+    {{ form_start(regristroForm, {
+        'attr':{
+            'class': 'form-signin'
+        }
+    }) }}
+    <h1 class="h3 mb-3 font-weight-normal">Registro de Usuarios de La Alameda </h1>
 
-        {{ form_widget(regristroForm) }}
+{#        {{ form_widget(regristroForm) }}#}
+
+    {{ form_row(regristroForm.email, {
+        attr: { placeholder: 'Email' }
+    }) }}
+    {{ form_row(regristroForm.plainPassword.first, {
+        attr: { placeholder: 'Clave' }
+    }) }}
+    {{ form_row(regristroForm.plainPassword.second, {
+        attr: { placeholder: 'Repita Clave ' }
+    }) }}
+    {{ form_row(regristroForm.primerNombre, {
+        attr: { placeholder: 'Nombre de usuario ' }
+    }) }}
+    {{ form_row(regristroForm.aceptaTerminos) }}
             <button class="btn btn-lg btn-primary" type="submit">
                 Resgistrar
             </button>
