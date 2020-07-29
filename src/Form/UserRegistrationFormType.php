@@ -46,7 +46,7 @@ class UserRegistrationFormType extends AbstractType
             ])
             ->add('aceptaTerminos', CheckboxType::class, [
                     'label' => 'Acepto',
-                    'help' => 'Acepto los términos de una amable conviviencia (Serás parte de nuestra comunidad virtual)',
+                    'help' => 'Acepta los términos de una amable conviviencia (Serás parte de nuestra comunidad virtual)',
                     'mapped' => false,
                     'constraints' => [
                         new IsTrue([

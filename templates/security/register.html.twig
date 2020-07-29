@@ -14,6 +14,20 @@
         {{- form_help(form) -}}
 
 {% endblock %}
+{% block _user_registration_form_aceptaTerminos_row %}
+
+
+            <div class="custom-control custom-checkbox mb-3">
+
+                {{ form_errors(form) }}
+
+                    <input type="checkbox" class="custom-control-input" name="{{ full_name }}" id="{{ id }}" >
+                <label class="custom-control-label u-font-size-90" for="{{ id }}">{{ label }} </label>
+                {{ form_help(form) }}
+            </div>
+
+
+{% endblock %}
 
 {% block title %}Ingreso {{ base.siteName}} {% endblock %}
 {% block stylesheets %}
