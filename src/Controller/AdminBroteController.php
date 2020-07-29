@@ -88,7 +88,7 @@ class AdminBroteController extends AbstractController
 
             $this->addFlash('success', 'Se agregó brote a link principal');
 
-            return $this->redirectToRoute('admin_brote');
+            return $this->redirectToRoute('admin_brote_list');
         }
 
         return $this->render('admin_brote/new.html.twig', [
@@ -103,17 +103,27 @@ class AdminBroteController extends AbstractController
      * @param Brote $brote
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param UploaderHelper $uploaderHelper
      * @return RedirectResponse|Response
+     * @throws Exception
      */
-    public function edit(Brote $brote, Request $request, EntityManagerInterface $em)
+    public function edit(Brote $brote, Request $request, EntityManagerInterface $em, UploaderHelper $uploaderHelper)
     {
         $form = $this->createForm(BroteType::class, $brote);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $boolean = $form['publicar']->getData();
-
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $brote->setPublicadoAt($publicado);
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                $brote->setImageFilename($newFilename);
+            }
+
+
 
             $em->persist($brote);
             $em->flush();

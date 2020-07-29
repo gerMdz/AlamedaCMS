@@ -17,6 +17,8 @@ class MetaBaseController extends AbstractController
 {
     /**
      * @Route("/", name="meta_base_index", methods={"GET"})
+     * @param MetaBaseRepository $metaBaseRepository
+     * @return Response
      */
     public function index(MetaBaseRepository $metaBaseRepository): Response
     {

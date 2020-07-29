@@ -1,7 +1,38 @@
-{% extends 'base.html.twig' %}
-{% block title %} Contacto {{ base.siteName }} {% endblock %}
+{% extends 'base_beta.html.twig' %}
+{% block title %} Contacto  {% endblock %}
+{% block sslocal %}
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
+    <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+    <style>
+        img.resize {
+            width: 10%; /* you can use % */
+            height: auto;
+        }
+
+        .btn-xl {
+            padding: 1.25rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none currentcolor;
+            border-radius: 10rem!important;
+        }
+        .jumbotron{
+            background-color: #e9ecef !important;
+            border-radius: .3rem !important;
+        }
+        body{
+            background-color: transparent !important;
+        }
+    </style>
+{% endblock %}
+{% block header %}
+    {% include 'inicio/_nav.html.twig' %}
 {% endblock %}
 {% block body %}
 <section class="p5-5 mt-1 " id="inicio">
@@ -10,18 +41,21 @@
             <div class="col-sm-12 text-center mx-auto mt-1">
 
                 <header class="jumbotron my-2">
+                    <a class="btn btn-blue btn-xl js-scroll-trigger mx-auto" href="https://forms.gle/yMmDuFqn6mXkJ8Sb6" target="_blank">
+                        Completar Tarjeta de Conexión
+                    </a>
 
                     <h1 class="text-uppercase text-black-50 font-weight-bold">
                         Bienvenido a la Alameda<br/>
                         ¡Nos encataría conocerte!
                     </h1>
                     <span class="divider-new my-1">
-                        <img src="images/institucional/iglesiaAlamedaInstagram.jpg"
+                        <img src="{{ asset('images/iglesiaAlamedaInstagram.jpg') }}"
                              class="resize img-fluid rounded-circle"></span>
 
 
 
-                    <h5 class="text-black-50 font-weight-light my-1 p-1">
+                    <h5 class="text-black-50 font-weight-normal my-1 p-1">
                         Creemos que Dios tiene un plan maravilloso para tu vida.<br/>
                         Nuestro profundo deseo es ayudarte a
                         comenzar una relación con Dios<br/>
@@ -34,9 +68,7 @@
                     </h5>
 
 
-                    <a class="btn btn-blue btn-xl js-scroll-trigger mx-auto" href="https://forms.gle/yMmDuFqn6mXkJ8Sb6" target="_blank">
-                        Completar Tarjeta de Conexión
-                    </a>
+
 
 
 

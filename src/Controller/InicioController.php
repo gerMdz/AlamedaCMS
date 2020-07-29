@@ -95,7 +95,7 @@ class InicioController extends AbstractController
      */
     public function gpc()
     {
-        return $this->render('grupospequeños.html.twig', []);
+        return $this->render('inicio/grupospequeños.html.twig', []);
     }
 
     /**

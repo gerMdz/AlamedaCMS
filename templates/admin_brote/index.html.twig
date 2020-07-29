@@ -1,12 +1,22 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Brotes {{ base.siteName }}{% endblock %}
 
-{% block contenido_body %}
-    <h5>Listado de brotes de páginas principales</h5>
+{% block nav %}
+    {{  include('admin/_nav.html.twig',  {'marca_label': 'Brotes'}) }}
+{% endblock %}
 
-    <table class="table">
-        <thead>
+{% block content %}
+<div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Brotes</h4>
+                <p class="card-category"> Listado de los brotes</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
             <tr>
                 <th>Id</th>
                 <th>Titulo</th>
@@ -46,6 +56,19 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    </div>
+    <div class="card-footer">
 
     <a href="{{ path('admin_brote_new') }}">Crear brote</a>
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jslocal %}
+    {{ parent() }}
+    <script>
+        $('#brote').addClass('active');
+    </script>
 {% endblock %}

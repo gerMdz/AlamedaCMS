@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Brote;
+use App\Entity\User;
+use App\Form\DataTransformer\UserSelectTextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -24,7 +27,16 @@ class BroteType extends AbstractType
             ->add('activa')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('autor')
+            ->add('autor', UserSelectTextType::class)
+
+//            ->add('autor', EntityType::class, [
+//                'class'=>User::class,
+//                'choice_label' => function(User $user) {
+//                    return sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail());
+//                },
+//                'placeholder'=> 'Seleccione Autor',
+//                'invalid_message' => 'Por favor ingrese un autor'
+//            ])
             ->add('entrada')
             ->add('principal')
             ->add('imageFile', FileType::class, [

@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
-{% block title %} {{ principal.titulo | upper}} {{ base.siteName }} {% endblock %}
+{% extends 'base_beta.html.twig' %}
+{% block title %} {{ principal.titulo | upper}}  {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
-{% block body %}
+{% block header %}
+    <header>
+    {% include 'inicio/_nav.html.twig' %}
     <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark"
-             style="background-image: url(series/familia-2020/FAMILIA-2020-TAPA-002.jpg); background-repeat: repeat-y ;">
+             style="background-image: url({{ principal.imagePath|imagine_filter('squared_normal')}}); background-repeat: repeat-y ;">
         <!-- Promo Content -->
         <div class="container u-overlay__inner u-ver-center u-content-space">
             <div class="row justify-content-center">
@@ -24,6 +26,11 @@
         <!-- End Promo Content -->
     </section>
     </header>
+
+{% endblock %}
+{% block body %}
+
+
     <main role="main" class="bg-white">
         <section class="a-content-space-medium">
             <div class="container">
@@ -167,4 +174,7 @@
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
+{% endblock %}
+{% block jslocal %}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}

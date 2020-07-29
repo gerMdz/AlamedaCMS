@@ -48,24 +48,20 @@ yarn-error.log
 /public/media/cache
 /public/pre/uploads/entrada_reference/
 /migrations/Version20200617115938.php
+
+/public/vendors/tilt/
 /public/css/stream-ui-kit/assets/vendors/
-/public/css/stream-ui-kit/assets/js/vendors/
-/public/css/stream-ui-kit/assets/img/
-/public/css/stream-ui-kit/assets/img-temp/
-/public/css/stream-ui-kit/assets/include/
-/public/css/stream-ui-kit/starter-template.html
 /public/fonts/awasome/
 /public/fonts/druk/
 /public/fonts/univers/
-/public/fonts/big_noodle_titling.ttf
-/public/fonts/Black Diamond.otf
-/public/fonts/GreatLakesNF.ttf
-/public/fonts/Hoverage.otf
-/public/fonts/Joyful Story.otf
-/public/fonts/Matahati Regular.otf
-/public/fonts/onlinefontconverter.com.zip
-/public/fonts/Tuesnight.otf
+/public/css/stream-ui-kit/assets/img/
+/public/css/stream-ui-kit/assets/img-temp/
+/public/css/stream-ui-kit/assets/include/
 /public/fonts/UniversLTStd-Obl.otf
+/public/fonts/Joyful Story.otf
+/public/fonts/Tuesnight.otf
+/public/fonts/onlinefontconverter.com.zip
+/public/fonts/Hoverage.otf
 /public/fonts/WarnockPro-ItSubh.otf
 /public/images/imagen-auditorio.jpg
 /public/images/imagen-auditorio-noche.jpg
@@ -73,11 +69,20 @@ yarn-error.log
 /public/images/a2-fdoBlanco-ltrNaranja.jpg
 /public/images/imgMenu.png
 /public/images/qr-online.png
+/public/fonts/big_noodle_titling.ttf
+/public/fonts/GreatLakesNF.ttf
+/public/fonts/Black Diamond.otf
+/public/fonts/Matahati Regular.otf
+/public/css/stream-ui-kit/assets/js/vendors/
+/public/css/stream-ui-kit/starter-template.html
 /public/images/a2-fdoNegro-ltrBlanca.jpg
 /public/images/iglesiaAlamedaInstagram.jpg
 /public/images/logo-oracion.png
 /public/material-dashboard/examples/
+/public/material-dashboard/assets/demo/
 /public/material-dashboard/template.html
+/public/images/sidebar-1.jpg
+
 /public/material-dashboard/assets/demo/demo.css
 /public/material-dashboard/assets/demo/demo.js
-/public/images/sidebar-1.jpg
+

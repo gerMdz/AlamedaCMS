@@ -255,3 +255,7 @@ html {height:100%}
     margin-top: auto;
     clear: both;
 }
+
+.bg-anuncios{
+    background-color: #41473b !important;
+}
