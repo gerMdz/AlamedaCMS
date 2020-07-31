@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,22 +20,49 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param $email
+     * @param $role
+     * @return User[] Returns an array of User objects
+     * @throws NonUniqueResultException
+     */
+
+    public function findByRoleAndEmail($email, $role)
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('u.email = :email')
+            ->setParameter('email', $email)
+            ->andWhere('u.roles LIKE :roles')
+            ->setParameter('roles', '%'.$role.'%')
             ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
+
+    public function findAllEmailsRoleAlfa(string $role =  null, string $query, int $limit = 5)
+    {
+        $qb = $this->createQueryBuilder('u');
+
+
+        if($role){
+            $qb->andWhere('u.roles LIKE :roles')
+                ->setParameter('roles', '%'.$role.'%');
+        }
+//
+            $qb->andWhere('u.email LIKE :email')
+                ->setParameter('email', '%'.$query.'%');
+//            dd($qb);
+//
+//            $qb->orderBy('u.email', 'ASC')
+//
+//            ;
+        return $qb
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?User

@@ -2,6 +2,11 @@
 
 {% block title %}{{ brote.titulo }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/algolia.css') }}">
+{% endblock %}
+
 {% block contenido_body %}
     <h5>Edición de "{{ brote.titulo }}" </h5>
     <div class="form-container">
@@ -15,6 +20,8 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+    <script src="{{ asset('js/algolia-autocomplete.js') }}"></script>
     <script>
         $('.custom-file-input').on('change', function (event) {
             var inputFile = event.currentTarget;

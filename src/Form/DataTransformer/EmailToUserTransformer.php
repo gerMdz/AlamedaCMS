@@ -15,14 +15,17 @@ class EmailToUserTransformer implements DataTransformerInterface
 
 
     protected $userRepository;
+    private $finderCallback;
 
     /**
      * EmailToUserTransformer constructor.
      * @param UserRepository $userRepository
+     * @param callable $finderCallback
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, callable $finderCallback)
     {
         $this->userRepository = $userRepository;
+        $this->finderCallback = $finderCallback;
     }
 
     /**
@@ -48,8 +51,13 @@ class EmailToUserTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        $user = $this->userRepository->findOneBy(['email' => $value]);
+        if (null === $value) {
+            return '';
+        }
 
+
+        $callback = $this->finderCallback;
+        $user = $callback($this->userRepository, $value);
         if (!$user) {
             throw new TransformationFailedException(sprintf('No se encontró ningún usuario con el correo electrónico "%s"', $value));
         }

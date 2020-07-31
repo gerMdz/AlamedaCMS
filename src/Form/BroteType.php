@@ -3,20 +3,32 @@
 namespace App\Form;
 
 use App\Entity\Brote;
-use App\Entity\User;
+
 use App\Form\DataTransformer\UserSelectTextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraints\Image;
 
 class BroteType extends AbstractType
 {
+    protected $role = 'ROLE_ESCRITOR';
+
+    protected $router;
+
+    public function __construct(RouterInterface $router)
+    {
+
+        $this->router = $router;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('titulo')
             ->add('contenido')
@@ -27,7 +39,16 @@ class BroteType extends AbstractType
             ->add('activa')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('autor', UserSelectTextType::class)
+            ->add('autor', UserSelectTextType::class, [
+                'finder_callback'=>function(UserRepository $userRepository, string $email) {
+                    return $userRepository->findByRoleAndEmail($email, $this->role);
+                },
+                'attr'=>[
+                    'class'=>'js-user-autocomplete',
+                    'data-role'=>'ROLE_ESCRITOR',
+                    'data-autocomplete-url'=>$this->router->generate('admin_utility_user')
+                ]
+            ])
 
 //            ->add('autor', EntityType::class, [
 //                'class'=>User::class,
