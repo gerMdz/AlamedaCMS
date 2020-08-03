@@ -7,31 +7,31 @@ use App\Entity\Brote;
 use App\Form\DataTransformer\UserSelectTextType;
 
 use App\Repository\UserRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Routing\RouterInterface;
+
 use Symfony\Component\Validator\Constraints\Image;
 
 class BroteType extends AbstractType
 {
     protected $role = 'ROLE_ESCRITOR';
 
-    protected $router;
 
-    public function __construct(RouterInterface $router)
-    {
-
-        $this->router = $router;
-    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $builder
             ->add('titulo')
-            ->add('contenido')
+            ->add('contenido', CKEditorType::class,[
+                'config' => [
+                    'uiColor' => '#ffffff',
+            ]
+            ])
             ->add('linkRoute')
             ->add('imageFilename')
             ->add('likes')
@@ -40,13 +40,13 @@ class BroteType extends AbstractType
             ->add('createdAt')
             ->add('updatedAt')
             ->add('autor', UserSelectTextType::class, [
-                'finder_callback'=>function(UserRepository $userRepository, string $email) {
+                'finder_callback' => function (UserRepository $userRepository, string $email) {
                     return $userRepository->findByRoleAndEmail($email, $this->role);
                 },
-                'attr'=>[
-                    'class'=>'js-user-autocomplete',
-                    'data-role'=>'ROLE_ESCRITOR',
-                    'data-autocomplete-url'=>$this->router->generate('admin_utility_user')
+                'attr' => [
+//                    'class'=>'js-user-autocomplete',
+                    'data-role' => 'ROLE_ESCRITOR',
+//                    'data-autocomplete-url'=>$this->router->generate('admin_utility_user')
                 ]
             ])
 

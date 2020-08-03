@@ -1,11 +1,8 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'admin_brote/base_brote.twig' %}
 
 {% block title %}{{ brote.titulo }}{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/algolia.css') }}">
-{% endblock %}
+
 
 {% block contenido_body %}
     <h5>Edición de "{{ brote.titulo }}" </h5>
@@ -18,16 +15,4 @@
     <a class="btn btn-link" href="{{ path('admin_brote_list') }}"><i class="fas fa-backspace"></i> Volver al listado de Brotes</a>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
-    <script src="{{ asset('js/algolia-autocomplete.js') }}"></script>
-    <script>
-        $('.custom-file-input').on('change', function (event) {
-            var inputFile = event.currentTarget;
-            $(inputFile).parent()
-                .find('.custom-file-label')
-                .html(inputFile.files[0].name);
-        });
-    </script>
-{% endblock %}
+

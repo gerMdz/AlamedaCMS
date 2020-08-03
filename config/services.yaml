@@ -43,3 +43,7 @@ services:
 
 
     Symfony\Component\Asset\Context\RequestStackContext: '@assets.context'
+    app.form.type_extension.textarea_size_extension:
+        class: App\Form\TypeExtension\TextareaSizeExtension
+        tags:
+            - { name: form.type_extension }
