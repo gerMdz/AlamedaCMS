@@ -76,11 +76,15 @@ class AdminEntradaController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param Entrada $entrada
+     * @param UploaderHelper $uploaderHelper
+     * @param ObtenerDatosHelper $datosHelper
      * @return RedirectResponse
+     * @throws Exception
      * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
      *
-     * @throws Exception
      */
     public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper, ObtenerDatosHelper $datosHelper): Response
     {

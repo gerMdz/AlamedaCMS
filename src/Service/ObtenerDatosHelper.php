@@ -10,6 +10,7 @@ class ObtenerDatosHelper
 
     /**
      * ObtenerDatosHelper constructor.
+     * @param RequestStack $requestStack
      */
     public function __construct(RequestStack $requestStack)
     {
