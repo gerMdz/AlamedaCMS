@@ -1,0 +1,11 @@
+{{ form_start(sectionForm) }}
+
+{#    {{ form_widget(sectionForm) }}#}
+    {{ form_row(sectionForm.name) }}
+    {{ form_row(sectionForm.typeOrigin) }}
+    {{ form_row(sectionForm.typeSecondary) }}
+    {{ form_widget(sectionForm._token) }}
+
+<button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+{{ form_end(sectionForm, {'render_rest': true}) }}
+{#{{ form_end(sectionForm) }}#}
