@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -53,6 +55,37 @@ class Section
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $disponibleAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $typeOrigin;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $typeSecondary;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=IndexAlameda::class, mappedBy="section")
+     */
+    private $indexAlamedas;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="section")
+     */
+    private $entradas;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function __construct()
+    {
+        $this->indexAlamedas = new ArrayCollection();
+        $this->entradas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +172,86 @@ class Section
     public function setDisponibleAt(?\DateTimeInterface $disponibleAt): self
     {
         $this->disponibleAt = $disponibleAt;
+
+        return $this;
+    }
+
+    public function getTypeOrigin(): ?string
+    {
+        return $this->typeOrigin;
+    }
+
+    public function setTypeOrigin(?string $typeOrigin): self
+    {
+        $this->typeOrigin = $typeOrigin;
+
+        return $this;
+    }
+
+    public function getTypeSecondary(): ?string
+    {
+        return $this->typeSecondary;
+    }
+
+    public function setTypeSecondary(?string $typeSecondary): self
+    {
+        $this->typeSecondary = $typeSecondary;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|IndexAlameda[]
+     */
+    public function getIndexAlamedas(): Collection
+    {
+        return $this->indexAlamedas;
+    }
+
+    public function addIndexAlameda(IndexAlameda $indexAlameda): self
+    {
+        if (!$this->indexAlamedas->contains($indexAlameda)) {
+            $this->indexAlamedas[] = $indexAlameda;
+            $indexAlameda->addSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIndexAlameda(IndexAlameda $indexAlameda): self
+    {
+        if ($this->indexAlamedas->contains($indexAlameda)) {
+            $this->indexAlamedas->removeElement($indexAlameda);
+            $indexAlameda->removeSection($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entrada[]
+     */
+    public function getEntradas(): Collection
+    {
+        return $this->entradas;
+    }
+
+    public function addEntrada(Entrada $entrada): self
+    {
+        if (!$this->entradas->contains($entrada)) {
+            $this->entradas[] = $entrada;
+            $entrada->addSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrada(Entrada $entrada): self
+    {
+        if ($this->entradas->contains($entrada)) {
+            $this->entradas->removeElement($entrada);
+            $entrada->removeSection($this);
+        }
 
         return $this;
     }

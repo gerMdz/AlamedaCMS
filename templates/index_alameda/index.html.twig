@@ -34,9 +34,9 @@
                 <td>{{ index_alameda.lemaSinEspacio }}</td>
                 <td>{{ index_alameda.horario1 }}</td>
                 <td>{{ index_alameda.horario2 }}</td>
-                <td>{{ index_alameda.textoVersiculo }}</td>
+                <td>{{ index_alameda.textoVersiculo | u.truncate(10, '...') }}</td>
                 <td>{{ index_alameda.versiculo }}</td>
-                <td>{{ index_alameda.metaDescripcion }}</td>
+                <td>{{ index_alameda.metaDescripcion | u.truncate(10, '...') }}</td>
                 <td>{{ index_alameda.metaAutor }}</td>
                 <td>{{ index_alameda.metaTitle }}</td>
                 <td>{{ index_alameda.metaType }}</td>
@@ -47,6 +47,19 @@
                     <a href="{{ path('index_alameda_edit', {'id': index_alameda.id}) }}">edit</a>
                 </td>
             </tr>
+            {% if index_alameda.section %}
+                {% for section in index_alameda.section %}
+            <tr>
+                <td>
+
+                        
+                        {{ section.name }}
+
+                </td>
+
+            </tr>
+                {% endfor %}
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="15">no records found</td>

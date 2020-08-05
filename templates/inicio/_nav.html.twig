@@ -1,40 +1,48 @@
 <style>
-    .bg-verde {
-        background-color: rgb(168, 228, 112)
-    }
+    /*.bg-verde {*/
+    /*    background-color: rgb(168, 228, 112)*/
+    /*}*/
     .dropdown-menu{
         margin-left: -100px !important;
     }
-    .fa, .fab, .fal, .far, .fa{
+    /*.fa, .fab, .fal, .far, .fa{*/
 
-        line-height: 1.5 !important;
-    }
+    /*    line-height: 1.5 !important;*/
+    /*}*/
     .navbar-toggler-icon{
         color: #6cbb23 !important;
-        width: 1.1em !important;
-        height: 1.5em !important;
+        /*width: 1.1em !important;*/
+        /*height: 1.5em !important;*/
     }
 
 
 </style>
-{#<nav class="js-navbar-scroll navbar fixed-top navbar-expand-lg navbar-dark bg-dark mx-1">#}
-<nav class="js-navbar-scroll navbar navbar-dark bg-dark fixed-top navbar-expand-lg mx-1" id="sectionsNav">
-    <div class="container-fluid">
 
+
+
+<!--<nav class="navbar navbar-collapse navbar-expand-lg bg-white fixed-top mx-1">-->
+<!--    <div class="container-fluid">-->
+<nav class="navbar navbar-expand-lg bg-white fixed-top mx-1 mb-sm-2 RobotoMedium">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="{{ path('index') }}">
+                <img class="rounded-circle" src="{{ asset('build/images/logo_n1.png') }}" style="width: 30px;" alt="{{ base.siteName }}">
+                <small>Iglesia de la Alameda</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <!--        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
         <!-- Brand -->
-        <a class="navbar-brand" href="{{ path('index') }}">
-            <img class="rounded-circle" src="{{ asset('build/images/logo_n1.png') }}" style="width: 30px;" alt="Logo Iglesia Alameda">
-            <small>Iglesia de la Alameda</small>
-        </a>
+
 
         <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
 
-            <i class="navbar-toggler-icon fas fa-bars" style="line-height: 1.5em"></i>
-
-        </button>
 
         <!-- Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,62 +53,69 @@
 
                 <li class="nav-item ml-auto mb-2 mb-lg-0">
                     <a class="nav-link" href="https://online.iglesiaalameda.com">
-                        <small>
-                            <i class="fas fa-globe"></i> En vivo!
-                        </small>
+
+                        <!--                            <i class="fas fa-globe"></i>-->
+                        En vivo!
+
                     </a>
                 </li>
                 <li class="nav-item ml-auto mb-2 mb-lg-0">
                     <a class="nav-link" href="{{ path('gpc') }}">
-                        <small>
-                            <img class="img-fluid" src="{{ asset('build/images/gpc-sin-texto.png') }}" width="16" height="16">
-                            Grupos Pequeños
-                        </small>
+
+                        <!--                            <img class="img-fluid" src="/images/gpc-sin-texto.png" width="16" height="16">-->
+                        Grupos Pequeños
+
                     </a>
                 </li>
                 <li class="nav-item ml-auto mb-2 mb-lg-0">
                     <a class="nav-link" href="{{ path('ofrenda') }}">
-                        <small>
-                            <i class="fas fa-hand-holding"></i> Dar
-                        </small>
+
+                        <!--                            <i class="fas fa-hand-holding"></i>-->
+                        Dar
+
                     </a>
                 </li>
                 <li class="nav-item ml-auto mb-2 mb-lg-0">
                     <a class="nav-link" href="{{ path('notas') }}">
-                        <small>
-                            <i class="fas fa-pencil-alt"></i> Notas
-                        </small>
+
+                        <!--                            <i class="fas fa-pencil-alt"></i> -->
+                        Notas
+
                     </a>
                 </li>
                 <li class="nav-item ml-auto mb-2 mb-lg-0">
                     <a class="nav-link" href="{{ path('oracion') }}">
-                        <small>
-                            <i class="fas fa-praying-hands"></i> Oración
-                        </small>
+
+                        <!--                            <i class="fas fa-praying-hands"></i> -->
+                        Oración
+
                     </a>
                 </li>
                 <li class="nav-item ml-auto mb-2 mb-lg-0">
                     <a class="nav-link" href="{{ path('contacto') }}">
-                        <small>
-                            <i class="fas fa-file-contract"></i> Tarjeta de Conexión
-                        </small>
+
+                        <!--                            <i class="fas fa-file-contract"></i> -->
+                        Tarjeta de Conexión
+
                     </a>
                 </li>
                 <li class="nav-item dropdown ml-auto mb-2 mb-lg-0">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-angle-down"></i> Más
                     </a>
                     <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
                         <a class="dropdown-item " href="{{ path('avanza') }}">
-                            <small>
-                                <i class="fas fa-road"></i> Avanza
-                            </small>
+
+                            <!--                                <i class="fas fa-road"></i> -->
+                            Avanza
+
                         </a>
                         <a class="dropdown-item" href="http://sitiosimple.com/libreria-alameda/">
-                            <small>
-                                <i class="fas fa-book-open"></i> Librería
-                            </small>
+
+                            <!--                                <i class="fas fa-book-open"></i> -->
+                            Librería
+
                         </a>
                     </div>
                 </li>
@@ -132,8 +147,6 @@
                     </a>
                 </li>
             </ul>
-
-
             <ul class="navbar-nav ml-auto">
                 {% if is_granted('ROLE_USER') %}
                     <li class="nav-item dropdown" style="margin-right: 75px;">
@@ -144,7 +157,7 @@
                             <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
-{#                                <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>#}
+                                {#                                <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>#}
                                 <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
                             {% endif %}
                             <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
@@ -160,6 +173,8 @@
                 {% endif %}
 
             </ul>
+
         </div>
+
     </div>
 </nav>

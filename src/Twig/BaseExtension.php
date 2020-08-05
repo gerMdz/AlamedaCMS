@@ -62,10 +62,9 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
     public function base()
     {
-        $base = $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(['base' => 'index']);
-//        $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
+        //        $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
 
-        return $base;
+        return $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(['base' => 'index']);
     }
 
     public function getUploadedAssetPath(string $path): string

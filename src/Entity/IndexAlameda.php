@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -85,6 +87,16 @@ class IndexAlameda
      * @ORM\Column(type="string", length=255)
      */
     private $base;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
+     */
+    private $section;
+
+    public function __construct()
+    {
+        $this->section = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -255,6 +267,32 @@ class IndexAlameda
     public function setBase(string $base): self
     {
         $this->base = $base;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSection(): Collection
+    {
+        return $this->section;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->section->contains($section)) {
+            $this->section[] = $section;
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->section->contains($section)) {
+            $this->section->removeElement($section);
+        }
 
         return $this;
     }

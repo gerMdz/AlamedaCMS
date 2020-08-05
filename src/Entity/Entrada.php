@@ -86,6 +86,31 @@ class Entrada
      */
     private $brotes;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $eventoAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkPosting;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $typeOrigin;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $typeCarry;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="entradas")
+     */
+    private $section;
+
 
 
     public function __construct()
@@ -94,6 +119,7 @@ class Entrada
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
         $this->brotes = new ArrayCollection();
+        $this->section = new ArrayCollection();
     }
 
     public function __toString()
@@ -301,6 +327,80 @@ class Entrada
         if ($this->brotes->contains($brote)) {
             $this->brotes->removeElement($brote);
             $brote->removeEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function getEventoAt(): ?\DateTimeInterface
+    {
+        return $this->eventoAt;
+    }
+
+    public function setEventoAt(?\DateTimeInterface $eventoAt): self
+    {
+        $this->eventoAt = $eventoAt;
+
+        return $this;
+    }
+
+    public function getLinkPosting(): ?string
+    {
+        return $this->linkPosting;
+    }
+
+    public function setLinkPosting(?string $linkPosting): self
+    {
+        $this->linkPosting = $linkPosting;
+
+        return $this;
+    }
+
+    public function getTypeOrigin(): ?string
+    {
+        return $this->typeOrigin;
+    }
+
+    public function setTypeOrigin(?string $typeOrigin): self
+    {
+        $this->typeOrigin = $typeOrigin;
+
+        return $this;
+    }
+
+    public function getTypeCarry(): ?string
+    {
+        return $this->typeCarry;
+    }
+
+    public function setTypeCarry(?string $typeCarry): self
+    {
+        $this->typeCarry = $typeCarry;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSection(): Collection
+    {
+        return $this->section;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->section->contains($section)) {
+            $this->section[] = $section;
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->section->contains($section)) {
+            $this->section->removeElement($section);
         }
 
         return $this;

@@ -74,6 +74,9 @@ class EntradaType extends AbstractType
             ])
             ->add('startAt')
             ->add('stopAt')
+            ->add('eventoAt')
+            ->add('linkPosting')
+
         ;
     }
 

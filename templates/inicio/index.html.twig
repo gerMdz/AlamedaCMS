@@ -1,1 +1,169 @@
-{% extends 'base_beta.html.twig' %}
+{% extends 'base_material_kit.twig' %}
+
+{% block sections %}
+    <section class="bg-faded page-section ">
+        <div class="container">
+            <!-- Invitación: Header -->
+            <header class="text-center w-md-50 mx-auto  mt-5 mb-8 ">
+
+            </header>
+
+            <!-- Invitación: Header -->
+            <header class="text-center w-md-50 mx-auto  mt-2 mb-8">
+                <h2 class="h2 bg-alameda">
+                    <a href="https://online.iglesiaalameda.com" class="text-white" target="_blank">
+                        Alameda online
+                    </a>
+
+                </h2>
+                <small>
+                    <b>Domingos 11 Hs.
+                        <!--                    <br class="d-block d-md-none"/>-->
+
+                        y 20 Hs.</b>
+                </small>
+
+
+            </header>
+            <hr>
+            <!-- End Invitación: Header -->
+        </div>
+
+    </section>
+    <section class="bg-white ">
+        <div class="container-fluid mt-lg-1 mt-sm-5">
+            <div class="row">
+                <div class="col-md-10 mx-auto ">
+                    <div class="row ">
+                        <!--                    <div class="col-sm-1"></div>-->
+                        <div class="col-md-7 pr-0 ">
+                            <div class="col-sm-12 mr-0 left-n5" >
+                                <div class="card shadow-none">
+                                    <div class="card-img">
+                                        <img src="/series/escape-a-la-libertad/entrenamiento-tapa.jpg" alt="Iglesia de La Alameda"
+                                             class="card-img"
+                                        >
+                                    </div>
+                                    <!--                                <div class="card-img-overlay">-->
+                                    <div class="card-footer bg-white justify-content-between ">
+                                        <!--                                     style="top: 80%; position: relative"-->
+
+                                        <a href="javascript:" class="card-link">
+                                            <small><?php echo $notas->getFecha(); ?></small><br/>
+                                            <b><?php echo $notas->getTitle(); ?></b><br/>
+                                            <small><?php echo $notas->getAutor(); ?></small>
+
+                                        </a>
+                                        <a href="<?php echo $notas->getNota() ?>" class="btn btn-round  bg-white mr-2 "
+                                           style="z-index: 100">
+                                            <b class="text-blue">Ver la celebración</b>
+                                        </a>
+                                        <!--                                    </div>-->
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+
+                            <div class="row ">
+
+                                <div class="col-sm-12 container-img ">
+                                    <div class="card mb-0 ">
+                                        <img src="/images/institucional/contacto2.jpg" class="card-img "
+                                             alt="Iglesia de la Alameda"/>
+
+
+                                        <a class="btn btn-round bg-white btn-centered" href="/contacto.php">
+                                            <h6>
+                                                <b class="text-blue">
+                                                    ¿Nuevo en La Alameda?
+                                                    <!--                                            <br class="d-block d-md-none"/>-->
+                                                    <!--                                            Queremos conocerte-->
+                                                </b>
+                                            </h6>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 container-img bottom-n10" >
+                                    <div class="card">
+
+                                        <img src="/images/institucional/gp.jpg" class="card-img "
+                                             alt="Iglesia de la Alameda"/>
+
+
+                                        <a class="btn btn-round bg-white btn-centered"
+                                           href="/oportunidades/grupos-pequeños.php">
+                                            <h6>
+                                                <b class="text-blue">
+                                                    Se parte de un<br class="d-block d-md-none"/>
+                                                    Grupo Pequeño
+                                                </b>
+                                            </h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="a-content-space-medium bg-fam text-center">
+        <div class="container">
+            <div class="row">
+                <!--                charla 1-->
+                <div class="col-md-3 mb-2 mx-auto   ">
+                    <!--                                        <div class="card h-100"> -->
+
+                    <!--                                        <div class="card h-100"> -->
+                    <div class="card shadow-none">
+                        <div class="card-img">
+                            <img src="/images/institucional/a2.jpg" alt="Iglesia de La Alameda"
+                                 class="card-img"
+                            >
+                        </div>
+                        <!--                                <div class="card-img-overlay">-->
+                        <div class="card-footer bg-white justify-content-between ">
+                            <!--                                     style="top: 80%; position: relative"-->
+
+                            <a href="/alameda/a2.php" class="card-link">
+
+                                <b>Adolescentes Alameda</b><br/>
+                                <small>
+                                    <a href="/alameda/a2.php" class="btn btn-round  bg-white mr-2 ">
+                                        <i class="text-blue">Conectate</i>
+                                    </a>
+                                </small>
+
+
+                            </a>
+
+                            <!--                                    </div>-->
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <!--                fin charla 3-->
+
+                <!--                charla 4-->
+
+                <!--                fin charla 4-->
+
+                <!--                charla 5 -->
+
+                <!--                fin charla 5 -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

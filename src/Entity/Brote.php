@@ -85,6 +85,16 @@ class Brote
      */
     private $activa;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $eventoAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkPosting;
+
     public function __construct()
     {
         $this->comenttarios = new ArrayCollection();
@@ -264,5 +274,29 @@ class Brote
     public function getImagePath()
     {
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
+    }
+
+    public function getEventoAt(): ?\DateTimeInterface
+    {
+        return $this->eventoAt;
+    }
+
+    public function setEventoAt(?\DateTimeInterface $eventoAt): self
+    {
+        $this->eventoAt = $eventoAt;
+
+        return $this;
+    }
+
+    public function getLinkPosting(): ?string
+    {
+        return $this->linkPosting;
+    }
+
+    public function setLinkPosting(?string $linkPosting): self
+    {
+        $this->linkPosting = $linkPosting;
+
+        return $this;
     }
 }
