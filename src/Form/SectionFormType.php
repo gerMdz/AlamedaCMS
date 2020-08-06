@@ -1,17 +1,11 @@
 <?php
 
-
 namespace App\Form;
 
-
 use App\Entity\Brote;
-use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Entity\Section;
-use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -80,6 +74,21 @@ class SectionFormType extends AbstractType
             ])
 
             ;
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event){
+                /**@var Section|null $data **/
+                $data = $event->getData();
+                if(!$data){
+                    return;
+                }
+                $this->setupTypeSecondaryNameField(
+                    $event->getForm(),
+                    $data->getTypeOrigin()
+                );
+            }
+        );
         $builder->get('typeOrigin')->addEventListener(
             FormEvents::POST_SUBMIT,
             function(FormEvent $event) {
@@ -103,27 +112,36 @@ class SectionFormType extends AbstractType
         ]);
     }
 
-    private function getOriginNameChoices(string $origin){
+    private function getOriginNameChoices(string $origin = null){
 
         switch ($origin){
 
             case 'brote':
-                $data = $this->registry->getRepository(Brote::class)->findAll();
+                $data = $this->registry->getRepository(Brote::class)->getBrotesSelect();
+                $data = $this->combineArray($data);
+
                 break;
             case 'principal':
-                $data = $this->registry->getRepository(Principal::class)->findAll();
+                $data = $this->registry->getRepository(Principal::class)->getPrincipalSelect();
+                $data = $this->combineArray($data);
                 break;
             case 'index':
             default:
                 $data = null;
         }
 
-        dd($data);
-        return json_encode($data);
+
+
+
+        return $data;
 
 
     }
 
+    /**
+     * @param FormInterface $form
+     * @param string|null $origin
+     */
     private function setupTypeSecondaryNameField(FormInterface $form, ?string $origin)
     {
         if(null === $origin){
@@ -141,6 +159,12 @@ class SectionFormType extends AbstractType
             'choices' => $choices,
             'required' => false,
         ]);
+    }
+
+    private function combineArray($data){
+        $titulos = array_column($data, 'titulo');
+        $liks = array_column($data, 'linkRoute');
+        return array_combine($titulos, $liks);
     }
 
 

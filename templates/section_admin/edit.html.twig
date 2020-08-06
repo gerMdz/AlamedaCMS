@@ -1,0 +1,20 @@
+{% extends 'contenido_base.html.twig' %}
+
+{% block title %}{{ section.name }}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin_section_form.js') }}"></script>
+{% endblock %}
+
+
+{% block contenido_body %}
+    <h5>Edición de "{{ section.name }}" </h5>
+    <div class="form-container">
+        {{ include('section_admin/_form.html.twig',
+            {
+                button_label :'Actualizar'
+            }) }}
+    </div>
+    <a class="btn btn-link" href="{{ path('admin_section_list') }}"><i class="fas fa-backspace"></i> Volver al listado</a>
+{% endblock %}
+

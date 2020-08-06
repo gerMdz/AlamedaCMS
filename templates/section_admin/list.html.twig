@@ -1,35 +1,71 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
+{% block title %}Secciones {{ base.siteName }}{% endblock %}
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
+{% endblock %}
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
 
-{% block contenido_body %}
-    <h4>Todas las secciones <a href="{{ path('admin_section_new') }}" class="btn btn-primary btn-sm pull-right">
-            Crear sección <span class="fa fa-plus-circle"></span>
-        </a>
-    </h4>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Name</th>
-            <th>Clase</th>
-            <th>Descripción</th>
-            <th>Columnas</th>
-            <th>Disponible</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for section in sections %}
-            <tr>
-                <td>{{ section.name }}</td>
-                <td>{{ section.cssClass }}</td>
-                <td>{{ section.description | u.truncate(20, '...')  }}</td>
-                <td>{{ section.columns }}</td>
-                <td>
-                    <span class="fa fa-{{ section.disponible ? 'check text-success' : 'times text-danger' }}"></span>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <h4 class="card-title ">Secciones</h4>
+                    <p class="card-category"> Listado de los secciones </p>
 
+
+
+            </div>
+            <div class="card-body">
+                <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_section_new') }}">
+                    <i class="fas fa-plus-circle"></i> Crear Sección</a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>Name</th>
+                            <th>Clase</th>
+                            <th>Descripción</th>
+                            <th>Columnas</th>
+                            <th>Disponible</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for section in sections %}
+                            <tr>
+                                <td>{{ section.name }}</td>
+                                <td>{{ section.cssClass }}</td>
+                                <td>{{ section.description | u.truncate(20, '...') }}</td>
+                                <td>{{ section.columns }}</td>
+                                <td>
+                                    <span class="fa fa-{{ section.disponible ? 'check text-success' : 'times text-danger' }}"></span>
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_section_edit', {'id': section.id}) }}"><i class="fas fa-pencil-alt"></i> editar</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="11">No se encontraron resultados</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="#"></a>
+                <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_section_new') }}">
+                    <i class="fas fa-plus-circle"></i> Crear Sección</a>
+
+
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
+{% block jslocal %}
+    {{ parent() }}
+    <script>
+        $('#section').addClass('active');
+    </script>
+{% endblock %}

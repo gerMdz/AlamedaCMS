@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Brote;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,4 +49,20 @@ class BroteRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getBrotesSelect()
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('b.titulo, b.linkRoute')
+        ->orderBy('b.titulo', 'ASC')
+        ->getQuery()
+        ->getResult(Query::HYDRATE_ARRAY);
+    }
+
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    {
+        return $qb ?: $this->createQueryBuilder('b');
+    }
+
+
 }

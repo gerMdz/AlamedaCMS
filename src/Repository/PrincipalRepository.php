@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Principal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,4 +49,18 @@ class PrincipalRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getPrincipalSelect()
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('p.titulo, p.linkRoute')
+            ->orderBy('p.titulo', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    {
+        return $qb ?: $this->createQueryBuilder('p');
+    }
 }
