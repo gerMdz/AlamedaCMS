@@ -7,6 +7,7 @@ use App\Form\SectionFormType;
 use App\Repository\SectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\This;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller
  * @Route("/admin/section")
  */
-class SectionController extends AbstractController
+class SectionController extends BaseController
 {
     /**
      * @param SectionRepository $repository
@@ -26,7 +27,7 @@ class SectionController extends AbstractController
      */
     public function list(SectionRepository $repository)
     {
-        return $this->render('section_admin/list.html.twig',[
+        return $this->render('section_admin/list.html.twig', [
             'sections' => $repository->findAll()
         ]);
     }
@@ -36,6 +37,7 @@ class SectionController extends AbstractController
      * @param Request $request
      * @return Response
      * @Route("/new", name="admin_section_new")
+     * @IsGranted("ROLE_EDITOR")
      */
     public function new(EntityManagerInterface $em, Request $request)
     {
@@ -43,7 +45,7 @@ class SectionController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid() ){
+        if ($form->isSubmitted() && $form->isValid()) {
             /** @var Section $section */
             $section = $form->getData();
             $em->persist($section);
@@ -63,6 +65,7 @@ class SectionController extends AbstractController
      * @param Request $request
      * @param Section $section
      * @return Response
+     * @IsGranted("MANAGE", subject="section")
      */
     public function edit(Request $request, Section $section): Response
     {
@@ -70,6 +73,10 @@ class SectionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if (!isset($form['typeSecondary'])) {
+                $section->setTypeSecondary(null);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_list');
@@ -85,17 +92,22 @@ class SectionController extends AbstractController
      * @Route("/typeorigin-select", name="admin_section_typeorigin_select", methods={"GET" })
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_EDITOR")
      */
     public function getTypoSecondarySelect(Request $request)
     {
+        // Asegurando endpoint
+        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser()->getSections()->isEmpty()) {
+            throw $this->createAccessDeniedException();
+        }
         $section = new Section();
         $section->setTypeOrigin($request->query->get('typeOrigin'));
         $form = $this->createForm(SectionFormType::class, $section);
-        if(!$form->has('typeSecondary')){
-            return new Response(null, 204 );
+        if (!$form->has('typeSecondary')) {
+            return new Response(null, 204);
         }
         return $this->render('section_admin/_typeSecondary.html.twig', [
-            'sectionForm'=>$form->createView()
+            'sectionForm' => $form->createView()
         ]);
     }
 }

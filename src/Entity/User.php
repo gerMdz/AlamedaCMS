@@ -98,6 +98,11 @@ class User implements UserInterface
      */
     private $aceptaTerminosAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="autor", fetch="EXTRA_LAZY")
+     */
+    private $sections;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -106,6 +111,7 @@ class User implements UserInterface
         $this->principal = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
         $this->brotes = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 
     public function __toString()
@@ -427,5 +433,36 @@ class User implements UserInterface
     public function aceptaTerminos()
     {
         $this->aceptaTerminosAt = new \DateTime();
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->sections->contains($section)) {
+            $this->sections->removeElement($section);
+            // set the owning side to null (unless already changed)
+            if ($section->getAutor() === $this) {
+                $section->setAutor(null);
+            }
+        }
+
+        return $this;
     }
 }

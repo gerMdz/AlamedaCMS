@@ -76,6 +76,11 @@ class Section
      */
     private $entradas;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sections")
+     */
+    private $autor;
+
     public function __toString()
     {
         return $this->name;
@@ -252,6 +257,18 @@ class Section
             $this->entradas->removeElement($entrada);
             $entrada->removeSection($this);
         }
+
+        return $this;
+    }
+
+    public function getAutor(): ?User
+    {
+        return $this->autor;
+    }
+
+    public function setAutor(?User $autor): self
+    {
+        $this->autor = $autor;
 
         return $this;
     }
