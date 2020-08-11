@@ -1,0 +1,38 @@
+@font-face {
+    font-family: ArialNova;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/ArialNova/ArialNova.ttf") format('truetype');
+}
+@font-face {
+    font-family: 'Proxima Nova';
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/ArialNova/proximanova-regular-webfont.woff2") format('woff2');
+}
+
+.ArialNova{
+    font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif;font-weight:400;} /* 400 is industry standard for normal */
+
+.ArialLight{font-familiy:ArialNova;font-weight:300;} /* 300 is industry standard for normal */
+
+.ArialMedium{
+    font-family: 'ArialNova', "proxima-nova", sans-serif;font-weight:500;} /* 500 is industry standard for normal */
+
+.h1{
+    font-family: ArialNova, "proxima-nova",sans-serif;
+    font-size: 14px;
+}
+.h2,h3{
+    font-family: ArialNova, "proxima-nova",sans-serif;
+    font-size: 12px;
+}
+.h4,h5{
+    font-family: ArialNova, "proxima-nova",sans-serif;
+    font-size: 10px;
+}
+
+body{
+    font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+    font-weight:400;
+} /* 400 is industry standard for normal */

@@ -1,169 +1,287 @@
 {% extends 'base_material_kit.twig' %}
 
 {% block sections %}
-    <section class="bg-faded page-section ">
-        <div class="container">
+    <!-- Horarios - Invitación - Video -->
+    <section class="bg-alameda page-section mt-n1 ">
+        <div class="container-fluid">
             <!-- Invitación: Header -->
-            <header class="text-center w-md-50 mx-auto  mt-5 mb-8 ">
-
-            </header>
+            <!--        <header class="text-center w-md-50 mx-auto  mt-5 mb-8 ">-->
+            <!---->
+            <!--        </header>-->
 
             <!-- Invitación: Header -->
-            <header class="text-center w-md-50 mx-auto  mt-2 mb-8">
-                <h2 class="h2 bg-alameda">
-                    <a href="https://online.iglesiaalameda.com" class="text-white" target="_blank">
+            <header class="text-center w-md-50 mx-auto mt-a35   mb-8 text-black-75">
+                <h2 class="h2  ">
+                    <a href="https://online.iglesiaalameda.com" class="text-black-75 ArialLight" target="_blank">
                         Alameda online
                     </a>
 
                 </h2>
-                <small>
-                    <b>Domingos 11 Hs.
+                <h4 class="">
+                    <b class="text-black-75">Domingos 11 Hs.
                         <!--                    <br class="d-block d-md-none"/>-->
 
                         y 20 Hs.</b>
-                </small>
+                </h4>
 
 
+                <hr>
             </header>
-            <hr>
-            <!-- End Invitación: Header -->
+                <!-- End Invitación: Header -->
         </div>
 
     </section>
+    <!-- Fin Horarios - Invitación - Video -->
+
+    <!-- Secction 2 3 imagenes -->
     <section class="bg-white ">
         <div class="container-fluid mt-lg-1 mt-sm-5">
             <div class="row">
-                <div class="col-md-10 mx-auto ">
-                    <div class="row ">
-                        <!--                    <div class="col-sm-1"></div>-->
-                        <div class="col-md-7 pr-0 ">
-                            <div class="col-sm-12 mr-0 left-n5" >
-                                <div class="card shadow-none">
-                                    <div class="card-img">
-                                        <img src="/series/escape-a-la-libertad/entrenamiento-tapa.jpg" alt="Iglesia de La Alameda"
-                                             class="card-img"
-                                        >
+                <div class="col-sm-12">
+                    <div class="col-md-1 mx-auto "></div>
+                    <div class="col-md-10 mx-auto ">
+                        <div class="row justify-content-center ">
+
+                            <div class="col-md-7 pr-0 ">
+                                <div class="col-sm-12 mr-0 left-n5">
+                                    <div class="card shadow-none">
+                                        <div class="card-img">
+                                            <img src="/series/escape-a-la-libertad/<?php echo $data['image']; ?>"
+                                                 alt="Iglesia de La Alameda"
+                                                 class="card-img"
+                                            >
+                                        </div>
+                                        <!--                                <div class="card-img-overlay">-->
+                                        <div class="card-footer bg-white justify-content-between ">
+                                            <!--                                     style="top: 80%; position: relative"-->
+
+                                            <a class="card-link">
+
+                                                <small><?php echo $data['fecha']; ?></small><br/>
+                                                <span class="text-alameda"><?php echo $data['title']; ?></span><br/>
+                                                <small><?php echo $data['autor']; ?></small>
+
+                                            </a>
+                                            <a href="<?php echo $data['link'] ?>" class="btn-round btn-alameda  mr-2 ">
+                                                <!--                                       style="z-index: 100" >-->
+
+                                                Ver último mensaje
+                                                <!--                                        <b class="text-blue">Ver último mensaje</b>-->
+                                            </a>
+                                            <!--                                    </div>-->
+
+
+                                        </div>
+
+
                                     </div>
-                                    <!--                                <div class="card-img-overlay">-->
-                                    <div class="card-footer bg-white justify-content-between ">
-                                        <!--                                     style="top: 80%; position: relative"-->
-
-                                        <a href="javascript:" class="card-link">
-                                            <small><?php echo $notas->getFecha(); ?></small><br/>
-                                            <b><?php echo $notas->getTitle(); ?></b><br/>
-                                            <small><?php echo $notas->getAutor(); ?></small>
-
-                                        </a>
-                                        <a href="<?php echo $notas->getNota() ?>" class="btn btn-round  bg-white mr-2 "
-                                           style="z-index: 100">
-                                            <b class="text-blue">Ver la celebración</b>
-                                        </a>
-                                        <!--                                    </div>-->
-
-
-                                    </div>
-
-
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 ">
+                            <div class="col-md-4 ">
 
-                            <div class="row ">
+                                <div class="row ">
 
-                                <div class="col-sm-12 container-img ">
-                                    <div class="card mb-0 ">
-                                        <img src="/images/institucional/contacto2.jpg" class="card-img "
-                                             alt="Iglesia de la Alameda"/>
+                                    <div class="col-sm-12 container-img ">
+                                        <div class="card mb-0 contenedor ">
+                                            <img src="/images/institucional/contacto2.jpg" class="card-img "
+                                                 alt="Iglesia de la Alameda"/>
 
 
-                                        <a class="btn btn-round bg-white btn-centered" href="/contacto.php">
-                                            <h6>
-                                                <b class="text-blue">
-                                                    ¿Nuevo en La Alameda?
-                                                    <!--                                            <br class="d-block d-md-none"/>-->
-                                                    <!--                                            Queremos conocerte-->
-                                                </b>
-                                            </h6>
-                                        </a>
+                                            <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
+                                               href="/contacto.php">
+
+
+                                                ¿Nuevo en la Alameda?
+                                                <!--                                            <br class="d-block d-md-none"/>-->
+                                                <!--                                            Queremos conocerte-->
+
+
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-sm-12 container-img bottom-n10" >
-                                    <div class="card">
+                                    <div class="col-sm-12 container-img bottom-n10">
+                                        <div class="card contenedor">
 
-                                        <img src="/images/institucional/gp.jpg" class="card-img "
-                                             alt="Iglesia de la Alameda"/>
+                                            <img src="/images/institucional/gp.jpg" class="card-img "
+                                                 alt="Iglesia de la Alameda"/>
 
 
-                                        <a class="btn btn-round bg-white btn-centered"
-                                           href="/oportunidades/grupos-pequeños.php">
-                                            <h6>
-                                                <b class="text-blue">
-                                                    Se parte de un<br class="d-block d-md-none"/>
-                                                    Grupo Pequeño
-                                                </b>
-                                            </h6>
-                                        </a>
+                                            <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
+                                               href="/oportunidades/grupos-pequeños.php">
+                                                Unite a un Grupo Pequeño
+
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-1 mx-auto "></div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- End Secction 2 3 imagenes -->
+    <!-- Secction 3 cuadrados -->
     <section class="a-content-space-medium bg-fam text-center">
-        <div class="container">
+        <div class="container-fluid mt-lg-1 mt-sm-5">
             <div class="row">
-                <!--                charla 1-->
-                <div class="col-md-3 mb-2 mx-auto   ">
-                    <!--                                        <div class="card h-100"> -->
+                <div class="col-sm-12">
+                    <div class="col-md-1 mx-auto "></div>
+                    <div class="col-md-10 mx-auto ">
+                        <div class="row justify-content-center ">
+                            <div class="col-sm-11">
+                                <div class="row ">
+                                    <!--                marco dar-->
+                                    <div class="col-md-3 mb-2 mx-auto   ">
+                                        <!--                                        <div class="card h-100"> -->
 
-                    <!--                                        <div class="card h-100"> -->
-                    <div class="card shadow-none">
-                        <div class="card-img">
-                            <img src="/images/institucional/a2.jpg" alt="Iglesia de La Alameda"
-                                 class="card-img"
-                            >
+                                        <!--                                        <div class="card h-100"> -->
+                                        <div class="card shadow-none">
+                                            <div class="contenedor">
+                                                <img src="{{ asset('images/dar-online.jpg') }}" alt="Iglesia de La Alameda"
+                                                     class="card-img"
+                                                >
+                                            </div>
+                                            <!--                                <div class="card-img-overlay">-->
+                                            <div class="card-footer bg-white justify-content-between ">
+                                                <!--                                     style="top: 80%; position: relative"-->
+
+                                                <a href="ofrenda.php" class="card-link text-left">
+
+                                                    <span class="text-alameda">Dar</span><br/>
+                                                    <small>porque Dios nos lo dio primero</small>
+
+                                                </a>
+
+                                                <!--                                    </div>-->
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <!--                fin marco dar-->
+
+                                    <!--                marco conexión-->
+                                    <div class="col-md-3 mb-2 mx-auto   ">
+                                        <!--                                        <div class="card h-100"> -->
+
+                                        <!--                                        <div class="card h-100"> -->
+                                        <div class="card shadow-none">
+                                            <div class="contenedor">
+                                                <img src="{{ asset('images/tarjetadecontacto.jpg') }}"
+                                                     alt="Iglesia de La Alameda"
+                                                     class="card-img"
+                                                >
+                                            </div>
+                                            <!--                                <div class="card-img-overlay">-->
+                                            <div class="card-footer bg-white justify-content-between ">
+                                                <!--                                     style="top: 80%; position: relative"-->
+
+                                                <a href="contacto.php" class="card-link text-left">
+
+                                                    <span class="text-alameda">Conexión Alameda</span><br/>
+                                                    <small>Nos encataría conocerte</small>
+
+                                                </a>
+
+                                                <!--                                    </div>-->
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <!--                fin marco conexión-->
+
+                                    <!--                marco oración-->
+                                    <div class="col-md-3 mb-2 mx-auto   ">
+                                        <!--                                        <div class="card h-100"> -->
+
+                                        <!--                                        <div class="card h-100"> -->
+                                        <div class="card shadow-none">
+                                            <div class="contenedor">
+                                                <img src="{{ asset('images/institucional/pedidosoracion.jpg') }}" alt="Iglesia de La Alameda"
+                                                     class="card-img"
+                                                >
+                                            </div>
+                                            <!--                                <div class="card-img-overlay">-->
+                                            <div class="card-footer bg-white justify-content-between ">
+                                                <!--                                     style="top: 80%; position: relative"-->
+
+                                                <a href="contacto.php" class="card-link text-left">
+
+                                                    <span class="text-alameda">Pedidos de Oración</span><br/>
+                                                    <small>Estaremos orando por vos</small>
+
+                                                </a>
+
+                                                <!--                                    </div>-->
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <!--                fin marco oración-->
+
+                                    <!--                marco adolescentes-->
+                                    <div class="col-md-3 mb-2 mx-auto   ">
+                                        <!--                                        <div class="card h-100"> -->
+
+                                        <!--                                        <div class="card h-100"> -->
+                                        <div class="card shadow-none">
+                                            <div class="contenedor">
+                                                <img src="{{ asset('images/institucional/adolescentes.jpg') }}" alt="Iglesia de La Alameda"
+                                                     class="card-img"
+                                                >
+                                            </div>
+                                            <!--                                <div class="card-img-overlay">-->
+                                            <div class="card-footer bg-white justify-content-between ">
+                                                <!--                                     style="top: 80%; position: relative"-->
+
+                                                <a href="/alameda/a2.php" class="card-link text-left">
+                                                    <span class="text-alameda">Adolescentes Alameda</span><br/>
+                                                    <small>Conectate</small>
+
+
+                                                </a>
+
+                                                <!--                                    </div>-->
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <!--                fin marco adolescentes-->
+
+                                    <!--                charla 5 -->
+
+                                    <!--                fin charla 5 -->
+                                </div>
+                            </div>
                         </div>
-                        <!--                                <div class="card-img-overlay">-->
-                        <div class="card-footer bg-white justify-content-between ">
-                            <!--                                     style="top: 80%; position: relative"-->
-
-                            <a href="/alameda/a2.php" class="card-link">
-
-                                <b>Adolescentes Alameda</b><br/>
-                                <small>
-                                    <a href="/alameda/a2.php" class="btn btn-round  bg-white mr-2 ">
-                                        <i class="text-blue">Conectate</i>
-                                    </a>
-                                </small>
-
-
-                            </a>
-
-                            <!--                                    </div>-->
-
-
-                        </div>
-
-
                     </div>
-
-
+                    <div class="col-md-1 mx-auto "></div>
                 </div>
-                <!--                fin charla 3-->
-
-                <!--                charla 4-->
-
-                <!--                fin charla 4-->
-
-                <!--                charla 5 -->
-
-                <!--                fin charla 5 -->
             </div>
         </div>
     </section>
+    <!-- EndSecction 3 cuadrados -->
 {% endblock %}

@@ -1,9 +1,4 @@
-@font-face {
-    font-family: Roboto;
-    font-style: italic;
-    font-weight: normal;
-    src: url("fonts/Roboto/Roboto-Regular.ttf") format('truetype');
-}
+
 
 .Roboto{
     font-family: 'Roboto', sans-serif;font-weight:400;} /* 400 is industry standard for normal */
