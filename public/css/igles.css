@@ -590,13 +590,34 @@ h3.quote:after {
     src: url("fonts/GreatLakesNF.ttf") format('truetype');
 }
 
+@font-face {
+    font-family: diamond;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/Black Diamond.otf") format('truetype');
+}
 
-
-
+@font-face {
+    font-family: joyful;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/Joyful Story.otf") format('truetype');
+}
 .warnock{
     font-family: warnock, Roboto Slab, Times New Roman, serif;
 }
-
+@font-face {
+    font-family: tahu;
+    font-style: italic;
+    font-weight: normal;
+    src: url("../font/Tahu.ttf") format('truetype');
+}
+@font-face {
+    font-family: Hoverage;
+    font-style: italic;
+    font-weight: normal;
+    src: url("fonts/Hoverage.otf") format('truetype');
+}
 .hoverage{
     font-family: Hoverage,sans-serif ;
 }
@@ -1150,4 +1171,18 @@ color: rgb(41, 147, 229)
     border-bottom-color: #2993e5 !important;
     border-bottom-style: solid;
     border-bottom-width: 1px;
+}
+
+.blockquote-alameda-primary{
+    padding: 0 1rem;
+    border-left: .25rem solid #2993e5;
+}
+
+.blockquote-alameda-primary{
+    padding: 0 1rem !important;
+    border-left: .25rem solid #2993e5 !important;
+}
+.blockquote-alameda-secondary{
+    padding: 0 1rem !important;
+    border-left: .25rem solid #d3d9dd !important;
 }

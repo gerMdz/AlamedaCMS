@@ -7,10 +7,11 @@
 {% block sslocal %}
 {#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
 {#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/styles.min.css') }}">#}
+    <link href="{{ asset('css-misc/mdb.min.css') }}" rel="stylesheet">
 {% endblock %}
 {% block header %}
     {% include 'inicio/_nav.html.twig' %}
-    <header class="masthead-oportunidades m-5 p-5 bg-white">
+    <header class="masthead masthead-oportunidades">
 
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
@@ -34,7 +35,7 @@
     </header>
 
 
-{#    <hr class="m-0">#}
+    <hr class="m-0">
 {% endblock %}
 {#{% block footer %}#}
 {#    {{ parent() }}#}

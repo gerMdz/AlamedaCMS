@@ -1,35 +1,118 @@
-{% extends 'base_beta.html.twig' %}
-{% block title %} {{ principal.titulo | upper}}  {% endblock %}
+{% extends 'base_material_kit.twig' %}
+{% block title %} {{ principal.titulo | upper }}  {% endblock %}
+{% block sslocal %}
+
+    <link href="{{ asset('css-misc/mdb.min.css') }}" rel="stylesheet">
+
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+    <link href="{{ asset('stream-ui-kit/assets/css/styles.min.css') }}" rel="stylesheet">
+    <style>
+        strong {
+            font-weight: 400 !important
+        }
+
+        .card-text {
+            font-size: 1.1em !important;
+            font-weight: 600 !important;
+        }
+
+        /*.header {*/
+        /*    background-image: url('images/series/cabecera_index.jpg');*/
+        /*    background-size: cover;*/
+        /*    background-position: center;*/
+        /*    position: relative;*/
+        /*}*/
+
+        /*.overlay {*/
+        /*    position: absolute;*/
+        /*    min-height: 100%;*/
+        /*    min-width: 100%;*/
+        /*    left: 0;*/
+        /*    top: 0;*/
+        /*    background: rgba(255, 255, 255, 0.6);*/
+        /*}*/
+
+        img.resize {
+            width: 10%; /* you can use % */
+            height: auto;
+        }
+
+        .btn-xl {
+            padding: 1.25rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none currentcolor;
+            border-radius: 10rem;
+        }
+
+        .bg-fam {
+            /*background: #fafafa;*/
+            box-shadow: inset 0 0 .625rem rgba(0, 0, 0, .1), inset 0 0 2.188rem rgba(0, 0, 0, .03);
+        }
+
+        .position-relative {
+            position: relative !important;
+        }
+
+        .mt-n6, .my-n6 {
+            margin-top: -5rem !important;
+        }
+
+        .card-a {
+            -webkit-box-shadow: 0 0 !important;
+            box-shadow: 0 0 !important;
+        }
+
+        .card {
+            -webkit-box-shadow: 0 0 !important;
+            box-shadow: 0 0 !important;
+        }
+
+        .bottom-0 {
+            position: absolute;
+            left: 5%;
+            bottom: 1%;
+            width: 90%;
+            /*background-color: red;*/
+            /*color: white;*/
+            text-align: center;
+        }
+
+        .middle-0 {
+            /*top: 25%;*/
+            position: relative;
+        }
+    </style>
 {% endblock %}
+
 {% block header %}
     <header>
-    {% include 'inicio/_nav.html.twig' %}
-    <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark"
-             style="background-image: url({{ principal.imagePath|imagine_filter('squared_normal')}}); background-repeat: repeat-y ;">
-        <!-- Promo Content -->
-        <div class="container u-overlay__inner u-ver-center u-content-space">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="text-center">
-
-                        <div class="site-heading p-5">
-                            <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}" style="max-height: 150px" class="img-fluid ">
-
+        {% include 'inicio/_nav.html.twig' %}
+        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark"
+                 style="background-image: url({{ asset('images/series/escape-a-la-libertad/escape-a-la-libertad-encabezado.jpg') }}); background-repeat: repeat-y ;
+                         background-position: 50% 0;">
+            <!-- Promo Content -->
+            <div class="container u-overlay__inner u-ver-center u-content-space">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <div class="site-heading p-5">
+                                <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}" style="max-height: 150px"
+                                     class="img-fluid" alt="Iglesia de la Alameda">
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End Promo Content -->
-    </section>
+            <!-- End Promo Content -->
+        </section>
     </header>
 
 {% endblock %}
-{% block body %}
-
+{% block sections %}
 
     <main role="main" class="bg-white">
         <section class="a-content-space-medium">
@@ -37,27 +120,20 @@
                 <div class="row ">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-5 mb-2 mb-lg-2 pl-lg-2 ">
-
-                        <h1 class="mb-3">
-                            {{ principal.titulo }}
-                        </h1>
+                        <h1 class="mb-3">Escape a la <br/> Libertad</h1>
                         <p>
-                           {{ principal.contenido }}
-
+                            Es hora que las puertas se abran
                         </p>
                         <p class="blockquote-footer">
-
-
+                            Pasaron la primera y la segunda guardia, y al llegar a la puerta de hierro que daba a la
+                            ciudad, ¡ésta se abrió por sí misma!
+                            Hechos 12:10 (RVC)
                         </p>
                     </div>
-
                     <div class="col-lg-6 align-self-center">
-                        <img alt="Iglesia Alameda"
-                             class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
-
-                             src="{{ principal.imagePath|imagine_filter('squared_thumbnail_large')}}">
-
-
+                        <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
+                             src="series/escape-a-la-libertad/<?php echo $data['image'] ?>"
+                             alt="<?php echo $lemaSinEspacios ?>">
                     </div>
                 </div>
             </div>
@@ -68,99 +144,227 @@
                 <div class="row">
                     <!--                charla 1-->
                     <div class="col-md-4 mb-2 mx-auto   ">
-                        <!--                                        <div class="card h-100">-->
+                        <!--                                        <div class="card h-100"> -->
                         <div class="card card-a h-100 overflow-hidden">
                             <div class="position-relative">
-                                <img src="/series/familia-2020/01-Maravillas-Cotidianas.jpg" class="card-img-top "
-                                     data-toggle="modal" data-target="#modal-01"
+                                <img src="/series/escape-a-la-libertad/01-escape-a-la-libertad.jpg"
+                                     class="card-img-top img-modal"
+                                     data-toggle="modal" data-target="#modal-02"
                                      alt="<?php echo $lemaSinEspacios ?>">
                             </div>
                             <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
-                                <h5 class="card-title">MARAVILLAS COTIDIANAS</h5>
+                                <h5 class="card-title text-uppercase">
+                                    Escape a la libertad
+                                </h5>
                                 <div class="middle-0">
                                     <i class="fas fa-quote-left mr-5"></i><br/>
-                                    Descubrir el valor inmenso de la familia que hoy está a tu lado. Celebrar el regalo
-                                    milagroso que sucede cada día al practicar el principio de la honra. Asignar valor a
-                                    cada persona, y asi practicar el asombro, la admiración ante la maravilla que un padre,
-                                    un conyugue, un hijo, un hermano son y serán en tu vida.
+                                    <u>La prisión vs. la oración</u>
                                     <br/>
-
+                                    Pasaron la primera y la segunda guardia, y al llegar a la puerta de hierro que daba
+                                    a la ciudad, ¡ésta se abrió por sí misma!
+                                    Hechos 12:10 (RVC)
                                     <i class="fas fa-quote-right ml-5"></i>
                                 </div>
-                                <br/>
-
-                                <div class="btn-group bottom-0">
-
-                                    <a class="mr-4 btn btn-icon" href="series/familia-2020/01-Maravillas-Cotidianas.pdf" target="_blank">
-                                        <i class="far fa-file-pdf mr-1"></i>
-                                        <b>Notas</b>
-                                    </a><br/>
-                                    <a href="https://youtu.be/7KpEdC1O8eQ" class="btn btn-icon" target="_blank">
-                                        <i class="fab fa-youtube fa-fw mr-1"></i>
-                                        <i>Video</i>
+                                <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                                    <a href="/series/escape-a-la-libertad/01-escape-a-la-libertad.pdf"
+                                       target="_blank"
+                                       class="card-link text-center">
+                                        <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                        <span class="text-alameda btn-icon ">Notas</span><br/>
                                     </a>
-
+                                    <a href="https://youtu.be/18isylytojk" class="card-link text-center"
+                                       target="_blank">
+                                        <i class="fab fa-youtube fa-fw mr-1"></i>
+                                        <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <!--                                        </div>-->
                     </div>
+                    <!--                </div>-->
                     <!--                fin charla 1-->
 
                     <!--                charla 2-->
                     <div class="col-md-4 mb-2 mx-auto   ">
-                        <!--                                        <div class="card h-100">-->
+                        <!--                                        <div class="card h-100"> -->
                         <div class="card card-a h-100 overflow-hidden">
                             <div class="position-relative">
-                                <img src="/series/familia-2020/02-tan-distintos-tan-valiosos.jpg" class="card-img-top "
-                                     data-toggle="modal" data-target="#modal-01"
+                                <img src="/series/escape-a-la-libertad/02-hay-equipo.jpg" class="card-img-top img-modal"
+                                     data-toggle="modal" data-target="#modal-02"
                                      alt="<?php echo $lemaSinEspacios ?>">
                             </div>
                             <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
-                                <h5 class="card-title">¡TAN DISTINTOS, TAN VALIOSOS!</h5>
+                                <h5 class="card-title text-uppercase">
+                                    Hay equipo
+                                </h5>
                                 <div class="middle-0">
-                                    <i class="fas fa-quote-left mr-5"></i>
+                                    <i class="fas fa-quote-left mr-5"></i><br/>
+                                    <u>
+                                        ¡Cómo elegir buenos amigos para escapar del encierro!
+                                    </u>
                                     <br/>
-                                    Una ayuda del cielo para tu familia.
-                                    <br/>
+                                    En aquellos días, Jesús subió a una montaña para orar. Allí pasó toda la noche
+                                    hablando con Dios.
+                                    Al día siguiente, llamó a sus seguidores y eligió a doce de ellos. Lucas 6:12-16
+                                    (TLA)
                                     <i class="fas fa-quote-right ml-5"></i>
                                 </div>
-
-                                <br/>
-
-                                <div class="btn-group bottom-0">
-                                    <a class="mr-4 btn btn-icon" href="series/familia-2020/02-tan-distintos-tan-valiosos.pdf" target="_blank">
-                                        <i class="far fa-file-pdf mr-1"></i>
-                                        <b>Notas</b>
-                                    </a><br/>
-                                    <?php
-                                if ($notas_link !== null) {
-                                    ?>
-                                    <a href="<?php echo $notas_link ?>" class="btn btn-icon" target="_blank">
-
-                                        <i class="fab fa-youtube fa-fw mr-1"></i>
-                                        <i>Video</i>
+                                <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                                    <a href="/series/escape-a-la-libertad/02-hay-equipo.pdf"
+                                       target="_blank"
+                                       class="card-link text-center">
+                                        <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                        <span class="text-alameda btn-icon ">Notas</span><br/>
                                     </a>
-                                    <?php } ?>
-                                    <!--                                <button class="btn btn-secondary btn-icon">-->
-                                    <!--                                    <span class="mr-1"><i class="far fa-user"></i></span>-->
-                                    <!--                                    Follow-->
-                                    <!--                                </button>-->
-                                    <!--                                <button class="btn btn-primary">-->
-                                    <!--                                    <i class="far fa-envelope"></i>-->
-                                    <!--                                </button>-->
+                                    <a href="https://youtu.be/HRA1-R6z7Os" class="card-link text-center"
+                                       target="_blank">
+                                        <i class="fab fa-youtube fa-fw mr-1"></i>
+                                        <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <!--                                        </div>-->
                     </div>
                     <!--                fin charla 2-->
 
-                </div>
+                    <!--                charla 3-->
+                    <div class="col-md-4 mb-2 mx-auto   ">
+                        <!--                                        <div class="card h-100"> -->
+                        <div class="card card-a h-100 overflow-hidden">
+                            <div class="position-relative">
+                                <img src="/series/escape-a-la-libertad/03-por-las-lentejas.jpg"
+                                     class="card-img-top img-modal"
+                                     data-toggle="modal" data-target="#modal-02"
+                                     alt="<?php echo $lemaSinEspacios ?>">
+                            </div>
+                            <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
+                                <h5 class="card-title text-uppercase">
+                                    ¡Por las lentejas!
+                                </h5>
+                                <div class="middle-0">
+                                    <i class="fas fa-quote-left mr-5"></i><br/>
+                                    <u>
+                                        ¡Cómo pelear cuando vienen por tu libertad!
+                                    </u>
+                                    <br/>
+                                    El Señor cuida de los hombres honrados;
+                                    y mantendrá la herencia de ellos para siempre.
+                                    En tiempos difíciles no serán avergonzados,
+                                    y en tiempos de escasez tendrán abundancia
+                                    <p>Salmos 37:18-19 (RVC)</p>
+                                    <i class="fas fa-quote-right ml-5"></i>
+                                </div>
+                                <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                                    <a href="/series/escape-a-la-libertad/03-por-las-lentejas.pdf"
+                                       target="_blank"
+                                       class="card-link text-center">
+                                        <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                        <span class="text-alameda btn-icon ">Notas</span><br/>
+                                    </a>
+                                    <a href="https://youtu.be/c7n-w-0Ucno" class="card-link text-center"
+                                       target="_blank">
+                                        <i class="fab fa-youtube fa-fw mr-1"></i>
+                                        <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                fin charla 3-->
 
+                    <!--                charla 4-->
+                    <div class="col-md-4 mb-2 mx-auto   ">
+                        <!--                                        <div class="card h-100"> -->
+                        <div class="card card-a h-100 overflow-hidden">
+                            <div class="position-relative">
+                                <img src="/series/escape-a-la-libertad/04-dia-de-entrenamiento.jpg"
+                                     class="card-img-top img-modal"
+                                     data-toggle="modal" data-target="#modal-02"
+                                     alt="<?php echo $lemaSinEspacios ?>">
+                            </div>
+                            <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
+                                <h5 class="card-title text-uppercase">
+                                    Día de Entrenamiento
+                                </h5>
+                                <div class="middle-0">
+                                    <i class="fas fa-quote-left mr-5"></i><br/>
+                                    <u>
+                                        ¡Cómo defender tu posición en tiempos malos!
+                                    </u>
+                                    <br/>
+                                    Por lo tanto, pónganse todas las piezas de la armadura de Dios para poder resistir
+                                    al enemigo en el tiempo del mal. Así, después de la batalla, todavía seguirán de
+                                    pie, firmes. Defiendan su posición
+
+                                    <p>Efesios 6:13-14 (NTV)</p>
+                                    <i class="fas fa-quote-right ml-5"></i>
+                                </div>
+                                <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                                    <a href="/series/escape-a-la-libertad/04-dia-de-entrenamiento.pdf"
+                                       target="_blank"
+                                       class="card-link text-center">
+                                        <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                        <span class="text-alameda btn-icon ">Notas</span><br/>
+                                    </a>
+                                    <a href="https://youtu.be/WCIjIWEegdA" class="card-link text-center"
+                                       target="_blank">
+                                        <i class="fab fa-youtube fa-fw mr-1"></i>
+                                        <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                fin charla 4-->
+
+                    <!--                charla 5 -->
+                    <div class="col-md-4 mb-2 mx-auto   ">
+                        <!--                                        <div class="card h-100"> -->
+                        <div class="card card-a h-100 overflow-hidden">
+                            <div class="position-relative">
+                                <img src="/series/escape-a-la-libertad/05-rescate-a-la-medianoche.jpg"
+                                     class="card-img-top img-modal"
+                                     data-toggle="modal" data-target="#modal-02"
+                                     alt="<?php echo $lemaSinEspacios ?>">
+                            </div>
+                            <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
+                                <h5 class="card-title text-uppercase">
+                                    Día de Entrenamiento
+                                </h5>
+                                <div class="middle-0">
+                                    <i class="fas fa-quote-left mr-5"></i><br/>
+                                    <u>
+                                        ¡Cuándo terminará todo!
+                                    </u>
+                                    <br/>
+                                    Por lo tanto, pónganse todas las piezas de la armadura de Dios para poder resistir
+                                    al enemigo en el tiempo del mal. Así, después de la batalla, todavía seguirán de
+                                    pie, firmes. Defiendan su posición
+
+                                    <p>Efesios 6:13-14 (NTV)</p>
+                                    <i class="fas fa-quote-right ml-5"></i>
+                                </div>
+                                <br/>
+                                <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                                    <a href="/series/escape-a-la-libertad/05-rescate-a-la-medianoche.pdf"
+                                       target="_blank"
+                                       class="card-link text-center">
+                                        <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                        <span class="text-alameda btn-icon ">Notas</span><br/>
+                                    </a>
+                                    <a href="<?php echo $links->getNota2() ?>" class="card-link text-center"
+                                       target="_blank">
+                                        <i class="fab fa-youtube fa-fw mr-1"></i>
+                                        <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                fin charla 5 -->
+                </div>
             </div>
         </section>
-
     </main>
     <footer class="footer">
         <div class="card-body">
@@ -173,8 +377,14 @@
     </footer>
 {% endblock %}
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
 {% endblock %}
 {% block jslocal %}
-    {{ encore_entry_script_tags('app') }}
+    {# {{ encore_entry_script_tags('app') }} #}
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.header').height($(window).height());
+        })
+    </script>
 {% endblock %}
