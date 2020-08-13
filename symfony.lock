@@ -156,6 +156,9 @@
     "league/flysystem": {
         "version": "1.0.69"
     },
+    "league/mime-type-detection": {
+        "version": "1.4.0"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {
@@ -197,7 +200,7 @@
         ]
     },
     "php": {
-        "version": "7.2"
+        "version": "7.4"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.1.0"
@@ -624,6 +627,9 @@
     },
     "twig/twig": {
         "version": "v3.0.3"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.0.1"
     },
     "webmozart/assert": {
         "version": "1.8.0"
