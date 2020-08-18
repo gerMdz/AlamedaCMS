@@ -19,6 +19,8 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
     /**
      * BaseExtension constructor.
+     * @param EntityManagerInterface $em
+     * @param ContainerInterface $container
      */
     public function __construct(EntityManagerInterface $em, ContainerInterface $container)
     {

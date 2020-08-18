@@ -60,10 +60,10 @@
 
 .fondo {
 
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0,0,0, .5);
 }
 
-.principal {
+.principal{
 
     top: -2.5rem;
 }
@@ -101,21 +101,18 @@
 
     color: #438789;
 }
-
 a.text-point-sec:hover {
 
     color: #438789;
     text-decoration: none;
 }
 
-.text-light-blue {
+.text-light-blue{
     color: #73aba2;
 }
-
-.text-blue {
+.text-blue{
     color: #0b51c5;
 }
-
 /*.carousel-inner img {*/
 /*    width: 70%;*/
 /*    height: auto;*/
@@ -127,7 +124,7 @@ a.text-point-sec:hover {
     /* margin-top: 20rem;*/
 }
 
-.btn-alameda {
+.btn-alameda{
     box-sizing: border-box;
     outline: currentcolor none medium;
     border-radius: 999px;
@@ -163,30 +160,30 @@ a.text-point-sec:hover {
     user-select: none;
     margin-top: 8px;
     font-size: 1rem;
-    font-weight: 900;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+
     line-height: 1.25;
     padding: 15px 15px;
     color: rgb(41, 147, 229);
     background-color: white;
     /*border: 1px solid rgb(41, 147, 229);*/
 }
-
-.btn-alameda-reverso:hover {
+.btn-alameda-reverso:hover{
     background-color: rgb(41, 147, 229);
     color: white !important;
     border: 1px solid transparent;
     opacity: 1;
 }
-
-.btn-alameda:hover {
-    color: rgb(41, 147, 229);
-    background-color: white;
-    border-color: rgb(41, 147, 229);
+.btn-alameda:hover{
+    color:rgb(41, 147, 229);
+    background-color:white;
+    border-color:rgb(41, 147, 229);
 
 }
 
 .btn-alameda.focus, .btn-alameda:focus {
-    box-shadow: 0 0 0 .2rem rgba(46, 46, 46, .5)
+    box-shadow: 0 0 0 .2rem rgba(41, 147, 229, .5)
 }
 
 
@@ -243,13 +240,13 @@ ul.pp li {
     height: 200px;
 }*/
 
-.fondo-evento {
+.fondo-evento{
 
     background-color: #f0e7d122;
 
 }
 
-.fondo-footer {
+.fondo-footer{
 
     background-color: rgba(67, 135, 137, .25)
 }
@@ -273,7 +270,7 @@ ul.pp li {
 
 }
 
-a.text-tan:hover {
+a.text-tan:hover{
 
     color: #f0e7d1;
     text-decoration: underline;
@@ -308,7 +305,6 @@ button.bg-teal:hover {
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-
 @-webkit-keyframes fadeInRightBig {
     0% {
         opacity: 0;
@@ -321,7 +317,6 @@ button.bg-teal:hover {
         transform: none;
     }
 }
-
 @keyframes fadeInRightBig {
     0% {
         opacity: 0;
@@ -335,10 +330,10 @@ button.bg-teal:hover {
     }
 }
 
-.bienvenido {
+.bienvenido{
     /*background: url("../images/imagen auditorio.jpeg");*/
     background-size: cover;
-    animation: 3s linear fadeInRightBig;
+    animation:  3s linear fadeInRightBig;
     margin: auto auto;
     /*height: 38rem;
 
@@ -370,13 +365,15 @@ button.bg-teal:hover {
     }
 }
 
-.paralelox {
-    width: 100%;
-    height: 570px;
+.paralelox{
+
+    width:100%;
+    height:570px;
+
     display: block;
     background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat:no-repeat;
+    background-size:cover;
     background-position: center center;
 }
 
@@ -393,17 +390,17 @@ button.bg-teal:hover {
     align-items: flex-start;
 }
 
-.blockquote-point {
+.blockquote-point{
     padding: .5rem 1rem;
     border-left: .25rem solid #ca5430;
 }
 
-.blockquote-uvcp {
+.blockquote-uvcp{
     padding: 0 1rem;
     border-left: .25rem solid #0f0;
 }
 
-.blockquote-uvcp_dark {
+.blockquote-uvcp_dark{
     padding: 0 1rem;
     border-left: .25rem solid rgb(4, 135, 142);
 
@@ -507,11 +504,9 @@ h3.quote:after, h3.quote:before {
     font-size: 1.5em;
     margin-top: 0.5em;
 }
-
 h3.quote:before {
     content: '“';
 }
-
 h3.quote:after {
     content: '”';
 }
@@ -521,25 +516,20 @@ h3.quote:after {
     font-size: 1.5em;
     margin-top: 0.5em;
 }
-
 .quote:before {
     content: '“';
 }
-
 .quote:after {
     content: '”';
 }
 
-.mdl-card__media {
-    background-color: rgb(0, 150, 136) !important;
+.mdl-card__media{
+    background-color:rgb(0,150,136) !important;
 }
-
-.mdl-card__white {
-    background-size: cover;
-    background-origin: padding-box;
+.mdl-card__white{
+    background-size:cover;background-origin:padding-box;
     background: rgb(0, 150, 136) repeat scroll 50% 50%;
-    box-sizing: border-box;
-}
+    box-sizing:border-box;}
 
 .section-heading .section-heading-lower {
     display: block;
@@ -556,7 +546,6 @@ h3.quote:after {
         padding-top: 4rem;
         padding-bottom: 4rem;
     }
-
     header.masthead h1 {
         font-size: 3rem
     }
@@ -700,17 +689,14 @@ b, i, sup, sub, u, del {
     color: #8c3654;
 
 }
-
-p .base-rojo {
+p .base-rojo{
 
     font-size: 2em !important;
 }
-
 .text-invitacion {
 
     font-size: 1.5em !important;
 }
-
 /*section,*/
 /*.base-rojo b,*/
 /*.base-rojo i,*/
@@ -719,7 +705,7 @@ p .base-rojo {
 /*.base-rojo  u,*/
 /*.base-rojo  del {*/
 
-/*color: #8c3654;*/
+    /*color: #8c3654;*/
 
 /*}*/
 
@@ -782,7 +768,7 @@ a.text-realce-verde:hover {
     background: rgba(61, 112, 141, 0.85)
 }
 
-.text-100 {
+.text-100{
     width: 100px;
     height: 100px;
 }
@@ -820,7 +806,6 @@ a.text-realce-verde:hover {
     line-height: 3.5rem;
     margin-right: 1rem;
 }
-
 .icononos-sociales a:last-child {
     margin-right: 0;
 }
@@ -996,16 +981,13 @@ header.masthead-oportunidades {
         padding-top: 4.5rem;
         padding-bottom: 0;
     }
-
     header.masthead p {
         font-size: 1.15rem;
     }
-
     header.masthead h1 {
         font-size: 3rem;
     }
 }
-
 @media (max-width: 991px) {
     header.masthead {
         height: 100vh;
@@ -1013,16 +995,13 @@ header.masthead-oportunidades {
         padding-top: 2.5rem;
         padding-bottom: 0;
     }
-
     header.masthead p {
         font-size: 1.15rem;
     }
-
     header.masthead h1 {
         font-size: 3rem;
     }
 }
-
 @media (min-width: 1200px) {
     header.masthead h1 {
         font-size: 3.5rem;
@@ -1032,11 +1011,9 @@ header.masthead-oportunidades {
 .text-black-50 {
     color: rgba(0, 0, 0, 0.5) !important;
 }
-
 .text-black-75 {
     color: rgba(0, 0, 0, 0.75) !important;
 }
-
 .text-black-25 {
     color: rgba(0, 0, 0, 0.25) !important;
 }
@@ -1049,11 +1026,11 @@ header.masthead-oportunidades {
     height: 90% !important;
 }
 
-.left-n5 {
+.left-n5{
     left: -5px !important;
 }
 
-.bottom-n10 {
+.bottom-n10{
     bottom: -10px !important;
 }
 
@@ -1099,33 +1076,41 @@ header.masthead-oportunidades {
     transform: translate(-50%, -50%) !important;
 }
 
-.aire-2 {
+.aire-2{
     letter-spacing: 2px;
 }
 
-a:hover > b {
+a:hover>b{
     color: white;
 }
 
-.e80 {
+.e80{
     font-size: 0.8em;
 }
-
-.e90 {
+.e90{
     font-size: 0.9em;
 }
 
-.mt-n3 {
+.mt-n3{
     margin-top: -0.75rem !important;
 }
-
-.mt-a35 {
+.mt-a35{
     margin-top: 3.5rem !important;
 }
-
-.text-alameda {
-    color: rgb(41, 147, 229)
+.mt-a4{
+    margin-top: 4rem !important;
 }
+
+.text-alameda{
+color: rgb(41, 147, 229)
+}
+.t16{
+    font-size: 16px;
+}
+.negrita7{
+    font-weight: 700 !important;
+}
+
 
 .contenedor:hover .card-img:hover {
     transform: scale(1.3);
@@ -1136,8 +1121,7 @@ a:hover > b {
     /*transition-property: opacity, left, top, height;*/
     /*transition-duration: 3s, 5s, 3s, 5s;*/
 }
-
-.card-img {
+.card-img{
     transition: 1.5s ease;
     -moz-transition: 1.5s ease; /* Firefox */
     -webkit-transition: 1.5s ease; /* Chrome - Safari */
@@ -1151,17 +1135,26 @@ a:hover > b {
 .border-alameda {
     border-color: #2993e5 !important;
 }
-
 .border-alameda-top {
     border-top-color: #2993e5 !important;
     border-top-style: solid;
     border-top-width: 1px;
 }
-
 .border-alameda-bottom {
     border-bottom-color: #2993e5 !important;
     border-bottom-style: solid;
     border-bottom-width: 1px;
+}
+
+a>span.text-alameda{
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+a>small{
+    font-family: ArialNova, sans-serif;
+    font-style: italic !important;
+    transform: skewY(10deg) rotate(-10deg);
 }
 
 .blockquote-alameda-primary {

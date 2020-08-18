@@ -225,7 +225,7 @@ class User implements UserInterface
     {
         $url = 'https://robohash.org/'.$this->getEmail().'?set=set2';
         if ($size) {
-            $url .= sprintf('?size=%dx%d', $size, $size);
+            $url .= sprintf('&size=%dx%d', $size, $size);
         }
 
         return $url;
