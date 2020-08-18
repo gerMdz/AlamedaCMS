@@ -71,15 +71,17 @@ class Section
      */
     private $indexAlamedas;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="section")
-     */
-    private $entradas;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sections")
      */
     private $autor;
+
+    /**
+     * @ORM\OneToMany(targetEntity=RelacionSectionEntrada::class, mappedBy="section")
+     */
+    private $relacionSectionEntradas;
 
     public function __toString()
     {
@@ -90,6 +92,7 @@ class Section
     {
         $this->indexAlamedas = new ArrayCollection();
         $this->entradas = new ArrayCollection();
+        $this->relacionSectionEntradas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -269,6 +272,37 @@ class Section
     public function setAutor(?User $autor): self
     {
         $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RelacionSectionEntrada[]
+     */
+    public function getRelacionSectionEntradas(): Collection
+    {
+        return $this->relacionSectionEntradas;
+    }
+
+    public function addRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
+    {
+        if (!$this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
+            $this->relacionSectionEntradas[] = $relacionSectionEntrada;
+            $relacionSectionEntrada->setSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
+    {
+        if ($this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
+            $this->relacionSectionEntradas->removeElement($relacionSectionEntrada);
+            // set the owning side to null (unless already changed)
+            if ($relacionSectionEntrada->getSection() === $this) {
+                $relacionSectionEntrada->setSection(null);
+            }
+        }
 
         return $this;
     }

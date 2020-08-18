@@ -107,9 +107,11 @@ class Entrada
     private $typeCarry;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="entradas")
+     * @ORM\OneToMany(targetEntity=RelacionSectionEntrada::class, mappedBy="entrada")
      */
-    private $section;
+    private $relacionSectionEntradas;
+
+
 
 
 
@@ -120,6 +122,7 @@ class Entrada
         $this->principals = new ArrayCollection();
         $this->brotes = new ArrayCollection();
         $this->section = new ArrayCollection();
+        $this->relacionSectionEntradas = new ArrayCollection();
     }
 
     public function __toString()
@@ -401,6 +404,37 @@ class Entrada
     {
         if ($this->section->contains($section)) {
             $this->section->removeElement($section);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RelacionSectionEntrada[]
+     */
+    public function getRelacionSectionEntradas(): Collection
+    {
+        return $this->relacionSectionEntradas;
+    }
+
+    public function addRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
+    {
+        if (!$this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
+            $this->relacionSectionEntradas[] = $relacionSectionEntrada;
+            $relacionSectionEntrada->setEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
+    {
+        if ($this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
+            $this->relacionSectionEntradas->removeElement($relacionSectionEntrada);
+            // set the owning side to null (unless already changed)
+            if ($relacionSectionEntrada->getEntrada() === $this) {
+                $relacionSectionEntrada->setEntrada(null);
+            }
         }
 
         return $this;
