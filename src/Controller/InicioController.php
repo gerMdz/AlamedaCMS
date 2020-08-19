@@ -94,7 +94,7 @@ class InicioController extends AbstractController
     }
 
     /**
-     * @Route("/grupospequeños", name="gpc", options = {"utf8": true })
+     * @Route("/grupospequeños", name="grupospequeños", options = {"utf8": true })
      */
     public function gpc()
     {
