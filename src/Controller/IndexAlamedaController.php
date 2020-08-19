@@ -19,11 +19,13 @@ class IndexAlamedaController extends AbstractController
 {
     /**
      * @Route("/", name="index_alameda_index", methods={"GET"})
+     * @param IndexAlamedaRepository $indexAlamedaRepository
+     * @return Response
      */
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
+//        $em = $this->getDoctrine()->getManager();
+//        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
 
         return $this->render('index_alameda/index.html.twig', [
             'index_alamedas' => $indexAlamedaRepository->findAll(),
@@ -33,6 +35,8 @@ class IndexAlamedaController extends AbstractController
 
     /**
      * @Route("/new", name="index_alameda_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -56,6 +60,8 @@ class IndexAlamedaController extends AbstractController
 
     /**
      * @Route("/{id}", name="index_alameda_show", methods={"GET"})
+     * @param IndexAlameda $indexAlameda
+     * @return Response
      */
     public function show(IndexAlameda $indexAlameda): Response
     {
@@ -66,6 +72,9 @@ class IndexAlamedaController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="index_alameda_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param IndexAlameda $indexAlameda
+     * @return Response
      */
     public function edit(Request $request, IndexAlameda $indexAlameda): Response
     {
@@ -87,6 +96,9 @@ class IndexAlamedaController extends AbstractController
 
     /**
      * @Route("/{id}", name="index_alameda_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param IndexAlameda $indexAlameda
+     * @return Response
      */
     public function delete(Request $request, IndexAlameda $indexAlameda): Response
     {

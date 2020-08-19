@@ -31,7 +31,7 @@ class SecurityController extends AbstractController
 //    }
 
     /**
-     * @Route("/ingreso/admin", name="app_login")
+     * @Route("/admin/ingreso", name="app_login")
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
      */
@@ -48,7 +48,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/logout/admin", name="app_logout")
+     * @Route("/admin/logout", name="app_logout")
      */
     public function logout()
     {
@@ -56,7 +56,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/registro/admin", name="app_registro")
+     * @Route("/admin/registro", name="app_registro")
      *
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder

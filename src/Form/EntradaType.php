@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
+use App\Entity\Section;
 use App\Entity\User;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -76,6 +77,8 @@ class EntradaType extends AbstractType
             ->add('stopAt')
             ->add('eventoAt')
             ->add('linkPosting')
+            ->add('section')
+            ->add('orden')
 
         ;
     }

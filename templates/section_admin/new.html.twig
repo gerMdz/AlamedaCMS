@@ -1,4 +1,8 @@
 {% extends 'contenido_base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin_section_form.js') }}"></script>
+{% endblock %}
 
 {% block contenido_body %}
 

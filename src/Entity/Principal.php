@@ -73,11 +73,22 @@ class Principal
      */
     private $brotes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="principals")
+     */
+    private $bud;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="bud")
+     */
+    private $principals;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->entradas = new ArrayCollection();
         $this->brotes = new ArrayCollection();
+        $this->principals = new ArrayCollection();
     }
 
     public function __toString()
@@ -252,5 +263,48 @@ class Principal
     public function getImagePath()
     {
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
+    }
+
+    public function getBud(): ?self
+    {
+        return $this->bud;
+    }
+
+    public function setBud(?self $bud): self
+    {
+        $this->bud = $bud;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getPrincipals(): Collection
+    {
+        return $this->principals;
+    }
+
+    public function addPrincipal(self $principal): self
+    {
+        if (!$this->principals->contains($principal)) {
+            $this->principals[] = $principal;
+            $principal->setBud($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrincipal(self $principal): self
+    {
+        if ($this->principals->contains($principal)) {
+            $this->principals->removeElement($principal);
+            // set the owning side to null (unless already changed)
+            if ($principal->getBud() === $this) {
+                $principal->setBud(null);
+            }
+        }
+
+        return $this;
     }
 }

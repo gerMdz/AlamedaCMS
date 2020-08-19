@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -111,9 +112,16 @@ class Entrada
      */
     private $relacionSectionEntradas;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\OrderBy({"orden" = "ASC"})
+     */
+    private $orden;
 
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity=Section::class, inversedBy="entradassection")
+     */
+    private $section;
 
     public function __construct()
     {
@@ -121,7 +129,6 @@ class Entrada
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
         $this->brotes = new ArrayCollection();
-        $this->section = new ArrayCollection();
         $this->relacionSectionEntradas = new ArrayCollection();
     }
 
@@ -183,12 +190,12 @@ class Entrada
         return $this;
     }
 
-    public function getPublicadoAt(): ?\DateTimeInterface
+    public function getPublicadoAt(): ?DateTimeInterface
     {
         return $this->publicadoAt;
     }
 
-    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
+    public function setPublicadoAt(?DateTimeInterface $publicadoAt): self
     {
         $this->publicadoAt = $publicadoAt;
 
@@ -335,12 +342,12 @@ class Entrada
         return $this;
     }
 
-    public function getEventoAt(): ?\DateTimeInterface
+    public function getEventoAt(): ?DateTimeInterface
     {
         return $this->eventoAt;
     }
 
-    public function setEventoAt(?\DateTimeInterface $eventoAt): self
+    public function setEventoAt(?DateTimeInterface $eventoAt): self
     {
         $this->eventoAt = $eventoAt;
 
@@ -383,31 +390,7 @@ class Entrada
         return $this;
     }
 
-    /**
-     * @return Collection|Section[]
-     */
-    public function getSection(): Collection
-    {
-        return $this->section;
-    }
 
-    public function addSection(Section $section): self
-    {
-        if (!$this->section->contains($section)) {
-            $this->section[] = $section;
-        }
-
-        return $this;
-    }
-
-    public function removeSection(Section $section): self
-    {
-        if ($this->section->contains($section)) {
-            $this->section->removeElement($section);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|RelacionSectionEntrada[]
@@ -439,6 +422,32 @@ class Entrada
 
         return $this;
     }
+
+    public function getOrden(): ?int
+    {
+        return $this->orden;
+    }
+
+    public function setOrden(?int $orden): self
+    {
+        $this->orden = $orden;
+
+        return $this;
+    }
+
+    public function getSection(): ?Section
+    {
+        return $this->section;
+    }
+
+    public function setSection(?Section $section): self
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+
 
 
 }

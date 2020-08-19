@@ -17,22 +17,29 @@
                     </a>
 
                     <span class="mr-2"></span>
-                    <small class="text-black-75 ">Domingos {{ datosIndex.horario1}} Hs.
+                    <small class="text-black-75 ">Domingos {{ datosIndex.horario1 }} Hs.
                         <!--                    <br class="d-block d-md-none"/>-->
 
-                        y {{ datosIndex.horario2}} Hs.</small>
+                        y {{ datosIndex.horario2 }} Hs.</small>
                 </h2>
 
 
                 <hr>
             </header>
-                <!-- End Invitación: Header -->
+            <!-- End Invitación: Header -->
         </div>
 
     </section>
     <!-- Fin Horarios - Invitación - Video -->
 
     <!-- Secction 2 3 imagenes -->
+
+    {% for section in datosIndex.section %}
+        {% for entrada in section.entradassection %}
+            <img class="show-article-img"
+                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}" alt="{{ base.siteName }}">
+        {% endfor %}
+    {% endfor %}
     <section class="bg-white ">
         <div class="container-fluid mt-lg-1 mt-sm-5">
             <div class="row">
@@ -44,41 +51,48 @@
                             <div class="col-md-7 pr-0 ">
                                 <div class="col-sm-12 mr-0 left-n5">
                                     <div class="card shadow-none">
-                                        <div class="card-img">
-                                            <img src="/series/escape-a-la-libertad/<?php echo $data['image']; ?>"
-                                                 alt="Iglesia de La Alameda"
-                                                 class="card-img"
-                                            >
-                                        </div>
-                                        <!--                                <div class="card-img-overlay">-->
-                                        <div class="card-footer bg-white justify-content-between ">
-                                            <!--                                     style="top: 80%; position: relative"-->
+                                        {% for section in datosIndex.section %}
+                                            {% if(section.identificador == 'tres-images') %}
+                                                {% for entrada in section.entradassection %}
+                                                    {% if (entrada.orden == 1) %}
+                                                <div class="card-img">
+                                                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}" alt="{{ base.siteName }}"
+                                                         class="card-img"
+                                                    >
+                                                </div>
+                                                <!--                                <div class="card-img-overlay">-->
+                                                <div class="card-footer bg-white justify-content-between ">
+                                                    <!--                                     style="top: 80%; position: relative"-->
 
-                                            <a class="card-link">
+                                                    <a class="card-link">
 
-                                                <small><?php echo $data['fecha']; ?></small><br/>
-                                                <span class="text-alameda"><?php echo $data['title']; ?></span><br/>
-                                                <small><?php echo $data['autor']; ?></small>
+                                                        <small><?php echo $data['fecha']; ?></small><br/>
+                                                        <span class="text-alameda"><?php echo $data['title']; ?></span><br/>
+                                                        <small><?php echo $data['autor']; ?></small>
 
-                                            </a>
-                                            <a href="<?php echo $data['link'] ?>" class="btn-round btn-alameda  mr-2 ">
-                                                <!--                                       style="z-index: 100" >-->
+                                                    </a>
+                                                    <a href="<?php echo $data['link'] ?>"
+                                                       class="btn-round btn-alameda  mr-2 ">
+                                                        <!--                                       style="z-index: 100" >-->
 
-                                                Ver último mensaje
-                                                <!--                                        <b class="text-blue">Ver último mensaje</b>-->
-                                            </a>
-                                            <!--                                    </div>-->
+                                                        Ver último mensaje
+                                                        <!--                                        <b class="text-blue">Ver último mensaje</b>-->
+                                                    </a>
+                                                    <!--                                    </div>-->
 
 
-                                        </div>
-
+                                                </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 ">
+                            <div class="col-md-4">
 
-                                <div class="row ">
+                                <div class="row">
 
                                     <div class="col-sm-12 container-img ">
                                         <div class="card mb-0 contenedor ">
@@ -140,7 +154,8 @@
                                         <!--                                        <div class="card h-100"> -->
                                         <div class="card shadow-none">
                                             <div class="contenedor">
-                                                <img src="{{ asset('images/dar-online.jpg') }}" alt="Iglesia de La Alameda"
+                                                <img src="{{ asset('images/dar-online.jpg') }}"
+                                                     alt="Iglesia de La Alameda"
                                                      class="card-img"
                                                 >
                                             </div>
@@ -209,7 +224,8 @@
                                         <!--                                        <div class="card h-100"> -->
                                         <div class="card shadow-none">
                                             <div class="contenedor">
-                                                <img src="{{ asset('images/institucional/pedidosoracion.jpg') }}" alt="Iglesia de La Alameda"
+                                                <img src="{{ asset('images/institucional/pedidosoracion.jpg') }}"
+                                                     alt="Iglesia de La Alameda"
                                                      class="card-img"
                                                 >
                                             </div>
@@ -243,7 +259,8 @@
                                         <!--                                        <div class="card h-100"> -->
                                         <div class="card shadow-none">
                                             <div class="contenedor">
-                                                <img src="{{ asset('images/institucional/adolescentes.jpg') }}" alt="Iglesia de La Alameda"
+                                                <img src="{{ asset('images/institucional/adolescentes.jpg') }}"
+                                                     alt="Iglesia de La Alameda"
                                                      class="card-img"
                                                 >
                                             </div>

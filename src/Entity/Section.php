@@ -83,6 +83,13 @@ class Section
      */
     private $relacionSectionEntradas;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Entrada::class, mappedBy="section")
+     */
+    private $entradassection;
+
+
+
     public function __toString()
     {
         return $this->name;
@@ -91,8 +98,9 @@ class Section
     public function __construct()
     {
         $this->indexAlamedas = new ArrayCollection();
-        $this->entradas = new ArrayCollection();
+
         $this->relacionSectionEntradas = new ArrayCollection();
+        $this->entradassection = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -236,33 +244,7 @@ class Section
         return $this;
     }
 
-    /**
-     * @return Collection|Entrada[]
-     */
-    public function getEntradas(): Collection
-    {
-        return $this->entradas;
-    }
 
-    public function addEntrada(Entrada $entrada): self
-    {
-        if (!$this->entradas->contains($entrada)) {
-            $this->entradas[] = $entrada;
-            $entrada->addSection($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEntrada(Entrada $entrada): self
-    {
-        if ($this->entradas->contains($entrada)) {
-            $this->entradas->removeElement($entrada);
-            $entrada->removeSection($this);
-        }
-
-        return $this;
-    }
 
     public function getAutor(): ?User
     {
@@ -301,6 +283,37 @@ class Section
             // set the owning side to null (unless already changed)
             if ($relacionSectionEntrada->getSection() === $this) {
                 $relacionSectionEntrada->setSection(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entrada[]
+     */
+    public function getEntradassection(): Collection
+    {
+        return $this->entradassection;
+    }
+
+    public function addEntradassection(Entrada $entradassection): self
+    {
+        if (!$this->entradassection->contains($entradassection)) {
+            $this->entradassection[] = $entradassection;
+            $entradassection->setSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntradassection(Entrada $entradassection): self
+    {
+        if ($this->entradassection->contains($entradassection)) {
+            $this->entradassection->removeElement($entradassection);
+            // set the owning side to null (unless already changed)
+            if ($entradassection->getSection() === $this) {
+                $entradassection->setSection(null);
             }
         }
 

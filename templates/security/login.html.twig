@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_material_kit.twig' %}
 
 {% block title %}Ingreso {% endblock %}
 {% block stylesheets %}
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
-{% block body %}
+{% block sections %}
     <form class="form-signin" method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
