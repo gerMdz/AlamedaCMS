@@ -23,27 +23,25 @@
                         <div class="user-pad">
                             <h3>Hola {{ app.user.primerNombre }}</h3>
                             <h4 class="text-info"><i class="fas fa-envelope"></i> {{ app.user.email}} </h4>
-                            {% if app.user.twitterUsername %}
-                                <h4 class="white"><i class="fab fa-twitter"></i> {{ app.user.twitterUsername }}</h4>
-                            {% endif %}
-                            <a class="btn btn-labeled btn-info" href="#">
-                                <span class="btn-label"><i class="fa fa-pencil"></i></span>Actualizar
+
+                            <a class="btn btn-labeled btn-info" href="{{ path('app_changepassword', {'email':app.user.email}) }}">
+                                <span class="btn-label"><i class="fa fa-pencil"></i></span>Cambio Clave
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="row overview">
                     <div class="col-md-4 user-pad text-center">
-                        <h3>COMMENTS</h3>
-                        <h4>184</h4>
+{#                        <h3>COMMENTS</h3>#}
+{#                        <h4>184</h4>#}
                     </div>
                     <div class="col-md-4 user-pad text-center">
-                        <h3>ARTICLES READ</h3>
-                        <h4>1,910</h4>
+{#                        <h3>ARTICLES READ</h3>#}
+{#                        <h4>1,910</h4>#}
                     </div>
                     <div class="col-md-4 user-pad text-center">
-                        <h3>LIKES</h3>
-                        <h4>3,892</h4>
+{#                        <h3>LIKES</h3>#}
+{#                        <h4>3,892</h4>#}
                     </div>
                 </div>
             </div>

@@ -61,7 +61,7 @@ class EntradaController extends AbstractController
     {
         $entrada = $er->findOneBy(['linkRoute' => $entrada->getLinkRoute()]);
         if (!$entrada) {
-            throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $linkRoute));
+            throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
         }
 
         return $this->render('entrada/show.html.twig', [
