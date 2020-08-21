@@ -11,16 +11,17 @@
 
             <!-- Invitación: Header -->
             <header class="text-center w-md-50 mx-auto mt-a35   mb-8 text-black-75">
-                <h2 class="h2 pt-3">
+                <h2 class="h4 pt-3">
                     <a href="https://online.iglesiaalameda.com" class="text-black-75 ArialLight" target="_blank">
                         <b class="text-secondary">Alameda online</b>
-                    </a>
+
 
                     <span class="mr-2"></span>
-                    <small class="text-black-75 ">Domingos {{ datosIndex.horario1 }} Hs.
+                    <b class="text-secondary ">Domingos {{ datosIndex.horario1 }} Hs.
                         <!--                    <br class="d-block d-md-none"/>-->
 
-                        y {{ datosIndex.horario2 }} Hs.</small>
+                        y {{ datosIndex.horario2 }} Hs.</b>
+                    </a>
                 </h2>
 
 
@@ -68,8 +69,9 @@
                                                                 <small>por {{ entrada.autor }}</small>
 
                                                             </a>
-                                                            <a href="<?php echo $data['link'] ?>"
-                                                               class="btn-round btn-alameda  mr-2 ">
+                                                            <a href="{{ entrada.linkPosting }}"
+                                                               class="btn-round btn-alameda  mr-2 "
+                                                               target="_blank">
                                                                 <!--                                       style="z-index: 100" >-->
 
                                                                 Ver último mensaje
@@ -100,17 +102,12 @@
                                                         bottom-n10
                                                         {% endif %}
                                                                 ">
-
-
                                                         <div class="card mb-0 contenedor ">
                                                             <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
                                                                  alt="{{ base.siteName }}"
                                                                  class="card-img">
-
-
                                                             <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
                                                                href="{{ path(entrada.linkRoute) }}">
-
                                                                 {{ entrada.titulo }}
                                                                 {# ¿Nuevo en la Alameda? #}
                                                                 <!--                                            <br class="d-block d-md-none"/>-->
@@ -136,7 +133,7 @@
         </div>
     </section>
     <!-- End Section 2 3 imágenes -->
-    <!-- Secction 3 cuadrados -->
+    <!-- Section 3 cuadrados -->
     <section class="a-content-space-medium bg-fam text-center">
         <div class="container-fluid mt-lg-1 mt-sm-5">
             <div class="row">
@@ -146,34 +143,28 @@
                         <div class="row justify-content-center ">
                             <div class="col-sm-11">
                                 <div class="row ">
-
                                     {% for section in datosIndex.section %}
                                         {% if(section.identificador == 'cuadrados') %}
                                             {% for entrada in section.entradassection %}
-
                                                 <!--                marco dar-->
-                                                <div
-                                                        {{  (entrada.orden == 0)?'class="col-md-3 mb-2 mx-auto"':'class="col-md-6 mb-2 mx-auto"' }}
-
-                                                >
+                                                <div {{ (entrada.orden == 0)?'class="col-md-6 mb-2 mx-auto"':'class="col-md-3 mb-2 mx-auto"' }}>
                                                     <!--                                        <div class="card h-100"> -->
 
                                                     <!--                                        <div class="card h-100"> -->
                                                     <div class="card shadow-none">
                                                         <div class="contenedor">
-                                                            <img src="{{ asset('images/dar-online.jpg') }}"
-                                                                 alt="Iglesia de La Alameda"
-                                                                 class="card-img"
-                                                            >
+                                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                                                 alt="{{ base.siteName }}"
+                                                                 class="card-img">
                                                         </div>
                                                         <!--                                <div class="card-img-overlay">-->
                                                         <div class="card-footer bg-white justify-content-between ">
                                                             <!--                                     style="top: 80%; position: relative"-->
 
-                                                            <a href="ofrenda.php" class="card-link text-left">
+                                                            <a href="{{ (entrada.linkPosting is defined)? path(entrada.linkRoute): entrada.linkPosting  }}" class="card-link text-left">
 
-                                                                <span class="text-alameda">Dar</span><br/>
-                                                                <small>porque Dios nos lo dio primero</small>
+                                                                <span class="text-alameda">{{ entrada.titulo }}</span><br/>
+                                                                <small>{{ entrada.contenido|raw }}</small>
 
                                                             </a>
 
@@ -190,116 +181,7 @@
                                             {% endfor %}
                                         {% endif %}
                                     {% endfor %}
-                                    <!--                fin marco dar-->
 
-                                    <!--                marco conexión-->
-                                    <div class="col-md-3 mb-2 mx-auto   ">
-                                        <!--                                        <div class="card h-100"> -->
-
-                                        <!--                                        <div class="card h-100"> -->
-                                        <div class="card shadow-none">
-                                            <div class="contenedor">
-                                                <img src="{{ asset('images/tarjetadecontacto.jpg') }}"
-                                                     alt="Iglesia de La Alameda"
-                                                     class="card-img"
-                                                >
-                                            </div>
-                                            <!--                                <div class="card-img-overlay">-->
-                                            <div class="card-footer bg-white justify-content-between ">
-                                                <!--                                     style="top: 80%; position: relative"-->
-
-                                                <a href="contacto.php" class="card-link text-left">
-
-                                                    <span class="text-alameda">Conexión Alameda</span><br/>
-                                                    <small>Nos encantaría conocerte</small>
-
-                                                </a>
-
-                                                <!--                                    </div>-->
-
-
-                                            </div>
-
-
-                                        </div>
-
-
-                                    </div>
-                                    <!--                fin marco conexión-->
-
-                                    <!--                marco oración-->
-                                    <div class="col-md-3 mb-2 mx-auto   ">
-                                        <!--                                        <div class="card h-100"> -->
-
-                                        <!--                                        <div class="card h-100"> -->
-                                        <div class="card shadow-none">
-                                            <div class="contenedor">
-                                                <img src="{{ asset('images/institucional/pedidosoracion.jpg') }}"
-                                                     alt="Iglesia de La Alameda"
-                                                     class="card-img"
-                                                >
-                                            </div>
-                                            <!--                                <div class="card-img-overlay">-->
-                                            <div class="card-footer bg-white justify-content-between ">
-                                                <!--                                     style="top: 80%; position: relative"-->
-
-                                                <a href="contacto.php" class="card-link text-left">
-
-                                                    <span class="text-alameda">Pedidos de Oración</span><br/>
-                                                    <small>Estaremos orando por vos</small>
-
-                                                </a>
-
-                                                <!--                                    </div>-->
-
-
-                                            </div>
-
-
-                                        </div>
-
-
-                                    </div>
-                                    <!--                fin marco oración-->
-
-                                    <!--                marco adolescentes-->
-                                    <div class="col-md-3 mb-2 mx-auto   ">
-                                        <!--                                        <div class="card h-100"> -->
-
-                                        <!--                                        <div class="card h-100"> -->
-                                        <div class="card shadow-none">
-                                            <div class="contenedor">
-                                                <img src="{{ asset('images/institucional/adolescentes.jpg') }}"
-                                                     alt="Iglesia de La Alameda"
-                                                     class="card-img"
-                                                >
-                                            </div>
-                                            <!--                                <div class="card-img-overlay">-->
-                                            <div class="card-footer bg-white justify-content-between ">
-                                                <!--                                     style="top: 80%; position: relative"-->
-
-                                                <a href="/alameda/a2.php" class="card-link text-left">
-                                                    <span class="text-alameda">Adolescentes Alameda</span><br/>
-                                                    <small>Conectate</small>
-
-
-                                                </a>
-
-                                                <!--                                    </div>-->
-
-
-                                            </div>
-
-
-                                        </div>
-
-
-                                    </div>
-                                    <!--                fin marco adolescentes-->
-
-                                    <!--                charla 5 -->
-
-                                    <!--                fin charla 5 -->
                                 </div>
                             </div>
                         </div>

@@ -42,7 +42,7 @@ liip_imagine:
             filters:
                 thumbnail:
                     size:          [540, 303]
-                    mode:          outbound
+                    mode:          inset
                     allow_upscale: true
         squared_normal:
             filters:

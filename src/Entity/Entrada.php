@@ -55,8 +55,8 @@ class Entrada
 
 
     /**
-     * @Gedmo\Slug(fields={"titulo"})
-     * @ORM\Column(type="string", length=150, nullable=true, unique=true)
+     *
+     * @ORM\Column(type="string", length=150, nullable=true)
      */
     private $linkRoute;
 
@@ -114,7 +114,6 @@ class Entrada
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @ORM\OrderBy({"orden" = "ASC"})
      */
     private $orden;
 

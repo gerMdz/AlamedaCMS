@@ -192,14 +192,11 @@ class AdminEntradaController extends AbstractController
     /**
      * @Route("admin/entrada/{linkRoute}", name="entrada_news")
      *
+     * @param Entrada $entrada
      * @return Response
      */
     public function show(Entrada $entrada)
     {
-        if ('khaaaaaan' === $entrada->getLinkRoute()) {
-            $ok = 'ok';
-        }
-
         return $this->render('entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);

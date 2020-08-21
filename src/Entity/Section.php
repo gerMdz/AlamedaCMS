@@ -85,6 +85,7 @@ class Section
 
     /**
      * @ORM\OneToMany(targetEntity=Entrada::class, mappedBy="section")
+     * @ORM\OrderBy({"orden" = "ASC"})
      */
     private $entradassection;
 

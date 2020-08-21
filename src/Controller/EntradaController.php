@@ -71,6 +71,9 @@ class EntradaController extends AbstractController
 
     /**
      * @Route("/{id}/show", name="entrada_show", methods={"GET"})
+     * @param Entrada $entrada
+     * @param EntradaRepository $er
+     * @return Response
      */
     public function show(Entrada $entrada, EntradaRepository $er): Response
     {
