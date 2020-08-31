@@ -72,6 +72,9 @@ class SectionFormType extends AbstractType
                 ],
                 'required'=>false,
             ])
+            ->add('template', TextType::class, [
+                'help'=>'Opcional, llama a un templeta específico, debe estar en sections creado'
+            ])
 
             ;
 

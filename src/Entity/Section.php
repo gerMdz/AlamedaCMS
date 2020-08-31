@@ -89,6 +89,11 @@ class Section
      */
     private $entradassection;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $template;
+
 
 
     public function __toString()
@@ -317,6 +322,18 @@ class Section
                 $entradassection->setSection(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTemplate(): ?string
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(?string $template): self
+    {
+        $this->template = $template;
 
         return $this;
     }
