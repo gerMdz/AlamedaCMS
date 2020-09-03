@@ -79,6 +79,22 @@ class EntradaType extends AbstractType
             ->add('linkPosting')
             ->add('section')
             ->add('orden')
+            ->add('encabezado', CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'help' => 'Es encabezado de sección?',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('destacado', CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'help' => 'Entrada destacada?',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
 
         ;
     }

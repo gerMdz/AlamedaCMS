@@ -122,6 +122,16 @@ class Entrada
      */
     private $section;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $encabezado;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $destacado;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
@@ -442,6 +452,30 @@ class Entrada
     public function setSection(?Section $section): self
     {
         $this->section = $section;
+
+        return $this;
+    }
+
+    public function getEncabezado(): ?bool
+    {
+        return $this->encabezado;
+    }
+
+    public function setEncabezado(?bool $encabezado): self
+    {
+        $this->encabezado = $encabezado;
+
+        return $this;
+    }
+
+    public function getDestacado(): ?bool
+    {
+        return $this->destacado;
+    }
+
+    public function setDestacado(?bool $destacado): self
+    {
+        $this->destacado = $destacado;
 
         return $this;
     }

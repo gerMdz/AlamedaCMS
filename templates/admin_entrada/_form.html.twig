@@ -1,29 +1,43 @@
 {{ form_start(entradaForm) }}
 
-{#    {{ form_widget(entradaForm) }}#}
+{# {{ form_widget(entradaForm) }} #}
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-6">
         {{ form_row(entradaForm.titulo) }}
     </div>
-    <div class="col-sm-5">
-        {{ form_row(entradaForm.linkRoute) }}
+    <div class="col-sm-2 text-center">
+        <label for="entrada_encabezado">
+            Encabezado?<br/>
+            {{ form_row(entradaForm.encabezado) }}
+        </label>
     </div>
+    <div class="col-sm-2 text-center">
+        <label for="entrada_destacado">
+            Destacado?<br/>
+            {{ form_row(entradaForm.destacado) }}
+        </label>
 
-    <div class="col-sm-2 checkbox ">
+    </div>
+    <div class="col-sm-2 text-center checkbox ">
         <label for="entrada_publicar" class="required">
             Publicar?<br/>
-            {% if entradaForm.vars.data.PublicadoAt | default  %}
-                {{form_row(entradaForm.publicar, { 'attr': {'checked': 'checked'} }) }}
+            {% if entradaForm.vars.data.PublicadoAt | default %}
+                {{ form_row(entradaForm.publicar, { 'attr': {'checked': 'checked'} }) }}
             {% else %}
-            {{form_row(entradaForm.publicar)}}
+                {{ form_row(entradaForm.publicar) }}
             {% endif %}
         </label>
     </div>
 
     <div class="col-sm-12">
+        {{ form_row(entradaForm.linkRoute) }}
+        {{ form_row(entradaForm.linkPosting) }}
+    </div>
+    <div class="col-sm-12">
         {{ form_row(entradaForm.autor) }}
         {{ form_row(entradaForm.eventoAt) }}
-        {{ form_row(entradaForm.linkPosting) }}
+    </div>
+    <div class="col-sm-12">
         {{ form_row(entradaForm.contenido) }}
     </div>
     <div class="col-sm-9">
@@ -34,14 +48,15 @@
         }) }}
     </div>
     <div class="col-sm-3">
-        {% if entradaForm.vars.data.imageFilename | default  %}
+        {% if entradaForm.vars.data.imageFilename | default %}
             <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
-                <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100" alt="Imagen">
+                <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
+                     alt="Imagen">
             </a>
 
         {% endif %}
     </div>
 </div>
-    <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+<button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
 
 {{ form_end(entradaForm) }}
