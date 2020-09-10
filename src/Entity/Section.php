@@ -94,6 +94,11 @@ class Section
      */
     private $template;
 
+    /**
+     * @ORM\Column(type="string", length=2550, nullable=true)
+     */
+    private $contenido;
+
 
 
     public function __toString()
@@ -334,6 +339,18 @@ class Section
     public function setTemplate(?string $template): self
     {
         $this->template = $template;
+
+        return $this;
+    }
+
+    public function getContenido(): ?string
+    {
+        return $this->contenido;
+    }
+
+    public function setContenido(?string $contenido): self
+    {
+        $this->contenido = $contenido;
 
         return $this;
     }

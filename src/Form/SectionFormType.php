@@ -6,6 +6,7 @@ use App\Entity\Brote;
 use App\Entity\Principal;
 use App\Entity\Section;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -74,6 +75,14 @@ class SectionFormType extends AbstractType
             ])
             ->add('template', TextType::class, [
                 'help'=>'Opcional, llama a un templeta específico, debe estar en sections creado'
+            ])
+            ->add('contenido', CKEditorType::class, [
+                'required' => true,
+                'config' => [
+                    'uiColor' => '#ffffff'],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
 
             ;

@@ -145,7 +145,7 @@
                                         {% if(section.identificador == 'cuadrados') %}
                                             {% for entrada in section.entradassection %}
                                                 <!--                marco dar-->
-                                                <div {{ (entrada.orden == 0)?'class="col-md-6 mb-2 mx-auto"':'class="col-md-3 mb-2 mx-auto"' }}>
+                                                <div {{ (entrada.destacado == true)?'class="col-md-6 mb-2 mx-auto"':'class="col-md-3 mb-2 mx-auto"' }}>
                                                     <!--                                        <div class="card h-100"> -->
 
                                                     <!--                                        <div class="card h-100"> -->
@@ -192,7 +192,8 @@
     <!-- EndSection 3 cuadrados -->
 
     <!-- Section Avanza -->
-
+    {% for section in datosIndex.section %}
+    {% if(section.identificador == 'pasos') %}
     <section class="a-content-space-medium text-center h-100 ">
         <div class="container-fluid">
             <div class="row">
@@ -204,72 +205,37 @@
                             <div class="col-sm-11">
                                 <div class="container text-center p-5">
                                     <h4>
-                                        <b class="aire-2 text-uppercase text-white">
-                                            Descubre tu propósito <br/>
-                                            con el camino de crecimiento
+                                        <b class="aire-2 text-uppercase text-dark">
+                                            {{ section.contenido | raw }}
                                         </b>
                                     </h4>
                                 </div>
                                 <div class="container mb-5">
                                     <div class="row">
+                                        {% for entrada in section.entradassection %}
                                         <div class="col-md-4">
                                             <div class="pasos h-100">
-                                                <a href="/avanza.php">
+                                                <a href="{{ (entrada.linkPosting is defined)? path(entrada.linkRoute): entrada.linkPosting  }}">
                                                     <div class="card card-plain bg-white h-100">
                                                         <div class="col-sm-4 mx-auto text-center img-20">
-                                                            <img src="/images/avanza/paso-1.jpg" alt="Iglesia de La Alameda"
+                                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                                                 alt="{{ base.siteName }}"
                                                                  class="img-raised rounded-circle img-fluid"/>
                                                         </div>
                                                         <h4 class="card-title text-center text-alameda ">
-                                                            <i>pasoUNO</i>
+                                                            <i>{{ entrada.titulo }}</i>
                                                         </h4>
                                                         <div class="card-body">
                                                             <p class="card-description text-center text-dark">
-                                                                29 de agosto
+                                                                {{ entrada.contenido | raw }}
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="pasos h-100">
-                                                <a href="/avanza.php">
-                                                    <div class="card card-plain bg-white h-100 ">
-                                                        <div class="col-sm-4 mx-auto text-center img-20">
-                                                            <img src="/images/avanza/paso-2.jpg" alt="Iglesia de La Alameda"
-                                                                 class="img-raised rounded-circle img-fluid">
-                                                        </div>
-                                                        <h4 class="card-title text-center text-alameda">
-                                                            <i>pasoDOS</i>
-                                                        </h4>
-                                                        <div class="card-body">
-                                                            <p class="card-description text-center text-dark ">
-                                                                5 de setiembre
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="pasos h-100">
-                                                <a href="/avanza.php">
-                                                    <div class="card card-plain bg-white h-100">
-                                                        <div class="col-sm-4 mx-auto text-center img-20">
-                                                            <img src="/images/avanza/paso-3.jpg" alt="Iglesia de La Alameda"
-                                                                 class="img-raised rounded-circle img-fluid">
-                                                        </div>
-                                                        <h4 class="card-title text-center text-alameda">
-                                                            <i>pasoTRES</i>
-                                                        </h4>
-                                                        <div class="card-body">
-                                                            <p class="card-description text-center text-dark">
-                                                                12 de setiembre
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
+
                                     </div>
                                 </div>
                             </div>
@@ -280,6 +246,8 @@
             </div>
         </div>
     </section>
+    {% endif %}
+    {% endfor %}
     <!-- End Avanza -->
 
 {% endblock %}

@@ -13,6 +13,7 @@
          {{ form_row(sectionForm.typeSecondary) }}
      {% endif %}
 </div>
+{{ form_row(sectionForm.contenido) }}
     {{ form_widget(sectionForm._token) }}
 
 <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
