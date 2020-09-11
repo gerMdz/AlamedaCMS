@@ -13,7 +13,26 @@
          {{ form_row(sectionForm.typeSecondary) }}
      {% endif %}
 </div>
+<div class="col-sm-12">
 {{ form_row(sectionForm.contenido) }}
+</div>
+
+<div class="col-sm-9">
+    {{ form_row(sectionForm.imageFile, {
+        attr: {
+            'placeholder': 'Seleccione una imagen para la entrada'
+        }
+    }) }}
+</div>
+<div class="col-sm-3">
+    {% if sectionForm.vars.data.imageFilename | default %}
+        <a href="{{ uploaded_asset(sectionForm.vars.data.imagePath) }}" target="_blank">
+            <img src="{{ sectionForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
+                 alt="Imagen">
+        </a>
+
+    {% endif %}
+</div>
     {{ form_widget(sectionForm._token) }}
 
 <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>

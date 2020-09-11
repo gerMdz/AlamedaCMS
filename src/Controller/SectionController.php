@@ -5,10 +5,13 @@ namespace App\Controller;
 use App\Entity\Section;
 use App\Form\SectionFormType;
 use App\Repository\SectionRepository;
+use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use phpDocumentor\Reflection\Types\This;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,11 +38,13 @@ class SectionController extends BaseController
     /**
      * @param EntityManagerInterface $em
      * @param Request $request
+     * @param UploaderHelper $uploaderHelper
      * @return Response
+     * @throws Exception
      * @Route("/new", name="admin_section_new")
      * @IsGranted("ROLE_EDITOR")
      */
-    public function new(EntityManagerInterface $em, Request $request)
+    public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
         $form = $this->createForm(SectionFormType::class);
 
@@ -48,6 +53,14 @@ class SectionController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Section $section */
             $section = $form->getData();
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                $section->setImageFilename($newFilename);
+            }
             $em->persist($section);
             $em->flush();
 
@@ -64,18 +77,27 @@ class SectionController extends BaseController
      * @Route("/{id}/edit", name="admin_section_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Section $section
+     * @param UploaderHelper $uploaderHelper
      * @return Response
      * @IsGranted("MANAGE", subject="section")
+     * @throws Exception
      */
-    public function edit(Request $request, Section $section): Response
+    public function edit(Request $request, Section $section, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(SectionFormType::class, $section);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+
             if (!isset($form['typeSecondary'])) {
                 $section->setTypeSecondary(null);
+            }
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $section->getImageFilename());
+                $section->setImageFilename($newFilename);
             }
             $this->getDoctrine()->getManager()->flush();
 

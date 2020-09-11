@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\ImageTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Section
 {
     use OfertTrait;
+    use ImageTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -98,6 +101,11 @@ class Section
      * @ORM\Column(type="string", length=2550, nullable=true)
      */
     private $contenido;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $orden;
 
 
 
@@ -351,6 +359,18 @@ class Section
     public function setContenido(?string $contenido): self
     {
         $this->contenido = $contenido;
+
+        return $this;
+    }
+
+    public function getOrden(): ?int
+    {
+        return $this->orden;
+    }
+
+    public function setOrden(?int $orden): self
+    {
+        $this->orden = $orden;
 
         return $this;
     }
