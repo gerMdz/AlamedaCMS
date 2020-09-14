@@ -1157,7 +1157,7 @@ a>small{
     transform: skewY(10deg) rotate(-10deg);
 }
 
-.blockquote-alameda-primary {
+blockquote, .blockquote-alameda-primary {
     padding: 0 1rem;
     border-left: .25rem solid #2993e5;
 }

@@ -99,6 +99,7 @@ class EntradaReferenciaAdminController extends AbstractController
     /**
      * @Route("/admin/entrada/{id}/referencia", methods="GET", name="admin_entrada_list_referencia")
      * @param Entrada $entrada
+     * @return JsonResponse
      */
     public function getEntradaReferences(Entrada $entrada)
     {
