@@ -159,7 +159,7 @@
                                                         <div class="card-footer bg-white justify-content-between ">
                                                             <!--                                     style="top: 80%; position: relative"-->
 
-                                                            <a href="{{ (entrada.linkPosting is defined)? path(entrada.linkRoute): entrada.linkPosting  }}" class="card-link text-left">
+                                                            <a href="{{ (entrada.linkPosting is defined)? entrada.linkPosting : path(entrada.linkRoute)  }}" class="card-link text-left">
 
                                                                 <span class="text-alameda">{{ entrada.titulo }}</span><br/>
                                                                 <small>{{ entrada.contenido|raw }}</small>
