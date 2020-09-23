@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelacionSectionEntrada index{% endblock %}
+
+{% block body %}
+    <h1>RelacionSectionEntrada index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Orden</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for relacion_section_entrada in relacion_section_entradas %}
+            <tr>
+                <td>{{ relacion_section_entrada.id }}</td>
+                <td>{{ relacion_section_entrada.orden }}</td>
+                <td>
+                    <a href="{{ path('relacion_section_entrada_show', {'id': relacion_section_entrada.id}) }}">show</a>
+                    <a href="{{ path('relacion_section_entrada_edit', {'id': relacion_section_entrada.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('relacion_section_entrada_new') }}">Create new</a>
+{% endblock %}

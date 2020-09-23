@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelacionSectionEntrada{% endblock %}
+
+{% block body %}
+    <h1>RelacionSectionEntrada</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ relacion_section_entrada.id }}</td>
+            </tr>
+            <tr>
+                <th>Orden</th>
+                <td>{{ relacion_section_entrada.orden }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('relacion_section_entrada_index') }}">back to list</a>
+
+    <a href="{{ path('relacion_section_entrada_edit', {'id': relacion_section_entrada.id}) }}">edit</a>
+
+    {{ include('relacion_section_entrada/_delete_form.html.twig') }}
+{% endblock %}
