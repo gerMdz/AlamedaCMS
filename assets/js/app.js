@@ -12,7 +12,7 @@ require('../css/igles.css');
 require('../css/foundation-icons/foundation-icons.css');
 require('../css/stream.css');
 require('../css/styles.css');
-require('../fonts/univers/font.css');
+// require('../fonts/univers/font.css');
 
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
