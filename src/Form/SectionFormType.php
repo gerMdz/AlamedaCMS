@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -55,7 +56,16 @@ class SectionFormType extends AbstractType
                 'widget' => 'single_text'
             ])
             ->add('columns')
-            ->add('startAt')
+            ->add('startAt', DateTimeType::class, array(
+        'widget' => 'single_text',
+        'required'=>false,
+        'html5' => true,
+        'label' => 'Comienza',
+        'format' => 'dd-MM-yyyy HH:mm',
+        'attr'=>[
+            'class'=>'form-control datetimepicker'
+        ]
+    ))
             ->add('stopAt')
             ->add('typeOrigin', ChoiceType::class, [
                 'label'=>'Origen',
