@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Brote;
+use App\Entity\Principal;
 use App\Form\BroteType;
 use App\Repository\BroteRepository;
 use App\Service\BoleanToDateHelper;
@@ -49,7 +50,7 @@ class AdminBroteController extends AbstractController
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
-        $brote = new Brote();
+        $brote = new Principal();
         $user = $this->getUser();
         $brote->setAutor($user);
 

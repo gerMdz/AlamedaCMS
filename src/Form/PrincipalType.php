@@ -48,6 +48,7 @@ class PrincipalType extends AbstractType
                     'class'=>'hidden'
                 ]
             ])
+            ->add('principal')
         ;
     }
 

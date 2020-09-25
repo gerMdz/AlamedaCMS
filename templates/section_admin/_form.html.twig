@@ -1,17 +1,19 @@
 {{ form_start(sectionForm) }}
 
 {#    {{ form_widget(sectionForm) }}#}
-    {{ form_row(sectionForm.name) }}
-    {{ form_row(sectionForm.typeOrigin,{
-        attr: {
-            'data-secondaty-url': path('admin_section_typeorigin_select'),
-            'class': 'js-section-form-origin'
-        }
-    }) }}
+{#    {{ form_row(sectionForm.name) }}#}
+{#    {{ form_row(sectionForm.typeOrigin,#}
+{#        {#}
+{#        attr: {#}
+{#            'data-secondaty-url': path('admin_section_typeorigin_select'),#}
+{#            'class': 'js-section-form-origin'#}
+{#        }#}
+{#    }) #}
+{#    }}#}
 <div class="js-secondary-target">
-     {%  if sectionForm.typeSecondary is defined %}
-         {{ form_row(sectionForm.typeSecondary) }}
-     {% endif %}
+{#     {%  if sectionForm.typeSecondary is defined %}#}
+{#         {{ form_row(sectionForm.typeSecondary) }}#}
+{#     {% endif %}#}
 </div>
 <div class="col-sm-12">
 {{ form_row(sectionForm.contenido) }}

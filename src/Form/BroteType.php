@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Brote;
 
+use App\Entity\Principal;
 use App\Form\DataTransformer\UserSelectTextType;
 
 use App\Repository\UserRepository;
@@ -36,7 +37,7 @@ class BroteType extends AbstractType
             ->add('imageFilename')
             ->add('likes')
 //            ->add('publicadoAt')
-            ->add('activa')
+            ->add('isActive')
             ->add('createdAt')
             ->add('updatedAt')
             ->add('autor', UserSelectTextType::class, [
@@ -58,7 +59,7 @@ class BroteType extends AbstractType
 //                'placeholder'=> 'Seleccione Autor',
 //                'invalid_message' => 'Por favor ingrese un autor'
 //            ])
-            ->add('entrada')
+            ->add('entradas')
             ->add('principal')
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
@@ -92,7 +93,7 @@ class BroteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Brote::class,
+            'data_class' => Principal::class,
         ]);
     }
 }

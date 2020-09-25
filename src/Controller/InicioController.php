@@ -6,6 +6,7 @@ use App\Entity\Brote;
 use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Repository\BroteRepository;
+use App\Repository\PrincipalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,14 +45,15 @@ class InicioController extends AbstractController
     /**
      * @Route("/{linkRoute}", name="principal_ver", methods={"GET"})
      * @param Principal $principal
-     * @param BroteRepository $broteRepository
+     * @param PrincipalRepository $principalRepository
      * @return Response
      */
-    public function ver(Principal $principal, BroteRepository $broteRepository): Response
+    public function ver(Principal $principal, PrincipalRepository $principalRepository): Response
     {
-        $vista = $principal->getLinkRoute();
-        /** @var Brote $brote */
-        $visual = $broteRepository->findOneBy(['principal'=>$principal->getId(), 'activa'=>true]);
+//        $ppal = $principalRepository->findOneBy(['principal'=>$principal->getId()]);
+
+        $vista = ($principal->getPrincipal()?$principal->getPrincipal()->getLinkRoute():$principal->getLinkRoute());
+        $visual = $principalRepository->findOneBy(['principal'=>$principal->getId(), 'isActive'=>true]);
         if(!$visual){
             $visual = $principal;
         }

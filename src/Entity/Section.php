@@ -107,6 +107,11 @@ class Section
      */
     private $orden;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="section")
+     */
+    private $principal;
+
 
 
     public function __toString()
@@ -371,6 +376,18 @@ class Section
     public function setOrden(?int $orden): self
     {
         $this->orden = $orden;
+
+        return $this;
+    }
+
+    public function getPrincipal(): ?Principal
+    {
+        return $this->principal;
+    }
+
+    public function setPrincipal(?Principal $principal): self
+    {
+        $this->principal = $principal;
 
         return $this;
     }

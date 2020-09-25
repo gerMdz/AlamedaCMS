@@ -7,6 +7,7 @@ use App\Entity\Principal;
 use App\Entity\Section;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -66,25 +67,23 @@ class SectionFormType extends AbstractType
             'class'=>'form-control datetimepicker'
         ]
     ))
-            ->add('stopAt')
-            ->add('typeOrigin', ChoiceType::class, [
-                'label'=>'Origen',
-                'placeholder'=>'Seleccione el tipo de origen',
-                'choices'=>[
-                'Principal' => 'principal',
-                'Brote' => 'brote',
-                'Index'=>'index'
-                ],
+            ->add('stopAt', DateTimeType::class, array(
+                'widget' => 'single_text',
                 'required'=>false,
+                'html5' => true,
+                'label' => 'Finaliza',
+                'format' => 'dd-MM-yyyy HH:mm',
+                'attr'=>[
+                    'class'=>'form-control datetimepicker'
+                ]
+            ))
+            ->add('principal', EntityType::class, [
+                'class'=> 'App\Entity\Principal',
+                'label'=>'Página?',
+                'placeholder'=>'Seleccione la página donde se insertará la sección',
+                'required'=>true,
+
             ] )
-            ->add('typeSecondary', ChoiceType::class,[
-                'label'=>'Página',
-                'placeholder'=>'Seleccione donde se agregará esta sección',
-                'choices'=>[
-                    'HACER'=>'HACER'
-                ],
-                'required'=>false,
-            ])
             ->add('template', TextType::class, [
                 'help'=>'Opcional, llama a un templeta específico, debe estar en sections creado'
             ])
@@ -113,31 +112,33 @@ class SectionFormType extends AbstractType
             ])
 
             ;
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event){
-                /**@var Section|null $data **/
-                $data = $event->getData();
-                if(!$data){
-                    return;
-                }
-                $this->setupTypeSecondaryNameField(
-                    $event->getForm(),
-                    $data->getTypeOrigin()
-                );
-            }
-        );
-        $builder->get('typeOrigin')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function(FormEvent $event) {
-                $form = $event->getForm();
-                $this->setupTypeSecondaryNameField(
-                    $form->getParent(),
-                    $event->getData()
-                );
-            }
-        );
+/**
+ * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
+ */
+//        $builder->addEventListener(
+//            FormEvents::PRE_SET_DATA,
+//            function (FormEvent $event){
+//                /**@var Section|null $data **/
+//                $data = $event->getData();
+//                if(!$data){
+//                    return;
+//                }
+//                $this->setupTypeSecondaryNameField(
+//                    $event->getForm(),
+//                    $data->getTypeOrigin()
+//                );
+//            }
+//        );
+//        $builder->get('typeOrigin')->addEventListener(
+//            FormEvents::POST_SUBMIT,
+//            function(FormEvent $event) {
+//                $form = $event->getForm();
+//                $this->setupTypeSecondaryNameField(
+//                    $form->getParent(),
+//                    $event->getData()
+//                );
+//            }
+//        );
 
 
 
@@ -151,60 +152,60 @@ class SectionFormType extends AbstractType
         ]);
     }
 
-    private function getOriginNameChoices(string $origin = null){
+//    private function getOriginNameChoices(string $origin = null){
 
-        switch ($origin){
-
-            case 'brote':
-                $data = $this->registry->getRepository(Brote::class)->getBrotesSelect();
-                $data = $this->combineArray($data);
-
-                break;
-            case 'principal':
-                $data = $this->registry->getRepository(Principal::class)->getPrincipalSelect();
-                $data = $this->combineArray($data);
-                break;
-            case 'index':
-            default:
-                $data = null;
-        }
-
-
+//        switch ($origin){
+//
+//            case 'brote':
+//                $data = $this->registry->getRepository(Brote::class)->getBrotesSelect();
+//                $data = $this->combineArray($data);
+//
+//                break;
+//            case 'principal':
+//                $data = $this->registry->getRepository(Principal::class)->getPrincipalSelect();
+//                $data = $this->combineArray($data);
+//                break;
+//            case 'index':
+//            default:
+//                $data = null;
+//        }
 
 
-        return $data;
 
 
-    }
+//        return $data;
+
+
+//    }
 
     /**
      * @param FormInterface $form
      * @param string|null $origin
      */
-    private function setupTypeSecondaryNameField(FormInterface $form, ?string $origin)
-    {
-        if(null === $origin){
-            $form->remove('typeSecondary');
-        }
-        $choices = $this->getOriginNameChoices($origin);
-        if (null === $choices) {
-            $form->remove('typeSecondary');
-            return;
-        }
-
-        $form->add('typeSecondary', ChoiceType::class, [
-            'label'=>'Página',
-            'placeholder'=>'Seleccione donde se agregará esta sección',
-            'choices' => $choices,
-            'required' => false,
-        ]);
-    }
-
-    private function combineArray($data){
-        $titulos = array_column($data, 'titulo');
-        $liks = array_column($data, 'linkRoute');
-        return array_combine($titulos, $liks);
-    }
+//    private function setupTypeSecondaryNameField(FormInterface $form, ?string $origin)
+//    {
+//        if(null === $origin){
+//            $form->remove('typeSecondary');
+//        }
+//        $choices = $this->getOriginNameChoices($origin);
+//        if (null === $choices) {
+//            $form->remove('typeSecondary');
+//            return;
+//        }
+//
+//        $form->add('typeSecondary', ChoiceType::class, [
+//            'label'=>'Página',
+//            'placeholder'=>'Seleccione donde se agregará esta sección',
+//            'choices' => $choices,
+//            'required' => false,
+//        ]);
+//    }
+//
+//    private function combineArray($data){
+//        $titulos = array_column($data, 'titulo');
+//        $liks = array_column($data, 'linkRoute');
+//        return array_combine($titulos, $liks);
+//    }
 
 
 

@@ -18,6 +18,7 @@ class Principal
 {
 
     use TimestampableEntity;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -69,26 +70,32 @@ class Principal
     private $entradas;
 
     /**
-     * @ORM\OneToMany(targetEntity=Brote::class, mappedBy="principal")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $brotes;
+    private $isActive;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="principals")
+     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="principal")
      */
-    private $bud;
+    private $section;
 
     /**
-     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="bud")
+     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="brote")
      */
-    private $principals;
+    private $principal;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="principal")
+     */
+    private $brote;
+
 
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->entradas = new ArrayCollection();
-        $this->brotes = new ArrayCollection();
-        $this->principals = new ArrayCollection();
+        $this->section = new ArrayCollection();
+        $this->brote = new ArrayCollection();
     }
 
     public function __toString()
@@ -144,7 +151,7 @@ class Principal
 
     public function setLinkRoute(?string $linkRoute): self
     {
-        ($linkRoute ==null ? $linkRoute = strtolower(str_replace(' ', '-', trim($this->titulo().'-'.$this->gId()))) : $linkRoute = $linkRoute);
+        ($linkRoute == null ? $linkRoute = strtolower(str_replace(' ', '-', trim($this->titulo . '-' . $this->id))) : $linkRoute);
         $this->linkRoute = $linkRoute;
         return $this;
     }
@@ -230,28 +237,90 @@ class Principal
         return $this;
     }
 
-    /**
-     * @return Collection|Brote[]
-     */
-    public function getBrotes(): Collection
+
+    public function getImagePath()
     {
-        return $this->brotes;
+        return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
     }
 
-    public function addbrote(Brote $brote): self
+
+    public function getIsActive(): ?bool
     {
-        if (!$this->brotes->contains($brote)) {
-            $this->brotes[] = $brote;
+        return $this->isActive;
+    }
+
+    public function setIsActive(?bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSection(): Collection
+    {
+        return $this->section;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->section->contains($section)) {
+            $this->section[] = $section;
+            $section->setPrincipal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->section->contains($section)) {
+            $this->section->removeElement($section);
+            // set the owning side to null (unless already changed)
+            if ($section->getPrincipal() === $this) {
+                $section->setPrincipal(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPrincipal(): ?self
+    {
+        return $this->principal;
+    }
+
+    public function setPrincipal(?self $principal): self
+    {
+        $this->principal = $principal;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getBrote(): Collection
+    {
+        return $this->brote;
+    }
+
+    public function addBrote(self $brote): self
+    {
+        if (!$this->brote->contains($brote)) {
+            $this->brote[] = $brote;
             $brote->setPrincipal($this);
         }
 
         return $this;
     }
 
-    public function removebrote(Brote $brote): self
+    public function removeBrote(self $brote): self
     {
-        if ($this->brotes->contains($brote)) {
-            $this->brotes->removeElement($brote);
+        if ($this->brote->contains($brote)) {
+            $this->brote->removeElement($brote);
             // set the owning side to null (unless already changed)
             if ($brote->getPrincipal() === $this) {
                 $brote->setPrincipal(null);
@@ -260,51 +329,6 @@ class Principal
 
         return $this;
     }
-    public function getImagePath()
-    {
-        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
-    }
 
-    public function getBud(): ?self
-    {
-        return $this->bud;
-    }
 
-    public function setBud(?self $bud): self
-    {
-        $this->bud = $bud;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|self[]
-     */
-    public function getPrincipals(): Collection
-    {
-        return $this->principals;
-    }
-
-    public function addPrincipal(self $principal): self
-    {
-        if (!$this->principals->contains($principal)) {
-            $this->principals[] = $principal;
-            $principal->setBud($this);
-        }
-
-        return $this;
-    }
-
-    public function removePrincipal(self $principal): self
-    {
-        if ($this->principals->contains($principal)) {
-            $this->principals->removeElement($principal);
-            // set the owning side to null (unless already changed)
-            if ($principal->getBud() === $this) {
-                $principal->setBud(null);
-            }
-        }
-
-        return $this;
-    }
 }
