@@ -20,8 +20,8 @@
                     Titulo <br/>
                     Linkroute
                 </th>
-                <th>Likes<br/>
-                Comentarios</th>
+                <th>Sección<br/>
+                Página</th>
                 <th>
                     Autor<br/>
                     email
@@ -40,8 +40,19 @@
                         {{ entrada.linkRoute }}
                     </td>
                     <td>
-                        {{ entrada.likes }} Likes <br/>
-                        <small>({{ entrada.comentariosNoDeleted | length }} Comentarios)</small>
+                        S: {{ entrada.section }}  <br/>
+{#                        <small>({{ entrada.comentariosNoDeleted | length }} Comentarios)</small>#}
+                        {% if entrada.section.indexAlamedas is defined %}
+                            {% for index in entrada.section.indexAlamedas  %}
+                        i: {{ index.lema }}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if entrada.section.principal is defined %}
+                            {% for principal in entrada.section.principal  %}
+                         P:       principal.title
+                            {% endfor %}
+                        {% endif %}
                     </td>
                     <td>
                         {{ entrada.autor }} --
@@ -57,7 +68,7 @@
                             {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
                     </td>
                     <td>
-                        <img class="article-img"
+                        <img class="article-img" alt="{{ base.lema }}"
                              src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small')}}">
                         <br/>
                         {{ entrada.imageFilename }}
