@@ -9,7 +9,6 @@ use App\Service\UploaderHelper;
 use DateTime;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/principal")
  */
-class PrincipalController extends AbstractController
+class PrincipalController extends BaseController
 {
     /**
      * @Route("/", name="principal_index", methods={"GET"})

@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\ModelTemplate;
 use App\Form\ModelTemplateType;
 use App\Repository\ModelTemplateRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/model/template")
+ * @Route("/admin/modeltemplate")
  */
 class ModelTemplateController extends AbstractController
 {
@@ -31,6 +32,7 @@ class ModelTemplateController extends AbstractController
      * @Route("/new", name="model_template_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -69,6 +71,7 @@ class ModelTemplateController extends AbstractController
      * @param Request $request
      * @param ModelTemplate $modelTemplate
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, ModelTemplate $modelTemplate): Response
     {
@@ -92,6 +95,7 @@ class ModelTemplateController extends AbstractController
      * @param Request $request
      * @param ModelTemplate $modelTemplate
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, ModelTemplate $modelTemplate): Response
     {

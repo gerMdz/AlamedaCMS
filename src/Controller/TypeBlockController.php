@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\TypeBlock;
 use App\Form\TypeBlockType;
 use App\Repository\TypeBlockRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/type/block")
+ * @Route("/admin/typeblock")
  */
 class TypeBlockController extends AbstractController
 {
@@ -31,6 +32,7 @@ class TypeBlockController extends AbstractController
      * @Route("/new", name="type_block_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -69,6 +71,7 @@ class TypeBlockController extends AbstractController
      * @param Request $request
      * @param TypeBlock $typeBlock
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, TypeBlock $typeBlock): Response
     {
@@ -92,6 +95,7 @@ class TypeBlockController extends AbstractController
      * @param Request $request
      * @param TypeBlock $typeBlock
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, TypeBlock $typeBlock): Response
     {
