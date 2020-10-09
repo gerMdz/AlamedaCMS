@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\ImageTrait;
 use App\Repository\PrincipalRepository;
-use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +18,7 @@ class Principal
 {
 
     use TimestampableEntity;
+    use ImageTrait;
 
     /**
      * @ORM\Id()
@@ -49,10 +50,6 @@ class Principal
      */
     private $linkRoute;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageFilename;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -88,6 +85,11 @@ class Principal
      * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="principal")
      */
     private $brote;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="principals")
+     */
+    private $modelTemplate;
 
 
     public function __construct()
@@ -156,17 +158,8 @@ class Principal
         return $this;
     }
 
-    public function getImageFilename(): ?string
-    {
-        return $this->imageFilename;
-    }
 
-    public function setImageFilename(?string $imageFilename): self
-    {
-        $this->imageFilename = $imageFilename;
 
-        return $this;
-    }
 
     public function getLikes(): ?int
     {
@@ -238,10 +231,7 @@ class Principal
     }
 
 
-    public function getImagePath()
-    {
-        return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
-    }
+
 
 
     public function getIsActive(): ?bool
@@ -326,6 +316,18 @@ class Principal
                 $brote->setPrincipal(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getModelTemplate(): ?ModelTemplate
+    {
+        return $this->modelTemplate;
+    }
+
+    public function setModelTemplate(?ModelTemplate $modelTemplate): self
+    {
+        $this->modelTemplate = $modelTemplate;
 
         return $this;
     }

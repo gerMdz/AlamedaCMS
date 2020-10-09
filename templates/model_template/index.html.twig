@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ModelTemplate index{% endblock %}
+
+{% block body %}
+    <h1>ModelTemplate index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Identifier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for model_template in model_templates %}
+            <tr>
+                <td>{{ model_template.id }}</td>
+                <td>{{ model_template.name }}</td>
+                <td>{{ model_template.description }}</td>
+                <td>{{ model_template.identifier }}</td>
+                <td>
+                    <a href="{{ path('model_template_show', {'id': model_template.id}) }}">show</a>
+                    <a href="{{ path('model_template_edit', {'id': model_template.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('model_template_new') }}">Create new</a>
+{% endblock %}

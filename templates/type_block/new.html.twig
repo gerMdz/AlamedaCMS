@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeBlock{% endblock %}
+
+{% block body %}
+    <h1>Create new TypeBlock</h1>
+
+    {{ include('type_block/_form.html.twig') }}
+
+    <a href="{{ path('type_block_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ModelTemplate{% endblock %}
+
+{% block body %}
+    <h1>Create new ModelTemplate</h1>
+
+    {{ include('model_template/_form.html.twig') }}
+
+    <a href="{{ path('model_template_index') }}">back to list</a>
+{% endblock %}

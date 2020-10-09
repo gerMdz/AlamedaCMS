@@ -2,21 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Brote;
-use App\Entity\Principal;
 use App\Entity\Section;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -40,7 +35,8 @@ class SectionFormType extends AbstractType
     {
         $builder
             ->add('name', null,[
-                'label'=>'Nombre'
+                'label'=>'Nombre de la sección',
+                'help' => 'Nombre que identifica a la sección entre las otras secciones'
             ])
             ->add('cssClass', null, [
                 'label'=>'Clase css'
@@ -85,7 +81,7 @@ class SectionFormType extends AbstractType
 
             ] )
             ->add('template', TextType::class, [
-                'help'=>'Opcional, llama a un templeta específico, debe estar en sections creado'
+                'help'=>'Opcional, llama a un template específico, debe estar en sections creado'
             ])
             ->add('contenido', CKEditorType::class, [
                 'required' => true,
@@ -110,6 +106,11 @@ class SectionFormType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
+            ->add('title', TextType::class, [
+                'label'=> 'Titulo',
+                'required'=>false,
+                'help'=>'Opcional, título para la sección que se visualiza en la página '
+    ])
 
             ;
 /**
@@ -203,8 +204,8 @@ class SectionFormType extends AbstractType
 //
 //    private function combineArray($data){
 //        $titulos = array_column($data, 'titulo');
-//        $liks = array_column($data, 'linkRoute');
-//        return array_combine($titulos, $liks);
+//        $links = array_column($data, 'linkRoute');
+//        return array_combine($titulos, $links);
 //    }
 
 

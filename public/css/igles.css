@@ -628,6 +628,16 @@ h3.quote:after {
 
 }
 
+.text-14-300 {
+    font-size: 1.2em;
+    font-weight: 300;
+    line-height: 1.5em;
+    /*margin-bottom: 10px;*/
+    /*margin-top: 10px;*/
+    font-family: "ArialNova", sans-serif;
+
+}
+
 b, i, sup, sub, u, del {
 
     /*color: #6cbb23;*/
@@ -705,7 +715,7 @@ p .base-rojo{
 /*.base-rojo  u,*/
 /*.base-rojo  del {*/
 
-    /*color: #8c3654;*/
+/*color: #8c3654;*/
 
 /*}*/
 
@@ -947,6 +957,9 @@ body.frontal {
     background-color: #d3d9dd;
     color: #495359;
 }
+.bg-camino {
+    background: #032a3b linear-gradient(#032a3b, #518bb9);
+}
 .bg-alameda-reverso {
     background-color: #2993e5;
     /*color: #495359;*/
@@ -1102,7 +1115,7 @@ a:hover>b{
 }
 
 .text-alameda{
-color: rgb(41, 147, 229)
+    color: rgb(41, 147, 229) !important;
 }
 .t16{
     font-size: 16px;
@@ -1110,7 +1123,6 @@ color: rgb(41, 147, 229)
 .negrita7{
     font-weight: 700 !important;
 }
-
 
 .contenedor:hover .card-img:hover {
     transform: scale(1.3);
@@ -1157,7 +1169,7 @@ a>small{
     transform: skewY(10deg) rotate(-10deg);
 }
 
-blockquote, .blockquote-alameda-primary {
+.blockquote-alameda-primary {
     padding: 0 1rem;
     border-left: .25rem solid #2993e5;
 }
@@ -1180,4 +1192,39 @@ blockquote, .blockquote-alameda-primary {
     border: none currentcolor;
     border-radius: 10rem !important;
     background-color: #2993e5 !important;
+}
+
+.bg-gris-medio{
+    background-color: #f8fbfd;
+}
+.bg-gris-alameda{
+    background-color: #eeeeee;
+}
+
+.img-20 {
+    transform: translate3d(0,-30%,0);
+    max-width: 160px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.sub-img{
+    margin-top: -40px !important;
+}
+
+.main-60 {
+    margin: -200px;
+
+}
+
+h4.card-title{
+    font-family: ArialNova, serif !important;
+}
+
+.fuente-normal{
+    font-size: 1em !important;
+    font-family: ArialNova, serif !important;
+}
+.fuente-arial-nova{
+    font-family: ArialNova, serif !important;
 }

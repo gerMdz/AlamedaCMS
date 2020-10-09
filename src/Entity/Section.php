@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\ImageTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -112,6 +113,16 @@ class Section
      */
     private $principal;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="sections")
+     */
+    private $modelTemplate;
+
 
 
     public function __toString()
@@ -204,12 +215,12 @@ class Section
         return $this;
     }
 
-    public function getDisponibleAt(): ?\DateTimeInterface
+    public function getDisponibleAt(): ?DateTimeInterface
     {
         return $this->disponibleAt;
     }
 
-    public function setDisponibleAt(?\DateTimeInterface $disponibleAt): self
+    public function setDisponibleAt(?DateTimeInterface $disponibleAt): self
     {
         $this->disponibleAt = $disponibleAt;
 
@@ -388,6 +399,30 @@ class Section
     public function setPrincipal(?Principal $principal): self
     {
         $this->principal = $principal;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getModelTemplate(): ?ModelTemplate
+    {
+        return $this->modelTemplate;
+    }
+
+    public function setModelTemplate(?ModelTemplate $modelTemplate): self
+    {
+        $this->modelTemplate = $modelTemplate;
 
         return $this;
     }

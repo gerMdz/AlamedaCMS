@@ -9,7 +9,6 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
@@ -131,6 +130,11 @@ class Entrada
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $destacado;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="entradas")
+     */
+    private $modelTemplate;
 
     public function __construct()
     {
@@ -476,6 +480,18 @@ class Entrada
     public function setDestacado(?bool $destacado): self
     {
         $this->destacado = $destacado;
+
+        return $this;
+    }
+
+    public function getModelTemplate(): ?ModelTemplate
+    {
+        return $this->modelTemplate;
+    }
+
+    public function setModelTemplate(?ModelTemplate $modelTemplate): self
+    {
+        $this->modelTemplate = $modelTemplate;
 
         return $this;
     }

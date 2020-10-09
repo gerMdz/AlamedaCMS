@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeBlock{% endblock %}
+
+{% block body %}
+    <h1>TypeBlock</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_block.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ type_block.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ type_block.description }}</td>
+            </tr>
+            <tr>
+                <th>Identifier</th>
+                <td>{{ type_block.identifier }}</td>
+            </tr>
+            <tr>
+                <th>IsActive</th>
+                <td>{{ type_block.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_block_index') }}">back to list</a>
+
+    <a href="{{ path('type_block_edit', {'id': type_block.id}) }}">edit</a>
+
+    {{ include('type_block/_delete_form.html.twig') }}
+{% endblock %}
