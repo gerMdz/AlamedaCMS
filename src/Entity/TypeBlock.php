@@ -51,6 +51,11 @@ class TypeBlock
         $this->modelTemplates = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->identifier;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

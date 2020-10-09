@@ -63,6 +63,11 @@ class ModelTemplate
         $this->entradas = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->identifier;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
