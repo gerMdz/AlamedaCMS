@@ -92,3 +92,7 @@ yarn-error.log
 /public/images/dar-online.jpg
 /public/images/pastores/fabianRuiz.png
 /public/icons/foundation-icons/svgs/
+/docker/
+/docker-compose.yml
+/Makefile
+.env.local

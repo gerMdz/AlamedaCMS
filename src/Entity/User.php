@@ -103,6 +103,11 @@ class User implements UserInterface
      */
     private $sections;
 
+    /**
+     * @ORM\OneToMany(targetEntity=EnlaceCorto::class, mappedBy="usuario")
+     */
+    private $enlaceCortos;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -112,6 +117,7 @@ class User implements UserInterface
         $this->comentarios = new ArrayCollection();
         $this->brotes = new ArrayCollection();
         $this->sections = new ArrayCollection();
+        $this->enlaceCortos = new ArrayCollection();
     }
 
     public function __toString()
@@ -460,6 +466,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($section->getAutor() === $this) {
                 $section->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EnlaceCorto[]
+     */
+    public function getEnlaceCortos(): Collection
+    {
+        return $this->enlaceCortos;
+    }
+
+    public function addEnlaceCorto(EnlaceCorto $enlaceCorto): self
+    {
+        if (!$this->enlaceCortos->contains($enlaceCorto)) {
+            $this->enlaceCortos[] = $enlaceCorto;
+            $enlaceCorto->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnlaceCorto(EnlaceCorto $enlaceCorto): self
+    {
+        if ($this->enlaceCortos->contains($enlaceCorto)) {
+            $this->enlaceCortos->removeElement($enlaceCorto);
+            // set the owning side to null (unless already changed)
+            if ($enlaceCorto->getUsuario() === $this) {
+                $enlaceCorto->setUsuario(null);
             }
         }
 

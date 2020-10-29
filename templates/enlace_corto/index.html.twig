@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EnlaceCorto index{% endblock %}
+
+{% block body %}
+    <h1>EnlaceCorto index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>LinkRoute</th>
+                <th>UrlDestino</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for enlace_corto in enlace_cortos %}
+            <tr>
+                <td>{{ enlace_corto.id }}</td>
+                <td>{{ enlace_corto.linkRoute }}</td>
+                <td>{{ enlace_corto.urlDestino }}</td>
+                <td>{{ enlace_corto.createdAt ? enlace_corto.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ enlace_corto.updatedAt ? enlace_corto.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('enlace_corto_show', {'linkRoute': enlace_corto.linkRoute}) }}">show</a>
+                    <a href="{{ path('enlace_corto_edit', {'id': enlace_corto.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('enlace_corto_new') }}">Create new</a>
+{% endblock %}
