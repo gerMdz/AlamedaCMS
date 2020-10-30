@@ -1,9 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_material_kit.twig' %}
 
-{% block title %}EnlaceCorto index{% endblock %}
+{% block title %}Enlace Cortos Listdo{% endblock %}
 
-{% block body %}
-    <h1>EnlaceCorto index</h1>
+{% block sections %}
+
+<main role="main" class="bg-white">
+
+
+    <!-- Contact Form -->
+    <section class="a-content-space-medium">
+        <div class="container">
+    <h1>Enlace Cortos Listado</h1>
 
     <table class="table">
         <thead>
@@ -38,4 +45,7 @@
     </table>
 
     <a href="{{ path('enlace_corto_new') }}">Create new</a>
+        </div>
+    </section>
+</main>
 {% endblock %}
