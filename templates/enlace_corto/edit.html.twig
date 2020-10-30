@@ -1,8 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_material_kit.twig' %}
 
 {% block title %}Edit EnlaceCorto{% endblock %}
 
-{% block body %}
+{% block sections %}
+
+<main role="main" class="bg-white">
+
+
+    <!-- Contact Form -->
+    <section class="a-content-space-medium">
+        <div class="container">
     <h1>Edit EnlaceCorto</h1>
 
     {{ include('enlace_corto/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +17,7 @@
     <a href="{{ path('enlace_corto_index') }}">back to list</a>
 
     {{ include('enlace_corto/_delete_form.html.twig') }}
+        </div>
+    </section>
+</main>
 {% endblock %}
