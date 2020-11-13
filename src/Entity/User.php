@@ -108,6 +108,11 @@ class User implements UserInterface
      */
     private $enlaceCortos;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Celebracion::class, mappedBy="creaEvento")
+     */
+    private $celebracions;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -118,6 +123,7 @@ class User implements UserInterface
         $this->brotes = new ArrayCollection();
         $this->sections = new ArrayCollection();
         $this->enlaceCortos = new ArrayCollection();
+        $this->celebracions = new ArrayCollection();
     }
 
     public function __toString()
@@ -497,6 +503,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($enlaceCorto->getUsuario() === $this) {
                 $enlaceCorto->setUsuario(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Celebracion[]
+     */
+    public function getCelebracions(): Collection
+    {
+        return $this->celebracions;
+    }
+
+    public function addCelebracion(Celebracion $celebracion): self
+    {
+        if (!$this->celebracions->contains($celebracion)) {
+            $this->celebracions[] = $celebracion;
+            $celebracion->setCreaEvento($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCelebracion(Celebracion $celebracion): self
+    {
+        if ($this->celebracions->removeElement($celebracion)) {
+            // set the owning side to null (unless already changed)
+            if ($celebracion->getCreaEvento() === $this) {
+                $celebracion->setCreaEvento(null);
             }
         }
 
