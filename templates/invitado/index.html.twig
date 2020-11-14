@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invitado index{% endblock %}
+
+{% block body %}
+    <h1>Invitado index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Telefono</th>
+                <th>Dni</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for invitado in invitados %}
+            <tr>
+                <td>{{ invitado.id }}</td>
+                <td>{{ invitado.telefono }}</td>
+                <td>{{ invitado.dni }}</td>
+                <td>{{ invitado.nombre }}</td>
+                <td>{{ invitado.apellido }}</td>
+                <td>
+                    <a href="{{ path('invitado_show', {'id': invitado.id}) }}">show</a>
+                    <a href="{{ path('invitado_edit', {'id': invitado.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('invitado_new') }}">Create new</a>
+{% endblock %}

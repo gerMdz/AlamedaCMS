@@ -6,6 +6,7 @@
 parameters:
     uploads_dir_name: 'uploads'
     uploads_base_url: '%env(SITE_BASE_URL)%/%uploads_dir_name%'
+    site_temporal: '%env(SITE_TEMPORAL)%'
 
 services:
     # default configuration for services in *this* file
@@ -19,6 +20,7 @@ services:
             $publicUploadsFilesystem: '@oneup_flysystem.public_uploads_filesystem_filesystem'
             $privateUploadsFilesystem: '@oneup_flysystem.private_uploads_filesystem_filesystem'
             $uploadedAssetsBaseUrl: '%uploads_base_url%'
+            $site_temporal: '%site_temporal%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

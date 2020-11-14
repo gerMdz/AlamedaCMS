@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservante index{% endblock %}
+
+{% block body %}
+    <h1>Reservante index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>IsPresente</th>
+                <th>Documento</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservante in reservantes %}
+            <tr>
+                <td>{{ reservante.id }}</td>
+                <td>{{ reservante.email }}</td>
+                <td>{{ reservante.apellido }}</td>
+                <td>{{ reservante.nombre }}</td>
+                <td>{{ reservante.telefono }}</td>
+                <td>{{ reservante.isPresente ? 'Yes' : 'No' }}</td>
+                <td>{{ reservante.documento }}</td>
+                <td>
+                    <a href="{{ path('reservante_show', {'id': reservante.id}) }}">show</a>
+                    <a href="{{ path('reservante_edit', {'id': reservante.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservante_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Celebracion{% endblock %}
+
+{% block body %}
+    <h1>Celebracion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ celebracion.id }}</td>
+            </tr>
+            <tr>
+                <th>FechaCelebracionAt</th>
+                <td>{{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ celebracion.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Capacidad</th>
+                <td>{{ celebracion.capacidad }}</td>
+            </tr>
+            <tr>
+                <th>DisponibleAt</th>
+                <td>{{ celebracion.disponibleAt ? celebracion.disponibleAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ celebracion.createdAt ? celebracion.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ celebracion.updatedAt ? celebracion.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('celebracion_index') }}">back to list</a>
+
+    <a href="{{ path('celebracion_edit', {'id': celebracion.id}) }}">edit</a>
+
+    {{ include('celebracion/_delete_form.html.twig') }}
+{% endblock %}

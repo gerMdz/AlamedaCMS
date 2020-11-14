@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservante{% endblock %}
+
+{% block body %}
+    <h1>Reservante</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservante.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ reservante.email }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ reservante.apellido }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ reservante.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ reservante.telefono }}</td>
+            </tr>
+            <tr>
+                <th>IsPresente</th>
+                <td>{{ reservante.isPresente ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Documento</th>
+                <td>{{ reservante.documento }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservante_index') }}">back to list</a>
+
+    <a href="{{ path('reservante_edit', {'id': reservante.id}) }}">edit</a>
+
+    {{ include('reservante/_delete_form.html.twig') }}
+{% endblock %}

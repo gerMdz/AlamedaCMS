@@ -2,9 +2,12 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+
 index:
     path: /
-    controller: App\Controller\InicioController::index
+    controller: App\Controller\ZinicioController::index
+
+
 
 
 #index:

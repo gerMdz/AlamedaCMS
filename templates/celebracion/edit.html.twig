@@ -1,0 +1,64 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}Celebraciones {{ base.siteName }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+{% endblock %}
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'Celebraciones'}) }}
+{% endblock %}
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+
+            <h4 class="card-title ">Celebraciones</h4>
+            <p class="card-category"> Editar celebración </p>
+        </div>
+        <div class="card-body">
+
+    {{ include('celebracion/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <a href="#"></a>
+        <a class="btn btn-sm btn-info btn-round" href="{{ path('celebracion_index') }}">
+            <i class="fas fa-step-backward"></i> Ver celebraciones</a>
+
+
+    </div>
+</div>
+{% endblock %}
+{% block jslocal %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+
+    <script>
+        $('#celebracion').addClass('active');
+    </script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm ',
+                locale: 'es',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        })
+    </script>
+{% endblock %}
+

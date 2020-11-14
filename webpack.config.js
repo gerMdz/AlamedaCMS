@@ -58,16 +58,16 @@ Encore
     })
 
     // enables Sass/SCSS support
-    // .enableSassLoader()
+     .enableSassLoader()
 
-    // .enableSassLoader((options) => {
-    //     options.sourceMap = true;
-    //     options.sassOptions = {
-    //         outputStyle: options.outputStyle,
-    //         sourceComments: !Encore.isProduction(),
-    //     };
-    //     delete options.outputStyle;
-    // }, {})
+    .enableSassLoader((options) => {
+        options.sourceMap = true;
+        options.sassOptions = {
+            outputStyle: options.outputStyle,
+            sourceComments: !Encore.isProduction(),
+        };
+        delete options.outputStyle;
+    }, {})
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -78,9 +78,7 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
-    .addEntry('datepicker', [
-        './assets/js/datepicker.js'
-    ])
+
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reservante{% endblock %}
+
+{% block body %}
+    <h1>Create new Reservante</h1>
+
+    {{ include('reservante/_form.html.twig') }}
+
+    <a href="{{ path('reservante_index') }}">back to list</a>
+{% endblock %}

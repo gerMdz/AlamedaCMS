@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invitado{% endblock %}
+
+{% block body %}
+    <h1>Invitado</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ invitado.id }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ invitado.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Dni</th>
+                <td>{{ invitado.dni }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ invitado.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ invitado.apellido }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('invitado_index') }}">back to list</a>
+
+    <a href="{{ path('invitado_edit', {'id': invitado.id}) }}">edit</a>
+
+    {{ include('invitado/_delete_form.html.twig') }}
+{% endblock %}

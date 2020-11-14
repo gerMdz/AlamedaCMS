@@ -1,0 +1,76 @@
+{% extends 'base_material_kit.twig' %}
+
+{% block title %} Reservas {{ app.request.host }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+
+    </style>
+{% endblock %}
+{% block sslocal %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
+    {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+
+{% endblock %}
+
+
+
+{% block sections %}
+
+    <!-- Promo Content -->
+    <div class="page-header-60 header-filter mt-5 bg-reserva">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xl-12">
+                    <h1 class="title">Iglesia de la Alameda</h1>
+                    <h4>Tú lugar en tú celebración </h4>
+                    <small class="text-alameda">Regístrate a continuación</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charlas -->
+    <div class="main main-raised mt-lg-n60 ">
+        <div class="container">
+            <div class="section text-center">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+
+
+                        {% if (celebraciones|length > 0) %}
+                            {% for celebracion in celebraciones %}
+                                <a href="#">
+                                    {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
+                                    {{ celebracion.nombre }}
+                                </a>
+
+                            {% endfor %}
+                        {% else %}
+                            No hay reservas de celebraciones activas <br/>
+                            Pronto estaremos contigo.
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script> #}
+{% endblock %}

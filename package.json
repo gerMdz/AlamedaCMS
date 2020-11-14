@@ -20,7 +20,6 @@
         "bootstrap-datepicker": "^1.9.0",
         "ckeditor": "^4.12.1",
         "ckeditor5": "^21.0.0",
-        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
         "jquery": "^3.5.0",
         "popper.js": "^1.16.1"
     }

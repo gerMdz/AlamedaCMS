@@ -13,8 +13,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class InicioController extends AbstractController
+class ZinicioController extends AbstractController
 {
+    /**
+     * @var bool
+     */
+    private $site_temporal;
+
+    /**
+     * ZinicioController constructor.
+     * @param string $site_temporal
+     */
+    public function __construct(string $site_temporal)
+    {
+        $this->site_temporal = $site_temporal;
+    }
+
     /**
      * @Route("/", name="index")
      */
@@ -23,7 +37,11 @@ class InicioController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
-
+        if($this->site_temporal == 'true'){
+            return $this->render('inicio/temporalmente.html.twig', [
+                'datosIndex' => null,
+            ]);
+        }
 
 
         return $this->render('inicio/index.html.twig', [
@@ -40,6 +58,15 @@ class InicioController extends AbstractController
     public function ingreso(AuthenticationUtils $authenticationUtils)
     {
         return $this->redirectToRoute('app_login');
+    }
+
+    /**
+     * @Route("/reserva", name="app_reserva")
+     * @return RedirectResponse
+     */
+    public function app_reserva()
+    {
+        return $this->redirectToRoute('reserva_index');
     }
 
     /**
