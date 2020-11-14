@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Celebracion;
 use App\Form\CelebracionType;
 use App\Repository\CelebracionRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,7 @@ use DateTime;
 
 /**
  * @Route("/celebracion")
+ * @IsGranted("ROLE_ADMIN")
  */
 class CelebracionController extends AbstractController
 {
