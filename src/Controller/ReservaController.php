@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Celebracion;
+use App\Entity\Reservante;
+use App\Form\ReservanteType;
 use App\Repository\CelebracionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,4 +26,25 @@ class ReservaController extends AbstractController
             'celebraciones' => $celebracionRepository->puedeMostrarse()->getQuery()->getResult()
         ]);
     }
+
+
+    /**
+     * @Route("creaReserva/{id}", name="crea_reserva" )
+     * @param Celebracion $celebracion
+     * @return Response
+     */
+    public function creaReserva(Celebracion $celebracion):Response
+    {
+        $reservante = new Reservante();
+        $reservante->setCelebracion($celebracion);
+        $form = $this->createForm(ReservanteType::class, $reservante);
+
+        return $this->render('reserva/vistaCreaReserva.html.twig', [
+            'celebracion' => $celebracion,
+            'form' => $form->createView(),
+        ]);
+
+    }
+
+
 }

@@ -6,8 +6,8 @@
     {{ encore_entry_link_tags('app') }}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
+{#     <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}">#}
+{#     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">#}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <style>
@@ -15,8 +15,8 @@
     </style>
 {% endblock %}
 {% block sslocal %}
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
-    {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
+{#     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
+{#     <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">#}
     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
 
 {% endblock %}
@@ -26,7 +26,8 @@
 {% block sections %}
 
     <!-- Promo Content -->
-    <div class="page-header-60 header-filter mt-5 bg-reserva">
+    <div class="page-header-60 header-filter mt-5" data-parallax="true"
+    style="background-image: url({{ asset('images/institucional/mix_auditorio.jpg') }})">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xl-12">
@@ -48,10 +49,12 @@
 
                         {% if (celebraciones|length > 0) %}
                             {% for celebracion in celebraciones %}
-                                <a href="#">
-                                    {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
-                                    {{ celebracion.nombre }}
-                                </a>
+                                <div class="col-sm-12">
+                                    <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}" class="btn btn-alameda btn-modal">
+                                        {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
+                                        {{ celebracion.nombre }}
+                                    </a>
+                                </div>
 
                             {% endfor %}
                         {% else %}
@@ -64,13 +67,29 @@
             </div>
         </div>
     </div>
-
-
+    <div class="modal fade bs-example-modal-lg" id="modalPlantillaWeb" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
-    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script> #}
+<script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
+<script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+    </script>
 {% endblock %}
