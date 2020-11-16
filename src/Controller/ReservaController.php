@@ -83,10 +83,9 @@ class ReservaController extends AbstractController
             }
             $em->flush();
 
-            $this->addFlash('success', 'Se ha guardado su reserva');
-            return $this->redirectToRoute('vista_reserva', [
-                'celebracion'=>$reservante->getCelebracion()->getId(),
-                'email' => $reservante->getEmail()
+//            $this->addFlash('success', 'Se ha guardado su reserva');
+            return $this->redirectToRoute('envia_mail', [
+                'id' => $reservante->getId()
             ]);
 
         }
