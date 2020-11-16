@@ -34,7 +34,7 @@ class MailerController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Tu reserva fue realizada')
             ->text('Gracias por reservar')
-            ->html('<p>WOW!! Volvimos a estar juntos</p>');
+            ->html('<p>WOW!! Volvemos a estar juntos</p>');
 
         $mailer->send($email);
 

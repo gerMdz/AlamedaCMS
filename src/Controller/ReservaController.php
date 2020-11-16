@@ -68,6 +68,7 @@ class ReservaController extends AbstractController
             $invitado->setEmail($reservante->getEmail());
             $invitado->setDni($reservante->getDocumento());
             $invitado->setTelefono($reservante->getTelefono());
+            $invitado->setIsEnlace(true);
             $em->persist($invitado);
 
 

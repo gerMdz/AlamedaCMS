@@ -6,8 +6,8 @@
     {{ encore_entry_link_tags('app') }}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">
-{#     <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}">#}
-{#     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">#}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <style>
@@ -15,8 +15,8 @@
     </style>
 {% endblock %}
 {% block sslocal %}
-{#     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
-{#     <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">#}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
+    {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
 
 {% endblock %}
@@ -27,7 +27,7 @@
 
     <!-- Promo Content -->
     <div class="page-header-60 header-filter mt-5" data-parallax="true"
-    style="background-image: url({{ asset('images/institucional/mix_auditorio.jpg') }})">
+         style="background-image: url({{ asset('images/institucional/mix_auditorio.jpg') }})">
         <div class="container">
             <div class="row text-white">
                 <div class="col-md-6">
@@ -43,15 +43,29 @@
             <div class="section text-center">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
-                        <span >Reservá tu asiento</span>
+                        <span>Reservá tu asiento</span>
 
                         {% if (celebraciones|length > 0) %}
                             {% for celebracion in celebraciones %}
                                 <div class="col-sm-12">
-                                    <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}" class="btn btn-alameda btn-modal">
+                                    {%  if((capacidad_restante(celebracion.id, celebracion.capacidad) > 0) ) %}
+                                    <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
+                                       class="btn btn-alameda btn-modal">
                                         {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
                                         {{ celebracion.nombre }}
                                     </a>
+                                        <small class="text-dark ">
+                                            {{ capacidad_restante(celebracion.id, celebracion.capacidad) }} asientos libres
+                                        </small>
+                                        {% else %}
+                                            {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
+                                            {{ celebracion.nombre }}
+                                    <small class="text-dark ">
+                                        Capacidad permitida alcanzada
+                                    </small>
+                                    {% endif %}
+
+                                    <hr/>
                                 </div>
 
                             {% endfor %}
@@ -77,8 +91,8 @@
 
 {% block javascripts %}
     {{ parent() }}
-<script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
-<script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
     <script type="application/javascript">
         $(function () {
             $(".btn-modal").click(function (ev) {
@@ -89,7 +103,6 @@
                 });
             });
         });
-
 
 
     </script>

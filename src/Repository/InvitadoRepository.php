@@ -4,6 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Invitado;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Types\IntegerType;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -36,15 +39,21 @@ class InvitadoRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Invitado
+
+    /**
+     * @param string $value
+     * @return int|mixed|string
+     */
+    public function countByCelebracion(string $value)
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+
+            return $this->createQueryBuilder('i')
+                ->select('count(i.id) as ocupado')
+                ->andWhere('i.celebracion = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getSingleScalarResult();
+
     }
-    */
+
 }

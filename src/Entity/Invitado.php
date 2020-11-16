@@ -56,6 +56,11 @@ class Invitado
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isEnlace;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -141,6 +146,18 @@ class Invitado
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getIsEnlace(): ?bool
+    {
+        return $this->isEnlace;
+    }
+
+    public function setIsEnlace(?bool $isEnlace): self
+    {
+        $this->isEnlace = $isEnlace;
 
         return $this;
     }

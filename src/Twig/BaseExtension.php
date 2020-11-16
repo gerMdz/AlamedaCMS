@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Entity\IndexAlameda;
+use App\Entity\Invitado;
 use App\Entity\MetaBase;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,6 +46,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('base_metaDescripcion', [$this, 'metaDescripcion']),
             new TwigFunction('base_base', [$this, 'base']),
             new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath']),
+            new TwigFunction('capacidad_restante', [$this, 'capacidad_restante']),
         ];
     }
 
@@ -69,11 +71,19 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(['base' => 'index']);
     }
 
+
+
     public function getUploadedAssetPath(string $path): string
     {
         return $this->container
             ->get(UploaderHelper::class)
             ->getPublicPath($path);
+    }
+
+    public function capacidad_restante(string $celebracion, int $cantidad)
+    {
+        $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+        return $cantidad - $invitados;
     }
 
     public static function getSubscribedServices()

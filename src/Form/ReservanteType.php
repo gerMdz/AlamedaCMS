@@ -44,7 +44,10 @@ class ReservanteType extends AbstractType
             ->add('acompanantes', IntegerType::class,[
                 'mapped'=>false,
                 'data'=> 0,
+                'invalid_message'=>'Por favor ingrese un valor menor o igual a 7',
+                'invalid_message_parameters'=>'Por favor ingrese un valor menor o igual a 7',
                 'label'=>'Cantidad de acompañantes',
+                'attr' => array('min' => 0, 'max' => 7)
             ])
             ->add('save', SubmitType::class, array(
                 'label' => 'Reservar',
