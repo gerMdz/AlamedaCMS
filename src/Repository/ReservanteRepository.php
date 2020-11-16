@@ -36,15 +36,17 @@ class ReservanteRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Reservante
+
+    public function findOneByReserva($celebracion, $email): ?Reservante
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('r.celebracion = :cel')
+            ->andWhere('r.email = :email')
+            ->setParameter('cel', $celebracion)
+            ->setParameter('email', $email)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

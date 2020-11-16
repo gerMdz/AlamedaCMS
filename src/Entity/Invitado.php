@@ -51,6 +51,11 @@ class Invitado
      */
     private $celebracion;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +129,18 @@ class Invitado
     public function setCelebracion(?Celebracion $celebracion): self
     {
         $this->celebracion = $celebracion;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

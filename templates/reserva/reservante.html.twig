@@ -1,0 +1,75 @@
+{% extends 'base_material_kit.twig' %}
+
+{% block title %} Reserva {{ app.request.host }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+
+    </style>
+{% endblock %}
+{% block sslocal %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
+    {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+
+{% endblock %}
+
+
+
+{% block sections %}
+    <div class="col-md-12 mt-5 pt-5">
+        <div class="card">
+            <div class="card-header card-header-primary">
+
+                <h4 class="card-title ">Reserva</h4>
+                <p class="card-category">
+                    Celebracion {{ reservante.celebracion.fechaCelebracionAt | date('d \\d\\e M') }}
+                    , {{ reservante.celebracion.nombre }} </p>
+            </div>
+            <div class="card-body">
+
+                    <div class="col-sm-12 text-center pt-3">
+                        A nombre de
+                        <strong>
+                            {{ reservante }}
+                        </strong>
+                    </div>
+                    <div class="col-sm-12 text-center pt-3">
+                        <strong>
+                            Con <i class="fa fa-whatsapp"> </i>
+                            {{ reservante.telefono }}
+                            y <i class="fa fa-address-card"> </i>
+                            {{ reservante.documento }}
+                        </strong>
+                    </div>
+                <div class="col-sm-12 text-left pt-3">
+                    <i> Personas con reserva </i> <br/>
+                    {% for invitado in reservante.invitados %}
+                        <i class="fa fa-check-square-o"> </i>
+                        {{ invitado.apellido }}
+                        {{ invitado.nombre }}
+                        {{ invitado.dni }}
+                        {{ invitado.email }}   <br/>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    {# <a href="{{ path('reservante_edit', {'id': reservante.id}) }}">edit</a> #}
+
+    {# {{ include('reservante/_delete_form.html.twig') }} #}
+{% endblock %}

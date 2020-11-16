@@ -60,6 +60,11 @@ class Reservante
      */
     private $invitados;
 
+    public function __toString()
+    {
+        return $this->email . ' - ' .$this->apellido . ', '. $this->getNombre();
+    }
+
     public function __construct()
     {
         $this->invitados = new ArrayCollection();
@@ -67,7 +72,7 @@ class Reservante
 
 
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
