@@ -27,14 +27,30 @@
     <div class="col-md-12 mt-5 pt-5">
         <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title ">Reserva</h4>
-                <h3 class="card-category ">
-                    Celebracion {{ reservante.celebracion.fechaCelebracionAt | date('d \\d\\e M') }}
-                    , {{ reservante.celebracion.nombre }} </h3>
-                <small class="text-dark ">
-                    {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }} asientos
-                    libres
-                </small>
+                <div class="row">
+                    <div class="col-sm-8 pull-left">
+                        <h4 class="card-title ">Reserva</h4>
+                        <h3 class="card-category ">
+                            Celebracion {{ reservante.celebracion.fechaCelebracionAt | date('d \\d\\e M') }}
+                            , {{ reservante.celebracion.nombre }} </h3>
+                        <small class="text-dark ">
+                            {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }}
+                            asientos
+                            libres
+                        </small>
+                    </div>
+                    <div class="col-sm-3 text-lg-right ">
+                        <h4 class="pull-right ">
+                            <form method="post" action="{{ path('reserva_delete', {'id': reservante.id}) }}"
+                                  onsubmit="return confirm('Está seguro de cancelar su reserva?');">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservante.id) }}">
+                                <button class="btn btn-link  text-warning ">Cancelar Reserva</button>
+                            </form>
+                        </h4>
+                    </div>
+                </div>
+
             </div>
             <div class="card-body">
                 <div class="row">
@@ -45,7 +61,7 @@
                         </strong>
                         <div class="row pt-2">
                             <div class="col-sm-12 text-info text-center">
-                                <i> Personas con reserva </i>
+                                <b> {{ reservante.invitados | length }}</b> <i> Personas con reserva </i>
                             </div>
                             <div class="row">
                                 <div class="col-sm-1">
@@ -94,11 +110,11 @@
                     </div>
                     <div class="col-sm-4 text-center pt-3">
                         Descargá tú código de reservación
-                        <a href="{{ qr_code_data_uri(app.request.uri, { size: 350, logo_path: reservante.celebracion.imageQr })}}"
-                        target="_blank" download="{{ reservante.celebracion.nombre}}.png">
-                        <img class="img-fluid"
-                             src="{{ qr_code_data_uri(app.request.uri, { size: 250, logo_path: reservante.celebracion.imageQr })}}"
-                             alt="QR"/>
+                        <a href="{{ qr_code_data_uri(app.request.uri, { size: 350, logo_path: reservante.celebracion.imageQr }) }}"
+                           target="_blank" download="{{ reservante.celebracion.nombre }}.png">
+                            <img class="img-fluid"
+                                 src="{{ qr_code_data_uri(app.request.uri, { size: 250, logo_path: reservante.celebracion.imageQr }) }}"
+                                 alt="QR"/>
                         </a>
 
                     </div>

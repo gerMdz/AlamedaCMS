@@ -113,7 +113,28 @@ class ReservaController extends AbstractController
             'reservante' => $reservante
         ]);
     }
+    /**
+     * @Route("/{id}", name="reserva_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Reservante $reservante
+     * @return Response
+     */
+    public function delete(Request $request, Reservante $reservante): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$reservante->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
 
+            $invitados = $reservante->getInvitados();
+            foreach ($invitados as $invitado){
+                $entityManager->remove($invitado);
+            }
+
+            $entityManager->remove($reservante);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('reserva_index');
+    }
 
 
 }
