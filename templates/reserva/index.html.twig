@@ -53,7 +53,7 @@
                                        class="btn btn-alameda btn-modal">
                                         {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
                                         {{ celebracion.nombre }}
-                                    </a>
+                                    </a><br class="d-md-none" />
                                         <small class="text-dark ">
                                             {{ capacidad_restante(celebracion.id, celebracion.capacidad) }} asientos libres
                                         </small>

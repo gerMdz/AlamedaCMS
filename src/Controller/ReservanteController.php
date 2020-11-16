@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/reservante")
+ * @Route("/admin/reservante")
  */
 class ReservanteController extends AbstractController
 {
