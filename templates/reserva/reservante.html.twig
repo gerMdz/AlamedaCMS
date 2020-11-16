@@ -94,7 +94,7 @@
                     </div>
                     <div class="col-sm-4 text-center pt-3">
                         Descargá tú código de reservación
-                        <a href="{{ qr_code_data_uri(app.request.uri, { size: 250, logo_path: reservante.celebracion.imageQr })}}"
+                        <a href="{{ qr_code_data_uri(app.request.uri, { size: 350, logo_path: reservante.celebracion.imageQr })}}"
                         target="_blank" download="{{ reservante.celebracion.nombre}}.png">
                         <img class="img-fluid"
                              src="{{ qr_code_data_uri(app.request.uri, { size: 250, logo_path: reservante.celebracion.imageQr })}}"
