@@ -28,77 +28,90 @@
         <div class="card">
             <div class="card-header card-header-primary">
                 <h4 class="card-title ">Reserva</h4>
-                <p class="card-category">
+                <h3 class="card-category ">
                     Celebracion {{ reservante.celebracion.fechaCelebracionAt | date('d \\d\\e M') }}
-                    , {{ reservante.celebracion.nombre }} </p>
+                    , {{ reservante.celebracion.nombre }} </h3>
                 <small class="text-dark ">
-                    {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }} asientos libres
+                    {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }} asientos
+                    libres
                 </small>
             </div>
             <div class="card-body">
-
-                <div class="col-sm-12 text-center pt-3">
-                    A nombre de
-                    <strong>
-                        {{ reservante }}
-                    </strong>
-                </div>
-                <div class="col-sm-12 text-center pt-3">
-{#                    <strong>#}
-{#                        Con <i class="fa fa-whatsapp"> </i>#}
-{#                        {{ reservante.telefono }}#}
-{#                        y <i class="fa fa-address-card"> </i>#}
-{#                        {{ reservante.documento }}#}
-{#                    </strong>#}
-                </div>
-                <div class="row pt-2">
-                    <div class="col-sm-12 text-info text-center">
-                        <i> Personas con reserva </i>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-1">
-                        </div>
-                        <div class="col-sm-2">
-                            <i class="fa fa-user"> </i> Nombre
-                        </div>
-                        <div class="col-sm-2">
-                            <i class="fa fa-house-user"> </i> Apellido
-                        </div>
-                        <div class="col-sm-2">
-                            <i class="fa fa-address-card-o"> </i> Documento
-                        </div>
-                        <div class="col-sm-3">
-                            <i class="fa fa-at"> </i>email
-                        </div>
-                        <div class="col-sm-2">
-                            <i class="fa fa-user-cog"> </i>
-                        </div>
-
-                        {% for invitado in reservante.invitados %}
-                            <div class="col-sm-12">
-                                <hr/>
+                <div class="row">
+                    <div class="col-sm-8 text-center pt-3">
+                        A nombre de
+                        <strong>
+                            {{ reservante }}
+                        </strong>
+                        <div class="row pt-2">
+                            <div class="col-sm-12 text-info text-center">
+                                <i> Personas con reserva </i>
                             </div>
-                            <div class="col-sm-1">
-                                {{ invitado.isEnlace ? '<i class="fa fa-check-square-o"> </i>': '<i class="fa fa-square-o"> </i>' }}
-                            </div>
-                        <div class="col-sm-2">
-                            {{ invitado.nombre ? invitado.nombre :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Nombre</span>'   }}
-                        </div>
-                        <div class="col-sm-2">
-                            {{ invitado.apellido ? invitado.apellido :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Apellido</span>'}}
-                        </div>
-                        <div class="col-sm-2">
-                            {{ invitado.dni ? '<span class="text-info">Anotado</span>' : '<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Documento</span>'   }}
-                        </div>
-                        <div class="col-sm-3">
-                            {{ invitado.email ? invitado.email :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Email</span>'   }}
-                        </div>
-                        <div class="col-sm-2">
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-2">
+                                    <i class="fa fa-user"> </i> Nombre
+                                </div>
+                                <div class="col-sm-2">
+                                    <i class="fa fa-house-user"> </i> Apellido
+                                </div>
+                                <div class="col-sm-2">
+                                    <i class="fa fa-address-card-o"> </i> Documento
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-at"> </i>email
+                                </div>
+                                <div class="col-sm-2">
+                                    <i class="fa fa-user-cog"> </i>
+                                </div>
 
-                        {% endfor %}
+                                {% for invitado in reservante.invitados %}
+                                    <div class="col-sm-12">
+                                        <hr/>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        {{ invitado.isEnlace ? '<i class="fa fa-check-square-o"> </i>': '<i class="fa fa-square-o"> </i>' }}
+                                    </div>
+                                    <div class="col-sm-2">
+                                        {{ invitado.nombre ? invitado.nombre :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Nombre</span>' }}
+                                    </div>
+                                    <div class="col-sm-2">
+                                        {{ invitado.apellido ? invitado.apellido :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Apellido</span>' }}
+                                    </div>
+                                    <div class="col-sm-2">
+                                        {{ invitado.dni ? '<span class="text-info">Anotado</span>' : '<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Documento</span>' }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ invitado.email ? invitado.email :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Email</span>' }}
+                                    </div>
+                                    <div class="col-sm-2">
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text-center pt-3">
+                        Descargá tú código de reservación
+                        <a href="{{ qr_code_data_uri(app.request.uri, { size: 250, logo_path: reservante.celebracion.imageQr })}}"
+                        target="_blank" download="{{ reservante.celebracion.nombre}}.png">
+                        <img class="img-fluid"
+                             src="{{ qr_code_data_uri(app.request.uri, { size: 250, logo_path: reservante.celebracion.imageQr })}}"
+                             alt="QR"/>
+                        </a>
+
                     </div>
                 </div>
+                <div class="col-sm-8 text-center pt-3">
+                    {# <strong> #}
+                    {# Con <i class="fa fa-whatsapp"> </i> #}
+                    {# {{ reservante.telefono }} #}
+                    {# y <i class="fa fa-address-card"> </i> #}
+                    {# {{ reservante.documento }} #}
+                    {# </strong> #}
+                </div>
+
 
             </div>
         </div>

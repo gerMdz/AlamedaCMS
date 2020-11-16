@@ -96,3 +96,10 @@ yarn-error.log
 /docker-compose.yml
 /Makefile
 .env.local
+/public/fonts/ArialNova.ttf
+/public/images/institucional/qr-dom-11h.jpg
+/public/images/institucional/qr-dom-11h.png
+/public/images/institucional/qr-dom-20h.jpg
+/public/images/institucional/qr-dom-20h.png
+/public/images/institucional/qr-sab-20h.jpg
+/public/images/institucional/qr-sab-20h.png

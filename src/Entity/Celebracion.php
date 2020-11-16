@@ -70,6 +70,11 @@ class Celebracion
      */
     private $isHabilitada;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageQr;
+
     public function __construct()
     {
         $this->reservantes = new ArrayCollection();
@@ -223,6 +228,18 @@ class Celebracion
     public function setIsHabilitada(?bool $isHabilitada): self
     {
         $this->isHabilitada = $isHabilitada;
+
+        return $this;
+    }
+
+    public function getImageQr(): ?string
+    {
+        return $this->imageQr;
+    }
+
+    public function setImageQr(?string $imageQr): self
+    {
+        $this->imageQr = $imageQr;
 
         return $this;
     }

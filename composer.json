@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "antishov/doctrine-extensions-bundle": "^1.4",
+        "endroid/qr-code-bundle": "^3.4",
         "friendsofsymfony/ckeditor-bundle": "^2.2",
         "gedmo/doctrine-extensions": "^2.4",
         "knplabs/knp-markdown-bundle": "^1.8",

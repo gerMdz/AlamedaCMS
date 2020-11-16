@@ -47,6 +47,7 @@ class CelebracionType extends AbstractType
                     'class'=>'form-control'
                 ]
             ])
+            ->add('imageQr')
         ;
     }
 
