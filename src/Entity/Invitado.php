@@ -61,6 +61,11 @@ class Invitado
      */
     private $isEnlace;
 
+    public function __toString()
+    {
+        return $this->email . ' - ' .$this->apellido . ', '. $this->nombre;
+    }
+
     public function getId(): ?string
     {
         return $this->id;

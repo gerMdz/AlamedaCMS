@@ -8,6 +8,7 @@ use App\Entity\Reservante;
 use App\Form\InvitadoType;
 use App\Form\ReservanteType;
 use App\Repository\CelebracionRepository;
+use App\Repository\InvitadoRepository;
 use App\Repository\ReservanteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -115,6 +116,21 @@ class ReservaController extends AbstractController
     }
 
     /**
+     * @Route("/vistaReservaInvitado/{invitado}/{email}", name="vista_reserva_invitado")
+     * @param InvitadoRepository $invitadoRepository
+     * @param string $invitado
+     * @param string $email
+     * @return Response
+     */
+    public function vistaReservaInvitado(InvitadoRepository $invitadoRepository, string $invitado, string $email): Response
+    {
+        $invitado = $invitadoRepository->findOneByReserva($invitado, $email);
+        return $this->render('reserva/invitado.html.twig', [
+            'invitado' => $invitado
+        ]);
+    }
+
+    /**
      * @Route("/{id}/completa", name="invitado_completa", methods={"GET","POST"})
      * @param Request $request
      * @param Invitado $invitado
@@ -127,6 +143,12 @@ class ReservaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            if($invitado->getEmail() != null ){
+                return $this->redirectToRoute('envia_mail_invitado', [
+                    'id' => $invitado->getId()
+                ]);
+            }
 
             return $this->redirectToRoute('vista_reserva',
             [

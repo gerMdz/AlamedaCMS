@@ -1,0 +1,56 @@
+{% apply inline_css %}
+    <style>
+        .btn-alameda{
+            box-sizing: border-box;
+            outline: currentcolor none medium;
+            border-radius: 999px;
+            cursor: default;
+            width: auto;
+            height: auto;
+            display: inline-flex;
+            -moz-box-align: center;
+            align-items: center;
+            font-family: "Proxima Nova", "Helvetica Neue", Helvetica, "Arial Nova", Arial, sans-serif !important;
+            user-select: none;
+            margin-top: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.25;
+            padding: 9px 24px;
+            color: white;
+            background-color: rgb(41, 147, 229);
+            border: 1px solid transparent;
+        }
+    </style>
+<h1>Hola {{ reservante.nombre }}!</h1>
+<br/>
+Bienvenido a la Gran Reapertura de Nuestro Auditorio.
+<br/>
+Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebracionAt|date('d \\d\\e M') }},  {{ reservante.celebracion.nombre }}
+<br/>
+
+Para descargar tu código, usa el botón que está debajo:<br/>
+{% set dirweb = app.request.host ~ path('vista_reserva_invitado', {'invitado': reservante.id, 'email': reservante.email })   %}
+<a href="{{ dirweb }}"
+ class="btn-alameda" target="_blank">
+    Ver confirmación de reserva
+</a>
+    <br/>
+<img alt="QR Alameda" src="{{qr_code_data_uri(dirweb, { size: 350, logo_path: reservante.celebracion.imageQr })}}" />
+Asegurate tener el código en tu celular pues deberás mostrarlo al ingresar al auditorio:<br/>
+
+
+
+
+
+
+
+<br/>
+<p>
+    Recordá que para lograr la mejor experiencia, en el ambiente más seguro, vamos a tener que aprender algunos hábitos nuevos: Utilizar tapabocas todo el tiempo posible y mantener distancia social en toda la experiencia.
+    Pero lo más importante: ¡Recordá que Dios tendrá algo especial para tu vida!
+    Nos vemos,<br/>
+    Iglesia de la Alameda
+
+</p>
+{% endapply %}

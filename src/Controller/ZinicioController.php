@@ -38,9 +38,10 @@ class ZinicioController extends AbstractController
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
         if($this->site_temporal == 'true'){
-            return $this->render('inicio/temporalmente.html.twig', [
-                'datosIndex' => null,
-            ]);
+            return $this->redirectToRoute('reserva_index');
+//            return $this->render('inicio/temporalmente.html.twig', [
+//                'datosIndex' => null,
+//            ]);
         }
 
 
