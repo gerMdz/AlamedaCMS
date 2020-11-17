@@ -145,7 +145,7 @@ class ReservaController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             if($invitado->getEmail() != null ){
-                return $this->redirectToRoute('envia_mail_invitado', [
+                $this->redirectToRoute('envia_mail_invitado', [
                     'id' => $invitado->getId()
                 ]);
             }
