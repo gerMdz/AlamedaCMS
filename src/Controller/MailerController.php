@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Reservante;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -25,7 +26,7 @@ class MailerController extends AbstractController
         $email = $reservante->getEmail();
         $celebracion = $reservante->getCelebracion();
 
-        $email = (new Email())
+        $email = (new TemplatedEmail())
             ->from('contacto@iglesiaalameda.com')
             ->to($email)
             //->cc('cc@example.com')
@@ -34,13 +35,18 @@ class MailerController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Tu reserva fue realizada')
             ->text('Gracias por reservar')
-            ->html('<p>WOW!! Volvemos a estar juntos</p>');
+            ->htmlTemplate('email/reserva.html.twig')
+//            ->html('<p>WOW!! Volvemos a estar juntos</p>');
+
+            ->context([
+                'reservante' => $reservante,
+            ]); // ; final de email
 
         $mailer->send($email);
 
         $this->addFlash('success', 'Se ha guardado su reserva');
         return $this->redirectToRoute('vista_reserva', [
-            'celebracion'=>$reservante->getCelebracion()->getId(),
+            'celebracion' => $reservante->getCelebracion()->getId(),
             'email' => $reservante->getEmail()
         ]);
     }

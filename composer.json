@@ -36,7 +36,8 @@
         "symfony/validator": "4.4.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.4.*",
-        "twig/extra-bundle": "^3.0",
+        "twig/cssinliner-extra": "^3.1",
+        "twig/extra-bundle": "^3.1",
         "twig/string-extra": "^3.0"
     },
     "require-dev": {
