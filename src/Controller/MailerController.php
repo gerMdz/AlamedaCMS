@@ -23,6 +23,7 @@ class MailerController extends AbstractController
      */
     public function sendEmail(MailerInterface $mailer, Reservante $reservante)
     {
+
         $email = $reservante->getEmail();
         $celebracion = $reservante->getCelebracion();
 

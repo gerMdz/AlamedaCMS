@@ -30,20 +30,22 @@ Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebraci
 <br/>
 Has realizado tu reserva para <b> {{ reservante.invitados | length }}</b> personas
 <br/>
-Para ingresar datos faltantes, usa el botón que está debajo:<br/>
+Para ingresar datos faltantes y descargar tu código, usa el botón que está debajo:<br/>
 {% set dirweb = app.request.host ~ path('vista_reserva', {'celebracion': reservante.celebracion.id, 'email': reservante.email })   %}
 <a href="{{ dirweb }}"
  class="btn-alameda" target="_blank">
     Ver confirmación de reserva
 </a>
     <br/>
+<img alt="QR Alameda" src="{{qr_code_data_uri(dirweb, { size: 350, logo_path: reservante.celebracion.imageQr })}}" />
+Asegurate tener el código en tu celular pues deberás mostrarlo al ingresar al auditorio:<br/>
 
-Asegurate tener este código en tu celular pues deberás mostrarlo al ingresar al auditorio:<br/>
 
 
-    <img class="img-fluid"
-         src="cid:{{ qr_code_data_uri(dirweb, { size: 250, logo_path: reservante.celebracion.imageQr }) }}"
-         alt="QR"/>
+
+
+
+
 <br/>
 <p>
     Recordá que para lograr la mejor experiencia, en el ambiente más seguro, vamos a tener que aprender algunos hábitos nuevos: Utilizar tapabocas todo el tiempo posible y mantener distancia social en toda la experiencia.
