@@ -75,6 +75,11 @@ class Celebracion
      */
     private $imageQr;
 
+    public function __toString()
+    {
+      return $this->getNombre() . ' ' . date_format($this->getFechaCelebracionAt(), 'd/M');
+    }
+
     public function __construct()
     {
         $this->reservantes = new ArrayCollection();

@@ -18,6 +18,7 @@ class InvitadoType extends AbstractType
             ->add('apellido')
             ->add('enlace')
             ->add('celebracion')
+            ->add('email')
         ;
     }
 

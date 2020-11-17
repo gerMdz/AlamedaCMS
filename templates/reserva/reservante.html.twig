@@ -39,15 +39,15 @@
                             libres
                         </small>
                     </div>
-                    <div class="col-sm-3 text-lg-right ">
-                        <h4 class="pull-right ">
+                    <div class="col-sm-3 text-lg-right pull-right">
+
                             <form method="post" action="{{ path('reserva_delete', {'id': reservante.id}) }}"
                                   onsubmit="return confirm('Está seguro de cancelar su reserva?');">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservante.id) }}">
                                 <button class="btn btn-link  text-warning ">Cancelar Reserva</button>
                             </form>
-                        </h4>
+
                     </div>
                 </div>
 
@@ -102,6 +102,10 @@
                                         {{ invitado.email ? invitado.email :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Email</span>' }}
                                     </div>
                                     <div class="col-sm-2">
+                                        <a href="{{ path('invitado_completa', {'id': invitado.id}) }}"
+                                        class="btn-modal">
+                                            Completar Datos
+                                        </a>
                                     </div>
 
                                 {% endfor %}
@@ -137,8 +141,32 @@
 
 
 
-
+    <div class="modal fade bs-example-modal-lg" id="modalPlantillaWeb" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
     {# <a href="{{ path('reservante_edit', {'id': reservante.id}) }}">edit</a> #}
 
     {# {{ include('reservante/_delete_form.html.twig') }} #}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
 {% endblock %}

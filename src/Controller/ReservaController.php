@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Entity\Reservante;
+use App\Form\InvitadoType;
 use App\Form\ReservanteType;
 use App\Repository\CelebracionRepository;
 use App\Repository\ReservanteRepository;
@@ -100,19 +101,47 @@ class ReservaController extends AbstractController
 
     /**
      * @Route("/vistaReserva/{celebracion}/{email}", name="vista_reserva")
-     * @param EntityManagerInterface $em
      * @param ReservanteRepository $reservanteRepository
      * @param string $celebracion
      * @param string $email
      * @return Response
      */
-    public function vistaReserva(EntityManagerInterface $em, ReservanteRepository $reservanteRepository, string $celebracion, string $email): Response
+    public function vistaReserva(ReservanteRepository $reservanteRepository, string $celebracion, string $email): Response
     {
         $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
         return $this->render('reserva/reservante.html.twig', [
             'reservante' => $reservante
         ]);
     }
+
+    /**
+     * @Route("/{id}/completa", name="invitado_completa", methods={"GET","POST"})
+     * @param Request $request
+     * @param Invitado $invitado
+     * @return Response
+     */
+    public function edit(Request $request, Invitado $invitado): Response
+    {
+        $form = $this->createForm(InvitadoType::class, $invitado);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('vista_reserva',
+            [
+                'celebracion'=>$invitado->getCelebracion()->getId(),
+                'email'=>$invitado->getEnlace()->getEmail()
+            ]);
+        }
+
+        return $this->render('reserva/completaInvitado.html.twig', [
+            'invitado' => $invitado,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     /**
      * @Route("/{id}", name="reserva_delete", methods={"DELETE"})
      * @param Request $request
