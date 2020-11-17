@@ -91,7 +91,7 @@
                                         {{ invitado.email ? invitado.email :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Email</span>' }}
                                     </div>
                                     <div class="col-sm-2">
-                                        <a href="{{ path('invitado_completa', {'id': invitado.id}) }}"
+                                        <a href="{{ path('invitado_completa_self', {'id': invitado.id}) }}"
                                            class="btn-modal">
                                             Completar Datos
                                         </a>

@@ -163,6 +163,34 @@ class ReservaController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}/completa_invitado", name="invitado_completa_self", methods={"GET","POST"})
+     * @param Request $request
+     * @param Invitado $invitado
+     * @return Response
+     */
+    public function editSelf(Request $request, Invitado $invitado): Response
+    {
+
+        $form = $this->createForm(InvitadoType::class, $invitado);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('vista_reserva_invitado',
+                [
+                    'invitado'=>$invitado->getId(),
+                    'email'=>$invitado->getEnlace()->getEmail()
+                ]);
+        }
+
+        return $this->render('reserva/completaInvitadoSelf.html.twig', [
+            'invitado' => $invitado,
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     /**
      * @Route("/{id}", name="reserva_delete", methods={"DELETE"})
