@@ -1,4 +1,8 @@
 {% extends 'base_material_kit.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 
 {% block sections %}
     <div class="page-header-30 header-filter mt-5" data-parallax="true"
