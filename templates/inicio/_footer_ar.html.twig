@@ -1,0 +1,23 @@
+<footer class="footer mb-0">
+    <div class="container-fluid">
+
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="{{ path('index') }}">
+                            {{ base.siteName }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright float-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                <a href="{{ path('index') }}" target="_blank">{{ base.siteName }}a</a>
+            </div>
+
+
+    </div>
+</footer>
