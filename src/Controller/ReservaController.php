@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Entity\Reservante;
+use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\InvitadoType;
 use App\Form\ReservanteType;
 use App\Repository\CelebracionRepository;
@@ -195,6 +196,41 @@ class ReservaController extends AbstractController
 
         return $this->render('reserva/completaInvitadoSelf.html.twig', [
             'invitado' => $invitado,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/consulta", name="reserva_consulta", methods={"GET","POST"})
+     * @param Request $request
+     * @param ReservanteRepository $reservanteRepository
+     * @return Response
+     */
+    public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository): Response
+    {
+
+        $form = $this->createForm(ReservaByEmailFilterType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $celebracion = $form['celebracion']->getData();
+            $email = $form['email']->getData();
+            $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
+            if(!$reservante){
+                $this->addFlash('info', 'No se encontró reserva');
+                return $this->redirectToRoute('reserva_consulta');
+            }
+
+            return $this->redirectToRoute('vista_reserva',
+                [
+                    'celebracion'=>$reservante->getCelebracion()->getId(),
+                    'email'=>$reservante->getEmail()
+                ]);
+        }
+
+        return $this->render('reserva/consulta_reserva.html.twig', [
             'form' => $form->createView(),
         ]);
     }

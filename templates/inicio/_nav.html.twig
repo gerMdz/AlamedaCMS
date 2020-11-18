@@ -27,7 +27,7 @@
 
         <div class="navbar-translate">
 {#            <a class="navbar-brand" href="{{ path('index') }}">#}
-            <a class="navbar-brand" href="https://iglesiaalameda.com">
+            <a class="navbar-brand" href="{{ path('index') }}">
                 <!--                <img class="rounded-circle" src="/images/logo_n1.png" style="width: 30px;" alt="Logo Iglesia Alameda">-->
                 <img class="rounded-circle" src="{{ asset('images/logo-solo-2020.png')}} " style="width: 35px;" alt="Logo Iglesia Alameda">
                 <small>Iglesia de la Alameda</small>
@@ -49,7 +49,7 @@
 
 
         <!-- Links -->
-{#        {% include 'inicio/_menu.html.twig' %}#}
+        {% include 'inicio/_menu.html.twig' %}
 
     </div>
 </nav>
