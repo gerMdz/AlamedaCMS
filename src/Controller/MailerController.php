@@ -24,17 +24,10 @@ class MailerController extends AbstractController
      */
     public function sendEmail(MailerInterface $mailer, Reservante $reservante)
     {
-
         $email = $reservante->getEmail();
-        $celebracion = $reservante->getCelebracion();
-
         $email = (new TemplatedEmail())
             ->from('contacto@iglesiaalameda.com')
             ->to($email)
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
             ->subject('Tu reserva fue realizada')
             ->text('Gracias por reservar')
             ->htmlTemplate('email/reserva.html.twig')
@@ -83,10 +76,6 @@ class MailerController extends AbstractController
 
         $mailer->send($email);
 
-        $this->addFlash('success', 'Se ha guardado su reserva');
-        return $this->redirectToRoute('vista_reserva', [
-            'celebracion' => $reservante->getCelebracion()->getId(),
-            'email' => $reservante->getEmail()
-        ]);
+
     }
 }

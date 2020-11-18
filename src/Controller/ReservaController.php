@@ -10,6 +10,7 @@ use App\Form\ReservanteType;
 use App\Repository\CelebracionRepository;
 use App\Repository\InvitadoRepository;
 use App\Repository\ReservanteRepository;
+use App\Service\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,9 +40,10 @@ class ReservaController extends AbstractController
      * @param Celebracion $celebracion
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param Mailer $mailer
      * @return Response
      */
-    public function creaReserva(Celebracion $celebracion, Request $request, EntityManagerInterface $em): Response
+    public function creaReserva(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $reservante = new Reservante();
         $reservante->setCelebracion($celebracion);
@@ -86,9 +88,16 @@ class ReservaController extends AbstractController
             }
             $em->flush();
 
-//            $this->addFlash('success', 'Se ha guardado su reserva');
-            return $this->redirectToRoute('envia_mail', [
-                'id' => $reservante->getId()
+            $mailer->sendReservaMessage($reservante);
+
+//            return $this->redirectToRoute('envia_mail', [
+//                'id' => $reservante->getId()
+//            ]);
+
+            $this->addFlash('success', 'Se ha guardado su reserva');
+            return $this->redirectToRoute('vista_reserva', [
+                'celebracion' => $reservante->getCelebracion()->getId(),
+                'email' => $reservante->getEmail()
             ]);
 
         }
@@ -134,9 +143,10 @@ class ReservaController extends AbstractController
      * @Route("/{id}/completa", name="invitado_completa", methods={"GET","POST"})
      * @param Request $request
      * @param Invitado $invitado
+     * @param Mailer $mailer
      * @return Response
      */
-    public function edit(Request $request, Invitado $invitado): Response
+    public function edit(Request $request, Invitado $invitado, Mailer $mailer): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
@@ -145,15 +155,13 @@ class ReservaController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             if($invitado->getEmail() != null ){
-                $this->redirectToRoute('envia_mail_invitado', [
-                    'id' => $invitado->getId()
-                ]);
+                $mailer->sendReservaInvitadoMessage($invitado);
             }
 
-            return $this->redirectToRoute('vista_reserva',
-            [
-                'celebracion'=>$invitado->getCelebracion()->getId(),
-                'email'=>$invitado->getEnlace()->getEmail()
+            $this->addFlash('success', 'Se ha guardado el cambio');
+            return $this->redirectToRoute('vista_reserva', [
+                'celebracion' => $invitado->getCelebracion()->getId(),
+                'email' => $invitado->getEnlace()->getEmail()
             ]);
         }
 
