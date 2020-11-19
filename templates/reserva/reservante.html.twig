@@ -118,8 +118,10 @@
                                             <br/>
                                             <a href="{{ path('cancela_invitado', {'id': invitado.id}) }}"
                                                onclick="return confirm('Está seguro de cancelar la reserva?');"
-                                               class="btn btn-link-danger">
-                                                Cancelar reserva
+                                               class="btn btn-link">
+                                                <small class="text-realce-alameda">
+                                                    Cancelar reserva acompañante
+                                                </small>
                                             </a>
                                         {% endif %}
                                     </div>
