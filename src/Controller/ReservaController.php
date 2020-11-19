@@ -110,6 +110,39 @@ class ReservaController extends AbstractController
 
     }
 
+
+    /**
+     * @Route("/agregaInvitado/{id}", name="agrega_invitado", methods={"GET", "POST"})
+     * @param Reservante $reservante
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function agregaInvitado(Reservante $reservante, Request $request, EntityManagerInterface $em): Response
+    {
+        $invitado = new Invitado();
+        $invitado->setCelebracion($reservante->getCelebracion());
+        $invitado->setEnlace($reservante);
+        $form = $this->createForm(InvitadoType::class, $invitado);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($invitado);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('vista_reserva',[
+                'celebracion'=>$invitado->getCelebracion()->getId(),
+                'email'=>$invitado->getEnlace()->getEmail()
+            ]);
+        }
+
+        return $this->render('reserva/newInvitado.html.twig', [
+            'invitado' => $invitado,
+            'form' => $form->createView(),
+        ]);
+    }
+
     /**
      * @Route("/vistaReserva/{celebracion}/{email}", name="vista_reserva")
      * @param ReservanteRepository $reservanteRepository

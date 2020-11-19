@@ -35,8 +35,7 @@
                             , {{ reservante.celebracion.nombre }} </h3>
                         <small class="text-dark ">
                             {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }}
-                            asientos
-                            libres
+                            asientos libres
                         </small>
                     </div>
                     <div class="col-sm-3 text-lg-right pull-right">
@@ -60,9 +59,21 @@
                             {{ reservante }}
                         </strong>
                         <div class="row pt-2">
-                            <div class="col-sm-12 text-info text-center">
+                            <div class="col-sm-6 text-info ">
                                 <b> {{ reservante.invitados | length }}</b> <i> Personas con reserva </i>
                             </div>
+                            <div class="col-sm-6">
+                                {% if((capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) > 0) ) %}
+                                    <small class="col-sm-4 text-right text-white">
+                                        <a href="{{ path('agrega_invitado', {'id':reservante.id }) }}"
+                                           class="btn-modal ">
+                                            <i class="fa fa-user-plus"> </i> Agregar invitado
+                                        </a>
+                                    </small>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-12"></div>
+                            <hr/>
                             <div class="row">
                                 <div class="col-sm-1">
                                 </div>
@@ -120,7 +131,7 @@
                     <div class="col-sm-4 text-center pt-3">
                         <a href="{{ qr_code_data_uri(app.request.uri, { size: 350, logo_path: reservante.celebracion.imageQr }) }}"
                            target="_blank" download="{{ reservante.celebracion.nombre }}.png">
-                            Descargá tú código de reservación<br/>
+                            Descargá desde aquí tú código de reservación<br/>
                             <img class="img-fluid"
                                  src="{{ qr_code_data_uri(app.request.uri, { size: 300, logo_path: reservante.celebracion.imageQr }) }}"
                                  alt="QR"/>
