@@ -41,12 +41,12 @@
                     </div>
                     <div class="col-sm-3 text-lg-right pull-right">
 
-                            <form method="post" action="{{ path('reserva_delete', {'id': reservante.id}) }}"
-                                  onsubmit="return confirm('Está seguro de cancelar su reserva?');">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservante.id) }}">
-                                <button class="btn btn-link  text-warning ">Cancelar Reserva</button>
-                            </form>
+                        <form method="post" action="{{ path('reserva_delete', {'id': reservante.id}) }}"
+                              onsubmit="return confirm('Está seguro de cancelar su reserva?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservante.id) }}">
+                            <button class="btn btn-link  text-warning ">Cancelar Reserva</button>
+                        </form>
 
                     </div>
                 </div>
@@ -66,10 +66,8 @@
                             <div class="row">
                                 <div class="col-sm-1">
                                 </div>
-                                <div class="col-sm-2">
-                                    <i class="fa fa-user"> </i> Nombre
-                                </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
+                                    <i class="fa fa-user"> </i> Nombre<br/>
                                     <i class="fa fa-house-user"> </i> Apellido
                                 </div>
                                 <div class="col-sm-2">
@@ -78,7 +76,7 @@
                                 <div class="col-sm-3">
                                     <i class="fa fa-at"> </i>email
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <i class="fa fa-user-cog"> </i>
                                 </div>
 
@@ -89,10 +87,9 @@
                                     <div class="col-sm-1">
                                         {{ invitado.isEnlace ? '<i class="fa fa-check-square-o"> </i>': '<i class="fa fa-square-o"> </i>' }}
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         {{ invitado.nombre ? invitado.nombre :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Nombre</span>' }}
-                                    </div>
-                                    <div class="col-sm-2">
+                                        <br/>
                                         {{ invitado.apellido ? invitado.apellido :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Apellido</span>' }}
                                     </div>
                                     <div class="col-sm-2">
@@ -101,11 +98,19 @@
                                     <div class="col-sm-3">
                                         {{ invitado.email ? invitado.email :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Email</span>' }}
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <a href="{{ path('invitado_completa', {'id': invitado.id}) }}"
-                                        class="btn-modal">
+                                           class="btn-modal">
                                             Completar Datos
                                         </a>
+                                        {% if (invitado.isEnlace != true) %}
+                                            <br/>
+                                            <a href="{{ path('cancela_invitado', {'id': invitado.id}) }}"
+                                               onclick="return confirm('Está seguro de cancelar la reserva?');"
+                                               class="btn btn-link-danger">
+                                                Cancelar reserva
+                                            </a>
+                                        {% endif %}
                                     </div>
 
                                 {% endfor %}
@@ -113,9 +118,9 @@
                         </div>
                     </div>
                     <div class="col-sm-4 text-center pt-3">
-                        Descargá tú código de reservación
                         <a href="{{ qr_code_data_uri(app.request.uri, { size: 350, logo_path: reservante.celebracion.imageQr }) }}"
                            target="_blank" download="{{ reservante.celebracion.nombre }}.png">
+                            Descargá tú código de reservación<br/>
                             <img class="img-fluid"
                                  src="{{ qr_code_data_uri(app.request.uri, { size: 300, logo_path: reservante.celebracion.imageQr }) }}"
                                  alt="QR"/>
@@ -154,7 +159,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-{#    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>#}
+    {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
     <script type="application/javascript">
         $(function () {

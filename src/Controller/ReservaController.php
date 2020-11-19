@@ -260,4 +260,26 @@ class ReservaController extends AbstractController
     }
 
 
+    /**
+     * @Route("/cancela/{id}/invitado", name="cancela_invitado", methods={"GET"})
+     * @param Request $request
+     * @param Invitado $invitado
+     * @return Response
+     */
+    public function cancelaReserva(Request $request, Invitado $invitado): Response
+    {
+        $celebracion = $invitado->getCelebracion()->getId();
+        $email = $invitado->getEnlace()->getEmail();
+           $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($invitado);
+            $entityManager->flush();
+        $this->addFlash('success', 'Se canceló reserva.');
+        return $this->redirectToRoute('vista_reserva',
+            [
+                'celebracion'=>$celebracion,
+                'email'=>$email
+            ]);
+    }
+
+
 }
