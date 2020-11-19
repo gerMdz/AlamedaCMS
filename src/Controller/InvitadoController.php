@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Invitado;
 use App\Form\InvitadoType;
 use App\Repository\InvitadoRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +18,22 @@ class InvitadoController extends AbstractController
 {
     /**
      * @Route("/", name="invitado_index", methods={"GET"})
+     * @param InvitadoRepository $invitadoRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
      */
-    public function index(InvitadoRepository $invitadoRepository): Response
+    public function index(InvitadoRepository $invitadoRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $q = null;
+        $queryBuilder = $invitadoRepository->searchQueryBuilder($q);
+        $invitados = $paginator->paginate(
+            $queryBuilder, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
         return $this->render('invitado/index.html.twig', [
-            'invitados' => $invitadoRepository->findAll(),
+            'invitados' => $invitados,
         ]);
     }
 

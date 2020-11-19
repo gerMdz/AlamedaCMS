@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use App\Repository\InvitadoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=InvitadoRepository::class)
  */
 class Invitado
 {
+    use TimestampableEntity;
     /**
      * @ORM\Id()
      * @ORM\Column(type="string", length=36)

@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -65,6 +66,19 @@ class InvitadoRepository extends ServiceEntityRepository
             ->setParameter('email', $email)
             ->getQuery()
             ->getOneOrNullResult()
+            ;
+    }
+
+    /**
+     * @param string|null $qSearch
+     * @return QueryBuilder
+     */
+    public function searchQueryBuilder(?string $qSearch):QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('i');
+
+        return $qb
+            ->orderBy('i.createdAt', 'DESC')
             ;
     }
 

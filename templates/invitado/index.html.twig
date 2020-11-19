@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Invitado index{% endblock %}
+{% block title %}Invitados - Listado{% endblock %}
 
 {% block body %}
-    <h1>Invitado index</h1>
-
+    <h1>Listado de Invitados {{ invitados.getTotalItemCount }}</h1>
+    <div class="text-center align-items-center">
+        {{ knp_pagination_render(invitados) }}
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -37,5 +39,12 @@
         </tbody>
     </table>
 
-    <a href="{{ path('invitado_new') }}">Create new</a>
+    <a href="{{ path('invitado_new') }}">Agregar Invitado </a>
+    <div class="text-center align-items-center">
+        {{ knp_pagination_render(invitados) }}
+    </div>
+
+{#    <div class="text-center align-items-center">#}
+{#        {{ knp_pagination_render(comentarios) }}#}
+{#    </div>#}
 {% endblock %}
