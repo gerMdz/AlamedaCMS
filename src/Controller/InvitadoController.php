@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Invitado;
 use App\Form\InvitadoType;
+use App\Repository\CelebracionRepository;
 use App\Repository\InvitadoRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,19 +22,25 @@ class InvitadoController extends AbstractController
      * @param InvitadoRepository $invitadoRepository
      * @param PaginatorInterface $paginator
      * @param Request $request
+     * @param CelebracionRepository $celebracionRepository
      * @return Response
      */
-    public function index(InvitadoRepository $invitadoRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(InvitadoRepository $invitadoRepository, PaginatorInterface $paginator, Request $request, CelebracionRepository $celebracionRepository): Response
     {
-        $q = null;
+        $q = $request->query->get('c');
+        $celebracion = null;
+        if(isset($q)){
+            $celebracion = $celebracionRepository->find($q);
+        }
         $queryBuilder = $invitadoRepository->searchQueryBuilder($q);
         $invitados = $paginator->paginate(
             $queryBuilder, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            20/*limit per page*/
         );
         return $this->render('invitado/index.html.twig', [
             'invitados' => $invitados,
+            'celebracion' => $celebracion
         ]);
     }
 

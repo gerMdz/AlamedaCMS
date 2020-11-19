@@ -76,6 +76,10 @@ class InvitadoRepository extends ServiceEntityRepository
     public function searchQueryBuilder(?string $qSearch):QueryBuilder
     {
         $qb = $this->createQueryBuilder('i');
+        if ($qSearch) {
+            $qb->andWhere('i.celebracion = :celebracion')
+                ->setParameter(':celebracion', $qSearch);
+        }
 
         return $qb
             ->orderBy('i.createdAt', 'DESC')

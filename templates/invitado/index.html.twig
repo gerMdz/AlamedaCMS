@@ -1,9 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Invitados - Listado{% endblock %}
 
-{% block body %}
-    <h1>Listado de Invitados {{ invitados.getTotalItemCount }}</h1>
+{% block content %}
+    <h4>Listado de Invitados
+        <small> para
+            <b>{{ celebracion | default('  todas las celebraciones') }}</b>
+        </small>
+        <i>en total {{ invitados.getTotalItemCount }}</i>
+
+        </small></h4>
     <div class="text-center align-items-center">
         {{ knp_pagination_render(invitados) }}
     </div>

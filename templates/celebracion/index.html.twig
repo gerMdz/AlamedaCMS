@@ -45,6 +45,9 @@
                 <td>{{ celebracion.updatedAt ? celebracion.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <span class="fa fa-{{ celebracion.isHabilitada ? 'check' : 'times' }}"></span><br />
+                    <a href="{{ path('invitado_index')}}?c={{ celebracion.id }}">
+                        Ver Invitados
+                    </a>
 
                 </td>
                 <td>
