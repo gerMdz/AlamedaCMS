@@ -47,6 +47,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('base_base', [$this, 'base']),
             new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath']),
             new TwigFunction('capacidad_restante', [$this, 'capacidad_restante']),
+            new TwigFunction('capacidad_ocupada', [$this, 'capacidad_ocupada']),
         ];
     }
 
@@ -84,6 +85,11 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     {
         $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
         return $cantidad - $invitados;
+    }
+
+    public function capacidad_ocupada(string $celebracion)
+    {
+        return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
     }
 
     public static function getSubscribedServices()

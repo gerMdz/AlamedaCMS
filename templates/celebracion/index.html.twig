@@ -22,7 +22,7 @@
                 <th>Id</th>
                 <th>Fecha <br/>Celebración</th>
                 <th>Nombre</th>
-                <th>Capacidad Max</th>
+                <th>Reservas</th>
                 <th>Visible desde el </th>
                 <th>Actualizada el</th>
                 <th>Habilitada</th>
@@ -35,12 +35,16 @@
                 <td>{{ celebracion.id }}</td>
                 <td>{{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ celebracion.nombre }}</td>
-                <td>{{ celebracion.capacidad }}</td>
+                <td>
+                    <i>{{ celebracion.capacidad }} Disponibles</i>
+                    <br/>
+                    <strong>{{ capacidad_ocupada(celebracion.id) }} Ocupadas</strong>
+                </td>
                 <td>{{ celebracion.disponibleAt ? celebracion.disponibleAt|date('Y-m-d H:i:s') : '' }}</td>
 {#                <td>{{ celebracion.createdAt ? celebracion.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
                 <td>{{ celebracion.updatedAt ? celebracion.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <span class="fa fa-{{ celebracion.isHabilitada ? 'check' : 'times' }}"></span>
+                    <span class="fa fa-{{ celebracion.isHabilitada ? 'check' : 'times' }}"></span><br />
 
                 </td>
                 <td>

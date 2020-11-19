@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
 
 /**
- * @Route("/celebracion")
+ * @Route("/admin/celebracion")
  * @IsGranted("ROLE_ADMIN")
  */
 class CelebracionController extends AbstractController
