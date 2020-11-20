@@ -86,4 +86,11 @@ class InvitadoRepository extends ServiceEntityRepository
             ;
     }
 
+    public function byCelebracionForExport($celebracion)
+    {
+        $qb = $this->searchQueryBuilder($celebracion);
+        return $qb->getQuery()
+            ->getArrayResult();
+    }
+
 }

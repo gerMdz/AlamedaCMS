@@ -17,6 +17,7 @@
         "laminas/laminas-eventmanager": "^3.2",
         "liip/imagine-bundle": "^2.3",
         "oneup/flysystem-bundle": "^3.4",
+        "phpoffice/phpspreadsheet": "^1.15",
         "ramsey/uuid-doctrine": "^1.6",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/apache-pack": "^1.0",

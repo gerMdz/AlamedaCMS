@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Form\InvitadoType;
 use App\Repository\CelebracionRepository;
@@ -96,6 +97,8 @@ class InvitadoController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
 
     /**
      * @Route("/{id}", name="invitado_delete", methods={"DELETE"})

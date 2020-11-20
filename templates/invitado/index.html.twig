@@ -8,8 +8,12 @@
             <b>{{ celebracion | default('  todas las celebraciones') }}</b>
         </small>
         <i>en total {{ invitados.getTotalItemCount }}</i>
-
-        </small></h4>
+            {% if (celebracion.id is defined) %}
+                <a href="{{ path('admin_export_invitado', {'id': celebracion.id}) }}">
+                    <i class="fa fa-file-excel"> </i> Exportar
+                </a>
+            {% endif %}
+        </h4>
     <div class="text-center align-items-center">
         {{ knp_pagination_render(invitados) }}
     </div>
