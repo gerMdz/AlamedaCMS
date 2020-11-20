@@ -48,12 +48,12 @@ class InvitadoRepository extends ServiceEntityRepository
     public function countByCelebracion(string $value)
     {
 
-            return $this->createQueryBuilder('i')
-                ->select('count(i.id) as ocupado')
-                ->andWhere('i.celebracion = :val')
-                ->setParameter('val', $value)
-                ->getQuery()
-                ->getSingleScalarResult();
+        return $this->createQueryBuilder('i')
+            ->select('count(i.id) as ocupado')
+            ->andWhere('i.celebracion = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getSingleScalarResult();
 
     }
 
@@ -65,30 +65,33 @@ class InvitadoRepository extends ServiceEntityRepository
             ->setParameter('invitado', $invitado)
             ->setParameter('email', $email)
             ->getQuery()
-            ->getOneOrNullResult()
-            ;
+            ->getOneOrNullResult();
     }
 
     /**
+     * @param string|null $celebracion
      * @param string|null $qSearch
      * @return QueryBuilder
      */
-    public function searchQueryBuilder(?string $qSearch):QueryBuilder
+    public function searchQueryBuilder(?string $celebracion, ?string $qSearch): QueryBuilder
     {
         $qb = $this->createQueryBuilder('i');
-        if ($qSearch) {
+        if ($celebracion) {
             $qb->andWhere('i.celebracion = :celebracion')
-                ->setParameter(':celebracion', $qSearch);
+                ->setParameter(':celebracion', $celebracion);
+        }
+        if ($qSearch) {
+            $qb->andWhere('i.apellido LIKE :qsearch OR i.nombre LIKE :qsearch OR i.email LIKE :qsearch')
+                ->setParameter('qsearch', '%' . $qSearch . '%');
         }
 
         return $qb
-            ->orderBy('i.createdAt', 'DESC')
-            ;
+            ->orderBy('i.createdAt', 'DESC');
     }
 
     public function byCelebracionForExport($celebracion)
     {
-        $qb = $this->searchQueryBuilder($celebracion);
+        $qb = $this->searchQueryBuilder($celebracion, null);
         return $qb->getQuery()
             ->getArrayResult();
     }

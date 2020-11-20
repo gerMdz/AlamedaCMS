@@ -29,11 +29,12 @@ class InvitadoController extends AbstractController
     public function index(InvitadoRepository $invitadoRepository, PaginatorInterface $paginator, Request $request, CelebracionRepository $celebracionRepository): Response
     {
         $q = $request->query->get('c');
+        $busq = $request->query->get('busq');
         $celebracion = null;
         if(isset($q)){
             $celebracion = $celebracionRepository->find($q);
         }
-        $queryBuilder = $invitadoRepository->searchQueryBuilder($q);
+        $queryBuilder = $invitadoRepository->searchQueryBuilder($q, $busq);
         $invitados = $paginator->paginate(
             $queryBuilder, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,

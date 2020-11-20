@@ -20,7 +20,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>
+                    Celebración
+                </th>
                 <th>Telefono</th>
                 <th>Dni</th>
                 <th>Nombre</th>
@@ -31,7 +33,9 @@
         <tbody>
         {% for invitado in invitados %}
             <tr>
-                <td>{{ invitado.id }}</td>
+                <td>
+                    {{ invitado.celebracion }}
+                </td>
                 <td>{{ invitado.telefono }}</td>
                 <td>{{ invitado.dni }}</td>
                 <td>{{ invitado.nombre }}</td>
