@@ -7,7 +7,6 @@ use App\Repository\InvitadoRepository;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
-use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,14 +32,13 @@ class AdminExportController extends AbstractController
         $dataColumns = $invitadoRepository->byCelebracionForExport($celebracion->getId());
         $nameColumns =[
             'ID',
+            'Invitado ',
             'WhatsApp',
             'Documento',
-            'Nombre',
-            'Apellido',
             'Email',
-            'Enlace',
+            'Enlace?',
             'Fecha Reserva',
-            'Fecha Datos Actualizados'
+            'Invitó'
         ];
         $titulo = $celebracion->getNombre() . ' ' . date_format($celebracion->getFechaCelebracionAt(), 'd/M');
 

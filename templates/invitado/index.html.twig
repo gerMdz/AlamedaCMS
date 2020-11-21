@@ -9,25 +9,36 @@
         </small>
         <i>en total {{ invitados.getTotalItemCount }}</i>
             {% if (celebracion.id is defined) %}
-                <a href="{{ path('admin_export_invitado', {'id': celebracion.id}) }}">
+                <span class="mr-5"> </span>
+                <a href="{{ path('celebracion_show', {'id': celebracion.id}) }}"
+                class="btn-modal"
+                >
+                    <i class="fa fa-eye"> </i> Ver datos celebración
+                </a>
+                <span class="mr-5"> </span>
+                <a href="{{ path('admin_export_invitado', {'id': celebracion.id}) }}" >
                     <i class="fa fa-file-excel"> </i> Exportar
                 </a>
+
             {% endif %}
         </h4>
     <div class="text-center align-items-center">
         {{ knp_pagination_render(invitados) }}
     </div>
-    <table class="table">
-        <thead>
-            <tr>
+<div class="table-responsive table-hover">
+    <table class="table table-striped">
+        <thead class="sticky-top position-sticky bg-dark text-white">
+            <tr >
                 <th>
                     Celebración
                 </th>
                 <th>Telefono</th>
                 <th>Dni</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>actions</th>
+                <th>Nombre <br/> Apellido</th>
+                <th>Enlace</th>
+                <th>
+                    <i class="fa fa-cogs"></i>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -38,8 +49,16 @@
                 </td>
                 <td>{{ invitado.telefono }}</td>
                 <td>{{ invitado.dni }}</td>
-                <td>{{ invitado.nombre }}</td>
-                <td>{{ invitado.apellido }}</td>
+                <td>{{ invitado.nombre }} <br/>
+                {{ invitado.apellido }}</td>
+                <td>
+                    {% if invitado.isEnlace %}
+                        <i class="fa fa-check-square"></i>
+                    {% else %}
+                    {{ invitado.enlace.nombre }}<br/>
+                    {{ invitado.enlace.apellido }}
+                        {% endif %}
+                </td>
                 <td>
                     <a href="{{ path('invitado_show', {'id': invitado.id}) }}">show</a>
                     <a href="{{ path('invitado_edit', {'id': invitado.id}) }}">edit</a>
@@ -52,7 +71,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+</div>
     <a href="{{ path('invitado_new') }}">Agregar Invitado </a>
     <div class="text-center align-items-center">
         {{ knp_pagination_render(invitados) }}
@@ -61,4 +80,13 @@
 {#    <div class="text-center align-items-center">#}
 {#        {{ knp_pagination_render(comentarios) }}#}
 {#    </div>#}
+
+    {{ include('admin/_modal.html.twig') }}
+    {{ include('admin/_modoOscuro.html.twig') }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+    {{ include('admin/_llamadaModal.html.twig') }}
 {% endblock %}

@@ -14,9 +14,9 @@
         <div class="card-body">
             <a class="btn btn-sm btn-info btn-round" href="{{ path('celebracion_new') }}">
                 <i class="fas fa-plus-circle"></i> Agregar Celebración</a>
-            <div class="table-responsive">
+            <div class="table-responsive ">
 
-    <table class="table">
+    <table class="table table-responsive-sm table-striped ">
         <thead>
             <tr class="text-center">
                 <th>Id</th>
@@ -37,7 +37,8 @@
                 <td>{{ celebracion.nombre }}</td>
                 <td>
                     <i>{{ celebracion.capacidad }} Disponibles</i>
-                    <br/>
+{#                    <br/>#}
+                    <hr class="m-0 bg-dark"/>
                     <strong>{{ capacidad_ocupada(celebracion.id) }} Ocupadas</strong>
                 </td>
                 <td>{{ celebracion.disponibleAt ? celebracion.disponibleAt|date('Y-m-d H:i:s') : '' }}</td>
