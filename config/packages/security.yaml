@@ -11,10 +11,11 @@ security:
                 class: App\Entity\User
                 property: email
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_ADMIN_COMENTARIOS, ROLE_EDITOR, ROLE_ALLOWED_TO_SWITCH]
-
+        ROLE_ADMIN: [ROLE_ADMIN_COMENTARIOS, ROLE_EDITOR, ROLE_ADMIN_RESERVA, ROLE_ALLOWED_TO_SWITCH]
         ROLE_EDITOR: [ROLE_ESCRITOR]
         ROLE_ESCRITOR:
+        ROLE_ADMIN_RESERVA: [ROLE_RESERVA]
+        ROLE_RESERVA:
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Form\InvitadoType;
 use App\Repository\CelebracionRepository;
 use App\Repository\InvitadoRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/invitado")
+ * @IsGranted("ROLE_RESERVA")
  */
 class InvitadoController extends AbstractController
 {

@@ -14,7 +14,7 @@ use DateTime;
 
 /**
  * @Route("/admin/celebracion")
- * @IsGranted("ROLE_ADMIN")
+ * @IsGranted("ROLE_RESERVA")
  */
 class CelebracionController extends AbstractController
 {

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Reservante;
 use App\Form\ReservanteType;
 use App\Repository\ReservanteRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/reservante")
+ * @IsGranted("ROLE_RESERVA")
  */
 class ReservanteController extends AbstractController
 {

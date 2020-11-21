@@ -57,7 +57,7 @@
                                 <div class="col-sm-12">
                                     {% if(
                                         (capacidad_restante(celebracion.id, celebracion.capacidad) > 0) or
-                                        (is_granted('ROLE_ADMIN'))
+                                        (is_granted('ROLE_RESERVA'))
                                         ) %}
                                     <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
                                        class="btn btn-alameda btn-modal">

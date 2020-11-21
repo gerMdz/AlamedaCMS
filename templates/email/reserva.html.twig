@@ -21,6 +21,9 @@
             background-color: rgb(41, 147, 229);
             border: 1px solid transparent;
         }
+        .text-info{
+            color: #0b51c5;
+        }
     </style>
 <h1>Hola {{ reservante.nombre }}!</h1>
 <br/><br/>
@@ -36,7 +39,11 @@ Para ingresar datos faltantes y descargar tu código, usa el botón que está de
  class="btn-alameda" target="_blank">
     Ver confirmación de reserva
 </a>
-    <br/><br/>
+    <br/>
+    Si tu cliente de correo no te redirige correctamente, copia y pega el siguiente enlace en tu navegador: <br/>
+    <pre class="text-info">https://{{dirweb|trim}}</pre>
+    <br/>
+    <br/>
 <img alt="QR Alameda" src="{{qr_code_data_uri(dirweb, { size: 350, logo_path: reservante.celebracion.imageQr })}}" />
     <br/>
 Asegurate tener el código en tu celular pues deberás mostrarlo al ingresar al auditorio:<br/>
