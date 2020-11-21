@@ -1,12 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Reservante index{% endblock %}
+{% block title %}Listado de Enlaces{% endblock %}
 
-{% block body %}
-    <h1>Reservante index</h1>
-
-    <table class="table">
-        <thead>
+{% block content %}
+    <h1>Listado de Enlaces (reservantes)</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
@@ -17,29 +17,35 @@
                 <th>Documento</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for reservante in reservantes %}
-            <tr>
-                <td>{{ reservante.id }}</td>
-                <td>{{ reservante.email }}</td>
-                <td>{{ reservante.apellido }}</td>
-                <td>{{ reservante.nombre }}</td>
-                <td>{{ reservante.telefono }}</td>
-                <td>{{ reservante.isPresente ? 'Yes' : 'No' }}</td>
-                <td>{{ reservante.documento }}</td>
-                <td>
-                    <a href="{{ path('reservante_show', {'id': reservante.id}) }}">show</a>
-                    <a href="{{ path('reservante_edit', {'id': reservante.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for reservante in reservantes %}
+                <tr>
+                    <td>{{ reservante.id }}</td>
+                    <td>{{ reservante.email }}</td>
+                    <td>{{ reservante.apellido }}</td>
+                    <td>{{ reservante.nombre }}</td>
+                    <td>{{ reservante.telefono }}</td>
+                    <td>{{ reservante.isPresente ? 'Yes' : 'No' }}</td>
+                    <td>{{ reservante.documento }}</td>
+                    <td>
+                        <a href="{{ path('reservante_show', {'id': reservante.id}) }}">show</a>
+                        <a href="{{ path('reservante_edit', {'id': reservante.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('reservante_new') }}">Create new</a>
+    <a href="{{ path('reservante_new') }}">Agregar Reservante</a>
+    {{ include('admin/_modal.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('admin/_llamadaModal.html.twig') }}
 {% endblock %}

@@ -57,15 +57,16 @@ class InvitadoRepository extends ServiceEntityRepository
 
     }
 
-    public function findOneByReserva($invitado, $email): ?Invitado
+    public function findOneByReserva($invitado): ?Invitado
     {
         return $this->createQueryBuilder('i')
+            ->select('i')
             ->andWhere('i.id = :invitado')
-            ->andWhere('i.email = :email')
+//            ->andWhere('i.email = :email')
             ->setParameter('invitado', $invitado)
-            ->setParameter('email', $email)
+//            ->setParameter('email', $email)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 
     /**

@@ -21,6 +21,9 @@
             background-color: rgb(41, 147, 229);
             border: 1px solid transparent;
         }
+        .text-info{
+            color: #0b51c5;
+        }
     </style>
 <h1>Hola {{ reservante.nombre }}!</h1>
 <br/>
@@ -31,10 +34,14 @@ Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebraci
 
 Para descargar tu código, usa el botón que está debajo:<br/>
 {% set dirweb = app.request.host ~ path('vista_reserva_invitado', {'invitado': reservante.id, 'email': reservante.email })   %}
+
 <a href="{{ dirweb }}"
  class="btn-alameda" target="_blank">
     Ver confirmación de reserva
 </a>
+    <br/>
+    Si tu cliente de correo no te redirige correctamente, copia y pega el siguiente enlace en tu navegador: <br/>
+    <pre class="text-info">https://{{dirweb|trim}}</pre>
     <br/>
 <img alt="QR Alameda" src="{{qr_code_data_uri(dirweb, { size: 350, logo_path: reservante.celebracion.imageQr })}}" />
     <br/>

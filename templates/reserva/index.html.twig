@@ -55,7 +55,10 @@
                         {% if (celebraciones|length > 0) %}
                             {% for celebracion in celebraciones %}
                                 <div class="col-sm-12">
-                                    {%  if((capacidad_restante(celebracion.id, celebracion.capacidad) > 0) ) %}
+                                    {% if(
+                                        (capacidad_restante(celebracion.id, celebracion.capacidad) > 0) or
+                                        (is_granted('ROLE_ADMIN'))
+                                        ) %}
                                     <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
                                        class="btn btn-alameda btn-modal">
                                         {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},

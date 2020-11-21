@@ -167,7 +167,7 @@ class ReservaController extends AbstractController
      */
     public function vistaReservaInvitado(InvitadoRepository $invitadoRepository, string $invitado, string $email): Response
     {
-        $invitado = $invitadoRepository->findOneByReserva($invitado, $email);
+        $invitado = $invitadoRepository->find($invitado);
         return $this->render('reserva/invitado.html.twig', [
             'invitado' => $invitado
         ]);
@@ -209,9 +209,10 @@ class ReservaController extends AbstractController
      * @Route("/{id}/completa_invitado", name="invitado_completa_self", methods={"GET","POST"})
      * @param Request $request
      * @param Invitado $invitado
+     * @param Mailer $mailer
      * @return Response
      */
-    public function editSelf(Request $request, Invitado $invitado): Response
+    public function editSelf(Request $request, Invitado $invitado, Mailer $mailer): Response
     {
 
         $form = $this->createForm(InvitadoType::class, $invitado);
@@ -220,10 +221,12 @@ class ReservaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $mailer->sendReservaInvitadoMessage($invitado);
+
             return $this->redirectToRoute('vista_reserva_invitado',
                 [
                     'invitado'=>$invitado->getId(),
-                    'email'=>$invitado->getEnlace()->getEmail()
+                    'email'=>$invitado->getEmail()
                 ]);
         }
 
