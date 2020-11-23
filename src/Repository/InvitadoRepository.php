@@ -78,7 +78,7 @@ class InvitadoRepository extends ServiceEntityRepository
      * @param string|null $qSearch
      * @return QueryBuilder
      */
-    public function searchQueryBuilder(?string $celebracion, ?string $qSearch): QueryBuilder
+    public function searchBuilder(?string $celebracion, ?string $qSearch): QueryBuilder
     {
         $qb = $this->createQueryBuilder('i');
         if ($celebracion) {
@@ -90,14 +90,26 @@ class InvitadoRepository extends ServiceEntityRepository
                 ->setParameter('qsearch', '%' . $qSearch . '%');
         }
 
+        return $qb;
+    }
+
+    /**
+     * @param string|null $celebracion
+     * @param string|null $qSearch
+     * @return QueryBuilder
+     */
+    public function searchQueryBuilder(?string $celebracion, ?string $qSearch): QueryBuilder
+    {
+        $qb = $this->searchBuilder($celebracion, $qSearch);
         return $qb
             ->addOrderBy('i.createdAt', 'DESC')
-            ->addOrderBy('i.isEnlace', 'DESC');
+            ->addOrderBy('i.apellido', 'DESC');
+
     }
 
     public function byCelebracionForExport($celebracion)
     {
-        $qb = $this->searchQueryBuilder($celebracion, null)
+        $qb = $this->searchBuilder($celebracion, null)
         ->select('i.id as id,CONCAT(i.nombre, \'  \' , i.apellido) as invits, i.telefono as WhatsApp, i.dni as telefono, i.email as email, i.isEnlace as reservante, i.updatedAt as reserva, CONCAT(invitante.nombre,\' \', invitante.apellido) as invito');
         $qb->leftJoin('i.enlace', 'invitante');
         $qb->addOrderBy('invitante.apellido', 'ASC');
