@@ -57,6 +57,7 @@ class Reservante
 
     /**
      * @ORM\OneToMany(targetEntity=Invitado::class, mappedBy="enlace")
+     * @ORM\OrderBy({"nombre"= "ASC"})
      */
     private $invitados;
 

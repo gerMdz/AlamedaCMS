@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Invitado;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
@@ -48,12 +47,18 @@ class InvitadoRepository extends ServiceEntityRepository
     public function countByCelebracion(string $value)
     {
 
-        return $this->createQueryBuilder('i')
-            ->select('count(i.id) as ocupado')
-            ->andWhere('i.celebracion = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getSingleScalarResult();
+        try {
+            return $this->createQueryBuilder('i')
+                ->select('count(i.id) as ocupado')
+                ->andWhere('i.celebracion = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            return $e;
+        } catch (NonUniqueResultException $e) {
+            return $e;
+        }
 
     }
 
@@ -87,7 +92,8 @@ class InvitadoRepository extends ServiceEntityRepository
         }
 
         return $qb
-            ->orderBy('i.createdAt', 'DESC');
+            ->orderBy('i.createdAt', 'DESC')
+            ->addOrderBy('i.isEnlace', 'DESC');
     }
 
     public function byCelebracionForExport($celebracion)
@@ -95,6 +101,8 @@ class InvitadoRepository extends ServiceEntityRepository
         $qb = $this->searchQueryBuilder($celebracion, null)
         ->select('i.id as id,CONCAT(i.nombre, \'  \' , i.apellido) as invits, i.telefono as WhatsApp, i.dni as telefono, i.email as email, i.isEnlace as reservante, i.updatedAt as reserva, CONCAT(invitante.nombre,\' \', invitante.apellido) as invito');
         $qb->leftJoin('i.enlace', 'invitante');
+        $qb->addOrderBy('invitante.apellido', 'ASC');
+        $qb->addOrderBy('i.isEnlace', 'DESC');
         return $qb->getQuery()
             ->getArrayResult();
     }
