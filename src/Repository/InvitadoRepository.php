@@ -46,7 +46,6 @@ class InvitadoRepository extends ServiceEntityRepository
      */
     public function countByCelebracion(string $value)
     {
-
         try {
             return $this->createQueryBuilder('i')
                 ->select('count(i.id) as ocupado')
@@ -92,7 +91,7 @@ class InvitadoRepository extends ServiceEntityRepository
         }
 
         return $qb
-            ->orderBy('i.createdAt', 'DESC')
+            ->addOrderBy('i.createdAt', 'DESC')
             ->addOrderBy('i.isEnlace', 'DESC');
     }
 
