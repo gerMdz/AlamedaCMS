@@ -91,6 +91,11 @@ class Principal
      */
     private $modelTemplate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Ministerio::class, inversedBy="page")
+     */
+    private $ministerio;
+
 
     public function __construct()
     {
@@ -328,6 +333,18 @@ class Principal
     public function setModelTemplate(?ModelTemplate $modelTemplate): self
     {
         $this->modelTemplate = $modelTemplate;
+
+        return $this;
+    }
+
+    public function getMinisterio(): ?Ministerio
+    {
+        return $this->ministerio;
+    }
+
+    public function setMinisterio(?Ministerio $ministerio): self
+    {
+        $this->ministerio = $ministerio;
 
         return $this;
     }

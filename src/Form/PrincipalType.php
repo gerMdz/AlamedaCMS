@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\ModelTemplate;
 use App\Entity\Principal;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -63,6 +65,12 @@ class PrincipalType extends AbstractType
                 ]
             ])
             ->add('principal')
+            ->add('modelTemplate', EntityType::class,[
+                'class'=>ModelTemplate::class,
+                'required'=>false,
+                'label'=>'Template',
+                'placeholder'=>'Seleccione el modelo principal de la página',
+            ])
         ;
     }
 

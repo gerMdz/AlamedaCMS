@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ministerio{% endblock %}
+
+{% block body %}
+    <h1>Edit Ministerio</h1>
+
+    {{ include('ministerio/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ministerio_index') }}">back to list</a>
+
+    {{ include('ministerio/_delete_form.html.twig') }}
+{% endblock %}

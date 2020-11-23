@@ -80,7 +80,10 @@ class ZinicioController extends AbstractController
     {
 //        $ppal = $principalRepository->findOneBy(['principal'=>$principal->getId()]);
 
-        $vista = ($principal->getPrincipal()?$principal->getPrincipal()->getLinkRoute():$principal->getLinkRoute());
+        $vista =$principal->getModelTemplate();
+        if(!$vista) {
+            $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute() : $principal->getLinkRoute());
+        }
         $visual = $principalRepository->findOneBy(['principal'=>$principal->getId(), 'isActive'=>true]);
         if(!$visual){
             $visual = $principal;
