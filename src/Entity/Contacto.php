@@ -43,16 +43,22 @@ class Contacto
     /**
      * @ORM\ManyToMany(targetEntity=Ministerio::class, inversedBy="contactos")
      */
-    private $minsterio;
+    private $ministerio;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $nombre;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="contacto")
+     */
+    private $entradas;
+
     public function __construct()
     {
-        $this->minsterio = new ArrayCollection();
+        $this->ministerio = new ArrayCollection();
+        $this->entradas = new ArrayCollection();
     }
 
     public function __toString()
@@ -117,23 +123,23 @@ class Contacto
     /**
      * @return Collection|Ministerio[]
      */
-    public function getMinsterio(): Collection
+    public function getMinisterio(): Collection
     {
-        return $this->minsterio;
+        return $this->ministerio;
     }
 
-    public function addMinsterio(Ministerio $minsterio): self
+    public function addMinisterio(Ministerio $ministerio): self
     {
-        if (!$this->minsterio->contains($minsterio)) {
-            $this->minsterio[] = $minsterio;
+        if (!$this->ministerio->contains($ministerio)) {
+            $this->ministerio[] = $ministerio;
         }
 
         return $this;
     }
 
-    public function removeMinsterio(Ministerio $minsterio): self
+    public function removeMinisterio(Ministerio $ministerio): self
     {
-        $this->minsterio->removeElement($minsterio);
+        $this->ministerio->removeElement($ministerio);
 
         return $this;
     }
@@ -146,6 +152,33 @@ class Contacto
     public function setNombre(string $nombre): self
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entrada[]
+     */
+    public function getEntradas(): Collection
+    {
+        return $this->entradas;
+    }
+
+    public function addEntrada(Entrada $entrada): self
+    {
+        if (!$this->entradas->contains($entrada)) {
+            $this->entradas[] = $entrada;
+            $entrada->addContacto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrada(Entrada $entrada): self
+    {
+        if ($this->entradas->removeElement($entrada)) {
+            $entrada->removeContacto($this);
+        }
 
         return $this;
     }

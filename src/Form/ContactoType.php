@@ -17,7 +17,7 @@ class ContactoType extends AbstractType
             ->add('textoPagina')
             ->add('nombre')
             ->add('tipo')
-            ->add('minsterio')
+            ->add('ministerio')
         ;
     }
 

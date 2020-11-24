@@ -2,9 +2,7 @@
 
 {# {{ form_widget(entradaForm) }} #}
 <div class="row">
-    <div class="col-sm-6">
-        {{ form_row(entradaForm.titulo) }}
-    </div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-2 text-center">
         <label for="entrada_encabezado">
             Encabezado?<br/>
@@ -16,7 +14,12 @@
             Destacado?<br/>
             {{ form_row(entradaForm.destacado) }}
         </label>
-
+    </div>
+    <div class="col-sm-2 text-center">
+        <label for="entrada_isSinTitulo">
+            Sin titulo?<br/>
+            {{ form_row(entradaForm.isSinTitulo) }}
+        </label>
     </div>
     <div class="col-sm-2 text-center checkbox ">
         <label for="entrada_publicar" class="required">
@@ -28,6 +31,12 @@
             {% endif %}
         </label>
     </div>
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-12">
+        {{ form_row(entradaForm.titulo) }}
+    </div>
+
 
     <div class="col-sm-12">
         {{ form_row(entradaForm.linkRoute) }}

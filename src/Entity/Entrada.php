@@ -31,7 +31,7 @@ class Entrada
     private $titulo;
 
     /**
-     * @ORM\Column(type="string", length=4000)
+     * @ORM\Column(type="string", length=4000, nullable=true)
      */
     private $contenido;
 
@@ -136,6 +136,16 @@ class Entrada
      */
     private $modelTemplate;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Contacto::class, inversedBy="entradas")
+     */
+    private $contacto;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isSinTitulo;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
@@ -143,6 +153,7 @@ class Entrada
         $this->principals = new ArrayCollection();
         $this->brotes = new ArrayCollection();
         $this->relacionSectionEntradas = new ArrayCollection();
+        $this->contacto = new ArrayCollection();
     }
 
     public function __toString()
@@ -172,7 +183,7 @@ class Entrada
         return $this->contenido;
     }
 
-    public function setContenido(string $contenido): self
+    public function setContenido(?string $contenido): self
     {
         $this->contenido = $contenido;
 
@@ -492,6 +503,42 @@ class Entrada
     public function setModelTemplate(?ModelTemplate $modelTemplate): self
     {
         $this->modelTemplate = $modelTemplate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contacto[]
+     */
+    public function getContacto(): Collection
+    {
+        return $this->contacto;
+    }
+
+    public function addContacto(Contacto $contacto): self
+    {
+        if (!$this->contacto->contains($contacto)) {
+            $this->contacto[] = $contacto;
+        }
+
+        return $this;
+    }
+
+    public function removeContacto(Contacto $contacto): self
+    {
+        $this->contacto->removeElement($contacto);
+
+        return $this;
+    }
+
+    public function getIsSinTitulo(): ?bool
+    {
+        return $this->isSinTitulo;
+    }
+
+    public function setIsSinTitulo(?bool $isSinTitulo): self
+    {
+        $this->isSinTitulo = $isSinTitulo;
 
         return $this;
     }

@@ -35,7 +35,7 @@ class Ministerio
     private $referente;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Contacto::class, mappedBy="minsterio")
+     * @ORM\ManyToMany(targetEntity=Contacto::class, mappedBy="ministerio")
      */
     private $contactos;
 
@@ -43,6 +43,11 @@ class Ministerio
     {
         $this->page = new ArrayCollection();
         $this->contactos = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->nombre;
     }
 
     public function getId(): ?int
@@ -116,7 +121,7 @@ class Ministerio
     {
         if (!$this->contactos->contains($contacto)) {
             $this->contactos[] = $contacto;
-            $contacto->addMinsterio($this);
+            $contacto->addMinisterio($this);
         }
 
         return $this;
@@ -125,7 +130,7 @@ class Ministerio
     public function removeContacto(Contacto $contacto): self
     {
         if ($this->contactos->removeElement($contacto)) {
-            $contacto->removeMinsterio($this);
+            $contacto->removeMinisterio($this);
         }
 
         return $this;

@@ -3,14 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
-use App\Entity\Section;
 use App\Entity\User;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,10 +32,11 @@ class EntradaType extends AbstractType
                 ],
             ])
             ->add('contenido', CKEditorType::class, [
-                'required' => true,
+                'required' => false,
                 'config' => [
                     'uiColor' => '#ffffff'],
                 'attr' => [
+                    'required' => false,
                     'class' => 'form-control',
                 ],
             ])
@@ -91,6 +90,15 @@ class EntradaType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'help' => 'Entrada destacada?',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('contacto')
+            ->add('isSinTitulo', CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'help' => 'Sin título?',
                 'attr' => [
                     'class' => 'form-control',
                 ],
