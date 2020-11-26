@@ -19,6 +19,8 @@
     {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
 
+
+
 {% endblock %}
 
 
@@ -95,8 +97,17 @@
                                     <div class="col-sm-12">
                                         <hr/>
                                     </div>
-                                    <div class="col-sm-1">
-                                        {{ invitado.isEnlace ? '<i class="fa fa-check-square-o"> </i>': '<i class="fa fa-square-o"> </i>' }}
+                                    <div class="col-sm-1" >
+                                        {% if(is_granted('ROLE_RESERVA')) %}
+                                            <span id="{{ invitado.id }}" class="aviso-presente text-success"></span>
+                                            <a href="{{ path('cambia_presente', {id: invitado.id}) }}"
+                                               data-presente="{{ invitado.id }}"
+                                               class="{{ invitado.isPresente ? 'fa fa-check-square-o': 'fa fa-square-o' }} js-cambia-presente">
+                                            </a>
+
+                                        {% else %}
+                                            {{ invitado.isEnlace ? '<i class="fa fa-check-square-o"> </i>': '<i class="fa fa-square-o"> </i>' }}
+                                        {% endif %}
                                     </div>
                                     <div class="col-sm-3">
                                         {{ invitado.nombre ? invitado.nombre :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Nombre</span>' }}
@@ -170,7 +181,9 @@
     {{ parent() }}
     {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    <script src="{{ asset('js/invitado_marca_presente.js') }}"></script>
     <script type="application/javascript">
+
         $(function () {
             $(".btn-modal").click(function (ev) {
                 ev.preventDefault();

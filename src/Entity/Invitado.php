@@ -65,6 +65,11 @@ class Invitado
      */
     private $isEnlace;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPresente;
+
     public function __toString()
     {
         return $this->email . ' - ' .$this->apellido . ', '. $this->nombre;
@@ -167,6 +172,18 @@ class Invitado
     public function setIsEnlace(?bool $isEnlace): self
     {
         $this->isEnlace = $isEnlace;
+
+        return $this;
+    }
+
+    public function getIsPresente(): ?bool
+    {
+        return $this->isPresente;
+    }
+
+    public function setIsPresente(?bool $isPresente): self
+    {
+        $this->isPresente = $isPresente;
 
         return $this;
     }

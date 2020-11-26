@@ -6,12 +6,15 @@ use App\Entity\Invitado;
 use App\Form\InvitadoType;
 use App\Repository\CelebracionRepository;
 use App\Repository\InvitadoRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 /**
  * @Route("/admin/invitado")
@@ -114,5 +117,23 @@ class InvitadoController extends AbstractController
         }
 
         return $this->redirectToRoute('invitado_index');
+    }
+
+    /**
+     * @Route("/cambia_presente", name="cambia_presente", methods={"GET", "POST"})
+     * @param Request $request
+     * @param InvitadoRepository $invitadoRepository
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     */
+    public function cambiaPresente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $em)
+    {
+        $id = $request->get('id');
+        $invitado = $invitadoRepository->find($id);
+        $invitado->setIsPresente(!$invitado->getIsPresente());
+        $em->persist($invitado);
+        $em->flush();
+        return new JsonResponse(['presente' => $invitado->getIsPresente()]);
+
     }
 }
