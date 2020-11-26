@@ -3,6 +3,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/admin_section_form.js') }}"></script>
+    <script src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="application/javascript">
         $(function () {
             $('.datetimepicker').datetimepicker({

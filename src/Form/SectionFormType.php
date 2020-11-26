@@ -7,6 +7,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -34,54 +35,65 @@ class SectionFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null,[
-                'label'=>'Nombre de la sección',
+            ->add('name', null, [
+                'label' => 'Nombre de la sección',
                 'help' => 'Nombre que identifica a la sección entre las otras secciones'
             ])
             ->add('cssClass', null, [
-                'label'=>'Clase css'
+                'label' => 'Clase css'
             ])
             ->add('description', TextareaType::class, [
-                'label'=>'Descripción',
-                'help'=>'Una descripción que diferencie a las otras secciones parecidas'
+                'label' => 'Descripción',
+                'help' => 'Una descripción que diferencie a las otras secciones parecidas'
             ])
             ->add('identificador', TextType::class, [
-                'help'=>'Opcional, normalmente para usar con funciones JS'
+                'help' => 'Opcional, normalmente para usar con funciones JS'
             ])
-            ->add('disponible')
-            ->add('disponibleAt', null,[
-                'widget' => 'single_text'
+            ->add('disponible', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Disponible?',
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+//                'help' => 'Disponible?',
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
+            ])
+            ->add('disponibleAt', null, [
+                'widget' => 'single_text',
+                'attr'=>[
+                    'class'=>'datetimepicker'
+                ]
             ])
             ->add('columns')
             ->add('startAt', DateTimeType::class, array(
-        'widget' => 'single_text',
-        'required'=>false,
-        'html5' => true,
-        'label' => 'Comienza',
-        'format' => 'dd-MM-yyyy HH:mm',
-        'attr'=>[
-            'class'=>'form-control datetimepicker'
-        ]
-    ))
+                'widget' => 'single_text',
+                'required' => false,
+                'html5' => true,
+                'label' => 'Comienza',
+                'format' => 'dd-MM-yyyy HH:mm',
+                'attr' => [
+                    'class' => 'form-control datetimepicker'
+                ]
+            ))
             ->add('stopAt', DateTimeType::class, array(
                 'widget' => 'single_text',
-                'required'=>false,
+                'required' => false,
                 'html5' => true,
                 'label' => 'Finaliza',
                 'format' => 'dd-MM-yyyy HH:mm',
-                'attr'=>[
-                    'class'=>'form-control datetimepicker'
+                'attr' => [
+                    'class' => 'form-control datetimepicker'
                 ]
             ))
             ->add('principal', EntityType::class, [
-                'class'=> 'App\Entity\Principal',
-                'label'=>'Página?',
-                'placeholder'=>'Seleccione la página donde se insertará la sección',
-                'required'=>true,
+                'class' => 'App\Entity\Principal',
+                'label' => 'Página?',
+                'placeholder' => 'Seleccione la página donde se insertará la sección',
+                'required' => true,
 
-            ] )
+            ])
             ->add('template', TextType::class, [
-                'help'=>'Opcional, llama a un template específico, debe estar en sections creado'
+                'help' => 'Opcional, llama a un template específico, debe estar en sections creado'
             ])
             ->add('contenido', CKEditorType::class, [
                 'required' => true,
@@ -107,15 +119,13 @@ class SectionFormType extends AbstractType
                 ],
             ])
             ->add('title', TextType::class, [
-                'label'=> 'Titulo',
-                'required'=>false,
-                'help'=>'Opcional, título para la sección que se visualiza en la página '
-    ])
-
-            ;
-/**
- * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
- */
+                'label' => 'Titulo',
+                'required' => false,
+                'help' => 'Opcional, título para la sección que se visualiza en la página '
+            ]);
+        /**
+         * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
+         */
 //        $builder->addEventListener(
 //            FormEvents::PRE_SET_DATA,
 //            function (FormEvent $event){
@@ -142,14 +152,13 @@ class SectionFormType extends AbstractType
 //        );
 
 
-
     }
 
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'=>Section::class
+            'data_class' => Section::class
         ]);
     }
 
@@ -170,8 +179,6 @@ class SectionFormType extends AbstractType
 //            default:
 //                $data = null;
 //        }
-
-
 
 
 //        return $data;
@@ -207,8 +214,6 @@ class SectionFormType extends AbstractType
 //        $links = array_column($data, 'linkRoute');
 //        return array_combine($titulos, $links);
 //    }
-
-
 
 
 }

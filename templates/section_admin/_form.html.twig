@@ -45,6 +45,14 @@
 
     {% endif %}
 </div>
+
+    <div class="col-sm-2 text-center form-check text-dark">
+        {{ form_row(sectionForm.disponible) }}
+
+    </div>
+
+
+
     {{ form_widget(sectionForm._token) }}
 
 <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
