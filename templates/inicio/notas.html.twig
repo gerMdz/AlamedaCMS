@@ -100,7 +100,7 @@
                     <div class="col-12">
                         <div class="text-center">
                             <div class="site-heading p-5">
-                                <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}"
+                                <img src="{{ asset('/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}"
                                      style="max-height: 150px"
                                      class="img-fluid" alt="Iglesia de la Alameda">
                             </div>
@@ -138,12 +138,13 @@
             </div>
         </section>
         <!-- Charlas -->
+        {% for section in principal.section %}
         <section class="a-content-space-medium bg-fam text-center">
             <div class="container">
                 <div class="row">
 
 
-                        {% for entrada in principal.entrada %}
+                        {% for entrada in section.entradassection %}
                             <!--                charla 1-->
                             <div class="col-md-4 mb-2 mx-auto   ">
                                 <!--                                        <div class="card h-100"> -->
@@ -192,6 +193,7 @@
                 </div>
             </div>
         </section>
+        {% endfor %}
     </main>
     <footer class="footer">
 {#        <div class="card-body">#}
