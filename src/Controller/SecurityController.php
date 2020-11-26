@@ -78,6 +78,10 @@ class SecurityController extends AbstractController
                 $passwordEncoder->encodePassword($user, $userModel->plainPassword)
             );
             $user->setRoles(['ROLE_USER']);
+            if($form['roles']->getData()){
+                $user->setRoles([$form['roles']->getData()]);
+            }
+            $user->setRoles(['ROLE_USER']);
             $user->setPrimerNombre($userModel->primerNombre);
             if(true === $userModel->aceptaTerminos){
                 $user->aceptaTerminos();
