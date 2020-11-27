@@ -114,6 +114,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
+                    {% if is_granted('ROLE_ADMIN_RESERVA') %}
+                    <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar Voluntario</a>
+                    {% endif %}
                     {% if is_granted('ROLE_RESERVA') %}
                         <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
                         {#                                <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>#}
