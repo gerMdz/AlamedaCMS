@@ -16,8 +16,16 @@
 
 {% block content %}
     <div class="row">
+    {% if (is_granted("ROLE_ADMIN_RESERVA")) %}
     {% include 'admin/list_principal.html.twig' %}
     {% include 'admin/list_metabase.html.twig' %}
+        {% endif %}
+        {% if (is_granted("ROLE_RESERVA")) %}
+            <a class="btn btn-alameda" href="{{ path('reserva_consulta') }}">
+                Ver Reservas
+            </a>
+        {% endif %}
+
     </div>
 {% endblock %}
 
