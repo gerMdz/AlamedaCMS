@@ -82,7 +82,7 @@ class AdminEntradaController extends AbstractController
      * @param ObtenerDatosHelper $datosHelper
      * @return RedirectResponse
      * @throws Exception
-     * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
+     * @Route("/admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
      *
      */
@@ -190,15 +190,47 @@ class AdminEntradaController extends AbstractController
     }
 
     /**
-     * @Route("admin/entrada/{linkRoute}", name="entrada_news")
+     * @Route("/admin/entrada/{linkRoute}", name="entrada_admin_link")
      *
      * @param Entrada $entrada
      * @return Response
      */
-    public function show(Entrada $entrada)
+    public function link(Entrada $entrada)
     {
+        return $this->render('entrada/link.html.twig', [
+            'entrada' => $entrada,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/entrada/{id}/show", name="entrada_show", methods={"GET"})
+     * @param Entrada $entrada
+     * @param EntradaRepository $er
+     * @return Response
+     */
+    public function show(Entrada $entrada, EntradaRepository $er): Response
+    {
+//        $entrada = $er->findOneBy(['linkRoute' => $entrada]);
+        if (!$entrada) {
+            throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
+        }
+
         return $this->render('entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);
+    }
+
+    /**
+     * @Route("/admin/{id}", name="entrada_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Entrada $entrada): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($entrada);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('entrada_index');
     }
 }

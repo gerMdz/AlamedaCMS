@@ -23,7 +23,8 @@
                             <th>Imagen</th>
                             <td>
                                 <img class="show-article-img"
-                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}" alt="{{ base.siteName }}">
+                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                                     alt="{{ base.siteName }}">
                             </td>
                         </tr>
                         <tr>
@@ -59,9 +60,35 @@
 
                         </tbody>
                     </table>
+                    <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 row ">
+                        {% for referencia in entrada.entradaReferences %}
+                            <div class="col-sm-12">
+                                Link descarga
+                                : {{ app.request.host }}{{ path('entrada_download_reference',{'filename': referencia.filename}) }}
+                                <br/>
+                                <a href="/descargas/referencias/{{ referencia.filename }}"
+                                        {# <a href="{{ referencia. }}" #}
+                                   target="_blank"
+                                   class="card-link text-center">
+                                    <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                    <span class="text-alameda btn-icon ">Notas</span><br/>
+                                </a>
+                            </div>
+                        {% endfor %}
+                        <br/>
+                        <div class="col-sm-12">
+                            link post: {{ entrada.linkPosting }}
+                            <a href="{{ entrada.linkPosting }}" class="card-link text-center"
+                               target="_blank">
+                                <i class="fab fa-youtube fa-fw mr-1"></i>
+                                <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                            </a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios</h3>
+                            <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios
+                            </h3>
                             {% for comentario in entrada.comentariosNoDeleted %}
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -73,7 +100,7 @@
                                             {% endif %}
                                             <br/>
                                             <span class="comment"> {{ comentario.contenido }}</span>
-                                            <hr class="border-bottom" />
+                                            <hr class="border-bottom"/>
                                         </div>
 
                                     </div>

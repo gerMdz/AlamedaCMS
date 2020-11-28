@@ -1,0 +1,80 @@
+{% extends 'base_material_kit.twig' %}
+
+{% block title %}Vista {{ entrada.titulo }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {# {{ encore_entry_link_tags('app') }} #}
+
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}"> #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}">
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+
+    </style>
+
+{% endblock %}
+
+{% block sections %}
+    <section class="u-content-space border-bottom py-5 bg-gris-medio ">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="show-article-container p-3 mt-4">
+                        <h4><strong class="ml-5"> {{ entrada.titulo }} </strong>
+                            <small>
+                                Le gustó a:
+                                <span class="js-like-entrada-count">{{ entrada.likes }}</span>
+                                <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"
+                                   class="fas fa-heart like-entrada js-like-entrada">
+                                </a>
+                            </small>
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
+                         src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                         alt="<?php echo $lemaSinEspacios ?>">
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <h5 class="card-title text-uppercase">
+                        {{ entrada.titulo }}
+                    </h5>
+                    <div class="middle-0">
+                        <i class="fas fa-quote-left mr-5"></i><br/>
+                        {{ entrada.contenido | raw }}
+                        <i class="fas fa-quote-right ml-5"></i>
+                    </div>
+                    <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                        {% for referencia in entrada.entradaReferences %}
+                            <a href="/descargas/referencias/{{ referencia.filename}}"
+                                    {#                                            <a href="{{ referencia. }}"#}
+                               target="_blank"
+                               class="card-link text-center">
+                                <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                <span class="text-alameda btn-icon ">Notas</span><br/>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    {% if (is_granted("ROLE_ESCRITOR")) %}
+                        Id : {{ entrada.id }}
+                    {% endif %}
+                </div>
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-link" href="{{ path('index') }}"><i class="fa fa-home"></i> </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/entrada_show.js') }}"></script>
+{% endblock %}
