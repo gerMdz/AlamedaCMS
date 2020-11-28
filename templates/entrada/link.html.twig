@@ -52,9 +52,10 @@
                     <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
                         {% for referencia in entrada.entradaReferences %}
                             <a href="/descargas/referencias/{{ referencia.filename}}"
-                                    {#                                            <a href="{{ referencia. }}"#}
                                target="_blank"
-                               class="card-link text-center">
+                               download
+                                id="descargar"
+                               class="descargar card-link text-center ">
                                 <i class="far fa-file-pdf ml-5 mr-1"></i>
                                 <span class="text-alameda btn-icon ">Notas</span><br/>
                             </a>
@@ -77,4 +78,9 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/entrada_show.js') }}"></script>
+    <script type="application/javascript">
+        $(window).load(function () {
+            document.getElementById('descargar').click();
+        })
+    </script>
 {% endblock %}
