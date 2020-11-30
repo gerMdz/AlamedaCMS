@@ -44,6 +44,12 @@ class CelebracionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             $ahora = new DateTime('now');
+            $hasta = $form['disponibleHastaAt']->getData();
+
+            $celebracion->setDisponibleHastaAt($ahora->modify('+1 hour'));
+            if ($hasta){
+                $celebracion->setDisponibleHastaAt($hasta);
+            }
             $celebracion->setCreaEvento($user);
             $celebracion->setCreatedAt($ahora);
             $celebracion->setUpdatedAt($ahora);

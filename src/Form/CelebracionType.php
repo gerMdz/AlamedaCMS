@@ -33,6 +33,16 @@ class CelebracionType extends AbstractType
                 'format' => 'yyyy-MM-dd HH:mm',
                 'attr' => ['class' => 'datetimepicker']
             ])
+            ->add('disponibleHastaAt', DateTimeType::class,[
+                'label'=>'Disponible hasta',
+                'widget' => 'single_text',
+                'html5' => false,
+                'required' => false,
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                    ]
+            ])
             ->add('descripcion')
             ->add('isHabilitada', ChoiceType::class, [
                 'required' => true,

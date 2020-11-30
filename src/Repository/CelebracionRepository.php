@@ -30,11 +30,10 @@ class CelebracionRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->andWhere('c.isHabilitada = :hab')
             ->andWhere('c.disponibleAt <= :today')
-            ->andWhere('c.fechaCelebracionAt >= :today')
+            ->andWhere('c.disponibleHastaAt >= :today')
             ->orderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('hab', true)
             ->setParameter('today',new DateTime('now'))
-
         ;
     }
 
@@ -50,4 +49,11 @@ class CelebracionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    private function sumar1hora()
+    {
+        $datetime = new DateTime('now');
+        $datetime->modify('+1 hour');
+        return $datetime;
+    }
 }

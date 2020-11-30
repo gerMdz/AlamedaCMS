@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\OfertTrait;
 use App\Repository\CelebracionRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,6 +17,7 @@ class Celebracion
 {
 
     use TimestampableEntity;
+    use OfertTrait;
 
     /**
      * @ORM\Id()
@@ -38,11 +41,6 @@ class Celebracion
      * @ORM\Column(type="integer")
      */
     private $capacidad;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $disponibleAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="celebracions")
@@ -93,12 +91,12 @@ class Celebracion
         return $this->id;
     }
 
-    public function getFechaCelebracionAt(): ?\DateTimeInterface
+    public function getFechaCelebracionAt(): ?DateTimeInterface
     {
         return $this->fechaCelebracionAt;
     }
 
-    public function setFechaCelebracionAt(\DateTimeInterface $fechaCelebracionAt): self
+    public function setFechaCelebracionAt(DateTimeInterface $fechaCelebracionAt): self
     {
         $this->fechaCelebracionAt = $fechaCelebracionAt;
 
@@ -129,17 +127,8 @@ class Celebracion
         return $this;
     }
 
-    public function getDisponibleAt(): ?\DateTimeInterface
-    {
-        return $this->disponibleAt;
-    }
 
-    public function setDisponibleAt(\DateTimeInterface $disponibleAt): self
-    {
-        $this->disponibleAt = $disponibleAt;
 
-        return $this;
-    }
 
     public function getCreaEvento(): ?User
     {
