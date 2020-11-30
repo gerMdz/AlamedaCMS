@@ -36,13 +36,14 @@ class AdminExportController extends AbstractController
             'WhatsApp',
             'Documento',
             'Email',
-            'Enlace?',
             'Fecha Reserva',
-            'Invitó'
+            'Enlace?',
+            'Invitó',
+            'Presente?',
         ];
-        $titulo = $celebracion->getNombre() . ' ' . date_format($celebracion->getFechaCelebracionAt(), 'd/M');
+        $titulo = $celebracion->getNombre() . '-' . date_format($celebracion->getFechaCelebracionAt(), 'd/M');
 
-        $filename = self::FILENAME.'.xlsx';
+        $filename = self::FILENAME.'-'.trim($titulo).'.xlsx';
         $spreadsheet = $this->createSpreadsheet($titulo, $nameColumns, $dataColumns);
 //        $contentType = 'text/csv';
 //        $writer = new Csv($spreadsheet);

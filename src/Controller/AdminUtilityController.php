@@ -23,13 +23,8 @@ class AdminUtilityController extends AbstractController
      */
     public function getUserEscritorApi(UserRepository $userRepository, Request $request)
     {
-
         $role = empty($request->query->get('role'))?'ROLE_NADA' : $request->query->get('role') ;
         $query = $request->query->get('query');
-
-
-
-
 
         $user = $userRepository->findAllEmailsRoleAlfa($role, $query);
 
