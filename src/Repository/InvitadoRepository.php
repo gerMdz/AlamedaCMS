@@ -110,7 +110,7 @@ class InvitadoRepository extends ServiceEntityRepository
     public function byCelebracionForExport($celebracion)
     {
         $qb = $this->searchBuilder($celebracion, null)
-        ->select('i.id as id,CONCAT(i.nombre, \'  \' , i.apellido) as invits, i.telefono as WhatsApp, i.dni as documento, i.email as email, i.updatedAt as reserva, i.isEnlace as reservante, CONCAT(invitante.nombre,\' \', invitante.apellido) as invito, i.isPresente as presente ');
+        ->select('i.id as id, i.isPresente as presente,CONCAT(i.nombre, \'  \' , i.apellido) as invits, i.telefono as WhatsApp, i.dni as documento, i.email as email, i.updatedAt as reserva, i.isEnlace as reservante, CONCAT(invitante.nombre,\' \', invitante.apellido) as invito ');
         $qb->leftJoin('i.enlace', 'invitante');
         $qb->addOrderBy('invitante.apellido', 'ASC');
         $qb->addOrderBy('i.isEnlace', 'DESC');

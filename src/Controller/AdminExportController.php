@@ -32,6 +32,7 @@ class AdminExportController extends AbstractController
         $dataColumns = $invitadoRepository->byCelebracionForExport($celebracion->getId());
         $nameColumns =[
             'ID',
+            'Presente?',
             'Invitado ',
             'WhatsApp',
             'Documento',
@@ -39,7 +40,6 @@ class AdminExportController extends AbstractController
             'Fecha Reserva',
             'Enlace?',
             'Invitó',
-            'Presente?',
         ];
         $titulo = $celebracion->getNombre() . '-' . date_format($celebracion->getFechaCelebracionAt(), 'd/M');
 
