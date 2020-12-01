@@ -51,6 +51,29 @@ class InvitadoController extends AbstractController
     }
 
     /**
+     * @Route("/update_ausente", name="invitado_update_ausente", methods={"GET"})
+     * @param Request $request
+     * @param InvitadoRepository $invitadoRepository
+     * @param EntityManagerInterface $entityManager
+     * @return JsonResponse
+     */
+    public function updateAusente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $entityManager)
+    {
+        $q = $request->query->get('c');
+        $invitados = $invitadoRepository->getAusentesCelebracion($q);
+        foreach ($invitados as $invitado){
+            /** @var Invitado $invitado */
+            $invitado->setIsPresente(false);
+            $entityManager->persist($invitado);
+        }
+        $entityManager->flush();
+        $ausentes = $invitadoRepository->countAusentesByCelebracion($q);
+
+        return new JsonResponse(['ausentes' => $ausentes]);
+
+    }
+
+    /**
      * @Route("/new", name="invitado_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response

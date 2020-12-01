@@ -26,7 +26,7 @@ class CelebracionController extends AbstractController
     public function index(CelebracionRepository $celebracionRepository): Response
     {
         return $this->render('celebracion/index.html.twig', [
-            'celebracions' => $celebracionRepository->findAll(),
+            'celebracions' => $celebracionRepository->findAllByFechaCelebracion(),
         ]);
     }
 

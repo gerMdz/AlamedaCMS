@@ -19,6 +19,8 @@ class ReservanteController extends AbstractController
 {
     /**
      * @Route("/", name="reservante_index", methods={"GET"})
+     * @param ReservanteRepository $reservanteRepository
+     * @return Response
      */
     public function index(ReservanteRepository $reservanteRepository): Response
     {
@@ -29,6 +31,8 @@ class ReservanteController extends AbstractController
 
     /**
      * @Route("/new", name="reservante_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -52,6 +56,8 @@ class ReservanteController extends AbstractController
 
     /**
      * @Route("/{id}", name="reservante_show", methods={"GET"})
+     * @param Reservante $reservante
+     * @return Response
      */
     public function show(Reservante $reservante): Response
     {
@@ -62,6 +68,9 @@ class ReservanteController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="reservante_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Reservante $reservante
+     * @return Response
      */
     public function edit(Request $request, Reservante $reservante): Response
     {
@@ -82,6 +91,9 @@ class ReservanteController extends AbstractController
 
     /**
      * @Route("/{id}", name="reservante_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Reservante $reservante
+     * @return Response
      */
     public function delete(Request $request, Reservante $reservante): Response
     {

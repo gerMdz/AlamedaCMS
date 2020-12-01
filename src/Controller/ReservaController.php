@@ -144,7 +144,7 @@ class ReservaController extends AbstractController
     }
 
     /**
-     * @Route("/vistaReserva/{celebracion}/{email}/presente", name="vista_reserva_presenre")
+     * @Route("/vistaReserva/{celebracion}/{email}/presente", name="vista_reserva_presente")
      * @Route("/vistaReserva/{celebracion}/{email}", name="vista_reserva")
      * @param ReservanteRepository $reservanteRepository
      * @param string $celebracion

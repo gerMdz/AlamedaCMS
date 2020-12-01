@@ -118,4 +118,44 @@ class InvitadoRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
+    public function getInvitadosByCelebracion($celebracion)
+    {
+        return $this->createQueryBuilder('i')
+            ->select('i')
+        ->andWhere('i.celebracion = :celebracion')
+            ->setParameter(':celebracion', $celebracion);
+
+    }
+
+    public function getAusentesCelebracion($celebracion)
+    {
+        return $this->getInvitadosByCelebracion($celebracion)
+            ->andWhere('i.isPresente is null')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param string $celebracion
+     * @return int|mixed|string
+     */
+    public function countAusentesByCelebracion(string $celebracion)
+    {
+        try {
+            return $this->createQueryBuilder('i')
+                ->select('count(i.id) as ausentes')
+                ->andWhere('i.isPresente = :val')
+                ->andWhere('i.celebracion = :cel')
+                ->setParameter('val', false)
+                ->setParameter('cel', $celebracion)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            return $e;
+        } catch (NonUniqueResultException $e) {
+            return $e;
+        }
+
+    }
+
 }

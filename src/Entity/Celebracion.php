@@ -238,7 +238,14 @@ class Celebracion
         return $this;
     }
 
-
+    /**
+     * @return int|null
+     */
+    public function getInvitadosPresentes(): ?int
+    {
+        $criterio = CelebracionRepository::createIsPresenteCriteria();
+        return count($this->invitados->matching($criterio));
+    }
 
 
 }

@@ -543,7 +543,4 @@ class Entrada
         return $this;
     }
 
-
-
-
 }
