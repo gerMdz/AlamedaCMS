@@ -72,8 +72,8 @@ class EntradaType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('startAt')
-            ->add('stopAt')
+            ->add('disponibleAt')
+            ->add('disponibleHastaAt')
             ->add('eventoAt')
             ->add('linkPosting')
             ->add('section')
