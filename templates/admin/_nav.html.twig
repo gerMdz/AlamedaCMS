@@ -54,9 +54,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                         <a class="dropdown-item" href="{{ path('app_changepassword', {'email':app.user.email}) }}">
-
-
-                        Cambio de clave</a>
+                        Cambio de clave
+                        </a>
+                        <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">
+                        Agregar Voluntario
+                        </a>
 {#                        <a class="dropdown-item" href="#">Configuración</a>#}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ path('app_logout') }}">Salir</a>
