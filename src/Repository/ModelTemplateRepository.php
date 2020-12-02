@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ModelTemplate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,22 +20,23 @@ class ModelTemplateRepository extends ServiceEntityRepository
         parent::__construct($registry, ModelTemplate::class);
     }
 
-    // /**
-    //  * @return ModelTemplate[] Returns an array of ModelTemplate objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return QueryBuilder Returns an array of ModelTemplate objects
+     */
+
+    public function findByTypeSection()
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+            ->leftJoin('m.block', 'b')
+            ->andWhere('b.identifier = :val')
+            ->setParameter('val', 'seccion' )
+            ->orderBy('m.description', 'ASC')
+//            ->setMaxResults(10)
+ //           ->getQuery()
+//            ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?ModelTemplate

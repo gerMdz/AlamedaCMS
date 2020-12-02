@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\ModelTemplate;
 use App\Entity\Section;
+use App\Repository\ModelTemplateRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -65,17 +67,7 @@ class SectionFormType extends AbstractType
                 ]
             ])
             ->add('columns')
-            ->add('startAt', DateTimeType::class, array(
-                'widget' => 'single_text',
-                'required' => false,
-                'html5' => true,
-                'label' => 'Comienza',
-                'format' => 'dd-MM-yyyy HH:mm',
-                'attr' => [
-                    'class' => 'form-control datetimepicker'
-                ]
-            ))
-            ->add('stopAt', DateTimeType::class, array(
+            ->add('disponibleHastaAt', DateTimeType::class, array(
                 'widget' => 'single_text',
                 'required' => false,
                 'html5' => true,
@@ -89,11 +81,16 @@ class SectionFormType extends AbstractType
                 'class' => 'App\Entity\Principal',
                 'label' => 'Página?',
                 'placeholder' => 'Seleccione la página donde se insertará la sección',
-                'required' => true,
+                'required' => false,
 
             ])
-            ->add('template', TextType::class, [
-                'help' => 'Opcional, llama a un template específico, debe estar en sections creado'
+            ->add('modelTemplate', EntityType::class, [
+                'class'=>ModelTemplate::class,
+                'query_builder' => function (ModelTemplateRepository $er) {
+                    return $er->findByTypeSection();
+                },
+                'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
+                'required'=>false
             ])
             ->add('contenido', CKEditorType::class, [
                 'required' => true,

@@ -124,7 +124,6 @@ class Section
     private $modelTemplate;
 
 
-
     public function __toString()
     {
         return $this->name;
