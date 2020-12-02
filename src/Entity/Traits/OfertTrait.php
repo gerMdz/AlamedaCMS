@@ -25,7 +25,7 @@ trait OfertTrait
         return $this->disponibleAt;
     }
 
-    public function setDisponibleAt(DateTimeInterface $disponibleAt): self
+    public function setDisponibleAt(?DateTimeInterface $disponibleAt): self
     {
         $this->disponibleAt = $disponibleAt;
 
