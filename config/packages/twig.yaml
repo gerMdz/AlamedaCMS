@@ -4,4 +4,6 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig','@FOSCKEditor/Form/ckeditor_widget.html.twig']
     exception_controller: null
+    globals:
+        facebook_tag_pixel_id: '%env(FACEBOOK_PIXEL)%'
 

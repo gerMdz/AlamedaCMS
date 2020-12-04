@@ -49,6 +49,7 @@
             }
         </style>
     {% endblock %}
+    {% include('inicio/_facebook_pixel.html.twig') %}
 </head>
 
 <body class="bg-white">
@@ -130,7 +131,9 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script>
+
 {% endblock %}
+
 <script>
     // $(document).on('ready', function () {
     //     // initialization of text animation (typing)
