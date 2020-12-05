@@ -18,6 +18,7 @@
                     <th>Autor</th>
                     <th>Comentario</th>
                     <th>Creado</th>
+                    <th><i class="fa fa-cogs"> </i></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,10 @@
                         <td>
                             {{ comentario.createdAt | ago }}<br/>
                             {{ comentario.createdAt | date('d-m-y h:i') }}
+                        </td>
+                        <td>
+                            <a href="{{ path('comentario_show', {'id': comentario.id}) }}">show</a>
+                            <a href="{{ path('comentario_edit', {'id': comentario.id}) }}">edit</a>
                         </td>
 
                     </tr>

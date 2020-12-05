@@ -60,7 +60,7 @@ class ComentarioController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('comentario_index');
+            return $this->redirectToRoute('admin_comentarios');
         }
 
         return $this->render('comentario/edit.html.twig', [

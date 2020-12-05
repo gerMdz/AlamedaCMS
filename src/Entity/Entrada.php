@@ -146,6 +146,11 @@ class Entrada
      */
     private $isSinTitulo;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, mappedBy="llamada")
+     */
+    private $sections;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
@@ -154,6 +159,7 @@ class Entrada
         $this->brotes = new ArrayCollection();
         $this->relacionSectionEntradas = new ArrayCollection();
         $this->contacto = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 
     public function __toString()
@@ -539,6 +545,33 @@ class Entrada
     public function setIsSinTitulo(?bool $isSinTitulo): self
     {
         $this->isSinTitulo = $isSinTitulo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->addLlamada($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->sections->removeElement($section)) {
+            $section->removeLlamada($this);
+        }
 
         return $this;
     }

@@ -1,0 +1,94 @@
+<section class="u-content-space border-bottom py-5 bg-gris-medio ">
+    <div class="container text-center">
+        {% for entrada in section.entradassection %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="show-article-container p-3 mt-4">
+                    {# <div class="col-sm-12"> #}
+                    {# <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios #}
+                    {# </h3> #}
+                    {% if(entrada.comentariosNoDeleted) %}
+                        {# <div class="row"> #}
+
+                        <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
+                            {# <span class="commenter-name">{{ comentario.autor }}</span> #}
+
+                            {% include('comentario/nota.html.twig') %}
+                            {# <small>realizado {{ comentario.createdAt|ago }}</small> #}
+                            {# {% if comentario.isDeleted %} #}
+                            {# <span class="fas fa-times-circle text-danger"></span> Borrado #}
+                            {# {% endif %} #}
+                            {# <br/> #}
+                            {# <span class="comment"> {{ comentario.contenido }}</span> #}
+                            <hr class="border-bottom"/>
+                        </div>
+
+                        {# </div> #}
+                        {# </div> #}
+                    {% endif %}
+                    {# </div> #}
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="show-article-container p-3 mt-4">
+                    <h4><strong class="ml-5"> {{ entrada.titulo }} </strong>
+                        <small>
+                            Le gustó a:
+                            <span class="js-like-entrada-count">{{ entrada.likes }}</span>
+                            <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"
+                               class="fas fa-heart like-entrada js-like-entrada">
+                            </a>
+                        </small>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
+                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                     alt="<?php echo $lemaSinEspacios ?>">
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <h5 class="card-title text-uppercase">
+                    {{ entrada.titulo }}
+                </h5>
+                <div class="middle-0">
+                    <i class="fas fa-quote-left mr-5"></i><br/>
+                    {{ entrada.contenido | raw }}
+                    <i class="fas fa-quote-right ml-5"></i>
+                </div>
+                <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                    {% for referencia in entrada.entradaReferences %}
+                        <a href="/descargas/referencias/{{ referencia.filename }}"
+                           target="_blank"
+                           download
+                           id="descargar"
+                           class="descargar card-link text-center ">
+                            <i class="far fa-file-pdf ml-5 mr-1"></i>
+                            <span class="text-alameda btn-icon ">Notas</span><br/>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-12">
+                {% if (is_granted("ROLE_ESCRITOR")) %}
+                    Id : {{ entrada.id }}
+                {% endif %}
+            </div>
+            <div class="col-sm-12 text-center">
+                <a class="btn btn-link" href="{{ path('index') }}"><i class="fa fa-home"></i> </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{#       <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>#}
+        <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/entrada_show.js') }}"></script>
+
+    <script type="application/javascript" src="{{ asset('js/nota.js') }}"></script>
+

@@ -123,6 +123,11 @@ class Section
      */
     private $modelTemplate;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="sections")
+     */
+    private $llamada;
+
 
     public function __toString()
     {
@@ -135,6 +140,7 @@ class Section
 
         $this->relacionSectionEntradas = new ArrayCollection();
         $this->entradassection = new ArrayCollection();
+        $this->llamada = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -422,6 +428,30 @@ class Section
     public function setModelTemplate(?ModelTemplate $modelTemplate): self
     {
         $this->modelTemplate = $modelTemplate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entrada[]
+     */
+    public function getLlamada(): Collection
+    {
+        return $this->llamada;
+    }
+
+    public function addLlamada(Entrada $llamada): self
+    {
+        if (!$this->llamada->contains($llamada)) {
+            $this->llamada[] = $llamada;
+        }
+
+        return $this;
+    }
+
+    public function removeLlamada(Entrada $llamada): self
+    {
+        $this->llamada->removeElement($llamada);
 
         return $this;
     }

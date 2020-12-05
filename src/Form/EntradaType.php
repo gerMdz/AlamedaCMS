@@ -103,8 +103,9 @@ class EntradaType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+            ->add('sections')
 
-        ;
+        ; // ; Final Builder
     }
 
     public function configureOptions(OptionsResolver $resolver)

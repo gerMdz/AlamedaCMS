@@ -119,7 +119,9 @@ class SectionFormType extends AbstractType
                 'label' => 'Titulo',
                 'required' => false,
                 'help' => 'Opcional, título para la sección que se visualiza en la página '
-            ]);
+            ])
+        ->add('llamada')
+            ; // ; Final del builder
         /**
          * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
          */

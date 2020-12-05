@@ -1,0 +1,40 @@
+{% extends 'base_material_kit.twig' %}
+{% block title %} {{ principal.titulo}}  {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {#    {{ encore_entry_link_tags('app') }}#}
+
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">#}
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}">
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}">#}
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">#}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+
+    </style>
+{% endblock %}
+{% block sslocal %}
+    {#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
+    {#    <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">#}
+
+
+{% endblock %}
+{% block header %}
+    <header>
+        {% include 'inicio/_nav.html.twig' %}
+    </header>
+{% endblock %}
+{% block sections %}
+    <main role="main" class="bg-white">
+        {% for section in principal.section %}
+            {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}
+        {% endfor %}
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {#    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>#}
+    {#    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>#}
+{% endblock %}
