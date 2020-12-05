@@ -443,6 +443,7 @@ class Section
     {
         if (!$this->llamada->contains($llamada)) {
             $this->llamada[] = $llamada;
+            $llamada->addSection($this);
         }
 
         return $this;
@@ -454,4 +455,18 @@ class Section
 
         return $this;
     }
+
+
+
+
+
+//    public function removeIndexAlameda(IndexAlameda $indexAlameda): self
+//    {
+//        if ($this->indexAlamedas->contains($indexAlameda)) {
+//            $this->indexAlamedas->removeElement($indexAlameda);
+//            $indexAlameda->removeSection($this);
+//        }
+//
+//        return $this;
+//    }
 }

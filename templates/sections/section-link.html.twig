@@ -1,11 +1,8 @@
 <section class="u-content-space border-bottom py-5 bg-gris-medio ">
     <div class="container text-center">
-        <h1>Bienvenido</h1>
-        {{ section }}
         {% for entrada in section.llamada %}
         <div class="row">
             <div class="col-sm-12">
-                <h2>Notas del Mensaje</h2>
                 <div class="show-article-container p-3 mt-4">
                     {# <div class="col-sm-12"> #}
                     {# <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios #}
