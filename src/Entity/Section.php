@@ -439,7 +439,7 @@ class Section
         return $this->llamada;
     }
 
-    public function addLlamada(Entrada $llamada): self
+    public function addLlamadum(Entrada $llamada): self
     {
         if (!$this->llamada->contains($llamada)) {
             $this->llamada[] = $llamada;
@@ -448,7 +448,7 @@ class Section
         return $this;
     }
 
-    public function removeLlamada(Entrada $llamada): self
+    public function removeLlamadum(Entrada $llamada): self
     {
         $this->llamada->removeElement($llamada);
 
