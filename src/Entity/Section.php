@@ -128,7 +128,6 @@ class Section
      */
     private $llamada;
 
-
     public function __toString()
     {
         return $this->name;
