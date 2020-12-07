@@ -2,26 +2,32 @@
 
 {# {{ form_widget(entradaForm) }} #}
 <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-2 text-center">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2 text-center form-check text-dark">
         <label for="entrada_encabezado">
             Encabezado?<br/>
             {{ form_row(entradaForm.encabezado) }}
         </label>
     </div>
-    <div class="col-sm-2 text-center">
+    <div class="col-sm-2 text-center form-check text-dark">
         <label for="entrada_destacado">
             Destacado?<br/>
             {{ form_row(entradaForm.destacado) }}
         </label>
     </div>
-    <div class="col-sm-2 text-center">
+    <div class="col-sm-2 text-center form-check text-dark">
         <label for="entrada_isSinTitulo">
             Sin titulo?<br/>
             {{ form_row(entradaForm.isSinTitulo) }}
         </label>
     </div>
-    <div class="col-sm-2 text-center checkbox ">
+    <div class="col-sm-2 text-center form-check text-dark">
+        <label for="entrada_isPermanente">
+            Es Permanente?<br/>
+            {{ form_row(entradaForm.isPermanente) }}
+        </label>
+    </div>
+    <div class="col-sm-2 text-center form-check text-dark">
         <label for="entrada_publicar" class="required">
             Publicar?<br/>
             {% if entradaForm.vars.data.PublicadoAt | default %}
@@ -31,7 +37,7 @@
             {% endif %}
         </label>
     </div>
-    <div class="col-sm-2"></div>
+    <div class="col-sm-1"></div>
 
     <div class="col-sm-12">
         {{ form_row(entradaForm.titulo) }}

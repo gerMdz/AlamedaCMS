@@ -168,6 +168,12 @@ class SectionController extends BaseController
 
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
+//        if($section->getOrden() == 1){
+//            dd($section);
+//        }
+
+
+
 
         $twig = $section->getModelTemplate().".html.twig";
         return $this->render('sections/'.$twig,[

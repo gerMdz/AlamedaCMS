@@ -2,9 +2,10 @@
 
 {% block sections %}
     <!-- Horarios - Invitación - Video -->
-    <section class="bg-alameda page-section mt-a4 ">
+    {% for section in datosIndex.section %}
+    <section class="{{ section.cssClass | default('bg-alameda page-section mt-a4')}} ">
         <div class="container-fluid">
-            {% for section in datosIndex.section %}
+
 
                 {{ render(controller(
                     'App\\Controller\\SectionController::mostrarSection', {id: section.id}
@@ -12,7 +13,7 @@
 
 {#                {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}#}
 
-            {% endfor %}
+
 {#            <header class="text-center w-md-50 mx-auto mt-a35   mb-8 text-black-75">#}
 {#                <h2 class="h4 pt-3">#}
 {#                    <a href="https://online.iglesiaalameda.com" class="text-black-75 ArialLight" target="_blank">#}
@@ -34,128 +35,9 @@
         </div>
 
     </section>
-    <!-- Fin Horarios - Invitación - Video -->
-
-    <!-- Section 2 3 imágenes -->
-
-    <!-- End Section 2 3 imágenes -->
-    <!-- Section 3 cuadrados -->
-    <section class="a-content-space-medium bg-fam text-center">
-        <div class="container-fluid mt-lg-1 mt-sm-5">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="col-md-1 mx-auto "></div>
-                    <div class="col-md-10 mx-auto ">
-                        <div class="row justify-content-center ">
-                            <div class="col-sm-11">
-                                <div class="row ">
-                                    {% for section in datosIndex.section %}
-                                        {% if(section.identificador == 'cuadrados') %}
-                                            {% for entrada in section.entradassection %}
-                                                <!--                marco dar-->
-                                                <div {{ (entrada.destacado == true)?'class="col-md-6 mb-2 mx-auto"':'class="col-md-3 mb-2 mx-auto"' }}>
-                                                    <!--                                        <div class="card h-100"> -->
-
-                                                    <!--                                        <div class="card h-100"> -->
-                                                    <div class="card shadow-none">
-                                                        <div class="contenedor">
-                                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                                 alt="{{ base.siteName }}"
-                                                                 class="card-img">
-                                                        </div>
-                                                        <!--                                <div class="card-img-overlay">-->
-                                                        <div class="card-footer bg-white justify-content-between ">
-                                                            <!--                                     style="top: 80%; position: relative"-->
-
-                                                            <a href="{{ (entrada.linkPosting is defined)? entrada.linkPosting : path(entrada.linkRoute)  }}" class="card-link text-left">
-
-                                                                <span class="text-alameda">{{ entrada.titulo }}</span><br/>
-                                                                <small>{{ entrada.contenido|raw }}</small>
-
-                                                            </a>
-
-                                                            <!--                                    </div>-->
-
-
-                                                        </div>
-
-
-                                                    </div>
-
-
-                                                </div>
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endfor %}
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1 mx-auto "></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- EndSection 3 cuadrados -->
-
-    <!-- Section Avanza -->
-    {% for section in datosIndex.section %}
-    {% if(section.identificador == 'pasos') %}
-    <section class="a-content-space-medium text-center h-100 ">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="col-md-1 mx-auto "></div>
-                    <div class="col-md-10 mx-auto ">
-                        <div class="row justify-content-center main-60"
-                             style="background-image: url({{ section.imagePath|imagine_filter('squared_thumbnail_large') }}); background-repeat: no-repeat; background-size:cover">
-                            <div class="col-sm-11">
-                                <div class="container text-center p-5">
-                                    <h4>
-                                        <b class="aire-2 text-uppercase text-white">
-                                            {{ section.contenido | raw }}
-                                        </b>
-                                    </h4>
-                                </div>
-                                <div class="container mb-5">
-                                    <div class="row">
-                                        {% for entrada in section.entradassection %}
-                                        <div class="col-md-4">
-                                            <div class="pasos h-100">
-                                                <a href="{{ (entrada.linkPosting is defined)? path(entrada.linkRoute): entrada.linkPosting  }}">
-                                                    <div class="card card-plain bg-white h-100">
-                                                        <div class="col-sm-4 mx-auto text-center img-20">
-                                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                                 alt="{{ base.siteName }}"
-                                                                 class="img-raised rounded-circle img-fluid"/>
-                                                        </div>
-                                                        <h4 class="card-title text-center text-alameda ">
-                                                            <i>{{ entrada.titulo }}</i>
-                                                        </h4>
-                                                        <div class="card-body">
-                                                            <p class="card-description text-center text-dark">
-                                                                {{ entrada.contenido | raw }}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        {% endfor %}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1 mx-auto "></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    {% endif %}
     {% endfor %}
-    <!-- End Avanza -->
+    <div class="bg-camino" style="height: 200px">
+
+    </div>
 
 {% endblock %}

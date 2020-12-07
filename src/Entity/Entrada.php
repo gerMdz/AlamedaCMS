@@ -151,6 +151,11 @@ class Entrada
      */
     private $sections;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPermanente;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
@@ -572,6 +577,18 @@ class Entrada
         if ($this->sections->removeElement($section)) {
             $section->removeLlamada($this);
         }
+
+        return $this;
+    }
+
+    public function getIsPermanente(): ?bool
+    {
+        return $this->isPermanente;
+    }
+
+    public function setIsPermanente(?bool $isPermanente): self
+    {
+        $this->isPermanente = $isPermanente;
 
         return $this;
     }

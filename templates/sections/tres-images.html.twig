@@ -59,7 +59,7 @@
                                                                 ">
                                             <div class="card mb-0 contenedor ">
                                                 <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                     alt="{{ base.siteName }}"
+                                                     alt="{{ app.request.baseUrl }}"
                                                      class="card-img">
                                                 <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
                                                    href="{{ path(entrada.linkRoute) }}">

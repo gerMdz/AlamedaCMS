@@ -70,8 +70,11 @@ class EntradaRepository extends ServiceEntityRepository
 
         return $this->getOrCreateQueryBuilder(null)
             ->orderBy('e.disponibleAt', 'ASC')
-            ->andWhere('e.disponibleAt <= :today')
-            ->andWhere('e.disponibleHastaAt >= :today')
+            ->andWhere(
+                '(e.disponibleAt <= :today AND e.disponibleHastaAt >= :today)
+                OR
+                (e.isPermanente = true)'
+            )
             ->andWhere('e.section = :section')
             ->setParameter('today',new DateTime('now'))
             ->setParameter('section', $seccion)
@@ -116,6 +119,15 @@ class EntradaRepository extends ServiceEntityRepository
             $qb->andWhere('e.autor = :val')
                 ->setParameter('val', $user);
         }
+
+        return $qb;
+    }
+    
+    private function addIsDisponibleForSeccion(QueryBuilder $qb = null, $seccion)
+    {
+        $qb = $this->getOrCreateQueryBuilder($qb)
+            ->andWhere('s.publicadoAt IS NOT NULL');
+
 
         return $qb;
     }

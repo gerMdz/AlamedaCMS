@@ -67,9 +67,10 @@ class EntradaType extends AbstractType
                 'mapped' => false,
                 'label' => false,
                 'required' => false,
-                'help' => 'Habilitada para publicar.',
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+//                'help' => 'Disponible?',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-check-input ',
                 ],
             ])
             ->add('disponibleAt')
@@ -81,29 +82,41 @@ class EntradaType extends AbstractType
             ->add('encabezado', CheckboxType::class, [
                 'required' => false,
                 'label' => false,
-                'help' => 'Es encabezado de sección?',
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+//                'help' => 'Disponible?',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-check-input ',
                 ],
             ])
             ->add('destacado', CheckboxType::class, [
                 'required' => false,
                 'label' => false,
-                'help' => 'Entrada destacada?',
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+//                'help' => 'Disponible?',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-check-input ',
                 ],
             ])
             ->add('contacto')
             ->add('isSinTitulo', CheckboxType::class, [
                 'required' => false,
                 'label' => false,
-                'help' => 'Sin título?',
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+//                'help' => 'Disponible?',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-check-input ',
                 ],
             ])
             ->add('sections')
+            ->add('isPermanente',CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+//                'help' => 'Disponible?',
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
+            ])
 
         ; // ; Final Builder
     }
