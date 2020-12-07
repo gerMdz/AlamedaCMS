@@ -1,143 +1,109 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-{#    {{ encore_entry_style_tags('app') }}#}
-{% endblock  %}
-
-{% block title %}Index - vista{% endblock %}
+{% block title %}Index {{ base.siteName }}{% endblock %}
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
+{% endblock %}
 
 {% block content %}
-    <h1>IndexAlameda </h1>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Lema
-            </th>
-            <th>
-                LemaPrincipal<br/>
-                LemaSinEspacio
-            </th>
-            <th>
-                Horario1 <br/>
-                Horario2
-            </th>
-            <th>
-                TextoVersiculo <br/>
-                Versiculo
-            </th>
-            <th>MetaDescripcion</th>
-            <th>MetaAutor</th>
-            <th>MetaTitle</th>
-            <th>MetaType</th>
-            <th>MetaUrl</th>
-            <th>MetaImage</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for index_alameda in index_alamedas %}
-            <tr>
-                <td>{{ index_alameda.id }}</td>
-                <td>{{ index_alameda.lema }}</td>
-                <td>{{ index_alameda.lemaPrincipal }}<br/>
-                    {{ index_alameda.lemaSinEspacio }}</td>
-                <td>{{ index_alameda.horario1 }}<br/>
-                    {{ index_alameda.horario2 }}</td>
-                <td>{{ index_alameda.textoVersiculo | u.truncate(10, '...') }}
-                    <br/>{{ index_alameda.versiculo }}</td>
-                <td>{{ index_alameda.metaDescripcion | u.truncate(10, '...') }}</td>
-                <td>{{ index_alameda.metaAutor }}</td>
-                <td>{{ index_alameda.metaTitle }}</td>
-                <td>{{ index_alameda.metaType }}</td>
-                <td>{{ index_alameda.metaUrl }}</td>
-                <td>{{ index_alameda.metaImage }}</td>
-                <td>
-                    <a href="{{ path('index_alameda_show', {'id': index_alameda.id}) }}">
-                        <i class="fa -fa-eye"> </i>
-                        Ver
-                    </a>
-                    <a href="{{ path('index_alameda_edit', {'id': index_alameda.id}) }}">
-                        <i class="fa fa-edit"> </i>
-                        editar
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="13">
-                    <div class="row mx-auto border-top border-dark">
-                        <div class="col-sm-2">Id / Identificador</div>
-                        <div class="col-sm-2">Nombre sección</div>
-                        <div class="col-sm-1">Orden</div>
-                        <div class="col-sm-2"><i class="fa fa-cogs"> </i></div>
-                    </div>
-                </td>
-            </tr>
-            {% if index_alameda.section %}
-{#                {% for section in index_alameda.section %}#}
-{#                    <tr>#}
-{#                        <td colspan="13">#}
-{#                            <div class="row  mx-auto">#}
-{#                                <div class="col-sm-2">#}
-{#                                    {{ section.id }}<br/>#}
-{#                                    {{ section.identificador }}#}
-{#                                </div>#}
-{#                                <div class="col-sm-2">{{ section.name }}</div>#}
-{#                                <div class="col-sm-1">{{ section.orden }}</div>#}
-{#                                <div class="col-sm-2">#}
-{#                                    <a href="{{ path('admin_section_edit', {'id': section.id}) }}">#}
-{#                                        <i class="fa fa-edit"> </i>#}
-{#                                        editar#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </td>#}
-{#                    </tr>#}
-                                        <tr>
-                                            <td colspan="13">
+                    <h4 class="card-title ">Index</h4>
+                    <p class="card-category"> Vista </p>
+            </div>
+            <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>Id</th>
+                            <th>Lema</th>
+                            <th>LemaPrincipal<br/> LemaSinEspacio</th>
+                            <th>MetaDescripcion</th>
+                            <th>MetaAutor</th>
+                            <th>MetaTitle</th>
+                            <th>MetaType</th>
+                            <th>MetaUrl</th>
+                            <th>MetaImage</th>
+                            <th>actions</th>
+                        </tr>
+                       </thead>
+                    <tbody>
+                        {% for index_alameda in index_alamedas %}
+                            <tr>
+                                <td>{{ index_alameda.id }}</td>
+                                <td>{{ index_alameda.lema }}</td>
+                                <td>{{ index_alameda.lemaPrincipal }}<br/>
+                                    {{ index_alameda.lemaSinEspacio }}</td>
+                                <td>{{ index_alameda.metaDescripcion | u.truncate(10, '...') }}</td>
+                                <td>{{ index_alameda.metaAutor }}</td>
+                                <td>{{ index_alameda.metaTitle }}</td>
+                                <td>{{ index_alameda.metaType }}</td>
+                                <td>{{ index_alameda.metaUrl }}</td>
+                                <td>{{ index_alameda.metaImage }}</td>
+                                <td>
+                                    <a href="{{ path('index_alameda_show', {'id': index_alameda.id}) }}">
+                                        <i class="fa -fa-eye"> </i>
+                                        Ver
+                                    </a><br/>
+                                    <a href="{{ path('index_alameda_edit', {'id': index_alameda.id}) }}">
+                                        <i class="fa fa-edit"> </i>
+                                        editar
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10">
+                                    <div class="row border-top border-dark">
+                                    <div class="d-flex justify-content-between align-items-center col-sm-12">
+                                    <span class="ml-0 mr-1">
+                                        <i class="material-icons">thumbs_up_down</i>
+                                     </span>
+                                        <span type="text" class="col-sm-1">Orden</span>
+                                        <span type="text" class="col-sm-3">Id / Identificador</span>
+                                        <span type="text" class="col-sm-3">Nombre sección</span>
+                                        <span class="p-0"><i class="fa fa-cogs"> </i></span>
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% if index_alameda.section %}
+                            <tr>
+                                <td colspan="10">
+                                    <div class="col-sm-12">
+                                    <h3>Secciones</h3>
+                                    <div style="font-size: 0.9rem"
+                                        class="list-group small js-section-list col-sm-12"
+                                        data-url="{{ path('admin_index_list_section', {id: index_alameda.id}) }}">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <a href="{{ path('index_agregar_seccion', { 'id': index_alameda.id }) }}"
+                                           class="btn btn-link btn-sm btn-modal">
+                                            <i class="fa fa-plus"> Sección</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                            {% endif %}
+                        {% else %}
+                            <tr>
+                                <td colspan="13">
+                                    No tiene index actualmente
+                                    <br/>
+                                    <a class="btn btn-sm btn-info btn-round" href="{{ path('index_alameda_new') }}">
+                                    <i class="fas fa-plus-circle"></i> Crear Index</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col-sm-12">
-                        <h3>Secciones</h3>
-                        <div style="font-size: 0.9rem"
-                            class="list-group small js-section-list col-sm-12"
-                            data-url="{{ path('admin_index_list_section', {id: index_alameda.id}) }}">
-
-                        </div>
-                        <div class="col-sm-12 text-center">
-                            <a href="{{ path('index_agregar_seccion', { 'id': index_alameda.id }) }}"
-                               class="btn btn-link btn-sm btn-modal">
-                                <i class="fa fa-plus"> Sección</i>
-                            </a>
-                        </div>
-
-
-{#                        <form action="{{ path('admin_entrada_add_referencia',{#}
-{#                            id: entrada.id#}
-{#                        }) }}" method="POST" enctype="multipart/form-data" class="dropzone js-reference-dropzone">#}
-{#                            #}{# <input type="file" name="reference"> #}
-{#                            #}{# <button type="submit" class="btn btn-sm btn-primary">Subir</button> #}
-{#                        </form>#}
-                    </div>
-                                            </td>
-                                        </tr>
-{#                {% endfor %}#}
-            {% endif %}
-        {% else %}
-            <tr>
-                <td colspan="13">
-                    No tiene index actualmente
-                    <br/>
-                    <a href="{{ path('index_alameda_new') }}">Crear Index</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 {% include('admin/_modal.html.twig') %}
 {% endblock %}
 {% block javascripts %}
@@ -161,5 +127,11 @@
         });
 
 
+    </script>
+{% endblock %}
+{% block jslocal %}
+    {{ parent() }}
+    <script>
+        $('#index').addClass('active');
     </script>
 {% endblock %}
