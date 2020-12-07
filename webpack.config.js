@@ -26,6 +26,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('login', './assets/js/login.js')
     .addEntry('perfil', './assets/js/perfil.js')
+    .addEntry('section_select', './assets/js/select_section.js')
     //.addEntry('page1', './assets/js/page1.js')
     .addStyleEntry('loginStyle', './assets/css/styles.css')
     .addStyleEntry('perfilStyle', './assets/css/account.css')

@@ -1,6 +1,5 @@
-
 $(document).ready(function () {
-    var referenceList = new ReferenceList($('.js-reference-list'))
+    var referenceList = new ReferenceList($('.js-section-list'))
 
     var $locationSelect = $('.js-section-form-location');
     var $specificLocationTarget = $('.js-specific-location-target');
@@ -76,7 +75,7 @@ class ReferenceList {
         $li.addClass('disabled');
 
         $.ajax({
-            url: '/admin/entrada/references/' + id,
+            url: '/admin/section/index/' + id,
             method: 'DELETE'
         }).then(() => {
                 this.references = this.references.filter(reference => {
@@ -124,8 +123,8 @@ class ReferenceList {
             </span>
 
             <span class="p-0">
-                 <a href="/admin/index/section/${reference.id}" class=" btn-link btn-sm "><span class="fa fa-download" style="vertical-align: middle"></span></a>
-<!--                 <a class="js-reference-delete btn-link btn-sm"><span class="fa fa-trash"></span></a>-->
+                 <a href="/admin/section/${reference.id}/edit" class=" btn-link btn-sm "><span class="fa fa-edit" style="vertical-align: middle"></span></a>
+                 <a class="js-reference-delete btn-link btn-sm"><span class="fa fa-trash"></span></a>
             </span>
         </div>
 `

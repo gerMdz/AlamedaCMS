@@ -1,5 +1,10 @@
 {% extends 'base_admin.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+{#    {{ encore_entry_style_tags('app') }}#}
+{% endblock  %}
+
 {% block title %}Index - vista{% endblock %}
 
 {% block content %}
@@ -98,11 +103,18 @@
 
                     <div class="col-sm-12">
                         <h3>Secciones</h3>
-                        <div style="font-size: 0.7rem"
-                            class="list-group small js-reference-list col-sm-12"
+                        <div style="font-size: 0.9rem"
+                            class="list-group small js-section-list col-sm-12"
                             data-url="{{ path('admin_index_list_section', {id: index_alameda.id}) }}">
 
                         </div>
+                        <div class="col-sm-12 text-center">
+                            <a href="{{ path('index_agregar_seccion', { 'id': index_alameda.id }) }}"
+                               class="btn btn-link btn-sm btn-modal">
+                                <i class="fa fa-plus"> Sección</i>
+                            </a>
+                        </div>
+
 
 {#                        <form action="{{ path('admin_entrada_add_referencia',{#}
 {#                            id: entrada.id#}
@@ -117,19 +129,37 @@
             {% endif %}
         {% else %}
             <tr>
-                <td colspan="15">No tiene index actualmente</td>
+                <td colspan="13">
+                    No tiene index actualmente
+                    <br/>
+                    <a href="{{ path('index_alameda_new') }}">Crear Index</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('index_alameda_new') }}">Create new</a>
+{% include('admin/_modal.html.twig') %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('section_select') }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
 
     <script src="{{ asset('js/admin_index_form.js') }}"></script>
+
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
 {% endblock %}

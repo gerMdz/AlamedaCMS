@@ -2,16 +2,23 @@
 
 namespace App\Controller;
 
+use App\Entity\Celebracion;
+use App\Entity\EntradaReference;
+use App\Entity\IndexAlameda;
 use App\Entity\Section;
 use App\Form\SectionFormType;
+use App\Repository\EntradaRepository;
 use App\Repository\SectionRepository;
+use App\Service\Mailer;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\QueryException;
 use Exception;
 use phpDocumentor\Reflection\Types\This;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -132,4 +139,42 @@ class SectionController extends BaseController
             'sectionForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/index/{id}", name="admin_index_delete_section", methods={"DELETE"})
+     * @param Section $section
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function deleteIndexSection(Section $section, EntityManagerInterface $entityManager)
+    {
+        $indexAlameda = $section->getIndexAlamedas();
+
+        $section->removeIndexAlameda($indexAlameda[0]);
+
+        $entityManager->flush();
+        return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/muestra/seccion/{id}")
+     * @param Section $section
+     * @param EntradaRepository $entradaRepository
+     * @return Response
+     * @throws QueryException
+     */
+    public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
+    {
+
+        $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
+
+
+        $twig = $section->getModelTemplate().".html.twig";
+        return $this->render('sections/'.$twig,[
+           'entradas' => $entradas,
+            'section' => $section
+        ]);
+    }
+
+
 }

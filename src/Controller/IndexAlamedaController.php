@@ -2,15 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Entrada;
 use App\Entity\IndexAlameda;
+use App\Entity\Invitado;
 use App\Entity\Section;
 use App\Form\IndexAlamedaType;
+use App\Form\IndexSectionType;
+use App\Form\InvitadoType;
 use App\Repository\IndexAlamedaRepository;
+use App\Repository\SectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -165,4 +169,42 @@ class IndexAlamedaController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @Route("/agregarSeccion/{id}", name="index_agregar_seccion", methods={"GET", "POST"})
+     * @param Request $request
+     * @param IndexAlameda $indexAlameda
+     * @param EntityManagerInterface $entityManager
+     * @param SectionRepository $sectionRepository
+     * @param IndexAlamedaRepository $indexAlamedaRepository
+     * @return RedirectResponse|Response
+     */
+    public function agregarSeccion(Request $request, IndexAlameda $indexAlameda, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, IndexAlamedaRepository $indexAlamedaRepository)
+    {
+        $form = $this->createForm(IndexSectionType::class, $indexAlameda);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $id_section = $form->get('section')->getData();
+            $seccion = $sectionRepository->find($id_section);
+            $indexAlameda->addSection($seccion);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($indexAlameda);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index_alameda_index', [
+                'index_alamedas' => $indexAlamedaRepository->findAll(),
+                'datosIndex' => $indexAlamedaRepository->findAll()[0],
+            ]);
+        }
+
+        return $this->render('index_alameda/vistaAgregaSection.html.twig', [
+            'index' => $indexAlameda,
+            'form' => $form->createView(),
+        ]);
+
+    }
+
+
 }

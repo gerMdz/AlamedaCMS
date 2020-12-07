@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="col-md-1 mx-auto "></div>
+        <div class="col-md-10 mx-auto ">
+            <div class="row justify-content-center ">
+                <div class="col-md-7 pr-0 ">
+                    <div class="col-sm-12 mr-0 left-n5">
+                                {% for entrada in entradas %}
+                                    {% if (entrada.orden == 1) %}
+
+                                        <div class="card shadow-none">
+
+
+                                            <div class="card-img">
+                                                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                                     alt="{{ app.request.baseUrl }}"
+                                                     class="card-img">
+                                            </div>
+                                            <!--                                <div class="card-img-overlay">-->
+                                            <div class="card-footer bg-white justify-content-between ">
+                                                <!--                                     style="top: 80%; position: relative"-->
+
+                                                <a class="card-link">
+
+                                                    <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
+                                                    <span class="text-alameda">{{ entrada.titulo }}</span><br/>
+                                                    <small>por {{ entrada.autor }}</small>
+
+                                                </a>
+                                                <a href="{{ entrada.linkPosting }}"
+                                                   class="btn-round btn-alameda  mr-2 "
+                                                   target="_blank">
+                                                    <!--                                       style="z-index: 100" >-->
+
+                                                    Ver último mensaje
+                                                    <!--                                        <b class="text-blue">Ver último mensaje</b>-->
+                                                </a>
+                                                <!--                                    </div>-->
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    {% endif %}
+                                {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+
+                                {% for entrada in section.entradassection %}
+                                    {% if (entrada.orden != 1) %}
+                                        <div class="col-sm-12 container-img
+                                                    {% if (entrada.orden == 3) %}
+                                                        bottom-n10
+                                                        {% endif %}
+                                                                ">
+                                            <div class="card mb-0 contenedor ">
+                                                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                                     alt="{{ base.siteName }}"
+                                                     class="card-img">
+                                                <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
+                                                   href="{{ path(entrada.linkRoute) }}">
+                                                    {{ entrada.titulo }}
+                                                    {# ¿Nuevo en la Alameda? #}
+                                                    <!--                                            <br class="d-block d-md-none"/>-->
+                                                    <!--                                            Queremos conocerte-->
+
+
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 mx-auto "></div>
+    </div>
+</div>

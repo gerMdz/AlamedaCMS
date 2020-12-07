@@ -5,9 +5,13 @@
     <section class="bg-alameda page-section mt-a4 ">
         <div class="container-fluid">
             {% for section in datosIndex.section %}
-            {% if(section.identificador == 'horarios') %}
-                {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}
-            {% endif %}
+
+                {{ render(controller(
+                    'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+                )) }}
+
+{#                {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}#}
+
             {% endfor %}
 {#            <header class="text-center w-md-50 mx-auto mt-a35   mb-8 text-black-75">#}
 {#                <h2 class="h4 pt-3">#}
@@ -33,102 +37,7 @@
     <!-- Fin Horarios - Invitación - Video -->
 
     <!-- Section 2 3 imágenes -->
-    <section class="bg-white ">
-        <div class="container-fluid mt-lg-1 mt-sm-5">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="col-md-1 mx-auto "></div>
-                    <div class="col-md-10 mx-auto ">
-                        <div class="row justify-content-center ">
-                            <div class="col-md-7 pr-0 ">
-                                <div class="col-sm-12 mr-0 left-n5">
-                                    {% for section in datosIndex.section %}
-                                        {% if(section.identificador == 'tres-images') %}
-                                            {% for entrada in section.entradassection %}
-                                                {% if (entrada.orden == 1) %}
 
-                                                    <div class="card shadow-none">
-
-
-                                                        <div class="card-img">
-                                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                                 alt="{{ base.siteName }}"
-                                                                 class="card-img">
-                                                        </div>
-                                                        <!--                                <div class="card-img-overlay">-->
-                                                        <div class="card-footer bg-white justify-content-between ">
-                                                            <!--                                     style="top: 80%; position: relative"-->
-
-                                                            <a class="card-link">
-
-                                                                <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
-                                                                <span class="text-alameda">{{ entrada.titulo }}</span><br/>
-                                                                <small>por {{ entrada.autor }}</small>
-
-                                                            </a>
-                                                            <a href="{{ entrada.linkPosting }}"
-                                                               class="btn-round btn-alameda  mr-2 "
-                                                               target="_blank">
-                                                                <!--                                       style="z-index: 100" >-->
-
-                                                                Ver último mensaje
-                                                                <!--                                        <b class="text-blue">Ver último mensaje</b>-->
-                                                            </a>
-                                                            <!--                                    </div>-->
-
-
-                                                        </div>
-
-
-                                                    </div>
-
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    {% for section in datosIndex.section %}
-                                        {% if(section.identificador == 'tres-images') %}
-                                            {% for entrada in section.entradassection %}
-                                                {% if (entrada.orden != 1) %}
-                                                    <div class="col-sm-12 container-img
-                                                    {% if (entrada.orden == 3) %}
-                                                        bottom-n10
-                                                        {% endif %}
-                                                                ">
-                                                        <div class="card mb-0 contenedor ">
-                                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                                 alt="{{ base.siteName }}"
-                                                                 class="card-img">
-                                                            <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
-                                                               href="{{ path(entrada.linkRoute) }}">
-                                                                {{ entrada.titulo }}
-                                                                {# ¿Nuevo en la Alameda? #}
-                                                                <!--                                            <br class="d-block d-md-none"/>-->
-                                                                <!--                                            Queremos conocerte-->
-
-
-                                                            </a>
-
-                                                        </div>
-
-                                                    </div>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1 mx-auto "></div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- End Section 2 3 imágenes -->
     <!-- Section 3 cuadrados -->
     <section class="a-content-space-medium bg-fam text-center">

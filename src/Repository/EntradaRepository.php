@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use DateTime;
 
 /**
  * @method Entrada|null find($id, $lockMode = null, $lockVersion = null)
@@ -56,11 +57,42 @@ class EntradaRepository extends ServiceEntityRepository
             ;
     }
 
+    /**
+     *
+     * @param $seccion
+     * @return Entrada[]
+     * @throws QueryException
+     */
+    public function findAllEntradasBySeccion($seccion): array
+    {
+        $this->createQueryBuilder('e')
+            ->addCriteria(self::createDisponibleForDisponibleAt());
+
+        return $this->getOrCreateQueryBuilder(null)
+            ->orderBy('e.disponibleAt', 'ASC')
+            ->andWhere('e.disponibleAt <= :today')
+            ->andWhere('e.disponibleHastaAt >= :today')
+            ->andWhere('e.section = :section')
+            ->setParameter('today',new DateTime('now'))
+            ->setParameter('section', $seccion)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public static function createNoDeletedCriteria():Criteria
     {
         return Criteria::create()
             ->andWhere(Criteria::expr()->eq('isDeleted', false))
             ->orderBy(['createdAt'=>'DESC'])
+        ;
+    }
+    
+    public static function createDisponibleForDisponibleAt():Criteria
+    {
+        return Criteria::create()
+            ->andWhere(Criteria::expr()->eq('disponible', true))
+            ->orderBy(['disponibleAt'=>'ASC'])
         ;
     }
 
