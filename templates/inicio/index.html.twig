@@ -3,8 +3,7 @@
 {% block sections %}
     <!-- Horarios - Invitación - Video -->
     {% for section in datosIndex.section %}
-    <section class="{{ section.cssClass | default('bg-alameda page-section mt-a4')}} ">
-        <div class="container-fluid">
+
 
 
                 {{ render(controller(
@@ -32,9 +31,7 @@
 {#                <hr>#}
 {#            </header>#}
             <!-- End Invitación: Header -->
-        </div>
 
-    </section>
     {% endfor %}
     <div class="bg-camino" style="height: 200px">
 
