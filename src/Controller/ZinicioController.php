@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Brote;
 use App\Entity\IndexAlameda;
 use App\Entity\Principal;
-use App\Repository\BroteRepository;
 use App\Repository\PrincipalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -65,9 +63,48 @@ class ZinicioController extends AbstractController
      * @Route("/reserva", name="app_reserva")
      * @return RedirectResponse
      */
-    public function app_reserva()
+    public function app_reserva(): RedirectResponse
     {
         return $this->redirectToRoute('reserva_index');
+    }
+
+    /**
+     * @Route("/test/index", name="test_index")
+     */
+    public function test_index()
+    {
+        $em = $this->getDoctrine()->getManager();
+        /** @var IndexAlameda $indexAlameda */
+        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
+
+        return $this->render('inicio/index.html.twig', [
+            'controller_name' => 'InicioController',
+            'datosIndex' => $indexAlameda[0],
+        ]);
+    }
+
+    /**
+     * @Route("/test/{linkRoute}", name="test_principal_ver", methods={"GET"})
+     * @param Principal $principal
+     * @param PrincipalRepository $principalRepository
+     * @return Response
+     */
+    public function ver_test(Principal $principal, PrincipalRepository $principalRepository): Response
+    {
+//        $ppal = $principalRepository->findOneBy(['principal'=>$principal->getId()]);
+
+        $vista =$principal->getModelTemplate();
+        if(!$vista) {
+            $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute() : $principal->getLinkRoute());
+        }
+        $visual = $principalRepository->findOneBy(['principal'=>$principal->getId(), 'isActive'=>true]);
+        if(!$visual){
+            $visual = $principal;
+        }
+
+        return $this->render('inicio/'.$vista.'.html.twig', [
+            'principal' => $visual,
+        ]);
     }
 
     /**
