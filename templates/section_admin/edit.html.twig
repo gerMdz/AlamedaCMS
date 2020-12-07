@@ -27,7 +27,7 @@
     {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
 {% endblock %}
 {% block content %}
-    <h5>Edición de "{{ section.name }}" </h5>
+    <h5>Edición de "{{ section.name }} - {{ section.identificador }}" </h5>
     <div class="form-container">
         {{ include('section_admin/_form.html.twig',
             {

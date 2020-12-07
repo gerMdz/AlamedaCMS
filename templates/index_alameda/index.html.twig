@@ -1,41 +1,51 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}IndexAlameda Listado{% endblock %}
+{% block title %}Index - vista{% endblock %}
 
-{% block contenido_body %}
+{% block content %}
     <h1>IndexAlameda </h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Lema</th>
-                <th>LemaPrincipal</th>
-                <th>LemaSinEspacio</th>
-                <th>Horario1</th>
-                <th>Horario2</th>
-                <th>TextoVersiculo</th>
-                <th>Versiculo</th>
-                <th>MetaDescripcion</th>
-                <th>MetaAutor</th>
-                <th>MetaTitle</th>
-                <th>MetaType</th>
-                <th>MetaUrl</th>
-                <th>MetaImage</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Lema
+            </th>
+            <th>
+                LemaPrincipal<br/>
+                LemaSinEspacio
+            </th>
+            <th>
+                Horario1 <br/>
+                Horario2
+            </th>
+            <th>
+                TextoVersiculo <br/>
+                Versiculo
+            </th>
+            <th>MetaDescripcion</th>
+            <th>MetaAutor</th>
+            <th>MetaTitle</th>
+            <th>MetaType</th>
+            <th>MetaUrl</th>
+            <th>MetaImage</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for index_alameda in index_alamedas %}
             <tr>
                 <td>{{ index_alameda.id }}</td>
                 <td>{{ index_alameda.lema }}</td>
-                <td>{{ index_alameda.lemaPrincipal }}</td>
-                <td>{{ index_alameda.lemaSinEspacio }}</td>
-                <td>{{ index_alameda.horario1 }}</td>
-                <td>{{ index_alameda.horario2 }}</td>
-                <td>{{ index_alameda.textoVersiculo | u.truncate(10, '...') }}</td>
-                <td>{{ index_alameda.versiculo }}</td>
+                <td>{{ index_alameda.lemaPrincipal }}<br/>
+                    {{ index_alameda.lemaSinEspacio }}</td>
+                <td>{{ index_alameda.horario1 }}<br/>
+                    {{ index_alameda.horario2 }}</td>
+                <td>{{ index_alameda.textoVersiculo | u.truncate(10, '...') }}
+                    <br/>{{ index_alameda.versiculo }}</td>
                 <td>{{ index_alameda.metaDescripcion | u.truncate(10, '...') }}</td>
                 <td>{{ index_alameda.metaAutor }}</td>
                 <td>{{ index_alameda.metaTitle }}</td>
@@ -43,30 +53,83 @@
                 <td>{{ index_alameda.metaUrl }}</td>
                 <td>{{ index_alameda.metaImage }}</td>
                 <td>
-                    <a href="{{ path('index_alameda_show', {'id': index_alameda.id}) }}">show</a>
-                    <a href="{{ path('index_alameda_edit', {'id': index_alameda.id}) }}">edit</a>
+                    <a href="{{ path('index_alameda_show', {'id': index_alameda.id}) }}">
+                        <i class="fa -fa-eye"> </i>
+                        Ver
+                    </a>
+                    <a href="{{ path('index_alameda_edit', {'id': index_alameda.id}) }}">
+                        <i class="fa fa-edit"> </i>
+                        editar
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="13">
+                    <div class="row mx-auto border-top border-dark">
+                        <div class="col-sm-2">Id / Identificador</div>
+                        <div class="col-sm-2">Nombre sección</div>
+                        <div class="col-sm-1">Orden</div>
+                        <div class="col-sm-2"><i class="fa fa-cogs"> </i></div>
+                    </div>
                 </td>
             </tr>
             {% if index_alameda.section %}
-                {% for section in index_alameda.section %}
-            <tr>
-                <td>
+{#                {% for section in index_alameda.section %}#}
+{#                    <tr>#}
+{#                        <td colspan="13">#}
+{#                            <div class="row  mx-auto">#}
+{#                                <div class="col-sm-2">#}
+{#                                    {{ section.id }}<br/>#}
+{#                                    {{ section.identificador }}#}
+{#                                </div>#}
+{#                                <div class="col-sm-2">{{ section.name }}</div>#}
+{#                                <div class="col-sm-1">{{ section.orden }}</div>#}
+{#                                <div class="col-sm-2">#}
+{#                                    <a href="{{ path('admin_section_edit', {'id': section.id}) }}">#}
+{#                                        <i class="fa fa-edit"> </i>#}
+{#                                        editar#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                    </tr>#}
+                                        <tr>
+                                            <td colspan="13">
 
-                        
-                        {{ section.name }}
+                    <div class="col-sm-12">
+                        <h3>Secciones</h3>
+                        <div style="font-size: 0.7rem"
+                            class="list-group small js-reference-list col-sm-12"
+                            data-url="{{ path('admin_index_list_section', {id: index_alameda.id}) }}">
 
-                </td>
+                        </div>
 
-            </tr>
-                {% endfor %}
+{#                        <form action="{{ path('admin_entrada_add_referencia',{#}
+{#                            id: entrada.id#}
+{#                        }) }}" method="POST" enctype="multipart/form-data" class="dropzone js-reference-dropzone">#}
+{#                            #}{# <input type="file" name="reference"> #}
+{#                            #}{# <button type="submit" class="btn btn-sm btn-primary">Subir</button> #}
+{#                        </form>#}
+                    </div>
+                                            </td>
+                                        </tr>
+{#                {% endfor %}#}
             {% endif %}
         {% else %}
             <tr>
-                <td colspan="15">no records found</td>
+                <td colspan="15">No tiene index actualmente</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
     <a href="{{ path('index_alameda_new') }}">Create new</a>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
+            integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
+            crossorigin="anonymous"></script>
+
+    <script src="{{ asset('js/admin_index_form.js') }}"></script>
 {% endblock %}

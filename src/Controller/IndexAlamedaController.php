@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Entrada;
 use App\Entity\IndexAlameda;
+use App\Entity\Section;
 use App\Form\IndexAlamedaType;
 use App\Repository\IndexAlamedaRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -109,5 +113,56 @@ class IndexAlamedaController extends AbstractController
         }
 
         return $this->redirectToRoute('index_alameda_index');
+    }
+
+    /**
+     * @Route("/admin/index/section/{id}", methods="GET", name="admin_index_list_section")
+     * @param IndexAlameda $indexAlameda
+     * @return JsonResponse
+     */
+    public function getSectionPrincipal(IndexAlameda $indexAlameda): JsonResponse
+    {
+        return $this->json(
+            $indexAlameda->getSection(),
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
+     * @Route("/admin/index/section/{id}/reorder", methods="POST", name="admin_principal_reorder_section")
+     * @param IndexAlameda $indexAlameda
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function reorderPrincipalSections(IndexAlameda $indexAlameda, EntityManagerInterface $entityManager, Request $request)
+    {
+        $orderedIds = json_decode($request->getContent(), true);
+
+        if ($orderedIds === null) {
+            return $this->json(['detail' => 'Datos Inválidos'], 400);
+        }
+
+        // from (position)=>(id) to (id)=>(position)
+        $orderedIds = array_flip($orderedIds);
+
+        foreach ($indexAlameda->getSection() as $reference) {
+            $reference->setOrden($orderedIds[$reference->getId()]);
+        }
+
+        $entityManager->flush();
+
+        return $this->json(
+            $indexAlameda->getSection(),
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
     }
 }

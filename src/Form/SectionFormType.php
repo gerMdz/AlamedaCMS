@@ -12,6 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -66,7 +67,10 @@ class SectionFormType extends AbstractType
                     'class'=>'datetimepicker'
                 ]
             ])
-            ->add('columns')
+            ->add('columns', IntegerType::class,[
+                'label'=> 'Cantidad de columnas',
+                'required' => false
+            ])
             ->add('disponibleHastaAt', DateTimeType::class, array(
                 'widget' => 'single_text',
                 'required' => false,
@@ -84,6 +88,10 @@ class SectionFormType extends AbstractType
                 'required' => false,
 
             ])
+            ->add('orden', IntegerType::class,[
+                'label'=>'Orden en la página',
+                'required' => false
+                ])
             ->add('modelTemplate', EntityType::class, [
                 'class'=>ModelTemplate::class,
                 'query_builder' => function (ModelTemplateRepository $er) {

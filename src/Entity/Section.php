@@ -9,6 +9,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SectionRepository::class)
@@ -22,11 +23,13 @@ class Section
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("main")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $name;
 
@@ -37,6 +40,7 @@ class Section
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Groups("main")
      */
     private $identificador;
 
@@ -52,6 +56,7 @@ class Section
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups("main")
      */
     private $description;
 
@@ -74,8 +79,6 @@ class Section
      * @ORM\ManyToMany(targetEntity=IndexAlameda::class, mappedBy="section")
      */
     private $indexAlamedas;
-
-
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sections")
@@ -105,6 +108,7 @@ class Section
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups("main")
      */
     private $orden;
 
@@ -115,11 +119,13 @@ class Section
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("main")
      */
     private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="sections")
+     * @Groups("main")
      */
     private $modelTemplate;
 
