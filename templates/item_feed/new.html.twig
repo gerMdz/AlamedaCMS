@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ItemFeed{% endblock %}
+
+{% block body %}
+    <h1>Create new ItemFeed</h1>
+
+    {{ include('item_feed/_form.html.twig') }}
+
+    <a href="{{ path('item_feed_index') }}">back to list</a>
+{% endblock %}

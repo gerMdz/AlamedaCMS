@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ItemFeed{% endblock %}
+
+{% block body %}
+    <h1>Edit ItemFeed</h1>
+
+    {{ include('item_feed/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('item_feed_index') }}">back to list</a>
+
+    {{ include('item_feed/_delete_form.html.twig') }}
+{% endblock %}

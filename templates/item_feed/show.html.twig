@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ItemFeed{% endblock %}
+
+{% block body %}
+    <h1>ItemFeed</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ item_feed.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ item_feed.title }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ item_feed.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>PubDateAt</th>
+                <td>{{ item_feed.pubDateAt ? item_feed.pubDateAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>LinkUrl</th>
+                <td>{{ item_feed.linkUrl }}</td>
+            </tr>
+            <tr>
+                <th>LinkType</th>
+                <td>{{ item_feed.linkType }}</td>
+            </tr>
+            <tr>
+                <th>LinkLength</th>
+                <td>{{ item_feed.linkLength }}</td>
+            </tr>
+            <tr>
+                <th>LinkLongitud</th>
+                <td>{{ item_feed.linkLongitud }}</td>
+            </tr>
+            <tr>
+                <th>Duracion</th>
+                <td>{{ item_feed.duracion ? item_feed.duracion|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Guid</th>
+                <td>{{ item_feed.guid }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('item_feed_index') }}">back to list</a>
+
+    <a href="{{ path('item_feed_edit', {'id': item_feed.id}) }}">edit</a>
+
+    {{ include('item_feed/_delete_form.html.twig') }}
+{% endblock %}

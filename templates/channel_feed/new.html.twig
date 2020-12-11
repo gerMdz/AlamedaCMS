@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ChannelFeed{% endblock %}
+
+{% block body %}
+    <h1>Create new ChannelFeed</h1>
+
+    {{ include('channel_feed/_form.html.twig') }}
+
+    <a href="{{ path('channel_feed_index') }}">back to list</a>
+{% endblock %}
