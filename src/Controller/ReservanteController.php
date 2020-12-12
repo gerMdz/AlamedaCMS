@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reservante;
+use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\ReservanteType;
 use App\Repository\ReservanteRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -26,6 +27,40 @@ class ReservanteController extends AbstractController
     {
         return $this->render('reservante/index.html.twig', [
             'reservantes' => $reservanteRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/lectura", name="reserva_lectura", methods={"GET","POST"})
+     * @param Request $request
+     * @param ReservanteRepository $reservanteRepository
+     * @return Response
+     */
+    public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository): Response
+    {
+
+        $form = $this->createForm(ReservaByEmailFilterType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $celebracion = $form['celebracion']->getData();
+            $email = $form['email']->getData();
+            $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
+            if (!$reservante) {
+                $this->addFlash('info', 'No se encontró reserva');
+                return $this->redirectToRoute('reserva_consulta');
+            }
+
+            return $this->redirectToRoute('vista_reserva',
+                [
+                    'celebracion' => $reservante->getCelebracion()->getId(),
+                    'email' => $reservante->getEmail()
+                ]);
+        }
+
+        return $this->render('reserva/lectura_reserva.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 

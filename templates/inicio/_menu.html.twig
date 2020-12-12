@@ -121,6 +121,7 @@
                         <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
                         {#                                <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>#}
                         <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
+                        <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Scanear</a>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
