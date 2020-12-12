@@ -13,7 +13,7 @@ docReady(function() {
     var lastResult, countResults = 0;
 
     var html5QrcodeScanner = new Html5QrcodeScanner(
-        "qr-reader", { fps: 10, qrbox: 300 });
+        "qr-reader", { fps: 10, qrbox: 250 });
 
     function onScanSuccess(qrCodeMessage) {
         if (qrCodeMessage !== lastResult) {
