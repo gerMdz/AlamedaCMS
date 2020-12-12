@@ -39,6 +39,12 @@
                             {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }}
                             asientos libres
                         </small>
+                        {% if(is_granted('ROLE_RESERVA')) %}
+                            <a href="{{ path('reserva_lectura') }}"
+                               class="btn btn-warning ">
+                                <i class="fa fa-camera"> </i> Lectura QR
+                            </a>
+                        {% endif %}
                     </div>
                     <div class="col-sm-3 text-lg-right pull-right">
 
