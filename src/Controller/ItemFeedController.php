@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/item/feed")
+ * @Route("/admin/itemfeed")
  */
 class ItemFeedController extends AbstractController
 {

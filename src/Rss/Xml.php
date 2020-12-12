@@ -6,13 +6,16 @@ namespace App\Rss;
 
 use App\Entity\ChannelFeed;
 
+
 class Xml
 {
+
     /**
      * @param ChannelFeed $channelFeed
+     * @param $site_podcasts
      * @return string
      */
-    public static function generate(ChannelFeed $channelFeed): string
+    public static function generate(ChannelFeed $channelFeed, string $site_podcasts): string
     {
         $title = self::xmlEscape($channelFeed->getTitle());
         $link = self::xmlEscape($channelFeed->getLink());
@@ -36,7 +39,7 @@ xml;
 
             $titleItem = self::xmlEscape($post->getTitle());
             $descripcionItem = self::xmlEscape($post->getDescripcion());
-            $url = self::xmlEscape($post->getLinkUrl());
+            $url = $site_podcasts .'/' .  self::xmlEscape($post->getLinkUrl());
             $type = self::xmlEscape($post->getLinkType());
             $longitud = self::xmlEscape($post->getLinkLongitud());
             $duration = $post->getDuracion()->format('H:i:s');

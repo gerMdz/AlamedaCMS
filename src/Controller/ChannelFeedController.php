@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/channel/feed")
+ * @Route("/admin/channelfeed")
  */
 class ChannelFeedController extends AbstractController
 {
