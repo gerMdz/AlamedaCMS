@@ -39,7 +39,8 @@
                                 <p class="card-category"></p>
                             </div>
                             <div class="card-body">
-                                <div id="reader" style="width:300px;height:250px"></div>
+                                <div id="qr-reader" style="width:500px"></div>
+                                <div id="qr-reader-results"></div>
 
 
                             </div>
@@ -60,31 +61,11 @@
 
 {% block javascripts %}
     {{ parent() }}
+
     <script src="{{ asset('js/html5-qrcode.min.js') }}"></script>
-
-    <script src="{{ asset('js/jsqrcode-combined.min.js') }}"></script>
-    <script type="text/javascript">
+    <script src="{{ asset('js/scanner.js') }}"></script>
 
 
 
-        $('#reader').html5_qrcode(function(data){
-
-                alert(data);
-
-            },
-
-            function(error){
-
-                //show read errors
-
-            }, function(videoError){
-
-                //the video stream could be opened
-
-            }
-
-        );
-
-    </script>
 {% endblock %}
 
