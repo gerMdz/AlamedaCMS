@@ -1,13 +1,45 @@
-{% extends 'contenido_base.html.twig' %}
-
-{% block title %}Ediicón {{ principal.linkRoute | upper }}{% endblock %}
-
-{% block contenido_body %}
-    <h1>Editar {{ principal.linkRoute | upper }}</h1>
+{% extends 'base_admin.html.twig' %}
+{% block title %}Principal {{ base.siteName }}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin_section_form.js') }}"></script>
+    <script src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script type="application/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                locale: 'es',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        })
+    </script>
+{% endblock %}
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'Principal'}) }}
+{% endblock %}
+{% block content %}
+    <h5>Editar {{ principal.linkRoute | upper }}</h5>
 
     {{ include('principal/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
     <a href="{{ path('principal_index') }}">Volver al listado</a>
 
     {{ include('principal/_delete_form.html.twig') }}
+{% endblock %}
+{% block jslocal %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+
+    <script>
+        $('#admin').addClass('active');
+    </script>
 {% endblock %}
