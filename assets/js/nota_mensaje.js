@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $(function () {
     const puno = localStorage.getItem("AutenticosPuno");
     const pdos = localStorage.getItem("AutenticosPdos");

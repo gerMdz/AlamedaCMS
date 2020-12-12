@@ -39,6 +39,7 @@
         "symfony/yaml": "4.4.*",
         "twig/cssinliner-extra": "^3.1",
         "twig/extra-bundle": "^3.1",
+        "twig/intl-extra": "^3.1",
         "twig/string-extra": "^3.0"
     },
     "require-dev": {

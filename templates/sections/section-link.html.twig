@@ -35,13 +35,13 @@
             <div class="col-sm-12">
                 <div class="show-article-container p-3 mt-4">
                     <h4><strong class="ml-5"> {{ entrada.titulo }} </strong>
-                        <small>
-                            Le gustó a:
-                            <span class="js-like-entrada-count">{{ entrada.likes }}</span>
-                            <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"
-                               class="fas fa-heart like-entrada js-like-entrada">
-                            </a>
-                        </small>
+{#                        <small>#}
+{#                            Le gustó a:#}
+{#                            <span class="js-like-entrada-count">{{ entrada.likes }}</span>#}
+{#                            <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"#}
+{#                               class="fas fa-heart like-entrada js-like-entrada">#}
+{#                            </a>#}
+{#                        </small>#}
                     </h4>
                 </div>
             </div>
@@ -87,8 +87,8 @@
 
 
 {#       <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>#}
-        <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/entrada_show.js') }}"></script>
+{#        <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>#}
+{#    <script src="{{ asset('js/entrada_show.js') }}"></script>#}
 
-    <script type="application/javascript" src="{{ asset('js/nota.js') }}"></script>
+{#    <script type="application/javascript" src="{{ asset('js/nota.js') }}"></script>#}
 

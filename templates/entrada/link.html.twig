@@ -55,13 +55,13 @@
                 <div class="col-sm-12">
                     <div class="show-article-container p-3 mt-4">
                         <h4><strong class="ml-5"> {{ entrada.titulo }} </strong>
-                            <small>
-                                Le gustó a:
-                                <span class="js-like-entrada-count">{{ entrada.likes }}</span>
-                                <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"
-                                   class="fas fa-heart like-entrada js-like-entrada">
-                                </a>
-                            </small>
+{#                            <small>#}
+{#                                Le gustó a:#}
+{#                                <span class="js-like-entrada-count">{{ entrada.likes }}</span>#}
+{#                                <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"#}
+{#                                   class="fas fa-heart like-entrada js-like-entrada">#}
+{#                                </a>#}
+{#                            </small>#}
                         </h4>
                     </div>
                 </div>
@@ -116,13 +116,13 @@
     <script type="application/javascript">
 
         $(function () {
-            const pcentral = localStorage.getItem("NotaPcentral");
-            const puno = localStorage.getItem("NotaPuno");
-            const pdos = localStorage.getItem("NotaPdos");
-            const ptres = localStorage.getItem("NotaPtres");
-            const pcuatro = localStorage.getItem("NotaPcuatro");
+            const pcentral = localStorage.getItem("AutenticosPcentral");
+            const puno = localStorage.getItem("AutenticosPuno");
+            const pdos = localStorage.getItem("AutenticosPdos");
+            const ptres = localStorage.getItem("AutenticosPtres");
+            const pcuatro = localStorage.getItem("AutenticosPcuatro");
             if (pcentral != null) {
-                $('#pcentral').val(JSON.parse(localStorage.NotaPcentral))
+                $('#pcentral').val(JSON.parse(localStorage.AutenticosPcentral))
                 muestra1('#lpcentral', '#sinpcentral')
                 aceptado('central');
             } else {
@@ -130,7 +130,7 @@
             }
 
             if (puno != null) {
-                $('#puno').val(JSON.parse(localStorage.NotaPuno))
+                $('#puno').val(JSON.parse(localStorage.AutenticosPuno))
                 muestra1('#lpuno', '#sinpuno')
                 aceptado('uno');
             } else {
@@ -138,7 +138,7 @@
             }
 
             if (pdos != null) {
-                $('#pdos').val(JSON.parse(localStorage.NotaPdos))
+                $('#pdos').val(JSON.parse(localStorage.AutenticosPdos))
                 muestra1('#lpdos', '#sinpdos')
                 aceptado('dos');
             } else {
@@ -146,7 +146,7 @@
             }
 
             if (ptres != null) {
-                $('#ptres').val(JSON.parse(localStorage.NotaPtres))
+                $('#ptres').val(JSON.parse(localStorage.AutenticosPtres))
                 muestra1('#lptres', '#sinptres')
                 aceptado('tres');
             } else {
@@ -154,7 +154,7 @@
             }
 
             if (pcuatro != null) {
-                $('#pcuatro').val(JSON.parse(localStorage.NotaPcuatro))
+                $('#pcuatro').val(JSON.parse(localStorage.AutenticosPcuatro))
                 muestra1('#lpcuatro', '#sinpcuatro')
                 aceptado('cuatro');
             } else {
@@ -253,27 +253,27 @@
             console.log('p = ' + p)
             if (p === 'central') {
                 const pcentral = $('#pcentral').val();
-                localStorage.NotaPcentral = JSON.stringify(pcentral);
+                localStorage.AutenticosPcentral = JSON.stringify(pcentral);
             }
 
             if (p === 'uno') {
                 const puno = $('#puno').val();
-                localStorage.NotaPuno = JSON.stringify(puno);
+                localStorage.AutenticosPuno = JSON.stringify(puno);
             }
 
             if (p === 'dos') {
                 const pdos = $('#pdos').val();
-                localStorage.NotaPdos = JSON.stringify(pdos);
+                localStorage.AutenticosPdos = JSON.stringify(pdos);
             }
 
             if (p === 'tres') {
                 const ptres = $('#ptres').val();
-                localStorage.NotaPtres = JSON.stringify(ptres);
+                localStorage.AutenticosPtres = JSON.stringify(ptres);
             }
 
             if (p === 'cuatro') {
                 const pcuatro = $('#pcuatro').val();
-                localStorage.NotaPcuatro = JSON.stringify(pcuatro);
+                localStorage.AutenticosPcuatro = JSON.stringify(pcuatro);
             }
 
         }
@@ -282,7 +282,7 @@
 
 
             if (p === 'uno') {
-                const puno = JSON.parse(localStorage.NotaPuno);
+                const puno = JSON.parse(localStorage.AutenticosPuno);
 
                 $('#lpuno').addClass('fontTahu fa-2x text-info');
                 $('#lpuno').html(puno);
@@ -290,28 +290,28 @@
             }
             if (p === 'central') {
                 console.log('aceptado = ' + p)
-                const pcentral = JSON.parse(localStorage.NotaPcentral);
+                const pcentral = JSON.parse(localStorage.AutenticosPcentral);
                 $('#lpcentral').addClass('fontTahu fa-2x text-info');
                 $('#lpcentral').html(pcentral);
                 $('#lpcentral').show();
                 $('#sinpcentral').hide();
             }
             if (p === 'dos') {
-                const pdos = JSON.parse(localStorage.NotaPdos);
+                const pdos = JSON.parse(localStorage.AutenticosPdos);
 
                 $('#lpdos').addClass('fontTahu fa-2x text-info');
                 $('#lpdos').html(pdos);
                 $('#sinpdos').hide();
             }
             if (p === 'tres') {
-                const ptres = JSON.parse(localStorage.NotaPtres);
+                const ptres = JSON.parse(localStorage.AutenticosPtres);
 
                 $('#lptres').addClass('fontTahu fa-2x text-info');
                 $('#lptres').html(ptres);
                 $('#sinptres').hide();
             }
             if (p === 'cuatro') {
-                const pcuatro = JSON.parse(localStorage.NotaPcuatro);
+                const pcuatro = JSON.parse(localStorage.AutenticosPcuatro);
 
                 $('#lpcuatro').addClass('fontTahu fa-2x text-info');
                 $('#lpcuatro').html(pcuatro);
