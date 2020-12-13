@@ -48,6 +48,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath']),
             new TwigFunction('capacidad_restante', [$this, 'capacidad_restante']),
             new TwigFunction('capacidad_ocupada', [$this, 'capacidad_ocupada']),
+            new TwigFunction('redirection', [$this, 'redirection']),
         ];
     }
 
@@ -98,5 +99,10 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             UploaderHelper::class,
             EntityManagerInterface::class,
         ];
+    }
+
+    public function redirection(string $link)
+    {
+
     }
 }

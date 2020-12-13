@@ -68,7 +68,7 @@ class PrincipalController extends BaseController
             $entityManager->persist($principal);
             $entityManager->flush();
 
-            return $this->redirectToRoute('principal_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('principal/new.html.twig', [

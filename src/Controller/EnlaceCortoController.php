@@ -6,6 +6,7 @@ use App\Entity\EnlaceCorto;
 use App\Form\EnlaceCortoType;
 use App\Repository\EnlaceCortoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -98,5 +99,18 @@ class EnlaceCortoController extends AbstractController
         }
 
         return $this->redirectToRoute('enlace_corto_index');
+    }
+
+    /**
+     * @Route("/{enlace}", name="enlace_corto_pagina", methods={"GET"})
+     * @param string $enlace
+     * @return RedirectResponse
+     */
+
+    public function irEnlace(string $enlace): RedirectResponse
+    {
+        return $this->redirect(
+            $enlace
+        );
     }
 }
