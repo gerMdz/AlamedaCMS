@@ -7,6 +7,7 @@ use App\Entity\Invitado;
 use App\Entity\MetaBase;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
@@ -74,7 +75,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     }
 
 
-
     public function getUploadedAssetPath(string $path): string
     {
         return $this->container
@@ -103,6 +103,11 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
     public function redirection(string $link)
     {
+        if ('' === ($link ?? '')) {
+            throw new InvalidArgumentException('No se puede redireccionar a una URL vacía.');
+        }
+
+        echo "<meta http-equiv = 'refresh' content='0;url = $link' />";
 
     }
 }
