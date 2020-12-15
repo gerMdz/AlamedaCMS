@@ -1,4 +1,7 @@
-var Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore');
+const PurgeCssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob-all');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -28,9 +31,11 @@ Encore
     .addEntry('perfil', './assets/js/perfil.js')
     .addEntry('section_select', './assets/js/select_section.js')
     .addEntry('nota_mensaje', './assets/js/nota_mensaje')
+    .addEntry('tailwind', './assets/js/tailwind')
     //.addEntry('page1', './assets/js/page1.js')
     .addStyleEntry('loginStyle', './assets/css/styles.css')
     .addStyleEntry('perfilStyle', './assets/css/account.css')
+    .addStyleEntry('tailwindStyle', './assets/css/tailwind.css')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
@@ -54,13 +59,14 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // enables @babel/preset-env polyfills
-    .configureBabel(() => {}, {
+    .configureBabel(() => {
+    }, {
         useBuiltIns: 'usage',
         corejs: 3
     })
 
     // enables Sass/SCSS support
-     .enableSassLoader()
+    .enableSassLoader()
 
     .enableSassLoader((options) => {
         options.sourceMap = true;
@@ -85,6 +91,7 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+    .enablePostCssLoader()
 
     .copyFiles({
         from: './assets/images',
@@ -93,12 +100,29 @@ Encore
 
     })
     .copyFiles([
-        {from: './node_modules/ckeditor/', to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false},
+        {
+            from: './node_modules/ckeditor/',
+            to: 'ckeditor/[path][name].[ext]',
+            pattern: /\.(js|css)$/,
+            includeSubdirectories: false
+        },
         {from: './node_modules/ckeditor/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},
         {from: './node_modules/ckeditor/lang', to: 'ckeditor/lang/[path][name].[ext]'},
         {from: './node_modules/ckeditor/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
         {from: './node_modules/ckeditor/skins', to: 'ckeditor/skins/[path][name].[ext]'}
     ])
+
+
 ;
+if (Encore.isProduction()) {
+    Encore.addPlugin(new PurgeCssPlugin({
+        paths: glob.sync([
+            path.join(__dirname, 'templates/**/*.html.twig')
+        ]),
+        defaultExtractor: (content) => {
+            return content.match(/[\w-/:]+(?<!:)/g) || [];
+        }
+    }));
+}
 
 module.exports = Encore.getWebpackConfig();

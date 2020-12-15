@@ -4,6 +4,6 @@ import 'select2/dist/css/select2.css';  // optional if you have css loader
 
 $(() => {
     $('.select2-enable').select2({
-        placeholder: 'Seleccione sección'
+        placeholder: 'Seleccione '
     });
 });

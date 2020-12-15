@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
+use App\Entity\Section;
 use App\Entity\User;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -107,7 +108,16 @@ class EntradaType extends AbstractType
                     'class' => 'form-check-input ',
                 ],
             ])
-            ->add('sections')
+            ->add('sections',EntityType::class,[
+                'class'=>Section::class,
+                'multiple'=>true,
+                'expanded' => false,
+                'attr'=>[
+                    'class' => 'select2-enable form-check-input',
+                    'placeholder' => 'Seleccione '
+
+                ]
+            ])
             ->add('isPermanente',CheckboxType::class, [
                 'required' => false,
                 'label' => false,

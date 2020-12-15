@@ -46,12 +46,48 @@
                     {# <input type="file" name="reference"> #}
                     {# <button type="submit" class="btn btn-sm btn-primary">Subir</button> #}
                 </form>
+                {% if entrada.section %}
+                    <tr>
+                        <td colspan="10">
+                            <div class="col-sm-12">
+                                <h3>Secciones</h3>
+                                <div style="font-size: 0.9rem"
+                                     class="list-group small js-section-list col-sm-12"
+                                     data-url="{{ path('admin_entrada_list_section', {id: entrada.id}) }}">
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <a href="{{ path('entrada_agregar_seccion', { 'id': entrada.id }) }}"
+                                       class="btn btn-link btn-sm btn-modal">
+                                        <i class="fa fa-plus"> Sección</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% include('admin/_modal.html.twig') %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('section_select') }}
+    <script src="{{ asset('js/admin_index_form.js') }}"></script>
+
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"
             integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
     <script>

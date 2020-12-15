@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Form\EntradaSectionType;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use App\Repository\SectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,5 +54,64 @@ class EntradaController extends AbstractController
         $em->flush();
 
         return new JsonResponse(['like' => $entrada->getLikes()]);
+    }
+
+    /**
+     * @Route("/admin/entrada/section/{id}", methods="GET", name="admin_entrada_list_section")
+     * @param Entrada $entrada
+     * @return JsonResponse
+     */
+    public function getSectionPrincipal(Entrada $entrada): JsonResponse
+    {
+        return $this->json(
+            $entrada->getSections(),
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
+     * @Route("/agregarSeccion/{id}", name="entrada_agregar_seccion", methods={"GET", "POST"})
+     * @param Request $request
+     * @param Entrada $entrada
+     * @param EntityManagerInterface $entityManager
+     * @param SectionRepository $sectionRepository
+     * @param EntradaRepository $entradaRepository
+     * @return RedirectResponse|Response
+     */
+    public function agregarSeccion(Request $request, Entrada $entrada, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, EntradaRepository $entradaRepository)
+    {
+        $form = $this->createForm(EntradaSectionType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $id_section = $form->get('section')->getData();
+            $seccion = $sectionRepository->find($id_section);
+            $entrada->addSection($seccion);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($entrada);
+            $entityManager->flush();
+
+            if ($this->isGranted('ROLE_EDITOR')) {
+                $entrada = $entradaRepository->findBy([], ['createdAt' => 'DESC']);
+            } else {
+                $user = $this->getUser();
+                $entrada = $entradaRepository->findByAutor($user);
+            }
+
+            return $this->render('admin_entrada/index.html.twig', [
+                'entradas' => $entrada,
+            ]);
+        }
+
+        return $this->render('admin_entrada/vistaAgregaSection.html.twig', [
+            'index' => $entrada,
+            'form' => $form->createView(),
+        ]);
+
     }
 }

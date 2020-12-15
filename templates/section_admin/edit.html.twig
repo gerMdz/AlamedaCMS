@@ -2,6 +2,7 @@
 {% block title %}Secciones {{ base.siteName }}{% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_link_tags('select_section') }}
     <script src="{{ asset('js/admin_section_form.js') }}"></script>
     <script src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="application/javascript">

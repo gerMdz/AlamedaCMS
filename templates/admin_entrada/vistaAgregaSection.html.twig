@@ -1,0 +1,29 @@
+{{ form_start(form, {'action' : path('entrada_agregar_seccion', { 'id': index.id })}) }}
+<div class="modal-header panel-info">
+    <h5 class="modal-title" id="exampleModalLabel">Agregar Sección </h5>
+</div>
+<div id="reserva" class="modal-body">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title "> Secciones </h4>
+        </div>
+        <div class="card-body">
+
+            <div class="col-sm-12 p-0">
+                <label for="{{ form.section.vars.id}}" class="label text-dark">
+                    <i class="fa fa-user"> </i> Sección
+                </label>
+                {{ form_widget(form.section) }}
+            </div>
+
+            <div class="col-sm-12 p-0 text-center">
+                {{ form_row(form.save) }}
+            </div>
+            {{ form_widget(form._token) }}
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+</div>
+{{ form_end(form, {'render_rest': false}) }}
