@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\ImageTrait;
+use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
 use DateTimeInterface;
@@ -18,6 +19,7 @@ class Section
 {
     use OfertTrait;
     use ImageTrait;
+    use LinksTrait;
 
     /**
      * @ORM\Id()
@@ -66,16 +68,6 @@ class Section
     private $disponibleAt;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $typeOrigin;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $typeSecondary;
-
-    /**
      * @ORM\ManyToMany(targetEntity=IndexAlameda::class, mappedBy="section")
      */
     private $indexAlamedas;
@@ -84,17 +76,6 @@ class Section
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sections")
      */
     private $autor;
-
-    /**
-     * @ORM\OneToMany(targetEntity=RelacionSectionEntrada::class, mappedBy="section")
-     */
-    private $relacionSectionEntradas;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Entrada::class, mappedBy="section")
-     * @ORM\OrderBy({"orden" = "ASC"})
-     */
-    private $entradassection;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -132,7 +113,7 @@ class Section
     /**
      * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="sections")
      */
-    private $llamada;
+    private $entrada;
 
     public function __toString()
     {
@@ -142,10 +123,7 @@ class Section
     public function __construct()
     {
         $this->indexAlamedas = new ArrayCollection();
-
-        $this->relacionSectionEntradas = new ArrayCollection();
-        $this->entradassection = new ArrayCollection();
-        $this->llamada = new ArrayCollection();
+        $this->entrada = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -237,29 +215,10 @@ class Section
         return $this;
     }
 
-    public function getTypeOrigin(): ?string
-    {
-        return $this->typeOrigin;
-    }
 
-    public function setTypeOrigin(?string $typeOrigin): self
-    {
-        $this->typeOrigin = $typeOrigin;
 
-        return $this;
-    }
 
-    public function getTypeSecondary(): ?string
-    {
-        return $this->typeSecondary;
-    }
 
-    public function setTypeSecondary(?string $typeSecondary): self
-    {
-        $this->typeSecondary = $typeSecondary;
-
-        return $this;
-    }
 
     /**
      * @return Collection|IndexAlameda[]
@@ -303,67 +262,7 @@ class Section
         return $this;
     }
 
-    /**
-     * @return Collection|RelacionSectionEntrada[]
-     */
-    public function getRelacionSectionEntradas(): Collection
-    {
-        return $this->relacionSectionEntradas;
-    }
 
-    public function addRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
-    {
-        if (!$this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
-            $this->relacionSectionEntradas[] = $relacionSectionEntrada;
-            $relacionSectionEntrada->setSection($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
-    {
-        if ($this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
-            $this->relacionSectionEntradas->removeElement($relacionSectionEntrada);
-            // set the owning side to null (unless already changed)
-            if ($relacionSectionEntrada->getSection() === $this) {
-                $relacionSectionEntrada->setSection(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Entrada[]
-     */
-    public function getEntradassection(): Collection
-    {
-        return $this->entradassection;
-    }
-
-    public function addEntradassection(Entrada $entradassection): self
-    {
-        if (!$this->entradassection->contains($entradassection)) {
-            $this->entradassection[] = $entradassection;
-            $entradassection->setSection($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEntradassection(Entrada $entradassection): self
-    {
-        if ($this->entradassection->contains($entradassection)) {
-            $this->entradassection->removeElement($entradassection);
-            // set the owning side to null (unless already changed)
-            if ($entradassection->getSection() === $this) {
-                $entradassection->setSection(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getTemplate(): ?string
     {
@@ -440,39 +339,24 @@ class Section
     /**
      * @return Collection|Entrada[]
      */
-    public function getLlamada(): Collection
+    public function getEntrada(): Collection
     {
-        return $this->llamada;
+        return $this->entrada;
     }
 
-    public function addLlamadum(Entrada $llamada): self
+    public function addEntrada(Entrada $entrada): self
     {
-        if (!$this->llamada->contains($llamada)) {
-            $this->llamada[] = $llamada;
-            $llamada->addSection($this);
+        if (!$this->entrada->contains($entrada)) {
+            $this->entrada[] = $entrada;
         }
 
         return $this;
     }
 
-    public function removeLlamadum(Entrada $llamada): self
+    public function removeEntrada(Entrada $entrada): self
     {
-        $this->llamada->removeElement($llamada);
+        $this->entrada->removeElement($entrada);
 
         return $this;
     }
-
-
-
-
-
-//    public function removeIndexAlameda(IndexAlameda $indexAlameda): self
-//    {
-//        if ($this->indexAlamedas->contains($indexAlameda)) {
-//            $this->indexAlamedas->removeElement($indexAlameda);
-//            $indexAlameda->removeSection($this);
-//        }
-//
-//        return $this;
-//    }
 }

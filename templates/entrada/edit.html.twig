@@ -46,7 +46,7 @@
                     {# <input type="file" name="reference"> #}
                     {# <button type="submit" class="btn btn-sm btn-primary">Subir</button> #}
                 </form>
-                {% if entrada.section %}
+                {% if entrada.sections %}
                     <tr>
                         <td colspan="10">
                             <div class="col-sm-12">
@@ -55,16 +55,17 @@
                                      class="list-group small js-section-list col-sm-12"
                                      data-url="{{ path('admin_entrada_list_section', {id: entrada.id}) }}">
                                 </div>
-                                <div class="col-sm-12 text-center">
-                                    <a href="{{ path('entrada_agregar_seccion', { 'id': entrada.id }) }}"
-                                       class="btn btn-link btn-sm btn-modal">
-                                        <i class="fa fa-plus"> Sección</i>
-                                    </a>
-                                </div>
+
                             </div>
                         </td>
                     </tr>
                 {% endif %}
+                <div class="col-sm-12 text-center">
+                    <a href="{{ path('entrada_agregar_seccion', { 'id': entrada.id }) }}"
+                       class="btn btn-link btn-sm btn-modal">
+                        <i class="fa fa-plus"> Sección</i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

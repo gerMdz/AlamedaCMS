@@ -63,12 +63,12 @@ class SectionFormType extends AbstractType
             ])
             ->add('disponibleAt', null, [
                 'widget' => 'single_text',
-                'attr'=>[
-                    'class'=>'datetimepicker'
+                'attr' => [
+                    'class' => 'datetimepicker'
                 ]
             ])
-            ->add('columns', IntegerType::class,[
-                'label'=> 'Cantidad de columnas',
+            ->add('columns', IntegerType::class, [
+                'label' => 'Cantidad de columnas',
                 'required' => false
             ])
             ->add('disponibleHastaAt', DateTimeType::class, array(
@@ -88,22 +88,22 @@ class SectionFormType extends AbstractType
                 'required' => false,
 
             ])
-            ->add('orden', IntegerType::class,[
-                'label'=>'Orden en la página',
+            ->add('orden', IntegerType::class, [
+                'label' => 'Orden en la página',
                 'required' => false
-                ])
+            ])
             ->add('modelTemplate', EntityType::class, [
-                'class'=>ModelTemplate::class,
+                'class' => ModelTemplate::class,
                 'query_builder' => function (ModelTemplateRepository $er) {
                     return $er->findByTypeSection();
                 },
                 'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
-                'required'=>false
+                'required' => false
             ])
             ->add('contenido', CKEditorType::class, [
-                'required' => true,
+                'required' => false,
                 'config' => [
-                    'uiColor' => '#ffffff'],
+                    'uiColor' => '#fafafa'],
                 'attr' => [
                     'class' => 'form-control',
                 ],
@@ -123,13 +123,34 @@ class SectionFormType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
-            ->add('title', TextType::class, [
-                'label' => 'Titulo',
+            ->add('title', CKEditorType::class, [
                 'required' => false,
-                'help' => 'Opcional, título para la sección que se visualiza en la página '
+                'config' => [
+                    'uiColor' => '#fafafa'],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
-        ->add('llamada')
-            ; // ; Final del builder
+            ->add('isLinkExterno', CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
+            ])
+            ->add('linkPosting', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('linkRoute', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ]); // ; Final del builder
         /**
          * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
          */

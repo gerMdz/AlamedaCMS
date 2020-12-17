@@ -15,75 +15,78 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>
-                    Titulo <br/>
-                    Linkroute
-                </th>
-                <th>Sección<br/>
-                Página</th>
-                <th>
-                    Autor<br/>
-                    email
-                </th>
-                <th>Creado</th>
-                <th>Publicado?</th>
-                <th>Imagen</th>
-                <th>Acciones</th>
-            </tr>
+        <tr>
+            <th>
+                Titulo <br/>
+                Linkroute
+            </th>
+            <th>Sección<br/>
+                Página
+            </th>
+            <th>
+                Autor<br/>
+                email
+            </th>
+            <th>Creado</th>
+            <th>Publicado?</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
         </thead>
         <tbody>
-            {% for entrada in entradas %}
-                <tr>
-                    <td>
-                        {{ entrada.titulo }}<br/>
-                        {{ entrada.linkRoute }}
-                    </td>
-                    <td>
-                        S: {{ entrada.section }}  <br/>
-{#                        <small>({{ entrada.comentariosNoDeleted | length }} Comentarios)</small>#}
-                        {% if entrada.section.indexAlamedas is defined %}
-                            {% for index in entrada.section.indexAlamedas  %}
-                        i: {{ index.lema }}
+        {% for entrada in entradas %}
+            <tr>
+                <td>
+                    {{ entrada.titulo }}<br/>
+                    {{ entrada.linkRoute }}
+                </td>
+                <td>
+                    {% for section in entrada.sections %}
+                        S: {{ section }}  <br/>
+                        {# <small>({{ entrada.comentariosNoDeleted | length }} Comentarios)</small> #}
+                        {% if section.indexAlamedas is defined %}
+                            {% for index in section.indexAlamedas %}
+                                i: {{ index.lema }}
                             {% endfor %}
                         {% endif %}
 
-                        {% if entrada.section.principal is defined %}
-                            {% for principal in entrada.section.principal  %}
-                         P:       principal.title
+                        {% if section.principal is defined %}
+                            {% for principal in section.principal %}
+                                P:       principal.title
                             {% endfor %}
                         {% endif %}
-                    </td>
-                    <td>
-                        {{ entrada.autor }} --
-                        {{ entrada.autor.email }}
-                    </td>
-                    <td>
-                        {% if entrada.createdAt  %}
-                            {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}
-                        {% endif %}
-                    </td>
-                    <td>
-                        <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>
-                            {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
-                    </td>
-                    <td>
-                        <img class="article-img" alt="{{ base.lema }}"
-                             src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small')}}">
-                        <br/>
-                        {{ entrada.imageFilename }}
-                    </td>
-                    <td>
-                        <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
-                            <i class="fi fi-eye"></i> Ver
-                        </a>
-                        <br/>
-                        <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
-                            <i class="fi fi-page-edit"></i> Editar
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {{ entrada.autor }} --
+                    {{ entrada.autor.email }}
+                </td>
+                <td>
+                    {% if entrada.createdAt %}
+                        {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}
+                    {% endif %}
+                </td>
+                <td>
+                    <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>
+                    {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
+                </td>
+                <td>
+                    <img class="article-img" alt="{{ base.lema }}"
+                         src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small') }}">
+                    <br/>
+                    {{ entrada.imageFilename }}
+                </td>
+                <td>
+                    <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                        <i class="fi fi-eye"></i> Ver
+                    </a>
+                    <br/>
+                    <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
+                        <i class="fi fi-page-edit"></i> Editar
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

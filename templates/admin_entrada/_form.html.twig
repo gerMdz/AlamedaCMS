@@ -42,11 +42,17 @@
     <div class="col-sm-12">
         {{ form_row(entradaForm.titulo) }}
     </div>
-
-
-    <div class="col-sm-12">
+    <div class="col-sm-5">
         {{ form_row(entradaForm.linkRoute) }}
+    </div>
+    <div class="col-sm-5">
         {{ form_row(entradaForm.linkPosting) }}
+    </div>
+    <div class="col-sm-2 text-center form-check text-dark">
+        <label for="entrada_isLinkExterno">
+            Es Externo?<br/>
+            {{ form_row(entradaForm.isLinkExterno) }}
+        </label>
     </div>
     <div class="col-sm-12">
         {{ form_row(entradaForm.autor) }}

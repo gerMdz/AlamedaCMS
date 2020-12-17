@@ -1,60 +1,76 @@
 {{ form_start(sectionForm) }}
 
-{#    {{ form_widget(sectionForm) }}#}
-{#    {{ form_row(sectionForm.name) }}#}
-{#    {{ form_row(sectionForm.typeOrigin,#}
-{#        {#}
-{#        attr: {#}
-{#            'data-secondaty-url': path('admin_section_typeorigin_select'),#}
-{#            'class': 'js-section-form-origin'#}
-{#        }#}
-{#    }) #}
-{#    }}#}
+{# {{ form_widget(sectionForm) }} #}
+{# {{ form_row(sectionForm.name) }} #}
+{# {{ form_row(sectionForm.typeOrigin, #}
+{# { #}
+{# attr: { #}
+{# 'data-secondaty-url': path('admin_section_typeorigin_select'), #}
+{# 'class': 'js-section-form-origin' #}
+{# } #}
+{# }) #}
+{# }} #}
 <div class="js-secondary-target">
-{#     {%  if sectionForm.typeSecondary is defined %}#}
-{#         {{ form_row(sectionForm.typeSecondary) }}#}
-{#     {% endif %}#}
+    {# {%  if sectionForm.typeSecondary is defined %} #}
+    {# {{ form_row(sectionForm.typeSecondary) }} #}
+    {# {% endif %} #}
 </div>
 <div class="row">
-    <div class="col-sm-6">
-    {{ form_row(sectionForm.name) }}
+    <div class="col-sm-4">
+        {{ form_row(sectionForm.name) }}
     </div>
-    <div class="col-sm-6">
-    {{ form_row(sectionForm.title) }}
-    </div>
-</div>
-
-
-<div class="col-sm-12">
-{{ form_row(sectionForm.contenido) }}
-</div>
-
-<div class="col-sm-9">
-    {{ form_row(sectionForm.imageFile, {
-        attr: {
-            'placeholder': 'Seleccione una imagen para la entrada'
-        }
-    }) }}
-</div>
-<div class="col-sm-3">
-    {% if sectionForm.vars.data.imageFilename | default %}
-        <a href="{{ uploaded_asset(sectionForm.vars.data.imagePath) }}" target="_blank">
-            <img src="{{ sectionForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
-                 alt="Imagen">
-        </a>
-
-    {% endif %}
-</div>
-
     <div class="col-sm-2 text-center form-check text-dark">
-        {{ form_row(sectionForm.disponible) }}
-
+        <label for="section_disponible">
+            Disponible?<br/>
+            {{ form_row(sectionForm.disponible) }}
+        </label>
     </div>
+    <div class="col-sm-6">
+        {{ form_row(sectionForm.title) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        {{ form_row(sectionForm.contenido) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-5">
+        {{ form_row(sectionForm.linkRoute) }}
+    </div>
+    <div class="col-sm-5">
+        {{ form_row(sectionForm.linkPosting) }}
+    </div>
+    <div class="col-sm-2 text-center form-check text-dark">
+        <label for="entrada_isLinkExterno">
+            Es Externo?<br/>
+            {{ form_row(sectionForm.isLinkExterno) }}
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-9">
+        {{ form_row(sectionForm.imageFile, {
+            attr: {
+                'placeholder': 'Seleccione una imagen para la sección'
+            }
+        }) }}
+    </div>
+    <div class="col-sm-3">
+        {% if sectionForm.vars.data.imageFilename | default %}
+            <a href="{{ uploaded_asset(sectionForm.vars.data.imagePath) }}" target="_blank">
+                <img src="{{ sectionForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
+                     alt="Imagen">
+            </a>
+
+        {% endif %}
+    </div>
+</div>
 
 
-
-    {{ form_widget(sectionForm._token) }}
+{{ form_widget(sectionForm._token) }}
 
 <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
 {{ form_end(sectionForm, {'render_rest': true}) }}
-{#{{ form_end(sectionForm) }}#}
+{# {{ form_end(sectionForm) }} #}

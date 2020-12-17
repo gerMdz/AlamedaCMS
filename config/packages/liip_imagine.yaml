@@ -62,6 +62,12 @@ liip_imagine:
                     size:          [30, 30]
                     mode:          outbound
                     allow_upscale: true
+        squared_icon_70:
+            filters:
+                thumbnail:
+                    size:          [70, 70]
+                    mode:          outbound
+                    allow_upscale: true
 
 
 #

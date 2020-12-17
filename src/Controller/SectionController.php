@@ -96,10 +96,6 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-            if (!isset($form['typeSecondary'])) {
-                $section->setTypeSecondary(null);
-            }
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             if ($uploadedFile) {

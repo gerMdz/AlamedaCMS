@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
-use App\Entity\Section;
 use App\Entity\User;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -78,7 +77,7 @@ class EntradaType extends AbstractType
             ->add('disponibleHastaAt')
             ->add('eventoAt')
             ->add('linkPosting')
-            ->add('section')
+//            ->add('section')
             ->add('orden')
             ->add('encabezado', CheckboxType::class, [
                 'required' => false,
@@ -108,16 +107,16 @@ class EntradaType extends AbstractType
                     'class' => 'form-check-input ',
                 ],
             ])
-            ->add('sections',EntityType::class,[
-                'class'=>Section::class,
-                'multiple'=>true,
-                'expanded' => false,
-                'attr'=>[
-                    'class' => 'select2-enable form-check-input',
-                    'placeholder' => 'Seleccione '
-
-                ]
-            ])
+//            ->add('sections',EntityType::class,[
+//                'class'=>Section::class,
+//                'multiple'=>true,
+//                'expanded' => false,
+//                'attr'=>[
+//                    'class' => 'select2-enable form-check-input',
+//                    'placeholder' => 'Seleccione '
+//
+//                ]
+//            ])
             ->add('isPermanente',CheckboxType::class, [
                 'required' => false,
                 'label' => false,
@@ -127,7 +126,14 @@ class EntradaType extends AbstractType
                     'class' => 'form-check-input ',
                 ],
             ])
-
+            ->add('isLinkExterno',CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
+            ])
         ; // ; Final Builder
     }
 

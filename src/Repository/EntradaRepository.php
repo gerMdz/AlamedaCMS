@@ -69,13 +69,14 @@ class EntradaRepository extends ServiceEntityRepository
             ->addCriteria(self::createDisponibleForDisponibleAt());
 
         return $this->getOrCreateQueryBuilder(null)
+            ->leftJoin('e.sections','s' )
             ->orderBy('e.disponibleAt', 'ASC')
             ->andWhere(
                 '(e.disponibleAt <= :today AND e.disponibleHastaAt >= :today)
                 OR
                 (e.isPermanente = true)'
             )
-            ->andWhere('e.section = :section')
+            ->andWhere('s.id = :section')
             ->setParameter('today',new DateTime('now'))
             ->setParameter('section', $seccion)
             ->getQuery()
