@@ -112,6 +112,7 @@ class Section
 
     /**
      * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="sections")
+     * @ORM\OrderBy({"orden"="ASC"})
      */
     private $entrada;
 
