@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Section;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -76,15 +77,20 @@ class SectionRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Section
+
+    public function findOneBySomeField($section, $entrada): ?Section
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        try {
+            return $this->createQueryBuilder('s')
+                ->leftJoin('s.entrada', 'e')
+                ->andWhere('e.id = :entrada')
+                ->andWhere('s.id = :section')
+                ->setParameter('entrada', $entrada)
+                ->setParameter('section', $entrada)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+        }
     }
-    */
+
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Celebracion;
+use App\Entity\Entrada;
 use App\Entity\EntradaReference;
 use App\Entity\IndexAlameda;
 use App\Entity\Section;
@@ -146,7 +147,25 @@ class SectionController extends BaseController
     {
         $indexAlameda = $section->getIndexAlamedas();
 
+
         $section->removeIndexAlameda($indexAlameda[0]);
+
+        $entityManager->flush();
+        return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/entrada/{id}/{entrada}", name="admin_entrada_delete_section", methods={"DELETE"})
+     * @param Section $section
+     * @param Entrada $entrada
+     * @param SectionRepository $sectionRepository
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function deleteEntradaSection(Section $section, Entrada $entrada, SectionRepository $sectionRepository, EntityManagerInterface $entityManager): Response
+    {
+
+        $section->removeEntrada($entrada);
 
         $entityManager->flush();
         return new Response(null, 204);

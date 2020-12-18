@@ -53,6 +53,7 @@
                                 <h3>Secciones</h3>
                                 <div style="font-size: 0.9rem"
                                      class="list-group small js-section-list col-sm-12"
+                                     data-entrada = {{ entrada.id }}
                                      data-url="{{ path('admin_entrada_list_section', {id: entrada.id}) }}">
                                 </div>
 
@@ -74,7 +75,7 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('section_select') }}
-    <script src="{{ asset('js/admin_index_form.js') }}"></script>
+    <script src="{{ asset('js/admin_section_entrada_form.js') }}"></script>
 
     <script type="application/javascript">
         $(function () {
