@@ -28,7 +28,7 @@
 {% endblock %}
 {% block sections %}
 <section class="masthead masthead-oportunidades">
-        {% for section in principal.section %}
+        {% for section in principal.secciones %}
             {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}
             <div class="d-flex col-sm-12">
                 <hr class="my-auto flex-grow-1 divider col-sm-5">

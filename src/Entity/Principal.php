@@ -99,7 +99,7 @@ class Principal
     /**
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="principales")
      */
-    private $Secciones;
+    private $secciones;
 
 
     public function __construct()
@@ -360,13 +360,13 @@ class Principal
      */
     public function getSecciones(): Collection
     {
-        return $this->Secciones;
+        return $this->secciones;
     }
 
     public function addSeccione(Section $seccione): self
     {
-        if (!$this->Secciones->contains($seccione)) {
-            $this->Secciones[] = $seccione;
+        if (!$this->secciones->contains($seccione)) {
+            $this->secciones[] = $seccione;
         }
 
         return $this;
@@ -374,7 +374,7 @@ class Principal
 
     public function removeSeccione(Section $seccione): self
     {
-        $this->Secciones->removeElement($seccione);
+        $this->secciones->removeElement($seccione);
 
         return $this;
     }

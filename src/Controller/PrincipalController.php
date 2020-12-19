@@ -184,7 +184,7 @@ class PrincipalController extends BaseController
 
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
-            $principal->addSection($seccion);
+            $principal->addSeccione($seccion);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($principal);
             $entityManager->flush();

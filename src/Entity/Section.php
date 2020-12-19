@@ -117,7 +117,7 @@ class Section
     private $entrada;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="Secciones")
+     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="secciones")
      */
     private $principales;
 
