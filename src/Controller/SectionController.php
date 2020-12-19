@@ -6,6 +6,7 @@ use App\Entity\Celebracion;
 use App\Entity\Entrada;
 use App\Entity\EntradaReference;
 use App\Entity\IndexAlameda;
+use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\SectionFormType;
 use App\Repository\EntradaRepository;
@@ -158,15 +159,28 @@ class SectionController extends BaseController
      * @Route("/entrada/{id}/{entrada}", name="admin_entrada_delete_section", methods={"DELETE"})
      * @param Section $section
      * @param Entrada $entrada
-     * @param SectionRepository $sectionRepository
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function deleteEntradaSection(Section $section, Entrada $entrada, SectionRepository $sectionRepository, EntityManagerInterface $entityManager): Response
+    public function deleteEntradaSection(Section $section, Entrada $entrada, EntityManagerInterface $entityManager): Response
     {
 
         $section->removeEntrada($entrada);
 
+        $entityManager->flush();
+        return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/principal/{id}/{principal}", name="admin_principal_delete_section", methods={"DELETE"})
+     * @param Section $section
+     * @param Principal $principal
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function deletePrincipalSection(Section $section, Principal $principal, EntityManagerInterface $entityManager): Response
+    {
+        $section->removePrincipale($principal);
         $entityManager->flush();
         return new Response(null, 204);
     }

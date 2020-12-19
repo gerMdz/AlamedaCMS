@@ -12,6 +12,7 @@ use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -43,19 +44,28 @@ class AdminEntradaController extends AbstractController
      * @Route("/admin/entrada", name="admin_entrada_index")
      * @IsGranted("ROLE_ESCRITOR")
      * @param EntradaRepository $entradaRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function index(EntradaRepository $entradaRepository): Response
+    public function index(EntradaRepository $entradaRepository, PaginatorInterface $paginator, Request $request): Response
     {
         if ($this->isGranted('ROLE_EDITOR')) {
-            $entrada = $entradaRepository->findBy([], ['createdAt' => 'DESC']);
+//            $entrada = $entradaRepository->findBy([], ['createdAt' => 'DESC']);
+            $entrada = $entradaRepository->queryFindAllEntradas();
         } else {
             $user = $this->getUser();
-            $entrada = $entradaRepository->findByAutor($user);
+            $entrada = $entradaRepository->queryFindByAutor($user);
         }
 
-        return $this->render('admin_entrada/index.html.twig', [
-            'entradas' => $entrada,
+        $entradas = $paginator->paginate(
+            $entrada, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
+
+        return $this->render('admin_entrada/list.html.twig', [
+            'entradas' => $entradas,
         ]);
     }
 
@@ -70,7 +80,7 @@ class AdminEntradaController extends AbstractController
     {
         $this->isGranted('ROLE_EDITOR') ? $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion() : $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion($this->getUser());
 
-        return $this->render('admin_entrada/index.html.twig', [
+        return $this->render('list.html.twig', [
             'entradas' => $entrada,
         ]);
     }

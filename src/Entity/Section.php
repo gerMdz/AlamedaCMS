@@ -116,6 +116,11 @@ class Section
      */
     private $entrada;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="Secciones")
+     */
+    private $principales;
+
     public function __toString()
     {
         return $this->name;
@@ -125,6 +130,7 @@ class Section
     {
         $this->indexAlamedas = new ArrayCollection();
         $this->entrada = new ArrayCollection();
+        $this->principales = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -357,6 +363,33 @@ class Section
     public function removeEntrada(Entrada $entrada): self
     {
         $this->entrada->removeElement($entrada);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Principal[]
+     */
+    public function getPrincipales(): Collection
+    {
+        return $this->principales;
+    }
+
+    public function addPrincipale(Principal $principale): self
+    {
+        if (!$this->principales->contains($principale)) {
+            $this->principales[] = $principale;
+            $principale->addSeccione($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrincipale(Principal $principale): self
+    {
+        if ($this->principales->removeElement($principale)) {
+            $principale->removeSeccione($this);
+        }
 
         return $this;
     }

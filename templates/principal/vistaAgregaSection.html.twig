@@ -1,4 +1,4 @@
-{{ form_start(form, {'action' : path('entrada_agregar_seccion', { 'id': index.id })}) }}
+{{ form_start(form, {'action' : path('principal_agregar_seccion', { 'id': principal.id })}) }}
 <div class="modal-header panel-info">
     <h5 class="modal-title" id="exampleModalLabel">Agregar Sección </h5>
 </div>
@@ -22,6 +22,9 @@
             {{ form_widget(form._token) }}
         </div>
     </div>
+    <a class="btn-outline-primary" href="{{ path('admin_section_new') }}">
+        Crear Sección
+    </a>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

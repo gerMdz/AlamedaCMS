@@ -96,6 +96,11 @@ class Principal
      */
     private $ministerio;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="principales")
+     */
+    private $Secciones;
+
 
     public function __construct()
     {
@@ -103,6 +108,7 @@ class Principal
         $this->entradas = new ArrayCollection();
         $this->section = new ArrayCollection();
         $this->brote = new ArrayCollection();
+        $this->Secciones = new ArrayCollection();
     }
 
     public function __toString()
@@ -345,6 +351,30 @@ class Principal
     public function setMinisterio(?Ministerio $ministerio): self
     {
         $this->ministerio = $ministerio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSecciones(): Collection
+    {
+        return $this->Secciones;
+    }
+
+    public function addSeccione(Section $seccione): self
+    {
+        if (!$this->Secciones->contains($seccione)) {
+            $this->Secciones[] = $seccione;
+        }
+
+        return $this;
+    }
+
+    public function removeSeccione(Section $seccione): self
+    {
+        $this->Secciones->removeElement($seccione);
 
         return $this;
     }

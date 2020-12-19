@@ -8,37 +8,34 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead class=" text-primary">
-
                         <tr>
-                            <th>Id</th>
                             <th>Titulo</th>
                             <th>Contenido</th>
                             <th>LinkRoute</th>
                             <th>ImageFilename</th>
-                            <th>Likes</th>
-                            <th>Creada</th>
                             <th>Actualizada</th>
-                            <th>actions</th>
+                            <th><i class="fa fa-cogs"> </i> </th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for principal in principals %}
                             <tr>
-                                <td>{{ principal.id }}</td>
                                 <td>{{ principal.titulo }}</td>
-                                <td>{{ principal.contenido | u.truncate(15, '...') }}</td>
+                                <td>{{ principal.contenido | u.truncate(20, '...')  }}</td>
                                 <td>{{ principal.linkRoute }}</td>
                                 <td>{{ principal.imageFilename }}</td>
-                                <td>{{ principal.likes }}</td>
-                                <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>
-                                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
+                                    <a class="text-success" href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
                                         <i class="fas fa-eye"></i>
-                                        Ver</a>
-                                    <a href="{{ path('principal_edit', {'id': principal.id}) }}">
+                                        Ir a la Página</a><br/>
+                                    <a class="text-primary" href="{{ path('principal_edit', {'id': principal.id}) }}">
                                         <i class="fas fa-edit"></i>
-                                        Editar</a>
+                                        Editar Contenido </a><br/>
+                                    <a class="text-info" href="{{ path('principal_show', {'id': principal.id}) }}">
+                                        <i class="fas fa-list"> </i>
+                                        Ver datos
+                                        </a>
                                 </td>
                             </tr>
                         {% else %}

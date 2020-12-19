@@ -10,6 +10,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use DateTime;
 
+
 /**
  * @method Entrada|null find($id, $lockMode = null, $lockVersion = null)
  * @method Entrada|null findOneBy(array $criteria, array $orderBy = null)
@@ -27,15 +28,29 @@ class EntradaRepository extends ServiceEntityRepository
     //  * @return Entrada[] Returns an array of Entrada objects
     //  */
 
+    /**
+     * @param $user
+     * @return mixed
+     */
     public function findByAutor($user)
+    {
+        return $this->queryFindByAutor($user)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    /**
+     * @param $user
+     * @return int|mixed|string
+     */
+    public function queryFindByAutor($user)
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.autor = :val')
             ->setParameter('val', $user)
             ->orderBy('e.createdAt', 'DESC')
-//            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
         ;
     }
 
@@ -137,4 +152,16 @@ class EntradaRepository extends ServiceEntityRepository
     {
         return $qb ?: $this->createQueryBuilder('e');
     }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function queryFindAllEntradas(): QueryBuilder
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.createdAt', 'DESC')
+            ;
+    }
+
+
 }

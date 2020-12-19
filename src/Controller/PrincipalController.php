@@ -2,14 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\IndexAlameda;
 use App\Entity\Principal;
+use App\Form\IndexSectionType;
 use App\Form\PrincipalType;
+use App\Form\SectionAddType;
+use App\Repository\IndexAlamedaRepository;
 use App\Repository\PrincipalRepository;
+use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -112,6 +120,18 @@ class PrincipalController extends BaseController
     }
 
     /**
+     * @Route("/{id}/show", name="principal_show", methods={"GET"})
+     * @param Principal $principal
+     * @return Response
+     */
+    public function show(Principal $principal): Response
+    {
+        return $this->render('principal/show.html.twig', [
+            'principal' => $principal,
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="principal_delete", methods={"DELETE"})
      * @param Request $request
      * @param Principal $principal
@@ -127,5 +147,57 @@ class PrincipalController extends BaseController
         }
 
         return $this->redirectToRoute('principal_index');
+    }
+
+    /**
+     * @Route("/section/{id}", methods="GET", name="admin_principal_list_section")
+     * @param Principal $principal
+     * @return JsonResponse
+     */
+    public function getSectionPrincipal(Principal $principal): JsonResponse
+    {
+        return $this->json(
+            $principal->getSection(),
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
+     * @Route("/agregarSeccion/{id}", name="principal_agregar_seccion", methods={"GET", "POST"})
+     * @param Request $request
+     * @param Principal $principal
+     * @param EntityManagerInterface $entityManager
+     * @param SectionRepository $sectionRepository
+     * @param PrincipalRepository $principalRepository
+     * @return RedirectResponse|Response
+     */
+    public function agregarSeccion(Request $request, Principal $principal, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, PrincipalRepository $principalRepository)
+    {
+        $form = $this->createForm(SectionAddType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $id_section = $form->get('section')->getData();
+            $seccion = $sectionRepository->find($id_section);
+            $principal->addSection($seccion);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($principal);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('principal_show', [
+                'principal' => $principal,
+            ]);
+        }
+
+        return $this->render('principal/vistaAgregaSection.html.twig', [
+            'principal' => $principal,
+            'form' => $form->createView(),
+        ]);
+
     }
 }

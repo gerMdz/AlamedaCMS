@@ -131,21 +131,6 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="principal_show", methods={"GET"})
-     * @param Principal $principal
-     * @return Response
-     */
-    public function show(Principal $principal): Response
-    {
-        $vista = $principal->getLinkRoute();
-
-        return $this->render($vista.'.html.twig', [
-            'principal' => $principal,
-        ]);
-    }
-
-
 
     /**
      * @Route("/contacto", name="contacto")

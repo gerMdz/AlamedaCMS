@@ -96,16 +96,7 @@ class EntradaController extends AbstractController
             $entityManager->persist($entrada);
             $entityManager->flush();
 
-            if ($this->isGranted('ROLE_EDITOR')) {
-                $entrada = $entradaRepository->findBy([], ['createdAt' => 'DESC']);
-            } else {
-                $user = $this->getUser();
-                $entrada = $entradaRepository->findByAutor($user);
-            }
-
-            return $this->render('admin_entrada/index.html.twig', [
-                'entradas' => $entrada,
-            ]);
+            return $this->redirectToRoute('admin_entrada_index');
         }
 
         return $this->render('admin_entrada/vistaAgregaSection.html.twig', [

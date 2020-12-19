@@ -146,6 +146,9 @@ class Entrada
         $this->sections = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function __toString()
     {
         return $this->titulo;

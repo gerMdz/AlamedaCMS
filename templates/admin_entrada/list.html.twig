@@ -1,0 +1,118 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}Listado Entradas{% endblock %}
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Entradas</h4>
+            <p class="card-category">Listado </p>
+        </div>
+        <div class="card-body">
+            <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary btn-round">
+                Crear Entrada <span class="fa fa-plus-circle"></span>
+            </a>
+            <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">
+                Ver Publicados <span class="fa fa-eye"></span>
+            </a>
+            <div class="text-center align-items-center">
+        {{ knp_pagination_render(entradas) }}
+    </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                <tr>
+                    <th>
+                        Titulo <br/>
+                        Linkroute
+                    </th>
+                    <th>Sección<br/>
+                        Página
+                    </th>
+                    <th>
+                        Autor<br/>
+                        email
+                    </th>
+                    <th>Creado</th>
+                    <th>Publicado?</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entrada in entradas %}
+                    <tr>
+                        <td>
+                            {{ entrada.titulo }}<br/>
+                            {{ entrada.linkRoute }}
+                        </td>
+                        <td>
+                            {% for section in entrada.sections %}
+                                S: {{ section }}  <br/>
+                                {# <small>({{ entrada.comentariosNoDeleted | length }} Comentarios)</small> #}
+                                {% if section.indexAlamedas is defined %}
+                                    {% for index in section.indexAlamedas %}
+                                        i: {{ index.lema }}
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if section.principal is defined %}
+                                    {% for principal in section.principal %}
+                                        P:       principal.title
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {{ entrada.autor }} --
+                            {{ entrada.autor.email }}
+                        </td>
+                        <td>
+                            {% if entrada.createdAt %}
+                                {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>
+                            {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
+                        </td>
+                        <td>
+                            <img class="article-img" alt="{{ base.lema }}"
+                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small') }}">
+                            <br/>
+                            {{ entrada.imageFilename }}
+                        </td>
+                        <td>
+                            <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                                <i class="fi fi-eye"></i> Ver
+                            </a>
+                            <br/>
+                            <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
+                                <i class="fi fi-page-edit"></i> Editar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary btn-round">
+                Crear Entrada <span class="fa fa-plus-circle"></span>
+            </a>
+            <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">
+                Ver Publicados <span class="fa fa-eye"></span>
+            </a>
+            <div class="text-center align-items-center">
+        {{ knp_pagination_render(entradas) }}
+    </div>
+        </div>
+            {% endblock %}
+{% block jslocal %}
+    {{ parent() }}
+    <script>
+        $('#entrada').addClass('active');
+    </script>
+{% endblock %}
