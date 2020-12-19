@@ -231,7 +231,10 @@ class AdminEntradaController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="entrada_delete", methods={"DELETE"})
+     * @Route("/admin/entrada/{id}", name="entrada_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Entrada $entrada
+     * @return Response
      */
     public function delete(Request $request, Entrada $entrada): Response
     {
@@ -241,6 +244,6 @@ class AdminEntradaController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('entrada_index');
+        return $this->redirectToRoute('admin_entrada_index');
     }
 }
