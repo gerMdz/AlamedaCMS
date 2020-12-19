@@ -13,8 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class SectionFormModel
 {
     /**
-     * @Assert\NotBlank(message="Por favor ingrese una sección")
-     * @ORM\Entity("App\Entity\Section")
+     *
      */
     public $section;
 

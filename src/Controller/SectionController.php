@@ -181,6 +181,7 @@ class SectionController extends BaseController
     public function deletePrincipalSection(Section $section, Principal $principal, EntityManagerInterface $entityManager): Response
     {
         $section->removePrincipale($principal);
+        $section->setPrincipal(null);
         $entityManager->flush();
         return new Response(null, 204);
     }

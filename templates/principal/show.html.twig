@@ -55,9 +55,9 @@
                                     <h3>Secciones</h3>
                                     <div style="font-size: 0.9rem"
                                          class="list-group small js-section-list col-sm-12"
-                                         data-url="{{ path('admin_principal_list_section', {id: principal.id}) }}
-                                     data-principal = {{ principal.id }}
-                                ">
+                                         data-url="{{ path('admin_principal_list_section', {id: principal.id}) }}"
+                                     data-principal = "{{ principal.id }}"
+                                >
                                     </div>
                                     <div class="col-sm-12 text-center">
                                         <a href="{{ path('principal_agregar_seccion', { 'id': principal.id }) }}"
@@ -88,7 +88,7 @@
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
 
-    <script src="{{ asset('js/admin_index_form.js') }}"></script>
+    <script src="{{ asset('js/admin_section_principal_form.js') }}"></script>
 
     <script type="application/javascript">
         $(function () {

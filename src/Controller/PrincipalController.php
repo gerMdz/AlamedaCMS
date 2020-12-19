@@ -190,7 +190,7 @@ class PrincipalController extends BaseController
             $entityManager->flush();
 
             return $this->redirectToRoute('principal_show', [
-                'principal' => $principal,
+                'id' => $principal->getId(),
             ]);
         }
 
