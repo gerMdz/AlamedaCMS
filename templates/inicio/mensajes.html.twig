@@ -204,13 +204,42 @@
 {#        </div>#}
 
     </footer>
+
+    <div id="modal-02" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">
+                <i class="fas fa-times text-white"></i>
+            </span>
+                <span class="sr-only">
+                <i class="fas fa-window-close-o"></i>
+            </span>
+            </button>
+            <div class="modal-content">
+                <div class="modal-body  ">
+                    <img src="" class="img-fluid" alt="Iglesia de la Alameda">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        $(function () {
+            $('.img-modal').on("click", function () {
+                let img = this.src;
+                let modal = $('#modal-02')
+                $('.modal-body img').attr('src', img);
+                modal.modal();
+            });
+        })
+    </script>
 {% endblock %}
 {% block jslocal %}
     {# {{ encore_entry_script_tags('app') }} #}
     <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
+
     <script>
         $(document).ready(function () {
             $('.header').height($(window).height());
