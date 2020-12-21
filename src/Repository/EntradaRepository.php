@@ -85,7 +85,7 @@ class EntradaRepository extends ServiceEntityRepository
 
         return $this->getOrCreateQueryBuilder(null)
             ->leftJoin('e.sections','s' )
-            ->orderBy('e.disponibleAt', 'ASC')
+            ->orderBy('e.orden', 'ASC')
             ->andWhere(
                 '(e.disponibleAt <= :today AND e.disponibleHastaAt >= :today)
                 OR
