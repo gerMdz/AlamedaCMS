@@ -3,7 +3,7 @@
         <div class="card-body">
             <h2 class="card-title">{{ entrada.titulo }}</h2>
             <h3 class="card-text my-auto h5">
-                {{ entrada.contenido }}
+                {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
             </h3>
             {% if entrada.imagePath %}
             <img src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
