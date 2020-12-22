@@ -80,10 +80,14 @@
                             {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
                         </td>
                         <td>
+                        {% if (entrada.imageFilename != null) %}
                             <img class="article-img" alt="{{ base.lema }}"
                                  src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small') }}">
                             <br/>
                             {{ entrada.imageFilename }}
+                            {% else %}
+                            No tiene imagen
+                            {% endif %}
                         </td>
                         <td>
                             <a href="{{ path('entrada_show', {'id': entrada.id}) }}">

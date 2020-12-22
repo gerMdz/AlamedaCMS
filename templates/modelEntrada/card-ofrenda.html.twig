@@ -5,7 +5,7 @@
             <h3 class="card-text my-auto h5">
                 {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
             </h3>
-            {% if entrada.imagePath %}
+            {% if entrada.imageFilename != null %}
             <img src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
                  class="img-fluid card-img-bottom " alt="{{ base.siteName }}">
             {%  endif %}
