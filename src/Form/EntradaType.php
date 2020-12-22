@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
+use App\Entity\ModelTemplate;
 use App\Entity\User;
+use App\Repository\ModelTemplateRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -134,6 +136,22 @@ class EntradaType extends AbstractType
                     'class' => 'form-check-input ',
                 ],
             ])
+            ->add('footer', TextType::class, [
+                'label' => 'Pie de la entrada',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('modelTemplate', EntityType::class, [
+                'class' => ModelTemplate::class,
+                'query_builder' => function (ModelTemplateRepository $er) {
+                    return $er->findByTypeEntrada();
+                },
+                'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
+                'required' => false
+            ])
+
         ; // ; Final Builder
     }
 

@@ -1,0 +1,8 @@
+<section class="p5-5 mt-1 " id="second">
+    <div class="row text-center">
+        {% for entrada in section.entrada %}
+            {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' with { 'section':entrada } %}
+        {% endfor %}
+
+    </div>
+</section>

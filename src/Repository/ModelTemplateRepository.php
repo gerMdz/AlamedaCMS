@@ -37,6 +37,23 @@ class ModelTemplateRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return QueryBuilder Returns an array of ModelTemplate objects
+     */
+
+    public function findByTypeEntrada()
+    {
+        return $this->createQueryBuilder('m')
+            ->leftJoin('m.block', 'b')
+            ->andWhere('b.identifier = :val')
+            ->setParameter('val', 'entrada' )
+            ->orderBy('m.description', 'ASC')
+//            ->setMaxResults(10)
+            //           ->getQuery()
+//            ->getResult()
+            ;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?ModelTemplate

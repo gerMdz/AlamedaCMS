@@ -136,6 +136,11 @@ class Entrada
      */
     private $sections;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $footer;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
@@ -498,6 +503,18 @@ class Entrada
         if ($this->sections->removeElement($section)) {
             $section->removeEntrada($this);
         }
+
+        return $this;
+    }
+
+    public function getFooter(): ?string
+    {
+        return $this->footer;
+    }
+
+    public function setFooter(?string $footer): self
+    {
+        $this->footer = $footer;
 
         return $this;
     }

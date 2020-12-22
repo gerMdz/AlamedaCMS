@@ -1,0 +1,19 @@
+<div class="col-lg-3 col-md-6 mb-5 mx-auto">
+    <div class="card h-90">
+        <div class="card-body">
+            <h2 class="card-title">{{ entrada.titulo }}</h2>
+            <h3 class="card-text my-auto h5">
+                {{ entrada.contenido }}
+            </h3>
+            {% if entrada.imagePath %}
+            <img src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
+                 class="img-fluid card-img-bottom " alt="{{ base.siteName }}">
+            {%  endif %}
+        </div>
+        <div class="card-footer">
+            <h6>
+                {{ entrada.footer }}
+            </h6>
+        </div>
+    </div>
+</div>
