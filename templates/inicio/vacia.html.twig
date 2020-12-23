@@ -27,11 +27,12 @@
     </header>
 {% endblock %}
 {% block sections %}
-    <main role="main" class="bg-white">
+    <div role="main" class="container bg-white">
+
         {% for section in principal.section %}
             {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}
         {% endfor %}
-    </main>
+    </>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
