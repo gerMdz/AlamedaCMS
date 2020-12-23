@@ -2,7 +2,7 @@
     <div class="card h-90">
         <div class="card-body">
             <h2 class="card-title">{{ entrada.titulo }}</h2>
-            <h3 class="card-text my-auto h5">
+            <h3 class="card-text">
                 {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
             </h3>
             {% if entrada.imageFilename != null %}
