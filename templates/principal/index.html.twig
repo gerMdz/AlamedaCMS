@@ -22,7 +22,7 @@
         {% for principal in principals %}
             <tr>
                 <td>{{ principal.id }}</td>
-                <td>{{ principal.titulo }}</td>
+                <td>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }} </td>
                 <td>{{ principal.contenido | u.truncate(15, '...')  }}</td>
                 <td>{{ principal.linkRoute }}</td>
                 <td>{{ principal.imageFilename }}</td>

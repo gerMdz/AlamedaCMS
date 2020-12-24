@@ -3,7 +3,7 @@
                  background-repeat: no-repeat; background-size:cover;">
     <div class="container">
         <div class="row">
-            {% for entrada in section.entradassection %}
+            {% for entrada in entradas %}
                 {% if (entrada.orden == 1) %}
                     <div class="col-lg-6 align-self-center pr-5 ">
                         <header class="mb-5 text-left fuente-arial-nova">
@@ -20,10 +20,9 @@
                         </header>
                     </div>
                 {% else %}
-                    <div class="col-lg-6 align-items-center pl-5">
-                        <!-- SVG Tablet Mockup -->
+                    <div class="col-lg-6 align-items-center pl-5 ml-auto ">
                         <div class="mx-auto bg-white p-5 text-center">
-                            <h4 class="text-alameda text-center text-uppercase text-realce-alameda fuente-arial-nova">
+                            <h4 class="text-alameda text-center text-uppercase text-realce-alameda">
 
                                 {% if (entrada.isSinTitulo != 1) %}
                                     {{ entrada.titulo }}
@@ -36,7 +35,18 @@
                                     {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto } %}
                                 {% endif %}
                             </p>
-
+                            {% if (entrada.footer) %}
+                                <a class="btn-alameda"
+                            {% if (entrada.isLinkExterno) %}
+                                href="{{ entrada.linkPosting }}"
+                                target="_blank"
+                            {% else %}
+                                href="{{ path(entrada.linkRoute) }}"
+                            {% endif %}
+                            >
+                                    {{ entrada.footer }}
+                                </a>
+                                {% endif %}
                         </div>
 
 

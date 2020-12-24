@@ -72,6 +72,11 @@ class PrincipalController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $principal->setImageFilename($newFilename);
             }
+            if($principal->getLinkRoute() != null){
+                $principal->setLinkRoute($principal->getTitulo());
+            }else{
+                $principal->setLinkRoute($principal->getLinkRoute());
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($principal);
             $entityManager->flush();
@@ -104,10 +109,16 @@ class PrincipalController extends BaseController
 
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
+            $linkRoute = $form['linkRoute']->getData();
             if ($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $principal->getImageFilename());
                 $principal->setImageFilename($newFilename);
             }
+
+            if($linkRoute){
+                $principal->setLinkRoute($linkRoute);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('principal_index');
@@ -157,7 +168,7 @@ class PrincipalController extends BaseController
     public function getSectionPrincipal(Principal $principal): JsonResponse
     {
         return $this->json(
-            $principal->getSection(),
+            $principal->getSecciones(),
             200,
             [],
             [

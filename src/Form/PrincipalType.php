@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ModelTemplate;
 use App\Entity\Principal;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -18,8 +19,24 @@ class PrincipalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo')
-            ->add('contenido')
+            ->add('titulo',CKEditorType::class, [
+        'required' => false,
+        'config' => [
+            'uiColor' => '#ffffff'],
+        'attr' => [
+            'required' => false,
+            'class' => 'form-control',
+        ],
+    ])
+            ->add('contenido',CKEditorType::class, [
+                'required' => false,
+                'config' => [
+                    'uiColor' => '#ffffff'],
+                'attr' => [
+                    'required' => false,
+                    'class' => 'form-control',
+                ],
+            ])
             ->add('linkRoute')
             ->add('imageFile', FileType::class, [
                 'mapped' => false,

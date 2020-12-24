@@ -46,7 +46,7 @@ class Principal
 
     /**
      * @ORM\Column(type="string", length=150, unique=true, nullable=true)
-     * @Gedmo\Slug(fields={"titulo"})
+     * @Gedmo\Slug(fields={"linkRoute"})
      */
     private $linkRoute;
 
