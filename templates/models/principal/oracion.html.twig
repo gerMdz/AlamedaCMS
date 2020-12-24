@@ -1,0 +1,63 @@
+{% extends 'base_material_kit.twig' %}
+{% block title %} Pedidos de Oración - {{ base.siteName }}  {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        img.resize {
+            width: 10%; /* you can use % */
+            height: auto;
+        }
+
+
+    </style>
+{% endblock %}
+{% block sslocal %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+
+{% endblock %}
+
+{% block header %}
+    {% include 'inicio/_nav.html.twig' %}
+    <header class="masthead masthead-oportunidades">
+
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-10 align-self-end">
+                    <a class="btn btn-blue btn-round btn-xl js-scroll-trigger "
+                       href="https://forms.gle/DuJvVG374UMNjCuv7"
+                       target="_blank">
+                        Podés hacerlo desde aqui
+                    </a>
+                    <h1 class="text-uppercase text-realce-alameda">
+                        <small class="text-black">Motivos de </small> Oración
+                    </h1>
+
+
+
+
+
+
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-black-75 font-weight-light mb-5"><b>Ningún</b> problema es demasiado grande para
+                        Dios,<br/>
+                        ni insignificante para su cuidado <b>Paternal</b>. <br/>
+                        Dejanos <b>tu motivo</b> de oración específico, <br/>
+                        tenemos un equipo de personas que <b>estará orando</b> por vos.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <hr class="m-0">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

@@ -14,8 +14,6 @@
 
 {% block content %}
     <div class="container">
-    <div class="mt-5"><span><hr/></span></div>
-    <div class="mt-5"><span><hr/></span></div>
     {% for message in app.flashes('error') %}
         <div class="alert alert-danger">
             {{ message }}
@@ -23,7 +21,7 @@
     {% endfor %}
     </div>
     <div class="container">
-        <h4>Edición de {{ entrada.titulo }} desde {{ ip }}</h4>
+        <h4>Edición de {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }} desde {{ ip }}</h4>
         <hr>
         <div class="row">
             <div class="col-sm-8">

@@ -21,9 +21,12 @@ class EntradaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo', TextType::class, [
+            ->add('titulo', CKEditorType::class, [
                 'required' => true,
+                'config' => [
+                    'uiColor' => '#ffffff'],
                 'attr' => [
+                    'required' => false,
                     'class' => 'form-control',
                 ],
             ])

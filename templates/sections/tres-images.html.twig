@@ -9,10 +9,7 @@
                     <div class="col-sm-12 mr-0 left-n5">
                                 {% for entrada in entradas %}
                                     {% if (entrada.orden == 1) %}
-
                                         <div class="card shadow-none">
-
-
                                             <div class="card-img">
                                                 <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
                                                      alt="{{ app.request.baseUrl }}"

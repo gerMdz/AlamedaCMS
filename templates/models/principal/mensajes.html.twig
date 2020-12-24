@@ -1,0 +1,248 @@
+{% extends 'base_material_kit.twig' %}
+{% block title %} {{ principal.titulo | upper }}  {% endblock %}
+{% block sslocal %}
+
+    <link href="{{ asset('css-misc/mdb.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('stream-ui-kit/assets/css/styles.min.css') }}" rel="stylesheet">
+    <style>
+        strong {
+            font-weight: 400 !important
+        }
+
+        .card-text {
+            font-size: 1.1em !important;
+            font-weight: 600 !important;
+        }
+
+        /*.header {*/
+        /*    background-image: url('images/series/cabecera_index.jpg');*/
+        /*    background-size: cover;*/
+        /*    background-position: center;*/
+        /*    position: relative;*/
+        /*}*/
+
+        /*.overlay {*/
+        /*    position: absolute;*/
+        /*    min-height: 100%;*/
+        /*    min-width: 100%;*/
+        /*    left: 0;*/
+        /*    top: 0;*/
+        /*    background: rgba(255, 255, 255, 0.6);*/
+        /*}*/
+
+        img.resize {
+            width: 10%; /* you can use % */
+            height: auto;
+        }
+
+        .btn-xl {
+            padding: 1.25rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none currentcolor;
+            border-radius: 10rem;
+        }
+
+        .bg-fam {
+            /*background: #fafafa;*/
+            box-shadow: inset 0 0 .625rem rgba(0, 0, 0, .1), inset 0 0 2.188rem rgba(0, 0, 0, .03);
+        }
+
+        .position-relative {
+            position: relative !important;
+        }
+
+        .mt-n6, .my-n6 {
+            margin-top: -5rem !important;
+        }
+
+        .card-a {
+            -webkit-box-shadow: 0 0 !important;
+            box-shadow: 0 0 !important;
+        }
+
+        .card {
+            -webkit-box-shadow: 0 0 !important;
+            box-shadow: 0 0 !important;
+        }
+
+        .bottom-0 {
+            position: absolute;
+            left: 5%;
+            bottom: 1%;
+            width: 90%;
+            /*background-color: red;*/
+            /*color: white;*/
+            text-align: center;
+        }
+
+        .middle-0 {
+            /*top: 25%;*/
+            position: relative;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    <header>
+        {% include 'inicio/_nav.html.twig' %}
+        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark"
+                 data-parallax="true"
+                 style="background-image: url({{ principal.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}); background-repeat: repeat-y ; background-attachment: fixed">
+            <!-- Promo Content -->
+            <div class="container u-overlay__inner u-ver-center u-content-space">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <div class="site-heading p-5">
+                                <img src="{{ asset('/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}"
+                                     style="max-height: 150px"
+                                     class="img-fluid" alt="Iglesia de la Alameda">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Promo Content -->
+        </section>
+    </header>
+
+{% endblock %}
+{% block sections %}
+
+    <main role="main" class="bg-white">
+        <section class="a-content-space-medium">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 mb-2 mb-lg-2 pl-lg-2 ">
+                        <h1 class="mb-3">
+                            {{ principal.titulo }}
+                        </h1>
+                        <p>
+                            {{ principal.contenido | raw }}
+
+                        </p>
+                    </div>
+                    <div class="col-lg-6 align-self-center">
+                        <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
+                             src="{{ principal.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                             alt="<?php echo $lemaSinEspacios ?>">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Charlas -->
+        {% for section in principal.section %}
+        <section class="a-content-space-medium bg-fam text-center">
+            <div class="container">
+                <div class="row">
+
+
+                        {% for entrada in section.entrada %}
+                            <!--                charla 1-->
+                            <div class="col-md-4 mb-2 mx-auto   ">
+                                <!--                                        <div class="card h-100"> -->
+                                <div class="card card-a h-100 overflow-hidden">
+                                    <div class="position-relative">
+                                        <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                                             class="card-img-top img-modal"
+                                             data-toggle="modal" data-target="#modal-02"
+                                             alt="{{ base.lema }}">
+                                    </div>
+                                    <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
+                                        <h5 class="card-title text-uppercase">
+                                            {{ entrada.titulo }}
+                                        </h5>
+                                        <div class="middle-0">
+                                            <i class="fas fa-quote-left mr-5"></i><br/>
+                                            {{ entrada.contenido | raw }}
+                                            <i class="fas fa-quote-right ml-5"></i>
+                                        </div>
+                                        <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                                            {% for referencia in entrada.entradaReferences %}
+                                            <a href="/descargas/referencias/{{ referencia.filename}}"
+{#                                            <a href="{{ referencia. }}"#}
+                                               target="_blank"
+                                               class="card-link text-center">
+                                                <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                                <span class="text-alameda btn-icon ">Notas</span><br/>
+                                            </a>
+                                            {% endfor %}
+                                            <a href="{{ entrada.linkPosting }}" class="card-link text-center"
+                                               target="_blank">
+                                                <i class="fab fa-youtube fa-fw mr-1"></i>
+                                                <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    <!--                </div>-->
+                    <!--                fin charla 1-->
+
+
+
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+    </main>
+    <footer class="footer">
+{#        <div class="card-body">#}
+{#            <h4 class="text-darker card-text text-center">Ver series anteriores </h4>#}
+{#            <div class="col-sm-2 mx-auto text-center">#}
+{#                <a href="notas-oraciones-audaces.php" class="btn btn-xl btn-primary"> Oraciones Audaces</a>#}
+{#            </div>#}
+{#        </div>#}
+
+    </footer>
+
+    <div id="modal-02" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">
+                <i class="fas fa-times text-white"></i>
+            </span>
+                <span class="sr-only">
+                <i class="fas fa-window-close-o"></i>
+            </span>
+            </button>
+            <div class="modal-content">
+                <div class="modal-body  ">
+                    <img src="" class="img-fluid" alt="Iglesia de la Alameda">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('.img-modal').on("click", function () {
+                let img = this.src;
+                let modal = $('#modal-02')
+                $('.modal-body img').attr('src', img);
+                modal.modal();
+            });
+        })
+    </script>
+{% endblock %}
+{% block jslocal %}
+    {# {{ encore_entry_script_tags('app') }} #}
+    <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.header').height($(window).height());
+        })
+    </script>
+{% endblock %}

@@ -106,7 +106,7 @@ class ModelTemplateController extends AbstractController
      */
     public function delete(Request $request, ModelTemplate $modelTemplate): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$modelTemplate->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $modelTemplate->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($modelTemplate);
             $entityManager->flush();
@@ -123,39 +123,45 @@ class ModelTemplateController extends AbstractController
      * @param EntityManagerInterface $em
      * @return JsonResponse
      */
-    public function registerTemplate(string $pathTemplate, TypeBlockRepository $blockRepository,ModelTemplateRepository $modelTemplateRepository, EntityManagerInterface $em): JsonResponse
+    public function registerTemplate(string $pathTemplate, TypeBlockRepository $blockRepository, ModelTemplateRepository $modelTemplateRepository, EntityManagerInterface $em): JsonResponse
     {
-        $loader = $pathTemplate .'/modelEntrada';
-        $finder = new Finder();
-        $finder->in($loader);
-        $finder->files()->name('*.twig');
+        $models = [
+            $pathTemplate . '/modelEntrada' => 'entrada',
+            $pathTemplate . '/sections' => 'seccion',
+            $pathTemplate . '/models/principal' => 'page'
+        ];
         $temp = [];
-        foreach ($finder as $load){
-            $explodurl = explode($loader,$load->getPathname());
-            $string = end($explodurl);
-            $string = str_replace("/", '', $string);
-            $explodstring = explode('.',$string);
-            $data = $explodstring[0];
-            $mt = $modelTemplateRepository->findBy(['identifier'=>$data]);
-            if(!$mt){
+        foreach ($models  as $key => $value){
+            $finder = new Finder();
+            $finder->in($key);
+            $finder->files()->name('*.twig');
 
-            $template = new ModelTemplate();
-            $block = $blockRepository->findBy(['identifier'=>'entrada']);
-            $template->setBlock($block[0]);
-            $template->setDescription($string);
-            $template->setName($string);
-            $template->setIdentifier($data);
+            foreach ($finder as $load) {
+                $explodurl = explode($key, $load->getPathname());
+                $string = end($explodurl);
+                $string = str_replace("/", '', $string);
+                $explodstring = explode('.', $string);
+                $data = $explodstring[0];
+                $mt = $modelTemplateRepository->findBy(['identifier' => $data]);
+                if (!$mt) {
+                    $template = new ModelTemplate();
+                    $block = $blockRepository->findBy(['identifier' => $value]);
+                    $template->setBlock($block[0]);
+                    $template->setDescription($string);
+                    $template->setName($string);
+                    $template->setIdentifier($data);
 
-                $em->persist($template);
-                $em->flush();
-            }else{
-                $string = $string . " ya existe";
+                    $em->persist($template);
+                    $em->flush();
+                } else {
+                    $string = $string . " ya existe";
+                }
+
+
+                array_push($temp, $string);
             }
 
-
-            array_push($temp, $string  ) ;
         }
-
 
         return new JsonResponse($temp);
 
