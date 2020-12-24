@@ -1,0 +1,20 @@
+<div class="col-md-4">
+    <div class="pasos h-100">
+        <div class="card card-plain bg-white h-100">
+            <div class="col-sm-4 mx-auto text-center img-20">
+                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                     alt="{{ {{ base.siteName }} }}"
+                     class="img-raised rounded-circle img-fluid  ">
+            </div>
+            <h4 class="card-title text-center text-alameda sub-img px-1 fuente-normal">
+                {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                <br>
+            </h4>
+            <div class="card-body">
+                <p class="card-description text-center text-dark fuente-arial-nova">
+                    {{ entrada.contenido  | replace({'<p>':'', '</p>':''}) | raw }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

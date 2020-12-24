@@ -32,7 +32,6 @@ class ModelTemplate
 
     /**
      * @ORM\Column(type="string", length=150, unique=true)
-     * @Gedmo\Slug(fields={"name"})
      */
     private $identifier;
 

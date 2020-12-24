@@ -16,6 +16,7 @@ services:
 
         bind:
             $uploadsPath: '%kernel.project_dir%/public/uploads'
+            $pathTemplate: '%kernel.project_dir%/templates'
             $isDebug: '%kernel.debug%'
             $publicUploadsFilesystem: '@oneup_flysystem.public_uploads_filesystem_filesystem'
             $privateUploadsFilesystem: '@oneup_flysystem.private_uploads_filesystem_filesystem'
