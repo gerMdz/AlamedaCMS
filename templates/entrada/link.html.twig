@@ -27,7 +27,8 @@
                         {# <div class="col-sm-12"> #}
                         {# <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios #}
                         {# </h3> #}
-                        {% if(entrada.comentariosNoDeleted) %}
+
+                                                {% if(entrada.comentariosNoDeleted) %}
                             {# <div class="row"> #}
                             <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
                                 {# <span class="commenter-name">{{ comentario.autor }}</span> #}
@@ -52,7 +53,10 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="show-article-container p-3 mt-4">
-                        <h4><strong class="ml-5"> {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }} </strong>
+                        <h4>
+                            <strong class="ml-5">
+                                 {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                            </strong>
 {#                            <small>#}
 {#                                Le gustó a:#}
 {#                                <span class="js-like-entrada-count">{{ entrada.likes }}</span>#}
@@ -332,7 +336,7 @@
             }
 
             return esVisible;
-        };
+        }
 
         function muestra1(elemento1, elemento2) {
             $(elemento1).show()

@@ -9,9 +9,14 @@
                     <table class="table">
                         <thead class=" text-primary">
                         <tr>
-                            <th>Titulo</th>
+                            <th>
+                                Titulo<br/>
+                                LinkRoute
+                            </th>
                             <th>Contenido</th>
-                            <th>LinkRoute</th>
+                            <th>
+                                Secciones
+                            </th>
                             <th>ImageFilename</th>
                             <th>Actualizada</th>
                             <th><i class="fa fa-cogs"> </i> </th>
@@ -20,9 +25,16 @@
                         <tbody>
                         {% for principal in principals %}
                             <tr>
-                                <td>{{ principal.titulo }}</td>
+                                <td>
+                                    {{ principal.titulo }}<br/>
+                                    {{ principal.linkRoute }}
+                                </td>
                                 <td>{{ principal.contenido | u.truncate(20, '...')  }}</td>
-                                <td>{{ principal.linkRoute }}</td>
+                                <td>
+                                    {% for seccion in principal.secciones  %}
+                                        {{ seccion.name }} <br/>
+                                    {% endfor %}
+                                </td>
                                 <td>{{ principal.imageFilename }}</td>
                                 <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>
