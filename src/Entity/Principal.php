@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\CssClass;
 use App\Entity\Traits\ImageTrait;
 use App\Repository\PrincipalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,6 +20,7 @@ class Principal
 
     use TimestampableEntity;
     use ImageTrait;
+    use CssClass;
 
     /**
      * @ORM\Id()

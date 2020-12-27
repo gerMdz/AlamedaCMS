@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\CssClass;
 use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
@@ -20,6 +21,7 @@ class Entrada
     use TimestampableEntity;
     use OfertTrait;
     use LinksTrait;
+    use CssClass;
 
     /**
      * @ORM\Id()

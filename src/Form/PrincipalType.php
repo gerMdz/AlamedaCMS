@@ -19,16 +19,16 @@ class PrincipalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo',CKEditorType::class, [
-        'required' => false,
-        'config' => [
-            'uiColor' => '#ffffff'],
-        'attr' => [
-            'required' => false,
-            'class' => 'form-control',
-        ],
-    ])
-            ->add('contenido',CKEditorType::class, [
+            ->add('titulo', CKEditorType::class, [
+                'required' => false,
+                'config' => [
+                    'uiColor' => '#ffffff'],
+                'attr' => [
+                    'required' => false,
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('contenido', CKEditorType::class, [
                 'required' => false,
                 'config' => [
                     'uiColor' => '#ffffff'],
@@ -56,39 +56,38 @@ class PrincipalType extends AbstractType
             ->add('likes')
             ->add('createdAt', DateTimeType::class, array(
                 'widget' => 'single_text',
-                'required'=>false,
+                'required' => false,
                 'html5' => true,
                 'label' => 'Creado',
                 'format' => 'dd-MM-yyyy HH:mm',
-                'attr'=>[
-                    'readonly'=>true
+                'attr' => [
+                    'readonly' => true
                 ]
             ))
-
             ->add('updatedAt', DateTimeType::class, array(
-        'widget' => 'single_text',
-        'required'=>false,
-        'html5' => true,
-        'label' => 'Editado',
-        'format' => 'dd-MM-yyyy HH:mm',
-        'attr'=>[
-            'readonly'=>true
-        ]
-    ))
+                'widget' => 'single_text',
+                'required' => false,
+                'html5' => true,
+                'label' => 'Editado',
+                'format' => 'dd-MM-yyyy HH:mm',
+                'attr' => [
+                    'readonly' => true
+                ]
+            ))
             ->add('autor', HiddenType::class, [
-                'property_path'=>'autor.id',
-                'attr'=>[
-                    'class'=>'hidden'
+                'property_path' => 'autor.id',
+                'attr' => [
+                    'class' => 'hidden'
                 ]
             ])
             ->add('principal')
-            ->add('modelTemplate', EntityType::class,[
-                'class'=>ModelTemplate::class,
-                'required'=>false,
-                'label'=>'Template',
-                'placeholder'=>'Seleccione el modelo principal de la página',
-            ])
-        ;
+            ->add('cssClass')
+            ->add('modelTemplate', EntityType::class, [
+                'class' => ModelTemplate::class,
+                'required' => false,
+                'label' => 'Template',
+                'placeholder' => 'Seleccione el modelo principal de la página',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

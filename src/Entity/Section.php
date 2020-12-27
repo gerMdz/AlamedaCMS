@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\CssClass;
 use App\Entity\Traits\ImageTrait;
 use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
@@ -20,6 +21,7 @@ class Section
     use OfertTrait;
     use ImageTrait;
     use LinksTrait;
+    use CssClass;
 
     /**
      * @ORM\Id()
@@ -35,10 +37,6 @@ class Section
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $cssClass;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -156,17 +154,7 @@ class Section
         return $this;
     }
 
-    public function getCssClass(): ?string
-    {
-        return $this->cssClass;
-    }
 
-    public function setCssClass(?string $cssClass): self
-    {
-        $this->cssClass = $cssClass;
-
-        return $this;
-    }
 
     public function getIdentificador(): ?string
     {
