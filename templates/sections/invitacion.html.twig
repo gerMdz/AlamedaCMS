@@ -25,7 +25,7 @@
                             <h4 class="text-alameda text-center text-uppercase text-realce-alameda">
 
                                 {% if (entrada.isSinTitulo != 1) %}
-                                    {{ entrada.titulo }}
+                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                 {% endif %}
                             </h4>
                             <hr/>
