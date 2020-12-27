@@ -1,5 +1,5 @@
 {% extends 'base_material_kit.twig' %}
-{% block title %} {{ principal.titulo | upper | replace({'<p>':'', '</p>':''}) | raw }}  {% endblock %}
+{% block title %} {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}  {% endblock %}
 {% block sslocal %}
 
     <link href="{{ asset('css-misc/mdb.min.css') }}" rel="stylesheet">
