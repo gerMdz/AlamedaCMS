@@ -157,11 +157,11 @@
                                     </div>
                                     <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
                                         <h5 class="card-title text-uppercase">
-                                            {{ entrada.titulo }}
+                                            {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                         </h5>
                                         <div class="middle-0">
                                             <i class="fas fa-quote-left mr-5"></i><br/>
-                                            {{ entrada.contenido | raw }}
+                                            {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
                                             <i class="fas fa-quote-right ml-5"></i>
                                         </div>
                                         <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
