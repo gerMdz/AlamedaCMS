@@ -29,10 +29,8 @@
                         {# </h3> #}
                         {% if(entrada.comentariosNoDeleted) %}
                             {# <div class="row"> #}
-
                             <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
                                 {# <span class="commenter-name">{{ comentario.autor }}</span> #}
-
                                 {% include('comentario/nota.html.twig') %}
                                 {# <small>realizado {{ comentario.createdAt|ago }}</small> #}
                                 {# {% if comentario.isDeleted %} #}
