@@ -11,7 +11,7 @@
                             {% if (entrada.isSinTitulo != 1) %}
                                 <h2 class="h3 text-left fuente-arial-nova">
 
-                                    {{ entrada.titulo }}
+                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                 </h2>
                             {% endif %}
                             <span class="text-black-75 text-left">
