@@ -1,6 +1,6 @@
 {% extends 'base_material_kit.twig' %}
 
-{% block title %}Vista {{ entrada.titulo }}{% endblock %}
+{% block title %}{{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     {# {{ encore_entry_link_tags('app') }} #}
@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="show-article-container p-3 mt-4">
-                        <h4><strong class="ml-5"> {{ entrada.titulo }} </strong>
+                        <h4><strong class="ml-5"> {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }} </strong>
 {#                            <small>#}
 {#                                Le gustó a:#}
 {#                                <span class="js-like-entrada-count">{{ entrada.likes }}</span>#}
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-lg-6 align-self-center">
                     <h5 class="card-title text-uppercase">
-                        {{ entrada.titulo }}
+                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                     </h5>
                     <div class="middle-0">
                         <i class="fas fa-quote-left mr-5"></i><br/>
