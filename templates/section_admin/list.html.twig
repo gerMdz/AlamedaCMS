@@ -17,21 +17,33 @@
                     <table class="table">
                         <thead class=" text-primary">
                         <tr>
-                            <th>Name</th>
-                            <th>Clase</th>
+                            <th>Nombre</th>
+                            <th>Ubicación</th>
                             <th>Descripción</th>
-                            <th>Columnas</th>
+                            <th>Entradas</th>
                             <th>Disponible</th>
-                            <th>Acciones</th>
+                            <th><i class="fa fa-cogs"> </i> </th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for section in sections %}
                             <tr>
                                 <td>{{ section.name }}</td>
-                                <td>{{ section.cssClass }}</td>
+                                <td>
+                                    {% for principal in section.principales %}
+                                        {{ principal.linkRoute }} <br/>
+                                    {% endfor %}
+                                    {% for index in section.indexAlamedas %}
+                                        <i class="fa fa-check-square"> </i> Index
+                                    {% endfor %}
+
+                                </td>
                                 <td>{{ section.description | u.truncate(20, '...') }}</td>
-                                <td>{{ section.columns }}</td>
+                                <td>
+                                    {% for entrada in section.entrada %}
+                                        {{ entrada.titulo }} <br/>
+                                    {% endfor %}
+                                </td>
                                 <td>
                                     <span class="fa fa-{{ section.disponible ? 'check text-success' : 'times text-danger' }}"></span>
                                 </td>
