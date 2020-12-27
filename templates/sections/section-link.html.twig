@@ -4,44 +4,19 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="show-article-container p-3 mt-4">
-                    {# <div class="col-sm-12"> #}
-                    {# <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios #}
-                    {# </h3> #}
                     {% if(entrada.comentariosNoDeleted) %}
-                        {# <div class="row"> #}
-
                         <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
-                            {# <span class="commenter-name">{{ comentario.autor }}</span> #}
-
                             {% include('comentario/nota.html.twig') %}
-                            {# <small>realizado {{ comentario.createdAt|ago }}</small> #}
-                            {# {% if comentario.isDeleted %} #}
-                            {# <span class="fas fa-times-circle text-danger"></span> Borrado #}
-                            {# {% endif %} #}
-                            {# <br/> #}
-                            {# <span class="comment"> {{ comentario.contenido }}</span> #}
                             <hr class="border-bottom"/>
                         </div>
-
-                        {# </div> #}
-                        {# </div> #}
                     {% endif %}
-                    {# </div> #}
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="show-article-container p-3 mt-4">
                     <h4><strong class="ml-5"> {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }} </strong>
-{#                        <small>#}
-{#                            Le gustó a:#}
-{#                            <span class="js-like-entrada-count">{{ entrada.likes }}</span>#}
-{#                            <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"#}
-{#                               class="fas fa-heart like-entrada js-like-entrada">#}
-{#                            </a>#}
-{#                        </small>#}
                     </h4>
                 </div>
             </div>
@@ -84,11 +59,3 @@
         {% endfor %}
     </div>
 </section>
-
-
-{#       <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>#}
-{#        <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>#}
-{#    <script src="{{ asset('js/entrada_show.js') }}"></script>#}
-
-{#    <script type="application/javascript" src="{{ asset('js/nota.js') }}"></script>#}
-

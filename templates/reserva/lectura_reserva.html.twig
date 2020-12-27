@@ -38,8 +38,14 @@
                                 <h4 class="card-title "> Lectura reserva </h4>
                                 <p class="card-category"></p>
                                 <br/>
-                                <div id="qr-reader" style="width:100%"></div>
-                                <div id="qr-reader-results"></div>
+{#                                <div id="qr-reader" style="width:100%"></div>#}
+{#                                <div id="qr-reader-results"></div>#}
+
+                                <canvas id="canvas" hidden></canvas>
+                                <div id="output" hidden>
+                                    <div id="outputMessage">No se detectó código QR.</div>
+                                    <div hidden><b>Data:</b> <span id="outputData"></span></div>
+                                </div>
 
 
                             </div>
@@ -61,8 +67,10 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('js/html5-qrcode.min.js') }}"></script>
-    <script src="{{ asset('js/scanner.js') }}"></script>
+{#    <script src="{{ asset('js/html5-qrcode.min.js') }}"></script>#}
+    <script src="{{ asset('js/jsQR.js') }}"></script>
+{#    <script src="{{ asset('js/scanner.js') }}"></script>#}
+    <script src="{{ asset('js/scannerQR.js') }}"></script>
 
 
 
