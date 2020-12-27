@@ -121,6 +121,11 @@ class Section
      */
     private $principales;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="sections")
+     */
+    private $button;
+
     public function __toString()
     {
         return $this->name;
@@ -131,6 +136,7 @@ class Section
         $this->indexAlamedas = new ArrayCollection();
         $this->entrada = new ArrayCollection();
         $this->principales = new ArrayCollection();
+        $this->button = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -390,6 +396,30 @@ class Section
         if ($this->principales->removeElement($principale)) {
             $principale->removeSeccione($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ButtonLink[]
+     */
+    public function getButton(): Collection
+    {
+        return $this->button;
+    }
+
+    public function addButton(ButtonLink $button): self
+    {
+        if (!$this->button->contains($button)) {
+            $this->button[] = $button;
+        }
+
+        return $this;
+    }
+
+    public function removeButton(ButtonLink $button): self
+    {
+        $this->button->removeElement($button);
 
         return $this;
     }

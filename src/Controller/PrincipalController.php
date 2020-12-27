@@ -2,18 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\IndexAlameda;
 use App\Entity\Principal;
-use App\Form\IndexSectionType;
 use App\Form\PrincipalType;
 use App\Form\SectionAddType;
-use App\Repository\IndexAlamedaRepository;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,13 +28,21 @@ class PrincipalController extends BaseController
     /**
      * @Route("/", name="principal_index", methods={"GET"})
      * @param PrincipalRepository $principalRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(PrincipalRepository $principalRepository): Response
+    public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $queryPrincipales = $principalRepository->queryFindAllPrincipals();
+        $principales = $paginator->paginate(
+            $queryPrincipales, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
         return $this->render('principal/index.html.twig', [
-            'principals' => $principalRepository->findAll(),
+            'principals' => $principales,
         ]);
     }
 
@@ -121,7 +127,7 @@ class PrincipalController extends BaseController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('principal_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('principal/edit.html.twig', [
@@ -196,7 +202,6 @@ class PrincipalController extends BaseController
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $principal->addSeccione($seccion);
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($principal);
             $entityManager->flush();
 

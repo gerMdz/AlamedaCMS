@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ButtonLink{% endblock %}
+
+{% block body %}
+    <h1>ButtonLink</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ button_link.id }}</td>
+            </tr>
+            <tr>
+                <th>CssClass</th>
+                <td>{{ button_link.cssClass }}</td>
+            </tr>
+            <tr>
+                <th>LinkRoute</th>
+                <td>{{ button_link.linkRoute }}</td>
+            </tr>
+            <tr>
+                <th>IsLinkExterno</th>
+                <td>{{ button_link.isLinkExterno ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>TextButton</th>
+                <td>{{ button_link.textButton }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('button_link_index') }}">back to list</a>
+
+    <a href="{{ path('button_link_edit', {'id': button_link.id}) }}">edit</a>
+
+    {{ include('button_link/_delete_form.html.twig') }}
+{% endblock %}

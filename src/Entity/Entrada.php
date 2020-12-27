@@ -141,6 +141,11 @@ class Entrada
      */
     private $footer;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="entradas")
+     */
+    private $button;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
@@ -149,6 +154,7 @@ class Entrada
         $this->brotes = new ArrayCollection();
         $this->contacto = new ArrayCollection();
         $this->sections = new ArrayCollection();
+        $this->button = new ArrayCollection();
     }
 
     /**
@@ -515,6 +521,30 @@ class Entrada
     public function setFooter(?string $footer): self
     {
         $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ButtonLink[]
+     */
+    public function getButton(): Collection
+    {
+        return $this->button;
+    }
+
+    public function addButton(ButtonLink $button): self
+    {
+        if (!$this->button->contains($button)) {
+            $this->button[] = $button;
+        }
+
+        return $this;
+    }
+
+    public function removeButton(ButtonLink $button): self
+    {
+        $this->button->removeElement($button);
 
         return $this;
     }

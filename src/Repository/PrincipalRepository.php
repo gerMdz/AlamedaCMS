@@ -63,4 +63,13 @@ class PrincipalRepository extends ServiceEntityRepository
     {
         return $qb ?: $this->createQueryBuilder('p');
     }
+    /**
+     * @return QueryBuilder
+     */
+    public function queryFindAllPrincipals(): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ;
+    }
 }

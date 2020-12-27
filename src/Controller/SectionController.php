@@ -2,25 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\Celebracion;
 use App\Entity\Entrada;
-use App\Entity\EntradaReference;
-use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\SectionFormType;
 use App\Repository\EntradaRepository;
 use App\Repository\SectionRepository;
-use App\Service\Mailer;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
-use phpDocumentor\Reflection\Types\This;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,7 +30,7 @@ class SectionController extends BaseController
      * @Route("/", name="admin_section_list")
      * @return Response
      */
-    public function list(SectionRepository $repository)
+    public function list(SectionRepository $repository): Response
     {
         return $this->render('section_admin/list.html.twig', [
             'sections' => $repository->findAll()
@@ -53,7 +46,7 @@ class SectionController extends BaseController
      * @Route("/new", name="admin_section_new")
      * @IsGranted("ROLE_EDITOR")
      */
-    public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
+    public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(SectionFormType::class);
 
@@ -115,28 +108,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/typeorigin-select", name="admin_section_typeorigin_select", methods={"GET" })
-     * @param Request $request
-     * @return Response
-     * @IsGranted("ROLE_EDITOR")
-     */
-    public function getTypoSecondarySelect(Request $request)
-    {
-        // Asegurando endpoint
-        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser()->getSections()->isEmpty()) {
-            throw $this->createAccessDeniedException();
-        }
-        $section = new Section();
-        $section->setTypeOrigin($request->query->get('typeOrigin'));
-        $form = $this->createForm(SectionFormType::class, $section);
-        if (!$form->has('typeSecondary')) {
-            return new Response(null, 204);
-        }
-        return $this->render('section_admin/_typeSecondary.html.twig', [
-            'sectionForm' => $form->createView()
-        ]);
-    }
+
 
     /**
      * @Route("/index/{id}", name="admin_index_delete_section", methods={"DELETE"})
@@ -144,7 +116,7 @@ class SectionController extends BaseController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function deleteIndexSection(Section $section, EntityManagerInterface $entityManager)
+    public function deleteIndexSection(Section $section, EntityManagerInterface $entityManager): Response
     {
         $indexAlameda = $section->getIndexAlamedas();
 

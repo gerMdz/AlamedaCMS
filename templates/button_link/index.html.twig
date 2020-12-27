@@ -1,0 +1,41 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}ButtonLink index{% endblock %}
+
+{% block content %}
+    <h1>ButtonLink index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CssClass</th>
+                <th>LinkRoute</th>
+                <th>IsLinkExterno</th>
+                <th>TextButton</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for button_link in button_links %}
+            <tr>
+                <td>{{ button_link.id }}</td>
+                <td>{{ button_link.cssClass }}</td>
+                <td>{{ button_link.linkRoute }}</td>
+                <td>{{ button_link.isLinkExterno ? 'Yes' : 'No' }}</td>
+                <td>{{ button_link.textButton }}</td>
+                <td>
+                    <a href="{{ path('button_link_show', {'id': button_link.id}) }}">show</a>
+                    <a href="{{ path('button_link_edit', {'id': button_link.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('button_link_new') }}">Create new</a>
+{% endblock %}
