@@ -24,7 +24,11 @@ class EntradaType extends AbstractType
             ->add('titulo', CKEditorType::class, [
                 'required' => true,
                 'config' => [
-                    'uiColor' => '#ffffff'],
+                    'uiColor' => '#ffffff',
+                    'toolbar' => 'full',
+                    'language' => 'es',
+                    'input_sync' => true
+                    ],
                 'attr' => [
                     'required' => false,
                     'class' => 'form-control',

@@ -1,0 +1,96 @@
+<section class=" {{ section.cssClass }} js-parallax bg-light u-content-space" id="{{ section.identificador }}">
+    <div class="container">
+        {% for entrada in section.entrada %}
+            <div class="row">
+                {% if entrada.orden is divisible by(2)  %}
+                <div class="col-lg-6 align-self-center pr-lg-5 mb-5 mb-lg-0 ">
+                    <h2 class="font-weight-light mb-3">
+                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
+                    </h2>
+                    <p>
+                        {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw}}
+                    </p>
+                </div>
+                <div class="col-lg-6 order-first order-lg-last mb-4 mb-lg-0">
+                    <!-- Mockup Browser -->
+                    <figure>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             viewBox="0 0 857 40" style="enable-background:new 0 0 857 40;" xml:space="preserve">
+                  <g>
+                      <path style="fill: #fff;"
+                            d="M856.8,40.2H0.8V19c0-10.5,8.5-19,19-19h818c10.5,0,19,8.5,19,19V40.2z"/>
+                  </g>
+                            <g>
+                                <ellipse style="fill: #fb4143;" cx="28.5" cy="20.1" rx="6" ry="6"/>
+                                <ellipse style="fill: #fab633;" cx="48.4" cy="20.1" rx="6" ry="6"/>
+                                <ellipse style="fill: #0dd157;" cx="68.4" cy="20.1" rx="6" ry="6"/>
+                            </g>
+                </svg>
+                    </figure>
+                    <!-- End Mockup Browser -->
+                    {% if (entrada.imageFilename) %}
+                    <img alt="{{ entrada.linkRoute }}"
+                    src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                    class="img-fluid" />
+                    {% endif %}
+
+                    {% if (entrada.linkPosting) %}
+                        <a target="_blank" href="{{ entrada.linkPosting }}">
+                        <iframe width="100%" height="315" src="{{ entrada.linkPosting }}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </a>
+                    {% endif %}
+                </div>
+                {% else %}
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <!-- Mockup Browser -->
+                        <figure>
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                 viewBox="0 0 857 40" style="enable-background:new 0 0 857 40;" xml:space="preserve">
+                  <g>
+                      <path style="fill: #fff;"
+                            d="M856.8,40.2H0.8V19c0-10.5,8.5-19,19-19h818c10.5,0,19,8.5,19,19V40.2z"/>
+                  </g>
+                                <g>
+                                    <ellipse style="fill: #fb4143;" cx="28.5" cy="20.1" rx="6" ry="6"/>
+                                    <ellipse style="fill: #fab633;" cx="48.4" cy="20.1" rx="6" ry="6"/>
+                                    <ellipse style="fill: #0dd157;" cx="68.4" cy="20.1" rx="6" ry="6"/>
+                                </g>
+                </svg>
+                        </figure>
+                        <!-- End Mockup Browser -->
+
+                        {% if (entrada.imageFilename) %}
+                            <img alt="{{ entrada.linkRoute }}"
+                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                                 class="img-fluid" />
+                        {% endif %}
+
+                        {% if (entrada.linkPosting) %}
+                            <a target="_blank" href="{{ entrada.linkPosting }}">
+                                <iframe width="100%" height="315" src="{{ entrada.linkPosting }}"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-lg-6 align-self-center pl-lg-5">
+                        <h2 class="font-weight-light mb-3">
+                            {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
+                        </h2>
+
+                            {{ entrada.contenido | raw}}
+
+
+                    </div>
+                    {% endif %}
+            </div>
+            <!-- End Video Principal -->
+            <hr class="my-6">
+        {% endfor %}
+    </div>
+</section>

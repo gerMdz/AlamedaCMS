@@ -36,7 +36,7 @@ class Entrada
     private $titulo;
 
     /**
-     * @ORM\Column(type="string", length=4000, nullable=true)
+     * @ORM\Column(type="text", length=8000, nullable=true)
      */
     private $contenido;
 

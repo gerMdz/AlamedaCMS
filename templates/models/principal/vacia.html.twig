@@ -1,5 +1,5 @@
 {% extends 'base_material_kit.twig' %}
-{% block title %} {{ principal.titulo}}  {% endblock %}
+{% block title %} {{ principal.titulo| replace({'<p>':'', '</p>':''}) | raw}}  {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     {#    {{ encore_entry_link_tags('app') }}#}
