@@ -13,7 +13,7 @@
         "tailwindcss": "^2.0.2",
         "webpack-notifier": "^1.6.0"
     },
-    "license": "UNLICENSED",
+    "license": "MIT",
     "private": true,
     "scripts": {
         "dev-server": "encore dev-server",
@@ -22,12 +22,18 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@babel/preset-env": "^7.12.11",
+        "babel-loader": "^8.2.2",
         "bootstrap-datepicker": "^1.9.0",
         "ckeditor": "^4.12.1",
         "ckeditor5": "^21.0.0",
+        "codemirror": "^5.59.0",
         "jquery": "^3.5.0",
         "popper.js": "^1.16.1",
         "postcss": "^8.2.1",
-        "select2": "^4.0.13"
+        "select2": "^4.0.13",
+        "summernote": "^0.8.18"
     }
 }

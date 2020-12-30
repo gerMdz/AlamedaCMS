@@ -62,14 +62,18 @@
                                         ) %}
                                     <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
                                        class="btn btn-alameda btn-modal">
-                                        {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
+{#                                        {{ celebracion.fechaCelebracionAt | date('d \\d\\e M', 'America/Argentina/Mendoza') }},#}
+                                        {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},
+{#                                        {{ celebracion.fechaCelebracionAt | localizeddate('medium', 'none', 'es') }},#}
                                         {{ celebracion.nombre }}
                                     </a><br class="d-md-none" />
                                         <small class="text-dark ">
                                             {{ capacidad_restante(celebracion.id, celebracion.capacidad) }} asientos libres
                                         </small>
                                         {% else %}
-                                            {{ celebracion.fechaCelebracionAt | date('d \\d\\e M') }},
+{#                                            {{ celebracion.fechaCelebracionAt | date('d \\d\\e M', 'America/Argentina/Mendoza') }},#}
+                                            {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},
+{#                                            {{ celebracion.fechaCelebracionAt | localizeddate('medium', 'none', 'es') }},#}
                                             {{ celebracion.nombre }}
                                     <small class="text-dark ">
                                         Capacidad permitida alcanzada

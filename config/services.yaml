@@ -7,6 +7,7 @@ parameters:
     uploads_dir_name: 'uploads'
     uploads_base_url: '%env(SITE_BASE_URL)%/%uploads_dir_name%'
     site_temporal: '%env(SITE_TEMPORAL)%'
+    image_directory : '%kernel.project_dir%/public/image'
 
 services:
     # default configuration for services in *this* file
@@ -44,6 +45,10 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }
+#    twig.extension.intl:
+#        class: Twig_Extensions_Extension_Intl
+#        tags:
+#            - { name: twig.extension }
 
 
     Symfony\Component\Asset\Context\RequestStackContext: '@assets.context'

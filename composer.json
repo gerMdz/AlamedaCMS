@@ -38,6 +38,7 @@
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.4.*",
         "twig/cssinliner-extra": "^3.1",
+        "twig/extensions": "^1.5",
         "twig/extra-bundle": "^3.1",
         "twig/intl-extra": "^3.1",
         "twig/string-extra": "^3.0"
