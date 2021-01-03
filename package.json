@@ -1,6 +1,7 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.28.0",
+        "@symfony/webpack-encore": "^0.33.0",
+        "autoprefixer": "^10.1.0",
         "bootstrap": "^4.4.1",
         "core-js": "^3.0.0",
         "glob-all": "^3.2.1",
@@ -27,12 +28,12 @@
         "@babel/preset-env": "^7.12.11",
         "babel-loader": "^8.2.2",
         "bootstrap-datepicker": "^1.9.0",
-        "ckeditor": "^4.12.1",
+        "ckeditor4": "ckeditor/ckeditor4-releases#full/stable",
         "ckeditor5": "^21.0.0",
         "codemirror": "^5.59.0",
         "jquery": "^3.5.0",
         "popper.js": "^1.16.1",
-        "postcss": "^8.2.1",
+        "postcss": "^8.2.2",
         "select2": "^4.0.13",
         "summernote": "^0.8.18"
     }

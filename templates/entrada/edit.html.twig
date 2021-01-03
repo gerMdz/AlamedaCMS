@@ -97,6 +97,20 @@
                 .find('.custom-file-label')
                 .html(inputFile.files[0].name);
         });
+
+        // $(document).ready(function() {
+        //     $(".select2-enable").select2({
+        //         dropdownParent: $("#modalPlantillaWeb")
+        //     });
+        // });
     </script>
     <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
+    {{ encore_entry_script_tags('app') }}
+
+
+
+
+{% endblock %}
+{% block jslocal %}
+    {{ encore_entry_script_tags('summernote') }}
 {% endblock %}

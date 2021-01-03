@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
 use App\Service\BoleanToDateHelper;
@@ -125,7 +126,7 @@ class AdminEntradaController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->loggerClient->logMessage('Se editó la entrada \"'.$entrada->getTitulo().'\"', '');
+            $this->loggerClient->logMessage('Se editó la entrada \"' . $entrada->getTitulo() . '\"', '');
 
             return $this->redirectToRoute('admin_entrada_index');
         }
@@ -136,6 +137,36 @@ class AdminEntradaController extends AbstractController
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
             'ip' => $ip,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Entrada $entrada
+     * @return RedirectResponse
+     * @throws Exception
+     * @Route("/admin/entrada/{id}/edit-complex", name="admin_entrada_edit_complex")
+     * @IsGranted("MANAGE", subject="entrada")
+     *
+     */
+    public function editConplex(Request $request, Entrada $entrada): Response
+    {
+        $form = $this->createForm(EntradaComplexType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $titulo = $form['titulo']->getData();
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->loggerClient->logMessage('Se editó la entrada \"' . $entrada->getTitulo() . '\"', '');
+
+            return $this->redirectToRoute('admin_entrada_index');
+        }
+
+        return $this->render('admin_entrada/edit_contenido.html.twig', [
+            'entrada' => $entrada,
+            'entradaForm' => $form->createView(),
         ]);
     }
 
@@ -238,7 +269,7 @@ class AdminEntradaController extends AbstractController
      */
     public function delete(Request $request, Entrada $entrada): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $entrada->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($entrada);
             $entityManager->flush();

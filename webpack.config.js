@@ -94,6 +94,13 @@ Encore
     //.addEntry('admin', './assets/js/admin.js')
     .enablePostCssLoader()
 
+    .enablePostCssLoader((options) => {
+        // new option outlined here https://webpack.js.org/loaders/postcss-loader/
+        options.postcssOptions = {
+            config: './postcss.config.js',
+        }
+    })
+
     .copyFiles({
         from: './assets/images',
         to: 'images/[path][name].[ext]',
@@ -101,16 +108,18 @@ Encore
 
     })
     .copyFiles([
-        {
-            from: './node_modules/ckeditor/',
-            to: 'ckeditor/[path][name].[ext]',
-            pattern: /\.(js|css)$/,
-            includeSubdirectories: false
-        },
-        {from: './node_modules/ckeditor/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},
-        {from: './node_modules/ckeditor/lang', to: 'ckeditor/lang/[path][name].[ext]'},
-        {from: './node_modules/ckeditor/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
-        {from: './node_modules/ckeditor/skins', to: 'ckeditor/skins/[path][name].[ext]'}
+        // {
+        //     // from: './node_modules/ckeditor/',
+        //     // to: 'ckeditor/[path][name].[ext]',
+        //     // pattern: /\.(js|css)$/,
+        //     // includeSubdirectories: false
+        // },
+        // {from: './node_modules/ckeditor/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},
+        // {from: './node_modules/ckeditor/lang', to: 'ckeditor/lang/[path][name].[ext]'},
+        // {from: './node_modules/ckeditor/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
+        // {from: './node_modules/ckeditor/skins', to: 'ckeditor/skins/[path][name].[ext]'}
+        {from: './assets/ckeditor/build', to: 'ckeditor/[path][name].[ext]'}
+
     ])
 
 

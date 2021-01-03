@@ -43,10 +43,11 @@ class EntradaType extends AbstractType
             ->add('contenido', CKEditorType::class, [
                 'required' => false,
                 'config' => [
-                    'uiColor' => '#ffffff'],
+                    'config_name' => 'alameda_config',
+                ],
                 'attr' => [
                     'required' => false,
-                    'class' => 'form-control',
+//                    'class' => 'form-control',
                 ],
             ])
             ->add('autor', EntityType::class, [

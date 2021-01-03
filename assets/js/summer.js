@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'popper.js';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+ import 'bootstrap';
+ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CodeMirror from 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -18,12 +18,11 @@ $(".summernote").summernote({
         theme: 'monokai'
     },
     toolbar: [
-        ['insert', ['picture', 'link', 'video', 'table', 'hr', 'gallery']],
+        ['insert', ['picture', 'link', 'video', 'table', 'hr']],
         ['font style', ['fontname', 'fontsize', 'color', 'bold', 'italic',
             'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
         ['paragraph style', ['style', 'ol', 'ul', 'paragraph', 'height']],
         ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
-            ['extensions', ['gallery']],
     ],
 
 });
