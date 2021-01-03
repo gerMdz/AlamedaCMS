@@ -47,6 +47,7 @@ class EntradaType extends AbstractType
                 ],
                 'attr' => [
                     'required' => false,
+                    'rows' => 10,
 //                    'class' => 'form-control',
                 ],
             ])

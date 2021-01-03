@@ -28,8 +28,10 @@
 {% endblock %}
 {% block content %}
     <h5>Editar {{ principal.linkRoute | upper }}</h5>
+    <div class="row">
 
     {{ include('principal/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    </div>
 
     <a href="{{ path('principal_index') }}">Volver al listado</a>
 

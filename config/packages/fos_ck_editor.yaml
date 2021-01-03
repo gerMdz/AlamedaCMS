@@ -1,7 +1,8 @@
 # Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
 fos_ck_editor:
-  base_path: "build/ckeditor"
-  js_path: "build/ckeditor/ckeditor.js"
+  base_path:    "build/ckeditor"
+  js_path:      "build/ckeditor/ckeditor.js"
+  jquery_path:  "build/ckeditor/adapters/jquery.js"
   configs:
     alameda_config:
       language: es
