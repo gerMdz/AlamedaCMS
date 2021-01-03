@@ -107,7 +107,7 @@ Encore
         pattern: /\.(png|jpg|jpeg)$/,
 
     })
-    .copyFiles([
+    // .copyFiles([
         // {
         //     // from: './node_modules/ckeditor/',
         //     // to: 'ckeditor/[path][name].[ext]',
@@ -118,9 +118,9 @@ Encore
         // {from: './node_modules/ckeditor/lang', to: 'ckeditor/lang/[path][name].[ext]'},
         // {from: './node_modules/ckeditor/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
         // {from: './node_modules/ckeditor/skins', to: 'ckeditor/skins/[path][name].[ext]'}
-        {from: './assets/ckeditor/build', to: 'ckeditor/[path][name].[ext]'}
 
-    ])
+
+    // ])
 
 
 ;
