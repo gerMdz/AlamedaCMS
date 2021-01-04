@@ -1,34 +1,13 @@
 # Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
-fos_ck_editor:
-  base_path:    "build/ckeditor"
-  js_path:      "build/ckeditor/ckeditor.js"
-  jquery_path:  "build/ckeditor/adapters/jquery.js"
-  configs:
-    alameda_config:
-      language: es
-      toolbar: "toolbar_alameda"
-      uiColor: "#ffffff"
-      auto_inline: false
-
-  toolbars:
-    configs:
-      toolbar_alameda: [ "@document", "@clipboard", "@editing", "@tools", "/", "@basicstyles", "@paragraph", "@links", "@insert", "/", "@styles", "@colors" ]
-    items:
-      document: [ 'Source', '-', 'Save', 'NewPage', 'ExportPdf', 'Preview', 'Print', '-', 'Templates' ] },
-      clipboard: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-      editing: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
-      forms: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
-      basicstyles: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'CopyFormatting', 'RemoveFormat' ] },
-      paragraph: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
-      links: [ 'Link', 'Unlink', 'Anchor' ] },
-      insert: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-      styles: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-      colors: [ 'TextColor', 'BGColor' ] },
-      tools: [ 'Maximize', 'ShowBlocks' ] },
-      about: [ 'About' ] }
 
 #twig:
 #    form_themes:
 #        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 
-
+fos_ck_editor:
+  base_path: "build/ckeditor"
+  js_path: "build/ckeditor/ckeditor.js"
+  configs:
+    main_config:
+      toolbar:
+        - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Image', 'Table', '-', 'Styles', 'Format','Font','FontSize', '-', 'TextColor', 'BGColor', 'Source'] }

@@ -43,7 +43,9 @@ class EntradaType extends AbstractType
             ->add('contenido', CKEditorType::class, [
                 'required' => false,
                 'config' => [
-                    'config_name' => 'alameda_config',
+                    'uiColor' => '#ffffff',
+                    'toolbar' => 'full',
+                    'language' => 'es',
                 ],
                 'attr' => [
                     'required' => false,

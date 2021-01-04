@@ -2745,7 +2745,7 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-ckeditor4@ckeditor/ckeditor4-releases#full/stable:
+ckeditor4@ckeditor/ckeditor4-releases#full/latest, ckeditor4@ckeditor/ckeditor4-releases#full/stable:
   version "4.15.1"
   resolved "https://codeload.github.com/ckeditor/ckeditor4-releases/tar.gz/38c26a78e20afcb5bef2bb5188dd37a7a0e7a98d"
 
