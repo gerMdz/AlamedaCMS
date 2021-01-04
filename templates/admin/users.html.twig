@@ -1,0 +1,59 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}Lista de Usuarios{% endblock %}
+
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Usuarios</h4>
+                <p class="card-category">Listado </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('app_registro') }}" class="btn btn-sm btn-primary btn-round">
+                    Crear Usuaria <span class="fa fa-plus-circle"></span>
+                </a>
+                <a href="{{ path('app_registro_voluntario_reserva') }}" class="btn btn-sm btn-primary btn-round">
+                    Crear Usuario Reserva <span class="fa fa-plus-circle"></span>
+                </a>
+
+                {# <div class="text-center align-items-center"> #}
+                {# {{ knp_pagination_render(entradas) }} #}
+                {# </div> #}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Rôles</th>
+                        <th>Articles</th>
+                        <th><i class="fa fa-cogs"></i> </th>
+                        </thead>
+                        <tbody>
+                        {# On boucle sur les utilisateurs #}
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.primerNombre }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    {# On boucle sur les rôles #}
+                                    {% for role in user.roles %}
+                                            {{ role }}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ user.entradas|length }}</td>
+                                <td><a class="text-primary" href="{{ path('user_edit', {'id': user.id}) }}">Modificar</a>
+                                </td>
+                            </tr>
+
+                        {% else %}
+                            <p>No hay usuarios anotados</p>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

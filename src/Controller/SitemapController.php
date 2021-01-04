@@ -23,7 +23,7 @@ class SitemapController extends AbstractController
 
 // On ajoute les URLs "statiques"
         $urls[] = ['loc' => $this->generateUrl('reserva_index')];
-        $urls[] = ['loc' => $this->generateUrl('app_login')];
+
 
         foreach ($this->getDoctrine()->getRepository(Principal::class)->findAll() as $principal) {
             $urls[] = [

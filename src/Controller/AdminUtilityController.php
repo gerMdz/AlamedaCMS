@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminUtilityController extends AbstractController
@@ -33,5 +34,18 @@ class AdminUtilityController extends AbstractController
             'groups' => ['perfil'],
         ]);
     }
+
+    /**
+     * @Route("/admin/list/user", methods={"GET"}, name="admin_list_user")
+     * @param UserRepository $userRepository
+     * @return Response
+     */
+    public function usersList(UserRepository $userRepository)
+    {
+        return $this->render('admin/users.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
+
 
 }
