@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% include('inicio/_etiqueta_global_google.html.twig') %}
     {% set base = base_base() %}
     {% set version = 'now' | date('YmdH') %}
     <meta charset="utf-8">
@@ -53,6 +54,7 @@
 </head>
 
 <body class="bg-white">
+{% include('inicio/_etiqueta_global_google_body.html.twig') %}
 {% block header %}
     <header>
         {% include('inicio/_nav.html.twig') %}

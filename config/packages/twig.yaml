@@ -7,4 +7,5 @@ twig:
     exception_controller: null
     globals:
         facebook_tag_pixel_id: '%env(FACEBOOK_PIXEL)%'
+        google_tag_manager_id: '%env(resolve:GOOGLE_TAG_MANAGER_ID)%'
 
