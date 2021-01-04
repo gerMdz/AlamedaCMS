@@ -7,7 +7,11 @@
 fos_ck_editor:
   base_path: "build/ckeditor"
   js_path: "build/ckeditor/ckeditor.js"
+#  fontawesomePath: "fonts/awasome/web-fonts-with-css/css/all.min.css"
   configs:
     main_config:
       toolbar:
-        - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Image', 'Table', '-', 'Styles', 'Format','Font','FontSize', '-', 'TextColor', 'BGColor', 'Source'] }
+        - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Image', 'Table', '-', 'Styles', 'Format','Font','FontSize', '-', 'TextColor', 'BGColor', 'Source', '-', 'fontawesome5', ] }
+      extraPlugins: "fontawesome5"
+      allowedContent: true
+      fontawesome: { 'path':'/fonts/awasome/web-fonts-with-css/css/all.css', 'version':'5.0.9', 'edition':'free', 'element':'i' };

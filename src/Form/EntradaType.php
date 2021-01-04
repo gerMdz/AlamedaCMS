@@ -25,7 +25,7 @@ class EntradaType extends AbstractType
                 'required' => true,
                 'config' => [
                     'uiColor' => '#ffffff',
-                    'toolbar' => 'full',
+//                    'toolbar' => 'full',
                     'language' => 'es',
                     'input_sync' => true
                     ],
@@ -44,7 +44,7 @@ class EntradaType extends AbstractType
                 'required' => false,
                 'config' => [
                     'uiColor' => '#ffffff',
-                    'toolbar' => 'full',
+//                    'toolbar' => 'full',
                     'language' => 'es',
                 ],
                 'attr' => [

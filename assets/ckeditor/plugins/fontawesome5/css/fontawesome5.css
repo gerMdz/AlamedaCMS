@@ -1,0 +1,20 @@
+#ckeditor-fa-icons .fab,
+#ckeditor-fa-icons .far,
+#ckeditor-fa-icons .fas {display:block;font-size:26px;line-height:30px;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:inherit;cursor:pointer}
+/*.far,.fas {font-family:"Font Awesome 5 Free"}
+.fab {font-family:"Font Awesome 5 Brands"}
+.far {font-weight:400}
+.fas {font-weight:900}
+.fab:before,.far:before,.fas:before {color:inherit}*/
+#ckeditor-fa-icons {text-align:center;white-space:normal;width:98%;height:350px;overflow:auto}
+#ckeditor-fa-icons a {display:inline-block;width:74px;padding:5px 2px;text-align:center;vertical-align:top;cursor:pointer;}
+#ckeditor-fa-icons a:hover {background-color:#efefef;}
+#ckeditor-fa-icons a span {font-size:28px;display:block;text-align:center;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;cursor:pointer}
+#ckeditor-fa-icons a span.more-icons {color:#82c7f5;}
+#ckeditor-fa-icons a div.icon-label {font-size:12px;text-align:center;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;max-width:100%;}
+.faSelect {width:100%}
+.cke_dialog_body .fontawesomeClass>label{display:none;}
+.cke_dialog_body .cke_dialog_ui_hbox td{vertical-align:bottom;}
+.cke_dialog_body .cke_dialog_ui_hbox td a.cke_dialog_ui_button{padding:5px 1px;display:block;}
+.cke_dialog_body .cke_dialog_ui_hbox td a.cke_dialog_ui_button.active{background-color:#82c7f5;}
+.cke_dialog_body .cke_dialog_ui_hbox td div.cke_dialog_ui_input_select{width:100%;}

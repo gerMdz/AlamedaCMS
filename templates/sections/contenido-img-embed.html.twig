@@ -7,7 +7,7 @@
                     <h2 class="font-weight-light mb-3">
                         {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
                     </h2>
-                    <p>
+                    <p class="mb-4 mx-auto">
                         {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw}}
                     </p>
                 </div>
@@ -82,8 +82,9 @@
                         <h2 class="font-weight-light mb-3">
                             {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
                         </h2>
-
-                            {{ entrada.contenido | raw}}
+                        <div class="text-center">
+                            {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw}}
+                        </div>
 
 
                     </div>
