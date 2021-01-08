@@ -1,12 +1,11 @@
-<section class="{{ section.cssClass | default('bg-alameda page-section mt-a4')}} ">
+<section class="{{ section.cssClass | default('bg-alameda page-section mt-a4') }} ">
     <div class="container-fluid">
-<div class="row">
-    <div class="col-sm-12">
-        <div class="col-md-1 mx-auto "></div>
-        <div class="col-md-10 mx-auto ">
-            <div class="row justify-content-center ">
-                <div class="col-md-7 pr-0 ">
-                    <div class="col-sm-12 mr-0 left-n5">
+        <div class="row">
+                <div class="col-md-1 mx-auto "></div>
+                <div class="col-md-10 mx-auto ">
+                    <div class="row">
+                        <div class="col-md-7 d-flex align-self-stretch">
+                            <div class="col-sm-12 mr-0 left-n5">
                                 {% for entrada in entradas %}
                                     {% if (entrada.orden == 1) %}
                                         <div class="card shadow-none">
@@ -44,16 +43,16 @@
 
                                     {% endif %}
                                 {% endfor %}
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-self-stretch">
+                            <div class="row">
 
                                 {% for entrada in section.entrada %}
                                     {% if (entrada.orden != 1) %}
                                         <div class="col-sm-12 container-img
                                                     {% if (entrada.orden == 3) %}
-                                                        bottom-n10
+{#                                                        bottom-n10#}
                                                         {% endif %}
                                                                 ">
                                             <div class="card mb-0 contenedor ">
@@ -76,12 +75,16 @@
                                     {% endif %}
                                 {% endfor %}
 
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-1 mx-auto "></div>
             </div>
         </div>
-        <div class="col-md-1 mx-auto "></div>
-    </div>
-</div>
-    </div>
+
 </section>
+
+<style>
+
+</style>
