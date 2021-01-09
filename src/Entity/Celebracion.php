@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Entity\Traits\OfertTrait;
 use App\Repository\CelebracionRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use IntlDateFormatter;
 
 /**
  * @ORM\Entity(repositoryClass=CelebracionRepository::class)
@@ -75,7 +77,10 @@ class Celebracion
 
     public function __toString()
     {
-      return $this->getNombre() . ' ' . date_format($this->getFechaCelebracionAt(), 'd/M');
+        $formatter = new IntlDateFormatter('es_ES', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
+        $formatter->setPattern(" d 'de' MMMM");
+//      return $this->getNombre() . ' ' . date_format($this->getFechaCelebracionAt(), 'd/M');
+      return $this->getNombre() . ' ' . $formatter->format($this->getFechaCelebracionAt());
     }
 
     public function __construct()

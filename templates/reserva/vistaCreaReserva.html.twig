@@ -7,7 +7,7 @@
         <div class="card-header card-header-primary">
 
             <h4 class="card-title "> {{ celebracion.nombre }} </h4>
-            <p class="card-category"> {{ celebracion.fechaCelebracionAt | date('d/M') }} </p>
+            <p class="card-category"> {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }} </p>
         </div>
         <div class="card-body">
 
@@ -56,14 +56,9 @@
 
         </div>
 
-
-
     </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 </div>
 {{ form_end(form, {'render_rest': false}) }}
-
-
-

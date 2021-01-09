@@ -7,11 +7,10 @@
         <div class="card-header card-header-primary">
 
             <h4 class="card-title "> {{ invitado.celebracion.nombre }} </h4>
-            <p class="card-category"> {{ invitado.celebracion.fechaCelebracionAt | date('d/M') }} </p>
+            <p class="card-category"> {{ invitado.celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}, </p>
 
                        {{ form_widget(form.enlace, { 'attr': {'style': 'display: none'} }) }}
                        {{ form_widget(form.celebracion, { 'attr': {'style': 'display: none'} }) }}
-
 
         </div>
         <div class="card-body">

@@ -31,8 +31,8 @@
                     <div class="col-sm-8 pull-left">
                         <h4 class="card-title ">Reserva</h4>
                         <h3 class="card-category ">
-                            Celebracion {{ invitado.celebracion.fechaCelebracionAt | date('d \\d\\e M') }}
-                            , {{ invitado.celebracion.nombre }} </h3>
+                            Celebracion {{ invitado.celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},
+                             {{ invitado.celebracion.nombre }} </h3>
                         <small class="text-dark ">
                             {{ capacidad_restante(invitado.celebracion.id, invitado.celebracion.capacidad) }}
                             asientos libres
@@ -71,7 +71,6 @@
                                     <i class="fa fa-user-cog"> </i>
                                 </div>
 
-
                                     <div class="col-sm-12">
                                         <hr/>
                                     </div>
@@ -97,7 +96,6 @@
                                         </a>
                                     </div>
 
-
                             </div>
                         </div>
                     </div>
@@ -121,14 +119,9 @@
                     {# </strong> #}
                 </div>
 
-
             </div>
         </div>
     </div>
-
-
-
-
 
     <div class="modal fade bs-example-modal-lg" id="modalPlantillaWeb" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
@@ -155,7 +148,6 @@
                 });
             });
         });
-
 
     </script>
 {% endblock %}

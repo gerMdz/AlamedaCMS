@@ -19,11 +19,7 @@
     {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
 
-
-
 {% endblock %}
-
-
 
 {% block sections %}
     <div class="col-md-12 mt-5 pt-5">
@@ -33,7 +29,7 @@
                     <div class="col-sm-8 pull-left">
                         <h4 class="card-title ">Reserva</h4>
                         <h3 class="card-category ">
-                            Celebracion {{ reservante.celebracion.fechaCelebracionAt | date('d \\d\\e M') }}
+                            Celebracion {{ reservante.celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}
                             , {{ reservante.celebracion.nombre }} </h3>
                         <small class="text-dark ">
                             {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }}
@@ -166,7 +162,6 @@
                     {# {{ reservante.documento }} #}
                     {# </strong> #}
                 </div>
-
 
             </div>
         </div>
