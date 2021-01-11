@@ -27,9 +27,9 @@
     </style>
 <h1>Hola {{ reservante.nombre }}!</h1>
 <br/>
-Bienvenido a la Gran Reapertura de Nuestro Auditorio.
+    Bienvenido a las Celebraciones en Nuestro Auditorio.
 <br/>
-Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebracionAt|date('d \\d\\e M') }},  {{ reservante.celebracion.nombre }}
+Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},  {{ reservante.celebracion.nombre }}
 <br/>
 
 Para descargar tu código, usa el botón que está debajo:<br/>

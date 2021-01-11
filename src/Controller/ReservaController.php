@@ -43,6 +43,7 @@ class ReservaController extends AbstractController
      * @param EntityManagerInterface $em
      * @param Mailer $mailer
      * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     public function creaReserva(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
@@ -64,7 +65,6 @@ class ReservaController extends AbstractController
 
             $em->persist($reservante);
 
-
             $invitado = new Invitado();
             $invitado->setCelebracion($celebracion);
             $invitado->setEnlace($reservante);
@@ -75,7 +75,6 @@ class ReservaController extends AbstractController
             $invitado->setTelefono($reservante->getTelefono());
             $invitado->setIsEnlace(true);
             $em->persist($invitado);
-
 
             $invitados = $form['acompanantes']->getData();
             if ($invitados > 0) {
@@ -89,7 +88,9 @@ class ReservaController extends AbstractController
             }
             $em->flush();
 
-            $mailer->sendReservaMessage($reservante);
+            $repository = $em->getRepository(Invitado::class);
+            $invitados = $repository->count(['enlace' => $reservante->getId()]);
+            $mailer->sendReservaMessage($reservante, $invitados);
 
 //            return $this->redirectToRoute('envia_mail', [
 //                'id' => $reservante->getId()

@@ -5,7 +5,10 @@ namespace App\Service;
 
 use App\Entity\Invitado;
 use App\Entity\Reservante;
+use App\Repository\InvitadoRepository;
+use App\Repository\ReservanteRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\NamedAddress;
 use Twig\Environment;
@@ -22,7 +25,13 @@ class Mailer
         $this->twig = $twig;
     }
 
-    public function sendReservaMessage(Reservante $reservante): TemplatedEmail
+    /**
+     * @param Reservante $reservante
+     * @param null|int $invitados
+     * @return TemplatedEmail
+     * @throws TransportExceptionInterface
+     */
+    public function sendReservaMessage(Reservante $reservante, ?int $invitados): TemplatedEmail
     {
         $email = (new TemplatedEmail())
             ->from('contacto@iglesiaalameda.com')
@@ -32,6 +41,7 @@ class Mailer
             ->context([
                 // You can pass whatever data you want
                 'reservante' => $reservante,
+                'invitados' => $invitados
             ]);
 
         $this->mailer->send($email);

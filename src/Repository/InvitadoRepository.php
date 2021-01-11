@@ -158,4 +158,23 @@ class InvitadoRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * @param string $enlace
+     * @return int|mixed|string
+     */
+    public function countInvitadorByReservante(string $enlace)
+    {
+        try {
+            return $this->createQueryBuilder('i')
+                ->select('count(i.id) as invitados')
+                ->andWhere('i.enlace = :enlace')
+                ->setParameter('enlace', $enlace)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+            return $e;
+        }
+
+    }
+
 }

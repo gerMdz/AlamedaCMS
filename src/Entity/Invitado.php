@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\InvitadoRepository;
+
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass=InvitadoRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\InvitadoRepository")
  */
 class Invitado
 {

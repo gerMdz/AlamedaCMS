@@ -27,11 +27,11 @@
     </style>
 <h1>Hola {{ reservante.nombre }}!</h1>
 <br/><br/>
-Bienvenido a la Gran Reapertura de Nuestro Auditorio.
+Bienvenido a las Celebraciones en Nuestro Auditorio.
 <br/>
-Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebracionAt|date('d \\d\\e M') }},  {{ reservante.celebracion.nombre }}
+Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebracionAt| format_date(pattern="d 'de' MMMM") }},  {{ reservante.celebracion.nombre }}
 <br/>
-    Has realizado tu reserva para <b> {{ reservante.invitados | length }}</b> personas
+    Has realizado tu reserva para <b> {{ invitados }}</b> personas
 <br/>
 Para ingresar datos faltantes y descargar tu código, usa el botón que está debajo:<br/><br/>
 {% set dirweb = app.request.host ~ path('vista_reserva', {'celebracion': reservante.celebracion.id, 'email': reservante.email })   %}
