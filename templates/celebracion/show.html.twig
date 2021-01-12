@@ -1,14 +1,12 @@
 <div class="modal-header panel-info">
-    <h5 class="modal-title" id="exampleModalLabel">Datos </h5>
+{#    <h5 class="modal-title" id="exampleModalLabel">Datos </h5>#}
 </div>
 <div id="reserva" class="modal-body">
     <div class="card">
         <div class="card-header card-header-primary">
-
-            <h4 class="card-title ">Celebracion</h4>
+            <h4 class="card-title ">Datos Celebracion</h4>
         </div>
         <div class="card-body">
-
             <table class="table">
                 <tbody>
                 <tr>
@@ -17,7 +15,7 @@
                 </tr>
                 <tr>
                     <th>Fecha Celebracion</th>
-                    <td>{{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('d/M/Y H:i') : '' }}</td>
+                    <td>{{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('d/m/Y H:i') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Nombre</th>
@@ -29,31 +27,32 @@
                     </th>
                     <td>
                         {% set restante = celebracion.capacidad - capacidad_ocupada(celebracion.id) %}
-                        {{ celebracion.capacidad }} /
-                        {{ capacidad_ocupada(celebracion.id) }} /
-                        {{ restante }}
+                        <span class="text-info"> {{ celebracion.capacidad }} </span>/
+                        <span class="text-success"> {{ capacidad_ocupada(celebracion.id) }} </span> /
+                        <span class="text-danger">{{ restante }}</span>
                     </td>
                 </tr>
                 <tr>
                     <th>Se puede reservar desde el</th>
-                    <td>{{ celebracion.disponibleAt ? celebracion.disponibleAt|date('d/M/Y H:i') : 'No ingresado' }}</td>
+                    <td>{{ celebracion.disponibleAt ? celebracion.disponibleAt|date('d/m/Y H:i') : 'No ingresado' }}</td>
+                </tr>
+                <tr>
+                    <th>Se puede reservar hasta el</th>
+                    <td>{{ celebracion.disponibleHastaAt ? celebracion.disponibleHastaAt|date('d/m/Y H:i') : 'No ingresado' }}</td>
                 </tr>
                 <tr>
                     <th>Creada</th>
-                    <td>{{ celebracion.createdAt ? celebracion.createdAt|date('d/M/Y H:i') : 'No ingresado' }}</td>
+                    <td>{{ celebracion.createdAt ? celebracion.createdAt|date('d/m/Y H:i') : 'No ingresado' }}</td>
                 </tr>
                 <tr>
                     <th>Actualizada</th>
-                    <td>{{ celebracion.updatedAt ? celebracion.updatedAt|date('d/M/Y H:i') : 'No ingresado' }}</td>
+                    <td>{{ celebracion.updatedAt ? celebracion.updatedAt|date('d/m/Y H:i') : 'No ingresado' }}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
         <div class="card-footer">
-
-
             <a href="{{ path('celebracion_index') }}">Ir al listado de celebraciones</a>
-
             <a href="{{ path('celebracion_edit', {'id': celebracion.id}) }}">Editar celebración</a>
         </div>
     </div>

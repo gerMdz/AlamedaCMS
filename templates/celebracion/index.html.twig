@@ -7,7 +7,6 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
-
                 <h4 class="card-title ">Celebraciones</h4>
                 <p class="card-category"> Listado de celebraciones </p>
             </div>
@@ -15,7 +14,6 @@
                 <a class="btn btn-sm btn-info btn-round" href="{{ path('celebracion_new') }}">
                     <i class="fas fa-plus-circle"></i> Agregar Celebración</a>
                 <div class="table-responsive ">
-
                     <table class="table table-responsive-sm table-striped ">
                         <thead>
                         <tr class="text-center">
@@ -35,17 +33,14 @@
                                     {{ celebracion.nombre }}
                                     <hr class="m-0 bg-dark"/>
                                     {{ celebracion.descripcion }}
-
                                 </td>
                                 <td>
                                     {{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('d-m-Y') : '' }}
                                     <br/>
                                     {{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('H:i') : '' }}
                                 </td>
-
                                 <td>
                                     <i>{{ celebracion.capacidad }} Disponibles</i>
-                                    {# <br/> #}
                                     <hr class="m-0 bg-dark"/>
                                     <strong>{{ capacidad_ocupada(celebracion.id) }} Reservadas</strong>
                                 </td>
@@ -70,14 +65,11 @@
                                         {{ celebracion.disponibleHastaAt ? celebracion.disponibleHastaAt|date('Y-m-d H:i') : '' }}
                                     </small>
                                 </td>
-                                {# <td>{{ celebracion.createdAt ? celebracion.createdAt|date('Y-m-d H:i:s') : '' }}</td> #}
-                                {# <td>{{ celebracion.updatedAt ? celebracion.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
                                 <td>
                                     <span class="fa fa-{{ celebracion.isHabilitada ? 'check' : 'times' }}"></span><br/>
                                     <a href="{{ path('invitado_index') }}?c={{ celebracion.id }}">
                                         Ver Invitados
                                     </a>
-
                                 </td>
                                 <td>
                                     <a href="{{ path('celebracion_show', {'id': celebracion.id}) }}">
@@ -100,9 +92,7 @@
             <div class="card-footer">
                 <a href="#"></a>
                 <a class="btn btn-sm btn-info btn-round" href="{{ path('celebracion_new') }}">
-                    <i class="fas fa-plus-circle"></i> Crear Celebreación</a>
-
-
+                    <i class="fas fa-plus-circle"></i> Crear Celebración</a>
             </div>
         </div>
     </div>

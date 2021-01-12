@@ -69,6 +69,8 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/{id}", name="celebracion_show", methods={"GET"})
+     * @param Celebracion $celebracion
+     * @return Response
      */
     public function show(Celebracion $celebracion): Response
     {

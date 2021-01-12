@@ -98,6 +98,8 @@ class InvitadoController extends AbstractController
 
     /**
      * @Route("/{id}", name="invitado_show", methods={"GET"})
+     * @param Invitado $invitado
+     * @return Response
      */
     public function show(Invitado $invitado): Response
     {
