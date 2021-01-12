@@ -144,11 +144,11 @@
                         </div>
                     </div>
                     <div class="col-sm-4 text-center pt-3">
-                        <a href="{{ qr_code_data_uri(app.request.uri, { size: 350, logo_path: reservante.celebracion.imageQr }) }}"
+                        <a href="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': reservante.celebracion.id, 'email': reservante.email }), { size: 350, logo_path: reservante.celebracion.imageQr }) }}"
                            target="_blank" download="{{ reservante.celebracion.nombre }}.png">
                             Descargá desde aquí tú código de reservación<br/>
                             <img class="img-fluid"
-                                 src="{{ qr_code_data_uri(app.request.uri, { size: 300, logo_path: reservante.celebracion.imageQr }) }}"
+                                 src="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': reservante.celebracion.id, 'email': reservante.email }), { size: 300, logo_path: reservante.celebracion.imageQr }) }}"
                                  alt="QR"/>
                         </a>
 
