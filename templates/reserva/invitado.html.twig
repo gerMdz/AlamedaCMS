@@ -101,10 +101,10 @@
                     </div>
                     <div class="col-sm-4 text-center pt-3">
                         Descargá tú código de reservación
-                        <a href="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': reservante.celebracion.id, 'email': reservante.email }), { size: 350, logo_path: invitado.celebracion.imageQr }) }}"
+                        <a href="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': invitado.celebracion.id, 'email': invitado.email }), { size: 350, logo_path: invitado.celebracion.imageQr }) }}"
                            target="_blank" download="{{ invitado.celebracion.nombre }}.png">
                             <img class="img-fluid"
-                                 src="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': reservante.celebracion.id, 'email': reservante.email }), { size: 300, logo_path: invitado.celebracion.imageQr }) }}"
+                                 src="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': invitado.celebracion.id, 'email': invitado.email }), { size: 300, logo_path: invitado.celebracion.imageQr }) }}"
                                  alt="QR"/>
                         </a>
 

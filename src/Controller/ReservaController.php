@@ -126,6 +126,17 @@ class ReservaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $email = $form['email']->getData();
+
+            $invitado = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($reservante->getCelebracion()->getId(), $email);
+
+            if ($invitado) {
+                $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
+                return $this->redirectToRoute('agrega_invitado',[
+                    'id'=>$reservante->getId()
+                ]);
+            }
+
             $entityManager->persist($invitado);
             $entityManager->flush();
 
@@ -214,6 +225,17 @@ class ReservaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $email = $form['email']->getData();
+            $existe = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($invitado->getCelebracion()->getId(), $email);
+            if ($existe) {
+                $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
+                return $this->redirectToRoute('vista_reserva', [
+                    'celebracion' => $invitado->getCelebracion()->getId(),
+                    'email' => $invitado->getEnlace()->getEmail()
+                ]);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             if ($invitado->getEmail() != null) {

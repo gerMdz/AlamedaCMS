@@ -177,4 +177,22 @@ class InvitadoRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * @param $celebracion
+     * @param $email
+     * @return int|mixed|string
+     */
+    public function findOneByCelebracionEmail($celebracion, $email)
+    {
+
+            return $this->createQueryBuilder('i')
+                ->andWhere('i.celebracion = :cel')
+                ->andWhere('i.email = :email')
+                ->setParameter('cel', $celebracion)
+                ->setParameter('email', $email)
+                ->getQuery()
+                ->getResult();
+
+    }
+
 }
