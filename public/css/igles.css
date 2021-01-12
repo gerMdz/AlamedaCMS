@@ -1229,3 +1229,13 @@ h4.card-title{
 .fuente-arial-nova{
     font-family: ArialNova, serif !important;
 }
+
+.link-alameda{
+    font-weight: 900 !important;
+    color: #2993e5 !important;
+}
+.link-alameda:hover{
+    font-weight: 500 !important;
+    color: #fafafa !important;
+    background-color: #2993e5 !important;
+}
