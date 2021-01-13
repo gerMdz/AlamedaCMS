@@ -5,12 +5,11 @@ namespace App\Service;
 
 use App\Entity\Invitado;
 use App\Entity\Reservante;
-use App\Repository\InvitadoRepository;
-use App\Repository\ReservanteRepository;
+use App\Entity\User;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\NamedAddress;
+use Symfony\Component\Mime\Address;
 use Twig\Environment;
 
 class Mailer
@@ -34,8 +33,8 @@ class Mailer
     public function sendReservaMessage(Reservante $reservante, ?int $invitados): TemplatedEmail
     {
         $email = (new TemplatedEmail())
-            ->from('contacto@iglesiaalameda.com')
-            ->to($reservante->getEmail())
+            ->from(new Address('contacto@iglesiaalameda.com', 'Iglesia de La Alameda'))
+            ->to(new Address($reservante->getEmail(), $reservante->getNombre()))
             ->subject('Confirmación de reserva')
             ->htmlTemplate('email/reserva.html.twig')
             ->context([
@@ -75,7 +74,7 @@ class Mailer
         $pdf = $this->pdf->getOutputFromHtml($html);
 
         $email = (new TemplatedEmail())
-            ->to(new NamedAddress($author->getEmail(), $author->getFirstName()))
+            ->to(new Address($author->getEmail(), $author->getPrimerNombre()))
             ->subject('Your weekly report on the Space Bar!')
             ->htmlTemplate('email/author-weekly-report.html.twig')
             ->context([

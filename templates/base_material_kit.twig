@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    {% include('inicio/_etiqueta_global_google.html.twig') %}
+    {% if google_tag_enable == 'true' %}
+        {% include('inicio/_etiqueta_global_google.html.twig') %}
+    {% endif %}
     {% set base = base_base() %}
     {% set version = 'now' | date('YmdH') %}
     <meta charset="utf-8">
@@ -50,11 +52,15 @@
             }
         </style>
     {% endblock %}
-    {% include('inicio/_facebook_pixel.html.twig') %}
+    {% if(facebook_tag_enable == 'true') %}
+        {% include('inicio/_facebook_pixel.html.twig') %}
+    {% endif %}
 </head>
 
 <body class="bg-white">
-{% include('inicio/_etiqueta_global_google_body.html.twig') %}
+{% if(google_tag_enable == 'true') %}
+    {% include('inicio/_etiqueta_global_google_body.html.twig') %}
+{% endif %}
 {% block header %}
     <header>
         {% include('inicio/_nav.html.twig') %}
@@ -64,10 +70,10 @@
 {% block usuario %}
     {% if is_granted('ROLE_RESERVA') %}
         <div class="d-flex flex-row-reverse text-right">
-        <small class="alert alert-info " style="position: fixed; top: 4rem; z-index: 3">
-            Has ingresado {{ app.user }}<br/>
-            <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out"> </i> Salir  </a>
-        </small>
+            <small class="alert alert-info " style="position: fixed; top: 4rem; z-index: 3">
+                Has ingresado {{ app.user }}<br/>
+                <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out"> </i> Salir </a>
+            </small>
         </div>
     {% endif %}
 {% endblock %}
@@ -78,7 +84,7 @@
 {% endfor %}
 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
     <div class="alert alert-warning" style="position: fixed; bottom: 50px">
-        Temporalemte
+        Temporalmente
         <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
     </div>
 {% endif %}
@@ -116,11 +122,6 @@
     <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script>
 
     <!-- Theme Components and Settings -->
-
-    <!-- END JAVASCRIPTS -->
-
-
-
 
     <script src="{{ asset('material-kit/js/plugins/moment.min.js') }}"></script>
     <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
