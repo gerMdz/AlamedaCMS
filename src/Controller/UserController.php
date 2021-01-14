@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Roles;
 use App\Entity\User;
 use App\Form\User1Type;
 use App\Repository\UserRepository;
+use App\Service\Request\RequestService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +19,8 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/", name="user_index", methods={"GET"})
+     * @param UserRepository $userRepository
+     * @return Response
      */
     public function index(UserRepository $userRepository): Response
     {
@@ -27,6 +31,8 @@ class UserController extends AbstractController
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -35,6 +41,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -60,6 +67,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
     public function edit(Request $request, User $user): Response
     {
@@ -67,6 +77,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_list_user');
