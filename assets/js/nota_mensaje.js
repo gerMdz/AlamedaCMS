@@ -1,15 +1,15 @@
 import $ from 'jquery';
 $(function () {
-    const puno = localStorage.getItem("EsperanzaPuno");
-    const pdos = localStorage.getItem("EsperanzaPdos");
-    const ptres = localStorage.getItem("EsperanzaPtres");
-    const pcuatro = localStorage.getItem("EsperanzaPcuatro");
-    const pcinco = localStorage.getItem("EsperanzaPcinco");
-    const pseis = localStorage.getItem("EsperanzaPseis");
-    const psiete = localStorage.getItem("EsperanzaPsiete");
+    const puno = localStorage.getItem("TormentaPuno");
+    const pdos = localStorage.getItem("TormentaPdos");
+    const ptres = localStorage.getItem("TormentaPtres");
+    const pcuatro = localStorage.getItem("TormentaPcuatro");
+    const pcinco = localStorage.getItem("TormentaPcinco");
+    const pseis = localStorage.getItem("TormentaPseis");
+    const psiete = localStorage.getItem("TormentaPsiete");
 
     if (pcinco != null) {
-        $('#pcinco').val(JSON.parse(localStorage.EsperanzaPcinco))
+        $('#pcinco').val(JSON.parse(localStorage.TormentaPcinco))
         muestra1('#lpcinco', '#sinpcinco')
         aceptado('cinco');
     } else {
@@ -17,7 +17,7 @@ $(function () {
     }
 
     if (puno != null) {
-        $('#puno').val(JSON.parse(localStorage.EsperanzaPuno))
+        $('#puno').val(JSON.parse(localStorage.TormentaPuno))
         muestra1('#lpuno', '#sinpuno')
         aceptado('uno');
         console.log('19')
@@ -27,7 +27,7 @@ $(function () {
     }
 
     if (pdos != null) {
-        $('#pdos').val(JSON.parse(localStorage.EsperanzaPdos))
+        $('#pdos').val(JSON.parse(localStorage.TormentaPdos))
         muestra1('#lpdos', '#sinpdos')
         aceptado('dos');
     } else {
@@ -35,7 +35,7 @@ $(function () {
     }
 
     if (ptres != null) {
-        $('#ptres').val(JSON.parse(localStorage.EsperanzaPtres))
+        $('#ptres').val(JSON.parse(localStorage.TormentaPtres))
         muestra1('#lptres', '#sinptres')
         aceptado('tres');
     } else {
@@ -43,7 +43,7 @@ $(function () {
     }
 
     if (pcuatro != null) {
-        $('#pcuatro').val(JSON.parse(localStorage.EsperanzaPcuatro))
+        $('#pcuatro').val(JSON.parse(localStorage.TormentaPcuatro))
         muestra1('#lpcuatro', '#sinpcuatro')
         aceptado('cuatro');
     } else {
@@ -51,14 +51,14 @@ $(function () {
     }
 
     if (pseis != null) {
-        $('#pseis').val(JSON.parse(localStorage.EsperanzaPseis))
+        $('#pseis').val(JSON.parse(localStorage.TormentaPseis))
         muestra1('#lpseis', '#sinpseis')
         aceptado('seis');
     } else {
         oculta1('#lpseis', '#sinpseis')
     }
     if (psiete != null) {
-        $('#psiete').val(JSON.parse(localStorage.EsperanzaPsiete))
+        $('#psiete').val(JSON.parse(localStorage.TormentaPsiete))
         muestra1('#lpsiete', '#sinpsiete')
         aceptado('siete');
     } else {
@@ -196,37 +196,37 @@ function procesa(p) {
     console.log('p = ' + p)
     if (p === 'siete') {
         const psiete = $('#psiete').val();
-        localStorage.EsperanzaPsiete = JSON.stringify(psiete);
+        localStorage.TormentaPsiete = JSON.stringify(psiete);
     }
 
     if (p === 'seis') {
         const pseis = $('#pseis').val();
-        localStorage.EsperanzaPseis = JSON.stringify(pseis);
+        localStorage.TormentaPseis = JSON.stringify(pseis);
     }
 
     if (p === 'cinco') {
         const pcinco = $('#pcinco').val();
-        localStorage.EsperanzaPcinco = JSON.stringify(pcinco);
+        localStorage.TormentaPcinco = JSON.stringify(pcinco);
     }
 
     if (p === 'uno') {
         const puno = $('#puno').val();
-        localStorage.EsperanzaPuno = JSON.stringify(puno);
+        localStorage.TormentaPuno = JSON.stringify(puno);
     }
 
     if (p === 'dos') {
         const pdos = $('#pdos').val();
-        localStorage.EsperanzaPdos = JSON.stringify(pdos);
+        localStorage.TormentaPdos = JSON.stringify(pdos);
     }
 
     if (p === 'tres') {
         const ptres = $('#ptres').val();
-        localStorage.EsperanzaPtres = JSON.stringify(ptres);
+        localStorage.TormentaPtres = JSON.stringify(ptres);
     }
 
     if (p === 'cuatro') {
         const pcuatro = $('#pcuatro').val();
-        localStorage.EsperanzaPcuatro = JSON.stringify(pcuatro);
+        localStorage.TormentaPcuatro = JSON.stringify(pcuatro);
     }
 
 }
@@ -236,7 +236,7 @@ function aceptado(p) {
     console.log('aceptado' + p);
 
     if (p === 'seis') {
-        const pseis = JSON.parse(localStorage.EsperanzaPseis);
+        const pseis = JSON.parse(localStorage.TormentaPseis);
 
         $('#lpseis').addClass('fontTahu fa-2x text-info');
         $('#lpseis').html(pseis);
@@ -244,7 +244,7 @@ function aceptado(p) {
     }
 
     if (p === 'siete') {
-        const psiete = JSON.parse(localStorage.EsperanzaPsiete);
+        const psiete = JSON.parse(localStorage.TormentaPsiete);
 
         $('#lpsiete').addClass('fontTahu fa-2x text-info');
         $('#lpsiete').html(psiete);
@@ -253,7 +253,7 @@ function aceptado(p) {
 
 
     if (p === 'uno') {
-        const puno = JSON.parse(localStorage.EsperanzaPuno);
+        const puno = JSON.parse(localStorage.TormentaPuno);
 
         $('#lpuno').addClass('fontTahu fa-2x text-info');
         $('#lpuno').html(puno);
@@ -261,28 +261,28 @@ function aceptado(p) {
     }
     if (p === 'cinco') {
         console.log('aceptado = ' + p)
-        const pcinco = JSON.parse(localStorage.EsperanzaPcinco);
+        const pcinco = JSON.parse(localStorage.TormentaPcinco);
         $('#lpcinco').addClass('fontTahu fa-2x text-info');
         $('#lpcinco').html(pcinco);
         $('#lpcinco').show();
         $('#sinpcinco').hide();
     }
     if (p === 'dos') {
-        const pdos = JSON.parse(localStorage.EsperanzaPdos);
+        const pdos = JSON.parse(localStorage.TormentaPdos);
 
         $('#lpdos').addClass('fontTahu fa-2x text-info');
         $('#lpdos').html(pdos);
         $('#sinpdos').hide();
     }
     if (p === 'tres') {
-        const ptres = JSON.parse(localStorage.EsperanzaPtres);
+        const ptres = JSON.parse(localStorage.TormentaPtres);
 
         $('#lptres').addClass('fontTahu fa-2x text-info');
         $('#lptres').html(ptres);
         $('#sinptres').hide();
     }
     if (p === 'cuatro') {
-        const pcuatro = JSON.parse(localStorage.EsperanzaPcuatro);
+        const pcuatro = JSON.parse(localStorage.TormentaPcuatro);
 
         $('#lpcuatro').addClass('fontTahu fa-2x text-info');
         $('#lpcuatro').html(pcuatro);
