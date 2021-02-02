@@ -31,15 +31,15 @@ class AdminController extends AbstractController
         );
 
 
-        if ($this->isGranted('ROLE_ADMIN')) {
+//        if ($this->isGranted('ROLE_ADMIN')) {
             return $this->render('admin/index.html.twig', [
                 'principals' => $principales,
                 'meta_bases' => $metaBaseRepository->findAll(),
             ]);
-        }
+//        }
 
-        return $this->render('admin/index_escritor.html.twig', [
-            'principals' => $principales,
-        ]);
+//        return $this->render('admin/index_escritor.html.twig', [
+//            'principals' => $principales,
+//        ]);
     }
 }
