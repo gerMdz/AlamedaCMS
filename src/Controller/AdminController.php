@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\MetaBaseRepository;
 use App\Repository\PrincipalRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,10 +30,16 @@ class AdminController extends AbstractController
             20/*limit per page*/
         );
 
-        return $this->render('admin/index.html.twig', [
-            'principals' => $principales,
-            'meta_bases' => $metaBaseRepository->findAll(),
 
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('admin/index.html.twig', [
+                'principals' => $principales,
+                'meta_bases' => $metaBaseRepository->findAll(),
+            ]);
+        }
+
+        return $this->render('admin/index_escritor.html.twig', [
+            'principals' => $principales,
         ]);
     }
 }
