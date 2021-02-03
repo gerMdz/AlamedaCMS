@@ -1,82 +1,88 @@
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header card-header-primary">
-                <h4 class="card-title ">Principal</h4>
-                <p class="card-category"> Listado de páginas principales</p>
-            </div>
-            <div class="card-footer">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title ">Principal</h4>
+            <p class="card-category"> Listado de páginas principales</p>
+        </div>
+        <div class="card-footer">
 
-                <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
-                    <i class="fas fa-plus-circle"></i>
-                    Crear nueva página prinpipal</a>
-            </div>
-            <div class="text-center align-items-center">
-                {{ knp_pagination_render(principals) }}
-            </div>
+            <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
+                <i class="fas fa-plus-circle"></i>
+                Crear nueva página principal</a>
+        </div>
+        <div class="text-center align-items-center">
+            {{ knp_pagination_render(principals) }}
+        </div>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class=" text-primary">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+                        <th>
+                            Titulo<br/>
+                            LinkRoute
+                        </th>
+                        <th>Contenido</th>
+                        <th>
+                            Secciones
+                        </th>
+                        <th>ImageFilename</th>
+                        <th>Actualizada</th>
+                        <th><i class="fa fa-cogs"> </i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for principal in principals %}
                         <tr>
-                            <th>
-                                Titulo<br/>
-                                LinkRoute
-                            </th>
-                            <th>Contenido</th>
-                            <th>
-                                Secciones
-                            </th>
-                            <th>ImageFilename</th>
-                            <th>Actualizada</th>
-                            <th><i class="fa fa-cogs"> </i> </th>
+                            <td>
+                                {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                <br/>
+                                {{ principal.linkRoute }}
+                            </td>
+                            <td>
+                                {{ principal.contenido | replace({'<p>':'', '</p>':''}) | u.truncate(20, '...') }}</td>
+                            <td>
+                                {% for seccion in principal.secciones %}
+                                    <a href="{{ path('admin_section_show', {'id': seccion.id}) }}">
+                                    {{ seccion.name }}
+                                    </a>
+                                        <br/>
+                                {% endfor %}
+                            </td>
+                            <td>{{ principal.imageFilename }}</td>
+                            <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a class="text-success"
+                                   href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
+                                    <i class="fas fa-eye"></i>
+                                    Ir a la Página</a><br/>
+                                <a class="text-primary" href="{{ path('principal_edit', {'id': principal.id}) }}">
+                                    <i class="fas fa-edit"></i>
+                                    Editar Contenido </a><br/>
+                                <a class="text-info" href="{{ path('principal_show', {'id': principal.id}) }}">
+                                    <i class="fas fa-list"> </i>
+                                    Ver datos
+                                </a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        {% for principal in principals %}
-                            <tr>
-                                <td>
-                                    {{ principal.titulo }}<br/>
-                                    {{ principal.linkRoute }}
-                                </td>
-                                <td>{{ principal.contenido | u.truncate(20, '...')  }}</td>
-                                <td>
-                                    {% for seccion in principal.secciones  %}
-                                        {{ seccion.name }} <br/>
-                                    {% endfor %}
-                                </td>
-                                <td>{{ principal.imageFilename }}</td>
-                                <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>
-                                    <a class="text-success" href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
-                                        <i class="fas fa-eye"></i>
-                                        Ir a la Página</a><br/>
-                                    <a class="text-primary" href="{{ path('principal_edit', {'id': principal.id}) }}">
-                                        <i class="fas fa-edit"></i>
-                                        Editar Contenido </a><br/>
-                                    <a class="text-info" href="{{ path('principal_show', {'id': principal.id}) }}">
-                                        <i class="fas fa-list"> </i>
-                                        Ver datos
-                                        </a>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="9">No se encontró ninguna página prinpipal</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="text-center align-items-center">
-                {{ knp_pagination_render(principals) }}
-            </div>
-            <div class="card-footer">
-
-                <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
-                    <i class="fas fa-plus-circle"></i>
-                    Crear nueva página prinpipal</a>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">No se encontró ninguna página principal</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
+        <div class="text-center align-items-center">
+            {{ knp_pagination_render(principals) }}
+        </div>
+        <div class="card-footer">
+
+            <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
+                <i class="fas fa-plus-circle"></i>
+                Crear nueva página principal</a>
+        </div>
     </div>
+</div>

@@ -1,8 +1,8 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Vista {{ entrada.titulo }}{% endblock %}
 
-{% block contenido_body %}
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -86,9 +86,11 @@
                         </div>
                     </div>
                     <div class="row">
-{#                        <div class="col-sm-12">#}
-{#                            <h3><i class="pr-3 fa fa-comment"></i>{{ entrada.comentariosNoDeleted|length }} Comentarios#}
-{#                            </h3>#}
+                        <div class="col-sm-12">
+                            <h3><i class="pr-3 fa fa-comment"></i>
+{#                                {{ entrada.comentariosNoDeleted|length }}#}
+                                Nota mensaje (actualmente se agrega como comentario)
+                            </h3>
                             {% if(entrada.comentariosNoDeleted) %}
 {#                                <div class="row">#}
 
@@ -108,7 +110,7 @@
 {#                                    </div>#}
 {#                                </div>#}
                             {% endif %}
-{#                        </div>#}
+                        </div>
 
                     </div>
                 </div>

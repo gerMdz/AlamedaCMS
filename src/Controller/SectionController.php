@@ -180,5 +180,17 @@ class SectionController extends BaseController
         ]);
     }
 
+    /**
+     * @Route("/{id}", name="admin_section_show", methods={"GET"})
+     * @param Section $section
+     * @return Response
+     */
+    public function show(Section $section): Response
+    {
+        return $this->render('section_admin/show.html.twig', [
+            'section' => $section,
+        ]);
+    }
+
 
 }

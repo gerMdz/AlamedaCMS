@@ -1,0 +1,120 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Sección{{ section.identificador }} {% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Sección </h4>
+                <p class="card-category"> Datos {{ section.title }}</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ section.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Título</th>
+                            <td>{{ section.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Entradas</th>
+                            <td>
+                                {% for entrada in section.entrada %}
+                                    <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                                        {{ entrada.titulo }}
+                                    </a>
+                                    <br/>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Contenido</th>
+                            <td>{{ section.contenido }}</td>
+                        </tr>
+                        <tr>
+                            <th>LinkRoute</th>
+                            <td>{{ section.linkRoute }}</td>
+                        </tr>
+                        <tr>
+                            <th>ImageFilename</th>
+                            <td>{{ section.imageFilename }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>CreatedAt</th>
+                            <td>{{ section.disponibleAt ? section.disponibleAt|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>UpdatedAt</th>
+                            <td>{{ section.disponibleHastaAt ? section.disponibleHastaAt|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    {% if section.entrada %}
+                        <tr>
+                            {# <td colspan="10"> #}
+                            {# <div class="col-sm-12"> #}
+                            {# <h3>Entradas</h3> #}
+                            {# <div style="font-size: 0.9rem" #}
+                            {# class="list-group small js-section-list col-sm-12" #}
+                            {# data-url="{{ path('admin_section_list_section', {id: section.id}) }}" #}
+                            {# data-section = "{{ section.id }}" #}
+                            {# > #}
+                            {# </div> #}
+                            {# <div class="col-sm-12 text-center"> #}
+                            {# <a href="{{ path('section_agregar_seccion', { 'id': section.id }) }}" #}
+                            {# class="btn btn-link btn-sm btn-modal"> #}
+                            {# <i class="fa fa-plus"> Sección</i> #}
+                            {# </a> #}
+                            {# </div> #}
+                            {# </div> #}
+                            {# </td> #}
+                        </tr>
+                    {% endif %}
+                </div>
+
+                <a href="{{ path('admin') }}" class="btn btn-info">Volver al listado Principal</a>
+
+                <a href="{{ path('admin_section_edit', {'id': section.id}) }}" class="btn btn-warning">Editar</a>
+
+
+            </div>
+        </div>
+    </div>
+    {% include('admin/_modal.html.twig') %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('section_select') }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
+            integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
+            crossorigin="anonymous"></script>
+
+    <script src="{{ asset('js/admin_section_section_form.js') }}"></script>
+
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
+{% endblock %}
+{% block jslocal %}
+    {{ parent() }}
+    <script>
+        $('#section').addClass('active');
+    </script>
+{% endblock %}

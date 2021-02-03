@@ -69,7 +69,7 @@ class PrincipalRepository extends ServiceEntityRepository
     public function queryFindAllPrincipals(): QueryBuilder
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.createdAt', 'DESC')
+            ->orderBy('p.updatedAt', 'DESC')
             ;
     }
 }
