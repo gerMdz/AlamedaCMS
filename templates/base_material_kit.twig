@@ -14,7 +14,7 @@
     {% set index = 'base' %}
 
     <meta name="description" content="{{ base.siteName }},  {{ base_metaDescripcion() }}">
-    <meta name="keywords" content="{{ base.siteName }},{% block keywords_content -%} {{ base.lema }} {% endblock %},{{ base_metaDescripcion() }}">
+    <meta name="keywords" content="{{ base.siteName}},{{base.lema}},{{base_metaDescripcion()}}">
     <meta name="author" content="{{ base.metaAutor }}">
     <meta property="og:title" content="{{ base.metaTitle }}"/>
     <meta property="og:type" content="{{ base.metaTYpe }}"/>
