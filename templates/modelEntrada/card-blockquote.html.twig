@@ -1,5 +1,5 @@
 <h1 class="display-3 mt-5">
-    {{ entrada.titulo }}
+    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
 </h1>
 
 <div class="blockquote blockquote-alameda-primary ">
