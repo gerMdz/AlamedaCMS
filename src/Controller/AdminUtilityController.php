@@ -22,7 +22,7 @@ class AdminUtilityController extends AbstractController
      * @return JsonResponse
      * @IsGranted("ROLE_ESCRITOR")
      */
-    public function getUserEscritorApi(UserRepository $userRepository, Request $request)
+    public function getUserEscritorApi(UserRepository $userRepository, Request $request): JsonResponse
     {
         $role = empty($request->query->get('role'))?'ROLE_NADA' : $request->query->get('role') ;
         $query = $request->query->get('query');
@@ -40,10 +40,10 @@ class AdminUtilityController extends AbstractController
      * @param UserRepository $userRepository
      * @return Response
      */
-    public function usersList(UserRepository $userRepository)
+    public function usersList(UserRepository $userRepository): Response
     {
         return $this->render('admin/users.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->findBy([],['primerNombre'=>'ASC']),
         ]);
     }
 

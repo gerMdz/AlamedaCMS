@@ -1,47 +1,58 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
+{% block title %}Lista de Usuarios{% endblock %}
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Usuarios</h4>
+                <p class="card-category">Listado </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('app_registro') }}" class="btn btn-sm btn-primary btn-round">
+                    Crear Usuario <span class="fa fa-plus-circle"></span>
+                </a>
+                <a href="{{ path('app_registro_voluntario_reserva') }}" class="btn btn-sm btn-primary btn-round">
+                    Crear Usuario Reserva <span class="fa fa-plus-circle"></span>
+                </a>
 
-{% block title %}User index{% endblock %}
+                {# <div class="text-center align-items-center"> #}
+                {# {{ knp_pagination_render(entradas) }} #}
+                {# </div> #}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Articles</th>
+                        <th><i class="fa fa-cogs"></i></th>
+                        </thead>
+                        <tbody>
+                        {# On boucle sur les utilisateurs #}
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.primerNombre }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    {# On boucle sur les rôles #}
+                                    {% for role in user.roles %}
+                                        {{ role }}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ user.entradas|length }}</td>
+                                <td><a class="text-primary"
+                                       href="{{ path('user_edit', {'id': user.id}) }}">Modificar</a>
+                                </td>
+                            </tr>
 
-{% block body %}
-    <h1>User index</h1>
+                        {% else %}
+                            <p>No hay usuarios anotados</p>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>PrimerNombre</th>
-                <th>Password</th>
-                <th>TwitterUsername</th>
-                <th>AvatarUrl</th>
-                <th>AceptaTerminosAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.primerNombre }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.twitterUsername }}</td>
-                <td>{{ user.avatarUrl }}</td>
-                <td>{{ user.aceptaTerminosAt ? user.aceptaTerminosAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_new') }}">Create new</a>
 {% endblock %}
