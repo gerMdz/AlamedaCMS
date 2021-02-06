@@ -1,4 +1,4 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_material_kit.twig' %}
 {% form_theme regristroForm _self %}
 {% block form_row %}
     {%- set widget_attr = {} -%}
@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
-{% block contenido_body %}
+{% block sections %}
 
     {% if app.user %}
         <div class="mb-3">
