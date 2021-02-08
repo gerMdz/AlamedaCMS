@@ -50,7 +50,7 @@ class EntradaRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->andWhere('e.autor = :val')
             ->setParameter('val', $user)
-            ->orderBy('e.createdAt', 'DESC')
+            ->orderBy('e.updatedAt', 'DESC')
         ;
     }
 
@@ -159,7 +159,7 @@ class EntradaRepository extends ServiceEntityRepository
     public function queryFindAllEntradas(): QueryBuilder
     {
         return $this->createQueryBuilder('e')
-            ->orderBy('e.createdAt', 'DESC')
+            ->orderBy('e.updatedAt', 'DESC')
             ;
     }
 

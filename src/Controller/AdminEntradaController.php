@@ -52,7 +52,6 @@ class AdminEntradaController extends AbstractController
     public function index(EntradaRepository $entradaRepository, PaginatorInterface $paginator, Request $request): Response
     {
         if ($this->isGranted('ROLE_EDITOR')) {
-//            $entrada = $entradaRepository->findBy([], ['createdAt' => 'DESC']);
             $entrada = $entradaRepository->queryFindAllEntradas();
         } else {
             $user = $this->getUser();
