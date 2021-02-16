@@ -14,6 +14,7 @@ use App\Repository\ReservanteRepository;
 use App\Service\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -38,7 +39,7 @@ class ReservaController extends AbstractController
 
 
     /**
-     * @Route("creaReserva/{id}", name="crea_reserva" )
+     * @Route("/creaReserva/{id}", name="crea_reserva" )
      * @param Celebracion $celebracion
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -84,7 +85,6 @@ class ReservaController extends AbstractController
                     $invitadoplus->setCelebracion($celebracion);
                     $invitadoplus->setEnlace($reservante);
                     $em->persist($invitadoplus);
-
                 }
             }
             $em->flush();
@@ -93,11 +93,33 @@ class ReservaController extends AbstractController
             $invitados = $repository->count(['enlace' => $reservante->getId()]);
             $mailer->sendReservaMessage($reservante, $invitados);
 
-
             $this->addFlash('success', 'Se ha guardado su reserva');
+
+            $response = new Response();
+            $response->headers->clearCookie('email');
+            $response->headers->removeCookie('email');
+
+            $time2 = $reservante->getCelebracion()->getFechaCelebracionAt()->getTimestamp();
+
+            $nombre = 'email';
+            $arrayDato = [
+                $reservante->getEmail()
+            ];
+            $arrayDatos = json_encode($arrayDato);
+
+            $nombre2 = 'celebracion';
+            $arrayDato2 = [
+                $reservante->getCelebracion()->getFechaCelebracionAt()
+            ];
+            $arrayDatos2 = json_encode($arrayDato2);
+
+            $response->headers->setCookie(new Cookie($nombre, $arrayDatos, $time2));
+            $response->headers->setCookie(new Cookie($nombre2, $arrayDatos2, $time2));
+            $response->sendHeaders();
+
             return $this->redirectToRoute('vista_reserva', [
                 'celebracion' => $reservante->getCelebracion()->getId(),
-                'email' => $reservante->getEmail()
+                'email' => $reservante->getEmail(),
             ]);
 
         }
@@ -132,8 +154,8 @@ class ReservaController extends AbstractController
 
             if ($invitado) {
                 $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
-                return $this->redirectToRoute('agrega_invitado',[
-                    'id'=>$reservante->getId()
+                return $this->redirectToRoute('agrega_invitado', [
+                    'id' => $reservante->getId()
                 ]);
             }
 
@@ -157,10 +179,9 @@ class ReservaController extends AbstractController
      * @param ReservanteRepository $reservanteRepository
      * @param string $celebracion
      * @param string $email
-     * @param EntityManagerInterface $em
      * @return Response
      */
-    public function vistaReserva(ReservanteRepository $reservanteRepository, string $celebracion, string $email, EntityManagerInterface $em): Response
+    public function vistaReserva(ReservanteRepository $reservanteRepository, string $celebracion, string $email): Response
     {
         $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
 
@@ -193,8 +214,8 @@ class ReservaController extends AbstractController
             return $this->render('reserva/reservante.html.twig', [
                 'reservante' => $reservante
             ]);
-        }else{
-            return $this->redirectToRoute('admin' );
+        } else {
+            return $this->redirectToRoute('admin');
         }
     }
 

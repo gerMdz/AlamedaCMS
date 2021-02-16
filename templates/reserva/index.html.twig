@@ -33,6 +33,18 @@
             <div class="section text-center">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
+                        {% if app.request.cookies.get('celebracion') %}
+                        {% set fecha = app.request.cookies.get('celebracion')|split(':')| slice(1,2) %}
+                        {% set dia = fecha[0]| replace({'"':''})~':'~fecha[1] %}
+                        <div class="col-sm-12">
+                            <small>
+                                Hay una reserva realizada con el email:
+                                <strong> {{ app.request.cookies.get('email') | replace({'["':'','"]':'' }) }}</strong> <br/>
+                                para el día <strong> {{ dia | date('d-m-y H:i') }} hs </strong> <br/>
+                                desde este dispositivo
+                            </small>
+                        </div>
+                        {% endif %}
 
                         <h3>
                             <label class="text-alameda">
@@ -70,11 +82,11 @@
 
                             {% endfor %}
 
-                        <div class="col-sm-12">
-                            <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
-                                Consultá tu reserva
-                            </a>
-                        </div>
+                            <div class="col-sm-12">
+                                <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
+                                    Consultá tu reserva
+                                </a>
+                            </div>
                         {% else %}
                             No hay reservas para celebraciones activas <br/>
                             Pronto estaremos contigo.
@@ -109,4 +121,7 @@
             });
         });
     </script>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
 {% endblock %}
