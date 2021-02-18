@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Principal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,22 +20,22 @@ class PrincipalRepository extends ServiceEntityRepository
         parent::__construct($registry, Principal::class);
     }
 
-    // /**
-    //  * @return Principal[] Returns an array of Principal objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param $principal
+     * @return Principal[] Returns an array of Principal objects
+     */
+
+    public function findByPrincipalParent($principal): array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('m.principal = :val')
+            ->setParameter('val', $principal)
+            ->orderBy('m.updatedAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Principal
@@ -59,17 +58,18 @@ class PrincipalRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('p');
     }
+
     /**
      * @return QueryBuilder
      */
     public function queryFindAllPrincipals(): QueryBuilder
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.updatedAt', 'DESC')
-            ;
+            ->andWhere('p.principal is null')
+            ->orderBy('p.updatedAt', 'DESC');
     }
 }

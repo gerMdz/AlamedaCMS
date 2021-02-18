@@ -16,48 +16,83 @@
                         <tbody>
                         <tr>
                             <th>Id</th>
-                            <td>{{ principal.id }}</td>
-                        </tr>
-                        <tr>
                             <th>Titulo</th>
+                            <th>linkRoute</th>
+                        </tr>
+                        <tr>
+                            <td>{{ principal.id }}</td>
                             <td>{{ principal.titulo }}</td>
-                        </tr>
-                        <tr>
-                            <th>Contenido</th>
-                            <td>{{ principal.contenido }}</td>
-                        </tr>
-                        <tr>
-                            <th>LinkRoute</th>
                             <td>{{ principal.linkRoute }}</td>
                         </tr>
                         <tr>
-                            <th>ImageFilename</th>
+                            <th>Contenido</th>
+                            <td colspan="2">{{ principal.contenido }}</td>
+                        </tr>
+                        <tr>
+                            <th>Imagen</th>
                             <td>{{ principal.imageFilename }}</td>
+                            <td>
+                                <img class="show-article-img "
+                                     src="{{ principal.imagePath|imagine_filter('squared_thumbnail_small') }}"
+                                     alt="{{ base.siteName }}">
+                            </td>
                         </tr>
                         <tr>
-                            <th>Likes</th>
-                            <td>{{ principal.likes }}</td>
+                            <th>Creada</th>
+                            <th>Actualizada</th>
+                            <th>ModelTemplate</th>
                         </tr>
                         <tr>
-                            <th>CreatedAt</th>
                             <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>UpdatedAt</th>
                             <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ principal.modelTemplate}}</td>
                         </tr>
+                        {% if brotes %}
+                            <tr>
+                                <th colspan="3" class="text-center">
+                                    <h3>Páginas asociadas</h3>
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <td>Título</td>
+                                <td>LinkRoute</td>
+                                <td><i class="fa fa-cogs"> </i> </td>
+                            </tr>
+                            {% for brote in brotes %}
+                                <tr>
+                                    <td>{{ brote.titulo }}</td>
+                                    <td>
+                                        {{ brote.linkRoute }}
+                                        <a href="{{ path('principal_ver', {'linkRoute': brote.linkRoute}) }}"
+                                           target="_blank"
+                                        >
+                                            <i class="fa fa-link"> </i><small> ver en pantalla nueva</small>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('principal_show', {'id': brote.id}) }}">
+                                            <i class="fa fa-eye"> </i> <small> Ver datos</small>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                        {% endif %}
                         </tbody>
                     </table>
+
+
                     {% if principal.section %}
                         <tr>
                             <td colspan="10">
                                 <div class="col-sm-12">
-                                    <h3>Secciones</h3>
+                                    <h3 class="text-center">Secciones asociadas</h3>
                                     <div style="font-size: 0.9rem"
                                          class="list-group small js-section-list col-sm-12"
                                          data-url="{{ path('admin_principal_list_section', {id: principal.id}) }}"
-                                     data-principal = "{{ principal.id }}"
-                                >
+                                         data-principal="{{ principal.id }}"
+                                    >
                                     </div>
                                     <div class="col-sm-12 text-center">
                                         <a href="{{ path('principal_agregar_seccion', { 'id': principal.id }) }}"

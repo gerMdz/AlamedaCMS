@@ -139,12 +139,18 @@ class PrincipalController extends BaseController
     /**
      * @Route("/{id}/show", name="principal_show", methods={"GET"})
      * @param Principal $principal
+     * @param PrincipalRepository $repository
      * @return Response
      */
-    public function show(Principal $principal): Response
+    public function show(Principal $principal, PrincipalRepository $repository): Response
     {
+        $brotes = $repository->findByPrincipalParent($principal);
+        if(!$brotes){
+            $brotes = null;
+        }
         return $this->render('principal/show.html.twig', [
             'principal' => $principal,
+            'brotes' => $brotes
         ]);
     }
 
