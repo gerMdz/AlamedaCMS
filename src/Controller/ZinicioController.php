@@ -71,7 +71,7 @@ class ZinicioController extends AbstractController
     /**
      * @Route("/test/index", name="test_index")
      */
-    public function test_index()
+    public function test_index(): Response
     {
         $em = $this->getDoctrine()->getManager();
         /** @var IndexAlameda $indexAlameda */

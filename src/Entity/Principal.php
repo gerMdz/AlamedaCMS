@@ -100,6 +100,7 @@ class Principal
 
     /**
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="principales")
+     * @ORM\OrderBy({"orden"="ASC"})
      */
     private $secciones;
 
