@@ -81,7 +81,7 @@ class Section
     private $template;
 
     /**
-     * @ORM\Column(type="string", length=2550, nullable=true)
+     * @ORM\Column(type="string", length=5100, nullable=true)
      */
     private $contenido;
 
