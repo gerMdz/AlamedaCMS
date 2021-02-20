@@ -75,6 +75,11 @@ class Celebracion
      */
     private $imageQr;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WaitingList::class, mappedBy="celebracion")
+     */
+    private $waitingLists;
+
     public function __toString()
     {
         $formatter = new IntlDateFormatter('es_ES', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
@@ -87,6 +92,7 @@ class Celebracion
     {
         $this->reservantes = new ArrayCollection();
         $this->invitados = new ArrayCollection();
+        $this->waitingLists = new ArrayCollection();
     }
 
 
@@ -250,6 +256,36 @@ class Celebracion
     {
         $criterio = CelebracionRepository::createIsPresenteCriteria();
         return count($this->invitados->matching($criterio));
+    }
+
+    /**
+     * @return Collection|WaitingList[]
+     */
+    public function getWaitingLists(): Collection
+    {
+        return $this->waitingLists;
+    }
+
+    public function addWaitingList(WaitingList $waitingList): self
+    {
+        if (!$this->waitingLists->contains($waitingList)) {
+            $this->waitingLists[] = $waitingList;
+            $waitingList->setCelebracion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWaitingList(WaitingList $waitingList): self
+    {
+        if ($this->waitingLists->removeElement($waitingList)) {
+            // set the owning side to null (unless already changed)
+            if ($waitingList->getCelebracion() === $this) {
+                $waitingList->setCelebracion(null);
+            }
+        }
+
+        return $this;
     }
 
 

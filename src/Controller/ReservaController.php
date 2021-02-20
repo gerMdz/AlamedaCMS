@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Entity\Reservante;
+use App\Entity\WaitingList;
 use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\InvitadoType;
 use App\Form\ReservanteType;
@@ -385,6 +386,19 @@ class ReservaController extends AbstractController
                 'celebracion' => $celebracion,
                 'email' => $email
             ]);
+    }
+
+
+    /**
+     * @Route("/avisarme/{celebracion}", name="add_to_waiting_list")
+     * @param Celebracion $celebracion
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     */
+    public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $entityManager)
+    {
+        $espera = new WaitingList();
+        $espera->setCelebracion($celebracion);
     }
 
 
