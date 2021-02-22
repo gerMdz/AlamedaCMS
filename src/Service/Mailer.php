@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Entity\Invitado;
 use App\Entity\Reservante;
 use App\Entity\User;
+use App\Entity\WaitingList;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -41,6 +42,28 @@ class Mailer
                 // You can pass whatever data you want
                 'reservante' => $reservante,
                 'invitados' => $invitados
+            ]);
+
+        $this->mailer->send($email);
+
+        return $email;
+    }
+
+    /**
+     * @param WaitingList $espera
+     * @return TemplatedEmail
+     * @throws TransportExceptionInterface
+     */
+    public function sendAvisoRegistroReservaMessage(WaitingList $espera): TemplatedEmail
+    {
+        $email = (new TemplatedEmail())
+            ->from(new Address('contacto@iglesiaalameda.com', 'Iglesia de La Alameda'))
+            ->to(new Address($espera->getEmail(), $espera->getNombre()))
+            ->subject('Confirmación registro aviso de disponibilidad ')
+            ->htmlTemplate('email/avisoRegistro.html.twig')
+            ->context([
+                // You can pass whatever data you want
+                'espera' => $espera,
             ]);
 
         $this->mailer->send($email);

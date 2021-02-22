@@ -382,6 +382,11 @@ class ReservaController extends AbstractController
         $entityManager->remove($invitado);
         $entityManager->flush();
         $this->addFlash('success', 'Se canceló reserva.');
+        $response = new Response();
+        $response->headers->clearCookie('email');
+        $response->headers->removeCookie('email');
+        $response->headers->clearCookie('celebracion');
+        $response->headers->removeCookie('celebracion');
         return $this->redirectToRoute('vista_reserva',
             [
                 'celebracion' => $celebracion,
@@ -395,9 +400,11 @@ class ReservaController extends AbstractController
      * @param Celebracion $celebracion
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param Mailer $mailer
      * @return Response
+     * @throws TransportExceptionInterface
      */
-    public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $em): Response
+    public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $espera = new WaitingList();
         $espera->setCelebracion($celebracion);
@@ -417,6 +424,10 @@ class ReservaController extends AbstractController
 
             $em->persist($espera);
             $em->flush();
+            $mailer->sendAvisoRegistroReservaMessage($espera);
+            $this->addFlash('success', 'Se ha guardado su registro');
+            return $this->redirectToRoute('reserva_index', [
+            ]);
         }
 
         return $this->render('reserva/vistaAvisoReserva.html.twig', [
@@ -424,6 +435,4 @@ class ReservaController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-
 }
