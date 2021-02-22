@@ -6,6 +6,7 @@ use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Entity\Reservante;
 use App\Entity\WaitingList;
+use App\Form\AvisoType;
 use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\InvitadoType;
 use App\Form\ReservanteType;
@@ -393,12 +394,35 @@ class ReservaController extends AbstractController
      * @Route("/avisarme/{celebracion}", name="add_to_waiting_list")
      * @param Celebracion $celebracion
      * @param Request $request
-     * @param EntityManagerInterface $entityManager
+     * @param EntityManagerInterface $em
+     * @return Response
      */
-    public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $entityManager)
+    public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $em): Response
     {
         $espera = new WaitingList();
         $espera->setCelebracion($celebracion);
+        $form = $this->createForm(AvisoType::class, $espera, [
+            'attr' => ['id' => 'formAviso']
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $reservado = $em->getRepository(Reservante::class)->findOneByReserva($celebracion->getId(), $espera->getEmail());
+
+            if ($reservado) {
+                $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
+                return $this->redirectToRoute('reserva_index');
+            }
+
+            $em->persist($espera);
+            $em->flush();
+        }
+
+        return $this->render('reserva/vistaAvisoReserva.html.twig', [
+            'celebracion' => $celebracion,
+            'form' => $form->createView(),
+        ]);
     }
 
 

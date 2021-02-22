@@ -1,6 +1,6 @@
 {{ form_start(form, {'action' : path('add_to_waiting_list', { 'celebracion': celebracion.id })}) }}
 <div class="modal-header panel-info">
-    <h5 class="modal-title" id="exampleModalLabel">Avisarme disponibilidad de asientos en la celebración</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Avisarme disponibilidad en la celebración</h5>
 </div>
 <div id="reserva" class="modal-body">
     <div class="card">
@@ -24,28 +24,10 @@
                 {{ form_widget(form.apellido) }}
             </div>
             <div class="col-sm-12 p-0">
-                <label for="{{ form.documento.vars.id}}" class="label text-dark">
-                    <i class="fa fa-address-card"> </i> Nro de documento
-                </label>
-                {{ form_widget(form.documento) }}
-            </div>
-            <div class="col-sm-12 p-0">
                 <label for="{{ form.email.vars.id}}" class="label text-dark">
                     <i class="fa fa-at"> </i> Email
                 </label>
                 {{ form_widget(form.email) }}
-            </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.telefono.vars.id}}" class="label text-dark">
-                    <i class="fa fa-whatsapp"> </i> WhatsApp
-                </label>
-                {{ form_widget(form.telefono) }}
-            </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.acompanantes.vars.id}}" class="label text-dark">
-                    <i class="fa fa-users"> </i> Acompañantes
-                </label>
-                {{ form_widget(form.acompanantes) }}
             </div>
             <div class="col-sm-12 p-0 text-center">
                 {{ form_row(form.save) }}
