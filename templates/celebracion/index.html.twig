@@ -23,7 +23,7 @@
                             <th>Presentismo</th>
                             <th>Disponibilidad</th>
                             <th>Habilitada</th>
-                            <th><i class="fas fa-cogs"> </i> Acciones</th>
+                            <th><i class="fas fa-cogs"> </i></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -77,7 +77,12 @@
                                         Ver</a><br/>
                                     <a href="{{ path('celebracion_edit', {'id': celebracion.id}) }}">
                                         <i class="fas fa-edit"></i>
-                                        Editar</a>
+                                        Editar</a><br/>
+                                    <a href="{{ path('celebracion_agregar_grupo', {'id': celebracion.id}) }}"
+                                       class="btn-modal">
+
+                                        <i class="fas fa-plus-circle"></i>
+                                        Grupo</a>
                                 </td>
                             </tr>
                         {% else %}
@@ -96,6 +101,7 @@
             </div>
         </div>
     </div>
+    {% include('admin/_modal.html.twig') %}
 {% endblock %}
 
 {% block jslocal %}
@@ -104,4 +110,19 @@
         $('#celebracion').addClass('active');
     </script>
     <script src="{{ asset('js/celebracion_marca_ausente.js') }}" type="application/javascript"></script>
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
+
+    {{ encore_entry_script_tags('section_select') }}
 {% endblock %}

@@ -3,10 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Celebracion;
+use App\Entity\GroupCelebration;
 use App\Form\CelebracionType;
+use App\Form\GroupCelebrationAddType;
 use App\Repository\CelebracionRepository;
+use App\Repository\GroupCelebrationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -111,5 +116,39 @@ class CelebracionController extends AbstractController
         }
 
         return $this->redirectToRoute('celebracion_index');
+    }
+
+    /**
+     * @Route("/agregarGrupo/{id}", name="celebracion_agregar_grupo", methods={"GET", "POST"})
+     * @param Request $request
+     * @param Celebracion $celebracion
+     * @param EntityManagerInterface $em
+     * @param CelebracionRepository $celebracionRepository
+     * @param GroupCelebrationRepository $groupCelebrationRepository
+     * @return RedirectResponse|Response
+     */
+    public function agregarGrupo(Request $request, Celebracion $celebracion, EntityManagerInterface $em, CelebracionRepository $celebracionRepository, GroupCelebrationRepository $groupCelebrationRepository)
+    {
+        $form = $this->createForm(GroupCelebrationAddType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $id_grupo = $form->get('groupCelebration')->getData();
+            $grupo = $groupCelebrationRepository->find($id_grupo);
+            $celebracion->addGroupCelebration($grupo);
+            $em->persist($celebracion);
+            $em->flush();
+
+            return $this->redirectToRoute('celebracion_index', [
+
+            ]);
+        }
+
+        return $this->render('group_celebration/vistaAgregaGrupo.html.twig', [
+            'celebracion' => $celebracion,
+            'form' => $form->createView(),
+        ]);
+
     }
 }

@@ -35,11 +35,22 @@ class CelebracionRepository extends ServiceEntityRepository
       * @return QueryBuilder Returns an array of Celebracion objects
       */
 
-    public function puedeMostrarse()
+    public function puedeMostrarse(): QueryBuilder
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.isHabilitada = :hab')
             ->andWhere('c.disponibleAt <= :today')
+            ->andWhere('c.disponibleHastaAt >= :today')
+            ->orderBy('c.fechaCelebracionAt', 'ASC')
+            ->setParameter('hab', true)
+            ->setParameter('today',new DateTime('now'))
+        ;
+    }
+
+    public function puedeAgruparse(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.isHabilitada = :hab')
             ->andWhere('c.disponibleHastaAt >= :today')
             ->orderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('hab', true)
