@@ -56,7 +56,7 @@
 
                         {% if grupos is defined %}
                             {% for grupo in grupos %}
-                                <div class="border border-alameda shadow-blue mb-2">
+                                <div class="border border-alameda shadow-blue mb-2 {{ grupo.baseCss|default('')}}">
                                 <div class="col-sm-12 shadow-normal">
                                     <h3 class="text-primary text-14-300 ">
                                         <i>{{ grupo.title }}</i>
@@ -64,7 +64,9 @@
                                 </div>
 
                                 {% for celebracion in grupo.celebraciones %}
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12
+
+">
                                         {% if(
                                             (capacidad_restante(celebracion.id, celebracion.capacidad) > 0) or
                                             (is_granted('ROLE_RESERVA'))
