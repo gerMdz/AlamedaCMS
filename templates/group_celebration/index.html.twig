@@ -8,10 +8,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Nombre</th>
                 <th>IsActivo</th>
-                <th>BaseCss</th>
-                <th>BtonCss</th>
+                <th>Orden</th>
+                <th>css base</th>
+                <th>css botón</th>
                 <th>ImageBg</th>
                 <th>ImageLogo</th>
                 <th>actions</th>
@@ -20,15 +21,16 @@
         <tbody>
         {% for group_celebration in group_celebrations %}
             <tr>
-                <td>{{ group_celebration.id }}</td>
-                <td>{{ group_celebration.isActivo ? 'Yes' : 'No' }}</td>
+                <td>{{ group_celebration.title }}</td>
+                <td>{{ group_celebration.isActivo ? '<i class="fa fa-check">' : '<i class="fa fa-times">' }}</td>
+                <td>{{ group_celebration.orden }}</td>
                 <td>{{ group_celebration.baseCss }}</td>
                 <td>{{ group_celebration.btonCss }}</td>
                 <td>{{ group_celebration.imageBg }}</td>
                 <td>{{ group_celebration.imagePath }}</td>
                 <td>
-                    <a href="{{ path('group_celebration_show', {'id': group_celebration.id}) }}">show</a>
-                    <a href="{{ path('group_celebration_edit', {'id': group_celebration.id}) }}">edit</a>
+                    <a href="{{ path('group_celebration_show', {'id': group_celebration.id}) }}">Ver</a>
+                    <a href="{{ path('group_celebration_edit', {'id': group_celebration.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}

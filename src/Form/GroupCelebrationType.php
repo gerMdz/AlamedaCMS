@@ -19,6 +19,7 @@ class GroupCelebrationType extends AbstractType
 //            ->add('celebraciones')
             ->add('imageFilename')
             ->add('title')
+            ->add('orden')
         ;
     }
 

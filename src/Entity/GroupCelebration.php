@@ -55,6 +55,11 @@ class GroupCelebration
      */
     private $title;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $orden;
+
     public function __construct()
     {
         $this->celebraciones = new ArrayCollection();
@@ -150,6 +155,18 @@ class GroupCelebration
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getOrden(): ?int
+    {
+        return $this->orden;
+    }
+
+    public function setOrden(?int $orden): self
+    {
+        $this->orden = $orden;
 
         return $this;
     }

@@ -63,7 +63,8 @@ class GroupCelebrationRepository extends ServiceEntityRepository
             ->andWhere('g.isActivo = :hab')
             ->andWhere('c.disponibleAt <= :today')
             ->andWhere('c.disponibleHastaAt >= :today')
-            ->orderBy('c.fechaCelebracionAt', 'ASC')
+            ->orderBy('g.orden', 'ASC')
+            ->addOrderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('hab', true)
             ->setParameter('today',new DateTime('now'))
             ;
