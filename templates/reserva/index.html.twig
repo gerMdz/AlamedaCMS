@@ -70,7 +70,9 @@
                                             (is_granted('ROLE_RESERVA'))
                                             ) %}
                                             <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
-                                               class="btn btn-alameda btn-modal">
+                                               class="btn
+                                               {{ grupo.btonCss | default('btn-alameda')  }}
+                                                btn-modal">
                                                 {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},
                                                 {{ celebracion.nombre }}
                                             </a><br class="d-md-none"/>
