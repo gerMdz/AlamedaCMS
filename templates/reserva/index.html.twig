@@ -34,16 +34,17 @@
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
                         {% if app.request.cookies.get('celebracion') %}
-                        {% set fecha = app.request.cookies.get('celebracion')|split(':')| slice(1,2) %}
-                        {% set dia = fecha[0]| replace({'"':''})~':'~fecha[1] %}
-                        <div class="col-sm-12">
-                            <small>
-                                Hay una reserva realizada con el email:
-                                <strong> {{ app.request.cookies.get('email') | replace({'["':'','"]':'' }) }}</strong> <br/>
-                                para el día <strong> {{ dia | date('d-m-y H:i') }} hs </strong> <br/>
-                                desde este dispositivo
-                            </small>
-                        </div>
+                            {% set fecha = app.request.cookies.get('celebracion')|split(':')| slice(1,2) %}
+                            {% set dia = fecha[0]| replace({'"':''})~':'~fecha[1] %}
+                            <div class="col-sm-12">
+                                <small>
+                                    Hay una reserva realizada con el email:
+                                    <strong> {{ app.request.cookies.get('email') | replace({'["':'','"]':'' }) }}</strong>
+                                    <br/>
+                                    para el día <strong> {{ dia | date('d-m-y H:i') }} hs </strong> <br/>
+                                    desde este dispositivo
+                                </small>
+                            </div>
                         {% endif %}
 
                         <h3>
@@ -53,49 +54,109 @@
                             </label>
                         </h3>
 
-                        {% if (celebraciones|length > 0) %}
-                            {% for celebracion in celebraciones %}
-                                <div class="col-sm-12">
-                                    {% if(
-                                        (capacidad_restante(celebracion.id, celebracion.capacidad) > 0) or
-                                        (is_granted('ROLE_RESERVA'))
-                                        ) %}
-                                        <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
-                                           class="btn btn-alameda btn-modal">
+                        {% if grupos is defined %}
+                            {% for grupo in grupos %}
+                                <div class="border shadow-blue mb-2 {{ grupo.baseCss|default('border-alameda') }}">
+                                    <div class="col-sm-12 shadow-normal">
+                                        <h3 class="text-14-300">
+                                            <i class="text-{{ grupo.btonCss|default('alameda') }}">
+                                                {{ grupo.title }}
+                                            </i>
+                                        </h3>
+                                    </div>
+
+                                    {% for celebracion in grupo.celebraciones %}
+                                        <div class="col-sm-12">
+                                            {% if(
+                                                (capacidad_restante(celebracion.id, celebracion.capacidad) > 0) or
+                                                (is_granted('ROLE_RESERVA'))
+                                                ) %}
+                                                <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
+                                                   class="btn
+                                               {% if (grupo.btonCss != '') %}
+                                                btn-{{ grupo.btonCss }}
+                                                btn-round
+                                               {% else %}
+                                               btn-alameda
+                                               {% endif %}
+                                                btn-modal">
+                                                    {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}
+                                                    ,
+                                                    {{ celebracion.nombre }}
+                                                </a><br class="d-md-none"/>
+                                                <small class="text-dark ">
+                                                    {{ capacidad_restante(celebracion.id, celebracion.capacidad) }}
+                                                    asientos
+                                                    libres
+                                                </small>
+                                            {% else %}
+                                                {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},
+                                                {{ celebracion.nombre }}
+                                                <small class="text-dark ">
+                                                    Capacidad permitida alcanzada
+                                                </small>
+                                                {# <a class="btn btn-sm btn-outline-warning btn-modal" #}
+                                                {# href="{{ path('add_to_waiting_list', {'celebracion':celebracion.id}) }}" #}
+                                                {# > #}
+                                                {# <i class="fas fa-bell"> </i> #}
+                                                {# Avisarme por mail si hay asientos disponibles #}
+                                                {# </a> #}
+                                            {% endif %}
+
+                                            <hr/>
+                                        </div>
+
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+
+
+                            {% if (celebraciones|length > 0) %}
+                                {% for celebracion in celebraciones %}
+                                    <div class="col-sm-12">
+                                        {% if(
+                                            (capacidad_restante(celebracion.id, celebracion.capacidad) > 0) or
+                                            (is_granted('ROLE_RESERVA'))
+                                            ) %}
+                                            <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
+                                               class="btn btn-alameda btn-modal">
+                                                {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}
+                                                ,
+                                                {{ celebracion.nombre }}
+                                            </a><br class="d-md-none"/>
+                                            <small class="text-dark ">
+                                                {{ capacidad_restante(celebracion.id, celebracion.capacidad) }} asientos
+                                                libres
+                                            </small>
+                                        {% else %}
                                             {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},
                                             {{ celebracion.nombre }}
-                                        </a><br class="d-md-none"/>
-                                        <small class="text-dark ">
-                                            {{ capacidad_restante(celebracion.id, celebracion.capacidad) }} asientos
-                                            libres
-                                        </small>
-                                    {% else %}
-                                        {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }},
-                                        {{ celebracion.nombre }}
-                                        <small class="text-dark ">
-                                            Capacidad permitida alcanzada
-                                        </small>
-                                        <a class="btn btn-sm btn-outline-warning btn-modal"
-                                           href="{{ path('add_to_waiting_list', {'celebracion':celebracion.id}) }}"
-                                        >
-                                            <i class="fas fa-bell"> </i>
-                                            Avisarme por mail si hay asientos disponibles
-                                        </a>
-                                    {% endif %}
+                                            <small class="text-dark ">
+                                                Capacidad permitida alcanzada
+                                            </small>
+                                            {# <a class="btn btn-sm btn-outline-warning btn-modal" #}
+                                            {# href="{{ path('add_to_waiting_list', {'celebracion':celebracion.id}) }}" #}
+                                            {# > #}
+                                            {# <i class="fas fa-bell"> </i> #}
+                                            {# Avisarme por mail si hay asientos disponibles #}
+                                            {# </a> #}
+                                        {% endif %}
 
-                                    <hr/>
+                                        <hr/>
+                                    </div>
+
+                                {% endfor %}
+
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
+                                        Consultá tu reserva
+                                    </a>
                                 </div>
-
-                            {% endfor %}
-
-                            <div class="col-sm-12">
-                                <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
-                                    Consultá tu reserva
-                                </a>
-                            </div>
-                        {% else %}
-                            No hay reservas para celebraciones activas <br/>
-                            Pronto estaremos contigo.
+                            {% else %}
+                                No hay reservas para celebraciones activas <br/>
+                                Pronto estaremos contigo.
+                            {% endif %}
                         {% endif %}
 
                     </div>
