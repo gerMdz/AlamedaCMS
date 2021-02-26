@@ -8,11 +8,13 @@
             </div>
             {% if (entrada.linkRoute or entrada.linkPosting ) %}
             <a
-                    {% if (entrada.isLinkExterno) %}
+                    {% if (entrada.linkPosting) %}
                         href="{{ entrada.linkPosting }}"
-                        target="_blank"
+                        {% if (entrada.isLinkExterno) %}
+                            target="_blank"
+                        {% endif %}
                     {% else %}
-                        href="{{ path(entrada.linkRoute) }}"
+                        href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
                     {% endif %}
             >
                 {% endif %}
