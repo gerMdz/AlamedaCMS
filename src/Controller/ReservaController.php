@@ -11,6 +11,7 @@ use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\InvitadoType;
 use App\Form\ReservanteType;
 use App\Repository\CelebracionRepository;
+use App\Repository\GroupCelebrationRepository;
 use App\Repository\InvitadoRepository;
 use App\Repository\ReservanteRepository;
 use App\Service\Mailer;
@@ -30,12 +31,19 @@ class ReservaController extends AbstractController
     /**
      * @Route("/ver", name="reserva_index")
      * @param CelebracionRepository $celebracionRepository
+     * @param GroupCelebrationRepository $groupCelebrationRepository
      * @return Response
      */
-    public function index(CelebracionRepository $celebracionRepository): Response
+    public function index(CelebracionRepository $celebracionRepository, GroupCelebrationRepository $groupCelebrationRepository): Response
     {
+
+        $grupos = $groupCelebrationRepository->puedeMostrarse()->getQuery()->getResult();
+        if(!$grupos){
+            $grupos = null;
+        }
         return $this->render('reserva/index.html.twig', [
-            'celebraciones' => $celebracionRepository->puedeMostrarse()->getQuery()->getResult()
+            'celebraciones' => $celebracionRepository->puedeMostrarse()->getQuery()->getResult(),
+            'grupos' => $grupos
         ]);
     }
 

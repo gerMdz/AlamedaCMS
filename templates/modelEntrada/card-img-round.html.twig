@@ -8,16 +8,18 @@
             </div>
             {% if (entrada.linkRoute or entrada.linkPosting ) %}
             <a
-                    {% if (entrada.isLinkExterno) %}
+                    {% if (entrada.linkPosting) %}
                         href="{{ entrada.linkPosting }}"
-                        target="_blank"
+                        {% if (entrada.isLinkExterno) %}
+                            target="_blank"
+                        {% endif %}
                     {% else %}
-                        href="{{ path(entrada.linkRoute) }}"
+                        href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
                     {% endif %}
             >
                 {% endif %}
                 <h4 class="card-title text-center text-alameda sub-img px-1 fuente-normal">
-                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                    {{ entrada.titulo | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
                 </h4>
                 {% if (entrada.linkRoute or entrada.linkPosting ) %}
             </a>
@@ -25,7 +27,7 @@
             <br>
             <div class="card-body">
                 <p class="card-description text-center text-dark fuente-arial-nova">
-                    {{ entrada.contenido  | replace({'<p>':'', '</p>':''}) | raw }}
+                    {{ entrada.contenido  | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
                 </p>
             </div>
         </div>

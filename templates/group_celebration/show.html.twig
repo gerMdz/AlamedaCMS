@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GroupCelebration{% endblock %}
+
+{% block body %}
+    <h1>GroupCelebration</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ group_celebration.id }}</td>
+            </tr>
+            <tr>
+                <th>IsActivo</th>
+                <td>{{ group_celebration.isActivo ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>BaseCss</th>
+                <td>{{ group_celebration.baseCss }}</td>
+            </tr>
+            <tr>
+                <th>BtonCss</th>
+                <td>{{ group_celebration.btonCss }}</td>
+            </tr>
+            <tr>
+                <th>ImageBg</th>
+                <td>{{ group_celebration.imageBg }}</td>
+            </tr>
+            <tr>
+                <th>ImageLogo</th>
+                <td>{{ group_celebration.imageLogo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('group_celebration_index') }}">back to list</a>
+
+    <a href="{{ path('group_celebration_edit', {'id': group_celebration.id}) }}">edit</a>
+
+    {{ include('group_celebration/_delete_form.html.twig') }}
+{% endblock %}

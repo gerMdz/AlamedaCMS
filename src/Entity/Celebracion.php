@@ -80,6 +80,11 @@ class Celebracion
      */
     private $waitingLists;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=GroupCelebration::class, mappedBy="celebraciones")
+     */
+    private $groupCelebrations;
+
     public function __toString()
     {
         $formatter = new IntlDateFormatter('es_ES', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
@@ -93,6 +98,7 @@ class Celebracion
         $this->reservantes = new ArrayCollection();
         $this->invitados = new ArrayCollection();
         $this->waitingLists = new ArrayCollection();
+        $this->groupCelebrations = new ArrayCollection();
     }
 
 
@@ -283,6 +289,33 @@ class Celebracion
             if ($waitingList->getCelebracion() === $this) {
                 $waitingList->setCelebracion(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GroupCelebration[]
+     */
+    public function getGroupCelebrations(): Collection
+    {
+        return $this->groupCelebrations;
+    }
+
+    public function addGroupCelebration(GroupCelebration $groupCelebration): self
+    {
+        if (!$this->groupCelebrations->contains($groupCelebration)) {
+            $this->groupCelebrations[] = $groupCelebration;
+            $groupCelebration->addCelebracione($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupCelebration(GroupCelebration $groupCelebration): self
+    {
+        if ($this->groupCelebrations->removeElement($groupCelebration)) {
+            $groupCelebration->removeCelebracione($this);
         }
 
         return $this;
