@@ -66,9 +66,7 @@
                                     </div>
 
                                     {% for celebracion in grupo.celebraciones %}
-                                        <div class="col-sm-12
-
-">
+                                        <div class="col-sm-12">
                                             {% if(
                                                 (capacidad_restante(celebracion.id, celebracion.capacidad) > 0) or
                                                 (is_granted('ROLE_RESERVA'))
@@ -104,7 +102,6 @@
                                                 {# Avisarme por mail si hay asientos disponibles #}
                                                 {# </a> #}
                                             {% endif %}
-
                                             <hr/>
                                         </div>
 
@@ -112,8 +109,6 @@
                                 </div>
                             {% endfor %}
                         {% else %}
-
-
                             {% if (celebraciones|length > 0) %}
                                 {% for celebracion in celebraciones %}
                                     <div class="col-sm-12">
@@ -150,16 +145,17 @@
 
                                 {% endfor %}
 
-                                <div class="col-sm-12">
-                                    <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
-                                        Consultá tu reserva
-                                    </a>
-                                </div>
+
                             {% else %}
                                 No hay reservas para celebraciones activas <br/>
                                 Pronto estaremos contigo.
                             {% endif %}
                         {% endif %}
+                        <div class="col-sm-12">
+                            <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
+                                Consultá tu reserva
+                            </a>
+                        </div>
 
                     </div>
                 </div>
