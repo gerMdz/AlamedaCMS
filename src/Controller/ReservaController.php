@@ -6,6 +6,8 @@ use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Entity\Reservante;
 use App\Entity\WaitingList;
+use App\Event\ReservaEvent;
+use App\EventSubscriber\ReservaSubscriber;
 use App\Form\AvisoType;
 use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\InvitadoType;
@@ -17,6 +19,7 @@ use App\Repository\ReservanteRepository;
 use App\Service\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -357,11 +360,14 @@ class ReservaController extends AbstractController
      * @Route("/{id}", name="reserva_delete", methods={"DELETE"})
      * @param Request $request
      * @param Reservante $reservante
+     * @param EventDispatcherInterface $dispatcher
      * @return Response
      */
-    public function delete(Request $request, Reservante $reservante): Response
+    public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher): Response
     {
         if ($this->isCsrfTokenValid('delete' . $reservante->getId(), $request->request->get('_token'))) {
+
+            $celebracion = $reservante->getCelebracion();
             $entityManager = $this->getDoctrine()->getManager();
 
             $invitados = $reservante->getInvitados();
@@ -371,6 +377,14 @@ class ReservaController extends AbstractController
 
             $entityManager->remove($reservante);
             $entityManager->flush();
+
+            $event = new ReservaEvent($celebracion);
+            $dispatcher->dispatch($event, ReservaEvent::ANULA_RESERVA);
+
+
+
+
+
         }
 
         return $this->redirectToRoute('reserva_index');
