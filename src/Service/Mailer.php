@@ -71,6 +71,28 @@ class Mailer
         return $email;
     }
 
+    /**
+     * @param WaitingList $espera
+     * @return TemplatedEmail
+     * @throws TransportExceptionInterface
+     */
+    public function sendAvisoLugarMessage(WaitingList $espera): TemplatedEmail
+    {
+        $email = (new TemplatedEmail())
+            ->from(new Address('contacto@iglesiaalameda.com', 'Iglesia de La Alameda'))
+            ->to(new Address($espera->getEmail(), $espera->getNombre()))
+            ->subject('Aviso de disponibilidad')
+            ->htmlTemplate('email/avisoLugar.html.twig')
+            ->context([
+                // You can pass whatever data you want
+                'espera' => $espera,
+            ]);
+
+        $this->mailer->send($email);
+
+        return $email;
+    }
+
     public function sendReservaInvitadoMessage(Invitado $reservante): TemplatedEmail
     {
         $email = (new TemplatedEmail())

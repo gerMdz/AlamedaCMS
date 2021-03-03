@@ -5,6 +5,7 @@ namespace App\EventSubscriber;
 use App\Service\Handler\Celebracion\HandlerCelebracion;
 use App\Service\Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class ReservaSubscriber implements EventSubscriberInterface
 {
@@ -25,9 +26,15 @@ class ReservaSubscriber implements EventSubscriberInterface
     public function onAnulaReservaEvent($event)
     {
 //        $this->handlerCelebracion->hayLugar($event->getData());
+        $this->handlerCelebracion->theWaitingList($event->getData());
 
         if($this->handlerCelebracion->hayLugar($event->getData())){
-            $this->mailer->sendReservaInvitadoMessage();
+            $this->handlerCelebracion->theWaitingList($event->getData());
+            try {
+                $this->mailer->sendAvisoLugarMessage();
+            } catch (TransportExceptionInterface $e) {
+
+            }
         }
 
     }

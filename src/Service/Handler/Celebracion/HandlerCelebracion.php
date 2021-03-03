@@ -32,4 +32,15 @@ class HandlerCelebracion
        return $lugares > $ocupadas;
     }
 
+    /**
+     * @param Celebracion $celebracion
+     * @return bool
+     */
+    public function theWaitingList(Celebracion $celebracion): bool
+    {
+       $esperan = $celebracion->getWaitingLists();
+       dd($esperan);
+       return $esperan;
+    }
+
 }
