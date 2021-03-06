@@ -1,10 +1,11 @@
 {% extends 'base_material_kit.twig' %}
 
-{% block title %}Lo lamentamos {{ base.siteName}}{% endblock %}
+{% block title %} {{ app.request.pathInfo }} Lo lamentamos {{ base.siteName}}{% endblock %}
 
 {% block sections %}
 
     <h1>Hubo un error.</h1>
+
     <p>
         No se pudo encontrar la página que buscaba. Por favor revise URL
         o dirijase a <a href="{{ path('index') }}">la página de inicio</a>.

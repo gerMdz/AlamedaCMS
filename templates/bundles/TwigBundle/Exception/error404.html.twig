@@ -1,6 +1,6 @@
 {% extends 'base_material_kit.twig' %}
 
-{% block title %}Lo lamentamos {{ base.siteName}}{% endblock %}
+{% block title %} {{ app.request.pathInfo }} Lo lamentamos {{ base.siteName}}{% endblock %}
 
 {% block sections %}
 
@@ -19,7 +19,6 @@
                                 <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}"
                                      style="max-height: 150px" class="img-fluid" alt="{{ app.request.baseUrl }}">
                                 <h1>Página No Encontrada</h1>
-
                                 <p>
                                     No se pudo encontrar la página que buscaba. Por favor revise URL
                                     o dirijase a <a href="{{ path('index') }}">la página de inicio</a>.

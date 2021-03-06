@@ -109,6 +109,11 @@ class Principal
      */
     private $button;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="pathInterno")
+     */
+    private $itemMenus;
+
 
     public function __construct()
     {
@@ -118,6 +123,7 @@ class Principal
         $this->brote = new ArrayCollection();
         $this->Secciones = new ArrayCollection();
         $this->button = new ArrayCollection();
+        $this->itemMenus = new ArrayCollection();
     }
 
     public function __toString()
@@ -408,6 +414,36 @@ class Principal
     public function removeButton(ButtonLink $button): self
     {
         $this->button->removeElement($button);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ItemMenu[]
+     */
+    public function getItemMenus(): Collection
+    {
+        return $this->itemMenus;
+    }
+
+    public function addItemMenu(ItemMenu $itemMenu): self
+    {
+        if (!$this->itemMenus->contains($itemMenu)) {
+            $this->itemMenus[] = $itemMenu;
+            $itemMenu->setPathInterno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemMenu(ItemMenu $itemMenu): self
+    {
+        if ($this->itemMenus->removeElement($itemMenu)) {
+            // set the owning side to null (unless already changed)
+            if ($itemMenu->getPathInterno() === $this) {
+                $itemMenu->setPathInterno(null);
+            }
+        }
 
         return $this;
     }
