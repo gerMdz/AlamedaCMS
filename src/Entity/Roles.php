@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RolesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class Roles
      * @ORM\Column(type="boolean")
      */
     private $isActivo;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="role")
+     */
+    private $itemMenus;
+
+    public function __construct()
+    {
+        $this->itemMenus = new ArrayCollection();
+    }
 
     public function __toString(): ?string
     {
@@ -109,6 +121,33 @@ class Roles
     public function setIsActivo(bool $isActivo): self
     {
         $this->isActivo = $isActivo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ItemMenu[]
+     */
+    public function getItemMenus(): Collection
+    {
+        return $this->itemMenus;
+    }
+
+    public function addItemMenu(ItemMenu $itemMenu): self
+    {
+        if (!$this->itemMenus->contains($itemMenu)) {
+            $this->itemMenus[] = $itemMenu;
+            $itemMenu->addRole($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemMenu(ItemMenu $itemMenu): self
+    {
+        if ($this->itemMenus->removeElement($itemMenu)) {
+            $itemMenu->removeRole($this);
+        }
 
         return $this;
     }
