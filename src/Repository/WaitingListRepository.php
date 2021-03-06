@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\WaitingList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,23 @@ class WaitingListRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, WaitingList::class);
+    }
+
+    public function WaitingNotInvitado($id_celebracion, $invitados ): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('w')
+            ->leftJoin('w.celebracion', 'c')
+            ->leftJoin('c.invitados', 'invitados')
+            ->andWhere('c.id = :id')
+            ->setParameter('id', $id_celebracion)
+        ;
+
+        $qb->andWhere($qb->expr()->notIn('w.email', ':invitados'))
+            ->setParameter('invitados', $invitados)
+        ;
+        $qb->orderBy('c.fechaCelebracionAt', 'ASC');
+
+        return $qb;
     }
 
     // /**

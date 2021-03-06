@@ -25,15 +25,11 @@ class ReservaSubscriber implements EventSubscriberInterface
 
     public function onAnulaReservaEvent($event)
     {
-//        $this->handlerCelebracion->hayLugar($event->getData());
-        $this->handlerCelebracion->theWaitingList($event->getData());
-
         if($this->handlerCelebracion->hayLugar($event->getData())){
-            $this->handlerCelebracion->theWaitingList($event->getData());
-            try {
-                $this->mailer->sendAvisoLugarMessage();
-            } catch (TransportExceptionInterface $e) {
 
+            try {
+                $this->mailer->sendAvisoLugarMessage($event->getData());
+            } catch (TransportExceptionInterface $e) {
             }
         }
 

@@ -7,7 +7,6 @@ use App\Entity\Invitado;
 use App\Entity\Reservante;
 use App\Entity\WaitingList;
 use App\Event\ReservaEvent;
-use App\EventSubscriber\ReservaSubscriber;
 use App\Form\AvisoType;
 use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\InvitadoType;
@@ -41,7 +40,7 @@ class ReservaController extends AbstractController
     {
 
         $grupos = $groupCelebrationRepository->puedeMostrarse()->getQuery()->getResult();
-        if(!$grupos){
+        if (!$grupos) {
             $grupos = null;
         }
         return $this->render('reserva/index.html.twig', [
@@ -381,9 +380,7 @@ class ReservaController extends AbstractController
             $event = new ReservaEvent($celebracion);
             $dispatcher->dispatch($event, ReservaEvent::ANULA_RESERVA);
 
-
-
-
+            $this->addFlash('success', 'Se canceló la reserva correctamente.');
 
         }
 
