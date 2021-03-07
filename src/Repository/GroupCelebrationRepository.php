@@ -58,14 +58,23 @@ class GroupCelebrationRepository extends ServiceEntityRepository
     public function puedeMostrarse(): QueryBuilder
     {
         return $this->createQueryBuilder('g')
+            ->select('g.title as title,
+             g.id as grupo,
+             c.id as id,
+              c.capacidad as capacidad,
+               g.btonCss as btonCss,
+               g.baseCss as baseCss,
+                c.fechaCelebracionAt as fechaCelebracionAt,
+                 c.nombre as nombre')
             ->leftJoin('g.celebraciones', 'c')
-            ->andWhere('c.isHabilitada = :hab')
-            ->andWhere('g.isActivo = :hab')
+            ->andWhere('g.isActivo = :activo')
+            ->andWhere('c.isHabilitada = true')
             ->andWhere('c.disponibleAt <= :today')
             ->andWhere('c.disponibleHastaAt >= :today')
             ->orderBy('g.orden', 'ASC')
             ->addOrderBy('c.fechaCelebracionAt', 'ASC')
-            ->setParameter('hab', true)
+            ->setParameter('activo', true)
+//            ->setParameter('hab', true)
             ->setParameter('today',new DateTime('now'))
             ;
     }
