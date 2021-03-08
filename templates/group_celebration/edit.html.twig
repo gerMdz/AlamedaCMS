@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
-{% block title %}Edit GroupCelebration{% endblock %}
+{% block title %}Edición GroupCelebration{% endblock %}
 
-{% block body %}
-    <h1>Edit GroupCelebration</h1>
+{% block content %}
+    <h1>Edición Grupo de Celebración</h1>
 
     {{ include('group_celebration/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('group_celebration_index') }}">back to list</a>
+    <a href="{{ path('group_celebration_index') }}">Volver al listado</a>
 
     {{ include('group_celebration/_delete_form.html.twig') }}
 {% endblock %}

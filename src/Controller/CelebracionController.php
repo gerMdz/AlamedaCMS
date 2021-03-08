@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Celebracion;
 use App\Entity\GroupCelebration;
 use App\Form\CelebracionType;
-use App\Form\GroupCelebrationAddType;
+use App\Form\CelebrationAddType;
 use App\Repository\CelebracionRepository;
 use App\Repository\GroupCelebrationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -129,7 +129,7 @@ class CelebracionController extends AbstractController
      */
     public function agregarGrupo(Request $request, Celebracion $celebracion, EntityManagerInterface $em, CelebracionRepository $celebracionRepository, GroupCelebrationRepository $groupCelebrationRepository)
     {
-        $form = $this->createForm(GroupCelebrationAddType::class);
+        $form = $this->createForm(CelebrationAddType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

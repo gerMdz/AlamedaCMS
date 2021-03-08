@@ -1,36 +1,50 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
-{% block title %}GroupCelebration index{% endblock %}
+{% block title %}Listado Grupos Celebración{% endblock %}
 
-{% block body %}
-    <h1>GroupCelebration index</h1>
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Grupos Celebraciones</h4>
+            <p class="card-category"> Listado </p>
+        </div>
+        <div class="card-body">
+            <a href="{{ path('group_celebration_new') }}"  >
+                {{ include ('bases/_crear_nuevo.html.twig' , {'button_label': 'Crear Grupo'}) }}
+            </a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>IsActivo</th>
-                <th>Orden</th>
-                <th>css base</th>
-                <th>css botón</th>
-                <th>ImageBg</th>
-                <th>ImageLogo</th>
-                <th>actions</th>
-            </tr>
+<div class="table-responsive">
+    <table class="table table-shopping">
+        <thead class=" text-primary">
+        <tr class="text-primary">
+            <th class="th-description">Nombre</th>
+            <th>Está Activo?</th>
+            <th>Orden</th>
+            <th>css base</th>
+            <th>css botón</th>
+            <th>Imagen Fondo</th>
+            <th>Imagen Logo</th>
+            <th><i class="fa fa-cogs"> </i></th>
+        </tr>
         </thead>
         <tbody>
         {% for group_celebration in group_celebrations %}
             <tr>
                 <td>{{ group_celebration.title }}</td>
-                <td>{{ group_celebration.isActivo ? '<i class="fa fa-check">' : '<i class="fa fa-times">' }}</td>
-                <td>{{ group_celebration.orden }}</td>
+                <td class="text-center">{{ group_celebration.isActivo ? '<i class="fa fa-check text-success">' : '<i class="fa fa-times text-danger">' }}</td>
+                <td class="text-center">{{ group_celebration.orden }}</td>
                 <td>{{ group_celebration.baseCss }}</td>
                 <td>{{ group_celebration.btonCss }}</td>
                 <td>{{ group_celebration.imageBg }}</td>
                 <td>{{ group_celebration.imagePath }}</td>
                 <td>
-                    <a href="{{ path('group_celebration_show', {'id': group_celebration.id}) }}">Ver</a>
-                    <a href="{{ path('group_celebration_edit', {'id': group_celebration.id}) }}">Editar</a>
+                    <a href="{{ path('group_celebration_show', {'id': group_celebration.id}) }}">
+                        {{ include ('bases/_ver.html.twig' , {'button_label': 'Ver grupo'}) }}
+                    </a>
+                    <a href="{{ path('group_celebration_edit', {'id': group_celebration.id}) }}">
+                        {{ include ('bases/_editar.html.twig' , {'button_label': 'Editar grupo'}) }}
+                    </a>
                 </td>
             </tr>
         {% else %}
@@ -40,6 +54,12 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
+        </div>
+    </div>
 
-    <a href="{{ path('group_celebration_new') }}">Create new</a>
+    <a href="{{ path('group_celebration_new') }}"  >
+        {{ include ('bases/_crear_nuevo.html.twig' , {'button_label': 'Crear Grupo'}) }}
+    </a>
+</div>
 {% endblock %}

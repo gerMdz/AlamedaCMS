@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
-{% block title %}New GroupCelebration{% endblock %}
+{% block title %}Nuevo grupo de celebración{% endblock %}
 
-{% block body %}
-    <h1>Create new GroupCelebration</h1>
+{% block content %}
+    <h1>Crear nuevo grupo de celebración</h1>
 
     {{ include('group_celebration/_form.html.twig') }}
 
-    <a href="{{ path('group_celebration_index') }}">back to list</a>
+    <a href="{{ path('group_celebration_index') }}">Volver al listado</a>
 {% endblock %}
