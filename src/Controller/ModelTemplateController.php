@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\ModelTemplate;
+use App\Entity\TypeBlock;
 use App\Form\ModelTemplateType;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\TypeBlockRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use mysql_xdevapi\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Finder;
@@ -15,8 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 /**
  * @Route("/admin/modeltemplate")
@@ -31,7 +29,24 @@ class ModelTemplateController extends AbstractController
     public function index(ModelTemplateRepository $modelTemplateRepository): Response
     {
         return $this->render('model_template/index.html.twig', [
-            'model_templates' => $modelTemplateRepository->findAll(),
+            'model_templates' => $modelTemplateRepository->findBy([],['block'=>'ASC']),
+        ]);
+    }
+
+    /**
+     * @Route("/{block}", name="model_template_index_block", methods={"GET"})
+     * @param ModelTemplateRepository $modelTemplateRepository
+     * @param TypeBlockRepository $typeBlockRepository
+     * @param Request $request
+     * @return Response
+     */
+    public function indexBlock(ModelTemplateRepository $modelTemplateRepository, TypeBlockRepository $typeBlockRepository,Request $request): Response
+    {
+        $block = $request->get('block');
+        $type = $typeBlockRepository->findBy(['identifier'=>$block]);
+
+        return $this->render('model_template/index.html.twig', [
+            'model_templates' => $modelTemplateRepository->findBy(['block'=>$type],['block'=>'ASC']),
         ]);
     }
 

@@ -115,7 +115,7 @@
 {% endblock %}
 {% block sections %}
 
-    <main role="main" class="bg-white">
+    <main role="main" class="{{ principal.cssClass | default('bg-white') }}">
         <section class="a-content-space-medium">
             <div class="container">
                 <div class="row ">

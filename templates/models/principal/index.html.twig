@@ -6,27 +6,7 @@
                 {{ render(controller(
                     'App\\Controller\\SectionController::mostrarSection', {id: section.id}
                 )) }}
-
 {#                {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}#}
-
-
-{#            <header class="text-center w-md-50 mx-auto mt-a35   mb-8 text-black-75">#}
-{#                <h2 class="h4 pt-3">#}
-{#                    <a href="https://online.iglesiaalameda.com" class="text-black-75 ArialLight" target="_blank">#}
-{#                        <b class="text-secondary">Alameda online</b>#}
-
-
-{#                    <span class="mr-2"></span>#}
-{#                    <b class="text-secondary ">Domingos {{ datosIndex.horario1 }} Hs.#}
-{#                        <!--                    <br class="d-block d-md-none"/>-->#}
-
-{#                        y {{ datosIndex.horario2 }} Hs.</b>#}
-{#                    </a>#}
-{#                </h2>#}
-
-
-{#                <hr>#}
-{#            </header>#}
             <!-- End Invitación: Header -->
 
     {% endfor %}

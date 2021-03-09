@@ -161,8 +161,5 @@ class GroupCelebrationController extends AbstractController
             'group_celebration' => $groupCelebration,
             'form' => $form->createView(),
         ]);
-
     }
-
-
 }

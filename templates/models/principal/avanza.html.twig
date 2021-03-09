@@ -2,26 +2,22 @@
 {% block title %} Avanza  {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-{#    {{ encore_entry_link_tags('app') }}#}
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
-{#    <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}">#}
-{#    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">#}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <style>
 
-    </style>
 {% endblock %}
 {% block sslocal %}
-    {#    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}">#}
-{#    <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">#}
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
 
 {% endblock %}
 {% block header %}
     <header>
         {% include 'inicio/_nav.html.twig' %}
-        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark" data-parallax="true"
+        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark"
+                 data-parallax="true"
                  style="background-image: url({{ asset('build/images/contacto.png') }}); background-repeat: repeat-y ; background-attachment: fixed">
             <!-- Promo Content -->
             <div class="container u-overlay__inner u-ver-center u-content-space">
@@ -44,7 +40,6 @@
     </header>
 {% endblock %}
 {% block sections %}
-
     <main role="main" class="bg-white">
 
 
@@ -88,6 +83,6 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-{#    <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script>#}
-{#    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>#}
+    {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script> #}
 {% endblock %}

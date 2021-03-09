@@ -41,8 +41,7 @@
     </header>
 {% endblock %}
 {% block sections %}
-    <main role="main" class="card text-dark">
-
+<main role="main" class="card {{ principal.cssClass | default(' text-dark')}}">
         <div class="col-sm-12 card-header ">
             <h2>ESPECIAL DE NAVIDAD: <b>“NACE UNA LUZ”</b></h2>
             <small>Equipo Creativo Alameda</small>

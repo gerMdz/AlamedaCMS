@@ -2,18 +2,12 @@
 {% block title %} {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}  {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    {# {{ encore_entry_link_tags('app') }} #}
 
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}"> #}
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}"> #}
     <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}">
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <style>
 
-    </style>
 {% endblock %}
 {% block sslocal %}
     {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
@@ -32,7 +26,7 @@
                     <div class="col-12">
                         <div class="text-center d-md-none d-lg-none d-xl-none">
                             <h1 class="display-sm-4 display-lg-3 h2"><b class="{{ principal.cssClass}} aire-2">
-                                 {{ principal.contenido | replace({'<p>':'', '</p>':''}) | raw }}</b>
+                                    {{ principal.contenido | replace({'<p>':'', '</p>':''}) | raw }}</b>
                             </h1>
                             <hr style="width: 25%"/>
                         </div>
@@ -44,7 +38,7 @@
     </header>
 {% endblock %}
 {% block sections %}
-    <main role="main" class="bg-white">
+    <main role="main" class="{{ principal.cssClass | default('bg-white') }}">
         {% for section in principal.secciones %}
             {{ render(controller(
                 'App\\Controller\\SectionController::mostrarSection', {id: section.id}
@@ -56,5 +50,5 @@
 {% block javascripts %}
     {{ parent() }}
     {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
-     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script> #}
 {% endblock %}

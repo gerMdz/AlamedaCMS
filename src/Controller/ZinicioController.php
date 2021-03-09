@@ -37,13 +37,13 @@ class ZinicioController extends AbstractController
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
         if($this->site_temporal == 'true'){
             return $this->redirectToRoute('reserva_index');
-//            return $this->render('inicio/temporalmente.html.twig', [
+//            return $this->render('models/principal/temporalmente.html.twig', [
 //                'datosIndex' => null,
 //            ]);
         }
 
 
-        return $this->render('inicio/index.html.twig', [
+        return $this->render('models/principal/index.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda[0],
         ]);
@@ -54,7 +54,7 @@ class ZinicioController extends AbstractController
      * @param AuthenticationUtils $authenticationUtils
      * @return RedirectResponse
      */
-    public function ingreso(AuthenticationUtils $authenticationUtils)
+    public function ingreso(AuthenticationUtils $authenticationUtils): RedirectResponse
     {
         return $this->redirectToRoute('app_login');
     }
@@ -77,7 +77,7 @@ class ZinicioController extends AbstractController
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
 
-        return $this->render('inicio/index.html.twig', [
+        return $this->render('models/principal/index.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda[0],
         ]);
@@ -102,7 +102,7 @@ class ZinicioController extends AbstractController
             $visual = $principal;
         }
 
-        return $this->render('inicio/'.$vista.'.html.twig', [
+        return $this->render('models/principal/'.$vista.'.html.twig', [
             'principal' => $visual,
         ]);
     }
@@ -115,7 +115,6 @@ class ZinicioController extends AbstractController
      */
     public function ver(Principal $principal, PrincipalRepository $principalRepository): Response
     {
-//        $ppal = $principalRepository->findOneBy(['principal'=>$principal->getId()]);
 
         $vista =$principal->getModelTemplate();
         if(!$vista) {
@@ -126,7 +125,7 @@ class ZinicioController extends AbstractController
             $visual = $principal;
         }
 
-        return $this->render('inicio/'.$vista.'.html.twig', [
+        return $this->render('models/principal/'.$vista.'.html.twig', [
             'principal' => $visual,
         ]);
     }
@@ -137,7 +136,7 @@ class ZinicioController extends AbstractController
      */
     public function contacto()
     {
-        return $this->render('inicio/contacto.html.twig', []);
+        return $this->render('models/principal/contacto.html.twig', []);
     }
 
     /**
@@ -145,7 +144,7 @@ class ZinicioController extends AbstractController
      */
     public function avanza()
     {
-        return $this->render('inicio/avanza.html.twig', []);
+        return $this->render('models/principal/avanza.html.twig', []);
     }
 
     /**
@@ -153,7 +152,7 @@ class ZinicioController extends AbstractController
      */
     public function gpc()
     {
-        return $this->render('inicio/grupospequeños.html.twig', []);
+        return $this->render('models/principal/grupospequeños.html.twig', []);
     }
 
     /**
@@ -161,15 +160,15 @@ class ZinicioController extends AbstractController
      */
     public function ofrenda()
     {
-        return $this->render('inicio/ofrenda.html.twig', []);
+        return $this->render('models/principal/ofrenda.html.twig', []);
     }
 
     /**
      * @Route("/notas", name="notas", options = {"utf8": true })
      */
-    public function notas()
+    public function notas(): Response
     {
-        return $this->render('inicio/notas.html.twig', []);
+        return $this->render('models/principal/notas.html.twig', []);
     }
 
     /**
@@ -177,6 +176,6 @@ class ZinicioController extends AbstractController
      */
     public function oracion()
     {
-        return $this->render('inicio/oracion.html.twig', []);
+        return $this->render('models/principal/oracion.html.twig', []);
     }
 }

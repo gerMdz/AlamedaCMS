@@ -1,39 +1,71 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
-{% block title %}ModelTemplate index{% endblock %}
+{% block title %}Listado Modelos {% endblock %}
 
-{% block body %}
-    <h1>ModelTemplate index</h1>
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Modelos de Template</h4>
+                <p class="card-category">Listado </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('register_template') }}" class="btn btn-sm btn-primary btn-round">
+                    <span class="fa fa-plus-circle"></span> Registrar Templates
+                </a>
+                <a href="{{ path('model_template_index_block', {'block':'page'}) }}" class="btn btn-sm btn-outline-secondary btn-round">
+                    <span class="fab fa-pagelines"></span> Modelos para páginas
+                </a>
+                <a href="{{ path('model_template_index_block', {'block':'seccion'}) }}" class="btn btn-sm btn-outline-info btn-round">
+                    <span class="fab fa-pagelines"></span> Modelos para secciones
+                </a>
+                <a href="{{ path('model_template_index_block', {'block':'entrada'}) }}" class="btn btn-sm btn-outline-alameda btn-round">
+                    <span class="fab fa-pagelines"></span> Modelos para entradas
+                </a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <tr class="text-primary">
+                            <th>Id</th>
+                            <th>Nombre <br/> <small><i>Identificador</i></small></th>
+                            <th>Es para</th>
+                            <th>Descripción</th>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Identifier</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for model_template in model_templates %}
-            <tr>
-                <td>{{ model_template.id }}</td>
-                <td>{{ model_template.name }}</td>
-                <td>{{ model_template.description }}</td>
-                <td>{{ model_template.identifier }}</td>
-                <td>
-                    <a href="{{ path('model_template_show', {'id': model_template.id}) }}">show</a>
-                    <a href="{{ path('model_template_edit', {'id': model_template.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                            <th><i class="fa fa-cogs"> </i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for model_template in model_templates %}
+                            <tr>
+                                <td>{{ model_template.id }}</td>
+                                <td>{{ model_template.name }} <br/>
+                                    <small><i>{{ model_template.identifier }}</i></small>
+                                </td>
+                                <td>{{ model_template.block }}</td>
+                                <td>{{ model_template.description }}</td>
 
-    <a href="{{ path('model_template_new') }}">Create new</a>
+                                <td>
+                                    <a href="{{ path('model_template_show', {'id': model_template.id}) }}">
+                                        {{ include('bases/_ver.html.twig', {'button_label':'Ver modelo'}) }}
+                                    </a>
+                                    <br/>
+                                    <a href="{{ path('model_template_edit', {'id': model_template.id}) }}">
+                                        {{ include('bases/_editar.html.twig', {'button_label':'Editar modelo'}) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ path('register_template') }}" class="btn btn-sm btn-primary btn-round">
+                    <span class="fa fa-plus-circle"></span> Registrar Templates
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

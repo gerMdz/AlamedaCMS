@@ -37,6 +37,7 @@ class ModelTemplate
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeBlock::class, inversedBy="modelTemplates")
+     * @ORM\OrderBy("ASC")
      */
     private $block;
 

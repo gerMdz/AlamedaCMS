@@ -1,5 +1,5 @@
 {% extends 'base_material_kit.twig' %}
-{% block title %} {{ principal.titulo | upper }}  {% endblock %}
+{% block title %} {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}  {% endblock %}
 {% block sslocal %}
 
     <link href="{{ asset('css-misc/mdb.min.css') }}" rel="stylesheet">
@@ -114,19 +114,17 @@
 
 {% endblock %}
 {% block sections %}
-
-    <main role="main" class="bg-white">
+    <main role="main" class="{{ principal.cssClass | default('bg-white') }}">
         <section class="a-content-space-medium">
             <div class="container">
                 <div class="row ">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-5 mb-2 mb-lg-2 pl-lg-2 ">
                         <h1 class="mb-3">
-                            {{ principal.titulo }}
+                            {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                         </h1>
                         <p>
-                            {{ principal.contenido | raw }}
-
+                            {{ principal.contenido | replace({'<p>':'', '</p>':''}) | raw }}
                         </p>
                     </div>
                     <div class="col-lg-6 align-self-center">
@@ -142,8 +140,6 @@
         <section class="a-content-space-medium bg-fam text-center">
             <div class="container">
                 <div class="row">
-
-
                         {% for entrada in section.entrada %}
                             <!--                charla 1-->
                             <div class="col-md-4 mb-2 mx-auto   ">
@@ -157,11 +153,11 @@
                                     </div>
                                     <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
                                         <h5 class="card-title text-uppercase">
-                                            {{ entrada.titulo }}
+                                            {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                         </h5>
                                         <div class="middle-0">
                                             <i class="fas fa-quote-left mr-5"></i><br/>
-                                            {{ entrada.contenido | raw }}
+                                            {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
                                             <i class="fas fa-quote-right ml-5"></i>
                                         </div>
                                         <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
