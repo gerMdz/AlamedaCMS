@@ -105,6 +105,7 @@ class Mailer
                 ]);
 
             $this->mailer->send($email);
+            sleep(300);
         }
 
         return true;
