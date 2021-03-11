@@ -52,12 +52,22 @@
                                         >
                                             {{ entrada.footer }}
                                         </a>
-                                     {% else%}
-                                         {{ entrada.footer }}
+                                    {% else %}
+                                        {{ entrada.footer }}
                                     {% endif %}
                                 {% endif %}
-
-
+                            {% endif %}
+                            {% if (entrada.button) %}
+                                {% for boton in entrada.button %}
+                                            <a class="btn-alameda"
+                                               href="{{ boton.linkRoute }}"
+                                                    {% if (boton.isLinkExterno) %}
+                                                        target="_blank"
+                                                    {% endif %}
+                                            >
+                                                {{ boton.textButton }}
+                                            </a>
+                                {% endfor %}
                             {% endif %}
                         </div>
                         <!-- End Article Image -->

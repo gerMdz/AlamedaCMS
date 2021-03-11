@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Celebracion;
-use App\Entity\GroupCelebration;
 use App\Form\CelebracionType;
-use App\Form\CelebrationAddType;
+use App\Form\GroupCelebrationAddType;
 use App\Repository\CelebracionRepository;
 use App\Repository\GroupCelebrationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -86,6 +85,9 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="celebracion_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Celebracion $celebracion
+     * @return Response
      */
     public function edit(Request $request, Celebracion $celebracion): Response
     {
@@ -106,6 +108,9 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/{id}", name="celebracion_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Celebracion $celebracion
+     * @return Response
      */
     public function delete(Request $request, Celebracion $celebracion): Response
     {
@@ -123,13 +128,12 @@ class CelebracionController extends AbstractController
      * @param Request $request
      * @param Celebracion $celebracion
      * @param EntityManagerInterface $em
-     * @param CelebracionRepository $celebracionRepository
      * @param GroupCelebrationRepository $groupCelebrationRepository
      * @return RedirectResponse|Response
      */
-    public function agregarGrupo(Request $request, Celebracion $celebracion, EntityManagerInterface $em, CelebracionRepository $celebracionRepository, GroupCelebrationRepository $groupCelebrationRepository)
+    public function agregarGrupo(Request $request, Celebracion $celebracion, EntityManagerInterface $em, GroupCelebrationRepository $groupCelebrationRepository)
     {
-        $form = $this->createForm(CelebrationAddType::class);
+        $form = $this->createForm(GroupCelebrationAddType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

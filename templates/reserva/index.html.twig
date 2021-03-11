@@ -101,12 +101,14 @@
                                 <small class="text-dark ">
                                     Capacidad permitida alcanzada
                                 </small>
-                                <a class="btn btn-sm btn-outline-warning btn-modal"
-                                   href="{{ path('add_to_waiting_list', {'celebracion':celebracion.id}) }}"
-                                >
-                                    <i class="fas fa-bell"> </i>
-                                    Avisarme por mail si hay asientos disponibles
-                                </a>
+{#                                Hasta que tengamos un server de correo #}
+{#                                <a class="btn btn-sm btn-outline-warning btn-modal"#}
+{#                                   href="{{ path('add_to_waiting_list', {'celebracion':celebracion.id}) }}"#}
+{#                                >#}
+{#                                    <i class="fas fa-bell"> </i>#}
+{#                                    Avisarme por mail si hay asientos disponibles#}
+{#                                </a>#}
+{#                                fin de Hasta#}
                             {% endif %}
                             <hr/>
                         </div>

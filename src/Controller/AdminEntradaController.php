@@ -80,7 +80,7 @@ class AdminEntradaController extends AbstractController
     {
         $this->isGranted('ROLE_EDITOR') ? $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion() : $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion($this->getUser());
 
-        return $this->render('list.html.twig', [
+        return $this->render('admin_entrada/list.html.twig', [
             'entradas' => $entrada,
         ]);
     }
@@ -111,11 +111,8 @@ class AdminEntradaController extends AbstractController
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $entrada->setPublicadoAt($publicado);
 
-            if ('' != $link) {
-                $link = strtolower(str_replace(' ', '-', trim($link)));
-            } else {
-                $link = strtolower(str_replace(' ', '-', trim($titulo)));
-            }
+            $link = $this->limpiaLink($link, $titulo);
+
             $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
@@ -148,7 +145,7 @@ class AdminEntradaController extends AbstractController
      * @IsGranted("MANAGE", subject="entrada")
      *
      */
-    public function editConplex(Request $request, Entrada $entrada): Response
+    public function editComplex(Request $request, Entrada $entrada): Response
     {
         $form = $this->createForm(EntradaComplexType::class, $entrada);
         $form->handleRequest($request);
@@ -198,11 +195,8 @@ class AdminEntradaController extends AbstractController
             $link = $form['linkRoute']->getData();
             $titulo = $form['titulo']->getData();
 
-            if ('' != $link) {
-                $link = strtolower(str_replace(' ', '-', trim($link)));
-            } else {
-                $link = strtolower(str_replace(' ', '-', trim($titulo)));
-            }
+            $link = $this->limpiaLink($link, $titulo);
+
             $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
@@ -235,7 +229,7 @@ class AdminEntradaController extends AbstractController
      * @param Entrada $entrada
      * @return Response
      */
-    public function link(Entrada $entrada)
+    public function link(Entrada $entrada): Response
     {
         return $this->render('entrada/link.html.twig', [
             'entrada' => $entrada,
@@ -275,5 +269,22 @@ class AdminEntradaController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_entrada_index');
+    }
+
+    /**
+     * @param null|string $link
+     * @param string $titulo
+     * @return string
+     */
+    private function limpiaLink(?string $link , string $titulo): string
+    {
+        if ('' != $link) {
+            $link = strtolower(str_replace(' ', '-', trim($link)));
+        } else {
+            $link = strtolower(str_replace(' ', '-', trim($titulo)));
+            $link = strtolower(str_replace('<p>', '', trim($link)));
+            $link = strtolower(str_replace('</p>', '', trim($link)));
+        }
+        return $link;
     }
 }
