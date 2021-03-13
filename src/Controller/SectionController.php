@@ -35,16 +35,16 @@ class SectionController extends BaseController
      */
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
-        $seccion = $repository->getSections();
+        $seccion = $repository->getSections()->getQuery()->getResult();
 
-        $secciones = $paginator->paginate(
-            $seccion, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
-        );
+//        $secciones = $paginator->paginate(
+//            $seccion, /* query NOT result */
+//            $request->query->getInt('page', 1)/*page number*/,
+//            20/*limit per page*/
+//        );
 
         return $this->render('section_admin/list.html.twig', [
-            'sections' => $secciones
+            'sections' => $seccion
         ]);
     }
 
