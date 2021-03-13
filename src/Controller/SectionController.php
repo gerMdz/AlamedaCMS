@@ -45,7 +45,7 @@ class SectionController extends BaseController
         );
 
         return $this->render('section_admin/list.html.twig', [
-            'sections' => $seccion
+            'sections' => $secciones
         ]);
     }
 
