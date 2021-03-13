@@ -43,29 +43,28 @@
                                 <td>
                                     {% for principal in section.principales %}
                                         <a href="{{ path('principal_show', {'id': principal.id}) }}">
-                                        {{ principal.linkRoute }}
+                                            {{ principal.linkRoute }}
                                         </a>
-                                            <br/>
+                                        <br/>
                                     {% endfor %}
                                     {% for index in section.indexAlamedas %}
                                         <i class="fa fa-check-square"> </i>
                                         <a href="{{ path('index_alameda_index') }}">
-                                        Index
+                                            Index
                                         </a>
                                     {% endfor %}
 
                                 </td>
                                 <td>
                                     {{ section.description | u.truncate(20, '...') }} / <br/>
-<small>
-
-                                    {{ section.modelTemplate | default('Sin template') }}
-</small>
+                                    <small>
+                                        {{ section.modelTemplate | default('Sin template') }}
+                                    </small>
                                 </td>
                                 <td>
                                     {% for entrada in section.entrada %}
                                         <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
-                                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}
+                                            {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}
                                         </a>
                                         <br/>
                                     {% endfor %}
@@ -116,24 +115,24 @@
 {% endblock %}
 
 {% block jslocal %}
-{#    {{ parent() }}#}
-{#    <script>#}
-{#        $('#buttonmenu').on('click', function(){#}
-{#            // $(this).parent().addClass('current').siblings().removeClass('current');#}
-{#            console.log('ck')#}
-{#            $('.nav .nav-item').each(function() {#}
-{#                if(this.id === 'section'){#}
-{#                    let itemnav = $('#'+ this.id);#}
-{#                    itemnav.removeClass()#}
-{#                    itemnav.attr('class', 'nav-item active')#}
-{#                    console.log('ss' + itemnav.attr('class'))#}
-{#                }#}
+    {# {{ parent() }} #}
+    {# <script> #}
+    {# $('#buttonmenu').on('click', function(){ #}
+    {# // $(this).parent().addClass('current').siblings().removeClass('current'); #}
+    {# console.log('ck') #}
+    {# $('.nav .nav-item').each(function() { #}
+    {# if(this.id === 'section'){ #}
+    {# let itemnav = $('#'+ this.id); #}
+    {# itemnav.removeClass() #}
+    {# itemnav.attr('class', 'nav-item active') #}
+    {# console.log('ss' + itemnav.attr('class')) #}
+    {# } #}
 
-{#                console.log(this.id)#}
-{#            });#}
-{#            // $('#section').css('color','blue');#}
-{#            // $('#section').addClass('active');#}
-{#        });#}
+    {# console.log(this.id) #}
+    {# }); #}
+    {# // $('#section').css('color','blue'); #}
+    {# // $('#section').addClass('active'); #}
+    {# }); #}
 
-{#    </script>#}
+    {# </script> #}
 {% endblock %}
