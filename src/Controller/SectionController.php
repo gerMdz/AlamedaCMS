@@ -12,6 +12,7 @@ use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,13 +28,23 @@ class SectionController extends BaseController
 {
     /**
      * @param SectionRepository $repository
-     * @Route("/", name="admin_section_list")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
+     * @Route("/", name="admin_section_list")
      */
-    public function list(SectionRepository $repository): Response
+    public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
+        $seccion = $repository->getSections();
+
+        $secciones = $paginator->paginate(
+            $seccion, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('section_admin/list.html.twig', [
-            'sections' => $repository->findAll()
+            'sections' => $secciones
         ]);
     }
 

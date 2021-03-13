@@ -7,10 +7,12 @@ use App\Entity\Traits\ImageTrait;
 use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -22,6 +24,7 @@ class Section
     use ImageTrait;
     use LinksTrait;
     use CssClass;
+    use TimestampableEntity;
 
     /**
      * @ORM\Id()
@@ -135,6 +138,8 @@ class Section
         $this->entrada = new ArrayCollection();
         $this->principales = new ArrayCollection();
         $this->button = new ArrayCollection();
+        $this->createdAt = new DateTime();
+        $this->markAsUpdated();
     }
 
     public function getId(): ?int
@@ -411,4 +416,11 @@ class Section
 
         return $this;
     }
+
+    public function markAsUpdated()
+    {
+        $this->updatedAt = new DateTime();
+    }
+
+
 }

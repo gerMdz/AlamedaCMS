@@ -1,6 +1,6 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Vista {{ entrada.titulo }}{% endblock %}
+{% block title %}Vista {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}{% endblock %}
 
 {% block content %}
     <div class="container">

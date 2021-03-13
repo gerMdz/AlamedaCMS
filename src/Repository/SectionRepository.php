@@ -9,6 +9,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @method Section|null find($id, $lockMode = null, $lockVersion = null)
@@ -57,6 +58,18 @@ class SectionRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('s');
+    }
+
+    private function getQueryBuilderOrderByUpdate(QueryBuilder $qb = null): QueryBuilder
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+        $qb->orderBy('s.updatedAt','DESC');
+        return $qb;
+    }
+
+    public function getSections(): QueryBuilder
+    {
+        return $this->getQueryBuilderOrderByUpdate();
     }
 
 
