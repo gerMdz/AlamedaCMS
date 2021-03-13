@@ -40,7 +40,7 @@ class SectionController extends BaseController
         $secciones = $paginator->paginate(
             $seccion, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            15/*limit per page*/
         );
 
         return $this->render('section_admin/list.html.twig', [
