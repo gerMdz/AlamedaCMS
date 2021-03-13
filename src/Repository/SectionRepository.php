@@ -67,7 +67,10 @@ class SectionRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    public function getSections(): QueryBuilder
+    /**
+     * @return int|mixed|string
+     */
+    public function getSections()
     {
          return $this->createQueryBuilder('s')
             ->orderBy('s.updatedAt', 'DESC')
