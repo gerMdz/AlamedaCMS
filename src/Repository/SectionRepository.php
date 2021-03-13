@@ -72,6 +72,7 @@ class SectionRepository extends ServiceEntityRepository
     {
          return $this->createQueryBuilder('s')
             ->orderBy('s.updatedAt', 'DESC')
+            ->addOrderBy('s.title', 'ASC')
         ;
     }
 
