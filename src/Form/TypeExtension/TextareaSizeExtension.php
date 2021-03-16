@@ -43,7 +43,7 @@ class TextareaSizeExtension implements FormTypeExtensionInterface
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'rows' => 5
+            'rows' => 10
         ]);
 
     }

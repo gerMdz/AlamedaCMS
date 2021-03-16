@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    {% if google_tag_enable == 'true' %}
+        {% include('inicio/_etiqueta_global_google.html.twig') %}
+    {% endif %}
     {% set base = base_base() %}
     {% set version = 'now' | date('YmdH') %}
     <meta charset="utf-8">
@@ -11,19 +14,17 @@
     {% set index = 'base' %}
 
     <meta name="description" content="{{ base.siteName }},  {{ base_metaDescripcion() }}">
-    <meta name="keywords"
-          content="{{ base.siteName }}, {% block keywords_content -%} {{ base.lema }} {% endblock %} {{ base_metaDescripcion() }}">
+    <meta name="keywords" content="{{ base.siteName}},{{base.lema}},{{base_metaDescripcion()}}">
     <meta name="author" content="{{ base.metaAutor }}">
-
     <meta property="og:title" content="{{ base.metaTitle }}"/>
     <meta property="og:type" content="{{ base.metaTYpe }}"/>
-
     <meta property="og:url" content="{{ base.metaUrl }}"/>
-
     <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
+    <meta property="og:description" content="{{ base_lema() }},{{ base_metaDescripcion() }}" />
+    <meta property="og:site_name" content="{{ base.siteName }}" />
+    <link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon">
     <title>{{ base.metaTitle }}</title>
-    {% include('inicio/_favicon_html.twig') %}
-
+    {# {% include('inicio/_favicon_html.twig') %} #}
     {% block icons %}
         <link href="{{ asset('icons/foundation-icons/foundation-icons.css') }}" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -38,26 +39,40 @@
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css"
               href="{{ asset('stream-ui-kit/assets/vendors/slick-carousel/slick.css') }}">
-{#        <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}">#}
+        {# <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}"> #}
         <link href="{{ asset('css/igles.min.css') }}?v={{ version }}" rel="stylesheet">
         <link href="{{ asset('css/bg.css') }}?v={{ version }}" rel="stylesheet">
         <link href="{{ asset('material-kit/css/material-kit.css') }}?v=2.0.4" rel="stylesheet"/>
-        <style >
-            body{
+        <style>
+            body {
                 font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
             }
         </style>
     {% endblock %}
+    {% if(facebook_tag_enable == 'true') %}
+        {% include('inicio/_facebook_pixel.html.twig') %}
+    {% endif %}
 </head>
 
 <body class="bg-white">
+{% if(google_tag_enable == 'true') %}
+    {% include('inicio/_etiqueta_global_google_body.html.twig') %}
+{% endif %}
 {% block header %}
     <header>
-
         {% include('inicio/_nav.html.twig') %}
-
         <div class="mt-lg-1 d-none d-lg-block"></div>
     </header>
+{% endblock %}
+{% block usuario %}
+    {% if is_granted('ROLE_RESERVA') %}
+        <div class="d-flex flex-row-reverse text-right">
+            <small class="alert alert-info " style="position: fixed; top: 4rem; z-index: 3">
+                Has ingresado {{ app.user }}<br/>
+                <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out"> </i> Salir </a>
+            </small>
+        </div>
+    {% endif %}
 {% endblock %}
 {% for message in app.flashes('success') %}
     <div class="alert alert-success mt-5 pt-5 mb-0 pb-0">
@@ -66,7 +81,7 @@
 {% endfor %}
 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
     <div class="alert alert-warning" style="position: fixed; bottom: 50px">
-        Temporalemte
+        Temporalmente
         <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
     </div>
 {% endif %}
@@ -76,14 +91,8 @@
 {% endblock %}
 
 
-
-
-
-
-
-
 {% block footer %}
-    {% include 'inicio/_footer.html.twig' %}
+    {% include 'inicio/_footer_ar.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}
@@ -91,13 +100,13 @@
     <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}"></script>
-{#    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>#}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script> #}
     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
-{#    <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script>#}
-{#    <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>#}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script> #}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script> #}
 
-{#    <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script>#}
-{#    <script type="text/javascript" src="{{ asset('js/swiper.min.js') }}"></script>#}
+    {# <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script> #}
+    {# <script type="text/javascript" src="{{ asset('js/swiper.min.js') }}"></script> #}
 
 
     <!-- Components Vendor  -->
@@ -112,23 +121,20 @@
 
     <!-- Theme Components and Settings -->
 
-    <!-- END JAVASCRIPTS -->
-
-
-
-
     <script src="{{ asset('material-kit/js/plugins/moment.min.js') }}"></script>
     <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
     <script src="{{ asset('material-kit/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="{{ asset('material-kit/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
     <!--  Google Maps Plugin  -->
-{#    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>#}
+    {# <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> #}
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('material-kit/js/material-kit.js')}}?v=2.0.4" type="text/javascript"></script>
+    <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script>
+
 {% endblock %}
+
 <script>
     // $(document).on('ready', function () {
     //     // initialization of text animation (typing)

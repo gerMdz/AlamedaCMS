@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Entrada;
+use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\SectionFormType;
+use App\Repository\EntradaRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\QueryException;
 use Exception;
-use phpDocumentor\Reflection\Types\This;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,13 +28,24 @@ class SectionController extends BaseController
 {
     /**
      * @param SectionRepository $repository
-     * @Route("/", name="admin_section_list")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
+     * @Route("/", name="admin_section_list")
      */
-    public function list(SectionRepository $repository)
+    public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
+//        $seccion = $repository->getSections()->getQuery()->getResult();
+        $seccion = $repository->getSections();
+
+        $secciones = $paginator->paginate(
+            $seccion, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
+
         return $this->render('section_admin/list.html.twig', [
-            'sections' => $repository->findAll()
+            'sections' => $secciones
         ]);
     }
 
@@ -44,7 +58,7 @@ class SectionController extends BaseController
      * @Route("/new", name="admin_section_new")
      * @IsGranted("ROLE_EDITOR")
      */
-    public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
+    public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(SectionFormType::class);
 
@@ -89,10 +103,6 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-            if (!isset($form['typeSecondary'])) {
-                $section->setTypeSecondary(null);
-            }
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             if ($uploadedFile) {
@@ -110,26 +120,89 @@ class SectionController extends BaseController
         ]);
     }
 
+
+
     /**
-     * @Route("/typeorigin-select", name="admin_section_typeorigin_select", methods={"GET" })
-     * @param Request $request
+     * @Route("/index/{id}", name="admin_index_delete_section", methods={"DELETE"})
+     * @param Section $section
+     * @param EntityManagerInterface $entityManager
      * @return Response
-     * @IsGranted("ROLE_EDITOR")
      */
-    public function getTypoSecondarySelect(Request $request)
+    public function deleteIndexSection(Section $section, EntityManagerInterface $entityManager): Response
     {
-        // Asegurando endpoint
-        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser()->getSections()->isEmpty()) {
-            throw $this->createAccessDeniedException();
+        $indexAlameda = $section->getIndexAlamedas();
+
+
+        $section->removeIndexAlameda($indexAlameda[0]);
+
+        $entityManager->flush();
+        return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/entrada/{id}/{entrada}", name="admin_entrada_delete_section", methods={"DELETE"})
+     * @param Section $section
+     * @param Entrada $entrada
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function deleteEntradaSection(Section $section, Entrada $entrada, EntityManagerInterface $entityManager): Response
+    {
+
+        $section->removeEntrada($entrada);
+
+        $entityManager->flush();
+        return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/principal/{id}/{principal}", name="admin_principal_delete_section", methods={"DELETE"})
+     * @param Section $section
+     * @param Principal $principal
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function deletePrincipalSection(Section $section, Principal $principal, EntityManagerInterface $entityManager): Response
+    {
+        if($principal->getSecciones() !== null) {
+            $section->removePrincipale($principal);
         }
-        $section = new Section();
-        $section->setTypeOrigin($request->query->get('typeOrigin'));
-        $form = $this->createForm(SectionFormType::class, $section);
-        if (!$form->has('typeSecondary')) {
-            return new Response(null, 204);
-        }
-        return $this->render('section_admin/_typeSecondary.html.twig', [
-            'sectionForm' => $form->createView()
+
+        $section->setPrincipal(null);
+        $entityManager->flush();
+        return new Response(null, 204);
+    }
+
+    /**
+     * @Route("/muestra/seccion/{id}")
+     * @param Section $section
+     * @param EntradaRepository $entradaRepository
+     * @return Response
+     * @throws QueryException
+     */
+    public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
+    {
+
+        $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
+
+        $twig = $section->getModelTemplate().".html.twig";
+        return $this->render('sections/'.$twig,[
+           'entradas' => $entradas,
+            'section' => $section
         ]);
     }
+
+    /**
+     * @Route("/{id}", name="admin_section_show", methods={"GET"})
+     * @param Section $section
+     * @return Response
+     */
+    public function show(Section $section): Response
+    {
+        return $this->render('section_admin/show.html.twig', [
+            'section' => $section,
+        ]);
+    }
+
+
 }

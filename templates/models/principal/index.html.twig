@@ -1,0 +1,17 @@
+{% extends 'base_material_kit.twig' %}
+
+{% block sections %}
+    <!-- Horarios - Invitación - Video -->
+    {% for section in datosIndex.section %}
+                {{ render(controller(
+                    'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+                )) }}
+{#                {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %}#}
+            <!-- End Invitación: Header -->
+
+    {% endfor %}
+    <div class="bg-camino" style="height: 200px">
+
+    </div>
+
+{% endblock %}

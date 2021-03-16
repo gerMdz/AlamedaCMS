@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TipoContacto{% endblock %}
+
+{% block body %}
+    <h1>TipoContacto</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tipo_contacto.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ tipo_contacto.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Referencia</th>
+                <td>{{ tipo_contacto.referencia }}</td>
+            </tr>
+            <tr>
+                <th>Icon</th>
+                <td>{{ tipo_contacto.icon }}</td>
+            </tr>
+            <tr>
+                <th>TextoReferencia</th>
+                <td>{{ tipo_contacto.textoReferencia }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tipo_contacto_index') }}">back to list</a>
+
+    <a href="{{ path('tipo_contacto_edit', {'id': tipo_contacto.id}) }}">edit</a>
+
+    {{ include('tipo_contacto/_delete_form.html.twig') }}
+{% endblock %}

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\CssClass;
+use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
@@ -9,7 +11,6 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
@@ -19,6 +20,9 @@ class Entrada
 {
     use TimestampableEntity;
     use OfertTrait;
+    use LinksTrait;
+    use CssClass;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -32,7 +36,7 @@ class Entrada
     private $titulo;
 
     /**
-     * @ORM\Column(type="string", length=4000)
+     * @ORM\Column(type="text", length=8000, nullable=true)
      */
     private $contenido;
 
@@ -51,14 +55,6 @@ class Entrada
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $publicadoAt;
-
-
-
-    /**
-     *
-     * @ORM\Column(type="string", length=150, nullable=true)
-     */
-    private $linkRoute;
 
     /**
      * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
@@ -95,11 +91,6 @@ class Entrada
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $linkPosting;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $typeOrigin;
 
     /**
@@ -108,19 +99,9 @@ class Entrada
     private $typeCarry;
 
     /**
-     * @ORM\OneToMany(targetEntity=RelacionSectionEntrada::class, mappedBy="entrada")
-     */
-    private $relacionSectionEntradas;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $orden;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Section::class, inversedBy="entradassection")
-     */
-    private $section;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -132,15 +113,55 @@ class Entrada
      */
     private $destacado;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="entradas")
+     */
+    private $modelTemplate;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Contacto::class, inversedBy="entradas")
+     */
+    private $contacto;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isSinTitulo;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPermanente;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, mappedBy="entrada")
+     */
+    private $sections;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $footer;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="entradas")
+     */
+    private $button;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
         $this->brotes = new ArrayCollection();
-        $this->relacionSectionEntradas = new ArrayCollection();
+        $this->contacto = new ArrayCollection();
+        $this->sections = new ArrayCollection();
+        $this->button = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function __toString()
     {
         return $this->titulo;
@@ -168,7 +189,7 @@ class Entrada
         return $this->contenido;
     }
 
-    public function setContenido(string $contenido): self
+    public function setContenido(?string $contenido): self
     {
         $this->contenido = $contenido;
 
@@ -183,7 +204,6 @@ class Entrada
     public function setAutor(?User $autor): self
     {
         $this->autor = $autor;
-
         return $this;
     }
 
@@ -195,7 +215,6 @@ class Entrada
     public function setImageFilename(?string $imageFilename): self
     {
         $this->imageFilename = $imageFilename;
-
         return $this;
     }
 
@@ -207,25 +226,12 @@ class Entrada
     public function setPublicadoAt(?DateTimeInterface $publicadoAt): self
     {
         $this->publicadoAt = $publicadoAt;
-
         return $this;
     }
 
     public function getImagePath()
     {
-        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
-    }
-
-    public function getLinkRoute(): ?string
-    {
-        return $this->linkRoute;
-    }
-
-    public function setLinkRoute(?string $linkRoute): self
-    {
-        $this->linkRoute = $linkRoute;
-
-        return $this;
+        return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
     }
 
     /**
@@ -244,14 +250,12 @@ class Entrada
     public function setLikes(int $likes): self
     {
         $this->likes = $likes;
-
         return $this;
     }
 
     public function incrementaLikeCount(): self
     {
         $this->likes = $this->likes + 1;
-
         return $this;
     }
 
@@ -363,17 +367,6 @@ class Entrada
         return $this;
     }
 
-    public function getLinkPosting(): ?string
-    {
-        return $this->linkPosting;
-    }
-
-    public function setLinkPosting(?string $linkPosting): self
-    {
-        $this->linkPosting = $linkPosting;
-
-        return $this;
-    }
 
     public function getTypeOrigin(): ?string
     {
@@ -399,39 +392,6 @@ class Entrada
         return $this;
     }
 
-
-
-    /**
-     * @return Collection|RelacionSectionEntrada[]
-     */
-    public function getRelacionSectionEntradas(): Collection
-    {
-        return $this->relacionSectionEntradas;
-    }
-
-    public function addRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
-    {
-        if (!$this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
-            $this->relacionSectionEntradas[] = $relacionSectionEntrada;
-            $relacionSectionEntrada->setEntrada($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRelacionSectionEntrada(RelacionSectionEntrada $relacionSectionEntrada): self
-    {
-        if ($this->relacionSectionEntradas->contains($relacionSectionEntrada)) {
-            $this->relacionSectionEntradas->removeElement($relacionSectionEntrada);
-            // set the owning side to null (unless already changed)
-            if ($relacionSectionEntrada->getEntrada() === $this) {
-                $relacionSectionEntrada->setEntrada(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getOrden(): ?int
     {
         return $this->orden;
@@ -440,18 +400,6 @@ class Entrada
     public function setOrden(?int $orden): self
     {
         $this->orden = $orden;
-
-        return $this;
-    }
-
-    public function getSection(): ?Section
-    {
-        return $this->section;
-    }
-
-    public function setSection(?Section $section): self
-    {
-        $this->section = $section;
 
         return $this;
     }
@@ -480,7 +428,127 @@ class Entrada
         return $this;
     }
 
+    public function getModelTemplate(): ?ModelTemplate
+    {
+        return $this->modelTemplate;
+    }
 
+    public function setModelTemplate(?ModelTemplate $modelTemplate): self
+    {
+        $this->modelTemplate = $modelTemplate;
 
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contacto[]
+     */
+    public function getContacto(): Collection
+    {
+        return $this->contacto;
+    }
+
+    public function addContacto(Contacto $contacto): self
+    {
+        if (!$this->contacto->contains($contacto)) {
+            $this->contacto[] = $contacto;
+        }
+
+        return $this;
+    }
+
+    public function removeContacto(Contacto $contacto): self
+    {
+        $this->contacto->removeElement($contacto);
+
+        return $this;
+    }
+
+    public function getIsSinTitulo(): ?bool
+    {
+        return $this->isSinTitulo;
+    }
+
+    public function setIsSinTitulo(?bool $isSinTitulo): self
+    {
+        $this->isSinTitulo = $isSinTitulo;
+
+        return $this;
+    }
+
+    public function getIsPermanente(): ?bool
+    {
+        return $this->isPermanente;
+    }
+
+    public function setIsPermanente(?bool $isPermanente): self
+    {
+        $this->isPermanente = $isPermanente;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->addEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->sections->removeElement($section)) {
+            $section->removeEntrada($this);
+        }
+
+        return $this;
+    }
+
+    public function getFooter(): ?string
+    {
+        return $this->footer;
+    }
+
+    public function setFooter(?string $footer): self
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ButtonLink[]
+     */
+    public function getButton(): Collection
+    {
+        return $this->button;
+    }
+
+    public function addButton(ButtonLink $button): self
+    {
+        if (!$this->button->contains($button)) {
+            $this->button[] = $button;
+        }
+
+        return $this;
+    }
+
+    public function removeButton(ButtonLink $button): self
+    {
+        $this->button->removeElement($button);
+
+        return $this;
+    }
 
 }

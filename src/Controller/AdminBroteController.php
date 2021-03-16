@@ -58,7 +58,7 @@ class AdminBroteController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Brote $brote */
+            /** @var Principal $brote */
             $brote = $form->getData();
 
             /** @var UploadedFile $uploadedFile */
@@ -82,7 +82,7 @@ class AdminBroteController extends AbstractController
             $boolean = $form['publicar']->getData();
 
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
-            $brote->setPublicadoAt($publicado);
+            $brote->setCreatedAt($publicado);
 
             $em->persist($brote);
             $em->flush();

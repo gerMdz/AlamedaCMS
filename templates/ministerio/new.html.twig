@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ministerio{% endblock %}
+
+{% block body %}
+    <h1>Create new Ministerio</h1>
+
+    {{ include('ministerio/_form.html.twig') }}
+
+    <a href="{{ path('ministerio_index') }}">back to list</a>
+{% endblock %}

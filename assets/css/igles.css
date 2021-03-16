@@ -380,6 +380,24 @@ button.bg-teal:hover{
     align-items: flex-start;
 }
 
+.page-header-60 {
+    height: 60vh !important;
+
+    padding-top: 10px;
+
+    display: flex;
+    align-items: flex-start;
+}
+
+.page-header-30 {
+    height: 30vh !important;
+
+    padding-top: 10px;
+
+    display: flex;
+    align-items: flex-start;
+}
+
 .blockquote-point{
     padding: .5rem 1rem;
     border-left: .25rem solid #ca5430;
@@ -1102,4 +1120,18 @@ color: rgb(41, 147, 229)
     border-bottom-color: #2993e5 !important;
     border-bottom-style: solid;
     border-bottom-width: 1px;
+}
+
+.bg-reserva{
+    background:
+    radial-gradient(circle, rgba(5,124,195,0.8) 0%, rgba(5,124,195,1) 100%);
+}
+
+@media (min-width: 992px) {
+    .mt-lg-n50 {
+        margin-top: -5rem !important;
+    }
+    .mt-lg-n60 {
+        margin-top: -6rem !important;
+    }
 }

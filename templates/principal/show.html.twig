@@ -1,50 +1,147 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Principal{% endblock %}
+{% block title %}Principal Datos{% endblock %}
 
-{% block body %}
-    <h1>Principal</h1>
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Principal</h4>
+                <p class="card-category"> Datos {{ principal.linkRoute }}</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ principal.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ principal.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Contenido</th>
-                <td>{{ principal.contenido }}</td>
-            </tr>
-            <tr>
-                <th>LinkRoute</th>
-                <td>{{ principal.linkRoute }}</td>
-            </tr>
-            <tr>
-                <th>ImageFilename</th>
-                <td>{{ principal.imageFilename }}</td>
-            </tr>
-            <tr>
-                <th>Likes</th>
-                <td>{{ principal.likes }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <th>Titulo</th>
+                            <th>linkRoute</th>
+                        </tr>
+                        <tr>
+                            <td>{{ principal.id }}</td>
+                            <td>{{ principal.titulo }}</td>
+                            <td>{{ principal.linkRoute }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contenido</th>
+                            <td colspan="2">{{ principal.contenido }}</td>
+                        </tr>
+                        <tr>
+                            <th>Imagen</th>
+                            <td>{{ principal.imageFilename }}</td>
+                            <td>
+                                <img class="show-article-img "
+                                     src="{{ principal.imagePath|imagine_filter('squared_thumbnail_small') }}"
+                                     alt="{{ base.siteName }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Creada</th>
+                            <th>Actualizada</th>
+                            <th>ModelTemplate</th>
+                        </tr>
+                        <tr>
+                            <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ principal.modelTemplate}}</td>
+                        </tr>
+                        {% if brotes %}
+                            <tr>
+                                <th colspan="3" class="text-center">
+                                    <h3>Páginas asociadas</h3>
+                                </th>
 
-    <a href="{{ path('principal_index') }}">back to list</a>
+                            </tr>
+                            <tr>
+                                <td>Título</td>
+                                <td>LinkRoute</td>
+                                <td><i class="fa fa-cogs"> </i> </td>
+                            </tr>
+                            {% for brote in brotes %}
+                                <tr>
+                                    <td>{{ brote.titulo }}</td>
+                                    <td>
+                                        {{ brote.linkRoute }}
+                                        <a href="{{ path('principal_ver', {'linkRoute': brote.linkRoute}) }}"
+                                           target="_blank"
+                                        >
+                                            <i class="fa fa-link"> </i><small> ver en pantalla nueva</small>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('principal_show', {'id': brote.id}) }}">
+                                            <i class="fa fa-eye"> </i> <small> Ver datos</small>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
 
-    <a href="{{ path('principal_edit', {'id': principal.id}) }}">edit</a>
+                        {% endif %}
+                        </tbody>
+                    </table>
 
-    {{ include('principal/_delete_form.html.twig') }}
+
+                    {% if principal.section %}
+                        <tr>
+                            <td colspan="10">
+                                <div class="col-sm-12">
+                                    <h3 class="text-center">Secciones asociadas</h3>
+                                    <div style="font-size: 0.9rem"
+                                         class="list-group small js-section-list col-sm-12"
+                                         data-url="{{ path('admin_principal_list_section', {id: principal.id}) }}"
+                                         data-principal="{{ principal.id }}"
+                                    >
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <a href="{{ path('principal_agregar_seccion', { 'id': principal.id }) }}"
+                                           class="btn btn-link btn-sm btn-modal">
+                                            <i class="fa fa-plus"> Sección</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </div>
+
+                <a href="{{ path('admin') }}" class="btn btn-info">Volver al listado</a>
+
+                <a href="{{ path('principal_edit', {'id': principal.id}) }}" class="btn btn-warning">Editar</a>
+
+                {{ include('principal/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    {% include('admin/_modal.html.twig') %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('section_select') }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
+            integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
+            crossorigin="anonymous"></script>
+
+    <script src="{{ asset('js/admin_section_principal_form.js') }}"></script>
+
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
+{% endblock %}
+{% block jslocal %}
+    {{ parent() }}
+    <script>
+        $('#admin').addClass('active');
+    </script>
 {% endblock %}

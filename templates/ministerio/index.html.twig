@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ministerio index{% endblock %}
+
+{% block body %}
+    <h1>Ministerio index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Referente</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ministerio in ministerios %}
+            <tr>
+                <td>{{ ministerio.id }}</td>
+                <td>{{ ministerio.nombre }}</td>
+                <td>{{ ministerio.referente }}</td>
+                <td>
+                    <a href="{{ path('ministerio_show', {'id': ministerio.id}) }}">show</a>
+                    <a href="{{ path('ministerio_edit', {'id': ministerio.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ministerio_new') }}">Create new</a>
+{% endblock %}

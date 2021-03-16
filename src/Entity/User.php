@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -88,10 +90,7 @@ class User implements UserInterface
      */
     private $comentarios;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Brote::class, mappedBy="autor")
-     */
-    private $brotes;
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -103,6 +102,16 @@ class User implements UserInterface
      */
     private $sections;
 
+    /**
+     * @ORM\OneToMany(targetEntity=EnlaceCorto::class, mappedBy="usuario")
+     */
+    private $enlaceCortos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Celebracion::class, mappedBy="creaEvento")
+     */
+    private $celebracions;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -110,11 +119,12 @@ class User implements UserInterface
         $this->entradas = new ArrayCollection();
         $this->principal = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
-        $this->brotes = new ArrayCollection();
         $this->sections = new ArrayCollection();
+        $this->enlaceCortos = new ArrayCollection();
+        $this->celebracions = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): ?string
     {
         return $this->getPrimerNombre();
     }
@@ -158,6 +168,7 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -168,7 +179,7 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -393,38 +404,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Brote[]
-     */
-    public function getbrotes(): Collection
-    {
-        return $this->brotes;
-    }
-
-    public function addbrote(Brote $brote): self
-    {
-        if (!$this->brotes->contains($brote)) {
-            $this->brotes[] = $brote;
-            $brote->setAutor($this);
-        }
-
-        return $this;
-    }
-
-    public function removebrote(Brote $brote): self
-    {
-        if ($this->brotes->contains($brote)) {
-            $this->brotes->removeElement($brote);
-            // set the owning side to null (unless already changed)
-            if ($brote->getAutor() === $this) {
-                $brote->setAutor(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getAceptaTerminosAt(): ?\DateTimeInterface
+    public function getAceptaTerminosAt(): ?DateTimeInterface
     {
         return $this->aceptaTerminosAt;
     }
@@ -432,7 +412,7 @@ class User implements UserInterface
 
     public function aceptaTerminos()
     {
-        $this->aceptaTerminosAt = new \DateTime();
+        $this->aceptaTerminosAt = new DateTime();
     }
 
     /**
@@ -464,5 +444,71 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|EnlaceCorto[]
+     */
+    public function getEnlaceCortos(): Collection
+    {
+        return $this->enlaceCortos;
+    }
+
+    public function addEnlaceCorto(EnlaceCorto $enlaceCorto): self
+    {
+        if (!$this->enlaceCortos->contains($enlaceCorto)) {
+            $this->enlaceCortos[] = $enlaceCorto;
+            $enlaceCorto->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnlaceCorto(EnlaceCorto $enlaceCorto): self
+    {
+        if ($this->enlaceCortos->contains($enlaceCorto)) {
+            $this->enlaceCortos->removeElement($enlaceCorto);
+            // set the owning side to null (unless already changed)
+            if ($enlaceCorto->getUsuario() === $this) {
+                $enlaceCorto->setUsuario(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Celebracion[]
+     */
+    public function getCelebracions(): Collection
+    {
+        return $this->celebracions;
+    }
+
+    public function addCelebracion(Celebracion $celebracion): self
+    {
+        if (!$this->celebracions->contains($celebracion)) {
+            $this->celebracions[] = $celebracion;
+            $celebracion->setCreaEvento($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCelebracion(Celebracion $celebracion): self
+    {
+        if ($this->celebracions->removeElement($celebracion)) {
+            // set the owning side to null (unless already changed)
+            if ($celebracion->getCreaEvento() === $this) {
+                $celebracion->setCreaEvento(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRolesAsString(): string
+    {
+        return implode(',', $this->roles);
     }
 }

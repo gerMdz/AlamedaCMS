@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reservante{% endblock %}
+
+{% block body %}
+    <h1>Edit Reservante</h1>
+
+    {{ include('reservante/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('reservante_index') }}">back to list</a>
+
+    {{ include('reservante/_delete_form.html.twig') }}
+{% endblock %}

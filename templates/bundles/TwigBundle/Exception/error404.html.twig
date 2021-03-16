@@ -1,12 +1,37 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_material_kit.twig' %}
 
-{% block title %}Lo lamentamos {{ base.siteName}}{% endblock %}
+{% block title %} {{ app.request.pathInfo }} Lo lamentamos {{ base.siteName}}{% endblock %}
 
-{% block contenido_body %}
-    <h1>Página No Encontrada</h1>
+{% block sections %}
 
-    <p>
-        No se pudo encontrar la página que buscaba. Por favor revise URL
-        o dirijase a <a href="{{ path('index') }}">la página de inicio</a>.
-    </p>
+    <header>
+        {% include 'inicio/_nav.html.twig' %}
+        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark" data-parallax="true"
+                 style="background-image: url({{ asset('build/images/cabecera_index.jpg') }}); background-repeat: repeat-y ; background-attachment: fixed"
+        >
+            <!-- Promo Content -->
+            <div class="container u-overlay__inner u-ver-center u-content-space">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="float-left">
+
+                            <div class="site-heading p-5 text-white-75">
+                                <img src="{{ asset('build/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}"
+                                     style="max-height: 150px" class="img-fluid" alt="{{ app.request.baseUrl }}">
+                                <h1>Página No Encontrada</h1>
+                                <p>
+                                    No se pudo encontrar la página que buscaba. Por favor revise URL
+                                    o dirijase a <a href="{{ path('index') }}">la página de inicio</a>.
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Promo Content -->
+        </section>
+    </header>
+
 {% endblock %}

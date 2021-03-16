@@ -22,7 +22,9 @@ class UserRegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-//            ->add('roles')
+            ->add('roles',null,[
+                'mapped'=>false,
+            ])
             ->add('primerNombre')
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,

@@ -2,7 +2,9 @@
 {% block title %}Secciones {{ base.siteName }}{% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('section_select') }}
     <script src="{{ asset('js/admin_section_form.js') }}"></script>
+    <script src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="application/javascript">
         $(function () {
             $('.datetimepicker').datetimepicker({
@@ -26,7 +28,7 @@
     {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
 {% endblock %}
 {% block content %}
-    <h5>Edición de "{{ section.name }}" </h5>
+    <h5>Edición de "{{ section.name }} - {{ section.identificador }}" </h5>
     <div class="form-container">
         {{ include('section_admin/_form.html.twig',
             {

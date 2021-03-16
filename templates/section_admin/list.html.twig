@@ -1,4 +1,4 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 {% block title %}Secciones {{ base.siteName }}{% endblock %}
 {% block nav %}
     {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
@@ -7,40 +7,88 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
-
-                    <h4 class="card-title ">Secciones</h4>
-                    <p class="card-category"> Listado de los secciones </p>
-
-
-
+                <h4 class="card-title ">Secciones</h4>
+                <p class="card-category"> Listado de secciones </p>
             </div>
             <div class="card-body">
                 <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_section_new') }}">
                     <i class="fas fa-plus-circle"></i> Crear Sección</a>
+                <div class="text-center align-items-center">
+                    {{ knp_pagination_render(sections) }}
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead class=" text-primary">
                         <tr>
-                            <th>Name</th>
-                            <th>Clase</th>
-                            <th>Descripción</th>
-                            <th>Columnas</th>
-                            <th>Disponible</th>
-                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Ubicación</th>
+                            <th>Descripción /<br/>
+                                <small>Template</small>
+                            </th>
+                            <th>Entradas</th>
+                            <th>
+                                Disponible
+                            </th>
+                            <th>Imagen</th>
+                            <th><i class="fa fa-cogs"> </i></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for section in sections %}
                             <tr>
-                                <td>{{ section.name }}</td>
-                                <td>{{ section.cssClass }}</td>
-                                <td>{{ section.description | u.truncate(20, '...') }}</td>
-                                <td>{{ section.columns }}</td>
+                                <td>{{ section.name }}
+                                    <br/>
+                                    <small>{{ section.identificador }}</small>
+                                </td>
                                 <td>
+                                    {% for principal in section.principales %}
+                                        <a href="{{ path('principal_show', {'id': principal.id}) }}">
+                                            {{ principal.linkRoute }}
+                                        </a>
+                                        <br/>
+                                    {% endfor %}
+                                    {% for index in section.indexAlamedas %}
+                                        <i class="fa fa-check-square"> </i>
+                                        <a href="{{ path('index_alameda_index') }}">
+                                            Index
+                                        </a>
+                                    {% endfor %}
+
+                                </td>
+                                <td>
+                                    {{ section.description | u.truncate(20, '...') }} / <br/>
+                                    <small>
+                                        {{ section.modelTemplate | default('Sin template') }}
+                                    </small>
+                                </td>
+                                <td>
+                                    {% for entrada in section.entrada %}
+                                        <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                                            {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}
+                                        </a>
+                                        <br/>
+                                    {% endfor %}
+                                </td>
+                                <td class="text-center">
                                     <span class="fa fa-{{ section.disponible ? 'check text-success' : 'times text-danger' }}"></span>
                                 </td>
                                 <td>
-                                    <a href="{{ path('admin_section_edit', {'id': section.id}) }}"><i class="fas fa-pencil-alt"></i> editar</a>
+                                    {% if (section.imageFilename != null) %}
+                                        <img class="article-img" alt="{{ base.lema }}"
+                                             src="{{ section.imagePath|imagine_filter('squared_thumbnail_100') }}">
+                                        <br/>
+                                        {{ section.imageFilename | u.truncate(20, '...') }}
+                                    {% else %}
+                                        No tiene imagen
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_section_show', {'id': section.id}) }}">
+                                        {{ include('bases/_ver.html.twig') }}
+                                    </a><br/>
+                                    <a href="{{ path('admin_section_edit', {'id': section.id}) }}">
+                                        {{ include('bases/_editar.html.twig') }}
+                                    </a>
                                 </td>
                             </tr>
                         {% else %}
@@ -50,6 +98,9 @@
                         {% endfor %}
                         </tbody>
                     </table>
+                </div>
+                <div class="text-center align-items-center">
+                    {{ knp_pagination_render(sections) }}
                 </div>
             </div>
             <div class="card-footer">
@@ -64,8 +115,24 @@
 {% endblock %}
 
 {% block jslocal %}
-    {{ parent() }}
-    <script>
-        $('#section').addClass('active');
-    </script>
+    {# {{ parent() }} #}
+    {# <script> #}
+    {# $('#buttonmenu').on('click', function(){ #}
+    {# // $(this).parent().addClass('current').siblings().removeClass('current'); #}
+    {# console.log('ck') #}
+    {# $('.nav .nav-item').each(function() { #}
+    {# if(this.id === 'section'){ #}
+    {# let itemnav = $('#'+ this.id); #}
+    {# itemnav.removeClass() #}
+    {# itemnav.attr('class', 'nav-item active') #}
+    {# console.log('ss' + itemnav.attr('class')) #}
+    {# } #}
+
+    {# console.log(this.id) #}
+    {# }); #}
+    {# // $('#section').css('color','blue'); #}
+    {# // $('#section').addClass('active'); #}
+    {# }); #}
+
+    {# </script> #}
 {% endblock %}

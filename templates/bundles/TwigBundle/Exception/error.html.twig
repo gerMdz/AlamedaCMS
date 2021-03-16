@@ -1,8 +1,9 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_material_kit.twig' %}
 
-{% block title %}Lo lamentamos {{ base.siteName}}{% endblock %}
+{% block title %} {{ app.request.pathInfo }} Lo lamentamos {{ base.siteName}}{% endblock %}
 
-{% block contenido_body %}
+{% block sections %}
+
     <h1>Hubo un error.</h1>
 
     <p>

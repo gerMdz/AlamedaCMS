@@ -1,0 +1,61 @@
+{% extends 'base_admin_board.html.twig' %}
+
+{% block title %}ButtonLink index{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Botones Links</h4>
+                <p class="card-category">Listado </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('button_link_new') }}" class="btn btn-sm btn-primary btn-round">
+                    Crear Botón Link <span class="fa fa-plus-circle"></span>
+                </a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>Id</th>
+                            <th>CssClass</th>
+                            <th>LinkRoute</th>
+                            <th>Es link externo?</th>
+                            <th>Texto del botón</th>
+                            <th><i class="fa fa-cogs"> </i> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for button_link in button_links %}
+                            <tr>
+                                <td>{{ button_link.id }}</td>
+                                <td>{{ button_link.cssClass }}</td>
+                                <td>{{ button_link.linkRoute }}</td>
+                                <td>{{ button_link.isLinkExterno ? '<i class="fa fa-check text-success">' : '<i class="fa fa-times text-danger">' }}</td>
+                                <td>{{ button_link.textButton }}</td>
+                                <td>
+                                    <a href="{{ path('button_link_show', {'id': button_link.id}) }}">
+                                        {{ include('bases/_ver.html.twig', {'button_label': 'Ver detalle'}) }}
+                                    </a>
+                                    <a href="{{ path('button_link_edit', {'id': button_link.id}) }}">
+                                        {{ include('bases/_editar.html.twig', {'button_label': 'Editar'}) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">No se encontraron botones links </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('button_link_new') }}" class="btn btn-sm btn-primary btn-round">
+                        Crear Botón Link <span class="fa fa-plus-circle"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

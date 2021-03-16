@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ email.subject }}</title>
+{#    {% apply inline_css %}#}
+    <style>
+        .btn-alameda {
+            box-sizing: border-box;
+            outline: currentcolor none medium;
+            border-radius: 999px;
+            cursor: default;
+            width: auto;
+            height: auto;
+            display: inline-flex;
+            -moz-box-align: center;
+            align-items: center;
+            font-family: "Arial Nova", Arial, sans-serif !important;
+            user-select: none;
+            margin-top: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.25;
+            padding: 9px 24px;
+            color: white;
+            background-color: rgb(41, 147, 229);
+            border: 1px solid transparent;
+        }
+
+        .text-info {
+            color: #0b51c5;
+        }
+    </style>
+{#    {% endapply %}#}
+</head>
+<body>
+<div class="header text-center">
+    <a href="{{ url('index') }}">
+        <img src="{{ absolute_url(asset('images/logo-con-nombre-2020.png')) }}" style="height: 30px; width: 120px;" class="logo" alt="Iglesia de La Alameda">
+    </a>
+</div>
+    <h1>Hola {{ email.toName }}!</h1>
+    <br/><br/>
+    Buenas Noticias!!<br/>
+    Nos pediste que te avisáramos si disponíamos de asientos para la celebración {{ celebracion.nombre}} en Nuestro Auditorio.
+    <br/>
+    Ya puedas reservar ingresando a <a href="{{ url('reserva_index') }}">https://alameda.ar/reservas</a>.
+    <br/>
+        Hay lugar en: <br/>
+    {{ celebracion.fechaCelebracionAt| format_date(pattern="d 'de' MMMM") }},  {{ celebracion.nombre }}
+    <br/>
+    No te demores!
+    <small>
+        (Recuerda que la reserva no es automática)<br/>
+        (Si ya tienes reserva desestima este mail)
+    </small>
+
+    <br/>
+
+    <p>
+        Esperamos verte,<br/>
+        Iglesia de la Alameda
+
+    </p>
+</body>
+</html>

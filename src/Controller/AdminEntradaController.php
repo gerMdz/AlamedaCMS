@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
 use App\Service\BoleanToDateHelper;
@@ -12,6 +13,7 @@ use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -43,19 +45,27 @@ class AdminEntradaController extends AbstractController
      * @Route("/admin/entrada", name="admin_entrada_index")
      * @IsGranted("ROLE_ESCRITOR")
      * @param EntradaRepository $entradaRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function index(EntradaRepository $entradaRepository): Response
+    public function index(EntradaRepository $entradaRepository, PaginatorInterface $paginator, Request $request): Response
     {
         if ($this->isGranted('ROLE_EDITOR')) {
-            $entrada = $entradaRepository->findBy([], ['createdAt' => 'DESC']);
+            $entrada = $entradaRepository->queryFindAllEntradas();
         } else {
             $user = $this->getUser();
-            $entrada = $entradaRepository->findByAutor($user);
+            $entrada = $entradaRepository->queryFindByAutor($user);
         }
 
-        return $this->render('admin_entrada/index.html.twig', [
-            'entradas' => $entrada,
+        $entradas = $paginator->paginate(
+            $entrada, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
+
+        return $this->render('admin_entrada/list.html.twig', [
+            'entradas' => $entradas,
         ]);
     }
 
@@ -70,7 +80,7 @@ class AdminEntradaController extends AbstractController
     {
         $this->isGranted('ROLE_EDITOR') ? $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion() : $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion($this->getUser());
 
-        return $this->render('admin_entrada/index.html.twig', [
+        return $this->render('admin_entrada/list.html.twig', [
             'entradas' => $entrada,
         ]);
     }
@@ -82,7 +92,7 @@ class AdminEntradaController extends AbstractController
      * @param ObtenerDatosHelper $datosHelper
      * @return RedirectResponse
      * @throws Exception
-     * @Route("admin/entrada/{id}/edit", name="admin_entrada_edit")
+     * @Route("/admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
      *
      */
@@ -101,11 +111,8 @@ class AdminEntradaController extends AbstractController
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $entrada->setPublicadoAt($publicado);
 
-            if ('' != $link) {
-                $link = strtolower(str_replace(' ', '-', trim($link)));
-            } else {
-                $link = strtolower(str_replace(' ', '-', trim($titulo)));
-            }
+            $link = $this->limpiaLink($link, $titulo);
+
             $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
@@ -115,7 +122,7 @@ class AdminEntradaController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->loggerClient->logMessage('Se editó la entrada \"'.$entrada->getTitulo().'\"', '');
+            $this->loggerClient->logMessage('Se editó la entrada \"' . $entrada->getTitulo() . '\"', '');
 
             return $this->redirectToRoute('admin_entrada_index');
         }
@@ -126,6 +133,36 @@ class AdminEntradaController extends AbstractController
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
             'ip' => $ip,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Entrada $entrada
+     * @return RedirectResponse
+     * @throws Exception
+     * @Route("/admin/entrada/{id}/edit-complex", name="admin_entrada_edit_complex")
+     * @IsGranted("MANAGE", subject="entrada")
+     *
+     */
+    public function editComplex(Request $request, Entrada $entrada): Response
+    {
+        $form = $this->createForm(EntradaComplexType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $titulo = $form['titulo']->getData();
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->loggerClient->logMessage('Se editó la entrada \"' . $entrada->getTitulo() . '\"', '');
+
+            return $this->redirectToRoute('admin_entrada_index');
+        }
+
+        return $this->render('admin_entrada/edit_contenido.html.twig', [
+            'entrada' => $entrada,
+            'entradaForm' => $form->createView(),
         ]);
     }
 
@@ -158,11 +195,8 @@ class AdminEntradaController extends AbstractController
             $link = $form['linkRoute']->getData();
             $titulo = $form['titulo']->getData();
 
-            if ('' != $link) {
-                $link = strtolower(str_replace(' ', '-', trim($link)));
-            } else {
-                $link = strtolower(str_replace(' ', '-', trim($titulo)));
-            }
+            $link = $this->limpiaLink($link, $titulo);
+
             $entrada->setLinkRoute($link);
 
             if ($uploadedFile) {
@@ -190,15 +224,67 @@ class AdminEntradaController extends AbstractController
     }
 
     /**
-     * @Route("admin/entrada/{linkRoute}", name="entrada_news")
+     * @Route("/admin/entrada/{linkRoute}", name="entrada_admin_link")
      *
      * @param Entrada $entrada
      * @return Response
      */
-    public function show(Entrada $entrada)
+    public function link(Entrada $entrada): Response
     {
+        return $this->render('entrada/link.html.twig', [
+            'entrada' => $entrada,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/entrada/{id}/show", name="entrada_show", methods={"GET"})
+     * @param Entrada $entrada
+     * @param EntradaRepository $er
+     * @return Response
+     */
+    public function show(Entrada $entrada, EntradaRepository $er): Response
+    {
+//        $entrada = $er->findOneBy(['linkRoute' => $entrada]);
+        if (!$entrada) {
+            throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
+        }
+
         return $this->render('entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);
+    }
+
+    /**
+     * @Route("/admin/entrada/{id}", name="entrada_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Entrada $entrada
+     * @return Response
+     */
+    public function delete(Request $request, Entrada $entrada): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $entrada->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($entrada);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_entrada_index');
+    }
+
+    /**
+     * @param null|string $link
+     * @param string $titulo
+     * @return string
+     */
+    private function limpiaLink(?string $link , string $titulo): string
+    {
+        if ('' != $link) {
+            $link = strtolower(str_replace(' ', '-', trim($link)));
+        } else {
+            $link = strtolower(str_replace(' ', '-', trim($titulo)));
+            $link = strtolower(str_replace('<p>', '', trim($link)));
+            $link = strtolower(str_replace('</p>', '', trim($link)));
+        }
+        return $link;
     }
 }

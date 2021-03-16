@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ButtonLink{% endblock %}
+
+{% block body %}
+    <h1>Create new ButtonLink</h1>
+
+    {{ include('button_link/_form.html.twig') }}
+
+    <a href="{{ path('button_link_index') }}">back to list</a>
+{% endblock %}

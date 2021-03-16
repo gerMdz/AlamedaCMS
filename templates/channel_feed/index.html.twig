@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ChannelFeed index{% endblock %}
+
+{% block body %}
+    <h1>ChannelFeed index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Autor</th>
+                <th>Owner</th>
+                <th>Descripcion</th>
+                <th>Image</th>
+                <th>Link</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for channel_feed in channel_feeds %}
+            <tr>
+                <td>{{ channel_feed.id }}</td>
+                <td>{{ channel_feed.title }}</td>
+                <td>{{ channel_feed.autor }}</td>
+                <td>{{ channel_feed.owner }}</td>
+                <td>{{ channel_feed.descripcion }}</td>
+                <td>{{ channel_feed.image }}</td>
+                <td>{{ channel_feed.link }}</td>
+                <td>
+                    <a href="{{ path('channel_feed_show', {'id': channel_feed.id}) }}">show</a>
+                    <a href="{{ path('channel_feed_edit', {'id': channel_feed.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('channel_feed_new') }}">Create new</a>
+{% endblock %}

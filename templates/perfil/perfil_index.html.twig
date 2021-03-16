@@ -23,7 +23,6 @@
                         <div class="user-pad">
                             <h3>Hola {{ app.user.primerNombre }}</h3>
                             <h4 class="text-info"><i class="fas fa-envelope"></i> {{ app.user.email}} </h4>
-
                             <a class="btn btn-labeled btn-info" href="{{ path('app_changepassword', {'email':app.user.email}) }}">
                                 <span class="btn-label"><i class="fa fa-pencil"></i></span>Cambio Clave
                             </a>

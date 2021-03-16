@@ -2,6 +2,13 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['bootstrap_4_layout.html.twig','@FOSCKEditor/Form/ckeditor_widget.html.twig']
+#    form_themes: ['bootstrap_4_layout.html.twig','@FOSCKEditor/Form/ckeditor_widget.html.twig']
+    form_themes: ['bootstrap_4_layout.html.twig','resources/views/Form/ckeditor_widget.html.twig']
     exception_controller: null
+    globals:
+        facebook_tag_pixel_id: '%env(FACEBOOK_PIXEL)%'
+        facebook_tag_enable: '%env(FACEBOOK_PIXEL_ENABLE)%'
+        google_tag_manager_id: '%env(resolve:GOOGLE_TAG_MANAGER_ID)%'
+        google_tag_enable: '%env(resolve:GOOGLE_TAG_ENABLE)%'
+
 

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeBlock index{% endblock %}
+
+{% block body %}
+    <h1>TypeBlock index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Identifier</th>
+                <th>IsActive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_block in type_blocks %}
+            <tr>
+                <td>{{ type_block.id }}</td>
+                <td>{{ type_block.name }}</td>
+                <td>{{ type_block.description }}</td>
+                <td>{{ type_block.identifier }}</td>
+                <td>{{ type_block.isActive ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('type_block_show', {'id': type_block.id}) }}">show</a>
+                    <a href="{{ path('type_block_edit', {'id': type_block.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_block_new') }}">Create new</a>
+{% endblock %}

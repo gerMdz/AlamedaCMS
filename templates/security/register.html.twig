@@ -1,4 +1,4 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_material_kit.twig' %}
 {% form_theme regristroForm _self %}
 {% block form_row %}
     {%- set widget_attr = {} -%}
@@ -9,27 +9,27 @@
     {{- form_label(form, null, {
         label_attr: { class: 'sr-only' }
     }) -}}
-        {{- form_errors(form) -}}
-        {{- form_widget(form, widget_attr) -}}
-        {{- form_help(form) -}}
+    {{- form_errors(form) -}}
+    {{- form_widget(form, widget_attr) -}}
+    {{- form_help(form) -}}
 
 {% endblock %}
 {% block _user_registration_form_aceptaTerminos_row %}
 
 
-            <div class="custom-control custom-checkbox mb-3">
+    <div class="custom-control custom-checkbox mb-3">
 
-                {{ form_errors(form) }}
+        {{ form_errors(form) }}
 
-                    <input type="checkbox" class="custom-control-input" name="{{ full_name }}" id="{{ id }}" >
-                <label class="custom-control-label u-font-size-90" for="{{ id }}">{{ label }} </label>
-                {{ form_help(form) }}
-            </div>
+        <input type="checkbox" class="custom-control-input" name="{{ full_name }}" id="{{ id }}">
+        <label class="custom-control-label u-font-size-90" for="{{ id }}">{{ label }} </label>
+        {{ form_help(form) }}
+    </div>
 
 
 {% endblock %}
 
-{% block title %}Ingreso {{ base.siteName}} {% endblock %}
+{% block title %}Ingreso {{ base.siteName }} {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('loginStyle') }}
@@ -37,11 +37,12 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
-{% block contenido_body %}
+{% block sections %}
 
     {% if app.user %}
         <div class="mb-3">
-            Usted a ingresado como {{ app.user.username }}, <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Salir</a>
+            Usted a ingresado como {{ app.user.username }}, <a href="{{ path('app_logout') }}"><i
+                        class="fas fa-sign-out-alt"></i> Salir</a>
         </div>
     {% endif %}
 
@@ -52,7 +53,7 @@
     }) }}
     <h1 class="h3 mb-3 font-weight-normal">Registro de Usuarios de La Alameda </h1>
 
-{#        {{ form_widget(regristroForm) }}#}
+    {# {{ form_widget(regristroForm) }} #}
 
     {{ form_row(regristroForm.email, {
         attr: { placeholder: 'Email' }
@@ -67,42 +68,45 @@
         attr: { placeholder: 'Nombre de usuario ' }
     }) }}
     {{ form_row(regristroForm.aceptaTerminos) }}
-            <button class="btn btn-lg btn-primary" type="submit">
-                Resgistrar
-            </button>
+    <button class="btn btn-lg btn-primary" type="submit">
+        Resgistrar
+    </button>
+    {% if(is_granted("ROLE_ADMIN_RESERVA")) %}
+        {{ form_row(regristroForm.roles) }}
+    {% endif %}
 
     {{ form_end(regristroForm) }}
 
-{#    <form class="form-signin" method="post">#}
+    {# <form class="form-signin" method="post"> #}
 
 
-{#       #}
+    {# #}
 
-{#        <h1 class="h3 mb-3 font-weight-normal">Por favor, ingrese</h1>#}
-{#        <label for="inputEmail">Email</label>#}
-{#        <input type="email" value="" name="email" id="inputEmail" class="form-control" required autofocus>#}
-{#        <label for="inputPassword">Contraseña</label>#}
-{#        <input type="password" name="password" id="inputPassword" class="form-control" requerido>#}
-{#        <label for="inputPrimerNombre">Nombre</label>#}
-{#        <input type="text" name="primernombre" id="inputPrimerNombre" class="form-control" requerido>#}
+    {# <h1 class="h3 mb-3 font-weight-normal">Por favor, ingrese</h1> #}
+    {# <label for="inputEmail">Email</label> #}
+    {# <input type="email" value="" name="email" id="inputEmail" class="form-control" required autofocus> #}
+    {# <label for="inputPassword">Contraseña</label> #}
+    {# <input type="password" name="password" id="inputPassword" class="form-control" requerido> #}
+    {# <label for="inputPrimerNombre">Nombre</label> #}
+    {# <input type="text" name="primernombre" id="inputPrimerNombre" class="form-control" requerido> #}
 
-{#        <input type="hidden" name="_csrf_token"#}
-{#               value="{{ csrf_token('authenticate') }}"#}
-{#        >#}
+    {# <input type="hidden" name="_csrf_token" #}
+    {# value="{{ csrf_token('authenticate') }}" #}
+    {# > #}
 
-{#        #}{##}
-{#            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
-{#            See https://symfony.com/doc/current/security/remember_me.html#}
-{#        #}
-{#        <div class="checkbox mb-3">#}
-{#            <label>#}
-{#                <input type="checkbox" name="_remember_me"> Acepto los términos que seguro leí (Serás parte de la comunidad virtual {{ base.siteName }})#}
-{#            </label>#}
-{#        </div>#}
-{#        <button class="btn btn-lg btn-primary" type="submit">#}
-{#            Resgistrar#}
-{#        </button>#}
-{#    </form>#}
+    {# #}{# #}
+    {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality. #}
+    {# See https://symfony.com/doc/current/security/remember_me.html #}
+    {# #}
+    {# <div class="checkbox mb-3"> #}
+    {# <label> #}
+    {# <input type="checkbox" name="_remember_me"> Acepto los términos que seguro leí (Serás parte de la comunidad virtual {{ base.siteName }}) #}
+    {# </label> #}
+    {# </div> #}
+    {# <button class="btn btn-lg btn-primary" type="submit"> #}
+    {# Resgistrar #}
+    {# </button> #}
+    {# </form> #}
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}

@@ -1,28 +1,50 @@
 <ul class="nav">
+    {% if (is_granted("ROLE_ADMIN_RESERVA")) %}
+        <li id="entrada" class="nav-item">
+            <a class="nav-link" href="{{ path('admin_entrada_index') }}">
+                <i class="material-icons">account_balance_wallet</i>
+                <p>Ver Entradas</p>
+            </a>
+        </li>
+        <li id="section" class="nav-item">
+            <a class="nav-link" href="{{ path('admin_section_list') }}">
+                <i class="material-icons">toc</i>
+                <p>Ver Secciones</p>
+            </a>
+        </li>
     <li id="admin" class="nav-item">
         <a class="nav-link" href="{{ path('admin') }}">
             <i class="material-icons">dashboard</i>
-            <p>Inicio</p>
+            <p>Inicio y Páginas Principales</p>
         </a>
     </li>
-    <li id="brote" class="nav-item">
-        <a class="nav-link" href="{{ path('admin_brote_list') }}">
-            <i class="material-icons">dashboard</i>
-            <p>Ver Brotes</p>
-        </a>
-    </li>
-    <li id="brote" class="nav-item">
+
+    <li id="index" class="nav-item">
         <a class="nav-link" href="{{ path('index_alameda_index') }}">
-            <i class="material-icons">dashboard</i>
+            <i class="material-icons">home_work</i>
             <p>Ver Index</p>
         </a>
     </li>
-    <li id="section" class="nav-item">
-        <a class="nav-link" href="{{ path('admin_section_list') }}">
-            <i class="material-icons">toc</i>
-            <p>Ver Secciones</p>
+
+    <li id="celebracion" class="nav-item">
+        <a class="nav-link" href="{{ path('celebracion_index') }}">
+            <i class="material-icons">today</i>
+            <p>Ver Celebraciones</p>
         </a>
     </li>
+        <li id="modelTemplate" class="nav-item">
+        <a class="nav-link" href="{{ path('model_template_index') }}">
+            <i class="material-icons">design_services</i>
+            <p>Ver Templates</p>
+        </a>
+    </li>
+        <li id="type" class="nav-item">
+        <a class="nav-link" href="{{ path('type_block_index') }}">
+            <i class="material-icons">format_size</i>
+            <p>Ver Elementos</p>
+        </a>
+    </li>
+    {% endif %}
     <!-- your sidebar here -->
 </ul>
 

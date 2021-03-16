@@ -3,26 +3,46 @@
 {% block title %}Admin {% endblock %}
 
 {% block encabezado %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-<div class="example-wrapper">
-    <h1 style="font-family: Poppins;">Panel Administración <br/>{{ base.siteName }}</h1>
-</div>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h3 style="font-family: ArialNova, sans-serif;">Panel Administración <br/>{{ base.siteName }}</h3>
+    </div>
 
 {% endblock %}
 
 {% block content %}
     <div class="row">
-    {% include 'admin/list_principal.html.twig' %}
-    {% include 'admin/list_metabase.html.twig' %}
+        {% if (is_granted("ROLE_ADMIN_RESERVA")) %}
+            {% include 'admin/list_principal.html.twig' %}
+            {% include 'admin/list_metabase.html.twig' %}
+        {% endif %}
+        {% if (is_granted("ROLE_RESERVA")) %}
+            <a class="btn btn-alameda" href="{{ path('reserva_consulta') }}">
+                Ver Reservas
+            </a>
+            <a class="btn btn-alameda" href="{{ path('reserva_lectura') }}">
+                Lectura QR
+            </a>
+        {% endif %}
+
     </div>
 {% endblock %}
 
 {% block jslocal %}
-{{ parent() }}
+    {{ parent() }}
     <script>
         $('#admin').addClass('active');
     </script>

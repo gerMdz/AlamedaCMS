@@ -1,0 +1,11 @@
+<script type="application/javascript">
+    $(function () {
+    $(".btn-modal").click(function (ev) {
+        ev.preventDefault();
+        const target = $(this).attr("href");
+        $("#modalPlantillaWeb .modal-content").load(target, function () {
+            $("#modalPlantillaWeb").modal("show");
+        });
+    });
+});
+</script>

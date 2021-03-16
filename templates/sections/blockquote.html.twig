@@ -1,0 +1,17 @@
+<section class=" {{ section.cssClass}} " id="inicio">
+    <div class="container">
+        <div class="row fullscreen align-items-center justify-content-center">
+            <div class="col-sm-12 text-center mx-auto mt-1">
+                <header class="h-25 my-3">
+                    {% for entrada in section.entrada %}
+                    {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' with { 'entrada':entrada } %}
+                    {% endfor %}
+                    <hr/>
+
+                    <p>{{ section.contenido | replace({'<p>':'', '</p>':''}) | raw}} </p>
+                </header>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,32 @@
+{{ form_start(form, {'action' : path('celebracion_agregar_grupo', { 'id': celebracion.id })}) }}
+<div class="modal-header panel-info">
+    <h5 class="modal-title" id="exampleModalLabel">Agregar Grupo </h5>
+</div>
+<div id="reserva" class="modal-body">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title "> Grupos de Celebraciones </h4>
+        </div>
+        <div class="card-body">
+
+            <div class="col-sm-12 p-0">
+                <label for="{{ form.groupCelebration.vars.id}}" class="label text-dark">
+                    <i class="fa fa-list"> </i> Grupo
+                </label>
+                {{ form_widget(form.groupCelebration) }}
+            </div>
+
+            <div class="col-sm-12 p-0 text-center">
+                {{ form_row(form.save) }}
+            </div>
+            {{ form_widget(form._token) }}
+        </div>
+    </div>
+    <a class="btn-outline-primary" href="{{ path('group_celebration_new') }}">
+        Crear Grupo Celebración
+    </a>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+</div>
+{{ form_end(form, {'render_rest': false}) }}

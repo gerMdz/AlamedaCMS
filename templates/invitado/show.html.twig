@@ -1,0 +1,54 @@
+<div class="modal-header panel-info">
+    {# <h5 class="modal-title" id="exampleModalLabel">Datos </h5> #}
+</div>
+<div id="reserva" class="modal-body">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4>Invitado</h4>
+
+        </div>
+        <div class="card-body">
+            <table class="table table-responsive table-striped">
+                <tbody>
+
+                <tr>
+                    <th>Id</th>
+                    <td>{{ invitado.id }}</td>
+                </tr>
+                <tr>
+                    <th>Telefono</th>
+                    <td>{{ invitado.telefono }}</td>
+                </tr>
+                <tr>
+                    <th>DNI</th>
+                    <td>{{ invitado.dni }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ invitado.nombre }}</td>
+                </tr>
+                <tr>
+                    <th>Apellido</th>
+                    <td>{{ invitado.apellido }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="card-footer">
+        <a href="{{ path('invitado_index') }}" class="float-left">
+            <i class="fa fa-backward"> </i>
+            Volver al listado
+        </a>
+
+        <a href="{{ path('invitado_edit', {'id': invitado.id}) }}"
+           class="float-right">
+            <i class="fa fa-edit "> </i> Editar
+        </a>
+            {{ include('invitado/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+</div>

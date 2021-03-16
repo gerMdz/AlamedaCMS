@@ -2,21 +2,20 @@
 
 namespace App\Form;
 
-use App\Entity\Brote;
-use App\Entity\Principal;
+use App\Entity\ModelTemplate;
 use App\Entity\Section;
+use App\Repository\ModelTemplateRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -39,58 +38,72 @@ class SectionFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null,[
-                'label'=>'Nombre'
+            ->add('name', null, [
+                'label' => 'Nombre de la sección',
+                'help' => 'Nombre que identifica a la sección entre las otras secciones'
             ])
             ->add('cssClass', null, [
-                'label'=>'Clase css'
+                'label' => 'Clase css'
             ])
             ->add('description', TextareaType::class, [
-                'label'=>'Descripción',
-                'help'=>'Una descripción que diferencie a las otras secciones parecidas'
+                'label' => 'Descripción',
+                'help' => 'Una descripción que diferencie a las otras secciones parecidas'
             ])
             ->add('identificador', TextType::class, [
-                'help'=>'Opcional, normalmente para usar con funciones JS'
+                'help' => 'Opcional, normalmente para usar con funciones JS'
             ])
-            ->add('disponible')
-            ->add('disponibleAt', null,[
-                'widget' => 'single_text'
+            ->add('disponible', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Disponible?',
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+//                'help' => 'Disponible?',
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
             ])
-            ->add('columns')
-            ->add('startAt', DateTimeType::class, array(
-        'widget' => 'single_text',
-        'required'=>false,
-        'html5' => true,
-        'label' => 'Comienza',
-        'format' => 'dd-MM-yyyy HH:mm',
-        'attr'=>[
-            'class'=>'form-control datetimepicker'
-        ]
-    ))
-            ->add('stopAt', DateTimeType::class, array(
+            ->add('disponibleAt', null, [
                 'widget' => 'single_text',
-                'required'=>false,
+                'attr' => [
+                    'class' => 'datetimepicker'
+                ]
+            ])
+            ->add('columns', IntegerType::class, [
+                'label' => 'Cantidad de columnas',
+                'required' => false
+            ])
+            ->add('disponibleHastaAt', DateTimeType::class, array(
+                'widget' => 'single_text',
+                'required' => false,
                 'html5' => true,
                 'label' => 'Finaliza',
                 'format' => 'dd-MM-yyyy HH:mm',
-                'attr'=>[
-                    'class'=>'form-control datetimepicker'
+                'attr' => [
+                    'class' => 'form-control datetimepicker'
                 ]
             ))
             ->add('principal', EntityType::class, [
-                'class'=> 'App\Entity\Principal',
-                'label'=>'Página?',
-                'placeholder'=>'Seleccione la página donde se insertará la sección',
-                'required'=>true,
+                'class' => 'App\Entity\Principal',
+                'label' => 'Página?',
+                'placeholder' => 'Seleccione la página donde se insertará la sección',
+                'required' => false,
 
-            ] )
-            ->add('template', TextType::class, [
-                'help'=>'Opcional, llama a un templeta específico, debe estar en sections creado'
+            ])
+            ->add('orden', IntegerType::class, [
+                'label' => 'Orden en la página',
+                'required' => false
+            ])
+            ->add('modelTemplate', EntityType::class, [
+                'class' => ModelTemplate::class,
+                'query_builder' => function (ModelTemplateRepository $er) {
+                    return $er->findByTypeSection();
+                },
+                'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
+                'required' => false
             ])
             ->add('contenido', CKEditorType::class, [
-                'required' => true,
+                'required' => false,
                 'config' => [
-                    'uiColor' => '#ffffff'],
+                    'uiColor' => '#fafafa'],
                 'attr' => [
                     'class' => 'form-control',
                 ],
@@ -110,11 +123,37 @@ class SectionFormType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
-
-            ;
-/**
- * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
- */
+            ->add('title', CKEditorType::class, [
+                'required' => false,
+                'config' => [
+                    'uiColor' => '#fafafa'],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('isLinkExterno', CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
+            ])
+            ->add('linkPosting', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('linkRoute', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ]); // ; Final del builder
+        /**
+         * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
+         */
 //        $builder->addEventListener(
 //            FormEvents::PRE_SET_DATA,
 //            function (FormEvent $event){
@@ -141,14 +180,13 @@ class SectionFormType extends AbstractType
 //        );
 
 
-
     }
 
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'=>Section::class
+            'data_class' => Section::class
         ]);
     }
 
@@ -169,8 +207,6 @@ class SectionFormType extends AbstractType
 //            default:
 //                $data = null;
 //        }
-
-
 
 
 //        return $data;
@@ -203,11 +239,9 @@ class SectionFormType extends AbstractType
 //
 //    private function combineArray($data){
 //        $titulos = array_column($data, 'titulo');
-//        $liks = array_column($data, 'linkRoute');
-//        return array_combine($titulos, $liks);
+//        $links = array_column($data, 'linkRoute');
+//        return array_combine($titulos, $links);
 //    }
-
-
 
 
 }

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EnlaceCorto{% endblock %}
+
+{% block body %}
+    <h1>Create new EnlaceCorto</h1>
+
+    {{ include('enlace_corto/_form.html.twig') }}
+
+    <a href="{{ path('enlace_corto_index') }}">back to list</a>
+{% endblock %}

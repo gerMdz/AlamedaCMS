@@ -1,0 +1,200 @@
+{% extends 'base_material_kit.twig' %}
+
+{% block title %} Reserva - Consulta - {{ app.request.host }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+
+    </style>
+{% endblock %}
+{% block sslocal %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
+    {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+
+{% endblock %}
+
+{% block sections %}
+    <div class="col-md-12 mt-5 pt-5">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <div class="row">
+                    <div class="col-sm-8 pull-left">
+                        <h4 class="card-title ">Reserva</h4>
+                        <h3 class="card-category ">
+                            Celebracion {{ reservante.celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}
+                            , {{ reservante.celebracion.nombre }} </h3>
+                        <small class="text-dark ">
+                            {{ capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) }}
+                            asientos libres
+                        </small>
+                        {% if(is_granted('ROLE_RESERVA')) %}
+                            <a href="{{ path('reserva_lectura') }}"
+                               class="btn btn-warning ">
+                                <i class="fa fa-camera"> </i> Lectura QR
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-3 text-lg-right pull-right">
+
+                        <form method="post" action="{{ path('reserva_delete', {'id': reservante.id}) }}"
+                              onsubmit="return confirm('Está seguro de cancelar su reserva?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservante.id) }}">
+                            <button class="btn btn-link  text-warning ">Cancelar Reserva</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-8 text-center pt-3">
+                        A nombre de
+                        <strong>
+                            {{ reservante }}
+                        </strong>
+                        <div class="row pt-2">
+                            <div class="col-sm-6 text-info ">
+                                <b> {{ reservante.invitados | length }}</b> <i> Personas con reserva </i>
+                            </div>
+                            <div class="col-sm-6">
+                                {% if((capacidad_restante(reservante.celebracion.id, reservante.celebracion.capacidad) > 0) ) %}
+                                    <small class="col-sm-4 text-right text-white">
+                                        <a href="{{ path('agrega_invitado', {'id':reservante.id }) }}"
+                                           class="btn-modal ">
+                                            <i class="fa fa-user-plus"> </i> Agregar invitado
+                                        </a>
+                                    </small>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-12"></div>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-user"> </i> Nombre<br/>
+                                    <i class="fa fa-house-user"> </i> Apellido
+                                </div>
+                                <div class="col-sm-2">
+                                    <i class="fa fa-address-card-o"> </i> Documento
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-at"> </i>email
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-user-cog"> </i>
+                                </div>
+
+                                {% for invitado in reservante.invitados %}
+                                    <div class="col-sm-12">
+                                        <hr/>
+                                    </div>
+                                    <div class="col-sm-1" >
+                                        {% if(is_granted('ROLE_RESERVA')) %}
+                                            <span id="{{ invitado.id }}" class="aviso-presente text-success"></span>
+                                            <a href="{{ path('cambia_presente', {id: invitado.id}) }}"
+                                               data-presente="{{ invitado.id }}"
+                                               class="{{ invitado.isPresente ? 'fa fa-check-square-o': 'fa fa-square-o' }} js-cambia-presente">
+                                            </a>
+
+                                        {% else %}
+                                            {{ invitado.isEnlace ? '<i class="fa fa-check-square-o"> </i>': '<i class="fa fa-square-o"> </i>' }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ invitado.nombre ? invitado.nombre :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Nombre</span>' }}
+                                        <br/>
+                                        {{ invitado.apellido ? invitado.apellido :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Apellido</span>' }}
+                                    </div>
+                                    <div class="col-sm-2">
+                                        {{ invitado.dni ? '<span class="text-info">Anotado</span>' : '<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Documento</span>' }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ invitado.email ? invitado.email :'<span class="text-warning">Falta</span> <span class="d-md-none d-lg-none d-xl-none">Email</span>' }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="{{ path('invitado_completa', {'id': invitado.id}) }}"
+                                           class="btn-modal">
+                                            Completar Datos
+                                        </a>
+                                        {% if (invitado.isEnlace != true) %}
+                                            <br/>
+                                            <a href="{{ path('cancela_invitado', {'id': invitado.id}) }}"
+                                               onclick="return confirm('Está seguro de cancelar la reserva?');"
+                                               class="btn btn-link">
+                                                <small class="text-realce-alameda">
+                                                    Cancelar reserva acompañante
+                                                </small>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text-center pt-3">
+                        <a href="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': reservante.celebracion.id, 'email': reservante.email }), { size: 350, logo_path: reservante.celebracion.imageQr }) }}"
+                           target="_blank" download="{{ reservante.celebracion.nombre }}.png">
+                            Descargá desde aquí tú código de reservación<br/>
+                            <img class="img-fluid"
+                                 src="{{ qr_code_data_uri(url('vista_reserva_presente', {'celebracion': reservante.celebracion.id, 'email': reservante.email }), { size: 300, logo_path: reservante.celebracion.imageQr }) }}"
+                                 alt="QR"/>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="col-sm-8 text-center pt-3">
+                    {# <strong> #}
+                    {# Con <i class="fa fa-whatsapp"> </i> #}
+                    {# {{ reservante.telefono }} #}
+                    {# y <i class="fa fa-address-card"> </i> #}
+                    {# {{ reservante.documento }} #}
+                    {# </strong> #}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-lg" id="modalPlantillaWeb" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    {# <a href="{{ path('reservante_edit', {'id': reservante.id}) }}">edit</a> #}
+
+    {# {{ include('reservante/_delete_form.html.twig') }} #}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
+    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
+    <script src="{{ asset('js/invitado_marca_presente.js') }}"></script>
+    <script type="application/javascript">
+
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
+{% endblock %}

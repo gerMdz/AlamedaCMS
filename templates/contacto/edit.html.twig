@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Contacto{% endblock %}
+
+{% block body %}
+    <h1>Edit Contacto</h1>
+
+    {{ include('contacto/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('contacto_index') }}">back to list</a>
+
+    {{ include('contacto/_delete_form.html.twig') }}
+{% endblock %}

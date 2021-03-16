@@ -90,6 +90,7 @@ class IndexAlameda
 
     /**
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
+     * @ORM\OrderBy({"orden"="ASC"})
      */
     private $section;
 

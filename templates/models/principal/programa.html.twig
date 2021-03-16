@@ -1,0 +1,323 @@
+{% extends 'base_material_kit.twig' %}
+{% block title %} {{ principal.titulo }}  {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {# {{ encore_entry_link_tags('app') }} #}
+
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}"> #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}">
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/css/material-kit.min.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}"> #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+
+    </style>
+{% endblock %}
+{% block sslocal %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
+    {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
+
+
+{% endblock %}
+{% block header %}
+    <header>
+        {% include 'inicio/_nav.html.twig' %}
+        <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay bg-gris-medio text-white "
+                 style=" background-image: url({{ principal.imagePath|imagine_filter('squared_thumbnail_large_1920if') }})">
+            <!-- Promo Content -->
+            <div class="container u-overlay__inner u-ver-center u-content-space">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="text-center d-md-none d-lg-none d-xl-none">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Promo Content -->
+        </section>
+    </header>
+{% endblock %}
+{% block sections %}
+<main role="main" class="card {{ principal.cssClass | default(' text-dark')}}">
+        <div class="col-sm-12 card-header ">
+            <h2>ESPECIAL DE NAVIDAD: <b>“NACE UNA LUZ”</b></h2>
+            <small>Equipo Creativo Alameda</small>
+        </div>
+
+        <div class="col-sm-10 mx-auto card-header mt-5  ">
+            <div class="card-title">
+                <div class="d-flex justify-content-around">
+                    <div class="col-sm-6 mr-auto ">
+                        <h4>
+                            BIENVENIDA Y PRESENTACIÓN
+                        </h4>
+                    </div>
+                    <div class="col-sm-6 mr-auto">
+                        <h4><i>
+                                Fernando Rinaldi y Geraldine Pereira
+                            </i></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-around">
+                <div class="col-sm-6  ">
+                    <h4>
+                        <strong >ORQUESTA INTERCULTURAL</strong><small> de la Fundación Opus</small>
+                    </h4>
+                </div>
+                <div class="col-sm-6 ">
+                    <h4><i>
+                            Director: Néstor Longo
+                        </i></h4>
+                </div>
+            </div>
+            <div class="col-sm-10  text-center mx-auto ">
+                2° mov. Serenata en Do M de S. Tchaikovski<br/>
+                “Adiós Nonino”, “Prepárense” y “Libertango” de A. Piazzolla
+            </div>
+            <hr/>
+            <div class="col-sm-12">
+                <h4>
+                    APERTURA
+                    <br/>
+                    <span class="text-right ml-5">
+                    “Gloria a Dios en lo alto”
+                </span></h4>
+                <p>
+                    Solistas: Cristian Deiana, Joshua García
+                </p>
+                <p>
+                    Bailarines: Nahuel Domínguez, Juan Carrasco, Sebastián Carrasco, Emanuel Arriguci
+                </p>
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 1- <b>Últimos preparativos</b>
+                    <br/>
+                    <span class="text-right ml-5">
+                    “El mejor momento del año”
+                </span></h4>
+                <p>Solistas: Pablo Sánchez, Ariel Pérez</p>
+                <p>Orquesta Sinfónica Intercultural Director: Néstor Longo</p>
+                <p>Representación coreográfica de jazz</p>
+
+            </div>
+            <hr/>
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 2 - <b>En familia</b>
+                    <br/>
+                    <span class="text-right ml-5">
+                        “Significados de la Navidad” <small>Corto audiovisual</small>
+                </span></h4>
+
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 3 - <b>Dios gobierna</b>
+                    <br/>
+                    <span class="text-right ml-5">
+“Cuán grande es El”
+                </span></h4>
+                <p>
+                    Solistas: Sol Ramírez, Diego Fonseca
+                </p>
+
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 4 - <b>Dios con nosotros</b>
+                    <br/>
+                    <span class="text-right ml-5">
+“Suenen campanas y Oh ven Emanuel”
+                </span></h4>
+                <p>
+                    Solista: Paula Zabaleta
+                </p>
+                <p>
+                    Representación coreográfica contemporánea
+                </p>
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 5 - <b>José</b>
+                    <br/>
+                    <span class="text-right ml-5">
+“Un extraño modo de salvar el mundo”
+                </span></h4>
+                <p>
+                    Solista: Ariel Pérez
+                </p>
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 6:
+                    <b>
+                        María
+                    </b>
+                    <br/>
+                    <span class="text-right ml-5">
+“Luz del cielo”
+                </span></h4>
+                <p>
+                    Solista: Paula Zabaleta
+                </p>
+                <p>
+                    Bailarines: Camila Ruiz, Alexis Sutil
+                </p>
+                <p>
+                    Acróbata en aro: Malena Ortiz
+                </p>
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 7 y 8:
+
+                    <b>
+                        Reyes sabios
+
+
+                    </b>
+                    <br/>
+                    <span class="text-right ml-5">
+
+                        “Tres Reyes”
+                </span></h4>
+                <p>
+                    Solistas: Cristian Deiana, Claudia Bertoli, Pablo Molina
+
+
+                </p>
+                <p>
+                    Tambores: Kevin Sánchez, Enzo Allegretti
+                </p>
+
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 9:
+
+                    <b>
+                        Nacimiento
+
+
+                    </b>
+                    <br/>
+                    <span class="text-right ml-5">
+“Oyes lo que hay que oir”
+
+                </span></h4>
+                <p>Solista: Paula Zabaleta</p>
+                <p>Bailarinas telas: Agustina Cortez, Karen Muñoz</p>
+                <p>Bailarinas alas: Lorena Omar, Nadya Villegas</p>
+                <p>Acróbata en aro: Malena Ortiz</p>
+                <p>Pesebre</p>
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 10 -
+
+                    <b>
+                        Las tinieblas contra la Luz
+                    </b>
+                    <br/>
+                    <span class="text-right ml-5">
+                </span></h4>
+                <p>Bailarines: Alexis Sutil, Camila Ruiz</p>
+
+                <p>Representación coreográfica de danza teatro</p>
+
+            </div>
+            <hr/>
+
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA 11-
+                    <b>
+                        La Luz no fue apagada
+
+                    </b>
+                    <br/>
+                    <span class="text-right ml-5">
+                        “Glorioso”
+
+                </span></h4>
+                <p>Solistas: Sol Ramírez, Ariel Pérez</p>
+
+            </div>
+            <hr/>
+            <div class="d-flex justify-content-around">
+                <div class="col-sm-6  ">
+                    <h4 class="card-title">
+                        <strong>REFLEXIÓN</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-6 ">
+                    <h4><i>
+                            Pr Fabián Ruiz
+                        </i></h4>
+                </div>
+            </div>
+            <hr/>
+            <div class="col-sm-12">
+                <h4>
+                    OFRENDA
+
+
+                    <b>
+                        “Noel”
+
+
+                    </b>
+                    <br/>
+                    <span class="text-right ml-5">
+                </span></h4>
+                <p>Solista: Gisela Rodríguez</p>
+
+            </div>
+            <hr/>
+            <div class="col-sm-12">
+                <h4>
+                    ESCENA FINAL
+                    <b>
+                        “El momento más esperado”
+                    </b>
+                    <br/>
+                    <span class="text-right ml-5">
+                </span></h4>
+                <p> Solista: Pablo Sánchez, Ariel Pérez</p>
+                <p>Representación coreográfica urbana</p>
+
+
+            </div>
+            <hr/>
+        </div>
+
+
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {# <script src="{{ asset('material-kit/js/material-kit.min.js') }}"></script> #}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script> #}
+{% endblock %}

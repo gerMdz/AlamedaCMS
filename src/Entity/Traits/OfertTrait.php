@@ -3,6 +3,7 @@
 
 namespace App\Entity\Traits;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -11,39 +12,36 @@ trait OfertTrait
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $startAt;
+    private $disponibleAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $stopAt;
+    private $disponibleHastaAt;
 
-    public function getId(): ?int
+
+    public function getDisponibleAt(): ?DateTimeInterface
     {
-        return $this->id;
+        return $this->disponibleAt;
     }
 
-    public function getStartAt(): ?\DateTimeInterface
+    public function setDisponibleAt(?DateTimeInterface $disponibleAt): self
     {
-        return $this->startAt;
-    }
-
-    public function setStartAt(?\DateTimeInterface $startAt): self
-    {
-        $this->startAt = $startAt;
+        $this->disponibleAt = $disponibleAt;
 
         return $this;
     }
 
-    public function getStopAt(): ?\DateTimeInterface
+    public function getDisponibleHastaAt(): ?DateTimeInterface
     {
-        return $this->stopAt;
+        return $this->disponibleHastaAt;
     }
 
-    public function setStopAt(?\DateTimeInterface $stopAt): self
+    public function setDisponibleHastaAt(?DateTimeInterface $disponibleHastaAt): self
     {
-        $this->stopAt = $stopAt;
+        $this->disponibleHastaAt = $disponibleHastaAt;
 
         return $this;
     }
+
 }

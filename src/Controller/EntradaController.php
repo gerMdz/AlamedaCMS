@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Form\EntradaSectionType;
 use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
+use App\Repository\SectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,38 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EntradaController extends AbstractController
 {
-    /**
-     * @Route("/", name="entrada_index", methods={"GET"})
-     */
-    public function index(EntradaRepository $entradaRepository): Response
-    {
-        return $this->render('entrada/index.html.twig', [
-            'entradas' => $entradaRepository->findAll(),
-        ]);
-    }
 
-    /**
-     * @Route("/new", name="entrada_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $entrada = new Entrada();
-        $form = $this->createForm(EntradaType::class, $entrada);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($entrada);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('entrada_index');
-        }
-
-        return $this->render('entrada/new.html.twig', [
-            'entrada' => $entrada,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
@@ -64,42 +36,12 @@ class EntradaController extends AbstractController
             throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
         }
 
-        return $this->render('entrada/show.html.twig', [
+        return $this->render('entrada/link.html.twig', [
             'entrada' => $entrada,
         ]);
     }
 
-    /**
-     * @Route("/{id}/show", name="entrada_show", methods={"GET"})
-     * @param Entrada $entrada
-     * @param EntradaRepository $er
-     * @return Response
-     */
-    public function show(Entrada $entrada, EntradaRepository $er): Response
-    {
-//        $entrada = $er->findOneBy(['linkRoute' => $entrada]);
-        if (!$entrada) {
-            throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
-        }
 
-        return $this->render('entrada/show.html.twig', [
-            'entrada' => $entrada,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="entrada_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Entrada $entrada): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($entrada);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('entrada_index');
-    }
 
     /**
      * @Route("/count/{id}/like", name="entrada_toggle_like", methods={"POST"})
@@ -112,5 +54,55 @@ class EntradaController extends AbstractController
         $em->flush();
 
         return new JsonResponse(['like' => $entrada->getLikes()]);
+    }
+
+    /**
+     * @Route("/admin/entrada/section/{id}", methods="GET", name="admin_entrada_list_section")
+     * @param Entrada $entrada
+     * @return JsonResponse
+     */
+    public function getSectionPrincipal(Entrada $entrada): JsonResponse
+    {
+        return $this->json(
+            $entrada->getSections(),
+            200,
+            [],
+            [
+                'groups' => ['main']
+            ]
+        );
+    }
+
+    /**
+     * @Route("/agregarSeccion/{id}", name="entrada_agregar_seccion", methods={"GET", "POST"})
+     * @param Request $request
+     * @param Entrada $entrada
+     * @param EntityManagerInterface $entityManager
+     * @param SectionRepository $sectionRepository
+     * @param EntradaRepository $entradaRepository
+     * @return RedirectResponse|Response
+     */
+    public function agregarSeccion(Request $request, Entrada $entrada, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, EntradaRepository $entradaRepository)
+    {
+        $form = $this->createForm(EntradaSectionType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $id_section = $form->get('section')->getData();
+            $seccion = $sectionRepository->find($id_section);
+            $entrada->addSection($seccion);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($entrada);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_entrada_index');
+        }
+
+        return $this->render('admin_entrada/vistaAgregaSection.html.twig', [
+            'index' => $entrada,
+            'form' => $form->createView(),
+        ]);
+
     }
 }

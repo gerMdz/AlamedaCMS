@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\CssClass;
+use App\Entity\Traits\ImageTrait;
 use App\Repository\PrincipalRepository;
-use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +19,8 @@ class Principal
 {
 
     use TimestampableEntity;
+    use ImageTrait;
+    use CssClass;
 
     /**
      * @ORM\Id()
@@ -45,14 +48,10 @@ class Principal
 
     /**
      * @ORM\Column(type="string", length=150, unique=true, nullable=true)
-     * @Gedmo\Slug(fields={"titulo"})
+     * @Gedmo\Slug(fields={"linkRoute"})
      */
     private $linkRoute;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageFilename;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -89,6 +88,32 @@ class Principal
      */
     private $brote;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="principals")
+     */
+    private $modelTemplate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Ministerio::class, inversedBy="page")
+     */
+    private $ministerio;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="principales")
+     * @ORM\OrderBy({"orden"="ASC"})
+     */
+    private $secciones;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="principals")
+     */
+    private $button;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="pathInterno")
+     */
+    private $itemMenus;
+
 
     public function __construct()
     {
@@ -96,6 +121,9 @@ class Principal
         $this->entradas = new ArrayCollection();
         $this->section = new ArrayCollection();
         $this->brote = new ArrayCollection();
+        $this->Secciones = new ArrayCollection();
+        $this->button = new ArrayCollection();
+        $this->itemMenus = new ArrayCollection();
     }
 
     public function __toString()
@@ -156,17 +184,8 @@ class Principal
         return $this;
     }
 
-    public function getImageFilename(): ?string
-    {
-        return $this->imageFilename;
-    }
 
-    public function setImageFilename(?string $imageFilename): self
-    {
-        $this->imageFilename = $imageFilename;
 
-        return $this;
-    }
 
     public function getLikes(): ?int
     {
@@ -238,10 +257,7 @@ class Principal
     }
 
 
-    public function getImagePath()
-    {
-        return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
-    }
+
 
 
     public function getIsActive(): ?bool
@@ -324,6 +340,108 @@ class Principal
             // set the owning side to null (unless already changed)
             if ($brote->getPrincipal() === $this) {
                 $brote->setPrincipal(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getModelTemplate(): ?ModelTemplate
+    {
+        return $this->modelTemplate;
+    }
+
+    public function setModelTemplate(?ModelTemplate $modelTemplate): self
+    {
+        $this->modelTemplate = $modelTemplate;
+
+        return $this;
+    }
+
+    public function getMinisterio(): ?Ministerio
+    {
+        return $this->ministerio;
+    }
+
+    public function setMinisterio(?Ministerio $ministerio): self
+    {
+        $this->ministerio = $ministerio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSecciones(): Collection
+    {
+        return $this->secciones;
+    }
+
+    public function addSeccione(Section $seccione): self
+    {
+        if (!$this->secciones->contains($seccione)) {
+            $this->secciones[] = $seccione;
+        }
+
+        return $this;
+    }
+
+    public function removeSeccione(Section $seccione): self
+    {
+        $this->secciones->removeElement($seccione);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ButtonLink[]
+     */
+    public function getButton(): Collection
+    {
+        return $this->button;
+    }
+
+    public function addButton(ButtonLink $button): self
+    {
+        if (!$this->button->contains($button)) {
+            $this->button[] = $button;
+        }
+
+        return $this;
+    }
+
+    public function removeButton(ButtonLink $button): self
+    {
+        $this->button->removeElement($button);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ItemMenu[]
+     */
+    public function getItemMenus(): Collection
+    {
+        return $this->itemMenus;
+    }
+
+    public function addItemMenu(ItemMenu $itemMenu): self
+    {
+        if (!$this->itemMenus->contains($itemMenu)) {
+            $this->itemMenus[] = $itemMenu;
+            $itemMenu->setPathInterno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemMenu(ItemMenu $itemMenu): self
+    {
+        if ($this->itemMenus->removeElement($itemMenu)) {
+            // set the owning side to null (unless already changed)
+            if ($itemMenu->getPathInterno() === $this) {
+                $itemMenu->setPathInterno(null);
             }
         }
 

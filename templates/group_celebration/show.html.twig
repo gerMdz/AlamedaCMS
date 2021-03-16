@@ -1,0 +1,152 @@
+{% extends 'base_admin_board.html.twig' %}
+
+{% block title %}Vista grupo de celebración{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Grupos Celebraciones</h4>
+                <p class="card-category"> Listado </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('group_celebration_new') }}">
+                    {{ include ('bases/_crear_nuevo.html.twig' , {'button_label': 'Crear Grupo'}) }}
+                </a>
+
+                <div class="table-responsive">
+                    <table class="table table-shopping">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ group_celebration.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>{{ group_celebration.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Está Activo?</th>
+                            <td>
+                                {{ group_celebration.isActivo ? '<strong class="text-success">Si</strong>' : '<strong class="text-danger">No</strong>' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Css Base</th>
+                            <td>{{ group_celebration.baseCss }}</td>
+                        </tr>
+                        <tr>
+                            <th>Css Botón</th>
+                            <td>{{ group_celebration.btonCss }}</td>
+                        </tr>
+                        <tr>
+                            <th>Imagen de Fondo</th>
+                            <td>{{ group_celebration.imageBg }}</td>
+                        </tr>
+                        <tr>
+                            <th>Imagen Logo</th>
+                            <td>{{ group_celebration.imageFilename }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-responsive-sm table-striped ">
+                        <thead>
+                        <tr class="text-center">
+                            <th>Nombre</th>
+                            <th>Fecha <br/>Celebración</th>
+                            <th>Reservas</th>
+                            <th>Disponibilidad</th>
+                            <th>Habilitada</th>
+                            <th><i class="fas fa-cogs"> </i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for celebracion in group_celebration.celebraciones %}
+                            <tr class="text-center">
+                                <td>
+                                    {{ celebracion.nombre }}
+                                    <hr class="m-0 bg-dark"/>
+                                    {{ celebracion.descripcion }}
+                                </td>
+                                <td>
+                                    {{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('d-m-Y') : '' }}
+                                    <br/>
+                                    {{ celebracion.fechaCelebracionAt ? celebracion.fechaCelebracionAt|date('H:i') : '' }}
+                                </td>
+                                <td>
+                                    <i>{{ celebracion.capacidad }} Disponibles</i>
+                                    <hr class="m-0 bg-dark"/>
+                                    <strong>{{ capacidad_ocupada(celebracion.id) }} Reservadas</strong>
+                                </td>
+                                <td><small>
+                                        {{ celebracion.disponibleAt ? celebracion.disponibleAt|date('Y-m-d H:i') : '' }}
+                                        <br/>
+                                        <hr class="m-0 bg-dark"/>
+                                        {{ celebracion.disponibleHastaAt ? celebracion.disponibleHastaAt|date('Y-m-d H:i') : '' }}
+                                    </small>
+                                </td>
+                                <td>
+                                    <span class="fa fa-{{ celebracion.isHabilitada ? 'check' : 'times' }}"></span><br/>
+                                </td>
+                                <td>
+                                    <a href="{{ path('celebracion_edit', {'id': celebracion.id}) }}">
+                                        {{ include('bases/_editar.html.twig', {'button_label': 'Editar Celebración'}) }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('group_celebration_remove_celebracion', {'id': group_celebration.id, 'celebracion': celebracion.id}) }}"
+                                       onclick="return confirm('Está seguro de quitar la celebración?');"
+                                       class="btn btn-link">
+                                        <small class="text-realce-alameda">
+                                            Quitar Celebración
+                                        </small>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">No se encontraron Celebraciones</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="{{ path('group_celebration_index') }}">
+                    {{ include('bases/_volver.html.twig', {'button_label': 'Ver Listado'}) }}
+                </a>
+                <i class="mr-2"></i>
+
+                <a href="{{ path('group_celebration_edit', {'id': group_celebration.id}) }}">
+                    {{ include('bases/_editar.html.twig', {'button_label': 'Editar Grupo'}) }}
+                </a>
+                <a href="{{ path('grupo_agregar_celebracion', {'id': group_celebration.id}) }}"
+                   class="btn-modal">
+
+                    <i class="fas fa-plus-circle"></i>
+                    Celebración</a>
+                {{ include('group_celebration/_delete_form.html.twig') }}
+
+            </div>
+        </div>
+    </div>
+    {% include('admin/_modal.html.twig') %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $(function () {
+            $(".btn-modal").click(function (ev) {
+                ev.preventDefault();
+                const target = $(this).attr("href");
+                $("#modalPlantillaWeb .modal-content").load(target, function () {
+                    $("#modalPlantillaWeb").modal("show");
+                });
+            });
+        });
+
+
+    </script>
+
+    {{ encore_entry_script_tags('section_select') }}
+{% endblock %}

@@ -1,0 +1,35 @@
+<div class="col-md-4">
+    <div class="pasos h-100">
+        <div class="card card-plain bg-white h-100">
+            <div class="col-sm-4 mx-auto text-center img-20">
+                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                     alt="{{ entrada.titulo }}"
+                     class="img-raised rounded-circle img-fluid  ">
+            </div>
+            {% if (entrada.linkRoute or entrada.linkPosting ) %}
+            <a
+                    {% if (entrada.linkPosting) %}
+                        href="{{ entrada.linkPosting }}"
+                        {% if (entrada.isLinkExterno) %}
+                            target="_blank"
+                        {% endif %}
+                    {% else %}
+                        href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                    {% endif %}
+            >
+                {% endif %}
+                <h4 class="card-title text-center text-alameda sub-img px-1 fuente-normal">
+                    {{ entrada.titulo | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                </h4>
+                {% if (entrada.linkRoute or entrada.linkPosting ) %}
+            </a>
+            {% endif %}
+            <br>
+            <div class="card-body">
+                <p class="card-description text-center text-dark fuente-arial-nova">
+                    {{ entrada.contenido  | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

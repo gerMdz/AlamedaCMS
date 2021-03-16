@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TipoContacto index{% endblock %}
+
+{% block body %}
+    <h1>TipoContacto index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Referencia</th>
+                <th>Icon</th>
+                <th>TextoReferencia</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipo_contacto in tipo_contactos %}
+            <tr>
+                <td>{{ tipo_contacto.id }}</td>
+                <td>{{ tipo_contacto.tipo }}</td>
+                <td>{{ tipo_contacto.referencia }}</td>
+                <td>{{ tipo_contacto.icon }}</td>
+                <td>{{ tipo_contacto.textoReferencia }}</td>
+                <td>
+                    <a href="{{ path('tipo_contacto_show', {'id': tipo_contacto.id}) }}">show</a>
+                    <a href="{{ path('tipo_contacto_edit', {'id': tipo_contacto.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tipo_contacto_new') }}">Create new</a>
+{% endblock %}

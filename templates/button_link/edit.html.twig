@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ButtonLink{% endblock %}
+
+{% block body %}
+    <h1>Edit ButtonLink</h1>
+
+    {{ include('button_link/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('button_link_index') }}">back to list</a>
+
+    {{ include('button_link/_delete_form.html.twig') }}
+{% endblock %}

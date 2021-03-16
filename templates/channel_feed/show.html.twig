@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ChannelFeed{% endblock %}
+
+{% block body %}
+    <h1>ChannelFeed</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ channel_feed.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ channel_feed.title }}</td>
+            </tr>
+            <tr>
+                <th>Autor</th>
+                <td>{{ channel_feed.autor }}</td>
+            </tr>
+            <tr>
+                <th>Owner</th>
+                <td>{{ channel_feed.owner }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ channel_feed.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ channel_feed.image }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ channel_feed.link }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('channel_feed_index') }}">back to list</a>
+
+    <a href="{{ path('channel_feed_edit', {'id': channel_feed.id}) }}">edit</a>
+
+    {{ include('channel_feed/_delete_form.html.twig') }}
+{% endblock %}

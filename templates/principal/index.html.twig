@@ -1,53 +1,71 @@
-{% extends 'contenido_base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Principal Listado{% endblock %}
 
-{% block contenido_body %}
-    <h1>Principal - Listado de páginas principales</h1>
+{% block content %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Contenido</th>
-                <th>LinkRoute</th>
-                <th>ImageFilename</th>
-                <th>Likes</th>
-                <th>Creada</th>
-                <th>Actualizada</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for principal in principals %}
-            <tr>
-                <td>{{ principal.id }}</td>
-                <td>{{ principal.titulo }}</td>
-                <td>{{ principal.contenido | u.truncate(15, '...')  }}</td>
-                <td>{{ principal.linkRoute }}</td>
-                <td>{{ principal.imageFilename }}</td>
-                <td>{{ principal.likes }}</td>
-                <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
-                        <i class="fas fa-eye"></i>
-                        Ver</a>
-                    <a href="{{ path('principal_edit', {'id': principal.id}) }}">
-                        <i class="fas fa-edit"></i>
-                        Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">No se encontró ninguna página prinpipal</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
-        <i class="fas fa-plus-circle"></i>
-        Crear nueva página prinpipal</a>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Páginas Principales</h4>
+                <p class="card-category">Listado </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('principal_new') }}" class="btn btn-sm btn-primary btn-round">
+                    Crear Principal <span class="fa fa-plus-circle"></span>
+                </a>
+                <div class="text-center align-items-center">
+                    {{ knp_pagination_render(principals) }}
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <tr class="text-primary">
+                            <th>Titulo</th>
+                            <th>Contenido</th>
+                            <th>LinkRoute</th>
+                            <th>ImageFilename</th>
+                            <th>Likes</th>
+                            <th>Creada</th>
+                            <th>Actualizada</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for principal in principals %}
+                            <tr>
+                                <td>{{ principal.id }}</td>
+                                <td>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }} </td>
+                                <td>{{ principal.contenido | u.truncate(15, '...') }}</td>
+                                <td>{{ principal.linkRoute }}</td>
+                                <td>{{ principal.imageFilename }}</td>
+                                <td>{{ principal.likes }}</td>
+                                <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
+                                        <i class="fas fa-eye"></i>
+                                        Ver</a>
+                                    <a href="{{ path('principal_edit', {'id': principal.id}) }}">
+                                        <i class="fas fa-edit"></i>
+                                        Editar</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">No se encontró ninguna página prinpipal</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center align-items-center">
+                    {{ knp_pagination_render(principals) }}
+                </div>
+                <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
+                    <i class="fas fa-plus-circle"></i>
+                    Crear nueva página prinpipal</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

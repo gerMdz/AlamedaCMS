@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Roles listado{% endblock %}
+
+{% block body %}
+    <h1>Roles Listado</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Identificador</th>
+                <th>Descripción</th>
+                <th><i class="fa fa-cogs"> </i> </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>{{ role.nombre }}</td>
+                <td>{{ role.identificador }}</td>
+                <td>{{ role.descripcion }}</td>
+                <td>
+                    <a href="{{ path('roles_show', {'id': role.id}) }}">
+                        <i class="fa fa-eye"> </i> Ver
+                    </a>
+                    <a href="{{ path('roles_edit', {'id': role.id}) }}">
+                        <i class="fa fa-edit"> </i> Editar
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No se encontraron Roles</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('roles_new') }}">Crear Nuevo</a>
+{% endblock %}

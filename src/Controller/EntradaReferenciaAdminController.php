@@ -114,7 +114,7 @@ class EntradaReferenciaAdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/entrada/referencias/{id}/download", name="admin_entrada_download_reference", methods={"GET"})
+     * @Route("/descargas/referencias/{filename}", name="entrada_download_reference", methods={"GET"})
      * @param EntradaReference $reference
      * @param UploaderHelper $uploaderHelper
      * @return StreamedResponse

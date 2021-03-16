@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ItemFeed index{% endblock %}
+
+{% block body %}
+    <h1>ItemFeed index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Descripcion</th>
+                <th>PubDateAt</th>
+                <th>LinkUrl</th>
+                <th>LinkType</th>
+                <th>LinkLength</th>
+                <th>LinkLongitud</th>
+                <th>Duracion</th>
+                <th>Guid</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item_feed in item_feeds %}
+            <tr>
+                <td>{{ item_feed.id }}</td>
+                <td>{{ item_feed.title }}</td>
+                <td>{{ item_feed.descripcion }}</td>
+                <td>{{ item_feed.pubDateAt ? item_feed.pubDateAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ item_feed.linkUrl }}</td>
+                <td>{{ item_feed.linkType }}</td>
+                <td>{{ item_feed.linkLength }}</td>
+                <td>{{ item_feed.linkLongitud }}</td>
+                <td>{{ item_feed.duracion ? item_feed.duracion|date('H:i:s') : '' }}</td>
+                <td>{{ item_feed.guid }}</td>
+                <td>
+                    <a href="{{ path('item_feed_show', {'id': item_feed.id}) }}">show</a>
+                    <a href="{{ path('item_feed_edit', {'id': item_feed.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('item_feed_new') }}">Create new</a>
+{% endblock %}
