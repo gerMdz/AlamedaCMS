@@ -1,0 +1,57 @@
+{% extends 'base_admin_board.html.twig' %}
+
+{% block title %}Contactos - Listado{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">Contactos</h4>
+                <p class="card-category"> Listado </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <a href="{{ path('contacto_new') }}">
+                        {{ include('bases/_crear_nuevo.html.twig') }}
+                    </a>
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>Id</th>
+                            <th>LinkRoute</th>
+                            <th>Texto en el mensaje</th>
+                            <th>Texto en la página</th>
+                            <th>Identificador</th>
+                            <th class="text-center"><i class="fa fa-cogs"> </i> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for contacto in contactos %}
+                            <tr>
+                                <td>{{ contacto.id }}</td>
+                                <td>{{ contacto.linkRoute }}</td>
+                                <td>{{ contacto.textoMensaje }}</td>
+                                <td>{{ contacto.textoPagina }}</td>
+                                <td>{{ contacto.nombre }}</td>
+                                <td>
+                                    <a href="{{ path('contacto_show', {'id': contacto.id}) }}">show</a>
+                                    <a href="{{ path('contacto_edit', {'id': contacto.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('contacto_new') }}">
+                        {{ include('bases/_crear_nuevo.html.twig') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
