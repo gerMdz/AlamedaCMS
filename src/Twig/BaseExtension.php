@@ -18,6 +18,8 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 {
     protected $em;
     private $container;
+    protected $ind_inicio = "{{";
+    protected $ind_final = "}}";
 
     /**
      * BaseExtension constructor.
@@ -50,6 +52,8 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('capacidad_restante', [$this, 'capacidad_restante']),
             new TwigFunction('capacidad_ocupada', [$this, 'capacidad_ocupada']),
             new TwigFunction('redirection', [$this, 'redirection']),
+            new TwigFunction('completa_texto', [$this, 'completa_texto']),
+            new TwigFunction('completa_lugar', [$this, 'completa_lugar']),
         ];
     }
 
@@ -109,5 +113,50 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
         echo "<meta http-equiv = 'refresh' content='0;url = $link' />";
 
+    }
+
+    public function completa_texto(string $campo)
+    {
+
+        $encontro = false;
+
+        $i = 0;
+        do {
+
+            $inicio = strpos($campo, $this->ind_inicio);
+
+            if ($inicio !== false) {
+                $fin = strpos($campo, $this->ind_final);
+                $servicio = substr($campo,
+                    ($inicio + strlen($this->ind_inicio)),
+                    $fin - ($inicio + strlen($this->ind_inicio)));
+                $campo = str_replace($this->ind_inicio . $servicio . $this->ind_final,
+                    $this->addTexto(trim($servicio)), $campo);
+
+                $encontro = true;
+            } else {
+                $encontro = false;
+            }
+
+        } while ($encontro && $i < 10);
+        return $campo;
+
+    }
+
+    public function completa_lugar(string $lugar): string
+    {
+        return $this->addTexto(trim($lugar));
+
+    }
+
+    private function addTexto($valor): string
+    {
+        $texto = '<small><i class="fa fa-star" id="x%s"> </i></small>
+    <label id="lp%s"> </label>
+    <label id="sinp%s">
+        <input id="p%s" class="input-group-sm " placeholder="puedes completar aquí">
+    </label>';
+
+        return sprintf($texto, $valor, $valor, $valor, $valor);
     }
 }
