@@ -44,7 +44,7 @@ class Mailer
     public function sendReservaMessage(Reservante $reservante, ?int $invitados): TemplatedEmail
     {
         $email = (new TemplatedEmail())
-            ->from(new Address('contacto@iglesiaalameda.com', 'Iglesia de La Alameda'))
+            ->from(new Address('contacto@alameda.ar', 'Iglesia de La Alameda'))
             ->to(new Address($reservante->getEmail(), $reservante->getNombre()))
             ->subject('Confirmación de reserva')
             ->htmlTemplate('email/reserva.html.twig')
@@ -67,7 +67,7 @@ class Mailer
     public function sendAvisoRegistroReservaMessage(WaitingList $espera): TemplatedEmail
     {
         $email = (new TemplatedEmail())
-            ->from(new Address('contacto@iglesiaalameda.com', 'Iglesia de La Alameda'))
+            ->from(new Address('contacto@alameda.ar', 'Iglesia de La Alameda'))
             ->to(new Address($espera->getEmail(), $espera->getNombre()))
             ->subject('Confirmación registro aviso de disponibilidad ')
             ->htmlTemplate('email/avisoRegistro.html.twig')
@@ -94,7 +94,7 @@ class Mailer
         foreach ($esperan as $espera) {
 
             $email = (new TemplatedEmail())
-                ->from(new Address('contacto@iglesiaalameda.com', 'Iglesia de La Alameda'))
+                ->from(new Address('contacto@alameda.ar', 'Iglesia de La Alameda'))
                 ->to(new Address($espera->getEmail(), $espera->getNombre()))
                 ->subject('Aviso de disponibilidad')
                 ->htmlTemplate('email/avisoLugar.html.twig')
@@ -114,7 +114,7 @@ class Mailer
     public function sendReservaInvitadoMessage(Invitado $reservante): TemplatedEmail
     {
         $email = (new TemplatedEmail())
-            ->from('contacto@iglesiaalameda.com')
+            ->from('contacto@alameda.ar')
             ->to($reservante->getEmail())
             ->subject('Confirmación de reserva')
             ->htmlTemplate('email/reserva_invitado.html.twig')
