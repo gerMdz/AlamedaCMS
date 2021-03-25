@@ -3,6 +3,9 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 #    form_themes: ['bootstrap_4_layout.html.twig','@FOSCKEditor/Form/ckeditor_widget.html.twig']
+    paths:
+        'assets/images': images
+        'assets/css': styles
     form_themes: ['bootstrap_4_layout.html.twig','resources/views/Form/ckeditor_widget.html.twig']
     exception_controller: null
     globals:

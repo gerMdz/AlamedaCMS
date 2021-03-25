@@ -1,45 +1,22 @@
+{% apply inline_css(source('@styles/styles.css')) %}
 <!doctype html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <title>{{ email.subject }}</title>
-{#    {% apply inline_css %}#}
-    <style>
-        .btn-alameda {
-            box-sizing: border-box;
-            outline: currentcolor none medium;
-            border-radius: 999px;
-            cursor: default;
-            width: auto;
-            height: auto;
-            display: inline-flex;
-            -moz-box-align: center;
-            align-items: center;
-            font-family: "Arial Nova", Arial, sans-serif !important;
-            user-select: none;
-            margin-top: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.25;
-            padding: 9px 24px;
-            color: white;
-            background-color: rgb(41, 147, 229);
-            border: 1px solid transparent;
-        }
-
-        .text-info {
-            color: #0b51c5;
-        }
-    </style>
-{#    {% endapply %}#}
 </head>
 <body>
+<a href="{{ url('index') }}">
+    <img src="{{ email.image('@images/logo-mail.png') }}"  class="logo" alt="{{ reservante.celebracion.nombre }}">
+</a>
     <h1>Hola {{ reservante.nombre }}!</h1>
     <br/><br/>
-    Bienvenido a las Celebraciones en Nuestro Auditorio.
+    Bienvenido a Nuestro Auditorio.
     <br/>
-    Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebracionAt| format_date(pattern="d 'de' MMMM") }},  {{ reservante.celebracion.nombre }}
+    Estamos entusiasmados de poder verte el {{ reservante.celebracion.fechaCelebracionAt| format_date(pattern="d 'de' MMMM HH:mm") }},
+    para la celebración "{{ reservante.celebracion.nombre }}". <br/>
+    {{ reservante.celebracion.descripcion }}.
     <br/>
     Has realizado tu reserva para <b> {{ invitados }}</b> personas
     <br/>
@@ -72,3 +49,4 @@
     </p>
 </body>
 </html>
+{% endapply %}

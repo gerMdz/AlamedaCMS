@@ -259,3 +259,33 @@ html {height:100%}
 .bg-anuncios{
     background-color: #41473b !important;
 }
+
+.btn-alameda {
+    box-sizing: border-box;
+    outline: currentcolor none medium;
+    border-radius: 999px;
+    cursor: default;
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    -moz-box-align: center;
+    align-items: center;
+    font-family: "Arial Nova", Arial, sans-serif !important;
+    user-select: none;
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    padding: 9px 24px;
+    color: white;
+    background-color: rgb(41, 147, 229);
+    border: 1px solid transparent;
+}
+
+.text-info {
+    color: #0b51c5;
+}
+.logo {
+    height: 54px;
+    width: 60px;
+}
