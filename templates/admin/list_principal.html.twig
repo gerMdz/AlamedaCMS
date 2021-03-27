@@ -21,13 +21,15 @@
                     <tr>
                         <th>
                             Titulo<br/>
-                            LinkRoute
+                            LinkRoute<br/>
+                            <small>Link Principal</small>
                         </th>
                         <th>Contenido</th>
+                        <th>Deriva?</th>
                         <th>
                             Secciones
                         </th>
-                        <th>ImageFilename</th>
+                        <th>Imagen</th>
                         <th>Actualizada</th>
                         <th><i class="fa fa-cogs"> </i></th>
                     </tr>
@@ -39,19 +41,42 @@
                                 {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                 <br/>
                                 {{ principal.linkRoute }}
+                                {% if principal.principal.linkRoute is defined %}
+                                    <br/>
+                                    <small>
+                                        <a class="text-info" data-toggle="tooltip" title="Ver linkRoute principal"
+                                           href="{{ path('principal_show', {'id': principal.principal.id}) }}">
+                                           {{ include('bases/_ver.html.twig', {'button_label': principal.principal.linkRoute  })}}
+                                        </a>
+                                    </small>
+                                {% endif %}
                             </td>
                             <td>
-                                {{ principal.contenido | replace({'<p>':'', '</p>':''}) | u.truncate(20, '...') }}</td>
+                                {{ principal.contenido | replace({'<p>':'', '</p>':''}) | u.truncate(20, '...') }}
+                            </td>
+
                             <td>
                                 {% for seccion in principal.secciones %}
                                     <a href="{{ path('admin_section_show', {'id': seccion.id}) }}">
-                                    {{ seccion.name }}
+                                        {{ seccion.name }}
                                     </a>
-                                        <br/>
+                                    <br/>
                                 {% endfor %}
                             </td>
-                            <td>{{ principal.imageFilename }}</td>
-                            <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                {% if (principal.imageFilename != null) %}
+                                    <img class="article-img" alt="{{ base.lema }}"
+                                         src="{{ principal.imagePath|imagine_filter('squared_thumbnail_100') }}">
+                                    <br/>
+                                    {{ principal.imageFilename }}
+                                {% else %}
+                                    No tiene imagen
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ principal.updatedAt ? principal.updatedAt|date('Y-m-d ') : '' }}<br/>
+                                {{ principal.updatedAt ? principal.updatedAt|date('H:i:s') : '' }}
+                            </td>
                             <td>
                                 <a class="text-success"
                                    href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">

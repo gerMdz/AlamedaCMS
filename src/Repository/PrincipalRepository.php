@@ -64,12 +64,23 @@ class PrincipalRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param string|null $qSearch
      * @return QueryBuilder
      */
-    public function queryFindAllPrincipals(): QueryBuilder
+    public function queryFindAllPrincipals(?string $qSearch): QueryBuilder
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.principal is null')
+        $qb = $this->createQueryBuilder('p')
+//            ->andWhere('p.principal is null')
             ->orderBy('p.updatedAt', 'DESC');
+            if ($qSearch) {
+                $qb->innerJoin('p.autor','a')
+                    ->addSelect('a');
+                $qb->andWhere('upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch ')
+                    ->setParameter('qsearch', '%' . strtoupper($qSearch) . '%')
+                ;
+            }
+            ;
+
+            return $qb;
     }
 }

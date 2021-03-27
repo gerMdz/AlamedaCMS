@@ -23,6 +23,7 @@ class ComentarioRepository extends ServiceEntityRepository
 
     /**
      * @param string|null $qSearch
+     * @return QueryBuilder
      */
     public function searchQueryBuilder(?string $qSearch):QueryBuilder
     {

@@ -21,9 +21,11 @@ class AdminController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(PrincipalRepository $principalRepository, MetaBaseRepository $metaBaseRepository, PaginatorInterface $paginator, Request $request)
+    public function index(PrincipalRepository $principalRepository, MetaBaseRepository $metaBaseRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $queryPrincipales = $principalRepository->queryFindAllPrincipals();
+        $bus = $request->get('busq');
+
+        $queryPrincipales = $principalRepository->queryFindAllPrincipals($bus);
         $principales = $paginator->paginate(
             $queryPrincipales, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
