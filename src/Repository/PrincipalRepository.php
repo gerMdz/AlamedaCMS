@@ -75,7 +75,7 @@ class PrincipalRepository extends ServiceEntityRepository
             if ($qSearch) {
                 $qb->innerJoin('p.autor','a')
                     ->addSelect('a');
-                $qb->andWhere('upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch ')
+                $qb->andWhere('upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(p.linkRoute) LIKE :qsearch')
                     ->setParameter('qsearch', '%' . strtoupper($qSearch) . '%')
                 ;
             }
