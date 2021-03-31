@@ -48,3 +48,18 @@
     <!-- your sidebar here -->
 </ul>
 
+<!-- Inicio Nav Admin -->
+<ul class="nav">
+    {% if (is_granted("ROLE_ADMIN")) %}
+        <li id="entrada" class="nav-item">
+            <a class="nav-link" href="{{ path('user_index') }}">
+                <i class="material-icons">supervised_user_circle</i>
+                <p>Ver Usuarios</p>
+            </a>
+        </li>
+
+
+    {% endif %}
+    <!-- your sidebar here -->
+</ul>
+<!-- Fin Nav Admin -->

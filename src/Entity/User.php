@@ -112,6 +112,16 @@ class User implements UserInterface
      */
     private $celebracions;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isDeleted;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isActive;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -510,5 +520,29 @@ class User implements UserInterface
     public function getRolesAsString(): string
     {
         return implode(',', $this->roles);
+    }
+
+    public function getIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(?bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(?bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
     }
 }

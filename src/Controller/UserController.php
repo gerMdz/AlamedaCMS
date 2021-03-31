@@ -99,10 +99,20 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user): Response
     {
+       $total = $user->getPrincipal()->count() + $user->getSections()->count() + $user->getEntradas()->count() + $user->getComentarios()->count() + $user->getCelebracions()->count() + $user->getEnlaceCortos()->count();
+
+       if($total > 0 ){
+           $user->setIsDeleted(true);
+           $this->addFlash('success', sprintf('El usuario %s tiene registros en el sitio, se registra como deleted',  $user->getEmail()));
+           return $this->redirectToRoute('user_index');
+       }
+
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
+            $this->addFlash('success', 'El usuario fue removido');
         }
 
         return $this->redirectToRoute('user_index');

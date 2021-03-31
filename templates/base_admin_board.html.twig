@@ -61,9 +61,17 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <button id="buttonmenu" class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseSidebar" aria-expanded="false" aria-controls="collapseSidebar">
+                <button id="buttonmenu" accesskey="m" class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseSidebar" aria-expanded="false" aria-controls="collapseSidebar">
                     Ver menú
                 </button>
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success mt-5 pt-5 mb-0 pb-0 alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
                 {% block encabezado %}
                     <!-- your encabezado here -->
                 {% endblock %}
