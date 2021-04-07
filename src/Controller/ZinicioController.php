@@ -130,6 +130,23 @@ class ZinicioController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{linkRoute}/listado", name="principal_listado", methods={"GET"})
+     * @param Principal $principal
+     * @param PrincipalRepository $principalRepository
+     * @return Response
+     */
+    public function listado(Principal $principal, PrincipalRepository $principalRepository): Response
+    {
+
+        $principales = $principalRepository->findByPrincipalParentActive($principal);
+
+
+        return $this->render('models/principal/'.$vista.'.html.twig', [
+            'principal' => $visual,
+        ]);
+    }
+
 
     /**
      * @Route("/contacto", name="contacto")

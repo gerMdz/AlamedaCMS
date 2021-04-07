@@ -37,6 +37,25 @@ class PrincipalRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * @param $principal
+     * @return Principal[] Returns an array of Principal objects
+     */
+
+    public function findByPrincipalParentActive($principal): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.principal = :val')
+            ->andWhere('m.isActive = :boolean')
+            ->setParameter('val', $principal)
+            ->setParameter('boolean', true)
+            ->orderBy('m.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     /*
     public function findOneBySomeField($value): ?Principal
     {
