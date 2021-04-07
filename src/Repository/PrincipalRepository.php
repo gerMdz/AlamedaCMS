@@ -37,6 +37,23 @@ class PrincipalRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * @param $principal
+     * @return QueryBuilder
+     */
+
+    public function getQueryfindByPrincipalParentActive($principal): QueryBuilder
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.principal = :val')
+            ->andWhere('m.isActive = :boolean')
+            ->setParameter('val', $principal)
+            ->setParameter('boolean', true)
+            ->orderBy('m.createdAt', 'DESC')
+        ;
+    }
+
+
     /*
     public function findOneBySomeField($value): ?Principal
     {
