@@ -39,10 +39,10 @@ class PrincipalRepository extends ServiceEntityRepository
 
     /**
      * @param $principal
-     * @return Principal[] Returns an array of Principal objects
+     * @return QueryBuilder
      */
 
-    public function findByPrincipalParentActive($principal): array
+    public function getQueryfindByPrincipalParentActive($principal): QueryBuilder
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.principal = :val')
@@ -50,8 +50,6 @@ class PrincipalRepository extends ServiceEntityRepository
             ->setParameter('val', $principal)
             ->setParameter('boolean', true)
             ->orderBy('m.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult()
         ;
     }
 

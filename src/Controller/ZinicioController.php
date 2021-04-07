@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Repository\PrincipalRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -134,16 +136,25 @@ class ZinicioController extends AbstractController
      * @Route("/{linkRoute}/listado", name="principal_listado", methods={"GET"})
      * @param Principal $principal
      * @param PrincipalRepository $principalRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function listado(Principal $principal, PrincipalRepository $principalRepository): Response
+    public function listado(Principal $principal, PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
     {
 
-        $principales = $principalRepository->findByPrincipalParentActive($principal);
+        $query = $principalRepository->getQueryfindByPrincipalParentActive($principal);
+
+        $principales = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
 
 
-        return $this->render('models/principal/'.$vista.'.html.twig', [
-            'principal' => $visual,
+        return $this->render('models/principal/listadoPrincipal.html.twig', [
+            'principales' => $principales,
+            'ppal' => $principal
         ]);
     }
 

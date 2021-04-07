@@ -1,0 +1,130 @@
+{% extends 'base_material_kit.twig' %}
+{% block title %} {{ ppal.titulo | replace({'<p>':'', '</p>':''})| capitalize | raw }}  {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+{% endblock %}
+{% block sslocal %}
+
+{% endblock %}
+{% block header %}
+    <header class="mt-5">
+        {% include 'inicio/_nav.html.twig' %}
+
+    </header>
+{% endblock %}
+{% block sections %}
+<div class="container ">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            <h1 class="my-4">
+                {{ ppal.titulo | replace({'<p>':'', '</p>':'<br/>'})| capitalize | raw }}
+            </h1>
+
+            {% for principal in principales %}
+            <!-- Series -->
+
+            <div class="card mb-4">
+                <img class="card-img-top" src="{{ principal.imagePath|imagine_filter('squared_thumbnail_750-300') }}" alt="{{ app.request.baseUrl }}">
+                <div class="card-body">
+                    <h2 class="card-title">{{ principal.titulo | replace({'<p>':'', '</p>':'<br/>'})| raw }}</h2>
+                    <p class="card-text">
+                        {{ principal.contenido | replace({'<p>':'', '</p>':'<br/>'})| raw }}
+                    </p>
+                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}" class="btn btn-primary">Ver serie &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Disponible desde el {{ principal.createdAt | format_date(pattern="d 'de' MMMM") }}
+                </div>
+            </div>
+        {% endfor %}
+            <ul class="pagination justify-content-center mb-4">
+                {{ knp_pagination_render(principales) }}
+            </ul>
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4 mt-5 ">
+
+            <!-- Search Widget -->
+{#            <div class="card my-4">#}
+{#                <h5 class="card-header">Search</h5>#}
+{#                <div class="card-body">#}
+{#                    <div class="input-group">#}
+{#                        <input type="text" class="form-control" placeholder="Search for...">#}
+{#                        <span class="input-group-append">#}
+{#                <button class="btn btn-secondary" type="button">Go!</button>#}
+{#              </span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+            <!-- Categories Widget -->
+{#            <div class="card my-4">#}
+{#                <h5 class="card-header">Categories</h5>#}
+{#                <div class="card-body">#}
+{#                    <div class="row">#}
+{#                        <div class="col-lg-6">#}
+{#                            <ul class="list-unstyled mb-0">#}
+{#                                <li>#}
+{#                                    <a href="#">Web Design</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">HTML</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Freebies</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <div class="col-lg-6">#}
+{#                            <ul class="list-unstyled mb-0">#}
+{#                                <li>#}
+{#                                    <a href="#">JavaScript</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">CSS</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Tutorials</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Celebraciones</h5>
+                <div class="card-body font-italic text-left">
+                    Recuerda que puedes participar de nuestras celebraciones  en forma presencial realizando tu <br/>
+                    <a href="{{ path('reserva_index') }}" class="btn btn--pill btn-primary">
+                        reserva desde aquí
+                    </a> <br/> u online desde <br/>
+                    <a href="https://vivo.alamenda.ar" class="btn btn--pill btn-primary">
+                        https://vivo.alamenda.ar
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+    <!-- /.container -->
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base_material_kit.twig' %}
-{% block title %} {{ principal.titulo | striptags  }}  {% endblock %}
+{% block title %} {{ principal.titulo | striptags }}  {% endblock %}
 {% block sslocal %}
 
     <link href="{{ asset('css-misc/mdb.min.css') }}" rel="stylesheet">
@@ -137,9 +137,9 @@
         </section>
         <!-- Charlas -->
         {% for section in principal.section %}
-        <section class="a-content-space-medium bg-fam text-center">
-            <div class="container">
-                <div class="row">
+            <section class="a-content-space-medium bg-fam text-center">
+                <div class="container">
+                    <div class="row">
                         {% for entrada in section.entrada %}
                             <!--                charla 1-->
                             <div class="col-md-4 mb-2 mx-auto   ">
@@ -162,13 +162,13 @@
                                         </div>
                                         <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
                                             {% for referencia in entrada.entradaReferences %}
-                                            <a href="/descargas/referencias/{{ referencia.filename}}"
-{#                                            <a href="{{ referencia. }}"#}
-                                               target="_blank"
-                                               class="card-link text-center">
-                                                <i class="far fa-file-pdf ml-5 mr-1"></i>
-                                                <span class="text-alameda btn-icon ">Notas</span><br/>
-                                            </a>
+                                                <a href="/descargas/referencias/{{ referencia.filename }}"
+                                                        {# <a href="{{ referencia. }}" #}
+                                                   target="_blank"
+                                                   class="card-link text-center">
+                                                    <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                                    <span class="text-alameda btn-icon ">Notas</span><br/>
+                                                </a>
                                             {% endfor %}
                                             <a href="{{ entrada.linkPosting }}" class="card-link text-center"
                                                target="_blank">
@@ -181,23 +181,24 @@
                             </div>
                         {% endfor %}
 
-                    <!--                </div>-->
-                    <!--                fin charla 1-->
+                        <!--                </div>-->
+                        <!--                fin charla 1-->
 
 
-
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
         {% endfor %}
     </main>
     <footer class="footer">
-{#        <div class="card-body">#}
-{#            <h4 class="text-darker card-text text-center">Ver series anteriores </h4>#}
-{#            <div class="col-sm-2 mx-auto text-center">#}
-{#                <a href="notas-oraciones-audaces.php" class="btn btn-xl btn-primary"> Oraciones Audaces</a>#}
-{#            </div>#}
-{#        </div>#}
+        <div class="card-body">
+            <div class="col-sm-2 mx-auto text-center">
+                <a href="{{ path('principal_listado', {'linkRoute': principal.principal.linkRoute}) }}"
+                   class="btn btn-xl btn-primary">
+                    Ver series anteriores
+                </a>
+            </div>
+        </div>
 
     </footer>
 

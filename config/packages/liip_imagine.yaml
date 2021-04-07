@@ -50,6 +50,12 @@ liip_imagine:
                     size:          [540, 303]
                     mode:          inset
                     allow_upscale: true
+        squared_thumbnail_750-300:
+            filters:
+                thumbnail:
+                    size:          [750, 300]
+                    mode:          inset
+                    allow_upscale: true
         squared_thumbnail_large_1920if:
             filters:
                 thumbnail:
