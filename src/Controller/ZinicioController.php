@@ -148,7 +148,7 @@ class ZinicioController extends AbstractController
         $principales = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            5/*limit per page*/
         );
 
 

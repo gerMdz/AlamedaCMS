@@ -46,9 +46,9 @@ class PrincipalRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.principal = :val')
-            ->andWhere('m.isActive = :boolean')
+//            ->andWhere('m.isActive = :boolean')
             ->setParameter('val', $principal)
-            ->setParameter('boolean', true)
+//            ->setParameter('boolean', true)
             ->orderBy('m.createdAt', 'DESC')
         ;
     }
