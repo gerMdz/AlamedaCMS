@@ -78,10 +78,6 @@ class Entrada
      */
     private $principals;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Brote::class, mappedBy="entrada")
-     */
-    private $brotes;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -153,7 +149,6 @@ class Entrada
         $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
-        $this->brotes = new ArrayCollection();
         $this->contacto = new ArrayCollection();
         $this->sections = new ArrayCollection();
         $this->button = new ArrayCollection();
@@ -327,33 +322,6 @@ class Entrada
         return $this;
     }
 
-    /**
-     * @return Collection|Brote[]
-     */
-    public function getBrote(): Collection
-    {
-        return $this->brote;
-    }
-
-    public function addBrote(Brote $brote): self
-    {
-        if (!$this->brotes->contains($brote)) {
-            $this->brotes[] = $brote;
-            $brote->addEntrada($this);
-        }
-
-        return $this;
-    }
-
-    public function removebrote(Brote $brote): self
-    {
-        if ($this->brotes->contains($brote)) {
-            $this->brotes->removeElement($brote);
-            $brote->removeEntrada($this);
-        }
-
-        return $this;
-    }
 
     public function getEventoAt(): ?DateTimeInterface
     {
