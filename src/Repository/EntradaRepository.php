@@ -3,12 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Entrada;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use DateTime;
 
 
 /**
@@ -36,22 +36,20 @@ class EntradaRepository extends ServiceEntityRepository
     {
         return $this->queryFindByAutor($user)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
 
     /**
      * @param $user
-     * @return int|mixed|string
+     * @return QueryBuilder
      */
-    public function queryFindByAutor($user)
+    public function queryFindByAutor($user): QueryBuilder
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.autor = :val')
             ->setParameter('val', $user)
-            ->orderBy('e.updatedAt', 'DESC')
-        ;
+            ->orderBy('e.updatedAt', 'DESC');
     }
 
     /**
@@ -60,7 +58,7 @@ class EntradaRepository extends ServiceEntityRepository
      * @return Entrada[]
      * @throws QueryException
      */
-    public function findAllPublicadosOrderedByPublicacion($user = null)
+    public function findAllPublicadosOrderedByPublicacion($user = null): array
     {
         $this->createQueryBuilder('e')
             ->addCriteria(self::createNoDeletedCriteria());
@@ -68,8 +66,7 @@ class EntradaRepository extends ServiceEntityRepository
         return $this->addIsPublishedQueryBuilder(null, $user)
             ->orderBy('e.publicadoAt', 'DESC')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     /**
@@ -84,7 +81,7 @@ class EntradaRepository extends ServiceEntityRepository
             ->addCriteria(self::createDisponibleForDisponibleAt());
 
         return $this->getOrCreateQueryBuilder(null)
-            ->leftJoin('e.sections','s' )
+            ->leftJoin('e.sections', 's')
             ->orderBy('e.orden', 'ASC')
             ->andWhere(
                 '(e.disponibleAt <= :today AND e.disponibleHastaAt >= :today)
@@ -92,27 +89,24 @@ class EntradaRepository extends ServiceEntityRepository
                 (e.isPermanente = true)'
             )
             ->andWhere('s.id = :section')
-            ->setParameter('today',new DateTime('now'))
+            ->setParameter('today', new DateTime('now'))
             ->setParameter('section', $seccion)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
-    public static function createNoDeletedCriteria():Criteria
+    public static function createNoDeletedCriteria(): Criteria
     {
         return Criteria::create()
             ->andWhere(Criteria::expr()->eq('isDeleted', false))
-            ->orderBy(['createdAt'=>'DESC'])
-        ;
+            ->orderBy(['createdAt' => 'DESC']);
     }
-    
-    public static function createDisponibleForDisponibleAt():Criteria
+
+    public static function createDisponibleForDisponibleAt(): Criteria
     {
         return Criteria::create()
             ->andWhere(Criteria::expr()->eq('disponible', true))
-            ->orderBy(['disponibleAt'=>'ASC'])
-        ;
+            ->orderBy(['disponibleAt' => 'ASC']);
     }
 
 
@@ -138,30 +132,34 @@ class EntradaRepository extends ServiceEntityRepository
 
         return $qb;
     }
-    
+
     private function addIsDisponibleForSeccion(QueryBuilder $qb = null, $seccion)
     {
-        $qb = $this->getOrCreateQueryBuilder($qb)
+        return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('s.publicadoAt IS NOT NULL');
-
-
-        return $qb;
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('e');
     }
 
     /**
+     * @param string|null $qSearch
      * @return QueryBuilder
      */
-    public function queryFindAllEntradas(): QueryBuilder
+    public function queryFindAllEntradas(?string $qSearch): QueryBuilder
     {
-        return $this->createQueryBuilder('e')
-            ->orderBy('e.updatedAt', 'DESC')
-            ;
-    }
+        $qb = $this->createQueryBuilder('e')
+            ->orderBy('e.updatedAt', 'DESC');
 
+        if ($qSearch) {
+            $qb->innerJoin('e.autor', 'a')
+                ->addSelect('a');
+            $qb->andWhere('upper(e.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(e.titulo) LIKE :qsearch')
+                ->setParameter('qsearch', '%' . strtoupper($qSearch) . '%');
+        }
+        return $qb;
+    }
 
 }

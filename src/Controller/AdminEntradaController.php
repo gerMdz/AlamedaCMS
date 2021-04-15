@@ -24,19 +24,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminEntradaController extends AbstractController
 {
-    private $isDebug;
     private $loggerClient;
     private $boleanToDateHelper;
 
     /**
      * NO usado es opcional.
-     * @param bool $isDebug
      * @param LoggerClient $loggerClient
      * @param BoleanToDateHelper $boleanToDateHelper
      */
-    public function __construct(bool $isDebug, LoggerClient $loggerClient, BoleanToDateHelper $boleanToDateHelper)
+    public function __construct(LoggerClient $loggerClient, BoleanToDateHelper $boleanToDateHelper)
     {
-        $this->isDebug = $isDebug;
         $this->loggerClient = $loggerClient;
         $this->boleanToDateHelper = $boleanToDateHelper;
     }
@@ -51,8 +48,9 @@ class AdminEntradaController extends AbstractController
      */
     public function index(EntradaRepository $entradaRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $bus = $request->get('busq');
         if ($this->isGranted('ROLE_EDITOR')) {
-            $entrada = $entradaRepository->queryFindAllEntradas();
+            $entrada = $entradaRepository->queryFindAllEntradas($bus);
         } else {
             $user = $this->getUser();
             $entrada = $entradaRepository->queryFindByAutor($user);
@@ -152,7 +150,6 @@ class AdminEntradaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $titulo = $form['titulo']->getData();
             $this->getDoctrine()->getManager()->flush();
 
             $this->loggerClient->logMessage('Se editó la entrada \"' . $entrada->getTitulo() . '\"', '');
@@ -239,12 +236,10 @@ class AdminEntradaController extends AbstractController
     /**
      * @Route("/admin/entrada/{id}/show", name="entrada_show", methods={"GET"})
      * @param Entrada $entrada
-     * @param EntradaRepository $er
      * @return Response
      */
-    public function show(Entrada $entrada, EntradaRepository $er): Response
+    public function show(Entrada $entrada): Response
     {
-//        $entrada = $er->findOneBy(['linkRoute' => $entrada]);
         if (!$entrada) {
             throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
         }
