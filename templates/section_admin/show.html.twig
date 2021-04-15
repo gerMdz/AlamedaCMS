@@ -19,8 +19,9 @@
                             <td>{{ section.id }}</td>
                         </tr>
                         <tr>
-                            <th>Título</th>
-                            <td>{{ section.title }}</td>
+                            <th>Título <small>(identificador)</small></th>
+                            <td>{{ section.title }} <small>({{ section.identificador }})</small>
+                            </td>
                         </tr>
                         <tr>
                             <th>Entradas</th>
@@ -54,29 +55,21 @@
                             <th>UpdatedAt</th>
                             <td>{{ section.disponibleHastaAt ? section.disponibleHastaAt|date('Y-m-d H:i:s') : '' }}</td>
                         </tr>
+                        <tr>
+                            <th>Principales <small>(donde están contenidos)  </small></th>
+                            <td>
+                                {% if section.principales %}
+                                    {% for principal in section.principales %}
+                                <a href="{{ path('principal_show', {'id': principal.id}) }}">
+                                        {{ principal.titulo }}
+                                </a>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
-                    {% if section.entrada %}
-                        <tr>
-                            {# <td colspan="10"> #}
-                            {# <div class="col-sm-12"> #}
-                            {# <h3>Entradas</h3> #}
-                            {# <div style="font-size: 0.9rem" #}
-                            {# class="list-group small js-section-list col-sm-12" #}
-                            {# data-url="{{ path('admin_section_list_section', {id: section.id}) }}" #}
-                            {# data-section = "{{ section.id }}" #}
-                            {# > #}
-                            {# </div> #}
-                            {# <div class="col-sm-12 text-center"> #}
-                            {# <a href="{{ path('section_agregar_seccion', { 'id': section.id }) }}" #}
-                            {# class="btn btn-link btn-sm btn-modal"> #}
-                            {# <i class="fa fa-plus"> Sección</i> #}
-                            {# </a> #}
-                            {# </div> #}
-                            {# </div> #}
-                            {# </td> #}
-                        </tr>
-                    {% endif %}
+
                 </div>
 
                 <a href="{{ path('admin') }}" class="btn btn-info">Volver al listado Principal</a>
@@ -96,7 +89,7 @@
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
 
-    <script src="{{ asset('js/admin_section_section_form.js') }}"></script>
+    <script src="{{ asset('js/admin_section_form.js') }}"></script>
 
     <script type="application/javascript">
         $(function () {
