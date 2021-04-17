@@ -151,7 +151,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
     private function addTexto($valor): string
     {
-        $texto = '<small><i class="fa fa-star" id="x%s"> </i></small>
+        $texto = '<small><i class="fa fa-star" id="xp%s"> </i></small>
     <label id="lp%s"> </label>
     <label id="sinp%s">
         <input id="p%s" class="input-group-sm " placeholder="puedes completar aquí">
