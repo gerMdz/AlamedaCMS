@@ -37,6 +37,7 @@ class ReservanteRepository extends ServiceEntityRepository
         ;
     }
     */
+
     /**
      * @param array $celebraciones
      * @return array|null
@@ -46,7 +47,6 @@ class ReservanteRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('r');
         $qb->select('r');
         $qb->leftJoin('r.invitados', 'i');
-        $qb->addSelect('i');
         $qb->andWhere(
             $qb->expr()->in('r.celebracion', ':celebraciones')
         )->setParameter(':celebraciones', $celebraciones);
