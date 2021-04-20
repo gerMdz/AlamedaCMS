@@ -48,7 +48,6 @@ class Principal
 
     /**
      * @ORM\Column(type="string", length=150, unique=true, nullable=true)
-     * @Gedmo\Slug(fields={"linkRoute"})
      */
     private $linkRoute;
 
@@ -180,7 +179,7 @@ class Principal
     public function setLinkRoute(?string $linkRoute): self
     {
         ($linkRoute == null ? $linkRoute = strtolower(str_replace(' ', '-', trim($this->titulo . '-' . $this->id))) : $linkRoute);
-        $this->linkRoute = $linkRoute;
+        $this->linkRoute = strip_tags(strtolower(str_replace(' ', '-', trim($linkRoute))));
         return $this;
     }
 
