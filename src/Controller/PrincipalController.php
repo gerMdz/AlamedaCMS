@@ -73,15 +73,16 @@ class PrincipalController extends BaseController
 
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
+            $linkRoute = $form['linkRoute']->getData();
 
             if ($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $principal->setImageFilename($newFilename);
             }
             if($principal->getLinkRoute() != null){
-                $principal->setLinkRoute($principal->getTitulo());
-            }else{
                 $principal->setLinkRoute($principal->getLinkRoute());
+            }else{
+                $principal->setLinkRoute($principal->getTitulo());
             }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($principal);
@@ -121,9 +122,13 @@ class PrincipalController extends BaseController
                 $principal->setImageFilename($newFilename);
             }
 
+
             if($linkRoute){
                 $principal->setLinkRoute($linkRoute);
+            }else{
+                $principal->setLinkRoute($principal->getTitulo());
             }
+
 
             $this->getDoctrine()->getManager()->flush();
 
