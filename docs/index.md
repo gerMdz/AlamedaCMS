@@ -64,6 +64,29 @@ $ ./bin/phpunit
 ```
 
 
+## Atajos de teclado
+
+#### Admin > Menú
+> Windows - Linux
+
+
+>Firefox 	Alt + Shift + m
+Google Chrome 	Alt + m
+Safari 	Alt + m
+
+
+> Mac
+
+>En Firefox 14 o posteriores, Control + Alt + m
+En Firefox 13 o anteriores, Control + m
+Control + Alt + m
+Control + Alt + m
+
+> Cualquier S.O.
+
+>Opera 	Shift + Esc abre una lista de contenidos, los cuales son accesibles a través de accesskey, después se puede elegir un item presionando m
+
+
 #### AlamedaCMS se base en
 - [Symfony][1] framework PHP.
 - [Bootstrap](https://getbootstrap.com/) plantillas.
