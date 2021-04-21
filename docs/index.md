@@ -1,11 +1,11 @@
 ## Bienvenido a AlamedaCMS
 
-Cms básico, basado en Symfony para entornos con acceso ssh y pleno control del server (ej. VPS ), incluye reservas ([payunpile][6]) y enlaces ([incalinks][7])
+Cms básico, basado en Symfony para entornos con acceso ssh y pleno control del server (ej. VPS), incluye reservas ([payunpile][6]) y enlaces ([incalinks][7])
 
 
 ### ¿Que resuelve?
-Tener CMS basado en estandares modernos, donde pueda tener pleno control del código, y con un [framework][1] lider en PHP como lo es [Symfony][1]
-Fácil de actualizar, fácil de mantener, con un aŕbol de directorios claro.
+Tener CMS basado en estándares modernos, donde pueda tener pleno control del código, y con un [framework][1] líder en PHP como lo es [Symfony][1]
+Fácil de actualizar, fácil de mantener, con un árbol de directorios claro.
 
 ### ¿Qué más tiene?
 
@@ -35,13 +35,13 @@ Requerimientos
 Uso
 -----
 
-Las configuraciones básicas son:
-     * la URL de su base de datos ej.: 
-       *   DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
-     * el DSN de su servidor smtp de correos
-       *   MAILER_DSN=smtp://localhost
+Las configuraciones básicas son 
+* la URL de su base de datos ej.:
+   * DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7 
+* el DSN de su servidor smtp de correos
+  * MAILER_DSN=smtp://localhost
      
-luego con el binario de [Symfony][4], ejecute los siguientes comandos que crearan los datos básicos de usurio y un conetindo de inicio:
+Luego con el binario de [Symfony][4], ejecute los siguientes comandos que crearan los datos básicos de usuarios y un contenido de inicio:
 
 ```bash
 $ php bin/console doctrine:fixtures:load
