@@ -383,8 +383,8 @@ class ReservaController extends AbstractController
             $this->addFlash('success', 'Se canceló la reserva correctamente.');
             $response = new Response();
             $response->headers->clearCookie('email');
-            $response->headers->clearCookie('celebracion');
-            $response->send();
+            $response->headers->removeCookie('email');
+
 
         }
 
