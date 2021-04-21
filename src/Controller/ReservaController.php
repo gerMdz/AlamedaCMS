@@ -40,7 +40,6 @@ class ReservaController extends AbstractController
     {
 
         $grupos = $groupCelebrationRepository->puedeMostrarse()->getQuery()->getResult();
-//        dd($grupos[0]->getCelebraciones()[1]);
         if (!$grupos) {
             $grupos = null;
         }
@@ -382,6 +381,12 @@ class ReservaController extends AbstractController
             $dispatcher->dispatch($event, ReservaEvent::ANULA_RESERVA);
 
             $this->addFlash('success', 'Se canceló la reserva correctamente.');
+            $response = new Response();
+            $response->headers->clearCookie('email');
+            $response->headers->removeCookie('email');
+            $response->headers->clearCookie('celebracion');
+            $response->headers->removeCookie('celebracion');
+            $response->sendHeaders();
 
         }
 
@@ -407,6 +412,7 @@ class ReservaController extends AbstractController
         $response->headers->removeCookie('email');
         $response->headers->clearCookie('celebracion');
         $response->headers->removeCookie('celebracion');
+        $response->sendHeaders();
         return $this->redirectToRoute('vista_reserva',
             [
                 'celebracion' => $celebracion,
