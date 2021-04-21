@@ -383,10 +383,7 @@ class ReservaController extends AbstractController
             $this->addFlash('success', 'Se canceló la reserva correctamente.');
             $response = new Response();
             $response->headers->clearCookie('email');
-            $response->headers->removeCookie('email');
             $response->headers->clearCookie('celebracion');
-            $response->headers->removeCookie('celebracion');
-            $response->sendHeaders();
 
         }
 
@@ -407,12 +404,8 @@ class ReservaController extends AbstractController
         $entityManager->remove($invitado);
         $entityManager->flush();
         $this->addFlash('success', 'Se canceló reserva.');
-        $response = new Response();
-        $response->headers->clearCookie('email');
-        $response->headers->removeCookie('email');
-        $response->headers->clearCookie('celebracion');
-        $response->headers->removeCookie('celebracion');
-        $response->sendHeaders();
+
+
         return $this->redirectToRoute('vista_reserva',
             [
                 'celebracion' => $celebracion,
