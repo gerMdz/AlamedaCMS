@@ -36,10 +36,10 @@ Uso
 -----
 
 Las configuraciones básicas son:
-     la URL de su base de datos ej.: 
-          DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
-     el DSN de su servidor smtp de correos
-          MAILER_DSN=smtp://localhost
+     * la URL de su base de datos ej.: 
+       *   DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
+     * el DSN de su servidor smtp de correos
+       *   MAILER_DSN=smtp://localhost
      
 luego con el binario de [Symfony][4], ejecute los siguientes comandos que crearan los datos básicos de usurio y un conetindo de inicio:
 
