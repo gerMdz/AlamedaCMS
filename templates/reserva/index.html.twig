@@ -47,12 +47,12 @@
                             </div>
                         {% endif %}
 
-{#                        <h2>#}
-{#                            <label class="text-alameda">#}
-{#                                <i>Reservas disponibles desde el </i><br/>#}
-{#                                <strong>Miércoles 07/04/2021 a las 12:00 Hs</strong>#}
-{#                            </label>#}
-{#                        </h2>#}
+                        {# <h2> #}
+                        {# <label class="text-alameda"> #}
+                        {# <i>Reservas disponibles desde el </i><br/> #}
+                        {# <strong>Miércoles 07/04/2021 a las 12:00 Hs</strong> #}
+                        {# </label> #}
+                        {# </h2> #}
 
                         <h3>
                             <label class="text-alameda">
@@ -194,6 +194,31 @@
         </div>
     </div>
 
+    <div id="div-cookies" style="display: none;">
+        <small>
+            Utilizamos cookies sólo en esta sección y es para guardar un recordatorio de la reserva que realices y
+            asi asegurar una mejor experiencia al usuario. Si
+            continúas utilizando este sitio asumiremos que estás de acuerdo
+            <button type="button" class="btn btn-sm btn-primary" onclick="acceptCookies()">
+                Acepto el uso de cookies
+            </button>
+        </small>
+    </div>
+    <style>
+        #div-cookies {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0px -5px 15px gray;
+            padding: 7px;
+            text-align: center;
+            z-index: 99;
+        }
+    </style>
+
+
 {% endblock %}
 
     {% block javascripts %}
@@ -208,6 +233,23 @@
                         $("#modalPlantillaWeb").modal("show");
                     });
                 });
+            });
+        </script>
+        <script>
+            function checkAcceptCookies() {
+                if (localStorage.acceptCookies == 'true') {
+                } else {
+                    $('#div-cookies').show();
+                }
+            }
+
+            function acceptCookies() {
+                localStorage.acceptCookies = 'true';
+                $('#div-cookies').hide();
+            }
+
+            $(document).ready(function () {
+                checkAcceptCookies();
             });
         </script>
     {% endblock %}
