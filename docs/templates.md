@@ -10,4 +10,4 @@ permalink:    templates
                      /section
                      /entrada
                      
-[Volver al indez](docs/index.md)
+[Volver al index](docs/index.md)
