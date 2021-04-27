@@ -1,7 +1,5 @@
 ---
-layout:    default
-title:    "Templates"
-permalink:    templates
+layout: default
 ---
 
 ## Qué son los templates
