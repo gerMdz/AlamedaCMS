@@ -9,6 +9,10 @@
             <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
                 <i class="fas fa-plus-circle"></i>
                 Crear nueva página principal</a>
+            <a href="{{ path('principal_new_assistant') }}" class="btn btn-sm btn-primary btn-round">
+                <span class="fas fa-hands-helping"></span>
+                Asistente Crear Principal
+            </a>
         </div>
         <div class="text-center align-items-center">
             {{ knp_pagination_render(principals) }}
