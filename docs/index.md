@@ -10,8 +10,8 @@ Fácil de actualizar, fácil de mantener, con un árbol de directorios claro.
 ### ¿Qué más tiene?
 
 Tiene un manejo básico de usuarios para la administración de los contenidos.
-Permite la creación de reservas para eventos, basado en (PayunPILE)[6].
-Permite la creación de sus propios enlaces cortos, cuando dependa de vínculos de terceros. [IncaLINKS][7]
+Permite la creación de reservas para eventos, basado en [PayunPILE][6].
+Permite la creación de sus propios enlaces cortos, cuando dependa de vínculos de terceros, usando [IncaLINKS][7]
 
 ### ¿Cómo lo obtengo?
 
