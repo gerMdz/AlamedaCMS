@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Templates
+title: templates
 permalink: /templates/
 ---
 
