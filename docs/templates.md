@@ -1,5 +1,7 @@
 ---
 layout: default
+title: Templates
+permalink: /templates/
 ---
 
 ## Qué son los templates
@@ -10,4 +12,4 @@ layout: default
                      /section
                      /entrada
                      
-[Home](index.md)
+[Inicio](index.md)
