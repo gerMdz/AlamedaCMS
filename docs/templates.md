@@ -10,4 +10,4 @@ permalink:    templates
                      /section
                      /entrada
                      
-[Volver al index](index.html)
+[Volver al Home](index.html)
