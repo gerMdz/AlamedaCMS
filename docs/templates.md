@@ -9,3 +9,5 @@ permalink:    templates
                      /page
                      /section
                      /entrada
+                     
+[Volver al indez](docs/index.md)
