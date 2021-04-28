@@ -1,5 +1,5 @@
 ---
-
+layaaut: default
 title: templates
 permalink: /templates/
 ---
