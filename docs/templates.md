@@ -8,4 +8,4 @@
                      /section
                      /entrada
                      
-[Inicio](index.md)
+[Comienzo](index.md)
