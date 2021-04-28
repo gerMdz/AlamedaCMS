@@ -1,8 +1,4 @@
----
-layout: default
-title: templates
-permalink: /templates/
----
+
 
 ## Qué son los templates
   Un template es una plantilla en la que se base cada bloque de AlamedaCMS.
