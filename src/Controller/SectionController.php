@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Entity\ModelTemplate;
 use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\SectionFormType;
+use App\Form\Step\Section\StepOneType;
 use App\Repository\EntradaRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
@@ -204,5 +206,34 @@ class SectionController extends BaseController
         ]);
     }
 
+    /**
+     * @Route("/new/step1", name="admin_section_new_step1", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
+     * @throws Exception
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function newStepOne(Request $request): Response
+    {
+        $section = new Section();
+        $form = $this->createForm(StepOneType::class, $section);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($section);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_section_show', [
+                'id' => $section
+            ]);
+        }
+
+        return $this->render('section_admin/new.html.twig', [
+            'section' => $section,
+            'form' => $form->createView(),
+        ]);
+    }
 
 }
