@@ -1,0 +1,40 @@
+{% extends 'base_admin_board.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin_section_form.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <h4>Asistente para crear nueva sección - Paso 1</h4>
+
+
+<div class="form-container">
+    <div class="form-container">
+        {{ form_start(sectionForm) }}
+        <div class="row">
+            <div class="col-sm-4">
+                {{ form_row(sectionForm.name) }}
+            </div>
+            <div class="col-sm-4">
+                {{ form_row(sectionForm.description) }}
+            </div>
+            <div class="col-sm-4">
+                {{ form_row(sectionForm.principales) }}
+            </div>
+
+
+
+        {{ form_widget(sectionForm._token) }}
+
+
+        {{ form_end(sectionForm, {'render_rest': true}) }}
+            <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+
+    </div>
+
+
+</div>
+    <a class="btn btn-info" href="{{ path('admin_section_list') }}">Cancelar e ir al Listado</a>
+
+{% endblock %}

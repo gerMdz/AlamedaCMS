@@ -46,7 +46,8 @@ class StepOneType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Descripción',
-                'help' => 'Una descripción que diferencie a las otras secciones parecidas'
+                'help' => 'Una descripción que diferencie a las otras secciones parecidas',
+                'rows' => 2
             ])
 
             ->add('principales', EntityType::class, [

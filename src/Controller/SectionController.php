@@ -230,9 +230,9 @@ class SectionController extends BaseController
             ]);
         }
 
-        return $this->render('section_admin/new.html.twig', [
+        return $this->render('section_admin/new_step1.html.twig', [
             'section' => $section,
-            'form' => $form->createView(),
+            'sectionForm' => $form->createView(),
         ]);
     }
 
