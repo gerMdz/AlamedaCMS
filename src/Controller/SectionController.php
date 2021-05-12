@@ -221,12 +221,14 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $principal = $form['principal']->getData();
+            $section->addPrincipale($principal);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($section);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_section_show', [
-                'id' => $section
+                'id' => $section->getId()
             ]);
         }
 

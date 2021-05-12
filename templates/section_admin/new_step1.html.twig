@@ -1,7 +1,15 @@
 {% extends 'base_admin_board.html.twig' %}
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/admin_section_form.js') }}"></script>
+{% block title %}
+    Paso 1 - Secciones
+{% endblock %}
+{% block stylesheets %}
+{#{{ parent() }}#}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">
+
+{{ encore_entry_link_tags('select2') }}
+
 {% endblock %}
 
 {% block content %}
@@ -13,14 +21,14 @@
     <div class="form-container">
         {{ form_start(sectionForm) }}
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 {{ form_row(sectionForm.name) }}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 {{ form_row(sectionForm.description) }}
             </div>
-            <div class="col-sm-4">
-                {{ form_row(sectionForm.principales) }}
+            <div class="col-sm-12">
+                {{ form_row(sectionForm.principal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ) }}
             </div>
 
 
@@ -37,4 +45,9 @@
 </div>
     <a class="btn btn-info" href="{{ path('admin_section_list') }}">Cancelar e ir al Listado</a>
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin_section_form.js') }}"></script>
+    {{ encore_entry_script_tags('select2') }}
 {% endblock %}
