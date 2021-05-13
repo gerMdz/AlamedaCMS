@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_BE = vero-be
+DOCKER_BE = grace-be
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -58,5 +58,11 @@ generate-ssh-keys: ## Generar los ssh keys de JWT library
 clear-cache: ## ejecuta cache:clear
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} php bin/console cache:clear
 
+assets-install: ## ejecuta assets:install en docker
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} php bin/console assets:install --symlink public
+
 yarn-encore: ## ejecuta yarn encore
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} yarn encore dev
+
+yarn-install: ## install yarn dependencies
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} yarn install
