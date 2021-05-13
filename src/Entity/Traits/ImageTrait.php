@@ -26,7 +26,7 @@ trait ImageTrait
         return $this;
     }
 
-    public function getImagePath()
+    public function getImagePath(): string
     {
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
