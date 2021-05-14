@@ -6,6 +6,6 @@
 
 [Templates](templates.md)
 
-[Nuevo](templates.md)
+[Nuevo](nuevo.md)
 
 [Admin](admin/menu-admin.md)

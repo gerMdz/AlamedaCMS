@@ -2,7 +2,7 @@
 
 Cms básico, basado en Symfony para entornos con acceso ssh y pleno control del server (ej. VPS), incluye reservas ([payunpile][6]) y enlaces ([incalinks][7])
 
-[menu](menu.md)
+[Ver Menú](menu.md)
 ### ¿Que resuelve?
 Tener CMS basado en estándares modernos, donde pueda tener pleno control del código, y con un [framework][1] líder en PHP como lo es [Symfony][1]
 Fácil de actualizar, fácil de mantener, con un árbol de directorios claro.

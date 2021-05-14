@@ -1,5 +1,7 @@
-## Qué podemos encontrar en AlamedaCMS
+## Administrar AlamedaCMS
                      
-[Inicio](index.md)
+[Inicio](/docs/index.md)
+
+[Menú principal](/docs/menu.md)
 
 [Metabase](metabase.md)
