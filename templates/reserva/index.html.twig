@@ -47,18 +47,18 @@
                             </div>
                         {% endif %}
 
-                        <h2>
-                            <label class="text-alameda">
-                                <i>Las reservas para eventos presenciales estarán disponibles a partir del </i><br/>
-                                <strong>1 de junio</strong>
-                            </label>
-                        </h2>
+{#                        <h2>#}
+{#                            <label class="text-alameda">#}
+{#                                <i>Las reservas para eventos presenciales estarán disponibles a partir del </i><br/>#}
+{#                                <strong>1 de junio</strong>#}
+{#                            </label>#}
+{#                        </h2>#}
 
                         <h3>
-{#                            <label class="text-alameda">#}
-{#                                <u>Reservá tu asiento</u>#}
-{#                                {{ "now"|date("m/d/Y  H:i") }}#}
-{#                            </label>#}
+                            <label class="text-alameda">
+                                <u>Reservá tu asiento</u>
+                                {{ "now"|date("m/d/Y  H:i") }}
+                            </label>
                         </h3>
                         {% set i = 1 %}
                         <div>
@@ -177,11 +177,11 @@
                         </div>
 
 {#                        Habilitar para consulta de reservas#}
-{#                        <div class="col-sm-12">#}
-{#                            <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">#}
-{#                                Consultá tu reserva#}
-{#                            </a>#}
-{#                        </div>#}
+                        <div class="col-sm-12">
+                            <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
+                                Consultá tu reserva
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

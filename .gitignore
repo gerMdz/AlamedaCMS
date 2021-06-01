@@ -111,3 +111,4 @@ yarn-error.log
 /public/images/base.jpg
 /public/images/logo-mail.png
 /public/images/logo.png
+/migrations/Version20210515203711.php
