@@ -1,0 +1,56 @@
+{% extends 'base_admin_board.html.twig' %}
+{% block title %}
+    Paso 2 - Entradas
+{% endblock %}
+{% block stylesheets %}
+    {# {{ parent() }} #}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">
+
+    {{ encore_entry_link_tags('select2') }}
+
+{% endblock %}
+
+{% block content %}
+
+    <h4>Asistente para crear nueva entrada - Paso 2 {{ entrada.titulo| replace({'<p>':'', '</p>':''}) | raw }}<br/></h4>
+
+
+    <div class="form-container">
+        {{ form_start(entradaForm) }}
+        <div class="row">
+            <div class="col-sm-12">
+                {{ form_row(entradaForm.linkRoute) }}
+            </div>
+            <div class="col-sm-9">
+                {{ form_row(entradaForm.linkPosting) }}
+            </div>
+            <div class="col-sm-3">
+                <div class="col-sm-12 text-center form-check text-dark py-4">
+                    <label for="step_two_isLinkExterno">
+
+                        {{ form_row(entradaForm.isLinkExterno) }}
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                {{ form_row(entradaForm.footer) }}
+            </div>
+
+            {{ form_widget(entradaForm._token) }}
+
+            {{ form_end(entradaForm, {'render_rest': true}) }}
+            <div class="col-sm-9 mx-auto">
+                <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+                <a class="btn btn-info" href="{{ path('admin_entrada_index') }}">Cancelar e ir al Listado</a>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('select2') }}
+    {% endblock %}

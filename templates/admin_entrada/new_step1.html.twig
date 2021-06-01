@@ -1,6 +1,6 @@
 {% extends 'base_admin_board.html.twig' %}
 {% block title %}
-    Paso 1 - Secciones
+    Paso 1 - Entradas
 {% endblock %}
 {% block stylesheets %}
 {#{{ parent() }}#}
@@ -14,38 +14,38 @@
 
 {% block content %}
 
-    <h4>Asistente para crear nueva sección - Paso 1</h4>
+    <h4>Asistente para crear nueva entrada - Paso 1</h4>
 
 
 <div class="form-container">
     <div class="form-container">
-        {{ form_start(sectionForm) }}
+        {{ form_start(entradaForm) }}
         <div class="row">
             <div class="col-sm-12">
-                {{ form_row(sectionForm.name) }}
+                {{ form_row(entradaForm.titulo) }}
             </div>
             <div class="col-sm-12">
-                {{ form_row(sectionForm.description) }}
+                {{ form_row(entradaForm.contenido) }}
             </div>
             <div class="col-sm-12">
-                {{ form_row(sectionForm.principal) }}
+                {{ form_row(entradaForm.section) }}
+            </div>
+            <div class="col-sm-12">
+                {{ form_row(entradaForm.autor) }}
             </div>
 
-        {{ form_widget(sectionForm._token) }}
+        {{ form_widget(entradaForm._token) }}
 
-
-        {{ form_end(sectionForm, {'render_rest': true}) }}
+        {{ form_end(entradaForm, {'render_rest': true}) }}
             <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
 
     </div>
 
-
 </div>
-    <a class="btn btn-info" href="{{ path('admin_section_list') }}">Cancelar e ir al Listado</a>
+    <a class="btn btn-info" href="{{ path('admin_entrada_index') }}">Cancelar e ir al Listado</a>
 
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/admin_section_form.js') }}"></script>
     {{ encore_entry_script_tags('select2') }}
 {% endblock %}

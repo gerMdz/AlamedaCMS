@@ -4,7 +4,7 @@ import 'select2/dist/css/select2.css';  // optional if you have css loader
 
 $(function () {
     $('.select2-enable').select2({
-        placeholder: 'Seleccione la página en donde se insertará la sección',
+        placeholder: 'Seleccione item de la lista',
         allowClear: true
     });
 

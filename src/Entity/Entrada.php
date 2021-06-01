@@ -144,6 +144,11 @@ class Entrada
      */
     private $button;
 
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true, unique=true)
+     */
+    private $identificador;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
@@ -515,6 +520,21 @@ class Entrada
     public function removeButton(ButtonLink $button): self
     {
         $this->button->removeElement($button);
+
+        return $this;
+    }
+
+    public function getIdentificador(): ?string
+    {
+        return $this->identificador;
+    }
+
+    public function setIdentificador(?string $identificador): self
+    {
+        if(null === $identificador){
+            $identificador = str_replace(' ', '-',strip_tags($this->titulo));
+        }
+        $this->identificador = $identificador;
 
         return $this;
     }
