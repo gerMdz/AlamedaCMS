@@ -112,3 +112,4 @@ yarn-error.log
 /public/images/logo-mail.png
 /public/images/logo.png
 /migrations/
+/migrations/Version20210515203711.php
