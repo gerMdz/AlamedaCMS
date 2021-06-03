@@ -13,6 +13,7 @@
                 <th>Description</th>
                 <th>Identifier</th>
                 <th>IsActive</th>
+                <th>Entity <br/> Relacionada</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ type_block.description }}</td>
                 <td>{{ type_block.identifier }}</td>
                 <td>{{ type_block.isActive ? 'Yes' : 'No' }}</td>
+                <td>{{ type_block.entity }}</td>
                 <td>
                     <a href="{{ path('type_block_show', {'id': type_block.id}) }}">show</a>
                     <a href="{{ path('type_block_edit', {'id': type_block.id}) }}">edit</a>

@@ -11,6 +11,7 @@ use App\Form\Step\Section\StepOneType;
 use App\Form\Step\Section\StepThreeType;
 use App\Form\Step\Section\StepTwoType;
 use App\Repository\EntradaRepository;
+use App\Repository\ModelTemplateRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,6 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -30,6 +32,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SectionController extends BaseController
 {
+
+    private $session;
+
+    /**
+     * SectionController constructor.
+     * @param SessionInterface $session
+     */
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @param SectionRepository $repository
      * @param PaginatorInterface $paginator
@@ -244,10 +258,11 @@ class SectionController extends BaseController
      * @Route("/new/step2/{id}", name="admin_section_new_step2", methods={"GET","POST"})
      * @param Request $request
      * @param Section $section
+     * @param ModelTemplateRepository $modelTemplateRepository
      * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
-    public function newStepTwo(Request $request, Section $section): Response
+    public function newStepTwo(Request $request, Section $section, ModelTemplateRepository $modelTemplateRepository ): Response
     {
         $section->setTitle($section->getName());
         $form = $this->createForm(StepTwoType::class, $section);
@@ -255,6 +270,14 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $model_template_id = $this->session->get('model_template_id');
+            if($model_template_id){
+                $model_template = $modelTemplateRepository->find($model_template_id);
+                if($model_template){
+                    $section->setModelTemplate($model_template);
+                }
+                $this->session->remove('model_template_id');
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step3', [

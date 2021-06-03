@@ -16,6 +16,7 @@ class TypeBlockType extends AbstractType
             ->add('description')
             ->add('identifier')
             ->add('isActive')
+            ->add('entity')
         ;
     }
 

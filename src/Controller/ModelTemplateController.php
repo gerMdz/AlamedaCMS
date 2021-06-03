@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\ModelTemplate;
+use App\Entity\TypeBlock;
 use App\Form\ModelTemplateType;
-use App\Form\Step\Section\StepOneType;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\TypeBlockRepository;
 use App\Service\UploaderHelper;
@@ -16,8 +16,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -25,6 +27,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ModelTemplateController extends AbstractController
 {
+
+    private $session;
+
+    /**
+     * ModelTemplateController constructor.
+     * @param SessionInterface $session
+     */
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/", name="model_template_index", methods={"GET"})
      * @param ModelTemplateRepository $modelTemplateRepository
@@ -218,6 +232,19 @@ class ModelTemplateController extends AbstractController
         }
 
         return new JsonResponse($temp);
+
+    }
+
+    /**
+     * @Route("createBlockFromModelTemplate/{id}", name="model_template_create_block", methods={"GET", "POST"})
+     * @param ModelTemplate $modelTemplate
+     * @return RedirectResponse
+     */
+    public function createBlockFromModelTemplate(ModelTemplate $modelTemplate): RedirectResponse
+    {
+        $this->session->set('model_template_id', $modelTemplate->getId());
+        $entity = $modelTemplate->getBlock()->getEntity();
+        return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower($entity) ));
 
     }
 }
