@@ -10,6 +10,6 @@ de búsqueda con un comportamiento distinto para cada panel.
 * Activar en todos los paneles de administración.
 
 
-[ 🔙 Volver al menú principal](/docs/menu.md)
+[ 🔙 Volver al menú principal](../menu.md)
 
 [ 🔙 Volver al menú admin](menu-admin.md)
