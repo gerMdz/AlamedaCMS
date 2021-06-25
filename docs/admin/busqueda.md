@@ -7,9 +7,9 @@ de búsqueda con un comportamiento distinto para cada panel.
 ___
 * Admin Principal
   
-    ###### Campos   
-    Se busca en el contenido, título y linkRoute de las page Principal
-    Se busca el primer nombre de los auteres de las page Principal
+    * El texto ingresado se buscará en   
+        * El contenido, título y linkRoute de las page Principal
+        * El primer nombre de los autores de las page Principal
 ___
 
 
