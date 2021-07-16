@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -38,7 +39,10 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('linkRoute')
+            ->add('linkRoute', TextType::class, [
+                'label' => 'linkRoute',
+                'help' => 'Texto de la url '
+            ] )
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'required' => false,
@@ -60,7 +64,11 @@ class PrincipalType extends AbstractType
                     'class' => 'hidden'
                 ]
             ])
-            ->add('principal')
+            ->add('principal',null, [
+                'attr'=>[
+                    'class' => 'select2-enable'
+                ]
+            ])
             ->add('cssClass')
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
