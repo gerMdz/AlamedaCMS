@@ -1,11 +1,22 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
 {% block title %}Crear Página Principal{% endblock %}
 
 {% block content %}
-    <h5>Crea una nueva página Principal</h5>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Páginas Principales</h4>
+                <p class="card-category">Nueva </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('principal_index') }}">Volver al listado</a>
+                <hr/>
 
-    {{ include('principal/_form.html.twig') }}
-
-    <a href="{{ path('principal_index') }}">Volver al listado</a>
+                {{ include('principal/_form.html.twig') }}
+                <hr/>
+                <a href="{{ path('principal_index') }}">Volver al listado</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
