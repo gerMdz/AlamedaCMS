@@ -3,7 +3,7 @@
 {% block title %}Crear Página Principal{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('select2') }}
+    {{ encore_entry_link_tags('select2-parent') }}
     <style>
         .custom-file-input ~ .custom-file-label::after {
             content: "Elegir imagen";
@@ -31,6 +31,6 @@
 {% endblock %}
 {% block jslocal %}
 
-    {{ encore_entry_script_tags('select2') }}
+    {{ encore_entry_script_tags('select2-parent') }}
 
 {% endblock %}
