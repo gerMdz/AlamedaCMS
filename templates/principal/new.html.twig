@@ -5,7 +5,10 @@
     {{ parent() }}
     {{ encore_entry_link_tags('select2-parent') }}
     <style>
+
         .custom-file-input ~ .custom-file-label::after {
+            background-color: #999999;
+            color: white;
             content: "Elegir imagen";
         }
     </style>
@@ -20,17 +23,12 @@
                 <a href="{{ path('principal_index') }}" class="pull-right text-dark col-sm-6">Volver al listado</a>
             </div>
             <div class="card-body">
-
-
                 {{ include('principal/_form.html.twig') }}
-                <hr/>
-                <a href="{{ path('principal_index') }}">Volver al listado</a>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block jslocal %}
-
     {{ encore_entry_script_tags('select2-parent') }}
 
 {% endblock %}

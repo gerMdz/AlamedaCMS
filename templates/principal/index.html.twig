@@ -71,7 +71,7 @@
                                 <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}<br/>
                                     {{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>
-                                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
+                                    <a href="{{ path('principal_show', {'id': principal.id}) }}">
                                         <i class="fas fa-eye"></i>
                                         Ver</a><br/>
                                     <a href="{{ path('principal_edit', {'id': principal.id}) }}">
@@ -92,7 +92,7 @@
                 </div>
                 <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
                     <i class="fas fa-plus-circle"></i>
-                    Crear nueva página prinpipal</a>
+                    Crear nueva página principal</a>
             </div>
         </div>
     </div>

@@ -8,7 +8,6 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -64,17 +63,37 @@ class PrincipalType extends AbstractType
                     'class' => 'hidden'
                 ]
             ])
-            ->add('principal',null, [
-                'attr'=>[
-                    'class' => 'select2-enable'
+            ->add(
+                'principal',
+                EntityType::class,
+                [
+                    'class' => 'App\Entity\Principal',
+                    'label' => 'Principal (parent)?',
+                    'choice_label' => 'linkRoute',
+                    'placeholder' => 'Seleccione parent principal',
+                    'required' => false,
+                    'help' => 'Es parte de un grupo de páginas?',
+                    'attr' => [
+                        'class' => 'select2-enable',
+                        'placeholder' => 'Seleccione parent principal',
+                    ],
+
                 ]
+            )
+            ->add('cssClass', TextType::class, [
+                'label'=> 'Css',
+                'help' => 'Agregar una clase css ya definida',
+                'required' => false,
             ])
-            ->add('cssClass')
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
                 'required' => false,
                 'label' => 'Template',
+                'help'=>'Plantilla ya definida',
                 'placeholder' => 'Seleccione el modelo principal de la página',
+                'attr' => [
+                    'class' => 'select2-enable'
+                ]
             ])
 
             ->add('isActive',CheckboxType::class, [

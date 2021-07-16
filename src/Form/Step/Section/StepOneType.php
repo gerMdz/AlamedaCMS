@@ -68,7 +68,8 @@ class StepOneType extends AbstractType
                     ],
 
                 ]
-            ); // Fin del builder
+            )
+        ; // Fin del builder
 
 
     }
