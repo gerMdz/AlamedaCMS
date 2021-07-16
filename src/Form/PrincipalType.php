@@ -54,27 +54,6 @@ class PrincipalType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
-            ->add('likes')
-            ->add('createdAt', DateTimeType::class, array(
-                'widget' => 'single_text',
-                'required' => false,
-                'html5' => true,
-                'label' => 'Creado',
-                'format' => 'dd-MM-yyyy HH:mm',
-                'attr' => [
-                    'readonly' => true
-                ]
-            ))
-            ->add('updatedAt', DateTimeType::class, array(
-                'widget' => 'single_text',
-                'required' => false,
-                'html5' => true,
-                'label' => 'Editado',
-                'format' => 'dd-MM-yyyy HH:mm',
-                'attr' => [
-                    'readonly' => true
-                ]
-            ))
             ->add('autor', HiddenType::class, [
                 'property_path' => 'autor.id',
                 'attr' => [

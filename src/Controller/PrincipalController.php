@@ -35,11 +35,12 @@ class PrincipalController extends BaseController
      */
     public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $queryPrincipales = $principalRepository->queryFindAllPrincipals();
+        $bus = $request->get('busq');
+        $queryPrincipales = $principalRepository->queryFindAllPrincipals($bus);
         $principales = $paginator->paginate(
             $queryPrincipales, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            15/*limit per page*/
         );
         return $this->render('principal/index.html.twig', [
             'principals' => $principales,

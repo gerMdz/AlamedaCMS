@@ -1,13 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
-{% block title %}Edit ModelTemplate{% endblock %}
+{% block title %}Edición ModelTemplate{% endblock %}
 
-{% block body %}
-    <h1>Edit ModelTemplate</h1>
+{% block content %}
+    <h4>Edición ModelTemplate <i>"{{ model_template.name }}"</i></h4>
 
     {{ include('model_template/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('model_template_index') }}">back to list</a>
-
+<div class="row">
+    <div class="col-sm-4 mx-auto">
+    <a href="{{ path('model_template_index') }}">
+        {{ include('bases/_volver.html.twig') }}
+    </a>
+    </div>
+    <div class="col-sm-4 mx-auto">
     {{ include('model_template/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

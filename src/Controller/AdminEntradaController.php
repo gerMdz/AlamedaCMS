@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
+use App\Form\Step\Entrada\StepOneType;
+use App\Form\Step\Entrada\StepTwoType;
 use App\Repository\EntradaRepository;
 use App\Service\BoleanToDateHelper;
 use App\Service\LoggerClient;
@@ -219,6 +221,65 @@ class AdminEntradaController extends AbstractController
             'entrada' => $entrada,
         ]);
     }
+    /**
+     * @Route("/admin/new/step1", name="admin_entrada_new_step1", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
+     * @throws Exception
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function newStepOne(Request $request): Response
+    {
+        $entrada = new Entrada();
+        $form = $this->createForm(StepOneType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $section = $form['section']->getData();
+            $entrada->addSection($section);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($entrada);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_entrada_new_step2', [
+                'id' => $entrada->getId()
+            ]);
+        }
+
+        return $this->render('admin_entrada/new_step1.html.twig', [
+            'entrada' => $entrada,
+            'entradaForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/new/step2/{id}", name="admin_entrada_new_step2", methods={"GET","POST"})
+     * @param Request $request
+     * @param Entrada $entrada
+     * @return Response
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function newStepTwo(Request $request, Entrada $entrada): Response
+    {
+
+        $form = $this->createForm(StepTwoType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_entrada_new_step3', [
+                'id' => $entrada->getId()
+            ]);
+        }
+
+        return $this->render('admin_entrada/new_step2.html.twig', [
+            'entrada' => $entrada,
+            'entradaForm' => $form->createView(),
+        ]);
+    }
+
 
     /**
      * @Route("/admin/entrada/{linkRoute}", name="entrada_admin_link")

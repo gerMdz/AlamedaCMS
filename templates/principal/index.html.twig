@@ -1,4 +1,4 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
 {% block title %}Principal Listado{% endblock %}
 
@@ -24,31 +24,56 @@
                     <table class="table">
                         <thead class=" text-primary">
                         <tr class="text-primary">
-                            <th>Titulo</th>
+                            <td>ID</td>
+                            <th>Titulo<br/>
+                                LinkRoute
+                            </th>
                             <th>Contenido</th>
-                            <th>LinkRoute</th>
+
                             <th>ImageFilename</th>
                             <th>Likes</th>
-                            <th>Creada</th>
-                            <th>Actualizada</th>
-                            <th>actions</th>
+                            <th>Creada <br/>
+                                Actualizada
+                            </th>
+                            <th><i class="fa fa-cogs"></i></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for principal in principals %}
                             <tr>
                                 <td>{{ principal.id }}</td>
-                                <td>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }} </td>
-                                <td>{{ principal.contenido | u.truncate(15, '...') }}</td>
-                                <td>{{ principal.linkRoute }}</td>
-                                <td>{{ principal.imageFilename }}</td>
+                                <td>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }} <br/>
+                                    <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}"
+                                       target="_blank">
+                                        <i class="fa fa-external-link-alt"> </i>
+                                        {{ principal.linkRoute }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ principal.contenido | u.truncate(15, '') | raw }}
+                                    <span class="text-primary" data-toggle="modal"
+                                          data-target=".modal-content-sm"
+                                          data-content="{{ principal.contenido }}">... ver</span>
+
+                                </td>
+
+                                <td>
+                                    {% if (principal.imageFilename != null) %}
+                                        <img class="article-img" alt="{{ base.lema }}"
+                                             src="{{ principal.imagePath|imagine_filter('squared_thumbnail_100') }}">
+                                        <br/>
+                                        {{ principal.imageFilename }}
+                                    {% else %}
+                                        No tiene imagen
+                                    {% endif %}
+                                </td>
                                 <td>{{ principal.likes }}</td>
-                                <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}<br/>
+                                    {{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>
                                     <a href="{{ path('principal_ver', {'linkRoute': principal.linkRoute}) }}">
                                         <i class="fas fa-eye"></i>
-                                        Ver</a>
+                                        Ver</a><br/>
                                     <a href="{{ path('principal_edit', {'id': principal.id}) }}">
                                         <i class="fas fa-edit"></i>
                                         Editar</a>
@@ -56,7 +81,7 @@
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="9">No se encontró ninguna página prinpipal</td>
+                                <td colspan="9">No se encontró ninguna página principal</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -71,4 +96,32 @@
             </div>
         </div>
     </div>
+    <div class="modal fade modal-content-sm" tabindex="-1" role="dialog" aria-labelledby="myModalContentSM"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contenido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $('.modal-content-sm').on('show.bs.modal', function (e) {
+            let myContent = $(e.relatedTarget).attr('data-content');
+            $('.modal-body').html(myContent)
+        })
+    </script>
+
 {% endblock %}

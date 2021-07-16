@@ -1,8 +1,8 @@
-## Bienvenido a AlamedaCMS
+## Bienvenido a AlamedaCMS 
 
 Cms básico, basado en Symfony para entornos con acceso ssh y pleno control del server (ej. VPS), incluye reservas ([payunpile][6]) y enlaces ([incalinks][7])
 
-
+[Ver Menú](menu.md)
 ### ¿Que resuelve?
 Tener CMS basado en estándares modernos, donde pueda tener pleno control del código, y con un [framework][1] líder en PHP como lo es [Symfony][1]
 Fácil de actualizar, fácil de mantener, con un árbol de directorios claro.
@@ -10,8 +10,8 @@ Fácil de actualizar, fácil de mantener, con un árbol de directorios claro.
 ### ¿Qué más tiene?
 
 Tiene un manejo básico de usuarios para la administración de los contenidos.
-Permite la creación de reservas para eventos, basado en (PayunPILE)[6].
-Permite la creación de sus propios enlaces cortos, cuando dependa de vínculos de terceros. [IncaLINKS][7]
+Permite la creación de reservas para eventos, basado en [PayunPILE][6].
+Permite la creación de sus propios enlaces cortos, cuando dependa de vínculos de terceros, usando [IncaLINKS][7]
 
 ### ¿Cómo lo obtengo?
 
@@ -37,7 +37,7 @@ Uso
 
 Las configuraciones básicas son 
 * la URL de su base de datos ej.:
-   * DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7 
+   * DATABASE_URL=mysql://user:pass@host:port/db_name 
 * el DSN de su servidor smtp de correos
   * MAILER_DSN=smtp://localhost
      

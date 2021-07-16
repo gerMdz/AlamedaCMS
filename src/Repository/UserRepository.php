@@ -40,6 +40,15 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findByRoleAutor()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :roles')
+            ->setParameter('roles', '%ROLE_ESCRITOR%')
+            ->orderBy('u.primerNombre', 'ASC')
+        ;
+    }
+
     public function findAllEmailsRoleAlfa(string $role =  null, string $query, int $limit = 5)
     {
         $qb = $this->createQueryBuilder('u');
