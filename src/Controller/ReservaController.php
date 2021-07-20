@@ -162,9 +162,9 @@ class ReservaController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $email = $form['email']->getData();
 
-            $invitado = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($reservante->getCelebracion()->getId(), $email);
+            $invitado_existente = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($reservante->getCelebracion()->getId(), $email);
 
-            if ($invitado) {
+            if ($invitado_existente) {
                 $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
                 return $this->redirectToRoute('agrega_invitado', [
                     'id' => $reservante->getId()
