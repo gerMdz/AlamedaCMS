@@ -1,6 +1,8 @@
 {
     "type": "project",
     "license": "MIT",
+    "name": "germdz/alamedacms",
+    "description": "CMS Sencillo con reservas por email, y manejo de usuarios",
     "require": {
         "php": "^7.1.3",
         "ext-ctype": "*",
@@ -30,7 +32,6 @@
         "symfony/intl": "4.4.*",
         "symfony/mailer": "4.4.*",
         "symfony/orm-pack": "^1.0",
-        "symfony/polyfill-iconv": "^1.22",
         "symfony/polyfill-php72": "^1.15",
         "symfony/security-bundle": "4.4.*",
         "symfony/serializer-pack": "^1.0",

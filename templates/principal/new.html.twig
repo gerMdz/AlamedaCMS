@@ -1,11 +1,34 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
 {% block title %}Crear Página Principal{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('select2-parent') }}
+    <style>
+
+        .custom-file-input ~ .custom-file-label::after {
+            background-color: #999999;
+            color: white;
+            content: "Elegir imagen";
+        }
+    </style>
+
+{% endblock %}
 
 {% block content %}
-    <h5>Crea una nueva página Principal</h5>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title col-sm-6">Crear nueva página principal</h4>
+                <a href="{{ path('principal_index') }}" class="pull-right text-dark col-sm-6">Volver al listado</a>
+            </div>
+            <div class="card-body">
+                {{ include('principal/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block jslocal %}
+    {{ encore_entry_script_tags('select2-parent') }}
 
-    {{ include('principal/_form.html.twig') }}
-
-    <a href="{{ path('principal_index') }}">Volver al listado</a>
 {% endblock %}

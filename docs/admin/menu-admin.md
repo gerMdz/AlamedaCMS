@@ -5,3 +5,5 @@
 [Menú principal](/docs/menu.md)
 
 [Metabase](metabase.md)
+
+[Búsqueda](busqueda.md)

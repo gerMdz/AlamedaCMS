@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
-use App\Entity\Section;
 use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;
@@ -247,7 +246,7 @@ class AdminEntradaController extends AbstractController
             ]);
         }
 
-        return $this->render('admin_entrada/new_step.html.twig', [
+        return $this->render('admin_entrada/new_step1.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
