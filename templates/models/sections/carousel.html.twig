@@ -3,32 +3,31 @@
     # No necesita template entrada
 #}
 
-<h1>AQUI</h1>
-<section class="a-content-space-medium bg-fam text-center my-3">
+<section class="a-content-space-medium bg-fam text-center my-2 py-3">
     <div class="container-fluid mt-lg-1 mt-sm-5">
         <div class="row row justify-content-center">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div id="carouselSection" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    {% for entrada in section.entrada %}
+                    <li data-target="#carouselSection" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+                    {% endfor %}
                 </ol>
                 <div class="carousel-inner">
                     {% for entrada in section.entrada %}
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                        <div class="carousel-item {% if loop.first %} active {% endif %}">
+                            <img class="d-block w-100" src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_600-300') }}"
                                  alt="{{ app.request.baseUrl }}">
                         </div>
                     {% endfor %}
 
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carouselSection" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                    <span class="sr-only">Anterior</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselSection" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                    <span class="sr-only">Siguiente</span>
                 </a>
             </div>
         </div>
