@@ -102,6 +102,14 @@ liip_imagine:
                     mode:          outbound
                     allow_upscale: true
 
+        squared_thumbnail_carousel:
+            filters:
+                fixed:
+
+                    # set the fixed size to "120x90" pixels
+                    width: 540
+                    height: 304
+
 
 #
 #            # set your image quality defaults

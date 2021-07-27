@@ -1,22 +1,73 @@
 {#
-    # Template section carousel
-    # No necesita template entrada
+# Template section carousel
+# No necesita template entrada
 #}
+<style>
 
+    /*.carousel .carousel-caption{*/
+    /*    padding-bottom: 0 !important;*/
+    /*}*/
+    .carousel-caption.top {
+     padding-top: 0;
+     padding-bottom: 10px;
+    }
+    .carousel-caption.bottom {
+        margin-top: 10px;
+        text-wrap: none;
+        min-height: 3em;
+        max-height: 3em;
+    }
+
+    .carousel-caption {
+        position: relative;
+        border: 0;
+        top: 0;
+        left: 0;
+        color: black;
+        /*padding: 20px;*/
+    }
+
+
+</style>
 <section class="a-content-space-medium bg-fam text-center my-2 py-3">
     <div class="container-fluid mt-lg-1 mt-sm-5">
         <div class="row row justify-content-center">
-            <div id="carouselSection" class="carousel slide" data-ride="carousel">
+            <div id="carouselSection" class="carousel slide col-md-6" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for entrada in section.entrada %}
-                    <li data-target="#carouselSection" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+                        <li data-target="#carouselSection"
+                            data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
                     {% endfor %}
                 </ol>
-                <div class="carousel-inner">
+                <div class="carousel-inner ">
                     {% for entrada in section.entrada %}
                         <div class="carousel-item {% if loop.first %} active {% endif %}">
-                            <img class="d-block w-100" src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_600-300') }}"
+                            <div class="carousel-caption top  ">
+                                <h5 class="text-dark">{{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}</h5>
+                            </div>
+                            <img class="d-block w-100"
+                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_carousel') }}"
                                  alt="{{ app.request.baseUrl }}">
+                            <div class="carousel-caption bottom  text-left">
+                                <small class="text-secondary">
+                                    {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                                    <a
+                                            {% if (entrada.linkPosting) %}
+                                                href="{{ entrada.linkPosting }}"
+                                                {% if (entrada.isLinkExterno) %}
+                                                    target="_blank"
+                                                {% endif %}
+                                            {% else %}
+                                                href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                                            {% endif %}
+                                    >
+                                        {% endif %}
+                                        {{ entrada.footer }}
+                                        {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                                    </a>
+                                    {% endif %}
+                                </small>
+                            </div>
                         </div>
                     {% endfor %}
 
