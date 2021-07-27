@@ -4,16 +4,17 @@
 #}
 <style>
 
-    /*.carousel .carousel-caption{*/
-    /*    padding-bottom: 0 !important;*/
-    /*}*/
-    .carousel-caption.top {
-     padding-top: 0;
-     padding-bottom: 10px;
+    .carousel .carousel-indicators {
+        bottom: 4em !important;
     }
+    .carousel-caption.top {
+        margin-top: 1em;
+        padding-bottom: 1em;
+
+    }
+
     .carousel-caption.bottom {
-        margin-top: 10px;
-        text-wrap: none;
+        margin-top: 2em;
         min-height: 3em;
         max-height: 3em;
     }
@@ -21,17 +22,27 @@
     .carousel-caption {
         position: relative;
         border: 0;
-        top: 0;
-        left: 0;
+        padding-top: 0 !important;
+        bottom: 0 !important;
+        /*top: 0;*/
+        /*left: 0;*/
         color: black;
         /*padding: 20px;*/
     }
 
+    /*.carousel-caption{*/
+    /*    background-color: rgb(209, 209, 154);*/
+    /*    top: -30%;*/
+    /*    text-wrap: normal;*/
+    /*    height: auto;*/
+    /*    max-height: 120px;*/
+    /*}*/
+
 
 </style>
 <section class="a-content-space-medium bg-fam text-center my-2 py-3">
-    <div class="container-fluid mt-lg-1 mt-sm-5">
-        <div class="row row justify-content-center">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
             <div id="carouselSection" class="carousel slide col-md-6" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for entrada in section.entrada %}
@@ -43,12 +54,16 @@
                     {% for entrada in section.entrada %}
                         <div class="carousel-item {% if loop.first %} active {% endif %}">
                             <div class="carousel-caption top  ">
-                                <h5 class="text-dark">{{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}</h5>
+                                <h5 class="text-dark text-left">
+                                    <b>
+                                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                    </b>
+                                </h5>
                             </div>
                             <img class="d-block w-100"
                                  src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_carousel') }}"
                                  alt="{{ app.request.baseUrl }}">
-                            <div class="carousel-caption bottom  text-left">
+                            <div class="carousel-caption bottom">
                                 <small class="text-secondary">
                                     {% if (entrada.linkRoute or entrada.linkPosting ) %}
                                     <a
