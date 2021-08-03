@@ -200,11 +200,14 @@ class SectionController extends BaseController
      */
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
     {
-
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
         $twig = $section->getModelTemplate().".html.twig";
-        return $this->render('sections/'.$twig,[
+        $model = 'sections/'.$twig;
+        if($this->get('twig')->getLoader()->exists('models/sections/'.$twig)) {
+            $model = 'models/sections/'.$twig;
+        }
+        return $this->render($model,[
            'entradas' => $entradas,
             'section' => $section
         ]);
