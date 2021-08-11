@@ -1,6 +1,32 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 {% block title %}Principal {{ base.siteName }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('select2') }}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css"
+          integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
+            integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
+            crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'Principal'}) }}
+{% endblock %}
+{% block content %}
+    <h5>Editar {{ principal.linkRoute | upper }} id: {{ principal.id }}</h5>
+    <h6>
+        Autor: <u>{{ principal.autor }}</u>,
+        creada el <b>{{ principal.createdAt | date('d-m-y H:i') }}</b>
+        y su última actualización fue el <i>{{ principal.updatedAt | date ('d-m-y H:i') }}</i>
+    </h6>
+    {{ include('principal/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    <hr/>
+    {{ include('principal/_delete_form.html.twig') }}
+{% endblock %}
 {% block javascripts %}
+
     {{ parent() }}
     <script src="{{ asset('js/admin_section_form.js') }}"></script>
     <script src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
@@ -22,24 +48,9 @@
             });
         })
     </script>
-{% endblock %}
-{% block nav %}
-    {{ include('admin/_nav.html.twig',  {'marca_label': 'Principal'}) }}
-{% endblock %}
-{% block content %}
-    <h5>Editar {{ principal.linkRoute | upper }}</h5>
-    <div class="row">
-
-    {{ include('principal/_form.html.twig', {'button_label': 'Actualizar'}) }}
-    </div>
-
-    <a href="{{ path('principal_index') }}">Volver al listado</a>
-
-    {{ include('principal/_delete_form.html.twig') }}
-{% endblock %}
-{% block jslocal %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('app') }}
+    {# {{ encore_entry_script_tags('app') }} #}
+    {{ encore_entry_script_tags('select2') }}
+    {# {{ encore_entry_script_tags('app') }} #}
 
     <script>
         $('#admin').addClass('active');

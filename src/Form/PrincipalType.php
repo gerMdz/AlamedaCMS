@@ -20,6 +20,7 @@ class PrincipalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
             ->add('titulo', CKEditorType::class, [
                 'required' => false,
                 'config' => [
@@ -29,6 +30,7 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+
             ->add('contenido', CKEditorType::class, [
                 'required' => true,
                 'config' => [
@@ -38,10 +40,12 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+
             ->add('linkRoute', TextType::class, [
                 'label' => 'linkRoute',
                 'help' => 'Texto de la url '
             ] )
+
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'required' => false,
@@ -57,17 +61,19 @@ class PrincipalType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
+
             ->add('autor', HiddenType::class, [
                 'property_path' => 'autor.id',
                 'attr' => [
                     'class' => 'hidden'
                 ]
             ])
+
             ->add(
                 'principal',
                 EntityType::class,
                 [
-                    'class' => 'App\Entity\Principal',
+                    'class' => Principal::class,
                     'label' => 'Principal (parent)?',
                     'choice_label' => 'linkRoute',
                     'placeholder' => 'Seleccione parent principal',
@@ -80,11 +86,13 @@ class PrincipalType extends AbstractType
 
                 ]
             )
+
             ->add('cssClass', TextType::class, [
                 'label'=> 'Css',
                 'help' => 'Agregar una clase css ya definida',
                 'required' => false,
             ])
+
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
                 'required' => false,
@@ -100,7 +108,6 @@ class PrincipalType extends AbstractType
                 'required' => false,
                 'label' => 'Activa?',
                 'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
                 'attr' => [
                     'class' => 'form-check-input ',
                 ],
