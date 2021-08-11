@@ -8,7 +8,6 @@ use App\Repository\PrincipalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -113,7 +112,6 @@ class Principal
      */
     private $itemMenus;
 
-
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -143,7 +141,6 @@ class Principal
     public function setAutor(?User $autor): self
     {
         $this->autor = $autor;
-
         return $this;
     }
 
@@ -155,7 +152,6 @@ class Principal
     public function setTitulo(string $titulo): self
     {
         $this->titulo = $titulo;
-
         return $this;
     }
 
@@ -178,13 +174,13 @@ class Principal
 
     public function setLinkRoute(?string $linkRoute): self
     {
-        ($linkRoute == null ? $linkRoute = strtolower(str_replace(' ', '-', trim($this->titulo . '-' . $this->id))) : $linkRoute);
+        ($linkRoute == null ? $linkRoute = strtolower(
+            str_replace(' ', '-', trim($this->titulo.'-'.$this->id))
+        ) : $linkRoute);
         $this->linkRoute = strip_tags(strtolower(str_replace(' ', '-', trim($linkRoute))));
+
         return $this;
     }
-
-
-
 
     public function getLikes(): ?int
     {
@@ -212,7 +208,6 @@ class Principal
             $this->comentarios[] = $comentario;
             $comentario->setPrincipal($this);
         }
-
         return $this;
     }
 
@@ -225,7 +220,6 @@ class Principal
                 $comentario->setPrincipal(null);
             }
         }
-
         return $this;
     }
 
@@ -242,7 +236,6 @@ class Principal
         if (!$this->entradas->contains($entrada)) {
             $this->entradas[] = $entrada;
         }
-
         return $this;
     }
 
@@ -254,10 +247,6 @@ class Principal
 
         return $this;
     }
-
-
-
-
 
     public function getIsActive(): ?bool
     {
@@ -285,7 +274,6 @@ class Principal
             $this->section[] = $section;
             $section->setPrincipal($this);
         }
-
         return $this;
     }
 
@@ -298,7 +286,6 @@ class Principal
                 $section->setPrincipal(null);
             }
         }
-
         return $this;
     }
 
@@ -328,7 +315,6 @@ class Principal
             $this->brote[] = $brote;
             $brote->setPrincipal($this);
         }
-
         return $this;
     }
 
@@ -353,7 +339,6 @@ class Principal
     public function setModelTemplate(?ModelTemplate $modelTemplate): self
     {
         $this->modelTemplate = $modelTemplate;
-
         return $this;
     }
 
@@ -382,14 +367,12 @@ class Principal
         if (!$this->secciones->contains($seccione)) {
             $this->secciones[] = $seccione;
         }
-
         return $this;
     }
 
     public function removeSeccione(Section $seccione): self
     {
         $this->secciones->removeElement($seccione);
-
         return $this;
     }
 
@@ -406,14 +389,12 @@ class Principal
         if (!$this->button->contains($button)) {
             $this->button[] = $button;
         }
-
         return $this;
     }
 
     public function removeButton(ButtonLink $button): self
     {
         $this->button->removeElement($button);
-
         return $this;
     }
 
@@ -431,7 +412,6 @@ class Principal
             $this->itemMenus[] = $itemMenu;
             $itemMenu->setPathInterno($this);
         }
-
         return $this;
     }
 
@@ -443,9 +423,6 @@ class Principal
                 $itemMenu->setPathInterno(null);
             }
         }
-
         return $this;
     }
-
-
 }
