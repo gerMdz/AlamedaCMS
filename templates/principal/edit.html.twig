@@ -3,6 +3,13 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('select2') }}
+    <style>
+        .custom-file-input ~ .custom-file-label::after {
+            background-color: #9c27b0;
+            color: white;
+            content: "Elegir imagen";
+        }
+    </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css"
           integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous"/>
