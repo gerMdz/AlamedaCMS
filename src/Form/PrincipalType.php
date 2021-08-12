@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ModelTemplate;
 use App\Entity\Principal;
+use App\Repository\ModelTemplateRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -95,6 +96,9 @@ class PrincipalType extends AbstractType
 
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
+                'query_builder' => function (ModelTemplateRepository $er) {
+                    return $er->findModelTemplatesByBlock('page');
+                },
                 'required' => false,
                 'label' => 'Template',
                 'help'=>'Plantilla ya definida',
