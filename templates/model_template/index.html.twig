@@ -86,4 +86,10 @@
             </div>
         </div>
     </div>
+    {% include('admin/_modal.html.twig') %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('admin/_llamadaModal.html.twig') }}
 {% endblock %}

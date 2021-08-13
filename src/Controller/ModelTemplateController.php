@@ -7,6 +7,7 @@ use App\Entity\TypeBlock;
 use App\Form\ModelTemplateType;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\TypeBlockRepository;
+use App\Service\Handler\ModelTemplate\ModelTemplateHandler;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -29,14 +30,17 @@ class ModelTemplateController extends AbstractController
 {
 
     private $session;
+    private $modelTemplateHandler;
 
     /**
      * ModelTemplateController constructor.
      * @param SessionInterface $session
+     * @param ModelTemplateHandler $modelTemplateHandler
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, ModelTemplateHandler $modelTemplateHandler)
     {
         $this->session = $session;
+        $this->modelTemplateHandler = $modelTemplateHandler;
     }
 
     /**
@@ -246,6 +250,26 @@ class ModelTemplateController extends AbstractController
         $this->session->set('model_template_id', $modelTemplate->getId());
         $entity = $modelTemplate->getBlock()->getEntity();
         return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower($entity) ));
+
+    }
+
+    /**
+     * @Route("/block-uses/{id}", name="model_template_muestra_usos", methods={"GET", "POST"})
+     * @param Request $request
+     * @param ModelTemplate $modelTemplate
+     * @param EntityManagerInterface $em
+     * @param ModelTemplateRepository $modelTemplateRepository
+     * @return RedirectResponse|Response
+     */
+    public function blockUses(Request $request, ModelTemplate $modelTemplate, EntityManagerInterface $em, ModelTemplateRepository $modelTemplateRepository)
+    {
+
+        $bloks = $this->modelTemplateHandler->getBlockByModelTemplate($modelTemplate);
+
+
+        return $this->render('model_template/blockUses', [
+            'blocks' => $bloks
+        ]);
 
     }
 }

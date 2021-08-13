@@ -1,0 +1,10 @@
+{% extends 'base_admin_board.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+

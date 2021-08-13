@@ -31,9 +31,17 @@
         </div>
         <div class="col-sm-5">
             <h3>Imagen</h3>
-            <img class="show-article-img img-fluid"
-                 src="{{ model_template.imagePath|imagine_filter('squared_thumbnail_section') }}"
-                 alt="Sin Imagen">
+            {% if (model_template.imageFilename != null) %}
+                <img class="article-img" alt="{{ base.lema }}"
+                     src="{{ model_template.imagePath|imagine_filter('squared_thumbnail_100') }}">
+                <br/>
+                {{ model_template.imageFilename }}
+            {% else %}
+                No tiene imagen
+            {% endif %}
+{#            <img class="show-article-img img-fluid"#}
+{#                 src="{{ model_template.imagePath|imagine_filter('squared_thumbnail_section') }}"#}
+{#                 alt="Sin Imagen">#}
         </div>
     </div>
     <div class="row">
@@ -51,4 +59,9 @@
             {{ include('model_template/_delete_form.html.twig') }}
         </div>
     </div>
+    {% include('admin/_modal.html.twig') %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('admin/_llamadaModal.html.twig') }}
 {% endblock %}

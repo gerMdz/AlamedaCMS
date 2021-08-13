@@ -100,4 +100,18 @@ class PrincipalRepository extends ServiceEntityRepository
 
             return $qb;
     }
+
+    /**
+     * @param $modelTemplate
+     * @return QueryBuilder
+     */
+    public function findByModelTemplate($modelTemplate): QueryBuilder
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+        $qb->andWhere('p.modelTemplate = :val')
+        ->setParameter('val', $modelTemplate)
+            ->getQuery()
+            ->getResult();
+        return $qb;
+    }
 }

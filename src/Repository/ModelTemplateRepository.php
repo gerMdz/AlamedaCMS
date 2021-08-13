@@ -69,6 +69,13 @@ class ModelTemplateRepository extends ServiceEntityRepository
             ->setParameter('val', $block )
             ->addOrderBy('m.description', 'ASC');
     }
+    public function findModelTemplatesByIdTemplate($idTemplate): QueryBuilder
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.id = :val')
+            ->setParameter('val', $idTemplate );
+
+    }
 
     /*
     public function findOneBySomeField($value): ?ModelTemplate
