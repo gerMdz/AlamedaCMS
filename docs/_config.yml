@@ -1,7 +1,8 @@
 #theme: jekyll-theme-slate
 # theme: minima
-theme: jekyll-theme-cayman
+# theme: jekyll-theme-cayman
 # theme: jekyll-theme-architect
+theme: jekyll-theme-dinky
 title: Documentación de AlamedaCMS
 author: gerMdz
 email: gerardo.montivero@gmail.com
