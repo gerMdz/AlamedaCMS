@@ -1,1 +1,12 @@
-theme: jekyll-theme-slate
+# theme: jekyll-theme-slate
+theme: minima
+title: Documentación de AlamedaCMS
+author: gerMdz
+email: gerardo.montivero@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  
+# social links
+# twitter_username: your-twitter-handle # DO NOT include the @ character, or else the build will fail!
+github_username:  gerMdz # DO NOT include the @ character, or else the build will fail!
+
+show_excerpts: true # set to false to remove excerpts on the homepage
