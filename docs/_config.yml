@@ -2,7 +2,8 @@
 # theme: minima
 # theme: jekyll-theme-cayman
 # theme: jekyll-theme-architect
-theme: jekyll-theme-dinky
+# theme: jekyll-theme-dinky
+theme: jekyll-theme-hacker
 title: Documentación de AlamedaCMS
 author: gerMdz
 email: gerardo.montivero@gmail.com
