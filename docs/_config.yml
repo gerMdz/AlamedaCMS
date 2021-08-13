@@ -1,5 +1,6 @@
-theme: jekyll-theme-slate
+#theme: jekyll-theme-slate
 # theme: minima
+theme: jekyll-theme-architect
 title: Documentación de AlamedaCMS
 author: gerMdz
 email: gerardo.montivero@gmail.com
