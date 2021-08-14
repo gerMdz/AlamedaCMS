@@ -16,22 +16,19 @@ class ModelTemplateHandler
     private $principalRepository;
     private $sectionRepository;
     private $entradaRepository;
-    private $modelTemplate;
     private $modelTemplateRepository;
 
     /**
      * @param PrincipalRepository $principalRepository
      * @param SectionRepository $sectionRepository
      * @param EntradaRepository $entradaRepository
-     * @param ModelTemplate $modelTemplate
      * @param ModelTemplateRepository $modelTemplateRepository
      */
-    public function __construct(PrincipalRepository $principalRepository, SectionRepository $sectionRepository, EntradaRepository $entradaRepository, ModelTemplate $modelTemplate, ModelTemplateRepository $modelTemplateRepository)
+    public function __construct(PrincipalRepository $principalRepository, SectionRepository $sectionRepository, EntradaRepository $entradaRepository, ModelTemplateRepository $modelTemplateRepository)
     {
         $this->principalRepository = $principalRepository;
         $this->sectionRepository = $sectionRepository;
         $this->entradaRepository = $entradaRepository;
-        $this->modelTemplate = $modelTemplate;
         $this->modelTemplateRepository = $modelTemplateRepository;
     }
 
