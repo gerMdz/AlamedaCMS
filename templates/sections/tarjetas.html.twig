@@ -7,6 +7,9 @@
                     <div class="row justify-content-center ">
                         <div class="col-sm-11">
                             <div class="row">
+                                {% if entradas is not defined %}
+                                    {% set entradas = section.entrada %}
+                                {% endif %}
                                 {% for entrada in entradas %}
                                     <!--                marco dar-->
                                     <div {{ (entrada.destacado == true)?'class="col-md-6 mb-2 mx-auto d-flex align-self-stretch"':'class="col-md-3 mb-2 mx-auto d-flex align-self-stretch"' }}>
