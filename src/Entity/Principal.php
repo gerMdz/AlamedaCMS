@@ -8,6 +8,7 @@ use App\Repository\PrincipalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -87,7 +88,8 @@ class Principal
     private $brote;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="principals")
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="principals", fetch="EAGER")
+     * @JoinColumn(name="model_template_id", referencedColumnName="id")
      */
     private $modelTemplate;
 

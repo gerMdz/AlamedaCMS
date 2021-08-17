@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ModelTemplate;
 use App\Entity\Principal;
 use App\Form\PrincipalType;
 use App\Form\SectionAddType;
@@ -13,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -49,6 +51,7 @@ class PrincipalController extends BaseController
 
     /**
      * @Route("/new", name="principal_new", methods={"GET","POST"})
+     * @Route("/new_clone", name="principal_clone", methods={"GET","POST"})
      * @param Request $request
      * @param UploaderHelper $uploaderHelper
      * @return Response
@@ -57,39 +60,26 @@ class PrincipalController extends BaseController
      */
     public function new(Request $request, UploaderHelper $uploaderHelper): Response
     {
+        $path = $request->getPathInfo();
 
-        $principal = new Principal();
-        $user = $this->getUser();
-        $ahora = new DateTime('now');
-        $principal->setAutor($user);
-        $principal->setCreatedAt($ahora);
-        $principal->setUpdatedAt($ahora);
-        $form = $this->createForm(PrincipalType::class, $principal);
-        $form->handleRequest($request);
+        $principal = $this->dataPrincipal();
+        $principal_clone = null;
+
+        if ($path == "/admin/principal/new_clone")
+        {
+            $principal_clone = $this->getDoctrine()->getManager()->getRepository(Principal::class)->find($request->query->get('id_principal'));
+            $principal->setModelTemplate($principal_clone->getModelTemplate());
+            $principal->setCssClass($principal_clone->getCssClass());
+
+            if($request->query->get('parent'))
+            {
+                $principal->setPrincipal($principal_clone);
+            }
+        }
+        $form = $this->getDataForm($principal, $request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            /** @var Principal $principal */
-            $principal = $form->getData();
-
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $linkRoute = $form['linkRoute']->getData();
-
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
-                $principal->setImageFilename($newFilename);
-            }
-            if($principal->getLinkRoute() != null){
-                $principal->setLinkRoute($principal->getLinkRoute());
-            }else{
-                $principal->setLinkRoute($principal->getTitulo());
-            }
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($principal);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin');
+            return $this->procesaForm($form, $uploaderHelper, $principal_clone->getSecciones());
         }
 
         return $this->render('principal/new.html.twig', [
@@ -97,7 +87,6 @@ class PrincipalController extends BaseController
             'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @Route("/new-for-assistant", name="principal_new_assistant", methods={"GET","POST"})
@@ -110,38 +99,13 @@ class PrincipalController extends BaseController
     public function newAssistant(Request $request, UploaderHelper $uploaderHelper): Response
     {
 
-        $principal = new Principal();
-        $user = $this->getUser();
-        $ahora = new DateTime('now');
-        $principal->setAutor($user);
-        $principal->setCreatedAt($ahora);
-        $principal->setUpdatedAt($ahora);
-        $form = $this->createForm(PrincipalType::class, $principal);
-        $form->handleRequest($request);
+        $principal = $this->dataPrincipal();
+        $form = $this->getDataForm($principal, $request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             /** @var Principal $principal */
-            $principal = $form->getData();
-
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $linkRoute = $form['linkRoute']->getData();
-
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
-                $principal->setImageFilename($newFilename);
-            }
-            if($principal->getLinkRoute() != null){
-                $principal->setLinkRoute($principal->getLinkRoute());
-            }else{
-                $principal->setLinkRoute($principal->getTitulo());
-            }
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($principal);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin');
+            return $this->procesaForm($form, $uploaderHelper);
         }
 
         return $this->render('principal/newAssistant.html.twig', [
@@ -149,7 +113,6 @@ class PrincipalController extends BaseController
             'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @Route("/{id}/edit", name="principal_edit", methods={"GET","POST"})
@@ -162,8 +125,7 @@ class PrincipalController extends BaseController
      */
     public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper): Response
     {
-        $form = $this->createForm(PrincipalType::class, $principal);
-        $form->handleRequest($request);
+        $form = $this->getDataForm($principal, $request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -175,13 +137,11 @@ class PrincipalController extends BaseController
                 $principal->setImageFilename($newFilename);
             }
 
-
             if($linkRoute){
                 $principal->setLinkRoute($linkRoute);
             }else{
                 $principal->setLinkRoute($principal->getTitulo());
             }
-
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -253,10 +213,9 @@ class PrincipalController extends BaseController
      * @param Principal $principal
      * @param EntityManagerInterface $entityManager
      * @param SectionRepository $sectionRepository
-     * @param PrincipalRepository $principalRepository
      * @return RedirectResponse|Response
      */
-    public function agregarSeccion(Request $request, Principal $principal, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, PrincipalRepository $principalRepository)
+    public function agregarSeccion(Request $request, Principal $principal, EntityManagerInterface $entityManager, SectionRepository $sectionRepository)
     {
         $form = $this->createForm(SectionAddType::class);
         $form->handleRequest($request);
@@ -279,5 +238,72 @@ class PrincipalController extends BaseController
             'form' => $form->createView(),
         ]);
 
+    }
+
+    /**
+     * @return Principal
+     */
+    public function dataPrincipal(): Principal
+    {
+        $principal = new Principal();
+        $user = $this->getUser();
+        $ahora = new DateTime('now');
+        $principal->setAutor($user);
+        $principal->setCreatedAt($ahora);
+        $principal->setUpdatedAt($ahora);
+
+        return $principal;
+    }
+
+    /**
+     * @param Principal $principal
+     * @param Request $request
+     * @return FormInterface
+     */
+    public function getDataForm(Principal $principal, Request $request): FormInterface
+    {
+        $form = $this->createForm(PrincipalType::class, $principal);
+        $form->handleRequest($request);
+
+        return $form;
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param UploaderHelper $uploaderHelper
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    public function procesaForm(FormInterface $form, UploaderHelper $uploaderHelper, $secciones = null): RedirectResponse
+    {
+        /** @var Principal $principal */
+        $principal = $form->getData();
+
+        /** @var UploadedFile $uploadedFile */
+        $uploadedFile = $form['imageFile']->getData();
+
+        if ($uploadedFile) {
+            $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+            $principal->setImageFilename($newFilename);
+        }
+        if ($principal->getLinkRoute() == null) {
+            $principal->setLinkRoute($principal->getTitulo());
+        }
+
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($principal);
+        $entityManager->flush();
+//        if($secciones){
+//            dd($secciones);
+//            foreach ($secciones as $seccion)
+//            {
+//                $principal->addSeccione($seccion);
+//            }
+//        }
+        $entityManager->persist($principal);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin');
     }
 }

@@ -13,8 +13,26 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title ">Principal <i>{{ principal.linkRoute }}</i> <small>{{ principal.isActive ? '<i class="fa fa-check text-success"> </i> Activa' : '<i class="fa fa-times text-danger"> </i> Activa'  }}</small></h4>
-                <p class="card-category"> Datos </p>
+                <h4 class="card-title ">
+                    Principal <i>{{ principal.linkRoute }}</i>
+                    <small>
+                        {{ principal.isActive ? '<i class="fa fa-check text-success"> </i> Activa' : '<i class="fa fa-times text-danger"> </i> Activa' }}
+                    </small>
+
+                    <a href="{{ path('principal_clone', {'id_principal': principal.id,'parent':false }) }}"
+                       class="btn btn--pill btn-outline-primary btn-sm">
+                        <i class="fas fa-clone"></i>
+                        <small>Clonar desde aquí</small></a>
+
+                    <small>
+                        <a href="{{ path('principal_clone', {'id_principal': principal.id,'parent':true }) }}"
+                           class="btn btn--pill btn-outline-primary btn-sm">
+                            <i class="fas fa-file-export"></i>
+                            <small>Dependiente desde aquí</small></a>
+                    </small>
+                </h4>
+                <p class="card-category">Estos son los datos </p>
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -38,7 +56,7 @@
                         </tr>
                         <tr>
                             <th>Contenido</th>
-                            <td colspan="2">{{ principal.contenido | raw}}</td>
+                            <td colspan="2">{{ principal.contenido | raw }}</td>
                         </tr>
                         <tr>
                             <th>Imagen</th>
@@ -68,7 +86,7 @@
                         <tr>
                             <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                             <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>{{ principal.modelTemplate}}</td>
+                            <td>{{ principal.modelTemplate }}</td>
                         </tr>
                         {% if brotes %}
                             <tr>
@@ -80,7 +98,7 @@
                             <tr>
                                 <td>Título</td>
                                 <td>LinkRoute</td>
-                                <td><i class="fa fa-cogs"> </i> </td>
+                                <td><i class="fa fa-cogs"> </i></td>
                             </tr>
                             {% for brote in brotes %}
                                 <tr>
