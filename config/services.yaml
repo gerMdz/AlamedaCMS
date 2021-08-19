@@ -56,3 +56,5 @@ services:
         class: App\Form\TypeExtension\TextareaSizeExtension
         tags:
             - { name: form.type_extension }
+    app.event.clone_principal_event:
+        class: App\Event\ClonePrincipalEvent

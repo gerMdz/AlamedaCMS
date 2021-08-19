@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\ModelTemplate;
 use App\Entity\Principal;
+use App\Event\ClonePrincipalEvent;
+use App\EventSubscriber\ClonePrincipalSubscriber;
 use App\Form\PrincipalType;
 use App\Form\SectionAddType;
 use App\Repository\PrincipalRepository;
@@ -14,6 +15,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -35,8 +38,11 @@ class PrincipalController extends BaseController
      * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
-    {
+    public function index(
+        PrincipalRepository $principalRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
         $bus = $request->get('busq');
         $queryPrincipales = $principalRepository->queryFindAllPrincipals($bus);
         $principales = $paginator->paginate(
@@ -44,6 +50,7 @@ class PrincipalController extends BaseController
             $request->query->getInt('page', 1)/*page number*/,
             15/*limit per page*/
         );
+
         return $this->render('principal/index.html.twig', [
             'principals' => $principales,
         ]);
@@ -65,14 +72,14 @@ class PrincipalController extends BaseController
         $principal = $this->dataPrincipal();
         $principal_clone = null;
 
-        if ($path == "/admin/principal/new_clone")
-        {
-            $principal_clone = $this->getDoctrine()->getManager()->getRepository(Principal::class)->find($request->query->get('id_principal'));
+        if ($path == "/admin/principal/new_clone") {
+            $principal_clone = $this->getDoctrine()->getManager()->getRepository(Principal::class)->find(
+                $request->query->get('id_principal')
+            );
             $principal->setModelTemplate($principal_clone->getModelTemplate());
             $principal->setCssClass($principal_clone->getCssClass());
 
-            if($request->query->get('parent'))
-            {
+            if ($request->query->get('parent')) {
                 $principal->setPrincipal($principal_clone);
             }
         }
@@ -137,9 +144,9 @@ class PrincipalController extends BaseController
                 $principal->setImageFilename($newFilename);
             }
 
-            if($linkRoute){
+            if ($linkRoute) {
                 $principal->setLinkRoute($linkRoute);
-            }else{
+            } else {
                 $principal->setLinkRoute($principal->getTitulo());
             }
 
@@ -163,12 +170,13 @@ class PrincipalController extends BaseController
     public function show(Principal $principal, PrincipalRepository $repository): Response
     {
         $brotes = $repository->findByPrincipalParent($principal);
-        if(!$brotes){
+        if (!$brotes) {
             $brotes = null;
         }
+
         return $this->render('principal/show.html.twig', [
             'principal' => $principal,
-            'brotes' => $brotes
+            'brotes' => $brotes,
         ]);
     }
 
@@ -202,7 +210,7 @@ class PrincipalController extends BaseController
             200,
             [],
             [
-                'groups' => ['main']
+                'groups' => ['main'],
             ]
         );
     }
@@ -215,8 +223,12 @@ class PrincipalController extends BaseController
      * @param SectionRepository $sectionRepository
      * @return RedirectResponse|Response
      */
-    public function agregarSeccion(Request $request, Principal $principal, EntityManagerInterface $entityManager, SectionRepository $sectionRepository)
-    {
+    public function agregarSeccion(
+        Request $request,
+        Principal $principal,
+        EntityManagerInterface $entityManager,
+        SectionRepository $sectionRepository
+    ) {
         $form = $this->createForm(SectionAddType::class);
         $form->handleRequest($request);
 
@@ -271,11 +283,12 @@ class PrincipalController extends BaseController
     /**
      * @param FormInterface $form
      * @param UploaderHelper $uploaderHelper
+     * @param null $secciones
+     * @param EventDispatcherInterface $eventDispatcher
      * @return RedirectResponse
      * @throws Exception
      */
-    public function procesaForm(FormInterface $form, UploaderHelper $uploaderHelper, $secciones = null): RedirectResponse
-    {
+    public function procesaForm(FormInterface $form,UploaderHelper $uploaderHelper,$secciones = null): RedirectResponse {
         /** @var Principal $principal */
         $principal = $form->getData();
 
@@ -294,15 +307,16 @@ class PrincipalController extends BaseController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($principal);
         $entityManager->flush();
-//        if($secciones){
-//            dd($secciones);
-//            foreach ($secciones as $seccion)
-//            {
-//                $principal->addSeccione($seccion);
-//            }
-//        }
-        $entityManager->persist($principal);
-        $entityManager->flush();
+
+        if ($secciones) {
+            $eventDispatcher = new EventDispatcher();
+            $subscriber = new ClonePrincipalSubscriber();
+
+            $event = new ClonePrincipalEvent($principal);
+            $event->setSecciones($secciones);
+            $eventDispatcher->addSubscriber($subscriber);
+            $eventDispatcher->dispatch($event, ClonePrincipalEvent::CLONE_PRINCIPAL);
+        }
 
         return $this->redirectToRoute('admin');
     }
