@@ -10,8 +10,8 @@
 # theme: minima
 # theme: jekyll-theme-minimal
 # theme: jekyll-theme-modernist
-theme: jekyll-theme-slate
-
+# theme: jekyll-theme-slate +1p
+theme: jekyll-theme-tactile
 
 
 show_downloads: true
