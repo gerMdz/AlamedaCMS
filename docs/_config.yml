@@ -8,7 +8,8 @@
 # theme: jekyll-theme-merlot
 # theme: jekyll-theme-midnight +1p
 # theme: minima
-theme: jekyll-theme-minimal
+# theme: jekyll-theme-minimal
+theme: jekyll-theme-modernist
 
 
 
