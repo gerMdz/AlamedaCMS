@@ -3,11 +3,17 @@
 # theme: jekyll-theme-cayman
 # theme: jekyll-theme-architect
 # theme: jekyll-theme-dinky
-theme: jekyll-theme-hacker
+# theme: jekyll-theme-hacker
+
+
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-leap-day
+
 title: Documentación de AlamedaCMS
 author: gerMdz
 email: gerardo.montivero@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
+description: Simple CMS basado en Symfony
   
 # social links
 # twitter_username: your-twitter-handle # DO NOT include the @ character, or else the build will fail!
