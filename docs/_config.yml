@@ -9,7 +9,8 @@
 # theme: jekyll-theme-midnight +1p
 # theme: minima
 # theme: jekyll-theme-minimal
-theme: jekyll-theme-modernist
+# theme: jekyll-theme-modernist
+theme: jekyll-theme-slate
 
 
 
