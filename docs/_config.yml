@@ -5,7 +5,9 @@
 # theme: jekyll-theme-dinky
 # theme: jekyll-theme-hacker +1p
 # theme: jekyll-theme-leap-day +1p
-theme: jekyll-theme-merlot
+# theme: jekyll-theme-merlot
+theme: jekyll-theme-midnight
+
 
 
 show_downloads: true
