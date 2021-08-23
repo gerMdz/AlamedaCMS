@@ -4,11 +4,13 @@
 # theme: jekyll-theme-architect
 # theme: jekyll-theme-dinky
 # theme: jekyll-theme-hacker +1p
+# theme: jekyll-theme-leap-day +1p
+theme: jekyll-theme-merlot
 
 
 show_downloads: true
 google_analytics:
-theme: jekyll-theme-leap-day
+
 
 title: Documentación de AlamedaCMS
 author: gerMdz
