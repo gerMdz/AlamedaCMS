@@ -11,7 +11,8 @@
 # theme: jekyll-theme-minimal
 # theme: jekyll-theme-modernist
 # theme: jekyll-theme-slate +1p
-theme: jekyll-theme-tactile
+# theme: jekyll-theme-tactile +1p ++
+theme: jekyll-theme-time-machine
 
 
 show_downloads: true
