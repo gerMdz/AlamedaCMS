@@ -7,7 +7,8 @@
 # theme: jekyll-theme-leap-day +1p
 # theme: jekyll-theme-merlot
 # theme: jekyll-theme-midnight +1p
-theme: minima
+# theme: minima
+theme: jekyll-theme-minimal
 
 
 
