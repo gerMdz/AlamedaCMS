@@ -127,6 +127,11 @@ class Section
      */
     private $button;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=NewsSite::class)
+     */
+    private $newsSite;
+
     public function __toString()
     {
         return $this->name;
@@ -420,6 +425,18 @@ class Section
     public function markAsUpdated()
     {
         $this->updatedAt = new DateTime();
+    }
+
+    public function getNewsSite(): ?NewsSite
+    {
+        return $this->newsSite;
+    }
+
+    public function setNewsSite(?NewsSite $newsSite): self
+    {
+        $this->newsSite = $newsSite;
+
+        return $this;
     }
 
 
