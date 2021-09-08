@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New NewsSite{% endblock %}
+
+{% block body %}
+    <h1>Create new NewsSite</h1>
+
+    {{ include('news_site/_form.html.twig') }}
+
+    <a href="{{ path('news_site_index') }}">back to list</a>
+{% endblock %}

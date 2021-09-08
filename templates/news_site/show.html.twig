@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NewsSite{% endblock %}
+
+{% block body %}
+    <h1>NewsSite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ news_site.id }}</td>
+            </tr>
+            <tr>
+                <th>SrcSite</th>
+                <td>{{ news_site.srcSite }}</td>
+            </tr>
+            <tr>
+                <th>SrcCodigo</th>
+                <td>{{ news_site.srcCodigo }}</td>
+            </tr>
+            <tr>
+                <th>IsEnabled</th>
+                <td>{{ news_site.isEnabled ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>SrcType</th>
+                <td>{{ news_site.srcType }}</td>
+            </tr>
+            <tr>
+                <th>SrcParameters</th>
+                <td>{{ news_site.srcParameters }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('news_site_index') }}">back to list</a>
+
+    <a href="{{ path('news_site_edit', {'id': news_site.id}) }}">edit</a>
+
+    {{ include('news_site/_delete_form.html.twig') }}
+{% endblock %}

@@ -197,7 +197,8 @@ class ModelTemplateController extends AbstractController
             $pathTemplate . '/modelEntrada' => 'entrada',
             $pathTemplate . '/sections' => 'seccion',
             $pathTemplate . '/models/principal' => 'page',
-            $pathTemplate . '/models/sections' => 'seccion'
+            $pathTemplate . '/models/sections' => 'seccion',
+            $pathTemplate . '/models/entradas' => 'entrada'
         ];
         $temp = [];
         foreach ($models  as $key => $value){
