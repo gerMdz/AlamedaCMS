@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NewsSite index{% endblock %}
+
+{% block body %}
+    <h1>NewsSite index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>SrcSite</th>
+                <th>SrcCodigo</th>
+                <th>IsEnabled</th>
+                <th>SrcType</th>
+                <th>SrcParameters</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for news_site in news_sites %}
+            <tr>
+                <td>{{ news_site.id }}</td>
+                <td>{{ news_site.srcSite }}</td>
+                <td>{{ news_site.srcCodigo }}</td>
+                <td>{{ news_site.isEnabled ? 'Yes' : 'No' }}</td>
+                <td>{{ news_site.srcType }}</td>
+                <td>{{ news_site.srcParameters }}</td>
+                <td>
+                    <a href="{{ path('news_site_show', {'id': news_site.id}) }}">show</a>
+                    <a href="{{ path('news_site_edit', {'id': news_site.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('news_site_new') }}">Create new</a>
+{% endblock %}
