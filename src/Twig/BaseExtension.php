@@ -113,7 +113,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             throw new InvalidArgumentException('No se puede redireccionar a una URL vacía.');
         }
 
-        echo "<meta http-equiv = 'refresh' content='0;url = $link' />";
+        echo "<meta http-equiv = 'refresh' content='5;url = $link' />";
 
     }
 
