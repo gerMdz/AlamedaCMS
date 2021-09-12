@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
-use App\Entity\ModelTemplate;
 use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\SectionFormType;
@@ -53,9 +52,7 @@ class SectionController extends BaseController
      */
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
-//        $seccion = $repository->getSections()->getQuery()->getResult();
         $seccion = $repository->getSections();
-
         $secciones = $paginator->paginate(
             $seccion, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
