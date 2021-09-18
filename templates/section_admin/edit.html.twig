@@ -1,8 +1,12 @@
 {% extends 'base_admin.html.twig' %}
 {% block title %}Secciones {{ base.siteName }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('select2') }}
+{% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('section_select') }}
+    {{ encore_entry_script_tags('select2') }}
     <script src="{{ asset('js/admin_section_form.js') }}"></script>
     <script src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="application/javascript">
