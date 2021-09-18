@@ -1,0 +1,29 @@
+{#
+# Template section imagenSuperiorParallaxWhitTitle.html.twig
+# Entradas: No
+# Imagen: Si
+# Titulo: Si
+# Contenido: Si
+#}
+<header>
+    <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay bg-gris-medio text-white "
+             style=" background-image: url({{ section.imagePath|imagine_filter('squared_thumbnail_large_1920if') }})">
+        <!-- Promo Content -->
+        <div class="container u-overlay__inner u-ver-center u-content-space">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="text-center d-md-none d-lg-none d-xl-none">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Promo Content -->
+    </section>
+</header>
+<main role="main" class="card {{ section.cssClass | default(' text-dark') }}" id="{{ section.identificador }}">
+    <div class="col-sm-12 card-header ">
+        <h2 class="">{{ section.title | replace({'<p>':'', '</p>':'<br/>'}) | raw }} </h2>
+        <small>{{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }} </small>
+    </div>
+</main>
