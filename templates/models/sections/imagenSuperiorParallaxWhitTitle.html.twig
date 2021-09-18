@@ -13,8 +13,10 @@
         z-index: 0 !important;
     }
 </style>
-<header>
-    <section class="js-parallax u-promo-block u-overlay bg-gris-medio text-white mt-5 pt-5 pb-0 "
+<div class="d-sm-none d-md-block m-5">
+
+</div>
+    <section class="js-parallax u-promo-block u-overlay bg-gris-medio text-white"
              >
         <!-- Promo Content -->
         <div class="container u-overlay__inner u-ver-center u-content-space sinZ-index my-2">
@@ -28,7 +30,7 @@
         </div>
         <!-- End Promo Content -->
     </section>
-</header>
+
 <main role="main" class="card {{ section.cssClass | default(' text-dark') }}" id="{{ section.identificador }}">
     <div class="col-sm-12 card-header ml-0">
         <h2 class="">{{ section.title | replace({'<p>':'', '</p>':'<br/>'}) | raw }} </h2>
