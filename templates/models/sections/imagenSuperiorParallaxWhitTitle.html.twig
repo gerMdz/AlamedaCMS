@@ -5,6 +5,11 @@
 # Titulo: Si
 # Contenido: Si
 #}
+<style>
+    .sobreImage{
+        margin-top: 0 !important;
+    }
+</style>
 <header>
     <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay bg-gris-medio text-white "
              style=" background-image: url({{ section.imagePath|imagine_filter('squared_thumbnail_large_1920if') }})">
@@ -22,7 +27,7 @@
     </section>
 </header>
 <main role="main" class="card {{ section.cssClass | default(' text-dark') }}" id="{{ section.identificador }}">
-    <div class="col-sm-12 card-header ">
+    <div class="col-sm-12 card-header ml-0">
         <h2 class="">{{ section.title | replace({'<p>':'', '</p>':'<br/>'}) | raw }} </h2>
         <small>{{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }} </small>
     </div>
