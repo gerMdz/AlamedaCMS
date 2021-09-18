@@ -1,139 +1,167 @@
 <style>
-    .card-header nota-style {
-        /*nombre del estilo o botón*/
-        /*border: 2px solid #b5f2f2;  !*borde: estilo y color*!*/
-        font: normal normal 18px ArialNova;  /*fuente*/
-        /*color:#59287a;  !*color de la fuente*!*/
-        /*letter-spacing: 2px; !*separación entre las letras*!*/
-        /*text-align: left; !*alineación del texto*!*/
-        /*text-transform: uppercase; !*texto se transforma en mayúsculas*!*/
-        padding: 10px 10px 10px 2em;  /*tamaño del fondo*/
+    .nota-style {
+        border: 2px solid #b5f2f2; /*borde: estilo y color*/
+        padding: 10px 10px 10px 2em; /*tamaño del fondo*/
         border-radius: 30px 0 30px 0; /*ángulos de las 4 esquinas del borde/fondo*/
-        /*background: #cccccc;*/
-
+        margin-bottom: 1em; /*espacio debajo de la etiqueta */
     }
 </style>
-{#<div class="col-sm-12">#}
-{#    <h3>#}
-{#        ¡CUANDO SEPAS QUIEN SOS!#}
-{#        <br/>#}
-{#        <small>#}
-{#            Serie: Oye el Ruido de rotas cadenas – Parte 7#}
-{#        </small>#}
-{#    </h3>#}
-{#    <br/>#}
-{#    <p class="text-info text-14-300 text-left font-italic mb-5">#}
-{#        "Pues, si escuchas la palabra…, sería como ver tu cara en un espejo; te ves a ti mismo…"#}
-{#        <br/>#}
-{#        <small class="float-right">#}
-{#            Santiago 1:23-25 (NTV)#}
-{#        </small>#}
-{#    </p>#}
-{#    <br/>#}
-{#</div>#}
+{# <div class="col-sm-12"> #}
+{# <h3> #}
+{# ¡CUANDO SEPAS QUIEN SOS! #}
+{# <br/> #}
+{# <small> #}
+{# Serie: Oye el Ruido de rotas cadenas – Parte 7 #}
+{# </small> #}
+{# </h3> #}
+{# <br/> #}
+{# <p class="text-info text-14-300 text-left font-italic mb-5"> #}
+{# "Pues, si escuchas la palabra…, sería como ver tu cara en un espejo; te ves a ti mismo…" #}
+{# <br/> #}
+{# <small class="float-right"> #}
+{# Santiago 1:23-25 (NTV) #}
+{# </small> #}
+{# </p> #}
+{# <br/> #}
+{# </div> #}
 <hr/>
 <div class="row">
-    <div class="col-sm-8 mx-auto card">
-        <h4 class="card-header nota-style">
-            La respuesta de Juan el Bautista.
-        </h4>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "--¿Entonces quién eres? ¡Tenemos que llevar una respuesta a los que nos enviaron! ¿Cómo te ves a ti mismo?"
+    <div class="col-sm-10 mx-auto">
+        <div class="card p-5">
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "He tenido un sufrimiento, una especie de espina clavada en el cuerpo"
+                <br/>
+                <small class="float-right">
+                    2 Corintios 12:7 (DHH)
+                </small>
+            </p>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "En tres ocasiones distintas, le supliqué al Señor que me la quitara."
+                <br/>
+                <small class="float-right">
+                    2 Corintios 12:8 (NTV)
+                </small>
+            </p>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "Cada vez él me dijo: «Mi gracia es todo lo que necesitas; mi poder actúa mejor en la debilidad»."
+                <br/>
+                <small class="float-right">
+                    2 Corintios 12:9a (NTV)
+                </small>
+            </p>
+        </div>
+        <div class="card p-5">
+            <h4 class="nota-style">
+                EL PROPÓSITO DE MI ESPINA.
+            </h4>
+            <strong>
+                1. Esta espina es un {{ completa_lugar('uno') | raw }}.
+            </strong>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "Jesús le dijo: ¡Ponte de pie, toma tu camilla y anda!"
+                <br/>
+                <small class="float-right">
+                    Juan 5:8 (NTV)
+                </small>
+            </p>
+
+            <strong>
+                2. Esta espina me {{ completa_lugar('dos') | raw }}.
+            </strong>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "—¡Pero es que yo no sé hablar bien! Siempre que hablo, se me traba la lengua, y por eso nadie me hace
+                caso.
+                Este problema lo tengo desde niño."
+                <br/>
+                <small class="float-right">
+                    Éxodo 4:10 (TLA)
+                </small>
+            </p>
+            <strong>
+                3. Esta espina es una {{ completa_lugar('tres') | raw }}.
+            </strong>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "Para impedir que me volviera orgulloso, se me dio una espina en mi carne, un mensajero de Satanás
+                para atormentarme e impedir que me volviera orgulloso."
+                <br/>
+                <small class="float-right">
+                    2 Corintios 12:7 (NTV)
+                </small>
+            </p>
+            <strong>
+                4. Esta espina es una {{ completa_lugar('cuatro') | raw }}.
+            </strong>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "Así como la calidad del oro se pone a prueba con el fuego, la confianza que ustedes tienen en Dios
+                se pone a prueba con los problemas."
+                <br/>
+                <small class="float-right">
+                    1 Pedro 1:7 (TLA)
+                </small>
+            </p>
+        </div>
+
+        <div class="card p-5">
+            <h4 class="nota-style">
+                COMO SER LIBRE DE TUS FRUSTRACIONES SECRETAS.
+            </h4>
+            <strong>
+                1. {{ completa_lugar('cinco') | raw }} tu espina.
+            </strong>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "Entonces Jacob durmió también con Raquel, y la amó mucho más que a Lea. Y se quedó allí y trabajó para
+                Labán los siete años adicionales.”
+                <br/>
+                <small class="float-right">
+                    Génesis 29:30-31 (NTV)
+                </small>
+            </p>
+
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                “Cuando el SEÑOR vio que Lea no era amada, le concedió que tuviera hijos, pero Raquel no podía
+                concebir."
+                <br/>
+                <small class="float-right">
+                    Génesis 29:30-31 (NTV)
+                </small>
+            </p>
             <br/>
-            <small class="float-right">
-                Juan 1:22 (NVI)
-            </small>
-        </p>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "Juan contestó con las palabras del profeta Isaías: «Soy una voz que clama en el desierto: “¡Abran camino
-            para la llegada del SEÑOR!”»."
+            <strong>
+                2. {{ completa_lugar('seis') | raw }} en quien llevó la corona de espinas.
+            </strong>
+
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "Por segunda vez y oró: «¡Padre mío! Si no es posible que pase esta copa a menos que yo la beba,
+                entonces hágase tu voluntad».
+                <br/>
+                <small class="float-right">
+                    Mateo 26:42-45 (NTV)
+                </small>
+            </p>
+
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                “Fue a orar por tercera vez, repitió lo mismo. Luego se acercó a sus discípulos y les dijo:
+                «¡Adelante, duerman y descansen! Pero miren, ha llegado la hora y el Hijo del Hombre es
+                traicionado y entregado en manos de pecadores."
+                <br/>
+                <small class="float-right">
+                    Mateo 26:42-45 (NTV)
+                </small>
+            </p>
             <br/>
-            <small class="float-right">
-                Juan 1:23 (NTV)
-            </small>
-        </p>
-        <br/>
-        <h4 class="card-header nota-style">
-            Llamados a la grandeza
-        </h4>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "«Hagamos a los seres humanos a nuestra imagen, para que sean como nosotros. Ellos reinarán»."
-            <br/>
-            <small class="float-right">
-                Génesis 1:26 (NTV)
-            </small>
-        </p>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "¡Despierten a los valientes!"
-            <br/>
-            <small class="float-right">
-                Joel 3:9 (RVC)
-            </small>
-        </p>
-        <h4 class="card-header nota-style">
-            Gedeón, un hombre que no sabía lo que podía.
-        </h4>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "¡El Señor está contigo, guerrero valiente!"
-            <br/>
-            <small class="float-right">
-                Jueces 6:12 (NVI)
-            </small>
-        </p>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "Pero, Señor objetó Gedeón, ¿cómo voy a salvar a Israel? Mi clan es el más débil de la tribu de Manasés,
-            y yo soy el más insignificante de mi familia."
-            <br/>
-            <small class="float-right">
-                Jueces 6:15 (NVI)
-            </small>
-        </p>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "Todos gritaban: «¡Una espada por el Señor y una por Gedeón!»"
-            <br/>
-            <small class="float-right">
-                Jueces 7:20 (PDT)
-            </small>
-        </p>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "Se parecían a ti —le contestaron—, todos tenían el aspecto de un hijo de rey."
-            <br/>
-            <small class="float-right">
-                Jueces 8:18 (NTV)
-            </small>
-        </p>
-        <h4 class="card-header nota-style">
-            Tu mensajero
-        </h4>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "Pues Dios amó tanto al mundo que dio a su único Hijo, para que todo el que crea en él no se pierda,
-            sino que tenga vida eterna. Dios no envió a su Hijo al mundo para condenar al mundo, sino para salvarlo
-            por medio de él."
-            <br/>
-            <small class="float-right">
-                Juan 3:16-17 (NTV)
-            </small>
-        </p>
-        <h4 class="card-header nota-style">
-            No te olvides
-        </h4>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            "Pues, si escuchas la palabra pero no la obedeces, sería como ver tu cara en un espejo; te ves a ti mismo,
-            luego te alejas y te olvidas cómo eres.”
-            <br/>
-            <small class="float-right">
-                Santiago 1:23 (NTV)
-            </small>
-        </p>
-        <p class="text-info text-14-300 text-left font-italic mb-5">
-            “Pero si miras atentamente en la ley perfecta que te hace libre y la pones en práctica y no olvidas lo que
-            escuchaste, entonces Dios te bendecirá por tu obediencia."
-            <br/>
-            <small class="float-right">
-                Santiago 1:23-25 (NTV)
-            </small>
-        </p>
-        <br/>
+            <strong>
+                3. {{ completa_lugar('siete') | raw }} aun en tus frustraciones.
+            </strong>
+            <p class="text-info text-14-300 text-left font-italic mb-5">
+                "El Dios a quien servimos es capaz de salvarnos. Él nos rescatará de su poder, su Majestad;
+                pero aunque no lo hiciera, deseamos dejar en claro ante usted que jamás serviremos a sus dioses
+                ni rendiremos culto a la estatua de oro que usted ha levantado."
+                <br/>
+                <small class="float-right">
+                    Daniel 3:17-18 (NTV)
+                </small>
+            </p>
+        </div>
     </div>
 </div>
 

@@ -80,6 +80,12 @@ liip_imagine:
                     size:          [1920, 1080]
                     mode:          inset
                     allow_upscale: false
+        squared_thumbnail_large_notas:
+            filters:
+                thumbnail:
+                    size:          [640, 360]
+                    mode:          inset
+                    allow_upscale: true
 
         squared_normal:
             filters:

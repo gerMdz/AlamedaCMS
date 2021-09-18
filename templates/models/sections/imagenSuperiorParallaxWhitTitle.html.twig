@@ -12,19 +12,21 @@
     .sinZ-index{
         z-index: 0 !important;
     }
+    .imagen-responsive{
+        max-width: 100%;
+        height: auto;
+    }
 </style>
-<div class="d-sm-none d-md-block m-5">
+<div class="mt-sm-5 pt-sm-5 mt-md-1 pt-md-1" style="height: 1em" >
 
 </div>
-    <section class="u-overlay bg-gris-medio text-white"
-             >
+    <section class="bg-gris-medio text-white my-5">
+
         <!-- Promo Content -->
-        <div class="container sinZ-index my-2">
+        <div class="container-fluid sinZ-index px-0">
             <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="text-center">
-                        <img src="{{section.imagePath|imagine_filter('squared_thumbnail_large_1920if')}}" class="img-fluid" alt="Responsive image">
-                    </div>
+                <div class="col-12 m-0 text-center">
+                        <img src="{{section.imagePath|imagine_filter('squared_thumbnail_large_notas')}}" class="imagen-responsive" alt="Responsive image">
                 </div>
             </div>
         </div>
