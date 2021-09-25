@@ -3,5 +3,7 @@
     - Corrige bug de select2 
     - Mejora List de section
     - Cambios en template redirec con temporizador
+    - Se agrega tipo imagen
 #### Nuevas Funciones
     - Opción de integración con newsletter
+    - Se agrega plantilla imagen Superior Parallax Whit Title
