@@ -130,13 +130,18 @@
                     <div class="col-lg-6 align-self-center">
                         <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
                              src="{{ principal.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                             alt="<?php echo $lemaSinEspacios ?>">
+                             alt="Alameda">
                     </div>
                 </div>
             </div>
         </section>
         <!-- Charlas -->
-        {% for section in principal.section %}
+        {% if principal.section | length > 0 %}
+        {% set sections = principal.section %}
+        {% else %}
+            {% set sections = principal.secciones %}
+        {% endif %}
+        {% for section in sections %}
             <section class="a-content-space-medium bg-fam text-center">
                 <div class="container">
                     <div class="row">
