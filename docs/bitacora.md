@@ -1,3 +1,5 @@
+### v1.4.1
+
 #### Mejoras
     - Modifica new section
     - Corrige bug de select2 
