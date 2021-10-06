@@ -1,4 +1,23 @@
 ## Novedades
+
+### Se lanza v1.4.1 (Oct 2021)
+[Versión 1.4.1](https://github.com/gerMdz/AlamedaCMS/releases/tag/1.4.1)
+
+#### Mejoras
+    - Modifica new section
+    - Corrige bug de select2 
+    - Mejora List de section
+    - Cambios en template redirec con temporizador
+    - Se agrega tipo imagen
+    - Corrige foreach de principal.section que no tenía en cuenta principal.secciones
+    - Corrige vista section
+    - Agrega to_string a ButtonLink
+    - Actualiza a Sf 4.4.32
+
+#### Nuevas Funciones
+    - Opción de integración con newsletter
+    - Se agrega plantilla imagen Superior Parallax Whit Title
+
 ### Se lanza 1.2.1 (2021 Jun 23)
 [Versión 1.2.1](https://github.com/gerMdz/AlamedaCMS/tree/1.2.1)
     
