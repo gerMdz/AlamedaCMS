@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Form\Step\Section;
-
 
 use App\Entity\Section;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -25,7 +23,6 @@ class StepOneType extends AbstractType
     {
         $this->registry = $registry;
     }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -61,19 +58,15 @@ class StepOneType extends AbstractType
                     'label' => 'Página?',
                     'choice_label' => 'linkRoute',
                     'placeholder' => 'Seleccione la página donde se insertará la sección',
-                    'required' => false,
-                    'help' => 'En qué página estará esta sección?',
+                    'required' => true,
+                    'help' => '¿En qué página estará esta sección?',
                     'attr' => [
                         'class' => 'select2-enable',
                     ],
-
                 ]
             )
         ; // Fin del builder
-
-
     }
-
 
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -83,5 +76,4 @@ class StepOneType extends AbstractType
             ]
         );
     }
-
 }

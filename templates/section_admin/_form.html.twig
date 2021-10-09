@@ -15,18 +15,22 @@
 </div>
 <div class="row">
     <div class="col-sm-6 mx-auto">
-        {{ form_row(sectionForm.title) }}
+        {{ form_label(sectionForm.title) }}
+        {{ form_widget(sectionForm.title) }}
+        {{ form_errors(sectionForm.title) }}
     </div>
-    <div class="col-sm-6 mx-auto">
+    <div class="col-sm-4 mx-auto">
         {{ form_row(sectionForm.description) }}
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
-        {{ form_row(sectionForm.contenido) }}
+    <div class="col-sm-11 mx-auto">
+        {{ form_label(sectionForm.contenido) }}
+        {{ form_widget(sectionForm.contenido) }}
+        {{ form_errors(sectionForm.contenido) }}
     </div>
 </div>
-<div class="row">
+<div class="row mt-3">
     <div class="col-sm-4 mx-auto">
         {{ form_row(sectionForm.linkRoute) }}
     </div>
@@ -41,7 +45,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-9 mx-auto">
+    <div class="col-sm-7 mx-auto">
         {{ form_row(sectionForm.imageFile, {
             attr: {
                 'placeholder': 'Seleccione una imagen para la sección'
@@ -52,27 +56,27 @@
         {% if sectionForm.vars.data.imageFilename | default %}
             <a href="{{ uploaded_asset(sectionForm.vars.data.imagePath) }}" target="_blank">
                 <img src="{{ sectionForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
-                     alt="Imagen">
+                     alt="{{ base.siteName }}">
             </a>
         {% endif %}
     </div>
 </div>
-<div class="row">
+<div class="row mt-3">
     <div class="col-sm-4 mx-auto">
         {{ form_row(sectionForm.cssClass) }}
     </div>
     <div class="col-sm-4 mx-auto">
         {{ form_row(sectionForm.columns) }}
     </div>
-    <div class="col-sm-4 mx-auto">
+    <div class="col-sm-2 mx-auto">
         {{ form_row(sectionForm.orden) }}
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-4 mx-auto">
+<div class="row mt-3">
+    <div class="col-sm-3 mx-auto">
         {{ form_row(sectionForm.disponibleAt) }}
     </div>
-    <div class="col-sm-4 mx-auto">
+    <div class="col-sm-3 mx-auto">
         {{ form_row(sectionForm.disponibleHastaAt) }}
     </div>
     <div class="col-sm-4 mx-auto">
@@ -84,5 +88,6 @@
 {{ form_widget(sectionForm._token) }}
 
 <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+<a class="btn btn-info btn--pill" href="{{ path('admin_section_list') }}">Cancelar</a>
 {{ form_end(sectionForm, {'render_rest': true}) }}
 {# {{ form_end(sectionForm) }} #}
