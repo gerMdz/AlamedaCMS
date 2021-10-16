@@ -90,6 +90,16 @@ class SectionController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $section->setImageFilename($newFilename);
             }
+
+            if($this->session->get('principal_id')){
+                $principal_id = $this->session->get('principal_id');
+                $principal = $em->getRepository(Principal::class)->find($principal_id);
+                if($principal){
+                    $section->addPrincipale($principal);
+                }
+                $this->session->remove('principal_id');
+            }
+
             $em->persist($section);
             $em->flush();
 
@@ -97,6 +107,7 @@ class SectionController extends BaseController
 
             return $this->redirectToRoute('admin_section_list');
         }
+
         return $this->render('section_admin/new.html.twig', [
             'sectionForm' => $form->createView()
         ]);
