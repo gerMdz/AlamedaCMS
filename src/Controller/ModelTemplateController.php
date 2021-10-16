@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\ModelTemplate;
-use App\Entity\TypeBlock;
 use App\Form\ModelTemplateType;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\TypeBlockRepository;
@@ -62,12 +61,11 @@ class ModelTemplateController extends AbstractController
     /**
      * @Route("/{block}", name="model_template_index_block", methods={"GET"})
      * @param ModelTemplateRepository $modelTemplateRepository
-     * @param TypeBlockRepository $typeBlockRepository
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function indexBlock(ModelTemplateRepository $modelTemplateRepository, TypeBlockRepository $typeBlockRepository,Request $request, PaginatorInterface $paginator): Response
+    public function indexBlock(ModelTemplateRepository $modelTemplateRepository,Request $request, PaginatorInterface $paginator): Response
     {
         $block = $request->get('block');
         $modelTemplate = $modelTemplateRepository->findModelTemplatesByBlock($block);
@@ -247,6 +245,5 @@ class ModelTemplateController extends AbstractController
         $this->session->set('model_template_id', $modelTemplate->getId());
         $entity = $modelTemplate->getBlock()->getEntity();
         return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower($entity) ));
-
     }
 }

@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -25,6 +26,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PrincipalController extends BaseController
 {
+
+    private $session;
+
+    /**
+     * @param SessionInterface $session
+     */
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/", name="principal_index", methods={"GET"})
      * @param PrincipalRepository $principalRepository
@@ -260,6 +272,7 @@ class PrincipalController extends BaseController
     {
         $form = $this->createForm(SectionAddType::class);
         $form->handleRequest($request);
+        $this->session->set('principal_id', $principal->getId());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -268,6 +281,10 @@ class PrincipalController extends BaseController
             $principal->addSeccione($seccion);
             $entityManager->persist($principal);
             $entityManager->flush();
+
+            if($this->session->get('principal_id')){
+                $this->session->remove('principal_id');
+            }
 
             return $this->redirectToRoute('principal_show', [
                 'id' => $principal->getId(),
