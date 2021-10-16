@@ -64,6 +64,9 @@
                                     <a href="{{ path('model_template_edit', {'id': model_template.id}) }}">
                                         {{ include('bases/_editar.html.twig', {'button_label':'Editar modelo'}) }}
                                     </a>
+                                    <a href="{{ path('model_template_create_block', {'id': model_template.id}) }}">
+                                        {{ include('bases/_ver.html.twig', {'button_label':'Crear '~model_template.block~' desde modelo'}) }}
+                                    </a>
                                 </td>
                             </tr>
                         {% else %}

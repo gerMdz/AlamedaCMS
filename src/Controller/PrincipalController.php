@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -25,6 +26,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PrincipalController extends BaseController
 {
+
+    private $session;
+
+    /**
+     * @param SessionInterface $session
+     */
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/", name="principal_index", methods={"GET"})
      * @param PrincipalRepository $principalRepository
@@ -35,11 +47,12 @@ class PrincipalController extends BaseController
      */
     public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $queryPrincipales = $principalRepository->queryFindAllPrincipals();
+        $bus = $request->get('busq');
+        $queryPrincipales = $principalRepository->queryFindAllPrincipals($bus);
         $principales = $paginator->paginate(
             $queryPrincipales, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            15/*limit per page*/
         );
         return $this->render('principal/index.html.twig', [
             'principals' => $principales,
@@ -92,6 +105,58 @@ class PrincipalController extends BaseController
         }
 
         return $this->render('principal/new.html.twig', [
+            'principal' => $principal,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/new-for-assistant", name="principal_new_assistant", methods={"GET","POST"})
+     * @param Request $request
+     * @param UploaderHelper $uploaderHelper
+     * @return Response
+     * @IsGranted("ROLE_ADMIN")
+     * @throws Exception
+     */
+    public function newAssistant(Request $request, UploaderHelper $uploaderHelper): Response
+    {
+
+        $principal = new Principal();
+        $user = $this->getUser();
+        $ahora = new DateTime('now');
+        $principal->setAutor($user);
+        $principal->setCreatedAt($ahora);
+        $principal->setUpdatedAt($ahora);
+        $form = $this->createForm(PrincipalType::class, $principal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var Principal $principal */
+            $principal = $form->getData();
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+            $linkRoute = $form['linkRoute']->getData();
+
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                $principal->setImageFilename($newFilename);
+            }
+            if($principal->getLinkRoute() != null){
+                $principal->setLinkRoute($principal->getLinkRoute());
+            }else{
+                $principal->setLinkRoute($principal->getTitulo());
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($principal);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin');
+        }
+
+        return $this->render('principal/newAssistant.html.twig', [
             'principal' => $principal,
             'form' => $form->createView(),
         ]);
@@ -207,6 +272,7 @@ class PrincipalController extends BaseController
     {
         $form = $this->createForm(SectionAddType::class);
         $form->handleRequest($request);
+        $this->session->set('principal_id', $principal->getId());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -215,6 +281,10 @@ class PrincipalController extends BaseController
             $principal->addSeccione($seccion);
             $entityManager->persist($principal);
             $entityManager->flush();
+
+            if($this->session->get('principal_id')){
+                $this->session->remove('principal_id');
+            }
 
             return $this->redirectToRoute('principal_show', [
                 'id' => $principal->getId(),

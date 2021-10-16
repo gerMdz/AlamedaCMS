@@ -1,11 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
-{% block title %}New TypeBlock{% endblock %}
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
+{% endblock %}
 
-{% block body %}
-    <h1>Create new TypeBlock</h1>
+{% block title %}Nuevo TypeBlock{% endblock %}
 
-    {{ include('type_block/_form.html.twig') }}
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary py-1">
+                <h4 class="card-title ">TypeBLock (Bloques Principales de AlamedaCMS)</h4>
+                <p class="card-category"> Nuevo TypeBLock </p>
+            </div>
+            <div class="card-body">
 
-    <a href="{{ path('type_block_index') }}">back to list</a>
+                {{ include('type_block/_form.html.twig') }}
+                <a href="{{ path('type_block_index') }}" class="inline-block">
+                    {% include 'bases/_volver.html.twig' %}
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

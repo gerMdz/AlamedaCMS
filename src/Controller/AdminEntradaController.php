@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
-use App\Entity\Section;
 use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;

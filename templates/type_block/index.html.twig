@@ -1,41 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
 {% block title %}TypeBlock index{% endblock %}
 
-{% block body %}
-    <h1>TypeBlock index</h1>
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title ">TypeBLock (Bloques Principales de AlamedaCMS)</h4>
+                <p class="card-category"> Listado </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <a href="{{ path('type_block_new') }}">
+                        {{ include('bases/_crear_nuevo.html.twig') }}
+                    </a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Identifier</th>
-                <th>IsActive</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for type_block in type_blocks %}
-            <tr>
-                <td>{{ type_block.id }}</td>
-                <td>{{ type_block.name }}</td>
-                <td>{{ type_block.description }}</td>
-                <td>{{ type_block.identifier }}</td>
-                <td>{{ type_block.isActive ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('type_block_show', {'id': type_block.id}) }}">show</a>
-                    <a href="{{ path('type_block_edit', {'id': type_block.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Identificador</th>
+                            <th class="text-center">Está Activo?</th>
+                            <th><i class="fa fa-cogs"></i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for type_block in type_blocks %}
+                            <tr>
+                                <td>{{ type_block.id }}</td>
+                                <td>{{ type_block.name }}</td>
+                                <td>{{ type_block.description }}</td>
+                                <td>{{ type_block.identifier }}</td>
+                                <td class="text-center text-primary">{{ type_block.isActive ? '<i class="fas fa-check-square"> </i>': '<i class="far fa-square"></i>' }}</td>
+                                <td>
+                                    <a href="{{ path('type_block_show', {'id': type_block.id}) }}">
+                                        {% include 'bases/_ver.html.twig' %}
+                                    </a>
+                                    <a href="{{ path('type_block_edit', {'id': type_block.id}) }}">
+                                        {% include 'bases/_editar.html.twig' %}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">No se encontraron Bloques</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
-    <a href="{{ path('type_block_new') }}">Create new</a>
+                    <a href="{{ path('type_block_new') }}">
+                        {% include 'bases/_crear_nuevo.html.twig' %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

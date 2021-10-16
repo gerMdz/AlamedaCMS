@@ -1,95 +1,145 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
-{% block title %}Sección{{ section.identificador }} {% endblock %}
+{% block title %}Vista (S) {{ section.identificador }} {% endblock %}
 
 {% block content %}
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header card-header-primary">
-                <h4 class="card-title ">Sección </h4>
-                <p class="card-category"> Datos {{ section.title }}</p>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-
-                        <tbody>
-                        <tr>
-                            <th>Id</th>
-                            <td>{{ section.id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Título <small>(identificador)</small></th>
-                            <td>{{ section.title | replace({'<p>':'', '</p>':'<br/>'}) | raw }} <small>({{ section.identificador }})</small>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Entradas</th>
-                            <td>
-                                {% for entrada in section.entrada %}
-                                    <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
-                                        {{ entrada.titulo }}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title ">Datos Sección
+                <span class="card-category"><i>"{{ section.title | replace({'<p>':'', '</p>':''}) | raw }}"</i></span>
+            </h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id - Nombre Sección</th>
+                        <td>{{ section.id }} - {{ section.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Descripción de la Sección</th>
+                        <td>{{ section.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Título <small>(identificador)</small></th>
+                        <td>{{ section.title | replace({'<p>':'', '</p>':''}) | raw }}
+                            <small>({{ section.identificador }})</small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Clase css</th>
+                        <td>{{ section.cssClass | default('No Posee') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Template</th>
+                        <td>
+                            {{ section.template | default('-') }} -
+                            {{ section.modelTemplate | default('No Posee') }}</td>
+                    </tr>
+                    <tr>
+                        <th>¿Dónde se muestra?</th>
+                        <td>
+                            {% if ((section.principales| length) > 0  ) or ((section.indexAlamedas | length) > 0) %}
+                                {% for principal in section.principales %}
+                                    <a href="{{ path('principal_show', {'id': principal.id}) }}">
+                                        {{ principal.linkRoute }}
                                     </a>
                                     <br/>
                                 {% endfor %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Contenido</th>
-                            <td>{{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}</td>
-                        </tr>
-                        <tr>
-                            <th>LinkRoute</th>
-                            <td>{{ section.linkRoute }}</td>
-                        </tr>
-                        <tr>
-                            <th>ImageFilename</th>
-                            <td>{{ section.imageFilename }}</td>
-                        </tr>
-                        <tr>
-                            <th>Creada</th>
-                            <td>{{ section.createdAt ? section.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>Actualizada</th>
-                            <td>{{ section.updatedAt ? section.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>Disponible desde</th>
-                            <td>{{ section.disponibleAt ? section.disponibleAt|date('Y-m-d H:i:s') : '' }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Disponible hasta</th>
-                            <td>{{ section.disponibleHastaAt ? section.disponibleHastaAt|date('Y-m-d H:i:s') : '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>Principales <small>(donde están contenidos)  </small></th>
-                            <td>
-                                {% if section.principales %}
-                                    {% for principal in section.principales %}
-                                <a href="{{ path('principal_show', {'id': principal.id}) }}">
-                                    {{ principal.titulo | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                                {% for index in section.indexAlamedas %}
+                                    <i class="fa fa-check-square"> </i>
+                                    <a href="{{ path('index_alameda_index') }}">
+                                        Index
+                                    </a>
+                                {% endfor %}
+                            {% else %}
+                                No definido
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Orden preestablecido</th>
+                        <td> {{ section.orden }}°</td>
+                    </tr>
+                    <tr>
+                        <th>Entradas</th>
+                        <td>
+                            {% for entrada in section.entrada %}
+                                <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                 </a>
-                                    {% endfor %}
-                                {% endif %}
-                                <small>(Orden {{ section.orden }} )</small>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-
-                <a href="{{ path('admin_section_list') }}" class="btn btn-info">Volver al listado de secciones</a>
-
-                <a href="{{ path('admin_section_edit', {'id': section.id}) }}" class="btn btn-warning">Editar</a>
-
-
+                                <br/>
+                            {% else %}
+                                No posee
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Contenido</th>
+                        <td>{{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}</td>
+                    </tr>
+                    <tr>
+                        <th>LinkRoute <br/> Link externo <small>(Abre otra página?</small></th>
+                        <td>{{ section.linkRoute | default('No posee') }}
+                            <br/> {{ section.linkPosting | default('No posee') }}
+                            <small>({{ section.isLinkExterno?'Si' : 'No' }})</small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Imagen</th>
+                        <td>{% if (section.imageFilename != null) %}
+                                <img class="article-img" alt="{{ base.lema }}"
+                                     src="{{ section.imagePath|imagine_filter('squared_thumbnail_100') }}">
+                                {{ section.imageFilename | u.truncate(30, '...') }}
+                            {% else %}
+                                No tiene imagen
+                            {% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Creada (autor)</th>
+                        <td>
+                            {{ section.createdAt ? section.createdAt|date('Y-m-d H:i:s') : '' }}
+                            ({{ section.autor | default('No indicado') }})
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Actualizada</th>
+                        <td>{{ section.updatedAt ? section.updatedAt|date('Y-m-d H:i:s') : 'No ha sido actualizada' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Disponible desde</th>
+                        <td>{{ section.disponibleAt ? section.disponibleAt|date('Y-m-d H:i:s') : 'Permanente' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Disponible hasta</th>
+                        <td>{{ section.disponibleHastaAt ? section.disponibleHastaAt|date('Y-m-d H:i:s') : 'Permanente' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Botones</th>
+                        <td>
+                            {% for buton in section.button %}
+                                {{ buton }}
+                            {% else %}
+                                No posee
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+
+            <a href="{{ path('admin_section_list') }}" class="btn btn-info">
+                {% include 'bases/_volver-sin-button.html.twig' %}
+            </a>
+            <a href="{{ path('admin_section_edit', {'id': section.id}) }}" class="btn btn-warning">
+                {% include 'bases/_editar.html.twig' %}
+            </a>
         </div>
     </div>
-    {% include('admin/_modal.html.twig') %}
+</div>
+{% include('admin/_modal.html.twig') %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -97,9 +147,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
-
     <script src="{{ asset('js/admin_section_form.js') }}"></script>
-
     <script type="application/javascript">
         $(function () {
             $(".btn-modal").click(function (ev) {

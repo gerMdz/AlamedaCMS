@@ -60,7 +60,8 @@ class ReservanteType extends AbstractType
             ->add('save', SubmitType::class, array(
                 'label' => 'Reservar',
                 'attr' => array('class' => 'btn btn-primary btn--pill')
-            )); // ;Final del builder
+            ))
+        ; // ;Final del builder
 
     }
 

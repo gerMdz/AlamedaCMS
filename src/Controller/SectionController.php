@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
-use App\Entity\ModelTemplate;
 use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\SectionFormType;
@@ -11,6 +10,7 @@ use App\Form\Step\Section\StepOneType;
 use App\Form\Step\Section\StepThreeType;
 use App\Form\Step\Section\StepTwoType;
 use App\Repository\EntradaRepository;
+use App\Repository\ModelTemplateRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -30,6 +31,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SectionController extends BaseController
 {
+
+    private $session;
+
+    /**
+     * SectionController constructor.
+     * @param SessionInterface $session
+     */
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @param SectionRepository $repository
      * @param PaginatorInterface $paginator
@@ -39,9 +52,7 @@ class SectionController extends BaseController
      */
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
-//        $seccion = $repository->getSections()->getQuery()->getResult();
         $seccion = $repository->getSections();
-
         $secciones = $paginator->paginate(
             $seccion, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
@@ -79,6 +90,16 @@ class SectionController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $section->setImageFilename($newFilename);
             }
+
+            if($this->session->get('principal_id')){
+                $principal_id = $this->session->get('principal_id');
+                $principal = $em->getRepository(Principal::class)->find($principal_id);
+                if($principal){
+                    $section->addPrincipale($principal);
+                }
+                $this->session->remove('principal_id');
+            }
+
             $em->persist($section);
             $em->flush();
 
@@ -86,6 +107,7 @@ class SectionController extends BaseController
 
             return $this->redirectToRoute('admin_section_list');
         }
+
         return $this->render('section_admin/new.html.twig', [
             'sectionForm' => $form->createView()
         ]);
@@ -186,11 +208,14 @@ class SectionController extends BaseController
      */
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
     {
-
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
         $twig = $section->getModelTemplate().".html.twig";
-        return $this->render('sections/'.$twig,[
+        $model = 'sections/'.$twig;
+        if($this->get('twig')->getLoader()->exists('models/sections/'.$twig)) {
+            $model = 'models/sections/'.$twig;
+        }
+        return $this->render($model,[
            'entradas' => $entradas,
             'section' => $section
         ]);
@@ -244,10 +269,11 @@ class SectionController extends BaseController
      * @Route("/new/step2/{id}", name="admin_section_new_step2", methods={"GET","POST"})
      * @param Request $request
      * @param Section $section
+     * @param ModelTemplateRepository $modelTemplateRepository
      * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
-    public function newStepTwo(Request $request, Section $section): Response
+    public function newStepTwo(Request $request, Section $section, ModelTemplateRepository $modelTemplateRepository ): Response
     {
         $section->setTitle($section->getName());
         $form = $this->createForm(StepTwoType::class, $section);
@@ -255,6 +281,14 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $model_template_id = $this->session->get('model_template_id');
+            if($model_template_id){
+                $model_template = $modelTemplateRepository->find($model_template_id);
+                if($model_template){
+                    $section->setModelTemplate($model_template);
+                }
+                $this->session->remove('model_template_id');
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step3', [

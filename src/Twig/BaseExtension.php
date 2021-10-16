@@ -5,6 +5,7 @@ namespace App\Twig;
 use App\Entity\IndexAlameda;
 use App\Entity\Invitado;
 use App\Entity\MetaBase;
+use App\Entity\NewsSite;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
@@ -54,6 +55,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('redirection', [$this, 'redirection']),
             new TwigFunction('completa_texto', [$this, 'completa_texto']),
             new TwigFunction('completa_lugar', [$this, 'completa_lugar']),
+            new TwigFunction('form_suscripto_newsletter', [$this, 'form_suscripto_newsletter']),
         ];
     }
 
@@ -111,7 +113,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             throw new InvalidArgumentException('No se puede redireccionar a una URL vacía.');
         }
 
-        echo "<meta http-equiv = 'refresh' content='0;url = $link' />";
+        echo "<meta http-equiv = 'refresh' content='5;url = $link' />";
 
     }
 
@@ -159,4 +161,27 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
         return sprintf($texto, $valor, $valor, $valor, $valor);
     }
+
+    public function form_suscripto_newsletter(string $type,string $fuente): string
+    {
+        switch ($type){
+            case 'script':
+            default:
+                return $this->divScript($fuente);
+        }
+    }
+
+    /**
+     * @param string $fuente
+     * @return string
+     */
+    protected function divScript(string $fuente): string
+    {
+        $crea_formulario = $this->container->get(EntityManagerInterface::class)
+            ->getRepository(NewsSite::class)
+            ->findBy(['srcType' =>'script', 'srcSite' => $fuente]);
+
+        return $crea_formulario[0]->getSrcCodigo();
+    }
+
 }

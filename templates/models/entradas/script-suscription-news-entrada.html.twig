@@ -1,0 +1,19 @@
+<div class="{{ entrada.destacado?'col-lg-6':'col-lg-3'}}  col-md-6 mb-5 mx-auto">
+    <div class="card h-90">
+        <div class="card-body">
+{#            <h2 class="card-title">{{ entrada.titulo | replace({'<p>':'', '</p>':''})| capitalize | raw }}</h2>#}
+{#            <h3 class="card-text">#}
+                <script type="text/javascript" src="{{form_suscripto_newsletter('script',entrada.linkPosting)| raw  }}"></script>
+{#            </h3>#}
+            {% if entrada.imageFilename != null %}
+            <img src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
+                 class="img-fluid card-img-bottom " alt="{{ base.siteName }}">
+            {%  endif %}
+        </div>
+        <div class="card-footer">
+            <h6>
+{#                {{ entrada.footer }}#}
+            </h6>
+        </div>
+    </div>
+</div>

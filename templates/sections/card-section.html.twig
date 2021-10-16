@@ -1,7 +1,8 @@
 <section class="p5-5 mt-1 " id="second">
     <div class="row text-center">
         {% for entrada in section.entrada %}
-            {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' with { 'section':entrada } %}
+            {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'section':entrada } %}
+            {%  include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
         {% endfor %}
 
     </div>

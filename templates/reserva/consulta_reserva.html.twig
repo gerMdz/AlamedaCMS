@@ -54,14 +54,14 @@
                                 </div>
 
                                 <div class="col-sm-12 p-0 text-center">
-                                    <button class="btn">{{ button_label|default('Buscar') }}</button>
+                                    <button class="btn btn-primary">{{ button_label|default('Buscar') }}</button>
                                 </div>
 
                                 {{ form_widget(form._token) }}
                             </div>
                             <div class="card-footer">
                                 <div class="cols-sm-12 text-center">
-                                    <a class="btn btn-primary" href="{{ path('reserva_index') }}">
+                                    <a class="btn" href="{{ path('reserva_index') }}">
                                         Podés reservar desde aquí
                                     </a>
                                 </div>

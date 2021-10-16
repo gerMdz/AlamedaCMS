@@ -4,13 +4,14 @@ namespace App\Form;
 
 use App\Entity\ModelTemplate;
 use App\Entity\Principal;
+use App\Repository\ModelTemplateRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -20,6 +21,7 @@ class PrincipalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
             ->add('titulo', CKEditorType::class, [
                 'required' => false,
                 'config' => [
@@ -29,6 +31,7 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+
             ->add('contenido', CKEditorType::class, [
                 'required' => true,
                 'config' => [
@@ -38,7 +41,12 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('linkRoute')
+
+            ->add('linkRoute', TextType::class, [
+                'label' => 'linkRoute',
+                'help' => 'Texto de la url '
+            ] )
+
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'required' => false,
@@ -54,47 +62,56 @@ class PrincipalType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
-            ->add('likes')
-            ->add('createdAt', DateTimeType::class, array(
-                'widget' => 'single_text',
-                'required' => false,
-                'html5' => true,
-                'label' => 'Creado',
-                'format' => 'dd-MM-yyyy HH:mm',
-                'attr' => [
-                    'readonly' => true
-                ]
-            ))
-            ->add('updatedAt', DateTimeType::class, array(
-                'widget' => 'single_text',
-                'required' => false,
-                'html5' => true,
-                'label' => 'Editado',
-                'format' => 'dd-MM-yyyy HH:mm',
-                'attr' => [
-                    'readonly' => true
-                ]
-            ))
+
             ->add('autor', HiddenType::class, [
                 'property_path' => 'autor.id',
                 'attr' => [
                     'class' => 'hidden'
                 ]
             ])
-            ->add('principal')
-            ->add('cssClass')
+
+            ->add(
+                'principal',
+                EntityType::class,
+                [
+                    'class' => Principal::class,
+                    'label' => 'Principal (parent)?',
+                    'choice_label' => 'linkRoute',
+                    'placeholder' => 'Seleccione parent principal',
+                    'required' => false,
+                    'help' => 'Es parte de un grupo de páginas?',
+                    'attr' => [
+                        'class' => 'select2-enable',
+                        'placeholder' => 'Seleccione parent principal',
+                    ],
+
+                ]
+            )
+
+            ->add('cssClass', TextType::class, [
+                'label'=> 'Css',
+                'help' => 'Agregar una clase css ya definida',
+                'required' => false,
+            ])
+
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
+                'query_builder' => function (ModelTemplateRepository $er) {
+                    return $er->findModelTemplatesByBlock('page');
+                },
                 'required' => false,
                 'label' => 'Template',
+                'help'=>'Plantilla ya definida',
                 'placeholder' => 'Seleccione el modelo principal de la página',
+                'attr' => [
+                    'class' => 'select2-enable'
+                ]
             ])
 
             ->add('isActive',CheckboxType::class, [
                 'required' => false,
                 'label' => 'Activa?',
                 'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
                 'attr' => [
                     'class' => 'form-check-input ',
                 ],

@@ -50,22 +50,23 @@ class SectionFormType extends AbstractType
                 'help' => 'Una descripción que diferencie a las otras secciones parecidas'
             ])
             ->add('identificador', TextType::class, [
-                'help' => 'Opcional, normalmente para usar con funciones JS'
+                'help' => 'Opcional, para usar con funciones JS, identifica a la sección dentro de una página'
             ])
             ->add('disponible', CheckboxType::class, [
                 'required' => false,
-                'label' => 'Disponible?',
+                'label' => '¿Disponible?',
                 'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
                 'attr' => [
                     'class' => 'form-check-input ',
                 ],
             ])
             ->add('disponibleAt', null, [
                 'widget' => 'single_text',
-                'attr' => [
-                    'class' => 'datetimepicker'
-                ]
+                'label'=>'Inicia',
+                'html5' => true,
+                'required' => false,
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'datetimepicker']
             ])
             ->add('columns', IntegerType::class, [
                 'label' => 'Cantidad de columnas',
@@ -73,21 +74,12 @@ class SectionFormType extends AbstractType
             ])
             ->add('disponibleHastaAt', DateTimeType::class, array(
                 'widget' => 'single_text',
-                'required' => false,
+                'label'=>'Finaliza',
                 'html5' => true,
-                'label' => 'Finaliza',
-                'format' => 'dd-MM-yyyy HH:mm',
-                'attr' => [
-                    'class' => 'form-control datetimepicker'
-                ]
-            ))
-            ->add('principal', EntityType::class, [
-                'class' => 'App\Entity\Principal',
-                'label' => 'Página?',
-                'placeholder' => 'Seleccione la página donde se insertará la sección',
                 'required' => false,
-
-            ])
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'datetimepicker']
+            ))
             ->add('orden', IntegerType::class, [
                 'label' => 'Orden en la página',
                 'required' => false
@@ -98,7 +90,10 @@ class SectionFormType extends AbstractType
                     return $er->findByTypeSection();
                 },
                 'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
-                'required' => false
+                'required' => false,
+                'attr'=>[
+                    'class'=>'select2-enable'
+                ]
             ])
             ->add('contenido', CKEditorType::class, [
                 'required' => false,
@@ -118,7 +113,6 @@ class SectionFormType extends AbstractType
                         'mimeTypesMessage' => 'El archivo no es considerada una imagen',
                     ]),
                 ],
-
                 'attr' => [
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
