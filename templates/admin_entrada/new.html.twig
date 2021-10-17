@@ -1,10 +1,12 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
 {% block title %}Nueva Entrada{% endblock %}
 
 {% block content %}
 
-    <h5>Nueva Entrada</h5>
+    <div class="col-sm-6 mx-auto text-center m-4">
+        <h4 class="border border-primary border-top-0">Crear nueva entrada</h4>
+    </div>
 
     <div class="form-container">
         {{ include('admin_entrada/_form.html.twig') }}
