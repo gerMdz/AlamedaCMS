@@ -10,6 +10,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,9 +34,13 @@ class EntradaType extends AbstractType
                         'language' => 'es',
                         'input_sync' => true,
                     ],
+                    'label_attr'=>[
+                        'class' => 'text-primary'
+                    ],
                     'attr' => [
                         'required' => false,
-                        'class' => 'form-control',
+                        'rows' => 10,
+//                        'class' => 'form-control',
                     ],
                 ]
             )
@@ -44,6 +49,9 @@ class EntradaType extends AbstractType
                 TextType::class,
                 [
                     'required' => false,
+                    'label_attr'=>[
+                        'class' => 'text-primary'
+                    ],
                     'attr' => [
                         'class' => 'form-control',
                     ],
@@ -58,6 +66,9 @@ class EntradaType extends AbstractType
                         'uiColor' => '#ffffff',
 //                    'toolbar' => 'full',
                         'language' => 'es',
+                    ],
+                    'label_attr'=>[
+                        'class' => 'text-primary'
                     ],
                     'attr' => [
                         'required' => false,
@@ -78,14 +89,18 @@ class EntradaType extends AbstractType
                     'invalid_message' => 'Por favor ingrese un autor',
                 ]
             )
-            ->add('linkPosting')
+            ->add('linkPosting', TextType::class,[
+                'label_attr'=>[
+                    'class' => 'text-primary'
+                ],
+            ])
             ->add(
                 'isLinkExterno',
                 CheckboxType::class,
                 [
                     'required' => false,
                     'label' => false,
-                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                    'label_attr' => ['class' => 'checkbox-custom text-primary'],
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
@@ -96,6 +111,9 @@ class EntradaType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'Pie de la entrada',
+                    'label_attr'=>[
+                        'class' => 'text-primary'
+                    ],
                     'required' => false,
                     'attr' => [
                         'class' => 'form-control',
@@ -139,9 +157,21 @@ class EntradaType extends AbstractType
                     ],
                 ]
             )
-            ->add('disponibleAt')
-            ->add('disponibleHastaAt')
-            ->add('eventoAt')
+            ->add('disponibleAt', DateTimeType::class, [
+                'label_attr'=>[
+                    'class' => 'text-primary'
+                ],
+            ])
+            ->add('disponibleHastaAt', DateTimeType::class, [
+                'label_attr'=>[
+                    'class' => 'text-primary'
+                ],
+            ])
+            ->add('eventoAt', DateTimeType::class, [
+                'label_attr'=>[
+                    'class' => 'text-primary'
+                ],
+            ])
 
 //            ->add('section')
             ->add('orden')

@@ -38,32 +38,45 @@
     <div class="col-sm-1"></div>
 </div>
 <div class="row">
-
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         {{ form_row(entradaForm.titulo) }}
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
+        {{ form_row(entradaForm.contenido) }}
+    </div>
+</div>
+<div class="row pt-3">
+    <div class="col-sm-3 mx-auto">
         {{ form_row(entradaForm.footer) }}
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-3 mx-auto">
         {{ form_row(entradaForm.linkRoute) }}
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-3 mx-auto">
         {{ form_row(entradaForm.linkPosting) }}
     </div>
-    <div class="col-sm-2 text-center form-check text-dark">
-        <label for="entrada_isLinkExterno">
+    <div class="col-sm-2 mx-auto text-center form-check text-dark">
+        <label for="entrada_isLinkExterno" class="text-primary">
             Es Externo?<br/>
             {{ form_row(entradaForm.isLinkExterno) }}
         </label>
     </div>
-    <div class="col-sm-12">
-        {{ form_row(entradaForm.autor) }}
+</div>
+<div class="row pt-3">
+    <div class="col-sm-3 mx-auto">
         {{ form_row(entradaForm.eventoAt) }}
     </div>
-    <div class="col-sm-12">
-        {{ form_row(entradaForm.contenido) }}
+    <div class="col-sm-3 mx-auto">
+        {{ form_row(entradaForm.disponibleAt) }}
     </div>
+    <div class="col-sm-3 mx-auto">
+        {{ form_row(entradaForm.disponibleHastaAt) }}
+    </div>
+    <div class="col-sm-12">
+        {{ form_row(entradaForm.autor) }}
+
+    </div>
+
     <div class="col-sm-9">
         {{ form_row(entradaForm.imageFile, {
             attr: {
