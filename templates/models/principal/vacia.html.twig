@@ -20,7 +20,7 @@
     <div role="main" class="container {{ principal.cssClass | default(' bg-white') }}">
 
         {% for section in principal.secciones %}
-            {% include 'sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section } %}
+{#            {% include 'sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section } %}#}
             {% include 'models/sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section }  %}
         {% endfor %}
     </div>
