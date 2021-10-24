@@ -9,7 +9,6 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * @method Section|null find($id, $lockMode = null, $lockVersion = null)
@@ -50,9 +49,8 @@ class SectionRepository extends ServiceEntityRepository
 
     private function addIsDisponibleQueryBuilder(QueryBuilder $qb = null): QueryBuilder
     {
-        $qb = $this->getOrCreateQueryBuilder($qb)
+        return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('s.disponible = true');
-        return $qb;
     }
 
     private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
@@ -110,4 +108,14 @@ class SectionRepository extends ServiceEntityRepository
         }
     }
 
+    public function queryFindSectionsByPrincipal(string $id): QueryBuilder
+    {
+        return $this->createQueryBuilder('s')
+            ->select()
+            ->leftJoin('s.principales', 'p')
+            ->andWhere('p.id = :id')
+            ->andWhere('s.disponible = true')
+            ->setParameter('id', $id)
+            ->orderBy('s.orden', 'ASC');
+    }
 }

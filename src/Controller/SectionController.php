@@ -211,7 +211,7 @@ class SectionController extends BaseController
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
         $twig = $section->getModelTemplate().".html.twig";
-        $model = 'sections/'.$twig;
+        $model = 'models/sections/'.$twig;
         if($this->get('twig')->getLoader()->exists('models/sections/'.$twig)) {
             $model = 'models/sections/'.$twig;
         }
