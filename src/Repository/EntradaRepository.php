@@ -88,6 +88,7 @@ class EntradaRepository extends ServiceEntityRepository
                 OR
                 (e.isPermanente = true)'
             )
+            ->andWhere('e.publicadoAt is not null')
             ->andWhere('s.id = :section')
             ->setParameter('today', new DateTime('now'))
             ->setParameter('section', $seccion)

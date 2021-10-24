@@ -1,0 +1,57 @@
+<section class=" {{ section.cssClass }} mb-0 js-parallax bg-light " id="{{ section.identificador }}">
+    <div class="container">
+        {% for entrada in section.entrada %}
+            <div class="row a-content-space-medium bg-white ">
+                <div class="col-lg-7 order-first mb-4 mb-lg-0">
+                    <!-- Mockup Browser -->
+                    <figure>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             viewBox="0 0 857 40" style="enable-background:new 0 0 857 40;" xml:space="preserve">
+                  <g>
+                      <path style="fill: #fff;"
+                            d="M856.8,40.2H0.8V19c0-10.5,8.5-19,19-19h818c10.5,0,19,8.5,19,19V40.2z"/>
+                  </g>
+                            <g>
+                                <ellipse style="fill: #fb4143;" cx="28.5" cy="20.1" rx="6" ry="6"/>
+                                <ellipse style="fill: #fab633;" cx="48.4" cy="20.1" rx="6" ry="6"/>
+                                <ellipse style="fill: #0dd157;" cx="68.4" cy="20.1" rx="6" ry="6"/>
+                            </g>
+                </svg>
+                    </figure>
+                    <!-- End Mockup Browser -->
+
+                    <img alt="{{ entrada.linkRoute }}"
+                         src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
+                         class="img-fluid"/>
+
+
+                </div>
+                <div class="col-sm-5 w-md-50 vh-100 mx-auto text-center my-auto">
+                    <div class="row align-items-center">
+                        <div class="border border-primary p-5 mb-auto p-2">
+                            <p class="mb-4 mx-auto ">
+                                {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                            </p>
+                        </div>
+                        <div class="col-sm-12 text-center mb-0 vh-100 ">
+
+                            {% if (entrada.linkPosting) %}
+                                <a class="btn-alameda"
+                                   href="{{ entrada.linkPosting }}"
+                                        {% if (entrada.isLinkExterno) %}
+                                            target="_blank"
+                                        {% endif %}
+                                >
+                                    {{ entrada.footer | default('Visitanos') }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- End Video Principal -->
+            <hr class="my-6">
+        {% endfor %}
+    </div>
+</section>

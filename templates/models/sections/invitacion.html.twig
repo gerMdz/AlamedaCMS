@@ -1,0 +1,82 @@
+<section class="u-content-space mx-auto text-center "
+         style=" background-image: url({{ section.imagePath|imagine_filter('squared_thumbnail_large_1920if') }});
+                 background-repeat: no-repeat; background-size:cover;">
+    <div class="container">
+        <div class="row">
+            {% for entrada in entradas %}
+                {% if (entrada.orden == 1) %}
+                    <div class="col-lg-6 align-self-center pr-5 ">
+                        <header class="mb-5 text-left fuente-arial-nova">
+
+                            {% if (entrada.isSinTitulo != 1) %}
+                                <h2 class="h3 text-left fuente-arial-nova">
+
+                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                </h2>
+                            {% endif %}
+                            <span class="text-black-75 text-left">
+                            {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
+                        </span>
+                        </header>
+                    </div>
+                {% else %}
+                    <div class="col-lg-6 align-items-center pl-5 ml-auto ">
+                        <div class="mx-auto bg-white p-5 text-center">
+                            <h4 class="text-alameda text-center text-uppercase text-realce-alameda">
+
+                                {% if (entrada.isSinTitulo != 1) %}
+                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                {% endif %}
+                            </h4>
+                            <hr/>
+                            <p class="mx-auto text-center ">
+                                {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
+                                {% if (entrada.contacto) %}
+                                    {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto } %}
+                                {% endif %}
+                            </p>
+                            {% if (entrada.footer) %}
+                                {% if (entrada.linkPosting) %}
+                                    <a class="btn-alameda"
+                                       href="{{ entrada.linkPosting }}"
+                                            {% if (entrada.isLinkExterno) %}
+                                                target="_blank"
+                                            {% endif %}
+                                    >
+                                        {{ entrada.footer }}
+                                    </a>
+                                {% else %}
+                                    {% if (entrada.linkRoute) %}
+                                        <a class="btn-alameda"
+                                           href="{{ entrada.linkRoute }}"
+                                        >
+                                            {{ entrada.footer }}
+                                        </a>
+                                    {% else %}
+                                        {{ entrada.footer }}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                            {% if (entrada.button) %}
+                                {% for boton in entrada.button %}
+                                            <a class="btn-alameda"
+                                               href="{{ boton.linkRoute }}"
+                                                    {% if (boton.isLinkExterno) %}
+                                                        target="_blank"
+                                                    {% endif %}
+                                            >
+                                                {{ boton.textButton }}
+                                            </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- End Article Image -->
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <!-- Article Content -->
+
+
+        </div>
+    </div>
+</section>
