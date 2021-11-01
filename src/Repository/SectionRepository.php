@@ -9,6 +9,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use DateTime;
 
 /**
  * @method Section|null find($id, $lockMode = null, $lockVersion = null)
@@ -117,5 +118,33 @@ class SectionRepository extends ServiceEntityRepository
             ->andWhere('s.disponible = true')
             ->setParameter('id', $id)
             ->orderBy('s.orden', 'ASC');
+    }
+
+    public function sectionByDateAndActiveAndModification($fecha_inicial=null,$fecha_final=null, ?array $notSection): QueryBuilder
+    {
+        if(!$fecha_final){
+            $fecha_final = new DateTime('now');
+        }
+        if(!$fecha_inicial){
+            $fecha_inicial = $fecha_final->modify("-7 days");
+        }
+        $qb = $this->addIsDisponibleQueryBuilder();
+        $qb->andWhere(
+            $qb->expr()->between(
+                's.updatedAt',
+                ':inicio',
+                ':final'
+            )
+        )
+            ->setParameter('inicio', $fecha_inicial)
+            ->setParameter('final', $fecha_final);
+
+        $qb->andWhere($qb->expr()->notIn('s.id', $notSection))
+
+        ;
+
+        return $qb;
+
+
     }
 }

@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Entrada;
+use App\Repository\EntradaRepository;
 use App\Repository\MetaBaseRepository;
 use App\Repository\PrincipalRepository;
+use App\Repository\SectionRepository;
+use Doctrine\ORM\Query\QueryException;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,5 +47,24 @@ class AdminController extends AbstractController
 //        return $this->render('admin/index_escritor.html.twig', [
 //            'principals' => $principales,
 //        ]);
+    }
+
+    /**
+     * @Route("/admin/consulta-entradas-nuevas", name="admin_entradas_nuevas")
+     * @throws QueryException
+     */
+    public function consultaEntradasNuevas(EntradaRepository $entradaRepository, SectionRepository $sectionRepository,Request $request)
+    {
+
+        $entradas = $entradaRepository->entradasByDateAndActiveAndModification();
+        $notSections = [];
+        /** @var Entrada $e */
+        foreach ($entradas as $e){
+            foreach ($e->getSections() as $s){
+                array_push($notSections, $s->getId());
+            }
+        }
+        $sectionRepository->sectionByDateAndActiveAndModification(null, null, $notSections);
+
     }
 }

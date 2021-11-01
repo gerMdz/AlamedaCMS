@@ -10,7 +10,6 @@ use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-
 /**
  * @method Entrada|null find($id, $lockMode = null, $lockVersion = null)
  * @method Entrada|null findOneBy(array $criteria, array $orderBy = null)
@@ -122,7 +121,7 @@ class EntradaRepository extends ServiceEntityRepository
         ;
     }
     */
-    private function addIsPublishedQueryBuilder(QueryBuilder $qb = null, $user = null)
+    private function addIsPublishedQueryBuilder(QueryBuilder $qb = null, $user = null): QueryBuilder
     {
         $qb = $this->getOrCreateQueryBuilder($qb)
             ->andWhere('e.publicadoAt IS NOT NULL');
@@ -134,7 +133,7 @@ class EntradaRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    private function addIsDisponibleForSeccion(QueryBuilder $qb = null, $seccion)
+    private function addIsDisponibleForSeccion(QueryBuilder $qb = null, $seccion): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('s.publicadoAt IS NOT NULL');
@@ -157,9 +156,39 @@ class EntradaRepository extends ServiceEntityRepository
         if ($qSearch) {
             $qb->innerJoin('e.autor', 'a')
                 ->addSelect('a');
-            $qb->andWhere('upper(e.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(e.titulo) LIKE :qsearch')
-                ->setParameter('qsearch', '%' . strtoupper($qSearch) . '%');
+            $qb->andWhere(
+                'upper(e.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(e.titulo) LIKE :qsearch'
+            )
+                ->setParameter('qsearch', '%'.strtoupper($qSearch).'%');
         }
+
+        return $qb;
+    }
+
+    /**
+     * @throws QueryException
+     */
+    public function entradasByDateAndActiveAndModification($fecha_inicial=null,$fecha_final=null): QueryBuilder
+    {
+        if(!$fecha_final){
+            $fecha_final = new DateTime('now');
+        }
+        if(!$fecha_inicial){
+            $fecha_inicial = $fecha_final->modify("-7 days");
+        }
+        $qb = $this->createQueryBuilder('e')
+            ->addCriteria(self::createDisponibleForDisponibleAt())
+            ->orderBy('e.updatedAt', 'DESC');
+        $qb->andWhere(
+            $qb->expr()->between(
+                'e.updatedAt',
+                ':inicio',
+                ':final'
+            )
+        )
+            ->setParameter('inicio', $fecha_inicial)
+            ->setParameter('final', $fecha_final);
+
         return $qb;
     }
 
