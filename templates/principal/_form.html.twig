@@ -31,6 +31,15 @@
         <div class="col-sm-4">
             {{ form_row(form.linkRoute) }}
         </div>
+        <div class="col-sm-4 mx-auto">
+            {{ form_row(form.linkPosting) }}
+        </div>
+        <div class="col-sm-2 text-center form-check text-dark mx-auto">
+            <label for="entrada_isLinkExterno">
+                Es Externo?<br/>
+                {{ form_row(form.isLinkExterno) }}
+            </label>
+        </div>
         <div class="col-sm-4">
             {{ form_row(form.cssClass) }}
         </div><div class="col-sm-4">

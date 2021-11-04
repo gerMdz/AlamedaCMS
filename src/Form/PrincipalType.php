@@ -46,6 +46,22 @@ class PrincipalType extends AbstractType
                 'label' => 'linkRoute',
                 'help' => 'Texto de la url '
             ] )
+            ->add('isLinkExterno', CheckboxType::class, [
+                'required' => false,
+                'label' => false,
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
+            ])
+            ->add('linkPosting', TextType::class, [
+                'required' => false,
+                'label' => 'Link de redirección',
+                'help' => 'Texto de la url externa ',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
 
             ->add('imageFile', FileType::class, [
                 'mapped' => false,

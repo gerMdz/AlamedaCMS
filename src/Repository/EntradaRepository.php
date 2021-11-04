@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Entrada;
+use DateInterval;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
@@ -166,19 +167,15 @@ class EntradaRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws QueryException
      */
-    public function entradasByDateAndActiveAndModification($fecha_inicial=null,$fecha_final=null): QueryBuilder
+    public function entradasByDateAndActiveAndModification($fecha_inicial, $fecha_final): QueryBuilder
     {
-        if(!$fecha_final){
-            $fecha_final = new DateTime('now');
-        }
-        if(!$fecha_inicial){
-            $fecha_inicial = $fecha_final->modify("-7 days");
-        }
+
         $qb = $this->createQueryBuilder('e')
-            ->addCriteria(self::createDisponibleForDisponibleAt())
-            ->orderBy('e.updatedAt', 'DESC');
+            ->select()
+//            ->andWhere('e.disponibleAt is not null')
+//            ->orderBy('e.updatedAt', 'DESC')
+;
         $qb->andWhere(
             $qb->expr()->between(
                 'e.updatedAt',
