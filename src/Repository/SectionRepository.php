@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Section;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\NonUniqueResultException;
@@ -23,12 +24,11 @@ class SectionRepository extends ServiceEntityRepository
         parent::__construct($registry, Section::class);
     }
 
-    public static function createActivo():Criteria
+    public static function createActivo(): Criteria
     {
         return Criteria::create()
             ->andWhere(Criteria::expr()->eq('disponible', true))
-            ->orderBy(['descripcion'=>'ASC'])
-            ;
+            ->orderBy(['descripcion' => 'ASC']);
     }
 
     /**
@@ -61,17 +61,17 @@ class SectionRepository extends ServiceEntityRepository
     private function getQueryBuilderOrderByUpdate(QueryBuilder $qb = null): QueryBuilder
     {
         $qb = $this->getOrCreateQueryBuilder();
-        $qb->orderBy('s.updatedAt','DESC');
+        $qb->orderBy('s.updatedAt', 'DESC');
+
         return $qb;
     }
 
 
     public function getSections(): QueryBuilder
     {
-         return $this->createQueryBuilder('s')
+        return $this->createQueryBuilder('s')
             ->orderBy('s.updatedAt', 'DESC')
-            ->addOrderBy('s.name', 'ASC')
-        ;
+            ->addOrderBy('s.name', 'ASC');
     }
 
 
@@ -118,4 +118,30 @@ class SectionRepository extends ServiceEntityRepository
             ->setParameter('id', $id)
             ->orderBy('s.orden', 'ASC');
     }
+
+    public function sectionByDateAndActiveAndModification(
+        $fecha_inicial ,
+        $fecha_final ,
+        ?array $notSection
+    ): QueryBuilder {
+
+        $qb = $this->createQueryBuilder('s')
+            ->select()
+            ->andWhere('s.disponible = true');
+        $qb->andWhere(
+            $qb->expr()->between(
+                's.updatedAt',
+                ':inicio',
+                ':final'
+            )
+        )
+            ->setParameter('inicio', $fecha_inicial)
+            ->setParameter('final', $fecha_final);
+
+        $qb->andWhere($qb->expr()->notIn('s.id', $notSection));
+
+        return $qb;
+    }
+
+
 }

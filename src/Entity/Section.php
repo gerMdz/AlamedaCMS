@@ -85,6 +85,7 @@ class Section
 
     /**
      * @ORM\Column(type="string", length=5100, nullable=true)
+     * @Groups("mail")
      */
     private $contenido;
 
@@ -96,12 +97,13 @@ class Section
 
     /**
      * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="section")
+     * @Groups("mail")
      */
     private $principal;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("main")
+     * @Groups({"main", "mail"})
      */
     private $title;
 
@@ -119,6 +121,7 @@ class Section
 
     /**
      * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="secciones")
+     * @Groups("mail")
      */
     private $principales;
 
