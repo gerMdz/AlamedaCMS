@@ -3,11 +3,11 @@
                  background-repeat: no-repeat; background-size:cover;">
     <div class="container">
         <div class="row">
-            {% if section is defined %}
-                {% if section.entrada is defined %}
-                {%  set entradas = section.entrada %}
-                    {% endif %}
-            {% endif %}
+{#            {% if section is defined %}#}
+{#                {% if section.entrada is defined %}#}
+{#                {%  set entradas = section.entrada %}#}
+{#                    {% endif %}#}
+{#            {% endif %}#}
             {% for entrada in entradas %}
                 {% if (entrada.orden == 1) %}
                     <div class="col-lg-6 align-self-center pr-5 ">
