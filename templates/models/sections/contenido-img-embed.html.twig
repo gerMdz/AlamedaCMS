@@ -8,7 +8,7 @@
                         {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
                     </h2>
                     <p class="mb-4 mx-auto">
-                        {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw}}
+                        {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw}}
                     </p>
                 </div>
                 <div class="col-lg-6 order-first order-lg-last mb-4 mb-lg-0">
@@ -83,7 +83,7 @@
                             {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
                         </h2>
                         <div class="text-center">
-                            {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw}}
+                            {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw}}
                         </div>
 
 

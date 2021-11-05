@@ -13,7 +13,7 @@
                     {% endfor %}
                     <hr/>
 
-                    <p>{{ section.contenido | replace({'<p>':'', '</p>':''}) | raw}} </p>
+                    <p>{{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw}} </p>
                 </header>
             </div>
 

@@ -30,7 +30,7 @@
                                                    class="card-link text-left">
 
                                                     <span class="text-alameda">{{ entrada.titulo|replace({'<p>':'', '</p>':''}) | raw }}</span><br/>
-                                                    <small>{{ entrada.contenido|replace({'<p>':'', '</p>':''}) | raw }}</small>
+                                                    <small>{{ entrada.contenido|replace({'<p>':'', '</p>':'<br/>'}) | raw }}</small>
 
                                                 </a>
 

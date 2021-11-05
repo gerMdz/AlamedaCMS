@@ -11,7 +11,7 @@
             {{ section.title | replace({'<p>':'', '</p>':''}) | raw }}
         </h2>
         <span class="mb-0 text-14-300 ">
-                {{ section.contenido | replace({'<p>':'', '</p>':''}) | raw }}
+                {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
             </span>
     </div>
 </section>

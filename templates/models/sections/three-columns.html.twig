@@ -2,7 +2,7 @@
     <div class="container text-center">
         <h4 class="text-alameda">
             <b class="aire-2 fuente-arial-nova">
-                {{ section.contenido | replace({'<p>':'', '</p>':''}) | raw }}
+                {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
             </b>
         </h4>
         <hr/>
