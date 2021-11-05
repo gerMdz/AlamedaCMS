@@ -21,7 +21,10 @@
 
         {% for section in principal.secciones %}
 {#            {% include 'sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section } %}#}
-            {% include 'models/sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section }  %}
+{#            {% include 'models/sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section }  %}#}
+            {{ render(controller(
+                'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+            )) }}
         {% endfor %}
 </main>
 {% endblock %}
