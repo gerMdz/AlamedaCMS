@@ -1238,3 +1238,7 @@ h4.card-title{
     color: #fafafa !important;
     background-color: #2993e5 !important;
 }
+
+.card-title{
+    font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+}
