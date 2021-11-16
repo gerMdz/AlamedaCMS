@@ -1,7 +1,7 @@
 <br/>
 {% for contacto in contactos %}
     <a href="{{ contacto.tipo.referencia }}{{ contacto.linkRoute }}{{ contacto.tipo.textoReferencia }}{{ contacto.textoMensaje }}"
-    class="{{ class_label|default('text-white') }}"
+    class="text-white"
     >
         {{ contacto.textoPagina }}
         {{ contacto.tipo.icon | raw }}
