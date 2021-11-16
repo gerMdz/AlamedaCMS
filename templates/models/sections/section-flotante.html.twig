@@ -22,7 +22,7 @@
                             {% for entrada in entradas %}
                                 {% if (entrada.contacto) %}
                                     <li class="list-group-item {{ section.cssClass }}">
-                                        {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto } %}
+                                        {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto, 'class_label': section.cssClass' } %}
                                     </li>
                                 {% endif %}
                             {% endfor %}
