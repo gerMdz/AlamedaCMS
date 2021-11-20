@@ -1,6 +1,10 @@
 {% extends 'base_admin_board.html.twig' %}
 
 {% block title %}Nueva Entrada{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+{% endblock %}
 
 {% block content %}
 
@@ -24,5 +28,30 @@
                 .find('.custom-file-label')
                 .html(inputFile.files[0].name);
         });
+    </script>
+
+    <script type="application/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm ',
+                locale: 'es',
+                inline: false,
+                // sideBySide: true,
+                icons: {
+                    time: "fas fa-clock text-primary",
+                    date: "fa fa-calendar text-primary",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                },
+                tooltips: {
+                    selectTime: "Seleccione Hora"
+                },
+            });
+        })
     </script>
 {% endblock %}

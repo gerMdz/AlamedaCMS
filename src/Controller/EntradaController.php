@@ -20,7 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class EntradaController extends AbstractController
 {
 
-
     /**
      * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
      *

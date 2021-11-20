@@ -151,26 +151,35 @@ class EntradaType extends AbstractType
                     'label' => false,
                     'required' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
+
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
                 ]
             )
             ->add('disponibleAt', DateTimeType::class, [
-                'label_attr'=>[
-                    'class' => 'text-primary'
-                ],
+                'label' => 'Disponible desde',
+                'widget' => 'single_text',
+                'html5' => true,
+                'required' => false,
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'datetimepicker']
             ])
             ->add('disponibleHastaAt', DateTimeType::class, [
-                'label_attr'=>[
-                    'class' => 'text-primary'
-                ],
+                'label' => 'Disponible hasta',
+                'widget' => 'single_text',
+                'html5' => true,
+                'required' => false,
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'datetimepicker']
             ])
             ->add('eventoAt', DateTimeType::class, [
-                'label_attr'=>[
-                    'class' => 'text-primary'
-                ],
+                'label'=>'Fecha Evento',
+                'widget' => 'single_text',
+                'html5' => true,
+                'required' => false,
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'datetimepicker']
             ])
 
 //            ->add('section')
@@ -182,7 +191,7 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
+
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
@@ -195,7 +204,7 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
+
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
@@ -209,7 +218,6 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
@@ -232,13 +240,12 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
+
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
                 ]
             )
-
 
             ->add(
                 'modelTemplate',
