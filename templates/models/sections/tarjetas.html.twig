@@ -1,0 +1,56 @@
+<section class="{{ section.cssClass | default('a-content-space-medium bg-fam text-center') }} ">
+    <div class="container-fluid mt-lg-1 mt-sm-5">
+{#        <div class="row">#}
+{#            <div class="col-sm-12">#}
+{#                <div class="col-md-1 mx-auto "></div>#}
+{#                <div class="col-md-10 mx-auto ">#}
+                    <div class="row justify-content-center ">
+                        <div class="col-sm-11">
+                            <div class="row">
+                                {% if entradas is not defined %}
+                                    {% set entradas = section.entrada %}
+                                {% endif %}
+                                {% for entrada in entradas %}
+                                    <!--                marco dar-->
+                                    <div {{ (entrada.destacado == true)?'class="col-md-6 mb-2 mx-auto d-flex align-self-stretch"':'class="col-md-3 mb-2 mx-auto d-flex align-self-stretch"' }}>
+                                        <!--                                        <div class="card h-100"> -->
+
+                                        <!--                                        <div class="card h-100"> -->
+                                        <div class="card shadow-none">
+                                            <div class="contenedor">
+                                                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                                     alt="{{ app.request.baseUrl }}"
+                                                     class="card-img">
+                                            </div>
+                                            <!--                                <div class="card-img-overlay">-->
+                                            <div class="card-footer bg-white justify-content-between ">
+                                                <!--                                     style="top: 80%; position: relative"-->
+
+                                                <a href="{{ (entrada.linkPosting is defined)? entrada.linkPosting : path(entrada.linkRoute) }}"
+                                                   class="card-link text-left">
+
+                                                    <span class="text-alameda">{{ entrada.titulo|replace({'<p>':'', '</p>':''}) | raw }}</span><br/>
+                                                    <small>{{ entrada.contenido|replace({'<p>':'', '</p>':'<br/>'}) | raw }}</small>
+
+                                                </a>
+
+                                                <!--                                    </div>-->
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+{#                </div>#}
+{#                <div class="col-md-1 mx-auto "></div>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+</section>

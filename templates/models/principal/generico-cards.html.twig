@@ -1,5 +1,5 @@
 {% extends 'base_material_kit.twig' %}
-{% block title %} {{ principal.titulo | upper }}  {% endblock %}
+{% block title %} {{ principal.titulo | striptags | replace({'<p>':'', '</p>':''}) }}  {% endblock %}
 {% block sslocal %}
 
     <link href="{{ asset('css-misc/mdb.min.css') }}" rel="stylesheet">
@@ -114,7 +114,6 @@
 
 {% endblock %}
 {% block sections %}
-
     <main role="main" class="{{ principal.cssClass | default('bg-white') }}">
         <section class="a-content-space-medium">
             <div class="container">
@@ -122,26 +121,30 @@
                     <div class="col-lg-1"></div>
                     <div class="col-lg-5 mb-2 mb-lg-2 pl-lg-2 ">
                         <h1 class="mb-3">
-                            {{ principal.titulo }}
+                            {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                         </h1>
                         <p>
                             {{ principal.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
-
                         </p>
                     </div>
                     <div class="col-lg-6 align-self-center">
                         <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
                              src="{{ principal.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                             alt="<?php echo $lemaSinEspacios ?>">
+                             alt="Alameda">
                     </div>
                 </div>
             </div>
         </section>
         <!-- Charlas -->
-        {% for section in principal.section %}
-        <section class="a-content-space-medium bg-fam text-center">
-            <div class="container">
-                <div class="row">
+        {% if principal.section | length > 0 %}
+        {% set sections = principal.section %}
+        {% else %}
+            {% set sections = principal.secciones %}
+        {% endif %}
+        {% for section in sections %}
+            <section class="a-content-space-medium bg-fam text-center">
+                <div class="container">
+                    <div class="row">
                         {% for entrada in section.entrada %}
                             <!--                charla 1-->
                             <div class="col-md-4 mb-2 mx-auto   ">
@@ -155,7 +158,7 @@
                                     </div>
                                     <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
                                         <h5 class="card-title text-uppercase">
-                                            {{ entrada.titulo }}
+                                            {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                         </h5>
                                         <div class="middle-0">
                                             <i class="fas fa-quote-left mr-5"></i><br/>
@@ -164,18 +167,20 @@
                                         </div>
                                         <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
                                             {% for referencia in entrada.entradaReferences %}
-                                            <a href="/descargas/referencias/{{ referencia.filename}}"
-{#                                            <a href="{{ referencia. }}"#}
-                                               target="_blank"
-                                               class="card-link text-center">
-                                                <i class="far fa-file-pdf ml-5 mr-1"></i>
-                                                <span class="text-alameda btn-icon ">Notas</span><br/>
-                                            </a>
+                                                <a href="/descargas/referencias/{{ referencia.filename }}"
+                                                        {# <a href="{{ referencia. }}" #}
+                                                   target="_blank"
+                                                   class="card-link text-center">
+                                                    <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                                    <span class="text-alameda btn-icon ">Notas</span><br/>
+                                                </a>
                                             {% endfor %}
                                             <a href="{{ entrada.linkPosting }}" class="card-link text-center"
                                                target="_blank">
-                                                <i class="fab fa-youtube fa-fw mr-1"></i>
-                                                <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                                <i class="far fa-hand-point-right fa-fw mr-1"></i>
+                                                <span class="text-alameda btn-icon mr-5  ">
+                                                 {{ entrada.footer | default('Video') }}
+                                                </span><br/>
                                             </a>
                                         </div>
                                     </div>
@@ -183,37 +188,62 @@
                             </div>
                         {% endfor %}
 
-                    <div class="col-sm-12">
-                        <div class="show-article-container p-3 mt-4">
+                        <!--                </div>-->
+                        <!--                fin charla 1-->
 
-                                <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
-                                    {% include('bases/_nota.html.twig') %}
-                                    <hr class="border-bottom"/>
-                                </div>
 
-                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         {% endfor %}
     </main>
     <footer class="footer">
-{#        <div class="card-body">#}
-{#            <h4 class="text-darker card-text text-center">Ver series anteriores </h4>#}
-{#            <div class="col-sm-2 mx-auto text-center">#}
-{#                <a href="notas-oraciones-audaces.php" class="btn btn-xl btn-primary"> Oraciones Audaces</a>#}
-{#            </div>#}
-{#        </div>#}
+        <div class="card-body">
+            <div class="col-sm-2 mx-auto text-center">
+                <a href="{{ path('principal_listado', {'linkRoute': principal.principal.linkRoute}) }}"
+                   class="btn btn-xl btn-primary">
+                    Ver {{ principal.principal.titulo | replace({'<p>':'', '</p>':''}) }} anteriores
+                </a>
+            </div>
+        </div>
 
     </footer>
+
+    <div id="modal-02" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">
+                <i class="fas fa-times text-white"></i>
+            </span>
+                <span class="sr-only">
+                <i class="fas fa-window-close-o"></i>
+            </span>
+            </button>
+            <div class="modal-content">
+                <div class="modal-body  ">
+                    <img src="" class="img-fluid" alt="Iglesia de la Alameda">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        $(function () {
+            $('.img-modal').on("click", function () {
+                let img = this.src;
+                let modal = $('#modal-02')
+                $('.modal-body img').attr('src', img);
+                modal.modal();
+            });
+        })
+    </script>
 {% endblock %}
 {% block jslocal %}
     {# {{ encore_entry_script_tags('app') }} #}
     <script src="{{ asset('stream-ui-kit/assets/js/vendors/parallax.js') }}"></script>
+
     <script>
         $(document).ready(function () {
             $('.header').height($(window).height());

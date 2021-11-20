@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -37,16 +38,19 @@ class Principal
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="El título de la página, no debe estar en blanco")
+     * @Groups("mail")
      */
     private $titulo;
 
     /**
      * @ORM\Column(type="string", length=2550)
+     * @Groups("mail")
      */
     private $contenido;
 
     /**
      * @ORM\Column(type="string", length=150, unique=true, nullable=true)
+     * @Groups("mail")
      */
     private $linkRoute;
 
@@ -111,6 +115,18 @@ class Principal
      * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="pathInterno")
      */
     private $itemMenus;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("mail")
+     */
+    private $isLinkExterno;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("mail")
+     */
+    private $linkPosting;
 
     public function __construct()
     {
@@ -423,6 +439,30 @@ class Principal
                 $itemMenu->setPathInterno(null);
             }
         }
+        return $this;
+    }
+
+    public function getIsLinkExterno(): ?bool
+    {
+        return $this->isLinkExterno;
+    }
+
+    public function setIsLinkExterno(?bool $isLinkExterno): self
+    {
+        $this->isLinkExterno = $isLinkExterno;
+
+        return $this;
+    }
+
+    public function getLinkPosting(): ?string
+    {
+        return $this->linkPosting;
+    }
+
+    public function setLinkPosting(?string $linkPosting): self
+    {
+        $this->linkPosting = $linkPosting;
+
         return $this;
     }
 }

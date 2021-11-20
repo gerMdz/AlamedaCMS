@@ -17,13 +17,16 @@
     </header>
 {% endblock %}
 {% block sections %}
-    <div role="main" class="container {{ principal.cssClass | default(' bg-white') }}">
+<main role="main" class="{{ principal.cssClass | default('bg-white') }}">
 
         {% for section in principal.secciones %}
-            {% include 'sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section } %}
-            {% include 'models/sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section }  %}
+{#            {% include 'sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section } %}#}
+{#            {% include 'models/sections/'~section.modelTemplate~'.html.twig' ignore missing with { 'section':section }  %}#}
+            {{ render(controller(
+                'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+            )) }}
         {% endfor %}
-    </div>
+</main>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

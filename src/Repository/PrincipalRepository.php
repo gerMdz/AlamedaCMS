@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Principal;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -32,8 +33,7 @@ class PrincipalRepository extends ServiceEntityRepository
             ->setParameter('val', $principal)
             ->orderBy('m.updatedAt', 'DESC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
 
@@ -49,8 +49,7 @@ class PrincipalRepository extends ServiceEntityRepository
 //            ->andWhere('m.isActive = :boolean')
             ->setParameter('val', $principal)
 //            ->setParameter('boolean', true)
-            ->orderBy('m.createdAt', 'DESC')
-        ;
+            ->orderBy('m.createdAt', 'DESC');
     }
 
 
@@ -89,15 +88,75 @@ class PrincipalRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('p')
 //            ->andWhere('p.principal is null')
             ->orderBy('p.updatedAt', 'DESC');
-            if ($qSearch) {
-                $qb->innerJoin('p.autor','a')
-                    ->addSelect('a');
-                $qb->andWhere('upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(p.linkRoute) LIKE :qsearch')
-                    ->setParameter('qsearch', '%' . strtoupper($qSearch) . '%')
-                ;
-            }
-            ;
+        if ($qSearch) {
+            $qb->innerJoin('p.autor', 'a')
+                ->addSelect('a');
+            $qb->andWhere(
+                'upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(p.linkRoute) LIKE :qsearch'
+            )
+                ->setParameter('qsearch', '%'.strtoupper($qSearch).'%');
+        };
 
-            return $qb;
+        return $qb;
+    }
+
+    /**
+     * @param DateTime $fecha_inicial
+     * @param DateTime $fecha_final
+     * @param array|null $notPrincipals
+     * @return QueryBuilder
+     */
+    public function principalByDateAndActiveAndModification(
+        DateTime $fecha_inicial,
+        DateTime $fecha_final,
+        ?array $notPrincipals
+    ): QueryBuilder {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.isActive = :boolean')
+            ->setParameter('boolean', true)
+            ->orderBy('p.updatedAt', 'DESC');
+        $qb->leftJoin('p.secciones', 's');
+        $qb->leftJoin('s.entrada', 'e');
+        $qb->andWhere(
+            $qb->expr()->between(
+                'p.updatedAt',
+                ':inicio',
+                ':final'
+            )
+        )
+            ->setParameter('inicio', $fecha_inicial)
+            ->setParameter('final', $fecha_final);
+
+        $qb->orWhere(
+            $qb->expr()->andX(
+                $qb->expr()->between(
+                    's.updatedAt',
+                    ':inicio',
+                    ':final'
+                ),
+                $qb->expr()->eq('s.disponible',  true)
+            )
+        )
+            ->setParameter('inicio', $fecha_inicial)
+            ->setParameter('final', $fecha_final);
+
+        $qb->orWhere(
+            $qb->expr()->andX(
+                $qb->expr()->between(
+                    'e.updatedAt',
+                    ':inicio',
+                    ':final'
+                ),
+                $qb->expr()->isNotNull('e.disponibleAt')
+            )
+        )
+            ->setParameter('inicio', $fecha_inicial)
+            ->setParameter('final', $fecha_final);
+
+//        $qb->andWhere($qb->expr()->notIn('p.id', $notPrincipals));
+
+        return $qb;
+
+
     }
 }

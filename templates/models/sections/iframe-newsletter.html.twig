@@ -1,0 +1,14 @@
+{#
+# Template section script-suscripcion-newsletter.html.twig
+# No necesita entradas
+#}
+<section class="call-to-action text-center {{ section.cssClass }}" id="{{ section.identificador }}">
+    <div class="container position-relative" style="background-image: url({{ section.imagePath|imagine_filter('squared_thumbnail_large') }}); background-repeat: no-repeat; background-size:cover">
+{#        <div class="col-sm-4 mx-auto">#}
+            <iframe border="0" scrolling="NO" marginheight="0px" marginwidth="0px" allowtransparency="yes"
+                    src="{{form_suscripto_newsletter('iframe',section.linkPosting)[0]| raw  }}"
+                    {{form_suscripto_newsletter('iframe',section.linkPosting)[1]| raw  }} frameborder="NO">
+            </iframe>
+{#        </div>#}
+    </div>
+</section>
