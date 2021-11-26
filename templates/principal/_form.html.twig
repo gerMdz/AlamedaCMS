@@ -1,4 +1,63 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Guardar') }}</button>
+<div class="col-sm-11 mx-auto">
+    <div class="row">
+        {# {{ form_widget(form) }} #}
+        <div class="col-sm-7">
+            {{ form_row(form.titulo) }}
+        </div>
+        <div class="col-sm-5">
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form_row(form.imageFile, {
+                        attr: {
+                            'placeholder': 'Seleccione una imagen para la página'
+                        }
+                    }) }}
+                </div>
+                <div class="col-sm-12">
+                    {% if form.vars.data.imageFilename | default %}
+                        <a href="{{ uploaded_asset(form.vars.data.imagePath) }}" target="_blank">
+                            <img src="{{ form.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}"
+                                 alt="Imagen">
+                        </a>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            {{ form_row(form.contenido) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(form.linkRoute) }}
+        </div>
+        <div class="col-sm-4 mx-auto">
+            {{ form_row(form.linkPosting) }}
+        </div>
+        <div class="col-sm-2 text-center form-check text-dark mx-auto">
+            <label for="entrada_isLinkExterno">
+                Es Externo?<br/>
+                {{ form_row(form.isLinkExterno) }}
+            </label>
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(form.cssClass) }}
+        </div><div class="col-sm-4">
+            {{ form_row(form.isActive) }}
+        </div>
+        <div class="col-sm-6">
+            {{ form_label(form.principal) }}
+            {{ form_widget(form.principal) }}
+            {{ form_help(form.principal) }}
+        </div>
+        <div class="col-sm-6">
+            {{ form_label(form.modelTemplate) }}
+            {{ form_widget(form.modelTemplate) }}
+            {{ form_help(form.modelTemplate) }}
+        </div>
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+    <a href="{{ path('principal_index') }}">Volver al listado</a>
+</div>
+
 {{ form_end(form) }}

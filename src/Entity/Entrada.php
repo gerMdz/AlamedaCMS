@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
@@ -32,11 +33,13 @@ class Entrada
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("mail")
      */
     private $titulo;
 
     /**
      * @ORM\Column(type="text", length=8000, nullable=true)
+     * @Groups("mail")
      */
     private $contenido;
 
@@ -48,6 +51,7 @@ class Entrada
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("mail")
      */
     private $imageFilename;
 
@@ -131,6 +135,7 @@ class Entrada
 
     /**
      * @ORM\ManyToMany(targetEntity=Section::class, mappedBy="entrada")
+     * @Groups("mail")
      */
     private $sections;
 
@@ -143,6 +148,11 @@ class Entrada
      * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="entradas")
      */
     private $button;
+
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true, unique=true)
+     */
+    private $identificador;
 
     public function __construct()
     {
@@ -515,6 +525,21 @@ class Entrada
     public function removeButton(ButtonLink $button): self
     {
         $this->button->removeElement($button);
+
+        return $this;
+    }
+
+    public function getIdentificador(): ?string
+    {
+        return $this->identificador;
+    }
+
+    public function setIdentificador(?string $identificador): self
+    {
+        if(null === $identificador){
+            $identificador = str_replace(' ', '-',strip_tags($this->titulo));
+        }
+        $this->identificador = $identificador;
 
         return $this;
     }

@@ -5,7 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     uploads_dir_name: 'uploads'
-    uploads_base_url: '%env(SITE_BASE_URL)%/%uploads_dir_name%'
+    uploads_base_url: '%env(resolve:SITE_BASE_URL)%/%uploads_dir_name%'
     site_temporal: '%env(SITE_TEMPORAL)%'
     image_directory : '%kernel.project_dir%/public/image'
 

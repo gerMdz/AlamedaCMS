@@ -5,6 +5,7 @@ namespace App\Twig;
 use App\Entity\IndexAlameda;
 use App\Entity\Invitado;
 use App\Entity\MetaBase;
+use App\Entity\NewsSite;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
@@ -54,17 +55,18 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('redirection', [$this, 'redirection']),
             new TwigFunction('completa_texto', [$this, 'completa_texto']),
             new TwigFunction('completa_lugar', [$this, 'completa_lugar']),
+            new TwigFunction('form_suscripto_newsletter', [$this, 'form_suscripto_newsletter']),
         ];
     }
 
-    public function lema()
+    public function lema(): ?string
     {
         $lema = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
 
         return $lema->getLema();
     }
 
-    public function metaDescripcion()
+    public function metaDescripcion(): ?string
     {
         $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
 
@@ -86,7 +88,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             ->getPublicPath($path);
     }
 
-    public function capacidad_restante(string $celebracion, int $cantidad)
+    public function capacidad_restante(string $celebracion, int $cantidad): int
     {
         $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
         return $cantidad - $invitados;
@@ -97,7 +99,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
     }
 
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         return [
             UploaderHelper::class,
@@ -111,7 +113,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             throw new InvalidArgumentException('No se puede redireccionar a una URL vacía.');
         }
 
-        echo "<meta http-equiv = 'refresh' content='0;url = $link' />";
+        echo "<meta http-equiv = 'refresh' content='5;url = $link' />";
 
     }
 
@@ -159,4 +161,46 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
         return sprintf($texto, $valor, $valor, $valor, $valor);
     }
+
+    /**
+     * @param string $type
+     * @param string $fuente
+     * @return array|string|void
+     */
+    public function form_suscripto_newsletter(string $type,string $fuente)
+    {
+        switch ($type){
+            case 'script':
+                return $this->divScript($fuente);
+            case 'iframe':
+                return $this->divIframe($fuente);
+        }
+    }
+
+    /**
+     * @param string $fuente
+     * @return string
+     */
+    protected function divScript(string $fuente): string
+    {
+        $crea_formulario = $this->container->get(EntityManagerInterface::class)
+            ->getRepository(NewsSite::class)
+            ->findBy(['srcType' =>'script', 'srcSite' => $fuente]);
+
+        return $crea_formulario[0]->getSrcCodigo();
+    }
+
+    /**
+     * @param string $fuente
+     * @return array
+     */
+    protected function divIframe(string $fuente): array
+    {
+        $crea_formulario = $this->container->get(EntityManagerInterface::class)
+            ->getRepository(NewsSite::class)
+            ->findBy(['srcType' =>'iframe', 'srcSite' => $fuente]);
+
+        return [$crea_formulario[0]->getSrcCodigo(),$crea_formulario[0]->getSrcParameters()];
+    }
+
 }

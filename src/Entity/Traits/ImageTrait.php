@@ -6,11 +6,13 @@ namespace App\Entity\Traits;
 
 use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait ImageTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("mail")
      */
     private $imageFilename;
 
@@ -26,7 +28,7 @@ trait ImageTrait
         return $this;
     }
 
-    public function getImagePath()
+    public function getImagePath(): string
     {
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }

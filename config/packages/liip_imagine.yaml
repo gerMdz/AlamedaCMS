@@ -31,6 +31,14 @@ liip_imagine:
                     size:          [200, 200]
                     mode:          outbound
                     allow_upscale: true
+
+        squared_thumbnail_section:
+            filters:
+                thumbnail:
+                    size: [ 300, 100 ]
+                    mode: outbound
+                    allow_upscale: true
+
         squared_thumbnail_100:
             filters:
                 thumbnail:
@@ -44,42 +52,69 @@ liip_imagine:
                     size:          [500, 500]
                     mode:          outbound
                     allow_upscale: true
+
         squared_thumbnail_large:
             filters:
                 thumbnail:
                     size:          [540, 303]
                     mode:          inset
                     allow_upscale: true
+
         squared_thumbnail_750-300:
             filters:
                 thumbnail:
                     size:          [750, 300]
                     mode:          inset
                     allow_upscale: true
+
+        squared_thumbnail_600-300:
+            filters:
+                thumbnail:
+                    size:          [600, 300]
+                    mode:          outbound
+                    allow_upscale: true
+
         squared_thumbnail_large_1920if:
             filters:
                 thumbnail:
                     size:          [1920, 1080]
                     mode:          inset
                     allow_upscale: false
+        squared_thumbnail_large_notas:
+            filters:
+                thumbnail:
+                    size:          [640, 360]
+                    mode:          inset
+                    allow_upscale: true
+
         squared_normal:
             filters:
                 thumbnail:
                     size:          [100%, 100%]
                     mode:          outbound
                     allow_upscale: true
+
         squared_icon:
             filters:
                 thumbnail:
                     size:          [30, 30]
                     mode:          outbound
                     allow_upscale: true
+
         squared_icon_70:
             filters:
                 thumbnail:
                     size:          [70, 70]
                     mode:          outbound
                     allow_upscale: true
+
+        squared_thumbnail_carousel:
+            filters:
+                fixed:
+
+                    # set the fixed size to "120x90" pixels
+                    width: 540
+                    height: 304
 
 
 #

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\ImageTrait;
 use App\Repository\ModelTemplateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,6 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class ModelTemplate
 {
+    use ImageTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

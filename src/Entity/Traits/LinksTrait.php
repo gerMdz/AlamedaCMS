@@ -5,21 +5,25 @@ namespace App\Entity\Traits;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait LinksTrait
 {
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("mail")
      */
     private $isLinkExterno;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("mail")
      */
     private $linkPosting;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
+     * @Groups("mail")
      */
     private $linkRoute;
 

@@ -1,0 +1,11 @@
+{#
+# Template section script-suscripcion-newsletter.html.twig
+# No necesita entradas
+#}
+<section class="call-to-action text-center {{ section.cssClass }}" id="{{ section.identificador }}">
+    <div class="container position-relative" style="background-image: url({{ section.imagePath|imagine_filter('squared_thumbnail_large') }}); background-repeat: no-repeat; background-size:cover">
+        <div class="row justify-content-center">
+            <script type="text/javascript" src="{{form_suscripto_newsletter('script',section.linkPosting)| raw  }}"></script>
+        </div>
+    </div>
+</section>

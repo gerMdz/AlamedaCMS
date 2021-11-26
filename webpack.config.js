@@ -30,6 +30,8 @@ Encore
     .addEntry('login', './assets/js/login.js')
     .addEntry('perfil', './assets/js/perfil.js')
     .addEntry('section_select', './assets/js/select_section.js')
+    .addEntry('select2', './assets/js/select2.js')
+    .addEntry('select2-parent', './assets/js/select2-parent.js')
     .addEntry('nota_mensaje', './assets/js/nota_mensaje.js')
     .addEntry('tailwind', './assets/js/tailwind.js')
     .addEntry('summernote', './assets/js/summer.js')
@@ -114,20 +116,19 @@ Encore
         {from: './node_modules/ckeditor4/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
         {from: './node_modules/ckeditor4/skins', to: 'ckeditor/skins/[path][name].[ext]'},
         {from: './assets/ckeditor/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
-        {from: './assets/ckeditor/config.js', to: 'ckeditor/config.js'}
     ])
 
 
 ;
-if (Encore.isProduction()) {
-    Encore.addPlugin(new PurgeCssPlugin({
-        paths: glob.sync([
-            path.join(__dirname, 'templates/**/*.html.twig')
-        ]),
-        defaultExtractor: (content) => {
-            return content.match(/[\w-/:]+(?<!:)/g) || [];
-        }
-    }));
-}
+// if (Encore.isProduction()) {
+//     Encore.addPlugin(new PurgeCssPlugin({
+//         paths: glob.sync([
+//             path.join(__dirname, 'templates/**/*.html.twig')
+//         ]),
+//         defaultExtractor: (content) => {
+//             return content.match(/[\w-/:]+(?<!:)/g) || [];
+//         }
+//     }));
+// }
 
 module.exports = Encore.getWebpackConfig();

@@ -1,0 +1,36 @@
+{% extends 'base_admin_board.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- CSS Files -->
+    <link href="{{ asset('/asistente/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/asistente/css/material-bootstrap-wizard.css') }}" rel="stylesheet" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{{ asset('/asistente/css/bootstrap.min.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}Asistente para Crear Página Principal {% endblock %}
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
+{% endblock %}
+{% block content %}
+    <h5>Asistente para crear una nueva página Principal</h5>
+
+    {{ include('principal/_form.html.twig') }}
+
+    <a href="{{ path('principal_index') }}">Volver al listado</a>
+{% endblock %}
+{% block jslocal %}
+
+    <!--   Core JS Files   -->
+    <script src="{{ asset('/asistente/js/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/asistente/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/asistente/js/jquery.bootstrap.js') }}" type="text/javascript"></script>
+
+    <!--  Plugin for the Wizard -->
+    <script src="{{ asset('/asistente/js/material-bootstrap-wizard.js') }}"></script>
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+    <script src="{{ asset('/asistente/js/jquery.validate.min.js') }}"></script>
+
+{% endblock %}

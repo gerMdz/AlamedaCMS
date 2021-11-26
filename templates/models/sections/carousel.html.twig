@@ -1,0 +1,101 @@
+{#
+# Template section carousel
+# No necesita template entrada
+#}
+<style>
+
+    .carousel .carousel-indicators {
+        bottom: 4em !important;
+    }
+    .carousel-caption.top {
+        margin-top: 1em;
+        padding-bottom: 1em;
+
+    }
+
+    .carousel-caption.bottom {
+        margin-top: 2em;
+        min-height: 3em;
+        max-height: 3em;
+    }
+
+    .carousel-caption {
+        position: relative;
+        border: 0;
+        padding-top: 0 !important;
+        bottom: 0 !important;
+        /*top: 0;*/
+        /*left: 0;*/
+        color: black;
+        /*padding: 20px;*/
+    }
+
+    /*.carousel-caption{*/
+    /*    background-color: rgb(209, 209, 154);*/
+    /*    top: -30%;*/
+    /*    text-wrap: normal;*/
+    /*    height: auto;*/
+    /*    max-height: 120px;*/
+    /*}*/
+
+
+</style>
+<section class="a-content-space-medium bg-fam text-center my-2 py-3" id="{{ section.identificador }}">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div id="carouselSection" class="carousel slide col-md-6" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for entrada in section.entrada %}
+                        <li data-target="#carouselSection"
+                            data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner ">
+                    {% for entrada in section.entrada %}
+                        <div class="carousel-item {% if loop.first %} active {% endif %}">
+                            <div class="carousel-caption top  ">
+                                <h5 class="text-dark text-left">
+                                    <b>
+                                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                    </b>
+                                </h5>
+                            </div>
+                            <img class="d-block w-100"
+                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_carousel') }}"
+                                 alt="{{ app.request.baseUrl }}">
+                            <div class="carousel-caption bottom">
+                                <small class="text-secondary">
+                                    {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                                    <a
+                                            {% if (entrada.linkPosting) %}
+                                                href="{{ entrada.linkPosting }}"
+                                                {% if (entrada.isLinkExterno) %}
+                                                    target="_blank"
+                                                {% endif %}
+                                            {% else %}
+                                                href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                                            {% endif %}
+                                    >
+                                        {% endif %}
+                                        {{ entrada.footer }}
+                                        {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                                    </a>
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselSection" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselSection" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

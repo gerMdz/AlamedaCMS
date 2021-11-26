@@ -46,6 +46,11 @@ class TypeBlock
      */
     private $modelTemplates;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $entity;
+
     public function __construct()
     {
         $this->modelTemplates = new ArrayCollection();
@@ -136,6 +141,18 @@ class TypeBlock
                 $modelTemplate->setBlock(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEntity(): ?string
+    {
+        return $this->entity;
+    }
+
+    public function setEntity(?string $entity): self
+    {
+        $this->entity = $entity;
 
         return $this;
     }

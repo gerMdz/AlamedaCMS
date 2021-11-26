@@ -1,0 +1,17 @@
+<section class="u-content-space border-bottom py-5 bg-gris-medio">
+    <div class="container text-center">
+        <h4 class="text-alameda">
+            <b class="aire-2 fuente-arial-nova">
+                {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+            </b>
+        </h4>
+        <hr/>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            {% for entrada in entradas %}
+                {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' with { 'section':entrada } %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

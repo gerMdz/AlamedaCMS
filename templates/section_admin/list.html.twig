@@ -12,13 +12,17 @@
             </div>
             <div class="card-body">
                 <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_section_new') }}">
-                    <i class="fas fa-plus-circle"></i> Crear Sección</a>
+                    <i class="fas fa-plus-circle"></i> Crear Sección
+                </a>
+                <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_section_new_step1') }}">
+                    <i class="fas fa-hand-sparkles"></i> Asistente Crear Sección
+                </a>
                 <div class="text-center align-items-center">
                     {{ knp_pagination_render(sections) }}
                 </div>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class=" text-primary">
+                <div class="table-responsive sticky-header  ">
+                    <table class="table sticky-header" data-toggle="table">
+                        <thead class="text-primary" >
                         <tr>
                             <th>Nombre</th>
                             <th>Ubicación</th>

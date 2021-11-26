@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Repository\PrincipalRepository;
+use App\Repository\SectionRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -93,8 +94,6 @@ class ZinicioController extends AbstractController
      */
     public function ver_test(Principal $principal, PrincipalRepository $principalRepository): Response
     {
-//        $ppal = $principalRepository->findOneBy(['principal'=>$principal->getId()]);
-
         $vista =$principal->getModelTemplate();
         if(!$vista) {
             $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute() : $principal->getLinkRoute());
@@ -113,11 +112,11 @@ class ZinicioController extends AbstractController
      * @Route("/{linkRoute}", name="principal_ver", methods={"GET"})
      * @param Principal $principal
      * @param PrincipalRepository $principalRepository
+     * @param SectionRepository $sectionRepository
      * @return Response
      */
-    public function ver(Principal $principal, PrincipalRepository $principalRepository): Response
+    public function ver(Principal $principal, PrincipalRepository $principalRepository, SectionRepository $sectionRepository): Response
     {
-
         $vista =$principal->getModelTemplate();
         if(!$vista) {
             $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute() : $principal->getLinkRoute());
@@ -126,9 +125,10 @@ class ZinicioController extends AbstractController
         if(!$visual){
             $visual = $principal;
         }
-
+        $secciones = $sectionRepository->queryFindSectionsByPrincipal($principal->getId())->getQuery()->getResult();
         return $this->render('models/principal/'.$vista.'.html.twig', [
             'principal' => $visual,
+            'secciones' => $secciones
         ]);
     }
 
