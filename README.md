@@ -1,111 +1,71 @@
-# [Alameda - AlamedaCMS]
+# What is MyProduct?
 
-EL inicio de un CMS personalizado
+{% hint style="info" %}
+**Good to know:** providing a brief overview of your product and its core use cases is a great place to start with product docs. Your product might seem obvious to you – you made it! However, to others, even folks who are trying your product after reading your site or getting a sales demo, it can still be unclear. This is your chance to clarify your product and set the right expectations!
+{% endhint %}
 
-## NO hay pre
+Here are a couple of examples of succinct overviews from products with really great docs:
 
-[![Iglesia Alameda Preview](http://iglesialameda.com/)](http://iglesialameda.com/)
+> Loom is a video messaging tool that helps you get your message across through instantly shareable videos.
+>
+> With Loom, you can record your camera, microphone, and desktop simultaneously. Your video is then instantly available to share through Loom's patented technology.
+>
+> — From the [Loom Docs](https://support.loom.com/hc/en-us/articles/360002158057-What-is-Loom-)
 
-**[View Live Preview](http://iglesialameda.com/)**
+> The Mailchimp Marketing API provides programmatic access to Mailchimp data and functionality, allowing developers to build custom features to do things like sync email activity and campaign analytics with their database, manage audiences and campaigns, and more.
+>
+> — From the [Mailchimp Marketing API docs](https://mailchimp.com/developer/marketing/docs/fundamentals/)
 
-## Status
-totalmente DEV
+## Getting Started
 
-## Download and Installation
+**Got 2 minutes?** Check out a video overview of our product:
 
+{% embed url="https://www.loom.com/share/3bfa83acc9fd41b7b98b803ba9197d90" %}
 
-* Clone the repo: `git clone https://github.com/gerMdz/alameda.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/gerMdz/alameda)
+{% hint style="info" %}
+**Good to know:** A succinct video overview is a great way to introduce folks to your product. Embed a Loom, Vimeo or YouTube video and you're good to go! We love this video from the fine folks at [Loom](https://loom.com) as a perfect example of a succinct feature overview.
+{% endhint %}
 
-## Teclado
+### Guides: Jump right in
 
-#### Admin > Menú
-> Windows - Linux
+Follow our handy guides to get started on the basics as quickly as possible:
 
+{% content-ref url="guides/creating-your-first-project.md" %}
+[creating-your-first-project.md](guides/creating-your-first-project.md)
+{% endcontent-ref %}
 
->Firefox 	Alt + Shift + m
-Google Chrome 	Alt + m
-Safari 	Alt + m
+{% content-ref url="guides/creating-your-first-task.md" %}
+[creating-your-first-task.md](guides/creating-your-first-task.md)
+{% endcontent-ref %}
 
- 
-> Mac
+{% content-ref url="guides/advanced-permissions.md" %}
+[advanced-permissions.md](guides/advanced-permissions.md)
+{% endcontent-ref %}
 
->En Firefox 14 o posteriores, Control + Alt + m
-En Firefox 13 o anteriores, Control + m
-Control + Alt + m
-Control + Alt + m
+{% hint style="info" %}
+**Good to know:** your product docs aren't just a reference of all your features! use them to encourage folks to perform certain actions and discover the value in your product.
+{% endhint %}
 
-> Cualquier S.O. 
+### Fundamentals: Dive a little deeper
 
->Opera 	Shift + Esc abre una lista de contenidos , los cuales son accesibles a través de accesskey , después se puede elegir un item presionando  m
+Learn the fundamentals of MyProduct to get a deeper understanding of our main features:
 
+{% content-ref url="fundamentals/projects.md" %}
+[projects.md](fundamentals/projects.md)
+{% endcontent-ref %}
 
+{% content-ref url="fundamentals/members.md" %}
+[members.md](fundamentals/members.md)
+{% endcontent-ref %}
 
-### Basic Usage
+{% content-ref url="fundamentals/task-lists.md" %}
+[task-lists.md](fundamentals/task-lists.md)
+{% endcontent-ref %}
 
-Hasta ahora, la idea es templates modulares por sections, donde a cada template se le agregan sections
+{% content-ref url="fundamentals/tasks.md" %}
+[tasks.md](fundamentals/tasks.md)
+{% endcontent-ref %}
 
-### Advanced Usage
-
-
-
-## Bugs and Issues
-
-Have a bug or an issue with this template? [Open a new issue](https://gitlab.com/gerardo.montivero/alameda/issues) here on GitLab or leave a comment on the [template overview page at AlamedaCMS](https://gitlab.com/gerardo.montivero/alameda/).
-
-## Custom Builds
-
-
-
-## Bundle de Terceros
-
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
-
-* https://startbootstrap.com
-* https://twitter.com/SBootstrap
-
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
-
-* http://davidmiller.io
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
-
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
-
-Foundation Icon Font Sets
-
-Custom icon sets that are stored in a handy web font. A couple lines of CSS and the right markup will get you going in no time. These icons use the Private Use Area Unicode slots to ensure full accessibility.
-
-We designed the glyphs to be refined enough to stand alone as a simple icon, but left room for the imagination. Since you’ll be dealing with a font, the opportunities are nearly limitless. Now your icons can be any size, any color and any style available in CSS.
-Usage
-
-    Download the icon font that you're interested in.
-    Merge the fonts and stylesheets, or sass if you are using it, folders into your Foundation project.
-    The default code is <i class="fi-[set]-[icon]"></i>, feel free to customize that to your needs.
-    Style the icons using any CSS style that could apply to text!
-
-Repo Contents
-
-    README
-    MIT-LICENSE
-    Foundation Icons - General
-    Foundation Icons - General(Enclosed)
-    Foundation Icons - Social
-    Foundation Icons - Accessibility
-
-ZURB
-
-Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA.
-
-If Foundation knocks your socks off the way we hope it does and you want more, why not check out our jobs?
-
-## Copyright and License
-
-MIT Open Source License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+{% hint style="info" %}
+**Good to know:** Splitting your product into fundamental concepts, objects, or areas can be a great way to let readers deep dive into the concepts that matter most to them. Combine guides with this approach to 'fundamentals' and you're well on your way to great documentation!
+{% endhint %}
