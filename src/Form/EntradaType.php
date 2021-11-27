@@ -87,6 +87,9 @@ class EntradaType extends AbstractType
                     },
                     'placeholder' => 'Seleccione Autor',
                     'invalid_message' => 'Por favor ingrese un autor',
+                    'attr'=>[
+                        'class'=>'select2-enable'
+                    ]
                 ]
             )
             ->add('linkPosting', TextType::class,[
@@ -257,6 +260,37 @@ class EntradaType extends AbstractType
                     },
                     'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,
+                    'attr'=>[
+                        'class'=>'select2-enable'
+                    ]
+                ]
+            )
+            ->add(
+                'cssClass',
+                TextType::class,
+                [
+                    'label' => 'Clase css',
+                    'label_attr'=>[
+                        'class' => 'text-primary'
+                    ],
+                    'required' => false,
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
+            ->add(
+                'identificador',
+                TextType::class,
+                [
+                    'label' => 'Identificador',
+                    'label_attr'=>[
+                        'class' => 'text-primary'
+                    ],
+                    'required' => false,
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
                 ]
             )
         ; // ; Final Builder
