@@ -88,7 +88,7 @@ class EntradaType extends AbstractType
                     'placeholder' => 'Seleccione Autor',
                     'invalid_message' => 'Por favor ingrese un autor',
                     'attr'=>[
-                        'class'=>'select2-enable'
+                        'class' => 'select2-enable'
                     ]
                 ]
             )
@@ -261,7 +261,7 @@ class EntradaType extends AbstractType
                     'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,
                     'attr'=>[
-                        'class'=>'select2-enable'
+                        'class' => 'select2-enable'
                     ]
                 ]
             )

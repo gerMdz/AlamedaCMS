@@ -4,6 +4,32 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+    {{ encore_entry_link_tags('select2-parent') }}
+    <style>
+        .custom-file-input ~ .custom-file-label.custom-file-label::after {
+            content: "Elegir imagen";
+            color: #fff;
+            background-color: #9c27b0;
+            top: 10px;
+            box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+            position: absolute;
+            /*padding: 3px 9px;*/
+            /*margin: auto 1px;*/
+            font-size: .75rem;
+            font-weight: 400;
+            /*line-height: 1.428571;*/
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            cursor: pointer;
+            border: 0 currentcolor;
+            border-radius: 0.2rem;
+            outline: 0;
+            transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: box-shadow, transform;
+        }
+    </style>
+
 {% endblock %}
 
 {% block content %}
@@ -21,15 +47,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        $('.custom-file-input').on('change', function (event) {
-            var inputFile = event.currentTarget;
-            $(inputFile).parent()
-                .find('.custom-file-label')
-                .html(inputFile.files[0].name);
-        });
-    </script>
-
     <script type="application/javascript">
         $(function () {
             $('.datetimepicker').datetimepicker({
@@ -54,4 +71,8 @@
             });
         })
     </script>
+{% endblock %}
+{% block jslocal %}
+    {{ encore_entry_script_tags('select2-parent') }}
+
 {% endblock %}

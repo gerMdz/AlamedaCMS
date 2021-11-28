@@ -1,4 +1,4 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
 
 {% block title %}Edición Entrada {{ entrada.id }} {% endblock %}
 
@@ -35,7 +35,6 @@
                 <ul style="font-size: 0.7rem"
                     class="list-group small js-reference-list"
                     data-url="{{ path('admin_entrada_list_referencia', {id: entrada.id}) }}">
-
                 </ul>
 
                 <form action="{{ path('admin_entrada_add_referencia',{
@@ -72,7 +71,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('section_select') }}
+
     <script src="{{ asset('js/admin_section_entrada_form.js') }}"></script>
 
     <script type="application/javascript">
@@ -85,30 +84,29 @@
                 });
             });
         });
-
-
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"
-            integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
-    <script>
-        $('.custom-file-input').on('change', function (event) {
+
+
+        <script>
+            $('.custom-file-input').on('change', function (event) {
             var inputFile = event.currentTarget;
             $(inputFile).parent()
-                .find('.custom-file-label')
-                .html(inputFile.files[0].name);
+            .find('.custom-file-label')
+            .html(inputFile.files[0].name);
         });
 
-        // $(document).ready(function() {
+
+            // $(document).ready(function() {
         //     $(".select2-enable").select2({
         //         dropdownParent: $("#modalPlantillaWeb")
         //     });
         // });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"
+            integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
     {{ encore_entry_script_tags('app') }}
-
-
-
 
 {% endblock %}
 {% block jslocal %}
