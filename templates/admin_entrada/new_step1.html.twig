@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">
 
 {#{{ encore_entry_link_tags('select2') }}#}
+    {{ encore_entry_link_tags('select2-parent') }}
 
 {% endblock %}
 
@@ -45,6 +46,10 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('select2') }}
+{#    {{ encore_entry_script_tags('select2') }}#}
     {{ encore_entry_script_tags('app') }}
+{% endblock %}
+{% block jslocal %}
+    {{ encore_entry_script_tags('select2-parent') }}
+
 {% endblock %}

@@ -26,7 +26,7 @@
                                             <div class="card-footer bg-white justify-content-between ">
                                                 <!--                                     style="top: 80%; position: relative"-->
 
-                                                <a href="{{ (entrada.linkPosting is defined)? entrada.linkPosting : path(entrada.linkRoute) }}"
+                                                <a href="{{ (entrada.linkPosting != null)? entrada.linkPosting : path('principal_ver', {'linkRoute': entrada.linkRoute}) }}"
                                                    class="card-link text-left">
 
                                                     <span class="text-alameda">{{ entrada.titulo|replace({'<p>':'', '</p>':''}) | raw }}</span><br/>

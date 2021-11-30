@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Entrada;
 use App\Entity\ModelTemplate;
+use App\Entity\Principal;
 use App\Entity\User;
 use App\Repository\ModelTemplateRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -37,8 +38,9 @@ class EntradaType extends AbstractType
                     'label_attr'=>[
                         'class' => 'text-primary'
                     ],
+                    'help'=>'Título de la entrada, se muestra en pantalla',
                     'attr' => [
-                        'required' => false,
+                        'required' => true,
                         'rows' => 10,
 //                        'class' => 'form-control',
                     ],
@@ -46,14 +48,19 @@ class EntradaType extends AbstractType
             )
             ->add(
                 'linkRoute',
-                TextType::class,
+                EntityType::class,
                 [
+                    'class'=> Principal::class,
+                    'choice_label' => function(Principal $principal) {
+                    return sprintf('%s', $principal->getTitulo());
+                },
                     'required' => false,
+                    'help'=>'Link a páginas internas del sistema',
                     'label_attr'=>[
                         'class' => 'text-primary'
                     ],
                     'attr' => [
-                        'class' => 'form-control',
+                        'class' => 'select2-enable',
                     ],
                 ]
             )
@@ -93,9 +100,11 @@ class EntradaType extends AbstractType
                 ]
             )
             ->add('linkPosting', TextType::class,[
+                'required'=>false,
                 'label_attr'=>[
                     'class' => 'text-primary'
                 ],
+                'help'=>'Link a páginas externos del sistema',
             ])
             ->add(
                 'isLinkExterno',
@@ -104,6 +113,7 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-primary'],
+                    'help'=>'¿Abre otra página?',
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
@@ -117,6 +127,7 @@ class EntradaType extends AbstractType
                     'label_attr'=>[
                         'class' => 'text-primary'
                     ],
+                    'help' => 'Texto secundario',
                     'required' => false,
                     'attr' => [
                         'class' => 'form-control',

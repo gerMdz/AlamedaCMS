@@ -45,23 +45,47 @@
         {{ form_row(entradaForm.contenido) }}
     </div>
 </div>
-<div class="row pt-3">
+<hr class="bg-primary"/>
+<div class="row pt-3 mx-5  align-items-center">
     <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.footer) }}
+        {{ form_label(entradaForm.footer) }}
+        {{ form_errors(entradaForm.footer) }}
+        {{ form_help(entradaForm.footer) }}
+    </div>
+    <div class="col-sm-3 mx-auto center-element">
+        {{ form_label(entradaForm.linkRoute) }}
+        {{ form_errors(entradaForm.linkRoute) }}
+        {{ form_help(entradaForm.linkRoute) }}
     </div>
     <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.linkRoute) }}
-    </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.linkPosting) }}
+        {{ form_label(entradaForm.linkPosting) }}
+        {{ form_errors(entradaForm.linkPosting) }}
+        {{ form_help(entradaForm.linkPosting) }}
     </div>
     <div class="col-sm-2 mx-auto text-center form-check text-dark">
         <label for="entrada_isLinkExterno" class="text-primary">
-            Es Externo?<br/>
-            {{ form_row(entradaForm.isLinkExterno) }}
+            ¿Es Externo?<br/>
+            {{ form_label(entradaForm.isLinkExterno) }}
+            {{ form_errors(entradaForm.isLinkExterno) }}
+            {{ form_help(entradaForm.isLinkExterno) }}
+        </label>
+    </div>
+    <div class="col-sm-3 mx-auto">
+        {{ form_widget(entradaForm.footer) }}
+    </div>
+    <div class="col-sm-3 mx-auto center-element">
+        {{ form_widget(entradaForm.linkRoute) }}
+    </div>
+    <div class="col-sm-3 mx-auto">
+        {{ form_widget(entradaForm.linkPosting) }}
+    </div>
+    <div class="col-sm-2 mx-auto text-center form-check text-dark">
+        <label for="entrada_isLinkExterno" class="text-primary">
+            {{ form_widget(entradaForm.isLinkExterno) }}
         </label>
     </div>
 </div>
+<hr class="bg-primary"/>
 <div class="row pt-3">
     <div class="col-sm-3 mx-auto">
         {{ form_row(entradaForm.eventoAt) }}
