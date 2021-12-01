@@ -46,7 +46,7 @@ class ZinicioController extends AbstractController
         }
 
 
-        return $this->render('models/principal/index.html.twig', [
+        return $this->render('models/principal/index_navidad.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda[0],
         ]);

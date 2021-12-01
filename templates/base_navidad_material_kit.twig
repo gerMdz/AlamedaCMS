@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% if google_tag_enable == 'true' %}
+        {% include('inicio/_etiqueta_global_google.html.twig') %}
+    {% endif %}
+    {% set base = base_base() %}
+    {% set version = 'now' | date('YmdH') %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
+    </title>
+    {% set index = 'base' %}
+
+    <meta name="description" content="{{ base.siteName }},  {{ base_metaDescripcion() }}">
+    <meta name="keywords" content="{{ base.siteName}},{{base.lema}},{{base_metaDescripcion()}}">
+    <meta name="author" content="{{ base.metaAutor }}">
+    <meta property="og:title" content="{{ base.metaTitle }}"/>
+    <meta property="og:type" content="{{ base.metaTYpe }}"/>
+    <meta property="og:url" content="{{ base.metaUrl }}"/>
+    <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
+    <meta property="og:description" content="{{ base_lema() }},{{ base_metaDescripcion() }}" />
+    <meta property="og:site_name" content="{{ base.siteName }}" />
+    <link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon">
+    <title>{{ base.metaTitle }}</title>
+     {% include('inicio/_favicon_html.twig') %}
+    {% block icons %}
+        <link href="{{ asset('icons/foundation-icons/foundation-icons.css') }}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% endblock %}
+
+    {% block fonts %}
+        <link href="{{ asset('fonts/fonts.css') }}?v={{ version }}" rel="stylesheet">
+        <link href="{{ asset('fonts/fontAlameda.css') }}?v={{ version }}" rel="stylesheet">
+    {% endblock %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css">
+        <link href="{{ asset('material-kit/v3/css/material-kit.min.css') }}?v=2.0.4" rel="stylesheet"/>
+        <style>
+            body {
+                font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+            }
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            html{
+                height: 100%;
+            }
+            .contenedor{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                -o-background-size: cover;
+                background: url({{ asset('images/fondo_navidad.jpg') }}) no-repeat center center;
+                display: block;
+            }
+        </style>
+    {% endblock %}
+    {% if(facebook_tag_enable == 'true') %}
+        {% include('inicio/_facebook_pixel.html.twig') %}
+    {% endif %}
+</head>
+
+<body class="contenedor">
+
+{% if(google_tag_enable == 'true') %}
+    {% include('inicio/_etiqueta_global_google_body.html.twig') %}
+{% endif %}
+{% block header %}
+{% endblock %}
+{% block usuario %}
+    {% if is_granted('ROLE_RESERVA') %}
+        <div class="d-flex flex-row-reverse text-right">
+            <small class="alert alert-info " style="position: fixed; top: 4rem; z-index: 3">
+                Has ingresado {{ app.user }}<br/>
+                <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out"> </i> Salir </a>
+            </small>
+        </div>
+    {% endif %}
+{% endblock %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success mt-5 pt-5 mb-0 pb-0">
+        {{ message }}
+    </div>
+{% endfor %}
+{% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+    <div class="alert alert-warning" style="position: fixed; bottom: 50px">
+        Temporalmente
+        <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+    </div>
+{% endif %}
+<div class="contenedor justify-content-center">
+{% block sections %}
+
+{% endblock %}
+</div>
+
+
+{% block footer %}
+    {% if mautic_enable == 'true' %}
+        {% include('inicio/_etiqueta_global_mautic.html.twig') %}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://kit.fontawesome.com/743c9941eb.js" crossorigin="anonymous"></script>
+{#    <script src="{{ asset('material-kit/v3/js/core/jquery.min.js') }}"></script>#}
+    <script src="{{ asset('material-kit/v3/js/core/popper.min.js') }}"></script>
+{#    <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}"></script>#}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script> #}
+{#    <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>#}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script> #}
+    {# <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script> #}
+
+    {# <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script> #}
+    {# <script type="text/javascript" src="{{ asset('js/swiper.min.js') }}"></script> #}
+
+
+    <!-- Components Vendor  -->
+    <script src="{{ asset('material-kit/v3/js/plugins/parallax.min.js') }}"></script>
+
+    <script src="{{ asset('stream-ui-kit/assets/vendors/counters/counterup.min.js') }}"></script>
+
+    <!-- Theme Settings and Calls -->
+    <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script>
+
+    <!-- Theme Components and Settings -->
+
+    <script src="{{ asset('material-kit/js/plugins/moment.min.js') }}"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="{{ asset('material-kit/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ asset('material-kit/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+    <!--  Google Maps Plugin  -->
+    {# <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> #}
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script>
+
+{% endblock %}
+
+<script>
+    // $(document).on('ready', function () {
+    //     // initialization of text animation (typing)
+    //     $(".js-display-typing").typed({
+    //         strings: [
+    //             "Viví la experiencia ",
+    //             "Alameda OnLine",
+    //         ],
+    //         typeSpeed: 90,
+    //         loop: true,
+    //         backDelay: 2500
+    //     });
+    // });
+</script>
+<script>
+    // let swiper = new Swiper('.swiper-container', {
+    //     effect: 'coverflow',
+    //     grabCursor: true,
+    //     centeredSlides: true,
+    //     slidesPerView: 'auto',
+    //     coverflowEffect: {
+    //         rotate: 50,
+    //         stretch: 0,
+    //         depth: 100,
+    //         modifier: 1,
+    //         slideShadows: true,
+    //     },
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //     },
+    //     autoplay: {
+    //         delay: 7500,
+    //         disableOnInteraction: false,
+    //     },
+    //     navigation: {
+    //         nextEl: '.swiper-button-next',
+    //         prevEl: '.swiper-button-prev',
+    //     },
+    // });
+</script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
+    });
+</script>
+
+
+</body>
+
+</html>
