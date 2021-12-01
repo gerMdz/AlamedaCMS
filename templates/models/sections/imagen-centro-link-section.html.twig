@@ -21,7 +21,7 @@
                             href="{{ path(section.linkRoute) }}"
                         {% endif %}
                 >
-                    Hacé tu reserva desde aquí
+                    {{ section.contenido | replace({'<p>':'', '</p>':''}) | raw }}
                 </a>
             </div>
         </div>
