@@ -42,7 +42,7 @@ yarn-error.log
 /.php_cs.cache
 /public/stream-ui-kit/
 /public/business-casual/
-/public/material-kit/
+/public/material-kit/js
 /public/shards-ui/
 /public/media/
 /public/media/cache
