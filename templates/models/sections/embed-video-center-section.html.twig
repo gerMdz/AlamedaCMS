@@ -7,10 +7,13 @@
                 {{ section.contenido | raw }}
             </h1>
         </div>
-        <div class="ratio ratio-16x9 text-center">
-            <iframe class="embed-responsive-item col-sm-6 text-center"
+            <div class="col-sm-8 mx-auto text-center">
+            <div class="ratio ratio-16x9">
+{#            <iframe class="embed-responsive-item "#}
+            <iframe
                     src="{{ section.linkPosting }}" allowfullscreen></iframe>
         </div>
+            </div>
     </div>
 </div>
 </section>
