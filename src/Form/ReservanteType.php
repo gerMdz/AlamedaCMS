@@ -25,7 +25,9 @@ class ReservanteType extends AbstractType
             ])
             ->add('nombre', TextType::class, [
                 'required' => false,
-                'label_attr' => 'form-label text-dark',
+                'label_attr' => [
+                'class'=> 'form-label text-dark'
+                ],
                 'help'=>'Nombre',
                 'attr'=>[
                     'class'=>'form-control',
