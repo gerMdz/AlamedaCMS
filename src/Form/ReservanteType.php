@@ -25,10 +25,6 @@ class ReservanteType extends AbstractType
             ])
             ->add('nombre', TextType::class, [
                 'required' => false,
-//                'help'=>'Nombre',
-                'attr'=>[
-                    'class'=>'form-control col-sm-12',
-                ]
             ])
             ->add('telefono', TextType::class, [
                 'label' => 'WhatsApp',
@@ -62,7 +58,7 @@ class ReservanteType extends AbstractType
             ])
             ->add('save', SubmitType::class, array(
                 'label' => 'Reservar',
-                'attr' => array('class' => 'btn btn-primary btn--pill')
+                'attr' => array('class' => 'btn btn-info btn--pill')
             ))
         ; // ;Final del builder
 
