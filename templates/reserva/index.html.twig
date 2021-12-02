@@ -1,4 +1,4 @@
-{% extends 'base_material_kit.twig' %}
+{% extends 'base_navidad_material_kit.twig' %}
 
 {% block title %} Reservas - Index {{ app.request.host }}{% endblock %}
 {% block stylesheets %}
@@ -16,23 +16,23 @@
 {% block sections %}
 
     <!-- Promo Content -->
-    <div class="page-header-30 header-filter mt-5" data-parallax="true"
-         style="background-image: url({{ asset('images/institucional/mix_auditorio.jpg') }})">
-        <div class="container">
-            <div class="row text-white">
-                <div class="col-md-6">
-                    <h2 class="title text-white-75">Iglesia de la Alameda</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+{#    <div class="page-header-30 header-filter mt-5" data-parallax="true"#}
+{#         style="background-image: url({{ asset('images/institucional/mix_auditorio.jpg') }})">#}
+{#        <div class="container">#}
+{#            <div class="row text-white">#}
+{#                <div class="col-md-6">#}
+{#                    <h2 class="title text-white-75">Iglesia de la Alameda</h2>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
     <!-- Charlas -->
-    <div class="main main-raised mt-lg-n60 mt-sm-5 ">
+    <div class="main main-raised mt-sm-5 ">
         <div class="container">
             <div class="section text-center">
                 <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto">
+                    <div class="col-md-8 mx-auto">
                         {% if app.request.cookies.get('celebracion') %}
                             {% set fecha = app.request.cookies.get('celebracion')|split(':')| slice(1,2) %}
                             {% set dia = fecha[0]| replace({'"':''})~':'~fecha[1] %}
@@ -97,7 +97,7 @@
                                     ,
                                     {{ celebracion.nombre }}
                                 </a><br class="d-md-none"/>
-                                <small class="text-dark ">
+                                <small class="text-white-75 ">
                                     {{ capacidad_restante(celebracion.id, celebracion.capacidad) }}
                                     asientos
                                     libres
@@ -138,7 +138,7 @@
                                 (is_granted('ROLE_RESERVA'))
                                 ) %}
                                 <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
-                                   class="btn btn-alameda btn-modal">
+                                   class="btn btn-alameda btn-modal " data-bs-toggle="modal" data-bs-target="#modalPlantillaWeb">
                                     {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}
                                     ,
                                     {{ celebracion.nombre }}
@@ -178,7 +178,7 @@
 
 {#                        Habilitar para consulta de reservas#}
                         <div class="col-sm-12">
-                            <a class="btn btn-primary" href="{{ path('reserva_consulta') }}">
+                            <a class="btn btn-info" href="{{ path('reserva_consulta') }}">
                                 Consultá tu reserva
                             </a>
                         </div>
@@ -225,7 +225,6 @@
 
     {% block javascripts %}
         {{ parent() }}
-        <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
         <script type="application/javascript">
             $(function () {
                 $(".btn-modal").click(function (ev) {

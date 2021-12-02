@@ -25,24 +25,28 @@ class ReservanteType extends AbstractType
             ])
             ->add('nombre', TextType::class, [
                 'required' => false,
-                'label' => 'Nombre'
+                'label_attr' => 'form-label text-dark',
+                'help'=>'Nombre',
+                'attr'=>[
+                    'class'=>'form-control',
+                ]
             ])
             ->add('telefono', TextType::class, [
                 'label' => 'WhatsApp',
                 'required' => false
             ])
             ->add('isPresente')
-            ->add('documento', TextType::class, [
-                'label' => 'Nro de documento',
-                'help' => '(Solicitado por las autoridades como parte del protocolo)',
-                'invalid_message' => 'Por favor ingrese solo números, sin puntos ni guiones',
-                'invalid_message_parameters' => 'Por favor ingrese un valor mayor a 0',
-
-                'attr' => [
-                    'pattern'=>'\d+',
-                    'oninput'=>'this.value=this.value.replace(/[^0-9]/g,"")'
-                ]
-            ])
+//            ->add('documento', TextType::class, [
+//                'label' => 'Nro de documento',
+//                'help' => '(Solicitado por las autoridades como parte del protocolo)',
+//                'invalid_message' => 'Por favor ingrese solo números, sin puntos ni guiones',
+//                'invalid_message_parameters' => 'Por favor ingrese un valor mayor a 0',
+//
+//                'attr' => [
+//                    'pattern'=>'\d+',
+//                    'oninput'=>'this.value=this.value.replace(/[^0-9]/g,"")'
+//                ]
+//            ])
             ->add('celebracion', HiddenType::class, [
                 'property_path' => 'celebracion.id',
                 'attr' => [

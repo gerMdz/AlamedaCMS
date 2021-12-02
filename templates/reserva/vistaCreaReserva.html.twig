@@ -1,64 +1,77 @@
 {{ form_start(form, {'action' : path('crea_reserva', { 'id': celebracion.id })}) }}
-<div class="modal-header panel-info">
-    <h5 class="modal-title" id="exampleModalLabel">Reservar </h5>
-</div>
-<div id="reserva" class="modal-body">
-    <div class="card">
-        <div class="card-header card-header-primary">
+<div class="container my-auto">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-12 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
+                        <span class="px-5 mx-auto text-dark">
+                        Reservar
+                        </span>
 
-            <h4 class="card-title "> {{ celebracion.nombre }} </h4>
-            <p class="card-category"> {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }} </p>
-        </div>
-        <div class="card-body">
+                        {# <div id="reserva" class="modal-body"> #}
+                        {# <div class="card"> #}
+                        {# <div class="card-header card-header-primary py-1"> #}
+                        <div class="row mt-3">
+                            <div class="col-12 text-center ms-auto text-white-75">
+                                <h5 class="card-title text-white-75 "> {{ celebracion.nombre }} </h5>
+                                <p class="card-category"> {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group input-group-outline my-3 mx-auto">
+                            <label class="form-label text-dark">
+                                <i class="fa fa-user"> </i>
+                            </label>
+{#                            {{ form_help(form.nombre) }}#}
+{#                            {{ form_errors(form.nombre) }}#}
 
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.nombre.vars.id}}" class="label text-dark">
-                    <i class="fa fa-user"> </i> Nombre
-                </label>
-                {{ form_widget(form.nombre) }}
-            </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.apellido.vars.id}}" class="label text-dark">
-                    <i class="fa fa-house-user"> </i> Apellido
-                </label>
-                {{ form_widget(form.apellido) }}
-            </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.documento.vars.id}}" class="label text-dark">
-                    <i class="fa fa-address-card"> </i> Nro de documento
-                </label>
-                {{ form_widget(form.documento) }}
-            </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.email.vars.id}}" class="label text-dark">
-                    <i class="fa fa-at"> </i> Email
-                </label>
-                {{ form_widget(form.email) }}
-            </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.telefono.vars.id}}" class="label text-dark">
-                    <i class="fa fa-whatsapp"> </i> WhatsApp
-                </label>
-                {{ form_widget(form.telefono) }}
-            </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.acompanantes.vars.id}}" class="label text-dark">
-                    <i class="fa fa-users"> </i> Acompañantes
-                </label>
-                {{ form_widget(form.acompanantes) }}
-            </div>
-            <div class="col-sm-12 p-0 text-center">
-                {{ form_row(form.save) }}
-            </div>
+                            {{ form_row(form.nombre) }}
 
-            {{ form_row(form.celebracion) }}
-            {{ form_widget(form._token) }}
+                        </div>
+                        <div class="col-sm-12 col-lg-6 p-0">
+                            <label for="{{ form.apellido.vars.id }}" class="label text-dark">
+                                <i class="fa fa-house-user"> </i> Apellido
+                            </label>
+                            {{ form_widget(form.apellido) }}
+                        </div>
+                        {# <div class="col-sm-12 p-0"> #}
+                        {# <label for="{{ form.documento.vars.id}}" class="label text-dark"> #}
+                        {# <i class="fa fa-address-card"> </i> Nro de documento #}
+                        {# </label> #}
+                        {# {{ form_widget(form.documento) }} #}
+                        {# </div> #}
+                        <div class="col-md-6 col-sm-12 p-0">
+                            <label for="{{ form.email.vars.id }}" class="label text-dark">
+                                <i class="fa fa-at"> </i> Email
+                            </label>
+                            {{ form_widget(form.email) }}
+                        </div>
+                        <div class="col-md-6 col-sm-12 p-0">
+                            <label for="{{ form.telefono.vars.id }}" class="label text-dark">
+                                <i class="fa fa-whatsapp"> </i> WhatsApp
+                            </label>
+                            {{ form_widget(form.telefono) }}
+                        </div>
+                        <div class="col-md-6 col-sm-12 p-0 mx-auto">
+                            <label for="{{ form.acompanantes.vars.id }}" class="label text-dark">
+                                <i class="fa fa-users"> </i> Acompañantes
+                            </label>
+                            {{ form_widget(form.acompanantes) }}
+                        </div>
+                        <div class="col-sm-12 p-0 text-center">
+                            {{ form_row(form.save) }}
+                        </div>
 
-        </div>
+                        {{ form_row(form.celebracion) }}
+                        {{ form_widget(form._token) }}
 
-    </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-</div>
-{{ form_end(form, {'render_rest': false}) }}
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+            {{ form_end(form, {'render_rest': false}) }}

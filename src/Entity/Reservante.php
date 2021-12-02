@@ -51,7 +51,7 @@ class Reservante
     private $isPresente;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $documento;
 

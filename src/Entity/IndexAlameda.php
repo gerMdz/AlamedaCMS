@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\IndexAlamedaRepository")
+ * @ORM\Table("index_alameda")
  */
 class IndexAlameda
 {
@@ -24,7 +25,7 @@ class IndexAlameda
     private $lema;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, name="lema_principal")
      */
     private $lemaPrincipal;
 

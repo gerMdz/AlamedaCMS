@@ -38,7 +38,7 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css">
-        <link href="{{ asset('material-kit/v3/css/material-kit.min.css') }}?v=2.0.4" rel="stylesheet"/>
+        <link href="{{ asset('material-kit/v3/css/material-kit.min.css') }}?v=3.0.0" rel="stylesheet"/>
         <style>
             body, html {
                 width: 100%;
@@ -127,6 +127,10 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+
+    <script src="{{ asset('material-kit/js/core/popper.min.js') }}?v=2.0.4" type="text/javascript"></script>
+    <script src="{{ asset('material-kit/js/core/jquery.min.js') }}?v=3.0.0" type="text/javascript"></script>
+    <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}?v=2.0.4" type="text/javascript"></script>
     <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script>
 
 {% endblock %}

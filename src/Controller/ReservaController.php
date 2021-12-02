@@ -26,12 +26,12 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/reserva")
+ * @Route("/reservas")
  */
 class ReservaController extends AbstractController
 {
     /**
-     * @Route("/ver", name="reserva_index")
+     * @Route("/", name="reserva_index")
      * @param CelebracionRepository $celebracionRepository
      * @param GroupCelebrationRepository $groupCelebrationRepository
      * @return Response
