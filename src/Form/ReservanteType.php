@@ -25,12 +25,9 @@ class ReservanteType extends AbstractType
             ])
             ->add('nombre', TextType::class, [
                 'required' => false,
-                'label_attr' => [
-                'class'=> 'form-label text-dark'
-                ],
-                'help'=>'Nombre',
+//                'help'=>'Nombre',
                 'attr'=>[
-                    'class'=>'form-control',
+                    'class'=>'form-control col-sm-12',
                 ]
             ])
             ->add('telefono', TextType::class, [
