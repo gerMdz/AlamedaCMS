@@ -15,9 +15,9 @@
     Bienvenido a Nuestro Auditorio.
     <br/>
     Estamos entusiasmados de poder verte
-    el {{ reservante.celebracion.fechaCelebracionAt| format_date(pattern="d 'de' MMMM HH:mm") }}
+    el {{ reservante.celebracion.fechaCelebracionAt| format_date(pattern="d 'de' MMMM ") }}
     ({{ reservante.celebracion.nombre }}"), para el Especial de Navidad 2021 ". <br/>
-    {{ reservante.celebracion.descripcion }}.
+
     <br/>
     Has realizado tu reserva para <b> {{ invitados }}</b> personas
     <br/>
@@ -42,9 +42,7 @@
     Recordá que para lograr la mejor experiencia, en el ambiente más seguro, vamos a practicar algunos hábitos nuevos:
     Utilizar tapabocas todo el tiempo posible y mantener distancia social en toda la experiencia. Pero lo más
     importante: ¡Recordá que pasaremos juntos una experiencia única! Nos vemos,<br/>
-
     Navidad en la Alameda
-
     </body>
     </html>
 {% endapply %}
