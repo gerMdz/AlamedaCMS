@@ -4,19 +4,43 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('app') }}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+{#    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.min.css') }}">#}
+{#    <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">#}
+{#    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"#}
+{#          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">#}
 {% endblock %}
 {% block sslocal %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
+<style>
+
+    body, html {
+        width: 100%;
+        margin: 0;
+        font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+    }
+
+    .bg {
+        /* The image used */
+        background-image: url({{ asset('images/fondo_navidad.jpg') }});
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center center;
+        background-repeat: no-repeat;
+        /*background-size: cover;*/
+        position: relative;
+        width: 100%;
+    }
+</style>
+
 {% endblock %}
 
 {% block sections %}
 
     <!-- Promo Content -->
-    <div class="page-header-30 header-filter mt-5" data-parallax="true"
+    <div class="page-header-30 header-filter mt-3" data-parallax="true"
          style="background-image: url({{ asset('images/texto_navidad.png') }})">
         <div class="container">
             <div class="row text-white">
@@ -225,6 +249,7 @@
 
     {% block javascripts %}
         {{ parent() }}
+        <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.parallax.js') }}"></script>
         <script type="application/javascript">
             $(function () {
                 $(".btn-modal").click(function (ev) {

@@ -3,6 +3,32 @@
     {{ parent() }}
     {{ encore_entry_link_tags('app') }}
 {% endblock %}
+{% block sslocal %}
+    <style>
+
+        body, html {
+            width: 100%;
+            margin: 0;
+            font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+        }
+
+        .bg {
+            /* The image used */
+            background-image: url({{ asset('images/fondo_navidad.jpg') }});
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center center;
+            background-repeat: no-repeat;
+            /*background-size: cover;*/
+            position: relative;
+            width: 100%;
+        }
+    </style>
+
+{% endblock %}
 
 {% block sections %}
     <div class="page-header-30 header-filter mt-5" data-parallax="true"

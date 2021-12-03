@@ -14,12 +14,35 @@
 
     </style>
 {% endblock %}
-{% block sslocal %}
-    {# <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/resume.min.css') }}"> #}
-    {# <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet"> #}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
 
-{% endblock %}
+    {% block sslocal %}
+        <style>
+
+            body, html {
+                width: 100%;
+                margin: 0;
+                font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+            }
+
+            .bg {
+                /* The image used */
+                background-image: url({{ asset('images/fondo_navidad.jpg') }});
+
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center center;
+                background-repeat: no-repeat;
+                /*background-size: cover;*/
+                position: relative;
+                width: 100%;
+            }
+        </style>
+
+    {% endblock %}
+
+
 
 {% block sections %}
     <div class="col-md-12 mt-5 pt-5">
