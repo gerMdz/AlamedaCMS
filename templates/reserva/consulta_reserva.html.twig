@@ -1,4 +1,4 @@
-{% extends 'base_material_kit.twig' %}
+{% extends 'base_navidad_material_kit.twig' %}
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('app') }}
@@ -6,11 +6,11 @@
 
 {% block sections %}
     <div class="page-header-30 header-filter mt-5" data-parallax="true"
-         style="background-image: url({{ asset('images/institucional/mix_auditorio.jpg') }})">
+         style="background-image: url({{ asset('images/texto_navidad.png') }})">
         <div class="container">
             <div class="row text-white">
                 <div class="col-md-6">
-                    <h2 class="title text-white-75">Iglesia de la Alameda</h2>
+                    <h2 class="title text-white-75">Auditorio Alameda</h2>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="col-sm-12 p-0 text-center">
-                                    <button class="btn btn-primary">{{ button_label|default('Buscar') }}</button>
+                                    <button class="btn btn-info">{{ button_label|default('Buscar') }}</button>
                                 </div>
 
                                 {{ form_widget(form._token) }}
