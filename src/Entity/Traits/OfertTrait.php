@@ -5,17 +5,20 @@ namespace App\Entity\Traits;
 
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 trait OfertTrait
 {
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("celebracion_read")
      */
     private $disponibleAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("celebracion_read")
      */
     private $disponibleHastaAt;
 

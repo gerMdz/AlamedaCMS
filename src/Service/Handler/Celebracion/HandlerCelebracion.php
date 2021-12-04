@@ -73,5 +73,15 @@ class HandlerCelebracion
     }
 
 
+    /**
+     * @return array
+     */
+    public function puedeHacerReserva(): array
+    {
+         return $this->celebracionRepository->puedeMostrarse()->getQuery()->getArrayResult();
+
+    }
+
+
 
 }

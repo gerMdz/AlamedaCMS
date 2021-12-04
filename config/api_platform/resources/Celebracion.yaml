@@ -1,22 +1,15 @@
 App\Entity\Celebracion:
   attributes:
     normalization_context:
-      groups: [category_read]
+      groups: [celebracion_read]
   collectionOperations:
-    post:
-      method: POST
-      security: is_granted("CATEGORY_CREATE")
-      denormalization_context:
-        groups: [category_create]
+    getcelebracion:
+      path: getcelebracion
+      controller: App\Action\Celebracion\GetCelebraciones
+      method: GET
+      deserialize: false
+      openapi_context:
+        summary: Obtiene el listado de celebraciones disponibles
   itemOperations:
     get:
       method: GET
-      security: is_granted("CATEGORY_READ", object)
-    put:
-      method: PUT
-      security: is_granted("CATEGORY_UPDATE", object)
-      denormalization_context:
-        groups: [category_update]
-    delete:
-      method: DELETE
-      security: is_granted("CATEGORY_DELETE", object)

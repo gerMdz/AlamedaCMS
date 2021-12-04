@@ -1,16 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
-
 index:
     path: /
     controller: App\Controller\ZinicioController::index
-
-
-
-
-
-#index:
-#    path: /
-#    defaults: { _controller: 'App\Controller\DefaultController::index' }

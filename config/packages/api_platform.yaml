@@ -1,4 +1,16 @@
 api_platform:
+    title: 'API Reservas'
+    description: 'API para la lectura de reservas'
+    version: '0.0.1'
+    show_webby: false
+    # Enable ReDoc.
+    enable_re_doc: true
+
+    # Enable the entrypoint.
+    enable_entrypoint: true
+
+    # Enable the docs.
+    enable_docs: true
     mapping:
         paths:
             - '%kernel.project_dir%/config/api_platform/resources'

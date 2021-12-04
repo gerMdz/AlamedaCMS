@@ -1,16 +1,20 @@
 App\Entity\Celebracion:
   attributes:
     id:
-      groups: [category_read]
-    name:
-      groups: [category_read, category_create, category_update, movement_read]
-    type:
-      groups: [category_read, category_create]
-    owner:
-      groups: [category_read, category_create]
-    group:
-      groups: [category_read, category_create]
-    createdAt:
-      groups: [category_read]
-    updatedAt:
-      groups: [category_read]
+      groups: [celebracion_read]
+    fechaCelebracionAt:
+      groups: [celebracion_read]
+    nombre:
+      groups: [celebracion_read]
+    capacidad:
+      groups: [celebracion_read]
+    descripcion:
+      groups: [celebracion_read]
+    imageQr:
+      groups: [celebracion_read]
+    groupCelebrations:
+      groups: [celebracion_read]
+    disponibleAt:
+      groups: [celebracion_read]
+    disponibleHastaAt:
+      groups: [celebracion_read]

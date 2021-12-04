@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use IntlDateFormatter;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CelebracionRepository::class)
@@ -26,21 +27,25 @@ class Celebracion
      * @ORM\Column(type="string", length=36)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @Groups("celebracion_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("celebracion_read")
      */
     private $fechaCelebracionAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("celebracion_read")
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("celebracion_read")
      */
     private $capacidad;
 
@@ -62,6 +67,7 @@ class Celebracion
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("celebracion_read")
      */
     private $descripcion;
 
@@ -72,6 +78,7 @@ class Celebracion
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("celebracion_read")
      */
     private $imageQr;
 
@@ -82,6 +89,7 @@ class Celebracion
 
     /**
      * @ORM\ManyToMany(targetEntity=GroupCelebration::class, mappedBy="celebraciones")
+     * @Groups("celebracion_read")
      */
     private $groupCelebrations;
 
