@@ -5,17 +5,12 @@
 <div id="reserva" class="modal-body">
     <div class="card">
         <div class="card-header card-header-primary">
-
             <h4 class="card-title "> {{ invitado.celebracion.nombre }} </h4>
             <p class="card-category"> {{ invitado.celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}, </p>
-
                        {{ form_widget(form.enlace, { 'attr': {'style': 'display: none'} }) }}
                        {{ form_widget(form.celebracion, { 'attr': {'style': 'display: none'} }) }}
-
-
         </div>
         <div class="card-body">
-
             <div class="col-sm-12 p-0">
                 <label for="{{ form.nombre.vars.id}}" class="label text-dark">
                     <i class="fa fa-user"> </i> Nombre
@@ -28,12 +23,12 @@
                 </label>
                 {{ form_widget(form.apellido) }}
             </div>
-            <div class="col-sm-12 p-0">
-                <label for="{{ form.dni.vars.id}}" class="label text-dark">
-                    <i class="fa fa-address-card"> </i> Nro de documento
-                </label>
-                {{ form_widget(form.dni) }}
-            </div>
+{#            <div class="col-sm-12 p-0">#}
+{#                <label for="{{ form.dni.vars.id}}" class="label text-dark">#}
+{#                    <i class="fa fa-address-card"> </i> Nro de documento#}
+{#                </label>#}
+{#                {{ form_widget(form.dni) }}#}
+{#            </div>#}
             <div class="col-sm-12 p-0">
                 <label for="{{ form.email.vars.id}}" class="label text-dark">
                     <i class="fa fa-at"> </i> Email
@@ -47,9 +42,8 @@
                 {{ form_widget(form.telefono) }}
             </div>
             <div class="col-sm-12 p-0 text-center">
-                <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+                <button class="btn btn-info">{{ button_label|default('Guardar') }}</button>
             </div>
-
             {{ form_widget(form._token) }}
         </div>
 

@@ -13,7 +13,7 @@ class InvitadoType extends AbstractType
     {
         $builder
             ->add('telefono')
-            ->add('dni')
+//            ->add('dni')
             ->add('nombre')
             ->add('apellido')
             ->add('enlace')
