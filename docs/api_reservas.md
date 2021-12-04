@@ -1,1 +1,2 @@
--[ ] Creando post de add reservation 
+-[X] Creando post de add reservation 
+-[ ] Grabando correctamente reservante, invitados y celebración 
