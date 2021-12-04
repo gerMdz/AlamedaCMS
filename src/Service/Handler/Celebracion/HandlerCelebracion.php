@@ -6,6 +6,7 @@ namespace App\Service\Handler\Celebracion;
 use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Entity\WaitingList;
+use App\Exception\Celebracion\CelebracionNotFoundException;
 use App\Repository\CelebracionRepository;
 use App\Repository\InvitadoRepository;
 use Doctrine\Common\Collections\Collection;
@@ -74,8 +75,16 @@ class HandlerCelebracion
     /**
      * @return array
      */
-    public function puedeHacerReserva(): array
+    public function reservasDisponibles(): array
     {
         return $this->celebracionRepository->puedeMostrarse()->getQuery()->getArrayResult();
+    }
+
+    public function existeCelebracion(string $id_celebracion): ?Celebracion
+    {
+        if(null == $celebracion = $this->celebracionRepository->find($id_celebracion)){
+            throw CelebracionNotFoundException::fromId($id_celebracion);
+        }
+        return $celebracion;
     }
 }

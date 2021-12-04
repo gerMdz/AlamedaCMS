@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Action\Celebracion;
+namespace App\Action\Reservante;
 
 use App\Service\Handler\Celebracion\HandlerCelebracion;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetCelebraciones
+class AddReservation
 {
-
     private $handlerCelebracion;
 
     /**
@@ -26,6 +25,7 @@ class GetCelebraciones
      */
     public function __invoke(Request $request): JsonResponse
     {
+        dd($request->getContent());
         return new JsonResponse($this->handlerCelebracion->reservasDisponibles());
     }
 }

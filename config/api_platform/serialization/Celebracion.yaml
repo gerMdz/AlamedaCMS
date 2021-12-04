@@ -1,17 +1,17 @@
 App\Entity\Celebracion:
   attributes:
     id:
-      groups: [celebracion_read]
+      groups: [celebracion_read, reservante_read]
     fechaCelebracionAt:
       groups: [celebracion_read]
     nombre:
-      groups: [celebracion_read]
+      groups: [celebracion_read, reservante_read]
     capacidad:
       groups: [celebracion_read]
     descripcion:
-      groups: [celebracion_read]
+      groups: [celebracion_read, reservante_read]
     imageQr:
-      groups: [celebracion_read]
+      groups: [celebracion_read, reservante_read]
     groupCelebrations:
       groups: [celebracion_read]
     disponibleAt:

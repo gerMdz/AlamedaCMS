@@ -6,6 +6,7 @@ use App\Repository\ReservanteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ReservanteRepository::class)
@@ -17,31 +18,37 @@ class Reservante
      * @ORM\Column(type="string", length=36)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @Groups("reservante_read")
      */
     private $id;
     /**
      * @ORM\ManyToOne(targetEntity=Celebracion::class, inversedBy="reservantes")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("reservante_read, reservante_create")
      */
     private $celebracion;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("reservante_read, reservante_create")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("reservante_read, reservante_create")
      */
     private $apellido;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("reservante_read, reservante_create")
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("reservante_read, reservante_create")
      */
     private $telefono;
 

@@ -1,0 +1,16 @@
+App\Entity\Reservante:
+  attributes:
+    id:
+      groups: [reservante_read]
+    celebracion:
+      groups: [reservante_read, reservante_create]
+    email:
+      groups: [reservante_read, reservante_create]
+    apellido:
+      groups: [reservante_read, reservante_create]
+    nombre:
+      groups: [reservante_read, reservante_create]
+    telefono:
+      groups: [reservante_read, reservante_create]
+#    invitados:
+#      groups: [reservante_read, reservante_create]

@@ -1,0 +1,48 @@
+App\Entity\Reservante:
+  attributes:
+    normalization_context:
+      groups: [reservante_read]
+  collectionOperations:
+    post:
+      method: POST
+      path: creareserva/{id}/celebracion
+      controller: App\Action\Reservante\AddReservation
+      denormalization_context:
+        groups: [reservante_create]
+      openapi_context:
+        summary: Crea una reserva a nombre de un reservante
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    required: true
+                  apellido:
+                    type: string
+                    required: true
+                  nombre:
+                    type: string
+                    required: true
+                  telefono:
+                    type: string
+                    required: false
+                  cantidad_invitados:
+                    type: number
+                    required: false
+  itemOperations:
+    get:
+      method: GET
+  properties:
+    celebracion:
+      subresource:
+        resourceClass: App\Entity\Celebracion
+        collection: true
+        maxDepth: 1
+#    invitados:
+#      subresource:
+#        resourceClass: App\Entity\Invitado
+#        collection: true
+#        maxDepth: 1
