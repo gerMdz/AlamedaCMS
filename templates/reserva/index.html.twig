@@ -15,7 +15,7 @@
 
     body, html {
         width: 100%;
-        margin: 0;
+        margin: 80px 0 0;
         font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
     }
 
@@ -41,8 +41,9 @@
 
     <!-- Promo Content -->
     <div class="page-header-30 header-filter mt-3" data-parallax="true"
-{#         style="background-image: url({{ asset('images/cabecera_navidad.jpg') }})">#}
+{#         style="background-image: url({{ asset('images/cabecera_navidad.jpg') }})"#}
     >
+
         <div class="container">
             <div class="row text-white">
                 <div class="col-md-6">
@@ -62,7 +63,7 @@
                             {% set fecha = app.request.cookies.get('celebracion')|split(':')| slice(1,2) %}
                             {% set dia = fecha[0]| replace({'"':''})~':'~fecha[1] %}
                             <div class="col-sm-12">
-                                <small>
+                                <small class="text-white">
                                     Hay una reserva realizada con el email:
                                     <strong> {{ app.request.cookies.get('email') | replace({'["':'','"]':'' }) }}</strong>
                                     <br/>
