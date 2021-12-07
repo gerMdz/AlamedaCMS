@@ -5,35 +5,47 @@
     {{ parent() }}
     {{ encore_entry_link_tags('app') }}
 
-{#    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.min.css') }}">#}
-{#    <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}">#}
-{#    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"#}
-{#          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">#}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.min.css') }}"> #}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('css/igles.min.css') }}"> #}
+    {# <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" #}
+    {# integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> #}
 {% endblock %}
 {% block sslocal %}
-<style>
+    <style>
 
-    body, html {
-        width: 100%;
-        margin: 80px 0 0;*/
-        font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
-    }
+        /*body, html {*/
+        /*    width: 100%;*/
+        /*    margin: 80px 0 0;*/
+        /*    font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;*/
+        /*}*/
 
-    .bg {
-        /* The image used */
-        background-image: url({{ asset('images/fondo_navidad.jpg') }});
+        html {
+            background: url({{ asset('images/fondo_navidad.jpg') }}) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
 
-        /* Full height */
-        height: 100%;
+        }
 
-        /* Center and scale the image nicely */
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: auto;
-        position: absolute;
-        width: 100%;
-    }
-</style>
+
+        .bg {
+            /* The image used */
+        {#background-image: url({{ asset('images/fondo_navidad.jpg') }});#}
+
+            /* Full height */
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0);
+
+            /* Center and scale the image nicely */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: auto;
+            position: absolute;
+            width: 100%;
+        }
+    </style>
 
 {% endblock %}
 
@@ -41,7 +53,7 @@
 
     <!-- Promo Content -->
     <div class="page-header-30 header-filter mt-3" data-parallax="true"
-{#         style="background-image: url({{ asset('images/cabecera_navidad.jpg') }})"#}
+            {# style="background-image: url({{ asset('images/cabecera_navidad.jpg') }})" #}
     >
 
         <div class="container">
@@ -62,23 +74,26 @@
                         {% if app.request.cookies.get('celebracion') %}
                             {% set fecha = app.request.cookies.get('celebracion')|split(':')| slice(1,2) %}
                             {% set dia = fecha[0]| replace({'"':''})~':'~fecha[1] %}
-                            <div class="col-sm-12">
-                                <small class="text-white">
-                                    Hay una reserva realizada con el email:
-                                    <strong> {{ app.request.cookies.get('email') | replace({'["':'','"]':'' }) }}</strong>
-                                    <br/>
-                                    para el día <strong> {{ dia | date('d-m-y H:i') }} hs </strong> <br/>
-                                    desde este dispositivo
-                                </small>
+                            <div class="row">
+                                <div class="col-sm-9"></div>
+                                <div class="col-sm-3">
+                                    <small class="text-white text-right">
+                                        Hay una reserva realizada con el email:
+                                        <strong> {{ app.request.cookies.get('email') | replace({'["':'','"]':'' }) }}</strong>
+                                        <br/>
+                                        para el día <strong> {{ dia | date('d-m-y H:i') }} hs </strong> <br/>
+                                        desde este dispositivo
+                                    </small>
+                                </div>
                             </div>
                         {% endif %}
 
-{#                        <h2>#}
-{#                            <label class="text-alameda">#}
-{#                                <i>Las reservas para eventos presenciales estarán disponibles a partir del </i><br/>#}
-{#                                <strong>1 de junio</strong>#}
-{#                            </label>#}
-{#                        </h2>#}
+                        {# <h2> #}
+                        {# <label class="text-alameda"> #}
+                        {# <i>Las reservas para eventos presenciales estarán disponibles a partir del </i><br/> #}
+                        {# <strong>1 de junio</strong> #}
+                        {# </label> #}
+                        {# </h2> #}
 
                         <h3>
                             <label class="text-alameda">
@@ -154,7 +169,7 @@
                         {% endif %}
 
                         {% endfor %}
-                        {% else %}
+                    {% else %}
                         {% if (celebraciones|length > 0) %}
                         {% for celebracion in celebraciones %}
                         {# {{ celebracion.groupCelebrations[0] }} #}
@@ -164,7 +179,8 @@
                                 (is_granted('ROLE_RESERVA'))
                                 ) %}
                                 <a href="{{ path('crea_reserva', { 'id': celebracion.id }) }}"
-                                   class="btn btn-alameda btn-modal " data-bs-toggle="modal" data-bs-target="#modalPlantillaWeb">
+                                   class="btn btn-alameda btn-modal " data-bs-toggle="modal"
+                                   data-bs-target="#modalPlantillaWeb">
                                     {{ celebracion.fechaCelebracionAt | format_date(pattern="d 'de' MMMM") }}
                                     ,
                                     {{ celebracion.nombre }}
@@ -202,7 +218,7 @@
 
                         </div>
 
-{#                        Habilitar para consulta de reservas#}
+                        {# Habilitar para consulta de reservas #}
                         <div class="col-sm-12">
                             <a class="btn btn-info" href="{{ path('reserva_consulta') }}">
                                 Consultá tu reserva
