@@ -13,6 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -77,6 +78,7 @@ class EntradaType extends AbstractType
                     'label_attr'=>[
                         'class' => 'text-primary'
                     ],
+                    'help'=>'Contenido de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => false,
                         'rows' => 10,
@@ -142,6 +144,7 @@ class EntradaType extends AbstractType
                 [
                     'mapped' => false,
                     'required' => false,
+                    'label' => 'Imagen',
                     'constraints' => [
                         new Image(
                             [
@@ -197,7 +200,9 @@ class EntradaType extends AbstractType
             ])
 
 //            ->add('section')
-            ->add('orden')
+            ->add('orden', NumberType::class,[
+                'label'=>'Orden en la sección',
+            ])
             ->add(
                 'encabezado',
                 CheckboxType::class,
