@@ -70,22 +70,30 @@
                         <div class="card">
                             <div class="card-header card-header-primary">
 
-                                <h4 class="card-title "> Consulta reserva </h4>
+                                <h4 class="card-title "> Consultar reserva
+                                    <br/>
+                                    <small>y completar datos</small>  </h4>
                                 <p class="card-category"></p>
                             </div>
                             <div class="card-body">
                                 {{ form_start(form) }}
-                                <div class="col-sm-12 p-0">
+                                <div class="col-sm-12 m-2 p-0">
+                                    <div class="input-group input-group-outline">
                                     <label for="{{ form.celebracion.vars.id }}" class="label text-dark">
-                                        <i class="fa fa-hands"> </i> Celebracion
+                                        <i class="fa fa-hands mx-3 px-3 my-auto"> </i>
+{#                                        Celebracion#}
                                     </label>
                                     {{ form_widget(form.celebracion) }}
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 p-0">
+                                <div class="col-sm-12 m-2 p-0">
+                                    <div class="input-group input-group-outline">
                                     <label for="{{ form.email.vars.id }}" class="label text-dark">
-                                        <i class="fa fa-at"> </i> Email
+                                        <i class="fa fa-at mx-3 px-3 my-auto"> </i>
+{#                                        Email#}
                                     </label>
                                     {{ form_widget(form.email) }}
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-12 p-0 text-center">
