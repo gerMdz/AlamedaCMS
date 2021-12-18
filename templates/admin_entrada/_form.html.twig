@@ -102,6 +102,30 @@
     <div class="col-sm-6">
         {{ form_row(entradaForm.modelTemplate) }}
     </div>
+    <div class="col-sm-2 mx-auto">
+        {{ form_label(entradaForm.orden) }}
+        {{ form_widget(entradaForm.orden) }}
+        {{ form_help(entradaForm.orden) }}
+        {{ form_errors(entradaForm.orden) }}
+    </div>
+    <div class="col-sm-2 mx-auto">
+        {{ form_label(entradaForm.cssClass) }}
+        {{ form_widget(entradaForm.cssClass) }}
+        {{ form_help(entradaForm.cssClass) }}
+        {{ form_errors(entradaForm.cssClass) }}
+    </div>
+    <div class="col-sm-2 mx-auto">
+        {{ form_label(entradaForm.identificador) }}
+        {{ form_widget(entradaForm.identificador) }}
+        {{ form_help(entradaForm.identificador) }}
+        {{ form_errors(entradaForm.identificador) }}
+    </div>
+    <div class="col-sm-3 mx-auto">
+        {{ form_label(entradaForm.contacto) }}
+        {{ form_widget(entradaForm.contacto) }}
+        {{ form_help(entradaForm.contacto) }}
+        {{ form_errors(entradaForm.contacto) }}
+    </div>
 
     <div class="col-sm-9">
         {{ form_row(entradaForm.imageFile, {
@@ -119,6 +143,7 @@
 
         {% endif %}
     </div>
+
 </div>
 <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
 

@@ -25,9 +25,7 @@ class EntradaType extends AbstractType
     {
         $builder
             //            Con steps
-            ->add(
-                'titulo',
-                CKEditorType::class,
+            ->add('titulo', CKEditorType::class,
                 [
                     'required' => true,
                     'config' => [
@@ -36,10 +34,10 @@ class EntradaType extends AbstractType
                         'language' => 'es',
                         'input_sync' => true,
                     ],
-                    'label_attr'=>[
-                        'class' => 'text-primary'
+                    'label_attr' => [
+                        'class' => 'text-primary',
                     ],
-                    'help'=>'Título de la entrada, se muestra en pantalla',
+                    'help' => 'Título de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => true,
                         'rows' => 10,
@@ -51,14 +49,14 @@ class EntradaType extends AbstractType
                 'linkRoute',
                 EntityType::class,
                 [
-                    'class'=> Principal::class,
-                    'choice_label' => function(Principal $principal) {
-                    return sprintf('%s', $principal->getTitulo());
-                },
+                    'class' => Principal::class,
+                    'choice_label' => function (Principal $principal) {
+                        return sprintf('%s', $principal->getTitulo());
+                    },
                     'required' => false,
-                    'help'=>'Link a páginas internas del sistema',
-                    'label_attr'=>[
-                        'class' => 'text-primary'
+                    'help' => 'Link a páginas internas del sistema',
+                    'label_attr' => [
+                        'class' => 'text-primary',
                     ],
                     'attr' => [
                         'class' => 'select2-enable',
@@ -75,10 +73,10 @@ class EntradaType extends AbstractType
 //                    'toolbar' => 'full',
                         'language' => 'es',
                     ],
-                    'label_attr'=>[
-                        'class' => 'text-primary'
+                    'label_attr' => [
+                        'class' => 'text-primary',
                     ],
-                    'help'=>'Contenido de la entrada, se muestra en pantalla',
+                    'help' => 'Contenido de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => false,
                         'rows' => 10,
@@ -96,17 +94,17 @@ class EntradaType extends AbstractType
                     },
                     'placeholder' => 'Seleccione Autor',
                     'invalid_message' => 'Por favor ingrese un autor',
-                    'attr'=>[
-                        'class' => 'select2-enable'
-                    ]
+                    'attr' => [
+                        'class' => 'select2-enable',
+                    ],
                 ]
             )
-            ->add('linkPosting', TextType::class,[
-                'required'=>false,
-                'label_attr'=>[
-                    'class' => 'text-primary'
+            ->add('linkPosting', TextType::class, [
+                'required' => false,
+                'label_attr' => [
+                    'class' => 'text-primary',
                 ],
-                'help'=>'Link a páginas externos del sistema',
+                'help' => 'Link a páginas externos del sistema',
             ])
             ->add(
                 'isLinkExterno',
@@ -115,19 +113,16 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-primary'],
-                    'help'=>'¿Abre otra página?',
+                    'help' => '¿Abre otra página?',
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
                 ]
             )
-            ->add(
-                'footer',
-                TextType::class,
-                [
+            ->add('footer', TextType::class, [
                     'label' => 'Pie de la entrada',
-                    'label_attr'=>[
-                        'class' => 'text-primary'
+                    'label_attr' => [
+                        'class' => 'text-primary',
                     ],
                     'help' => 'Texto secundario',
                     'required' => false,
@@ -180,7 +175,7 @@ class EntradaType extends AbstractType
                 'html5' => true,
                 'required' => false,
                 'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'datetimepicker'],
             ])
             ->add('disponibleHastaAt', DateTimeType::class, [
                 'label' => 'Disponible hasta',
@@ -188,21 +183,30 @@ class EntradaType extends AbstractType
                 'html5' => true,
                 'required' => false,
                 'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'datetimepicker'],
             ])
             ->add('eventoAt', DateTimeType::class, [
-                'label'=>'Fecha Evento',
+                'label' => 'Fecha Evento',
                 'widget' => 'single_text',
                 'html5' => true,
                 'required' => false,
                 'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'datetimepicker'],
             ])
 
 //            ->add('section')
-            ->add('orden', NumberType::class,[
-                'label'=>'Orden en la sección',
-            ])
+            ->add('orden', NumberType::class, [
+                'label' => 'Orden en la sección',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => '¿Que orden tendrá?',
+                    'required' => false,
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
             ->add(
                 'encabezado',
                 CheckboxType::class,
@@ -229,7 +233,10 @@ class EntradaType extends AbstractType
                     ],
                 ]
             )
-            ->add('contacto')
+            ->add('contacto',null, [
+                'label' => 'Contacto',
+                'help' => 'Usar en caso excepcional, aún en desarrollo'
+            ])
             ->add(
                 'isSinTitulo',
                 CheckboxType::class,
@@ -265,7 +272,6 @@ class EntradaType extends AbstractType
                     ],
                 ]
             )
-
             ->add(
                 'modelTemplate',
                 EntityType::class,
@@ -276,19 +282,18 @@ class EntradaType extends AbstractType
                     },
                     'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,
-                    'attr'=>[
-                        'class' => 'select2-enable'
-                    ]
+                    'attr' => [
+                        'class' => 'select2-enable',
+                    ],
                 ]
             )
-            ->add(
-                'cssClass',
-                TextType::class,
+            ->add('cssClass',TextType::class,
                 [
                     'label' => 'Clase css',
-                    'label_attr'=>[
-                        'class' => 'text-primary'
+                    'label_attr' => [
+                        'class' => 'text-primary',
                     ],
+                    'help' => 'Agregar estilo css ya predefinido',
                     'required' => false,
                     'attr' => [
                         'class' => 'form-control',
@@ -300,16 +305,16 @@ class EntradaType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'Identificador',
-                    'label_attr'=>[
-                        'class' => 'text-primary'
+                    'label_attr' => [
+                        'class' => 'text-primary',
                     ],
+                    'help' => 'Identificador único #',
                     'required' => false,
                     'attr' => [
                         'class' => 'form-control',
                     ],
                 ]
-            )
-        ; // ; Final Builder
+            ); // ; Final Builder
     }
 
     public function configureOptions(OptionsResolver $resolver)
