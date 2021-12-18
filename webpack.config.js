@@ -32,6 +32,7 @@ Encore
     .addEntry('section_select', './assets/js/select_section.js')
     .addEntry('select2', './assets/js/select2.js')
     .addEntry('select2-parent', './assets/js/select2-parent.js')
+    .addEntry('select2-entrada', './assets/js/select2-entrada.js')
     .addEntry('nota_mensaje', './assets/js/nota_mensaje.js')
     .addEntry('tailwind', './assets/js/tailwind.js')
     .addEntry('summernote', './assets/js/summer.js')

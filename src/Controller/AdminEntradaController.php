@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Entity\Principal;
 use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;
@@ -191,10 +192,14 @@ class AdminEntradaController extends AbstractController
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
 
-            $link = $form['linkRoute']->getData();
-            $titulo = $form['titulo']->getData();
+            $link = $form['linkRoute']->getData()??null;
 
-            $link = $this->limpiaLink($link, $titulo);
+            $titulo = $form['titulo']->getData();
+            if(!$link) {
+                $link = $this->limpiaLink($link, $titulo);
+            }else{
+                $link = $link->getlinkRoute();
+            }
 
             $entrada->setLinkRoute($link);
 
@@ -204,6 +209,7 @@ class AdminEntradaController extends AbstractController
             }
 
             $boolean = $form['publicar']->getData();
+
 
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $entrada->setPublicadoAt($publicado);
