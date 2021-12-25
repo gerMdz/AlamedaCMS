@@ -113,3 +113,8 @@ yarn-error.log
 /public/images/logo.png
 /migrations/
 /migrations/Version20210515203711.php
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
