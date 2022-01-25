@@ -34,7 +34,6 @@
         "jquery": "^3.5.0",
         "popper.js": "^1.16.1",
         "postcss": "^8.2.2",
-        "select2": "^4.0.13",
-        "summernote": "^0.8.18"
+        "select2": "^4.0.13"
     }
 }

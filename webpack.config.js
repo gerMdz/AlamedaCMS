@@ -35,7 +35,7 @@ Encore
     .addEntry('select2-entrada', './assets/js/select2-entrada.js')
     .addEntry('nota_mensaje', './assets/js/nota_mensaje.js')
     .addEntry('tailwind', './assets/js/tailwind.js')
-    .addEntry('summernote', './assets/js/summer.js')
+    // .addEntry('summernote', './assets/js/summer.js')
     //.addEntry('page1', './assets/js/page1.js')
     .addStyleEntry('loginStyle', './assets/css/styles.css')
     .addStyleEntry('perfilStyle', './assets/css/account.css')
