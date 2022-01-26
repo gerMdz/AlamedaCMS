@@ -50,9 +50,9 @@ class EntradaType extends AbstractType
                 EntityType::class,
                 [
                     'class' => Principal::class,
-                    'choice_label' => function (Principal $principal) {
-                        return sprintf('%s', $principal->getTitulo());
-                    },
+//                    'choice_label' => function (Principal $principal) {
+//                        return sprintf('%s', $principal->getTitulo());
+//                    },
                     'required' => false,
                     'help' => 'Link a páginas internas del sistema',
                     'label_attr' => [
@@ -172,7 +172,7 @@ class EntradaType extends AbstractType
             ->add('disponibleAt', DateTimeType::class, [
                 'label' => 'Disponible desde',
                 'widget' => 'single_text',
-                'html5' => true,
+                'html5' => false,
                 'required' => false,
                 'format' => 'yyyy-MM-dd HH:mm',
                 'attr' => ['class' => 'datetimepicker'],
@@ -180,7 +180,7 @@ class EntradaType extends AbstractType
             ->add('disponibleHastaAt', DateTimeType::class, [
                 'label' => 'Disponible hasta',
                 'widget' => 'single_text',
-                'html5' => true,
+                'html5' => false,
                 'required' => false,
                 'format' => 'yyyy-MM-dd HH:mm',
                 'attr' => ['class' => 'datetimepicker'],
@@ -188,7 +188,7 @@ class EntradaType extends AbstractType
             ->add('eventoAt', DateTimeType::class, [
                 'label' => 'Fecha Evento',
                 'widget' => 'single_text',
-                'html5' => true,
+                'html5' => false,
                 'required' => false,
                 'format' => 'yyyy-MM-dd HH:mm',
                 'attr' => ['class' => 'datetimepicker'],

@@ -28,7 +28,7 @@
     <div class="col-sm-2 text-center form-check">
         <label class="text-primary" for="entrada_publicar" class="required">
             Publicar?<br/>
-            {% if entradaForm.vars.data.PublicadoAt | default %}
+            {% if  entradaForm.vars.data.PublicadoAt is defined %}
                 {{ form_row(entradaForm.publicar, { 'attr': {'checked': 'checked'} }) }}
             {% else %}
                 {{ form_row(entradaForm.publicar) }}
@@ -135,7 +135,7 @@
         }) }}
     </div>
     <div class="col-sm-3">
-        {% if entradaForm.vars.data.imageFilename | default %}
+        {% if entrada.imageFilename is defined %}
             <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
                 <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
                      alt="Imagen">
