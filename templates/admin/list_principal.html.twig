@@ -1,8 +1,10 @@
-<div class="col-md-12">
-    <div class="card">
-        <div class="card-header card-header-primary">
-            <h4 class="card-title ">Principal</h4>
-            <p class="card-category"> Listado de páginas principales</p>
+<div class="col-12">
+    <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Principal</h6>
+                <p class="card-category"> Listado de páginas principales</p>
+            </div>
         </div>
         <div class="card-footer">
 
@@ -17,18 +19,16 @@
         <div class="text-center align-items-center">
             {{ knp_pagination_render(principals) }}
         </div>
-
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
+        <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead class="text-primary">
                     <tr>
-                        <th>
+                        <th class="text-uppercase text-principal text-xxs font-weight-bolder opacity-7">
                             Titulo Page<br/>
                             LinkRoute Page <br/>
                             <small>Principal parent</small>
                         </th>
-                        <th>Contenido</th>
                         <th>
                             Secciones
                         </th>
@@ -41,22 +41,34 @@
                     {% for principal in principals %}
                         <tr>
                             <td>
-                                {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}
-                                <br/>
-                                {{ principal.linkRoute }}
-                                {% if principal.principal.linkRoute is defined %}
-                                    <br/>
-                                    <small>
-                                        <a class="text-info" data-toggle="tooltip" title="Ver linkRoute principal"
-                                           href="{{ path('principal_show', {'id': principal.principal.id}) }}">
-                                           {{ include('bases/_ver.html.twig', {'button_label': principal.principal.linkRoute  })}}
-                                        </a>
-                                    </small>
-                                {% endif %}
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-xs">{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}</h6>
+                                        <p class="text-xs text-secondary mb-0">{{ principal.linkRoute }}</p>
+                                        <p class="text-muted">
+                                            {% if principal.principal.linkRoute is defined %}
+                                                <small>
+                                                    <a class="text-info" data-toggle="tooltip"
+                                                       title="Ver linkRoute principal"
+                                                       href="{{ path('principal_show', {'id': principal.principal.id}) }}">
+                                                        {{ include('bases/_ver.html.twig', {'button_label': principal.principal.linkRoute  }) }}
+                                                    </a>
+                                                </small>
+                                                <br/>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
                             </td>
-                            <td>
-                                {{ principal.contenido | replace({'<p>':'', '</p>':''}) | u.truncate(20, '...') }}
-                            </td>
+                            {#                            <td> #}
+                            {#                                <div class="d-flex px-2 py-1"> #}
+                            {#                                    <div class="d-flex flex-column justify-content-center"> #}
+                            {#                                        <h6 class="mb-0 text-xs"> #}
+                            {#                                            {{ principal.contenido | replace({'<p>':'', '</p>':''}) | u.truncate(20, '...') }} #}
+                            {#                                        </h6> #}
+                            {#                                    </div> #}
+                            {#                                </div> #}
+                            {#                            </td> #}
 
                             <td>
                                 {% for seccion in principal.secciones %}
@@ -67,14 +79,22 @@
                                 {% endfor %}
                             </td>
                             <td>
-                                {% if (principal.imageFilename != null) %}
-                                    <img class="article-img" alt="{{ base.lema }}"
-                                         src="{{ principal.imagePath|imagine_filter('squared_thumbnail_100') }}">
-                                    <br/>
-                                    {{ principal.imageFilename }}
-                                {% else %}
-                                    No tiene imagen
-                                {% endif %}
+                                <div class="d-flex px-2 py-1">
+                                    <div>
+                                        {% if (principal.imageFilename != null) %}
+                                            <img class="avatar avatar-sm me-3 border-radius-lg" alt="{{ base.lema }}"
+                                                 src="{{ principal.imagePath|imagine_filter('squared_thumbnail_100') }}">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <p class="text-xs text-secondary mb-0">{{ principal.imageFilename }}</p>
+                                    </div>
+                                        {% else %}
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <p class="text-xs text-secondary mb-0">No tiene imagen</p>
+                                    </div>
+                                        {% endif %}
+                                </div>
                             </td>
                             <td>
                                 {{ principal.updatedAt ? principal.updatedAt|date('Y-m-d ') : '' }}<br/>
