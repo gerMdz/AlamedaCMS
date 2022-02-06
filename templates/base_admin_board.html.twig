@@ -17,7 +17,7 @@
         <!-- Material Kit CSS -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
         <link href="{{ asset('material-dashboard/assets/css/material-dashboard.css')}}?v=3.0.0" rel="stylesheet"/>
-        <link href="{{ asset('css/alameda.min.css') }}?v=2.1.2" rel="stylesheet"/>
+{#        <link href="{{ asset('css/alameda.min.css') }}?v=2.1.2" rel="stylesheet"/>#}
         <style>
             .main-panel {
                 /*position: relative;*/
@@ -362,6 +362,9 @@
 
         });
     </script>
+    {% block jslocal %}
+        {{ encore_entry_script_tags('select2-parent') }}
+    {% endblock %}
 {% endblock %}
 </body>
 

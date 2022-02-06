@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
@@ -34,8 +35,10 @@ class Entrada
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("mail")
+     * @Assert\NotBlank
      */
-    private ?string $titulo;
+
+    private string $titulo;
 
     /**
      * @ORM\Column(type="text", length=8000, nullable=true)

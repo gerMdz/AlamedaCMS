@@ -46,16 +46,16 @@
     </div>
 </div>
 <hr class="bg-primary"/>
-<div class="row pt-3 mx-5  align-items-center">
+<div class="row pt-3 mx-5">
+
     <div class="col-sm-3 mx-auto">
-        {{ form_label(entradaForm.footer) }}
-        {{ form_errors(entradaForm.footer) }}
-        {{ form_help(entradaForm.footer) }}
+        {{ form_row(entradaForm.footer) }}
     </div>
-    <div class="col-sm-3 mx-auto center-element">
-        {{ form_label(entradaForm.linkRoute) }}
-        {{ form_errors(entradaForm.linkRoute) }}
+
+    <div class="col-sm-3 mx-auto">
+        {{ form_widget(entradaForm.linkRoute) }}
         {{ form_help(entradaForm.linkRoute) }}
+        {{ form_errors(entradaForm.linkRoute) }}
     </div>
     <div class="col-sm-3 mx-auto">
         {{ form_label(entradaForm.linkPosting) }}
@@ -70,13 +70,13 @@
             {{ form_help(entradaForm.isLinkExterno) }}
         </label>
     </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_widget(entradaForm.footer) }}
-    </div>
-    <div class="col-sm-3 mx-auto center-element">
-        {{ form_widget(entradaForm.linkRoute) }}
-    </div>
-    <div class="col-sm-3 mx-auto">
+    {#    <div class="input-group input-group-outline col-sm-3 mx-auto"> #}
+    {#        {{ form_widget(entradaForm.footer) }} #}
+    {#    </div> #}
+    {#    <div class="input-group input-group-outline col-sm-3 mx-auto"> #}
+    {#        #}
+    {#    </div> #}
+    <div class="input-group input-group-outline col-sm-3 mx-auto">
         {{ form_widget(entradaForm.linkPosting) }}
     </div>
     <div class="col-sm-2 mx-auto text-center form-check text-dark">

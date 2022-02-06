@@ -50,17 +50,20 @@ class EntradaType extends AbstractType
                 EntityType::class,
                 [
                     'class' => Principal::class,
-//                    'choice_label' => function (Principal $principal) {
-//                        return sprintf('%s', $principal->getTitulo());
-//                    },
                     'required' => false,
                     'help' => 'Link a páginas internas del sistema',
+//                    'label'=>'Seleccione Link',
                     'label_attr' => [
                         'class' => 'text-primary',
                     ],
                     'attr' => [
                         'class' => 'select2-enable',
+//                        'placeholder'=>'Seleccione Link',
                     ],
+                    'row_attr' => [
+                        'class' => 'form-floating',
+                    ],
+
                 ]
             )
             ->add(
@@ -125,9 +128,16 @@ class EntradaType extends AbstractType
                         'class' => 'text-primary',
                     ],
                     'help' => 'Texto secundario',
+                    'help_attr'=> [
+                        'class' => ' text-secondary',
+                    ],
+                    'attr'=>[
+                        'placeholder'=>'Pie de entrada',
+                    ],
                     'required' => false,
-                    'attr' => [
-                        'class' => 'form-control',
+
+                    'row_attr' => [
+                        'class' => 'form-floating',
                     ],
                 ]
             )
@@ -172,10 +182,12 @@ class EntradaType extends AbstractType
             ->add('disponibleAt', DateTimeType::class, [
                 'label' => 'Disponible desde',
                 'widget' => 'single_text',
-                'html5' => false,
+                'placeholder' => 'Seleccione día y hora',
+                'html5' => true,
                 'required' => false,
-                'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker'],
+//                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'form-control '],
+                'input'=>'datetime'
             ])
             ->add('disponibleHastaAt', DateTimeType::class, [
                 'label' => 'Disponible hasta',

@@ -195,8 +195,9 @@ class AdminEntradaController extends AbstractController
             $link = $form['linkRoute']->getData()??null;
 
             $titulo = $form['titulo']->getData();
-            if(!$link) {
-                $link = $this->limpiaLink($link, $titulo);
+
+            if(!$link and $titulo) {
+                $link = $this->limpiaLink(null,$titulo);
             }else{
                 $link = $link->getlinkRoute();
             }
