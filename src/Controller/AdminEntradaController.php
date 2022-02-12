@@ -9,6 +9,7 @@ use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;
 use App\Form\Step\Entrada\StepTwoType;
 use App\Repository\EntradaRepository;
+use App\Repository\PrincipalRepository;
 use App\Service\BoleanToDateHelper;
 use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
@@ -27,8 +28,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminEntradaController extends AbstractController
 {
-    private $loggerClient;
-    private $boleanToDateHelper;
+    private LoggerClient $loggerClient;
+    private BoleanToDateHelper $boleanToDateHelper;
 
     /**
      * NO usado es opcional.
@@ -91,13 +92,19 @@ class AdminEntradaController extends AbstractController
      * @param Entrada $entrada
      * @param UploaderHelper $uploaderHelper
      * @param ObtenerDatosHelper $datosHelper
+     * @param PrincipalRepository $principalRepository
      * @return RedirectResponse
      * @throws Exception
      * @Route("/admin/entrada/{id}/edit", name="admin_entrada_edit")
      * @IsGranted("MANAGE", subject="entrada")
-     *
      */
-    public function edit(Request $request, Entrada $entrada, UploaderHelper $uploaderHelper, ObtenerDatosHelper $datosHelper): Response
+    public function edit(
+        Request $request,
+        Entrada $entrada,
+        UploaderHelper $uploaderHelper,
+        ObtenerDatosHelper $datosHelper,
+        PrincipalRepository $principalRepository
+    ): Response
     {
         $form = $this->createForm(EntradaType::class, $entrada);
         $form->handleRequest($request);

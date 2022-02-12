@@ -137,6 +137,7 @@ class EntradaType extends AbstractType
             )
             ->add('linkRoute', EntityType::class, [
                     'class' => Principal::class,
+                    'mapped'=>false,
                     'required' => false,
                     'help' => 'Link a páginas internas del sistema',
 //                    'label'=>'Seleccione Link',
@@ -314,18 +315,6 @@ class EntradaType extends AbstractType
                     'class' => ' text-secondary',
                 ],
             ])
-
-//            ->add('sections',EntityType::class,[
-//                'class'=>Section::class,
-//                'multiple'=>true,
-//                'expanded' => false,
-//                'attr'=>[
-//                    'class' => 'select2-enable form-check-input',
-//                    'placeholder' => 'Seleccione '
-//
-//                ]
-//            ])
-
 
             ->add('cssClass', TextType::class,
                 [
