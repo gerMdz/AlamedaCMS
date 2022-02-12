@@ -139,7 +139,8 @@ class User implements UserInterface
         return $this->getPrimerNombre();
     }
 
-    public function getId(): ?string
+
+    public function getId():?string
     {
         return $this->id;
     }

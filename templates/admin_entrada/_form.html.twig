@@ -58,16 +58,12 @@
         {{ form_errors(entradaForm.linkRoute) }}
     </div>
     <div class="col-sm-3 mx-auto">
-        {{ form_label(entradaForm.linkPosting) }}
-        {{ form_errors(entradaForm.linkPosting) }}
-        {{ form_help(entradaForm.linkPosting) }}
+        {{ form_row(entradaForm.linkPosting) }}
     </div>
     <div class="col-sm-2 mx-auto text-center form-check text-dark">
         <label for="entrada_isLinkExterno" class="text-primary">
             ¿Es Externo?<br/>
-            {{ form_label(entradaForm.isLinkExterno) }}
-            {{ form_errors(entradaForm.isLinkExterno) }}
-            {{ form_help(entradaForm.isLinkExterno) }}
+            {{ form_row(entradaForm.isLinkExterno) }}
         </label>
     </div>
     {#    <div class="input-group input-group-outline col-sm-3 mx-auto"> #}
@@ -76,14 +72,7 @@
     {#    <div class="input-group input-group-outline col-sm-3 mx-auto"> #}
     {#        #}
     {#    </div> #}
-    <div class="input-group input-group-outline col-sm-3 mx-auto">
-        {{ form_widget(entradaForm.linkPosting) }}
-    </div>
-    <div class="col-sm-2 mx-auto text-center form-check text-dark">
-        <label for="entrada_isLinkExterno" class="text-primary">
-            {{ form_widget(entradaForm.isLinkExterno) }}
-        </label>
-    </div>
+
 </div>
 <hr class="bg-primary"/>
 <div class="row pt-3">
@@ -103,28 +92,16 @@
         {{ form_row(entradaForm.modelTemplate) }}
     </div>
     <div class="col-sm-2 mx-auto">
-        {{ form_label(entradaForm.orden) }}
-        {{ form_widget(entradaForm.orden) }}
-        {{ form_help(entradaForm.orden) }}
-        {{ form_errors(entradaForm.orden) }}
+        {{ form_row(entradaForm.orden) }}
     </div>
     <div class="col-sm-2 mx-auto">
-        {{ form_label(entradaForm.cssClass) }}
-        {{ form_widget(entradaForm.cssClass) }}
-        {{ form_help(entradaForm.cssClass) }}
-        {{ form_errors(entradaForm.cssClass) }}
+        {{ form_row(entradaForm.cssClass) }}
     </div>
     <div class="col-sm-2 mx-auto">
-        {{ form_label(entradaForm.identificador) }}
-        {{ form_widget(entradaForm.identificador) }}
-        {{ form_help(entradaForm.identificador) }}
-        {{ form_errors(entradaForm.identificador) }}
+        {{ form_row(entradaForm.identificador) }}
     </div>
     <div class="col-sm-3 mx-auto">
-        {{ form_label(entradaForm.contacto) }}
-        {{ form_widget(entradaForm.contacto) }}
-        {{ form_help(entradaForm.contacto) }}
-        {{ form_errors(entradaForm.contacto) }}
+        {{ form_row(entradaForm.contacto) }}
     </div>
 
     <div class="col-sm-9">
@@ -138,7 +115,7 @@
         {% if entrada.imageFilename is defined %}
             <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
                 <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
-                     alt="Imagen">
+                     alt="">
             </a>
 
         {% endif %}
