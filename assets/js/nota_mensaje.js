@@ -1,28 +1,28 @@
 import $ from 'jquery';
 $(function () {
-    const puno = localStorage.getItem("RTM1Puno");
-    const pdos = localStorage.getItem("RTM1Pdos");
-    const ptres = localStorage.getItem("RTM1Ptres");
-    const pcuatro = localStorage.getItem("RTM1Pcuatro");
-    const pcinco = localStorage.getItem("RTM1Pcinco");
-    const pseis = localStorage.getItem("RTM1Pseis");
-    const psiete = localStorage.getItem("RTM1Psiete");
-    const pocho = localStorage.getItem("RTM1Pocho");
-    const pnueve = localStorage.getItem("RTM1Pnueve");
-    const pdiez = localStorage.getItem("RTM1Pdiez");
-    const ponce = localStorage.getItem("RTM1Ponce");
-    const pdoce = localStorage.getItem("RTM1Pdoce");
-    const ptrece = localStorage.getItem("RTM1Ptrece");
-    const pcatorce = localStorage.getItem("RTM1Pcatorce");
-    const pquince = localStorage.getItem("RTM1Pquince");
-    const pdieciseis = localStorage.getItem("RTM1Pdieciseis");
-    const pdiecisiete = localStorage.getItem("RTM1Pdiecisiete");
-    const pdieciocho = localStorage.getItem("RTM1Pdieciocho");
-    const pdiecinueve = localStorage.getItem("RTM1Pdiecinueve");
-    const pveinte = localStorage.getItem("RTM1Pveinte");
+    const puno = localStorage.getItem("RTM2Puno");
+    const pdos = localStorage.getItem("RTM2Pdos");
+    const ptres = localStorage.getItem("RTM2Ptres");
+    const pcuatro = localStorage.getItem("RTM2Pcuatro");
+    const pcinco = localStorage.getItem("RTM2Pcinco");
+    const pseis = localStorage.getItem("RTM2Pseis");
+    const psiete = localStorage.getItem("RTM2Psiete");
+    const pocho = localStorage.getItem("RTM2Pocho");
+    const pnueve = localStorage.getItem("RTM2Pnueve");
+    const pdiez = localStorage.getItem("RTM2Pdiez");
+    const ponce = localStorage.getItem("RTM2Ponce");
+    const pdoce = localStorage.getItem("RTM2Pdoce");
+    const ptrece = localStorage.getItem("RTM2Ptrece");
+    const pcatorce = localStorage.getItem("RTM2Pcatorce");
+    const pquince = localStorage.getItem("RTM2Pquince");
+    const pdieciseis = localStorage.getItem("RTM2Pdieciseis");
+    const pdiecisiete = localStorage.getItem("RTM2Pdiecisiete");
+    const pdieciocho = localStorage.getItem("RTM2Pdieciocho");
+    const pdiecinueve = localStorage.getItem("RTM2Pdiecinueve");
+    const pveinte = localStorage.getItem("RTM2Pveinte");
 
     if (pcinco != null) {
-        $('#pcinco').val(JSON.parse(localStorage.RTM1Pcinco))
+        $('#pcinco').val(JSON.parse(localStorage.RTM2Pcinco))
         muestra1('#lpcinco', '#sinpcinco')
         aceptado('cinco');
     } else {
@@ -30,7 +30,7 @@ $(function () {
     }
 
     if (puno != null) {
-        $('#puno').val(JSON.parse(localStorage.RTM1Puno))
+        $('#puno').val(JSON.parse(localStorage.RTM2Puno))
         muestra1('#lpuno', '#sinpuno')
         aceptado('uno');
         console.log('19')
@@ -40,7 +40,7 @@ $(function () {
     }
 
     if (pdos != null) {
-        $('#pdos').val(JSON.parse(localStorage.RTM1Pdos))
+        $('#pdos').val(JSON.parse(localStorage.RTM2Pdos))
         muestra1('#lpdos', '#sinpdos')
         aceptado('dos');
     } else {
@@ -48,7 +48,7 @@ $(function () {
     }
 
     if (ptres != null) {
-        $('#ptres').val(JSON.parse(localStorage.RTM1Ptres))
+        $('#ptres').val(JSON.parse(localStorage.RTM2Ptres))
         muestra1('#lptres', '#sinptres')
         aceptado('tres');
     } else {
@@ -56,7 +56,7 @@ $(function () {
     }
 
     if (pcuatro != null) {
-        $('#pcuatro').val(JSON.parse(localStorage.RTM1Pcuatro))
+        $('#pcuatro').val(JSON.parse(localStorage.RTM2Pcuatro))
         muestra1('#lpcuatro', '#sinpcuatro')
         aceptado('cuatro');
     } else {
@@ -64,14 +64,14 @@ $(function () {
     }
 
     if (pseis != null) {
-        $('#pseis').val(JSON.parse(localStorage.RTM1Pseis))
+        $('#pseis').val(JSON.parse(localStorage.RTM2Pseis))
         muestra1('#lpseis', '#sinpseis')
         aceptado('seis');
     } else {
         oculta1('#lpseis', '#sinpseis')
     }
     if (psiete != null) {
-        $('#psiete').val(JSON.parse(localStorage.RTM1Psiete))
+        $('#psiete').val(JSON.parse(localStorage.RTM2Psiete))
         muestra1('#lpsiete', '#sinpsiete')
         aceptado('siete');
     } else {
@@ -79,7 +79,7 @@ $(function () {
     }
 
     if (pocho != null) {
-        $('#pocho').val(JSON.parse(localStorage.RTM1Pocho))
+        $('#pocho').val(JSON.parse(localStorage.RTM2Pocho))
         muestra1('#lpocho', '#sinpocho')
         aceptado('ocho');
     } else {
@@ -87,7 +87,7 @@ $(function () {
     }
 
     if (pnueve != null) {
-        $('#pnueve').val(JSON.parse(localStorage.RTM1Pnueve))
+        $('#pnueve').val(JSON.parse(localStorage.RTM2Pnueve))
         muestra1('#lpnueve', '#sinpnueve')
         aceptado('nueve');
     } else {
@@ -95,7 +95,7 @@ $(function () {
     }
 
     if (pdiez != null) {
-        $('#pdiez').val(JSON.parse(localStorage.RTM1Pdiez))
+        $('#pdiez').val(JSON.parse(localStorage.RTM2Pdiez))
         muestra1('#lpdiez', '#sinpdiez')
         aceptado('diez');
     } else {
@@ -103,70 +103,70 @@ $(function () {
     }
 
     if (ponce != null) {
-        $('#ponce').val(JSON.parse(localStorage.RTM1Ponce))
+        $('#ponce').val(JSON.parse(localStorage.RTM2Ponce))
         muestra1('#lponce', '#sinponce')
         aceptado('once');
     } else {
         oculta1('#lponce', '#sinponce')
     }
 if (pdoce != null) {
-        $('#pdoce').val(JSON.parse(localStorage.RTM1Pdoce))
+        $('#pdoce').val(JSON.parse(localStorage.RTM2Pdoce))
         muestra1('#lpdoce', '#sinpdoce')
         aceptado('doce');
     } else {
         oculta1('#lpdoce', '#sinpdoce')
     }
 if (ptrece != null) {
-        $('#ptrece').val(JSON.parse(localStorage.RTM1Ptrece))
+        $('#ptrece').val(JSON.parse(localStorage.RTM2Ptrece))
         muestra1('#lptrece', '#sinptrece')
         aceptado('trece');
     } else {
         oculta1('#lptrece', '#sinptrece')
     }
 if (pcatorce != null) {
-        $('#pcatorce').val(JSON.parse(localStorage.RTM1Pcatorce))
+        $('#pcatorce').val(JSON.parse(localStorage.RTM2Pcatorce))
         muestra1('#lpcatorce', '#sinpcatorce')
         aceptado('catorce');
     } else {
         oculta1('#lpcatorce', '#sinpcatorce')
     }
 if (pquince != null) {
-        $('#pquince').val(JSON.parse(localStorage.RTM1Pquince))
+        $('#pquince').val(JSON.parse(localStorage.RTM2Pquince))
         muestra1('#lpquince', '#sinpquince')
         aceptado('quince');
     } else {
         oculta1('#lpquince', '#sinpquince')
     }
 if (pdieciseis != null) {
-        $('#pdieciseis').val(JSON.parse(localStorage.RTM1Pdieciseis))
+        $('#pdieciseis').val(JSON.parse(localStorage.RTM2Pdieciseis))
         muestra1('#lpdieciseis', '#sinpdieciseis')
         aceptado('dieciseis');
     } else {
         oculta1('#lpdieciseis', '#sinpdieciseis')
     }
 if (pdiecisiete != null) {
-        $('#pdiecisiete').val(JSON.parse(localStorage.RTM1Pdiecisiete))
+        $('#pdiecisiete').val(JSON.parse(localStorage.RTM2Pdiecisiete))
         muestra1('#lpdiecisiete', '#sinpdiecisiete')
         aceptado('diecisiete');
     } else {
         oculta1('#lpdiecisiete', '#sinpdiecisiete')
     }
 if (pdieciocho != null) {
-        $('#pdieciocho').val(JSON.parse(localStorage.RTM1Pdieciocho))
+        $('#pdieciocho').val(JSON.parse(localStorage.RTM2Pdieciocho))
         muestra1('#lpdieciocho', '#sinpdieciocho')
         aceptado('dieciocho');
     } else {
         oculta1('#lpdieciocho', '#sinpdieciocho')
     }
 if (pdiecinueve != null) {
-        $('#pdiecinueve').val(JSON.parse(localStorage.RTM1Pdiecinueve))
+        $('#pdiecinueve').val(JSON.parse(localStorage.RTM2Pdiecinueve))
         muestra1('#lpdiecinueve', '#sinpdiecinueve')
         aceptado('diecinueve');
     } else {
         oculta1('#lpdiecinueve', '#sinpdiecinueve')
     }
 if (pveinte != null) {
-        $('#pveinte').val(JSON.parse(localStorage.RTM1Pveinte))
+        $('#pveinte').val(JSON.parse(localStorage.RTM2Pveinte))
         muestra1('#lpveinte', '#sinpveinte')
         aceptado('veinte');
     } else {
@@ -530,94 +530,94 @@ function procesa(p) {
     console.log('p = ' + p)
     if (p === 'diez') {
         const pdiez = $('#pdiez').val();
-        localStorage.RTM1Pdiez = JSON.stringify(pdiez);
+        localStorage.RTM2Pdiez = JSON.stringify(pdiez);
     }
 
     if (p === 'nueve') {
         const pnueve = $('#pnueve').val();
-        localStorage.RTM1Pnueve = JSON.stringify(pnueve);
+        localStorage.RTM2Pnueve = JSON.stringify(pnueve);
     }
 
     if (p === 'ocho') {
         const pocho = $('#pocho').val();
-        localStorage.RTM1Pocho = JSON.stringify(pocho);
+        localStorage.RTM2Pocho = JSON.stringify(pocho);
     }
 
     if (p === 'siete') {
         const psiete = $('#psiete').val();
-        localStorage.RTM1Psiete = JSON.stringify(psiete);
+        localStorage.RTM2Psiete = JSON.stringify(psiete);
     }
 
     if (p === 'seis') {
         const pseis = $('#pseis').val();
-        localStorage.RTM1Pseis = JSON.stringify(pseis);
+        localStorage.RTM2Pseis = JSON.stringify(pseis);
     }
 
     if (p === 'cinco') {
         const pcinco = $('#pcinco').val();
-        localStorage.RTM1Pcinco = JSON.stringify(pcinco);
+        localStorage.RTM2Pcinco = JSON.stringify(pcinco);
     }
 
     if (p === 'uno') {
         const puno = $('#puno').val();
-        localStorage.RTM1Puno = JSON.stringify(puno);
+        localStorage.RTM2Puno = JSON.stringify(puno);
     }
 
     if (p === 'dos') {
         const pdos = $('#pdos').val();
-        localStorage.RTM1Pdos = JSON.stringify(pdos);
+        localStorage.RTM2Pdos = JSON.stringify(pdos);
     }
 
     if (p === 'tres') {
         const ptres = $('#ptres').val();
-        localStorage.RTM1Ptres = JSON.stringify(ptres);
+        localStorage.RTM2Ptres = JSON.stringify(ptres);
     }
 
     if (p === 'cuatro') {
         const pcuatro = $('#pcuatro').val();
-        localStorage.RTM1Pcuatro = JSON.stringify(pcuatro);
+        localStorage.RTM2Pcuatro = JSON.stringify(pcuatro);
     }
 
     if (p === 'once') {
         const ponce = $('#ponce').val();
-        localStorage.RTM1Ponce = JSON.stringify(ponce);
+        localStorage.RTM2Ponce = JSON.stringify(ponce);
     }
     
     if (p === 'doce') {
         const pdoce = $('#pdoce').val();
-        localStorage.RTM1Pdoce = JSON.stringify(pdoce);
+        localStorage.RTM2Pdoce = JSON.stringify(pdoce);
     }
     if (p === 'trece') {
         const ptrece = $('#ptrece').val();
-        localStorage.RTM1Ptrece = JSON.stringify(ptrece);
+        localStorage.RTM2Ptrece = JSON.stringify(ptrece);
     }
     if (p === 'catorce') {
         const pcatorce = $('#pcatorce').val();
-        localStorage.RTM1Pcatorce = JSON.stringify(pcatorce);
+        localStorage.RTM2Pcatorce = JSON.stringify(pcatorce);
     }
     if (p === 'quince') {
         const pquince = $('#pquince').val();
-        localStorage.RTM1Pquince = JSON.stringify(pquince);
+        localStorage.RTM2Pquince = JSON.stringify(pquince);
     }
     if (p === 'dieciseis') {
         const pdieciseis = $('#pdieciseis').val();
-        localStorage.RTM1Pdieciseis = JSON.stringify(pdieciseis);
+        localStorage.RTM2Pdieciseis = JSON.stringify(pdieciseis);
     }
     if (p === 'diecisiete') {
         const pdiecisiete = $('#pdiecisiete').val();
-        localStorage.RTM1Pdiecisiete = JSON.stringify(pdiecisiete);
+        localStorage.RTM2Pdiecisiete = JSON.stringify(pdiecisiete);
     }
     if (p === 'dieciocho') {
         const pdieciocho = $('#pdieciocho').val();
-        localStorage.RTM1Pdieciocho = JSON.stringify(pdieciocho);
+        localStorage.RTM2Pdieciocho = JSON.stringify(pdieciocho);
     }
     if (p === 'diecinueve') {
         const pdiecinueve = $('#pdiecinueve').val();
-        localStorage.RTM1Pdiecinueve = JSON.stringify(pdiecinueve);
+        localStorage.RTM2Pdiecinueve = JSON.stringify(pdiecinueve);
     }
     if (p === 'veinte') {
         const pveinte = $('#pveinte').val();
-        localStorage.RTM1Pveinte = JSON.stringify(pveinte);
+        localStorage.RTM2Pveinte = JSON.stringify(pveinte);
     }
 
 
@@ -626,7 +626,7 @@ function procesa(p) {
 function aceptado(p) {
 
     if (p === 'diez') {
-        const pdiez = JSON.parse(localStorage.RTM1Pdiez);
+        const pdiez = JSON.parse(localStorage.RTM2Pdiez);
 
         $('#lpdiez').addClass('fontTahu fa-2x text-info');
         $('#lpdiez').html(pdiez);
@@ -634,7 +634,7 @@ function aceptado(p) {
     }
 
     if (p === 'nueve') {
-        const pnueve = JSON.parse(localStorage.RTM1Pnueve);
+        const pnueve = JSON.parse(localStorage.RTM2Pnueve);
 
         $('#lpnueve').addClass('fontTahu fa-2x text-info');
         $('#lpnueve').html(pnueve);
@@ -642,7 +642,7 @@ function aceptado(p) {
     }
 
     if (p === 'ocho') {
-        const pocho = JSON.parse(localStorage.RTM1Pocho);
+        const pocho = JSON.parse(localStorage.RTM2Pocho);
 
         $('#lpocho').addClass('fontTahu fa-2x text-info');
         $('#lpocho').html(pocho);
@@ -650,7 +650,7 @@ function aceptado(p) {
     }
 
     if (p === 'seis') {
-        const pseis = JSON.parse(localStorage.RTM1Pseis);
+        const pseis = JSON.parse(localStorage.RTM2Pseis);
 
         $('#lpseis').addClass('fontTahu fa-2x text-info');
         $('#lpseis').html(pseis);
@@ -658,7 +658,7 @@ function aceptado(p) {
     }
 
     if (p === 'siete') {
-        const psiete = JSON.parse(localStorage.RTM1Psiete);
+        const psiete = JSON.parse(localStorage.RTM2Psiete);
 
         $('#lpsiete').addClass('fontTahu fa-2x text-info');
         $('#lpsiete').html(psiete);
@@ -666,7 +666,7 @@ function aceptado(p) {
     }
 
     if (p === 'uno') {
-        const puno = JSON.parse(localStorage.RTM1Puno);
+        const puno = JSON.parse(localStorage.RTM2Puno);
 
         $('#lpuno').addClass('fontTahu fa-2x text-info');
         $('#lpuno').html(puno);
@@ -674,28 +674,28 @@ function aceptado(p) {
     }
     if (p === 'cinco') {
         console.log('aceptado = ' + p)
-        const pcinco = JSON.parse(localStorage.RTM1Pcinco);
+        const pcinco = JSON.parse(localStorage.RTM2Pcinco);
         $('#lpcinco').addClass('fontTahu fa-2x text-info');
         $('#lpcinco').html(pcinco);
         $('#lpcinco').show();
         $('#sinpcinco').hide();
     }
     if (p === 'dos') {
-        const pdos = JSON.parse(localStorage.RTM1Pdos);
+        const pdos = JSON.parse(localStorage.RTM2Pdos);
 
         $('#lpdos').addClass('fontTahu fa-2x text-info');
         $('#lpdos').html(pdos);
         $('#sinpdos').hide();
     }
     if (p === 'tres') {
-        const ptres = JSON.parse(localStorage.RTM1Ptres);
+        const ptres = JSON.parse(localStorage.RTM2Ptres);
 
         $('#lptres').addClass('fontTahu fa-2x text-info');
         $('#lptres').html(ptres);
         $('#sinptres').hide();
     }
     if (p === 'cuatro') {
-        const pcuatro = JSON.parse(localStorage.RTM1Pcuatro);
+        const pcuatro = JSON.parse(localStorage.RTM2Pcuatro);
 
         $('#lpcuatro').addClass('fontTahu fa-2x text-info');
         $('#lpcuatro').html(pcuatro);
@@ -703,7 +703,7 @@ function aceptado(p) {
     }
 
     if (p === 'once') {
-        const ponce = JSON.parse(localStorage.RTM1Ponce);
+        const ponce = JSON.parse(localStorage.RTM2Ponce);
 
         $('#lponce').addClass('fontTahu fa-2x text-info');
         $('#lponce').html(ponce);
@@ -711,7 +711,7 @@ function aceptado(p) {
     }
 
     if (p === 'doce') {
-        const pdoce = JSON.parse(localStorage.RTM1Pdoce);
+        const pdoce = JSON.parse(localStorage.RTM2Pdoce);
 
         $('#lpdoce').addClass('fontTahu fa-2x text-info');
         $('#lpdoce').html(pdoce);
@@ -719,7 +719,7 @@ function aceptado(p) {
     }
 
     if (p === 'trece') {
-        const ptrece = JSON.parse(localStorage.RTM1Ptrece);
+        const ptrece = JSON.parse(localStorage.RTM2Ptrece);
 
         $('#lptrece').addClass('fontTahu fa-2x text-info');
         $('#lptrece').html(ptrece);
@@ -727,49 +727,49 @@ function aceptado(p) {
     }
 
     if (p === 'catorce') {
-        const pcatorce = JSON.parse(localStorage.RTM1Pcatorce);
+        const pcatorce = JSON.parse(localStorage.RTM2Pcatorce);
 
         $('#lpcatorce').addClass('fontTahu fa-2x text-info');
         $('#lpcatorce').html(pcatorce);
         $('#sinpcatorce').hide();
     }
     if (p === 'quince') {
-        const pquince = JSON.parse(localStorage.RTM1Pquince);
+        const pquince = JSON.parse(localStorage.RTM2Pquince);
 
         $('#lpquince').addClass('fontTahu fa-2x text-info');
         $('#lpquince').html(pquince);
         $('#sinpquince').hide();
     }
     if (p === 'dieciseis') {
-        const pdieciseis = JSON.parse(localStorage.RTM1Pdieciseis);
+        const pdieciseis = JSON.parse(localStorage.RTM2Pdieciseis);
 
         $('#lpdieciseis').addClass('fontTahu fa-2x text-info');
         $('#lpdieciseis').html(pdieciseis);
         $('#sinpdieciseis').hide();
     }
     if (p === 'diecisiete') {
-        const pdiecisiete = JSON.parse(localStorage.RTM1Pdiecisiete);
+        const pdiecisiete = JSON.parse(localStorage.RTM2Pdiecisiete);
 
         $('#lpdiecisiete').addClass('fontTahu fa-2x text-info');
         $('#lpdiecisiete').html(pdiecisiete);
         $('#sinpdiecisiete').hide();
     }
     if (p === 'dieciocho') {
-        const pdieciocho = JSON.parse(localStorage.RTM1Pdieciocho);
+        const pdieciocho = JSON.parse(localStorage.RTM2Pdieciocho);
 
         $('#lpdieciocho').addClass('fontTahu fa-2x text-info');
         $('#lpdieciocho').html(pdieciocho);
         $('#sinpdieciocho').hide();
     }
     if (p === 'diecinueve') {
-        const pdiecinueve = JSON.parse(localStorage.RTM1Pdiecinueve);
+        const pdiecinueve = JSON.parse(localStorage.RTM2Pdiecinueve);
 
         $('#lpdiecinueve').addClass('fontTahu fa-2x text-info');
         $('#lpdiecinueve').html(pdiecinueve);
         $('#sinpdiecinueve').hide();
     }
     if (p === 'veinte') {
-        const pveinte = JSON.parse(localStorage.RTM1Pveinte);
+        const pveinte = JSON.parse(localStorage.RTM2Pveinte);
 
         $('#lpveinte').addClass('fontTahu fa-2x text-info');
         $('#lpveinte').html(pveinte);
