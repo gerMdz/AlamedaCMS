@@ -7,9 +7,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css"
           integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.css"          />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -24,13 +26,13 @@
         <h4>Edición de {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }} desde {{ ip }}</h4>
         <hr>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12 mx-auto">
                 <h3>Detalles</h3>
                 {{ include('admin_entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
                 <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
                 {{ include('entrada/_delete_form.html.twig') }}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <h3>Referencias</h3>
                 <ul style="font-size: 0.7rem"
                     class="list-group small js-reference-list"
@@ -67,14 +69,51 @@
             </div>
         </div>
     </div>
-    {% include('admin/_modal.html.twig') %}
+{#    {% include('admin/_modal.html.twig') %}#}
+    <div class="modal fade" id="modalPlantillaWeb" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" style="overflow:hidden;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
 
     <script src="{{ asset('js/admin_section_entrada_form.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/selectize.min.js"></script>
 
     <script type="application/javascript">
+
+    </script>
+
+
+        <script>
+            $('.custom-file-input').on('change', function (event) {
+                const inputFile = event.currentTarget;
+                $(inputFile).parent()
+            .find('.custom-file-label')
+            .html(inputFile.files[0].name);
+        });
+            // $(document).ready(function() {
+            // $(".select2-modal").select2({
+            //
+            // });
+        // });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"
+            integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
+    {{ encore_entry_script_tags('app') }}
+{#    {{ encore_entry_script_tags('section_select') }}#}
+    <script>
         $(function () {
             $(".btn-modal").click(function (ev) {
                 ev.preventDefault();
@@ -86,29 +125,4 @@
         });
     </script>
 
-
-        <script>
-            $('.custom-file-input').on('change', function (event) {
-                const inputFile = event.currentTarget;
-                $(inputFile).parent()
-            .find('.custom-file-label')
-            .html(inputFile.files[0].name);
-        });
-
-
-            // $(document).ready(function() {
-        //     $(".select2-enable").select2({
-        //         dropdownParent: $("#modalPlantillaWeb")
-        //     });
-        // });
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"
-            integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
-    {{ encore_entry_script_tags('app') }}
-
-{% endblock %}
-{% block jslocal %}
-{#    {{ encore_entry_script_tags('summernote') }}#}
 {% endblock %}
