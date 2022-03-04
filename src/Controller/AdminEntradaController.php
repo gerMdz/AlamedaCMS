@@ -9,6 +9,7 @@ use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;
 use App\Form\Step\Entrada\StepTwoType;
 use App\Repository\EntradaRepository;
+use App\Repository\PrincipalRepository;
 use App\Service\BoleanToDateHelper;
 use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
@@ -18,6 +19,7 @@ use Doctrine\ORM\Query\QueryException;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -107,12 +109,10 @@ class AdminEntradaController extends AbstractController
             $uploadedFile = $form['imageFile']->getData();
             $boolean = $form['publicar']->getData();
             $link = $form['linkRoute']->getData();
-            $titulo = $form['titulo']->getData();
+
 
             $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
             $entrada->setPublicadoAt($publicado);
-
-            $link = $this->limpiaLink($link, $titulo);
 
             $entrada->setLinkRoute($link);
 
@@ -192,14 +192,10 @@ class AdminEntradaController extends AbstractController
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
 
-            $link = $form['linkRoute']->getData()??null;
+            $link = $form['linkRoute']->getData();
 
             $titulo = $form['titulo']->getData();
-            if(!$link) {
-                $link = $this->limpiaLink($link, $titulo);
-            }else{
-                $link = $link->getlinkRoute();
-            }
+
 
             $entrada->setLinkRoute($link);
 
@@ -348,5 +344,32 @@ class AdminEntradaController extends AbstractController
             $link = strtolower(str_replace('</p>', '', trim($link)));
         }
         return $link;
+    }
+
+
+    /**
+     * @param Principal|null $principal
+     * @return string|null
+     */
+    private function getLinkRoute(?Principal $principal): ?string
+    {
+        if(null === $principal){
+            return null;
+        }
+        return $principal->getLinkRoute();
+    }
+
+    /**
+     * @param string|null $linkRoute
+     * @param PrincipalRepository $principalRepository
+     * @return Principal|null
+     */
+    private function getPrincipal(?string $linkRoute, PrincipalRepository $principalRepository): ?Principal
+    {
+        if(null === $linkRoute){
+            return null;
+        }
+
+        return $principalRepository->findBy(['linkRoute' => $linkRoute])[0];
     }
 }

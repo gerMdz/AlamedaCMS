@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
+    {{ encore_entry_link_tags('select2-parent') }}
 {% endblock %}
 
 {% block content %}
@@ -111,4 +112,5 @@
 {% endblock %}
 {% block jslocal %}
 {#    {{ encore_entry_script_tags('summernote') }}#}
+    {{ encore_entry_script_tags('select2-parent') }}
 {% endblock %}

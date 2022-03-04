@@ -1,5 +1,5 @@
 {% extends 'base_material_kit.twig' %}
-{% block title %} {{ principal.titulo | capitalize | striptags | replace({'<p>':'', '</p>':''}) }}  {% endblock %}
+{% block title %} {{ principal.titulo | capitalize | striptags | striptags }}  {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
 

@@ -15,7 +15,7 @@
                             href="#"
                         {% endif %}
                         class="text-black-75 ArialLight">
-                    <span class="text-secondary">{{ section.title | replace({'<p>':'', '</p>':''}) | raw }}</span>
+                    <span class="text-secondary">{{ section.title | striptags | raw }}</span>
                     <span class="mr-2"></span>
                     <span class="text-secondary ">
                 {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}

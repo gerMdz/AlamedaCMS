@@ -29,7 +29,7 @@
                                                 <a href="{{ (entrada.linkPosting != null)? entrada.linkPosting : path('principal_ver', {'linkRoute': entrada.linkRoute}) }}"
                                                    class="card-link text-left">
 
-                                                    <span class="text-alameda">{{ entrada.titulo|replace({'<p>':'', '</p>':''}) | raw }}</span><br/>
+                                                    <span class="text-alameda">{{ entrada.titulo|striptags | raw }}</span><br/>
                                                     <small>{{ entrada.contenido|replace({'<p>':'', '</p>':'<br/>'}) | raw }}</small>
 
                                                 </a>

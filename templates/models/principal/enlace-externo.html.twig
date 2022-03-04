@@ -1,9 +1,9 @@
 <html lang="es">
 <head>
-    {{ redirection(principal.contenido | replace({'<p>':'', '</p>':''})| lower | raw) }}
+    {{ redirection(principal.contenido | striptags| lower | raw) }}
 
     <title>
-        {% block title %} {{ principal.titulo | replace({'<p>':'', '</p>':''})| capitalize | raw }}  {% endblock %}
+        {% block title %} {{ principal.titulo | striptags| capitalize | raw }}  {% endblock %}
     </title>
     <link href="{{ asset('material-kit/css/material-kit.css') }}?v=2.0.4" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css-misc/mdb.min.css') }}">
@@ -28,14 +28,14 @@
     <div class="container h-100">
         <div class="row h-50 align-items-center justify-content-center text-center">
             <div class="col-lg-10 align-self-end">
-            ¡{{ principal.titulo | replace({'<p>':'', '</p>':''}) | capitalize }}!<br/>
+            ¡{{ principal.titulo | striptags | capitalize }}!<br/>
             Gracias por conectarte con nosotros <br/>
 
             Puedes hacer clic en el enlace si no eres redirigido automáticamente<br/>
-            <a href="{{ principal.linkPosting}}">{{ principal.titulo | replace({'<p>':'', '</p>':''})| capitalize | raw }}</a>
+            <a href="{{ principal.linkPosting}}">{{ principal.titulo | striptags| capitalize | raw }}</a>
             <div class="loading col-sm-12 text-center">
                 <img src="{{ asset('images/logo.png') }}" class="img-fluid"
-                     alt="{{ principal.titulo | replace({'<p>':'', '</p>':''})| capitalize | raw }}"/>
+                     alt="{{ principal.titulo | striptags| capitalize | raw }}"/>
             </div>
         </div>
         </div>

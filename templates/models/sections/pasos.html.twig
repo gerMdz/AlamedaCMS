@@ -30,7 +30,7 @@
                                                                  class="img-raised rounded-circle img-fluid"/>
                                                         </div>
                                                         <h4 class="card-title text-center text-alameda ">
-                                                            <i>{{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}</i>
+                                                            <i>{{ entrada.titulo | striptags | raw }}</i>
                                                         </h4>
                                                         <div class="card-body">
                                                             <p class="card-description text-center text-dark">
