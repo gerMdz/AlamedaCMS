@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\ModelTemplate;
 use App\Entity\Section;
 use App\Repository\ModelTemplateRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,24 +15,11 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
 
 class SectionFormType extends AbstractType
 {
-
-    private $registry;
-
-    /**
-     * SectionFormType constructor.
-     * @param ManagerRegistry $registry
-     */
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
-    }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -65,7 +51,7 @@ class SectionFormType extends AbstractType
                 'label'=>'Inicia',
                 'html5' => true,
                 'required' => false,
-                'format' => 'yyyy-MM-dd HH:mm',
+//                'format' => 'yyyy-MM-dd HH:mm',
                 'attr' => ['class' => 'datetimepicker']
             ])
             ->add('columns', IntegerType::class, [
@@ -77,7 +63,7 @@ class SectionFormType extends AbstractType
                 'label'=>'Finaliza',
                 'html5' => true,
                 'required' => false,
-                'format' => 'yyyy-MM-dd HH:mm',
+//                'format' => 'yyyy-MM-dd HH:mm',
                 'attr' => ['class' => 'datetimepicker']
             ))
             ->add('orden', IntegerType::class, [
@@ -145,37 +131,8 @@ class SectionFormType extends AbstractType
                     'class' => 'form-control',
                 ],
             ]); // ; Final del builder
-        /**
-         * Esto lo dejo por si alguna vez necesito campos dinámicos con validación
-         */
-//        $builder->addEventListener(
-//            FormEvents::PRE_SET_DATA,
-//            function (FormEvent $event){
-//                /**@var Section|null $data **/
-//                $data = $event->getData();
-//                if(!$data){
-//                    return;
-//                }
-//                $this->setupTypeSecondaryNameField(
-//                    $event->getForm(),
-//                    $data->getTypeOrigin()
-//                );
-//            }
-//        );
-//        $builder->get('typeOrigin')->addEventListener(
-//            FormEvents::POST_SUBMIT,
-//            function(FormEvent $event) {
-//                $form = $event->getForm();
-//                $this->setupTypeSecondaryNameField(
-//                    $form->getParent(),
-//                    $event->getData()
-//                );
-//            }
-//        );
-
 
     }
-
 
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -183,59 +140,4 @@ class SectionFormType extends AbstractType
             'data_class' => Section::class
         ]);
     }
-
-//    private function getOriginNameChoices(string $origin = null){
-
-//        switch ($origin){
-//
-//            case 'brote':
-//                $data = $this->registry->getRepository(Brote::class)->getBrotesSelect();
-//                $data = $this->combineArray($data);
-//
-//                break;
-//            case 'principal':
-//                $data = $this->registry->getRepository(Principal::class)->getPrincipalSelect();
-//                $data = $this->combineArray($data);
-//                break;
-//            case 'index':
-//            default:
-//                $data = null;
-//        }
-
-
-//        return $data;
-
-
-//    }
-
-    /**
-     * @param FormInterface $form
-     * @param string|null $origin
-     */
-//    private function setupTypeSecondaryNameField(FormInterface $form, ?string $origin)
-//    {
-//        if(null === $origin){
-//            $form->remove('typeSecondary');
-//        }
-//        $choices = $this->getOriginNameChoices($origin);
-//        if (null === $choices) {
-//            $form->remove('typeSecondary');
-//            return;
-//        }
-//
-//        $form->add('typeSecondary', ChoiceType::class, [
-//            'label'=>'Página',
-//            'placeholder'=>'Seleccione donde se agregará esta sección',
-//            'choices' => $choices,
-//            'required' => false,
-//        ]);
-//    }
-//
-//    private function combineArray($data){
-//        $titulos = array_column($data, 'titulo');
-//        $links = array_column($data, 'linkRoute');
-//        return array_combine($titulos, $links);
-//    }
-
-
 }

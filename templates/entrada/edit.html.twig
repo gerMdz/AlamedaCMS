@@ -1,4 +1,3 @@
-{#{% extends 'base_admin_board.html.twig' %}#}
 {% extends 'base_coreui.html.twig' %}
 {% block title %}Edición Entrada {{ entrada.id }} {% endblock %}
 
@@ -7,7 +6,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css"
           integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.css"          />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
@@ -16,14 +14,14 @@
 
 {% block content %}
     <div class="container">
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
     </div>
     <div class="container">
-        <h4>Edición de {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }} desde {{ ip }}</h4>
+        <h4>Edición de {{ entrada.titulo | striptags | raw }} desde {{ ip }}</h4>
         <hr>
         <div class="row">
             <div class="col-sm-12 mx-auto">
@@ -42,8 +40,7 @@
                 <form action="{{ path('admin_entrada_add_referencia',{
                     id: entrada.id
                 }) }}" method="POST" enctype="multipart/form-data" class="dropzone js-reference-dropzone">
-                    {# <input type="file" name="reference"> #}
-                    {# <button type="submit" class="btn btn-sm btn-primary">Subir</button> #}
+
                 </form>
                 {% if entrada.sections %}
                     <tr>
@@ -52,7 +49,7 @@
                                 <h3>Secciones</h3>
                                 <div style="font-size: 0.9rem"
                                      class="list-group small js-section-list col-sm-12"
-                                     data-entrada = {{ entrada.id }}
+                                     data-entrada= {{ entrada.id }}
                                      data-url="{{ path('admin_entrada_list_section', {id: entrada.id}) }}">
                                 </div>
 
@@ -60,69 +57,29 @@
                         </td>
                     </tr>
                 {% endif %}
-                <div class="col-sm-12 text-center">
-                    <a href="{{ path('entrada_agregar_seccion', { 'id': entrada.id }) }}"
-                       class="btn btn-link btn-sm btn-modal">
-                        <i class="fa fa-plus"> Sección</i>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
-{#    {% include('admin/_modal.html.twig') %}#}
-    <div class="modal fade" id="modalPlantillaWeb" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" style="overflow:hidden;">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            </div>
-        </div>
-    </div>
-
-
-
-
+    <div class="mb-5"></div>
 
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
 
     <script src="{{ asset('js/admin_section_entrada_form.js') }}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/selectize.min.js"></script>
 
-    <script type="application/javascript">
-
-    </script>
-
-
-        <script>
-            $('.custom-file-input').on('change', function (event) {
-                const inputFile = event.currentTarget;
-                $(inputFile).parent()
-            .find('.custom-file-label')
-            .html(inputFile.files[0].name);
+    <script>
+        $('.custom-file-input').on('change', function (event) {
+            const inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
         });
-            // $(document).ready(function() {
-            // $(".select2-modal").select2({
-            //
-            // });
-        // });
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"
             integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
     {{ encore_entry_script_tags('app') }}
-{#    {{ encore_entry_script_tags('section_select') }}#}
-    <script>
-        $(function () {
-            $(".btn-modal").click(function (ev) {
-                ev.preventDefault();
-                const target = $(this).attr("href");
-                $("#modalPlantillaWeb .modal-content").load(target, function () {
-                    $("#modalPlantillaWeb").modal("show");
-                });
-            });
-        });
-    </script>
-
 {% endblock %}

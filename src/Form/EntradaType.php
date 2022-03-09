@@ -6,6 +6,7 @@ use App\Entity\Contacto;
 use App\Entity\Entrada;
 use App\Entity\ModelTemplate;
 use App\Entity\Principal;
+use App\Entity\Section;
 use App\Entity\User;
 use App\Repository\ModelTemplateRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -90,7 +91,7 @@ class EntradaType extends AbstractType
                     'help' => 'Título de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => true,
-                        'rows' => 10,
+
 //                        'class' => 'form-control',
                     ],
                 ]
@@ -353,7 +354,18 @@ class EntradaType extends AbstractType
                         'class' => ' text-secondary',
                     ],
                 ]
-            ); // ; Final Builder
+            )
+            ->add('sections', EntityType::class, [
+                'class' => Section::class,
+                'multiple' => true,
+                'help' => 'Opcional, seleccione la sección/es',
+                'required' => false,
+                'attr' => [
+                    'class' => 'select2-enable',
+                ],
+
+            ])
+        ; // ; Final Builder
     }
 
     public function configureOptions(OptionsResolver $resolver)

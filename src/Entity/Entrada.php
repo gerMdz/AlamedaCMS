@@ -11,6 +11,8 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -137,12 +139,6 @@ class Entrada
     private ?bool $isPermanente;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Section::class, mappedBy="entrada")
-     * @Groups("mail")
-     */
-    private ?Collection $sections;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $footer;
@@ -157,14 +153,23 @@ class Entrada
      */
     private ?string $identificador;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="entradas")
+     * @JoinTable(name="section_entrada",
+     *     joinColumns={@JoinColumn(name="entrada_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="section_id", referencedColumnName="id")}
+     *     )
+     */
+    private Collection $sections;
+
     public function __construct()
     {
         $this->entradaReferences = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
         $this->contacto = new ArrayCollection();
-        $this->sections = new ArrayCollection();
         $this->button = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 
     /**
@@ -469,32 +474,6 @@ class Entrada
         return $this;
     }
 
-    /**
-     * @return null|Collection|Section[]
-     */
-    public function getSections(): ?Collection
-    {
-        return $this->sections;
-    }
-
-    public function addSection(Section $section): self
-    {
-        if (!$this->sections->contains($section)) {
-            $this->sections[] = $section;
-            $section->addEntrada($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSection(Section $section): self
-    {
-        if ($this->sections->removeElement($section)) {
-            $section->removeEntrada($this);
-        }
-
-        return $this;
-    }
 
     public function getFooter(): ?string
     {
@@ -543,6 +522,30 @@ class Entrada
             $identificador = str_replace(' ', '-',strip_tags($this->titulo));
         }
         $this->identificador = $identificador;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Section>
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        $this->sections->removeElement($section);
 
         return $this;
     }
