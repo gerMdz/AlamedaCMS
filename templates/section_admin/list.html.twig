@@ -66,7 +66,7 @@
                                     </small>
                                 </td>
                                 <td>
-                                    {% for entrada in section.entrada %}
+                                    {% for entrada in section.entradas %}
                                         <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
                                             {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}
                                         </a>
