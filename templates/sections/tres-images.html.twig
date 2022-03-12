@@ -46,7 +46,13 @@
                 <div class="col-md-4 d-flex align-self-stretch">
                     <div class="row">
 
-                        {% for entrada in section.entrada %}
+                        {% if section.entrada is defined %}
+                            {% set entradas = section.entrada %}
+                        {% else %}
+                            {% set entradas = section.entradas %}
+                        {% endif %}
+
+                        {% for entrada in entradas %}
                             {% if (entrada.orden != 1) %}
                                 <div class="col-sm-12 container-img
                                                     {% if (entrada.orden == 3) %}
