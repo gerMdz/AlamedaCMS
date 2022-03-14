@@ -13,19 +13,19 @@ trait LinksTrait
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups("mail")
      */
-    private $isLinkExterno;
+    private ?bool $isLinkExterno;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("mail")
      */
-    private $linkPosting;
+    private ?string $linkPosting;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      * @Groups("mail")
      */
-    private $linkRoute;
+    private ?string $linkRoute;
 
     public function getLinkRoute(): ?string
     {

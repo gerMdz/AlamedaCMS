@@ -2,53 +2,58 @@
 <section class="a-content-space-medium bg-fam text-center">
     <div class="container-fluid mt-lg-1 mt-sm-5">
         <div class="row row justify-content-center">
-                <div class="col-md-7 d-flex align-self-stretch">
-                    <div class="col-sm-12 mr-0 left-n15">
-                        {% for entrada in entradas %}
-                            {% if (entrada.orden == 1) %}
-                                <div class="card shadow-none">
-                                    <div class="card-img">
-                                        <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                             alt="{{ app.request.baseUrl }}"
-                                             class="card-img">
-                                    </div>
-                                    <!--                                <div class="card-img-overlay">-->
-                                    <div class="card-footer bg-white justify-content-between ">
-                                        <!--                                     style="top: 80%; position: relative"-->
+            <div class="col-md-7 d-flex align-self-stretch">
+                <div class="col-sm-12 mr-0 left-n15">
+                    {% for entrada in entradas %}
+                        {% if (entrada.orden == 1) %}
+                            <div class="card shadow-none">
+                                <div class="card-img">
+                                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                         alt="{{ app.request.baseUrl }}"
+                                         class="card-img">
+                                </div>
+                                <!--                                <div class="card-img-overlay">-->
+                                <div class="card-footer bg-white justify-content-between ">
+                                    <!--                                     style="top: 80%; position: relative"-->
 
-                                        <a class="card-link">
+                                    <a class="card-link">
 
                                             <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
                                             <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
                                             <small>por {{ entrada.autor }}</small>
 
-                                        </a>
-                                        <a href="{{ entrada.linkPosting }}"
-                                           class="btn-round btn-alameda  mr-2 "
-                                           target="_blank">
-                                            <!--                                       style="z-index: 100" >-->
+                                    </a>
+                                    <a href="{{ entrada.linkPosting }}"
+                                       class="btn-round btn-alameda  mr-2 "
+                                       target="_blank">
+                                        <!--                                       style="z-index: 100" >-->
 
-                                            Ver último mensaje
-                                            <!--                                        <b class="text-blue">Ver último mensaje</b>-->
-                                        </a>
-                                        <!--                                    </div>-->
-
-
-                                    </div>
+                                        Ver último mensaje
+                                        <!--                                        <b class="text-blue">Ver último mensaje</b>-->
+                                    </a>
+                                    <!--                                    </div>-->
 
 
                                 </div>
 
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex align-self-stretch">
-                    <div class="row">
 
-                        {% for entrada in section.entrada %}
-                            {% if (entrada.orden != 1) %}
-                                <div class="col-sm-12 container-img
+                            </div>
+
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-self-stretch">
+                <div class="row">
+                    {% if section.entrada is defined %}
+                        {% set entradas = section.entrada %}
+                    {% else %}
+                        {% set entradas = section.entradas %}
+                    {% endif %}
+
+                    {% for entrada in entradas %}
+                        {% if (entrada.orden != 1) %}
+                            <div class="col-sm-12 container-img
                                                     {% if (entrada.orden == 3) %}
 {# bottom-n10 #}
                                                         {% endif %}
@@ -65,16 +70,16 @@
                                             <!--                                            Queremos conocerte-->
 
 
-                                        </a>
-
-                                    </div>
+                                    </a>
 
                                 </div>
-                            {% endif %}
-                        {% endfor %}
 
-                    </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
                 </div>
+            </div>
         </div>
     </div>
 </section>

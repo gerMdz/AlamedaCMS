@@ -25,8 +25,7 @@ class EntradaSectionType extends AbstractType
                     return $er->findDisponible();
                 },
                 'attr'=>[
-                    'class' => 'select2-enable',
-                    'placeholder' => 'Seleccione sección'
+                    'class' => 'select2-modal',
                 ]
             ])
             ->add('save', SubmitType::class, array(

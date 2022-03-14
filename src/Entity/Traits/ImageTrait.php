@@ -14,7 +14,7 @@ trait ImageTrait
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("mail")
      */
-    private $imageFilename;
+    private ?string $imageFilename;
 
     public function getImageFilename(): ?string
     {

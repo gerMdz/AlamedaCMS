@@ -12,12 +12,12 @@ trait OfertTrait
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $disponibleAt;
+    private ?DateTimeInterface $disponibleAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $disponibleHastaAt;
+    private ?DateTimeInterface $disponibleHastaAt;
 
 
     public function getDisponibleAt(): ?DateTimeInterface

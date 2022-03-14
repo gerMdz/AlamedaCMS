@@ -1,6 +1,12 @@
 <section class=" {{ section.cssClass }} mb-0 js-parallax bg-light " id="{{ section.identificador }}">
     <div class="container">
-        {% for entrada in section.entrada %}
+        {% if section.entrada is defined %}
+            {% set entradas = section.entrada %}
+        {% else %}
+            {% set entradas = section.entradas %}
+        {% endif %}
+
+        {% for entrada in entradas %}
             <div class="row a-content-space-medium bg-white ">
                 <div class="col-lg-7 order-first mb-4 mb-lg-0">
                     <!-- Mockup Browser -->

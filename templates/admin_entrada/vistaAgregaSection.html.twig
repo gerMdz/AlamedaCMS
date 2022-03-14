@@ -1,8 +1,14 @@
+<button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#modalPlantillaWeb" aria-label="Close"></button>
+
 {{ form_start(form, {'action' : path('entrada_agregar_seccion', { 'id': index.id })}) }}
 <div class="modal-header panel-info">
     <h5 class="modal-title" id="exampleModalLabel">Agregar Sección </h5>
 </div>
-<div id="reserva" class="modal-body">
+
+{{ form_start(form, {'action' : path('entrada_agregar_seccion', { 'id': index.id })}) }}
+<div id="section-modal" class="modal-body">
+
+{#<div class="modal-body">#}
     <div class="card">
         <div class="card-header card-header-primary">
             <h4 class="card-title "> Secciones </h4>
@@ -23,7 +29,9 @@
         </div>
     </div>
 </div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-</div>
+
 {{ form_end(form, {'render_rest': false}) }}
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+</div>
