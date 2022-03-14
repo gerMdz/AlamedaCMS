@@ -7,7 +7,7 @@
     <div class="container text-center">
         <img src="{{ section.imagePath|imagine_filter('squared_thumbnail_100') }}" class="img-fluid" alt="{{ app.request.baseUrl }}" />
         <h2 class="fuente-arial-nova">
-            {{ section.title | replace({'<p>':'', '</p>':''}) | raw }}
+            {{ section.title | striptags | raw }}
         </h2>
         <span class="mb-0 text-14-300 ">
                 {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}

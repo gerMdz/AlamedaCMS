@@ -68,7 +68,7 @@
                             <div class="carousel-caption top  ">
                                 <h5 class="text-dark text-left">
                                     <b>
-                                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                        {{ entrada.titulo | striptags | raw }}
                                     </b>
                                 </h5>
                             </div>

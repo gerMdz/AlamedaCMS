@@ -22,6 +22,7 @@
 {% block navHeaderUser %}
 {% endblock %}
 {% block breadcrumb %}
+    {{ encore_entry_link_tags('select2-parent') }}
 {% endblock %}
 
 
@@ -95,4 +96,9 @@
             integrity="sha256-v7sFPKIh3GHvV9MMFBXcSBLG/BDUC7h1fpfDC5tp1FM=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
     {{ encore_entry_script_tags('app') }}
+
+{% endblock %}
+{% block jslocal %}
+{#    {{ encore_entry_script_tags('summernote') }}#}
+    {{ encore_entry_script_tags('select2-parent') }}
 {% endblock %}
