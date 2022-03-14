@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints\Image;
 class EntradaType extends AbstractType
 {
 
-    private $principalRepository;
+    private PrincipalRepository $principalRepository;
 
     /**
      * EntradaType constructor.
@@ -308,13 +308,6 @@ class EntradaType extends AbstractType
 
                     'attr' => [
                         'placeholder' => 'Ingrese una imagen para esta entrada',
-                    ],
-                ]
-            )
-
-
-                    'attr' => [
-                        'class' => 'form-check-input ',
                     ],
                 ]
             )
