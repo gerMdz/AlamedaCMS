@@ -14,9 +14,9 @@ trait ImageTrait
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("mail")
      */
-    private ?string $imageFilename;
+    protected $imageFilename;
 
-    public function getImageFilename(): ?string
+    public function getImageFilename()
     {
         return $this->imageFilename;
     }
@@ -28,7 +28,7 @@ trait ImageTrait
         return $this;
     }
 
-    public function getImagePath(): ?string
+    public function getImagePath()
     {
         return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
