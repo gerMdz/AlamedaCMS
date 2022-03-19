@@ -66,7 +66,13 @@
                     <tr>
                         <th>Entradas</th>
                         <td>
-                            {% for entrada in section.entrada %}
+                            {% if section.entrada is defined %}
+                                {% set entradas = section.entrada %}
+                            {% else %}
+                                {% set entradas = section.entradas %}
+                            {% endif %}
+
+                            {% for entrada in entradas %}
                                 <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
                                     {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
                                 </a>

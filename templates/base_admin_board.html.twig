@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="es">
 <head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     {% set base = base_base() %}
@@ -13,10 +12,12 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/v4-shims.min.css') }}">
+        <link href="{{ asset('material-dashboard/assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('material-dashboard/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
         <!-- Material Kit CSS -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="{{ asset('material-dashboard/assets/css/material-dashboard.css') }}?v=2.1.2" rel="stylesheet"/>
-        <link href="{{ asset('css/alameda.min.css') }}?v=2.1.2" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+        <link href="{{ asset('material-dashboard/assets/css/material-dashboard.css')}}?v=3.0.0" rel="stylesheet"/>
+{#        <link href="{{ asset('css/alameda.min.css') }}?v=2.1.2" rel="stylesheet"/>#}
         <style>
             .main-panel {
                 /*position: relative;*/
@@ -64,7 +65,7 @@
         <div class="content">
             <div class="container-fluid">
                 <button id="buttonmenu" accesskey="m" class="btn btn-primary btn-sm" type="button"
-                        data-toggle="collapse" data-target="#collapseSidebar" aria-expanded="false"
+                        data-bs-toggle="collapse" data-bs-target="#collapseSidebar" aria-expanded="false"
                         aria-controls="collapseSidebar">
                     Ver menú
                 </button>
@@ -119,7 +120,7 @@
 {% block javascripts %}
     <script src="{{ asset('material-dashboard/assets/js/core/popper.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('material-dashboard/assets/js/core/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('material-dashboard/assets/js/core/bootstrap-material-design.min.js') }}"
+    <script src="{{ asset('material-dashboard/assets/js/core/bootstrap.min.js') }}"
             type="text/javascript"></script>
 
     <!-- Plugin for the Perfect Scrollbar -->
@@ -139,7 +140,7 @@
     <script src="{{ asset('material-dashboard/assets/js/plugins/jquery.bootstrap-wizard.js') }}"></script>
 
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-    <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-selectpicker.js') }}"></script>
+{#    <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-selectpicker.js') }}"></script>#}
 
     <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
     <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
@@ -178,7 +179,7 @@
     <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-notify.js') }}"></script>
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('material-dashboard/assets/js/material-dashboard.min.js') }}?v=2.1.2"
+    <script src="{{ asset('material-dashboard/assets/js/material-dashboard.min.js')}}?v=3.0.0"
             type="text/javascript"></script>
 {% endblock %}
 
@@ -357,7 +358,7 @@
     <script>
         $(document).ready(function () {
             // Javascript method's body can be found in assets/js/demos.js
-            md.initDashboardPageCharts();
+            // md.initDashboardPageCharts();
 
         });
     </script>

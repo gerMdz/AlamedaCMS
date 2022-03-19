@@ -38,97 +38,96 @@ class Section
      * @ORM\Column(type="string", length=255)
      * @Groups("main")
      */
-    private $name;
+    private ?string $name;
 
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Groups("main")
      */
-    private $identificador;
+    private ?string $identificador;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $disponible;
+    private ?bool $disponible;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $columns;
+    private ?int $columns;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups("main")
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $disponibleAt;
+    private ?DateTimeInterface $disponibleAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=IndexAlameda::class, mappedBy="section")
      */
-    private $indexAlamedas;
+    private Collection $indexAlamedas;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sections")
      */
-    private $autor;
+    private ?User $autor;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $template;
+    private ?string $template;
 
     /**
      * @ORM\Column(type="string", length=5100, nullable=true)
      * @Groups("mail")
      */
-    private $contenido;
+    private ?string $contenido;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups("main")
      */
-    private $orden;
+    private ?int $orden;
 
     /**
      * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="section")
      * @Groups("mail")
      */
-    private $principal;
+    private ?Principal $principal;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"main", "mail"})
      */
-    private $title;
+    private ?string $title;
 
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="sections")
      * @Groups("main")
      */
-    private $modelTemplate;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="sections")
-     * @ORM\OrderBy({"orden"="ASC"})
-     */
-    private $entrada;
+    private ?ModelTemplate $modelTemplate;
 
     /**
      * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="secciones")
      * @Groups("mail")
      */
-    private $principales;
+    private Collection $principales;
 
     /**
      * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="sections")
      */
-    private $button;
+    private Collection $button;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="sections")
+     */
+    private Collection $entradas;
 
     public function __toString()
     {
@@ -138,11 +137,11 @@ class Section
     public function __construct()
     {
         $this->indexAlamedas = new ArrayCollection();
-        $this->entrada = new ArrayCollection();
         $this->principales = new ArrayCollection();
         $this->button = new ArrayCollection();
         $this->createdAt = new DateTime();
         $this->markAsUpdated();
+        $this->entradas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,8 +160,6 @@ class Section
 
         return $this;
     }
-
-
 
     public function getIdentificador(): ?string
     {
@@ -346,30 +343,6 @@ class Section
     }
 
     /**
-     * @return Collection|Entrada[]
-     */
-    public function getEntrada(): Collection
-    {
-        return $this->entrada;
-    }
-
-    public function addEntrada(Entrada $entrada): self
-    {
-        if (!$this->entrada->contains($entrada)) {
-            $this->entrada[] = $entrada;
-        }
-
-        return $this;
-    }
-
-    public function removeEntrada(Entrada $entrada): self
-    {
-        $this->entrada->removeElement($entrada);
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Principal[]
      */
     public function getPrincipales(): Collection
@@ -423,6 +396,33 @@ class Section
     public function markAsUpdated()
     {
         $this->updatedAt = new DateTime();
+    }
+
+    /**
+     * @return Collection<int, Entrada>
+     */
+    public function getEntradas(): Collection
+    {
+        return $this->entradas;
+    }
+
+    public function addEntrada(Entrada $entrada): self
+    {
+        if (!$this->entradas->contains($entrada)) {
+            $this->entradas[] = $entrada;
+            $entrada->addSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrada(Entrada $entrada): self
+    {
+        if ($this->entradas->removeElement($entrada)) {
+            $entrada->removeSection($this);
+        }
+
+        return $this;
     }
 
 

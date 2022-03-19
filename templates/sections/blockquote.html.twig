@@ -7,7 +7,13 @@
         <div class="row fullscreen align-items-center justify-content-center">
             <div class="col-sm-12 text-center mx-auto mt-1">
                 <header class="h-25 my-3">
-                    {% for entrada in section.entrada %}
+                    {% if section.entrada is defined %}
+                        {% set entradas = section.entrada %}
+                    {% else %}
+                        {% set entradas = section.entradas %}
+                    {% endif %}
+
+                    {% for entrada in entradas %}
                     {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
                     {%  include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
                     {% endfor %}

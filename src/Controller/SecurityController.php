@@ -10,6 +10,8 @@ use App\Form\UserRegistrationFormType;
 use App\Form\VoluntarioReservaRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +42,10 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $em = $this->getDoctrine()->getManager();
+        try {
+            $em = $this->container->get('doctrine');
+        } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+        }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
