@@ -1218,15 +1218,15 @@ a>small{
 }
 
 h4.card-title{
-    font-family: ArialNova, serif !important;
+    font-family: Roboto, sans-serif !important;
 }
 
 .fuente-normal{
     font-size: 1em !important;
-    font-family: ArialNova, serif !important;
+    font-family: Roboto, sans-serif !important;
 }
 .fuente-arial-nova{
-    font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+    font-family: 'Roboto', "proxima-nova", "Helvetica Neue", sans-serif !important;
 }
 
 .link-alameda{
@@ -1240,5 +1240,5 @@ h4.card-title{
 }
 
 .card-title{
-    font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+    font-family: 'Roboto', "proxima-nova", "Helvetica Neue", sans-serif !important;
 }
