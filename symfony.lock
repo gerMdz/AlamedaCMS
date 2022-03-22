@@ -20,6 +20,9 @@
     "brick/math": {
         "version": "0.8.15"
     },
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99.5"
+    },
     "dama/doctrine-test-bundle": {
         "version": "6.7",
         "recipe": {
@@ -241,12 +244,6 @@
     "nikic/php-parser": {
         "version": "v4.5.0"
     },
-    "ocramius/package-versions": {
-        "version": "1.4.2"
-    },
-    "ocramius/proxy-manager": {
-        "version": "2.2.3"
-    },
     "oneup/flysystem-bundle": {
         "version": "3.0",
         "recipe": {
@@ -258,9 +255,6 @@
         "files": [
             "config/packages/oneup_flysystem.yaml"
         ]
-    },
-    "php": {
-        "version": "7.4"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.1.0"
@@ -394,9 +388,6 @@
         "files": [
             "config/packages/dev/debug.yaml"
         ]
-    },
-    "symfony/debug-pack": {
-        "version": "v1.0.8"
     },
     "symfony/dependency-injection": {
         "version": "v4.4.10"
@@ -635,9 +626,6 @@
     "symfony/string": {
         "version": "v5.1.2"
     },
-    "symfony/templating": {
-        "version": "v4.4.10"
-    },
     "symfony/translation": {
         "version": "3.3",
         "recipe": {
@@ -774,16 +762,7 @@
     "twig/twig": {
         "version": "v3.0.3"
     },
-    "webimpress/safe-writer": {
-        "version": "2.1.0"
-    },
     "webmozart/assert": {
         "version": "1.8.0"
-    },
-    "zendframework/zend-code": {
-        "version": "3.4.1"
-    },
-    "zendframework/zend-eventmanager": {
-        "version": "3.2.1"
     }
 }
