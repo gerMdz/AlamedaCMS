@@ -1,9 +1,9 @@
 {# <section class="{{ section.cssClass | default('a-content-space-medium bg-fam text-center') }} "> #}
 <section class="a-content-space-medium bg-fam text-center">
     <div class="container-fluid mt-lg-1 mt-sm-5">
-        <div class="row row justify-content-center">
-            <div class="col-md-7 d-flex align-self-stretch">
-                <div class="col-sm-12 mr-0 left-n15">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-md-7 d-flex">
+                <div class="col-sm-12">
                     {% for entrada in entradas %}
                         {% if (entrada.orden == 1) %}
                             <div class="card shadow-none">
@@ -43,8 +43,8 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-4 d-flex align-self-stretch">
-                <div class="row">
+            <div class="col-md-4 d-flex">
+                <div class="row gy-5">
                     {% if section.entrada is defined %}
                         {% set entradas = section.entrada %}
                     {% else %}
@@ -55,7 +55,7 @@
                         {% if (entrada.orden != 1) %}
                             <div class="col-sm-12 container-img
                                                     {% if (entrada.orden == 3) %}
-{# bottom-n10 #}
+{# bottom-n10 #} mb-0
                                                         {% endif %}
                                                                 ">
                                     <div class="card mb-0 contenedor ">
