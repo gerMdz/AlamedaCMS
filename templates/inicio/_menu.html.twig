@@ -1,33 +1,34 @@
 <div class="collapse navbar-collapse w-100 bg-white" id="navigation">
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav mx-2 mt-2 mt-lg-0 navbar-nav-hover mx-auto">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'ofrenda'}) }}">
                 DAR
             </a>
         </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'notas'}) }}">
                 NOTAS DEL MENSAJE
             </a>
         </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'mensajes'}) }}">
                 SERIES
             </a>
         </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('oracion') }}">
                 ORACIÓN
             </a>
         </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('contacto') }}">
                 TARJETA DE CONEXIÓN
             </a>
         </li>
-        <li class="nav-item dropdown ml-auto mb-2 mb-lg-0">
-            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false"
+               aria-haspopup="true" >
                 <i class="fas fa-angle-down"></i> MÁS
             </a>
             <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
@@ -41,9 +42,9 @@
         </li>
     </ul>
     {% if is_granted('ROLE_USER') %}
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mx-2">
             <li class="nav-item dropdown" style="margin-right: 75px;">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <img src="{{ app.user.avatarUrl(30) }}"
                          class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName }}">
