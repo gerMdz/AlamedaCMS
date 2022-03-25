@@ -1,28 +1,77 @@
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <!-- Left -->
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item ml-auto mb-2 mb-lg-0">
-                </li>
-    </ul>
-
-    {% if is_granted('ROLE_USER') %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown" style="margin-right: 75px;">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ app.user.avatarUrl(30) }}" class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName|default('AlamedaCMS') }}">
+<div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100 bg-white" id="navigation">
+    <ul class="navbar-nav navbar-nav-hover ms-auto">
+        <li class="nav-item dropdown dropdown-hover mx-2">
+            <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'ofrenda'}) }}">
+                DAR
+            </a>
+        </li>
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'notas'}) }}">
+                NOTAS DEL MENSAJE
+            </a>
+        </li>
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'mensajes'}) }}">
+                SERIES
+            </a>
+        </li>
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="{{ path('oracion') }}">
+                ORACIÓN
+            </a>
+        </li>
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="{{ path('contacto') }}">
+                TARJETA DE CONEXIÓN
+            </a>
+        </li>
+        <li class="nav-item dropdown mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false"
+               aria-haspopup="true">
+                <i class="fas fa-angle-down"></i> MÁS
+            </a>
+            <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
+                <a class="dropdown-item " href="{{ path('avanza') }}">
+                    AVANZA
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="http://sitiosimple.com/libreria-alameda/">
+                    LIBRERÍA
+                </a>
+            </div>
+        </li>
+    </ul>
+    {% if is_granted('ROLE_USER') %}
+        <ul class="navbar-nav mx-2">
+            <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ app.user.avatarUrl(30) }}"
+                         class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName }}">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3"
+                    aria-labelledby="navbarDropdownMenuLink">
+{#                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
                     <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
+                    {% if is_granted('ROLE_ADMIN_RESERVA') %}
+                        <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar
+                            Voluntario</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_RESERVA') %}
+                        <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
+                        <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
+                        <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Lectura QR</a>
+                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
-
                         <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
                     {% endif %}
                     <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
-                </div>
+{#                </div>#}
+                </ul>
             </li>
             {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                <div class="alert alert-warning"  >
+                <div class="alert alert-warning">
                     Temporalmente
                     <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
                 </div>

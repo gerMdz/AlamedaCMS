@@ -1,6 +1,11 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_admin_board.html.twig' %}
+{#{% extends 'base_coreui.html.twig' %}#}
 
 {% block title %}Vista {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}{% endblock %}
+
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
+{% endblock %}
 
 {% block content %}
     <div class="container">

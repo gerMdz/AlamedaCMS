@@ -134,12 +134,13 @@ class User implements UserInterface
         $this->celebracions = new ArrayCollection();
     }
 
-    public function __toString(): ?string
+    public function __toString(): string
     {
         return $this->getPrimerNombre();
     }
 
-    public function getId(): ?string
+
+    public function getId():?string
     {
         return $this->id;
     }
@@ -544,5 +545,15 @@ class User implements UserInterface
         $this->isActive = $isActive;
 
         return $this;
+    }
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
     }
 }

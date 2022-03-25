@@ -59,16 +59,13 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         ];
     }
 
-    public function lema()
+    public function lema(): ?string
     {
         $lema = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
 
         return $lema->getLema();
     }
 
-    /**
-     * @return string|null
-     */
     public function metaDescripcion(): ?string
     {
         $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
@@ -93,7 +90,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             ->getPublicPath($path);
     }
 
-    public function capacidad_restante(string $celebracion, int $cantidad)
+    public function capacidad_restante(string $celebracion, int $cantidad): int
     {
         $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(
             Invitado::class
@@ -109,7 +106,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         );
     }
 
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         return [
             UploaderHelper::class,
@@ -156,7 +153,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             }
 
         } while ($encontro && $i < 10);
-
         return $campo;
 
     }
@@ -178,12 +174,18 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return sprintf($texto, $valor, $valor, $valor, $valor);
     }
 
-    public function form_suscripto_newsletter(string $type, string $fuente): string
+    /**
+     * @param string $type
+     * @param string $fuente
+     * @return array|string|void
+     */
+    public function form_suscripto_newsletter(string $type,string $fuente)
     {
         switch ($type) {
             case 'script':
-            default:
                 return $this->divScript($fuente);
+            case 'iframe':
+                return $this->divIframe($fuente);
         }
     }
 
@@ -198,6 +200,19 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             ->findBy(['srcType' => 'script', 'srcSite' => $fuente]);
 
         return $crea_formulario[0]->getSrcCodigo();
+    }
+
+    /**
+     * @param string $fuente
+     * @return array
+     */
+    protected function divIframe(string $fuente): array
+    {
+        $crea_formulario = $this->container->get(EntityManagerInterface::class)
+            ->getRepository(NewsSite::class)
+            ->findBy(['srcType' =>'iframe', 'srcSite' => $fuente]);
+
+        return [$crea_formulario[0]->getSrcCodigo(),$crea_formulario[0]->getSrcParameters()];
     }
 
 }

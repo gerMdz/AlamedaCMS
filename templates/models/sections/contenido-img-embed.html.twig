@@ -1,11 +1,17 @@
 <section class=" {{ section.cssClass }} js-parallax bg-light u-content-space" id="{{ section.identificador }}">
     <div class="container">
-        {% for entrada in section.entrada %}
+        {% if section.entrada is defined %}
+            {% set entradas = section.entrada %}
+        {% else %}
+            {% set entradas = section.entradas %}
+        {% endif %}
+
+        {% for entrada in entradas %}
             <div class="row">
                 {% if entrada.orden is divisible by(2)  %}
                 <div class="col-lg-6 align-self-center pr-lg-5 mb-5 mb-lg-0 ">
                     <h2 class="font-weight-light mb-3">
-                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
+                        {{ entrada.titulo | striptags | raw}}
                     </h2>
                     <p class="mb-4 mx-auto">
                         {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw}}
@@ -80,7 +86,7 @@
 
                     <div class="col-lg-6 align-self-center pl-lg-5">
                         <h2 class="font-weight-light mb-3">
-                            {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw}}
+                            {{ entrada.titulo | striptags | raw}}
                         </h2>
                         <div class="text-center">
                             {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw}}

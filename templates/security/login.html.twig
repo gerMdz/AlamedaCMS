@@ -4,7 +4,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('loginStyle') }}
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
@@ -16,7 +16,7 @@
 
     {% if app.user %}
         <div class="mb-3">
-            Usted a ingresado como {{ app.user.username }}, <a href="{{ path('app_logout') }}">Salir</a>
+            Usted a ingresado como {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Salir</a>
         </div>
     {% endif %}
 
@@ -36,7 +36,7 @@
     #}
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" name="_remember_me"> Recuérdame
+                <input type="checkbox" name="_remember_me" class="form-check-input"/> Recuérdame
             </label>
         </div>
     <button class="btn btn-lg btn-primary" type="submit">

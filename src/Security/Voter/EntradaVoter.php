@@ -41,7 +41,7 @@ class EntradaVoter extends Voter
             case 'MANAGE':
                 // logic to determine if the user can EDIT
                 // return true or false
-                if ($subject->getAutor() == $user) {
+                if ($subject->getAutor() === $user) {
                     return true;
                 }
                 if ($this->security->isGranted('ROLE_ADMIN_ENTRADAS')) {

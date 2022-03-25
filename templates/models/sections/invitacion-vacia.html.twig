@@ -3,7 +3,13 @@
                  background-repeat: no-repeat; background-size:cover;">
     <div class="container">
         <div class="row">
-            {% for entrada in section.entrada %}
+            {% if section.entrada is defined %}
+                {% set entradas = section.entrada %}
+            {% else %}
+                {% set entradas = section.entradas %}
+            {% endif %}
+
+            {% for entrada in entradas %}
                 {% if (entrada.orden == 1) %}
                     <div class="col-lg-6 align-self-center pr-5 ">
                         <header class="mb-5 text-left fuente-arial-nova">
@@ -11,7 +17,7 @@
                             {% if (entrada.isSinTitulo != 1) %}
                                 <h2 class="h3 text-left fuente-arial-nova">
 
-                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                    {{ entrada.titulo | striptags | raw }}
                                 </h2>
                             {% endif %}
                             <span class="text-black-75 text-left">
@@ -25,7 +31,7 @@
                             <h4 class="text-alameda text-center text-uppercase text-realce-alameda">
 
                                 {% if (entrada.isSinTitulo != 1) %}
-                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                    {{ entrada.titulo | striptags | raw }}
                                 {% endif %}
                             </h4>
                             <hr/>

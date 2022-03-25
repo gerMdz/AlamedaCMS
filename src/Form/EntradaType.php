@@ -2,15 +2,22 @@
 
 namespace App\Form;
 
+use App\Entity\Contacto;
 use App\Entity\Entrada;
 use App\Entity\ModelTemplate;
+use App\Entity\Principal;
+use App\Entity\Section;
 use App\Entity\User;
 use App\Repository\ModelTemplateRepository;
+use App\Repository\PrincipalRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,13 +25,78 @@ use Symfony\Component\Validator\Constraints\Image;
 
 class EntradaType extends AbstractType
 {
+
+    private PrincipalRepository $principalRepository;
+
+    /**
+     * EntradaType constructor.
+     * @param PrincipalRepository $principalRepository
+     */
+    public function __construct(PrincipalRepository $principalRepository)
+    {
+
+        $this->principalRepository = $principalRepository;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $linkRouteChoices = [];
+        $links = $this->principalRepository->findAll();
+        foreach ($links as $link) {
+            $linkRouteChoices[strip_tags($link->__toString())] = $link->getLinkRoute();
+        }
+
         $builder
-            //            Con steps
-            ->add(
-                'titulo',
-                CKEditorType::class,
+            ->add('encabezado', CheckboxType::class, [
+                    'required' => false,
+                    'label' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+
+                    'attr' => [
+                        'class' => 'form-check-input ',
+                    ],
+                ]
+            )
+            ->add('destacado', CheckboxType::class, [
+                    'required' => false,
+                    'label' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+
+                    'attr' => [
+                        'class' => 'form-check-input ',
+                    ],
+                ]
+            )
+            ->add('isSinTitulo', CheckboxType::class, [
+                    'required' => false,
+                    'label' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                    'attr' => [
+                        'class' => 'form-check-input ',
+                    ],
+                ]
+            )
+            ->add('isPermanente', CheckboxType::class, [
+                    'required' => false,
+                    'label' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+
+                    'attr' => [
+                        'class' => 'form-check-input ',
+                    ],
+                ]
+            )
+            ->add('publicar', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => false,
+                    'required' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+
+                    'attr' => [
+                        'class' => 'form-check-input ',
+                    ],
+                ]
+            )
+            ->add('titulo', CKEditorType::class,
                 [
                     'required' => true,
                     'config' => [
@@ -33,19 +105,33 @@ class EntradaType extends AbstractType
                         'language' => 'es',
                         'input_sync' => true,
                     ],
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Título de la entrada, se muestra en pantalla',
                     'attr' => [
-                        'required' => false,
-                        'class' => 'form-control',
+                        'required' => true,
+
+//                        'class' => 'form-control',
                     ],
                 ]
             )
             ->add(
                 'linkRoute',
-                TextType::class,
+                ChoiceType::class,
                 [
+//                    'class' => Principal::class,
+//                    'choice_label' => function (Principal $principal) {
+//                        return sprintf('%s', $principal->getLinkRoute());
+//                    },
+                    'choices' => $linkRouteChoices,
                     'required' => false,
+                    'help' => 'Link a páginas internas del sistema',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
                     'attr' => [
-                        'class' => 'form-control',
+                        'class' => 'select2-enable',
                     ],
                 ]
             )
@@ -59,6 +145,10 @@ class EntradaType extends AbstractType
 //                    'toolbar' => 'full',
                         'language' => 'es',
                     ],
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Contenido de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => false,
                         'rows' => 10,
@@ -66,6 +156,105 @@ class EntradaType extends AbstractType
                     ],
                 ]
             )
+            ->add('footer', TextType::class, [
+                    'label' => 'Pie de la entrada',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Texto secundario',
+                    'help_attr' => [
+                        'class' => ' text-secondary',
+                    ],
+                    'attr' => [
+                        'placeholder' => 'Pie de entrada',
+                    ],
+                    'required' => false,
+
+                    'row_attr' => [
+                        'class' => 'form-floating',
+                    ],
+                ]
+            )
+            ->add('linkRoute', EntityType::class, [
+                    'class' => Principal::class,
+                    'mapped'=>false,
+                    'required' => false,
+                    'help' => 'Link a páginas internas del sistema',
+//                    'label'=>'Seleccione Link',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'attr' => [
+                        'class' => 'select2-enable',
+//                        'placeholder'=>'Seleccione Link',
+                    ],
+                    'row_attr' => [
+                        'class' => 'form-floating',
+                    ],
+
+                ]
+            )
+            ->add('linkPosting', TextType::class, [
+                    'label' => 'Link Posting',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Link de redirección',
+                    'help_attr' => [
+                        'class' => ' text-secondary',
+                    ],
+                    'attr' => [
+                        'placeholder' => 'Link posting',
+                    ],
+                    'required' => false,
+
+                    'row_attr' => [
+                        'class' => 'form-floating',
+                    ],
+                ]
+            )
+            ->add(
+                'isLinkExterno',
+                CheckboxType::class,
+                [
+                    'required' => false,
+                    'label' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-primary'],
+                    'help' => '¿Abre otra página?',
+                    'attr' => [
+                        'class' => 'form-check-input ',
+                    ],
+                ]
+            )
+            ->add('eventoAt', DateTimeType::class, [
+                'label' => 'Fecha Evento',
+                'widget' => 'single_text',
+                'placeholder' => 'Seleccione día y hora',
+                'html5' => true,
+                'required' => false,
+//                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'form-control '],
+                'input' => 'datetime',
+            ])
+            ->add('disponibleAt', DateTimeType::class, [
+                'label' => 'Disponible desde',
+                'widget' => 'single_text',
+                'placeholder' => 'Seleccione día y hora',
+                'html5' => true,
+                'required' => false,
+//                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'form-control '],
+                'input' => 'datetime',
+            ])
+            ->add('disponibleHastaAt', DateTimeType::class, [
+                'label' => 'Disponible hasta',
+                'widget' => 'single_text',
+                'placeholder' => 'Seleccione día y hora',
+                'html5' => true,
+                'required' => false,
+                'attr' => ['class' => 'form-control '],
+                'input' => 'datetime',
+            ])
             ->add(
                 'autor',
                 EntityType::class,
@@ -76,32 +265,28 @@ class EntradaType extends AbstractType
                     },
                     'placeholder' => 'Seleccione Autor',
                     'invalid_message' => 'Por favor ingrese un autor',
-                ]
-            )
-            ->add('linkPosting')
-            ->add(
-                'isLinkExterno',
-                CheckboxType::class,
-                [
-                    'required' => false,
-                    'label' => false,
-                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
                     'attr' => [
-                        'class' => 'form-check-input ',
+                        'class' => 'select2-enable',
                     ],
                 ]
             )
             ->add(
-                'footer',
-                TextType::class,
+                'modelTemplate',
+                EntityType::class,
                 [
-                    'label' => 'Pie de la entrada',
+                    'class' => ModelTemplate::class,
+                    'query_builder' => function (ModelTemplateRepository $er) {
+                        return $er->findByTypeEntrada();
+                    },
+                    'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,
                     'attr' => [
-                        'class' => 'form-control',
+                        'class' => 'select2-enable',
                     ],
                 ]
             )
+
+
             //            Con steps hasta aquí
 
             ->add(
@@ -110,6 +295,7 @@ class EntradaType extends AbstractType
                 [
                     'mapped' => false,
                     'required' => false,
+                    'label' => 'Imagen',
                     'constraints' => [
                         new Image(
                             [
@@ -125,103 +311,119 @@ class EntradaType extends AbstractType
                     ],
                 ]
             )
-            ->add(
-                'publicar',
-                CheckboxType::class,
-                [
-                    'mapped' => false,
-                    'label' => false,
-                    'required' => false,
-                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
-                    'attr' => [
-                        'class' => 'form-check-input ',
-                    ],
-                ]
-            )
-            ->add('disponibleAt')
-            ->add('disponibleHastaAt')
-            ->add('eventoAt')
+            ->add('disponibleAt', DateTimeType::class, [
+                'label' => 'Disponible desde',
+                'widget' => 'single_text',
+                'html5' => true,
+                'required' => false,
+//                'format' => 'yyyy-MM-dd HH:mm',
+//                'attr' => ['class' => 'datetimepicker'],
+            ])
+            ->add('disponibleHastaAt', DateTimeType::class, [
+                'label' => 'Disponible hasta',
+                'widget' => 'single_text',
+                'html5' => true,
+                'required' => false,
+//                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'datetimepicker'],
+            ])
+            ->add('eventoAt', DateTimeType::class, [
+                'label' => 'Fecha Evento',
+                'widget' => 'single_text',
+                'html5' => true,
+                'required' => false,
+//                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => ['class' => 'datetimepicker'],
+            ])
 
 //            ->add('section')
-            ->add('orden')
-            ->add(
-                'encabezado',
-                CheckboxType::class,
-                [
+            ->add('orden', NumberType::class, [
+                    'label' => 'Orden',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => '¿Que orden tendrá en la sección?',
                     'required' => false,
-                    'label' => false,
-                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
                     'attr' => [
-                        'class' => 'form-check-input ',
+                        'placeholder' => 'Orden',
+                    ],
+                    'row_attr' => [
+                        'class' => 'form-floating',
+                    ],
+                    'help_attr' => [
+                        'class' => ' text-secondary',
                     ],
                 ]
             )
-            ->add(
-                'destacado',
-                CheckboxType::class,
-                [
-                    'required' => false,
-                    'label' => false,
-                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
-                    'attr' => [
-                        'class' => 'form-check-input ',
-                    ],
-                ]
-            )
-            ->add('contacto')
-            ->add(
-                'isSinTitulo',
-                CheckboxType::class,
-                [
-                    'required' => false,
-                    'label' => false,
-                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
-                    'attr' => [
-                        'class' => 'form-check-input ',
-                    ],
-                ]
-            )
-//            ->add('sections',EntityType::class,[
-//                'class'=>Section::class,
-//                'multiple'=>true,
-//                'expanded' => false,
-//                'attr'=>[
-//                    'class' => 'select2-enable form-check-input',
-//                    'placeholder' => 'Seleccione '
-//
-//                ]
-//            ])
-            ->add(
-                'isPermanente',
-                CheckboxType::class,
-                [
-                    'required' => false,
-                    'label' => false,
-                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
-                    'attr' => [
-                        'class' => 'form-check-input ',
-                    ],
-                ]
-            )
+            ->add('contacto', EntityType::class, [
+                'class' => Contacto::class,
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'Contacto',
+                'help' => 'Usar en caso excepcional, aún en desarrollo',
+                'label_attr' => [
+                    'class' => 'text-primary',
+                ],
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Contacto',
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating',
+                ],
+                'help_attr'=> [
+                    'class' => ' text-secondary',
+                ],
+            ])
 
-
-            ->add(
-                'modelTemplate',
-                EntityType::class,
+            ->add('cssClass', TextType::class,
                 [
-                    'class' => ModelTemplate::class,
-                    'query_builder' => function (ModelTemplateRepository $er) {
-                        return $er->findByTypeEntrada();
-                    },
-                    'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
+                    'help_attr' => [
+                        'class' => ' text-secondary',
+                    ],
+                    'row_attr' => [
+                        'class' => 'form-floating',
+                    ],
+                    'label' => 'Clase css',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Agregar estilo css ya predefinido',
                     'required' => false,
+                    'attr' => [
+                        'placeholder' => 'Estilos CSS',
+                    ],
                 ]
             )
+            ->add(
+                'identificador', TextType::class, [
+                    'label' => 'Identificador',
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Identificador único #',
+                    'required' => false,
+                    'attr' => [
+                        'placeholder' => 'Identificador',
+                    ],
+                    'row_attr' => [
+                        'class' => 'form-floating',
+                    ],
+                    'help_attr' => [
+                        'class' => ' text-secondary',
+                    ],
+                ]
+            )
+            ->add('sections', EntityType::class, [
+                'class' => Section::class,
+                'multiple' => true,
+                'help' => 'Opcional, seleccione la sección/es',
+                'required' => false,
+                'attr' => [
+                    'class' => 'select2-enable',
+                ],
+
+            ])
         ; // ; Final Builder
     }
 

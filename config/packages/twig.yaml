@@ -6,7 +6,7 @@ twig:
     paths:
         'assets/images': images
         'assets/css': styles
-    form_themes: ['bootstrap_4_layout.html.twig','resources/views/Form/ckeditor_widget.html.twig']
+    form_themes: ['bootstrap_5_layout.html.twig','resources/views/Form/ckeditor_widget.html.twig']
     exception_controller: null
     globals:
         facebook_tag_pixel_id: '%env(FACEBOOK_PIXEL)%'
