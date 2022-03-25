@@ -20,7 +20,7 @@
                             <div class="container mb-5">
                                 <div class="row">
                                     {% for entrada in entradas %}
-                                        <div class="col-md-4 mb-sm-2">
+                                        <div class="col-md-4 mb-sm-4">
                                             <div class="pasos h-100">
                                                 <a href="{{ (entrada.linkPosting is defined)? path(entrada.linkRoute): entrada.linkPosting }}">
                                                     <div class="card card-plain bg-white h-100">
