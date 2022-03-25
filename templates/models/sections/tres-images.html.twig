@@ -12,33 +12,19 @@
                                          alt="{{ app.request.baseUrl }}"
                                          class="card-img">
                                 </div>
-                                <!--                                <div class="card-img-overlay">-->
-                                <div class="card-footer bg-white justify-content-between ">
-                                    <!--                                     style="top: 80%; position: relative"-->
-
+                                <div class="card-footer bg-white d-flex justify-content-between">
                                     <a class="card-link">
-
                                             <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
                                             <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
                                             <small>por {{ entrada.autor }}</small>
-
                                     </a>
                                     <a href="{{ entrada.linkPosting }}"
-                                       class="btn-round btn-alameda  mr-2 "
+                                       class="btn-round btn-alameda mr-2 "
                                        target="_blank">
-                                        <!--                                       style="z-index: 100" >-->
-
                                         Ver último mensaje
-                                        <!--                                        <b class="text-blue">Ver último mensaje</b>-->
                                     </a>
-                                    <!--                                    </div>-->
-
-
                                 </div>
-
-
                             </div>
-
                         {% endif %}
                     {% endfor %}
                 </div>
