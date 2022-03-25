@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     {% set base = base_base() %}
-    <title>{% block title %} Bienvenido! {% endblock %} - {{ base.siteName }}</title>
+    <title>{% block title %} Bienvenido! {% endblock %} - {{ base.siteName|default('AlamedaCMS') }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="shortcut icon" href="{{ asset('images/institucional/indice.png') }}" type="image/x-icon">
@@ -94,7 +94,7 @@
                             <ul>
                                 <li>
                                     <a href="{{ path('index') }}">
-                                        {{ base.siteName }}
+                                        {{ base.siteName|default('AlamedaCMS') }}
                                     </a>
                                 </li>
                             </ul>
@@ -104,7 +104,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="{{ path('index') }}" target="_blank">{{ base.siteName }}a</a>
+                            <a href="{{ path('index') }}" target="_blank">{{ base.siteName|default('AlamedaCMS') }}a</a>
                         </div>
                         <!-- your footer here -->
                     </div>

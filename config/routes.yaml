@@ -7,6 +7,10 @@ index:
     path: /
     controller: App\Controller\ZinicioController::index
 
+homepage:
+    path: /
+    controller: App\Controller\ZinicioController::index
+
 
 
 

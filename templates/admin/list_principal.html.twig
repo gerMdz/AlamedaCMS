@@ -68,7 +68,7 @@
                             </td>
                             <td>
                                 {% if (principal.imageFilename != null) %}
-                                    <img class="article-img" alt="{{ base.lema }}"
+                                    <img class="article-img" alt="{{ base.lema|default('AlamedaCMS') }}"
                                          src="{{ principal.imagePath|imagine_filter('squared_thumbnail_100') }}">
                                     <br/>
                                     {{ principal.imageFilename }}

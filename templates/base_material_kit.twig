@@ -9,22 +9,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
-        {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
+        {% block title %}{{ base.siteName|default('AlamedaCMS') }} Bienvenido! {% endblock %}
     </title>
     {% set index = 'base' %}
 
-    <meta name="description" content="{{ base.siteName }},  {{ base_metaDescripcion() }}">
-    <meta name="keywords" content="{{ base.siteName}},{{base.lema}},{{base_metaDescripcion()}}">
-    <meta name="author" content="{{ base.metaAutor }}">
-    <meta property="og:title" content="{{ base.metaTitle }}"/>
-    <meta property="og:type" content="{{ base.metaTYpe }}"/>
-    <meta property="og:url" content="{{ base.metaUrl }}"/>
-    <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
-    <meta property="og:description" content="{{ base_lema() }},{{ base_metaDescripcion() }}" />
-    <meta property="og:site_name" content="{{ base.siteName }}" />
+    <meta name="description" content="{{ base.siteName |default('AlamedaCMS') }},  {{ base_metaDescripcion() }}">
+    <meta name="keywords" content="{{ base.siteName }},{{ base.lema }},{{ base_metaDescripcion() }}">
+    <meta name="author" content="{{ base.metaAutor|default('AlamedaCMS') }}">
+    <meta property="og:title" content="{{ base.metaTitle|default('AlamedaCMS') }}"/>
+    <meta property="og:type" content="{{ base.metaTYpe|default('site') }}"/>
+    <meta property="og:url" content="{{ base.metaUrl|default('AlamedaCMS') }}"/>
+    <meta property="og:image" content="{{ base.metaUrl|default('AlamedaCMS') }}{{ asset('images/og-base.png') }}">
+    <meta property="og:description" content="{{ base_lema() }},{{ base_metaDescripcion() }}"/>
+    <meta property="og:site_name" content="{{ base.siteName|default('AlamedaCMS') }}"/>
     <link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon">
-    <title>{{ base.metaTitle }}</title>
-    {# {% include('inicio/_favicon_html.twig') %} #}
+    <title>{{ base.metaTitle|default('AlamedaCMS') }}</title>
     {% block icons %}
         <link href="{{ asset('icons/foundation-icons/foundation-icons.css') }}" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">

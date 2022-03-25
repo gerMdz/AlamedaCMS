@@ -24,7 +24,7 @@
                             <td>
                                 <img class="show-article-img"
                                      src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
-                                     alt="{{ base.siteName }}">
+                                     alt="{{ base.siteName|default('AlamedaCMS') }}">
                             </td>
                         </tr>
                         <tr>

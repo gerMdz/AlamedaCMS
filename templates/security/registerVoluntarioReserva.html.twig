@@ -5,7 +5,7 @@
 
 
 
-{% block title %}Ingreso {{ base.siteName }} {% endblock %}
+{% block title %}Ingreso {{ base.siteName|default('AlamedaCMS') }} {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}

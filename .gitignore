@@ -40,9 +40,7 @@ yarn-error.log
 /assets/fonts/
 /public/js/
 /.php_cs.cache
-/public/stream-ui-kit/
 /public/business-casual/
-/public/material-kit/
 /public/shards-ui/
 /public/media/
 /public/media/cache
