@@ -1,38 +1,48 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item ml-auto mb-2 mb-lg-0">
-
-                </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
-
-        </li>
-        <li class="nav-item mx-2 mb-2 mb-lg-0">
-            <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'mensajes'}) }}">
-                SERIES
+    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+                ¿Qué ...?
             </a>
         </li>
-        <li class="nav-item mx-2 mb-2 mb-lg-0">
-            <a class="nav-link" href="{{ path('oracion') }}">
-                ORACIÓN
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                ¿Cómo ...?
             </a>
         </li>
-        <li class="nav-item mx-2 mb-2 mb-lg-0">
-            <a class="nav-link" href="{{ path('contacto') }}">
-                TARJETA DE CONEXIÓN
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                ¿Cuándo ...?
             </a>
         </li>
-        <li class="nav-item dropdown mx-2 mb-2 mb-lg-0">
-            <a class="nav-link" href="#" id="navbarDropdown" role="button"
-               data-bs-toggle="dropdown" aria-expanded="false"
-               aria-haspopup="true">
-                <i class="fas fa-angle-down"></i> MÁS
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                ¿Dónde ...?
             </a>
-            <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
-
-
-            </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                ¿Porqué ...?
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                ¿Quienes somos?
+            </a>
+        </li>
+        {# !!!       No elimina     !!! #}
+{#        <li class="nav-item dropdown">#}
+{#            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                Dropdown#}
+{#            </a>#}
+{#            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#                <li><a class="dropdown-item" href="#">Action</a></li>#}
+{#                <li><a class="dropdown-item" href="#">Another action</a></li>#}
+{#                <li><hr class="dropdown-divider"></li>#}
+{#                <li><a class="dropdown-item" href="#">Something else here</a></li>#}
+{#            </ul>#}
+{#        </li>#}
+        {# !!!       No elimina     !!! #}
     </ul>
 
     {% if is_granted('ROLE_USER') %}
