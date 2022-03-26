@@ -12,8 +12,8 @@
 
 * [Projects](fundamentals/projects.md)
 * [Members](fundamentals/members.md)
-* [Task Lists](fundamentals/task-lists.md)
-* [Tasks](fundamentals/tasks.md)
+* [Lista de tareas](fundamentals/task-lists.md)
+* [Tareas actuales](fundamentals/tasks.md)
 
 ## Use Cases
 

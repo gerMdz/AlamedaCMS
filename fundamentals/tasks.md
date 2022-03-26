@@ -1,15 +1,14 @@
-# Task Lists
+# Tareas actuales
 
 {% hint style="info" %}
-- [ ] Entrada list
-- [ ] Entrada new
-- [ ] Entrada show
-- [ ] Entrada edit
-- [ ] Entrada delete
+* [ ] Entrada list
+* [ ] Entrada new
+* [ ] Entrada show
+* [ ] Entrada edit
+* [ ] Entrada delete
 
-### Acciones con entradas
+#### Acciones con entradas
 
-- [ ] Entrada from template
-- [ ] Entrada from section
-
+* [ ] Entrada from template
+* [ ] Entrada from section
 {% endhint %}
