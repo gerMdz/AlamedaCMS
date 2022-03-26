@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
 <link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">
 
-{{ encore_entry_link_tags('select2') }}
+{#{{ encore_entry_link_tags('select2') }}#}
+    {{ encore_entry_link_tags('select2-parent') }}
 
 {% endblock %}
 
@@ -16,8 +17,6 @@
 
     <h4>Asistente para crear nueva entrada - Paso 1</h4>
 
-
-<div class="form-container">
     <div class="form-container">
         {{ form_start(entradaForm) }}
         <div class="row">
@@ -47,5 +46,10 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('select2') }}
+{#    {{ encore_entry_script_tags('select2') }}#}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+{% block jslocal %}
+    {{ encore_entry_script_tags('select2-parent') }}
+
 {% endblock %}

@@ -11,7 +11,7 @@ trait CssClass
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $cssClass;
+    private ?string $cssClass;
 
     public function getCssClass(): ?string
     {

@@ -116,7 +116,7 @@ class PrincipalRepository extends ServiceEntityRepository
             ->setParameter('boolean', true)
             ->orderBy('p.updatedAt', 'DESC');
         $qb->leftJoin('p.secciones', 's');
-        $qb->leftJoin('s.entrada', 'e');
+        $qb->leftJoin('s.entradas', 'e');
         $qb->andWhere(
             $qb->expr()->between(
                 'p.updatedAt',

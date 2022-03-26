@@ -16,7 +16,7 @@
                             {% if (entrada.isSinTitulo != 1) %}
                                 <h2 class="h3 text-left fuente-arial-nova">
 
-                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                    {{ entrada.titulo | striptags | raw }}
                                 </h2>
                             {% endif %}
                             <span class="text-black-75 text-left">
@@ -30,7 +30,7 @@
                             <h4 class="text-alameda text-center text-uppercase text-realce-alameda">
 
                                 {% if (entrada.isSinTitulo != 1) %}
-                                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                    {{ entrada.titulo | striptags | raw }}
                                 {% endif %}
                             </h4>
                             <hr/>

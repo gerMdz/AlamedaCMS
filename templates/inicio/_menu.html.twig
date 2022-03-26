@@ -1,163 +1,81 @@
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-    <!-- Left -->
-
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item ml-auto mb-2 mb-lg-0">
-                    <a class="nav-link link-alameda" href="{{ path('reserva_index') }}">
-                        Reservas
-                    </a>
-                </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+<div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100 bg-white" id="navigation">
+    <ul class="navbar-nav navbar-nav-hover ms-auto">
+        <li class="nav-item dropdown dropdown-hover mx-2">
             <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'ofrenda'}) }}">
-
-                <!--                            <i class="fas fa-hand-holding"></i>-->
-                Dar
-
+                DAR
             </a>
         </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'notas'}) }}">
-
-                <!--                            <i class="fas fa-pencil-alt"></i> -->
-                Notas del Mensaje
-
+                NOTAS DEL MENSAJE
             </a>
         </li>
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('principal_ver', {'linkRoute':'mensajes'}) }}">
-                <!--                            <i class="fas fa-pencil-alt"></i> -->
-                Series
+                SERIES
             </a>
         </li>
-
-        <li class="nav-item ml-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
             <a class="nav-link" href="{{ path('oracion') }}">
-
-                <!--                            <i class="fas fa-praying-hands"></i> -->
-                Oración
-
+                ORACIÓN
             </a>
         </li>
-                <li class="nav-item ml-auto mb-2 mb-lg-0">
-                    <a class="nav-link" href="{{ path('contacto') }}">
-
-                        <!--                            <i class="fas fa-file-contract"></i> -->
-                        Tarjeta de Conexión
-
-                    </a>
-                </li>
-{#        <li class="nav-item ml-auto mb-2 mb-lg-0">#}
-{#                    <a class="nav-link" href="{{ path('reserva_consulta') }}">#}
-{#                        <b>Consulta tú reserva</b>#}
-{#                    </a>#}
-{#                </li>#}
-
-{#        <li class="nav-item ml-auto mb-2 mb-lg-0">#}
-{#            <a class="nav-link" href="https://online.iglesiaalameda.com">#}
-
-{#                <!--                            <i class="fas fa-globe"></i>-->#}
-{#                En vivo!#}
-
-{#            </a>#}
-{#        </li>#}
-{#        <li class="nav-item ml-auto mb-2 mb-lg-0">#}
-{#            <a class="nav-link" href="{{ path('grupospequeños') }}">#}
-
-{#                <!--                            <img class="img-fluid" src="/images/gpc-sin-texto.png" width="16" height="16">-->#}
-{#                Grupos Pequeños#}
-
-{#            </a>#}
-{#        </li>#}
-
-
-
-
-
-        <li class="nav-item dropdown ml-auto mb-2 mb-lg-0">
-            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-angle-down"></i> Más
+        <li class="nav-item mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="{{ path('contacto') }}">
+                TARJETA DE CONEXIÓN
+            </a>
+        </li>
+        <li class="nav-item dropdown mx-2 mb-2 mb-lg-0">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false"
+               aria-haspopup="true">
+                <i class="fas fa-angle-down"></i> MÁS
             </a>
             <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
                 <a class="dropdown-item " href="{{ path('avanza') }}">
-
-                    <!--                                <i class="fas fa-road"></i> -->
-                    Avanza
-
+                    AVANZA
                 </a>
                 <a class="dropdown-item" href="http://sitiosimple.com/libreria-alameda/">
-
-                    <!--                                <i class="fas fa-book-open"></i> -->
-                    Librería
-
+                    LIBRERÍA
                 </a>
             </div>
         </li>
     </ul>
-
-    <!--Right -->
-{#    <ul class="navbar-nav nav-flex-icons ml-auto">#}
-
-{#        <li class="nav-item">#}
-{#            <a class="nav-link" rel="tooltip" title="Seguinos en la fanpage" data-placement="bottom"#}
-{#               href="https://www.facebook.com/IglesiaAlameda" target="_blank"#}
-{#               data-original-title="Seguinos en la fanpage">#}
-{#                <i class="fab fa-facebook-square fa-2x"></i>#}
-{#            </a>#}
-{#        </li>#}
-{#        <li class="nav-item">#}
-{#            <a class="nav-link" rel="tooltip" title="Reviví los mensajes" data-placement="bottom"#}
-{#               href="https://youtube.com/user/IglesiaAlameda" target="_blank"#}
-{#               data-original-title="Reviví los mensajes">#}
-{#                <i class="fab fa-youtube-square fa-2x"></i>#}
-{#            </a>#}
-{#        </li>#}
-
-{#        <li class="nav-item">#}
-{#            <a class="nav-link" rel="tooltip" title="Seguinos en Instagram" data-placement="bottom"#}
-{#               href="https://www.instagram.com/iglesialameda" target="_blank"#}
-{#               data-original-title="Seguinos en Instagram">#}
-{#                <i class="fab fa-instagram fa-2x"></i>#}
-{#            </a>#}
-{#        </li>#}
-{#    </ul>#}
     {% if is_granted('ROLE_USER') %}
-        <ul class="navbar-nav ml-auto">
-
-            <li class="nav-item dropdown" style="margin-right: 75px;">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ app.user.avatarUrl(30) }}" class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName }}">
+        <ul class="navbar-nav mx-2">
+            <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ app.user.avatarUrl(30) }}"
+                         class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName }}">
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3"
+                    aria-labelledby="navbarDropdownMenuLink">
+{#                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
                     <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
                     {% if is_granted('ROLE_ADMIN_RESERVA') %}
-                    <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar Voluntario</a>
+                        <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar
+                            Voluntario</a>
                     {% endif %}
                     {% if is_granted('ROLE_RESERVA') %}
                         <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
-                        {#                                <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>#}
                         <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
                         <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Lectura QR</a>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
-                        {#                                <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a>#}
                         <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
                     {% endif %}
                     <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
-                </div>
+{#                </div>#}
+                </ul>
             </li>
-
-
             {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                <div class="alert alert-warning"  >
-                    Temporalemte
+                <div class="alert alert-warning">
+                    Temporalmente
                     <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
                 </div>
             {% endif %}
-
         </ul>
     {% endif %}
-
 </div>

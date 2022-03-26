@@ -11,8 +11,11 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
@@ -29,130 +32,135 @@ class Entrada
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("mail")
+     * @Assert\NotBlank
      */
-    private $titulo;
+
+    private string $titulo;
 
     /**
      * @ORM\Column(type="text", length=8000, nullable=true)
      * @Groups("mail")
      */
-    private $contenido;
+    private ?string $contenido;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="entradas")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $autor;
+    private ?User $autor;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("mail")
      */
-    private $imageFilename;
+    private ?string $imageFilename=null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $publicadoAt;
+    private ?DateTimeInterface $publicadoAt;
 
     /**
      * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
      * @ORM\OrderBy({"posicion"="ASC"})
      */
-    private $entradaReferences;
+    private ?Collection $entradaReferences;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $likes = 0;
+    private ?int $likes = 0;
 
     /**
      * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada", fetch="EXTRA_LAZY")
      * @ORM\OrderBy({"createdAt" = "DESC"})
      */
-    private $comentarios;
+    private ?Collection $comentarios;
 
     /**
      * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="entradas")
      */
-    private $principals;
+    private ?Collection $principals;
 
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $eventoAt;
+    private ?DateTimeInterface $eventoAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $typeOrigin;
+    private ?string $typeOrigin;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $typeCarry;
+    private ?string $typeCarry;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $orden;
+    private ?int $orden;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $encabezado;
+    private ?bool $encabezado;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $destacado;
+    private ?bool $destacado;
 
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="entradas")
      */
-    private $modelTemplate;
+    private ?ModelTemplate $modelTemplate;
 
     /**
      * @ORM\ManyToMany(targetEntity=Contacto::class, inversedBy="entradas")
      */
-    private $contacto;
+    private ?Collection $contacto;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isSinTitulo;
+    private ?bool $isSinTitulo;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isPermanente;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, mappedBy="entrada")
-     * @Groups("mail")
-     */
-    private $sections;
+    private ?bool $isPermanente;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $footer;
+    private ?string $footer;
 
     /**
      * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="entradas")
      */
-    private $button;
+    private ?Collection $button;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true, unique=true)
      */
-    private $identificador;
+    private ?string $identificador;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="entradas")
+     * @JoinTable(name="section_entrada",
+     *     joinColumns={@JoinColumn(name="entrada_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="section_id", referencedColumnName="id")}
+     *     )
+     */
+    private Collection $sections;
 
     public function __construct()
     {
@@ -160,12 +168,12 @@ class Entrada
         $this->comentarios = new ArrayCollection();
         $this->principals = new ArrayCollection();
         $this->contacto = new ArrayCollection();
-        $this->sections = new ArrayCollection();
         $this->button = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function __toString()
     {
@@ -234,15 +242,15 @@ class Entrada
         return $this;
     }
 
-    public function getImagePath()
+    public function getImagePath(): ?string
     {
         return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
     }
 
     /**
-     * @return Collection|EntradaReference[]
+     * @return null|Collection|EntradaReference[]
      */
-    public function getEntradaReferences(): Collection
+    public function getEntradaReferences(): ?Collection
     {
         return $this->entradaReferences;
     }
@@ -265,18 +273,18 @@ class Entrada
     }
 
     /**
-     * @return Collection|Comentario[]
+     * @return null|Collection|Comentario[]
      */
-    public function getComentariosNoDeleted(): Collection
+    public function getComentariosNoDeleted(): ?Collection
     {
         $criterio = EntradaRepository::createNoDeletedCriteria();
         return $this->comentarios->matching($criterio);
     }
 
     /**
-     * @return Collection|Comentario[]
+     * @return null|Collection|Comentario[]
      */
-    public function getComentarios(): Collection
+    public function getComentarios(): ?Collection
     {
         return $this->comentarios;
     }
@@ -305,9 +313,9 @@ class Entrada
     }
 
     /**
-     * @return Collection|Principal[]
+     * @return null|Collection|Principal[]
      */
-    public function getPrincipals(): Collection
+    public function getPrincipals(): ?Collection
     {
         return $this->principals;
     }
@@ -419,9 +427,9 @@ class Entrada
     }
 
     /**
-     * @return Collection|Contacto[]
+     * @return null|Collection|Contacto[]
      */
-    public function getContacto(): Collection
+    public function getContacto(): ?Collection
     {
         return $this->contacto;
     }
@@ -466,32 +474,6 @@ class Entrada
         return $this;
     }
 
-    /**
-     * @return Collection|Section[]
-     */
-    public function getSections(): Collection
-    {
-        return $this->sections;
-    }
-
-    public function addSection(Section $section): self
-    {
-        if (!$this->sections->contains($section)) {
-            $this->sections[] = $section;
-            $section->addEntrada($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSection(Section $section): self
-    {
-        if ($this->sections->removeElement($section)) {
-            $section->removeEntrada($this);
-        }
-
-        return $this;
-    }
 
     public function getFooter(): ?string
     {
@@ -506,9 +488,9 @@ class Entrada
     }
 
     /**
-     * @return Collection|ButtonLink[]
+     * @return null|Collection|ButtonLink[]
      */
-    public function getButton(): Collection
+    public function getButton(): ?Collection
     {
         return $this->button;
     }
@@ -540,6 +522,30 @@ class Entrada
             $identificador = str_replace(' ', '-',strip_tags($this->titulo));
         }
         $this->identificador = $identificador;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Section>
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        $this->sections->removeElement($section);
 
         return $this;
     }

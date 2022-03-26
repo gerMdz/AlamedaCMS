@@ -24,9 +24,9 @@
             <div class="text-center align-items-center">
         {{ knp_pagination_render(entradas) }}
     </div>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
+            <div class="table-responsive sticky-header  ">
+                    <table class="table sticky-header" data-toggle="table">
+                    <thead class=" text-primary ">
                 <tr>
                     <th>
                         Titulo <br/>
@@ -36,10 +36,13 @@
                         Página
                     </th>
                     <th>
-                        Autor<br/>
-                        email
+                        <i class="fa fa-user-alt"></i>
+                        <i class="fa fa-envelope"></i>
                     </th>
-                    <th>Creado </th>
+                    <th class="text-center"><i class="fa fa-calendar-alt"></i> </th>
+                      <th>
+                      <i class="fa fa-file-archive"></i>
+                        </th>
                     <th>Imagen</th>
                     <th>
                         <i class="fa fa-cogs"> </i>
@@ -50,8 +53,8 @@
                 {% for entrada in entradas %}
                     <tr>
                         <td>
-                           T: {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}<br/>
-                           Lr: {{ entrada.linkRoute }}
+                           T: {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}<br/>
+                           Lr: {{ entrada.linkRoute | u.truncate(20, '...')}}
                         </td>
                         <td>
                             {% for section in entrada.sections %}
@@ -63,43 +66,64 @@
                                     {% for index in section.indexAlamedas %}
                                     <a href="{{ path('index_alameda_index') }}">
                                         i: {{ index.lema }}
-                                        </a>
+                                        </a><br/>
                                     {% endfor %}
                                 {% endif %}
 
                                 {% if section.principal is defined %}
                                     {% for principal in section.principales %}
                                     <a href="{{ path('principal_show', {'id': principal.id}) }}">
-                                        P:       {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw }}
-                                        </a>
+                                        P: {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}
+                                        </a> <br/>
                                     {% endfor %}
                                 {% endif %}
                             {% endfor %}
                         </td>
                         <td>
-                            {{ entrada.autor }} --
+                            {{ entrada.autor }} <br/>
                             {{ entrada.autor.email }}
                         </td>
+{#                        <td>#}
+{#                            {% if entrada.createdAt %}#}
+{#                            <small> Creada:#}
+{#                                {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}#}
+{#                                </small>#}
+{#                                <br/>#}
+{#                            {% endif %}#}
+{#                            <small>#}
+{#                            Publicado?: <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>#}
+{#                            {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}#}
+{#                            </small><br/>#}
+
+{#                                {% if entrada.updatedAt %}#}
+{#                                <small> Actualizada:#}
+{#                                {{ entrada.updatedAt ? entrada.updatedAt | ago : 'Aún no fue actualizada' }}#}
+{#                                </small>#}
+{#                          {% endif %}#}
+{#                        </td>#}
+                        <td class="text-center">
+                        {{ entrada.isPermanente ? '<i class="fa fa-check"></i> <br/>' }}
+                        {{ entrada.disponibleAt ?'Desde:'~ entrada.disponibleAt | ago : '' }}<br/>
+                        {{ entrada.disponibleHastaAt ? 'Hasta:' ~ entrada.disponibleHastaAt | ago : '' }}
+                        </td>
                         <td>
-                            {% if entrada.createdAt %}
-                                {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}
-                                <br/>
-                                <hr/>
+                            {% if (entrada.entradaReferences | length > 0)  %}
+                            <i class="fa fa-check"></i>
+                            {% else %}
+                            <i class="fa fa-times"></i>
                             {% endif %}
-                            Publicado?: <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>
-                            {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}
                         </td>
                         <td>
                         {% if (entrada.imageFilename != null) %}
                             <img class="article-img" alt="{{ base.lema }}"
-                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small') }}">
+                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_100') }}">
                             <br/>
-                            {{ entrada.imageFilename }}
+                            {{ entrada.imageFilename | u.truncate(20, '...') }}
                             {% else %}
                             No tiene imagen
                             {% endif %}
                         </td>
-                        <td>
+                        <td class="list-inline">
                             <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
                                 <i class="fa fa-eye"></i> Ver
                             </a>

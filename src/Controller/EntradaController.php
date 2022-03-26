@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Entrada;
 use App\Form\EntradaSectionType;
-use App\Form\EntradaType;
 use App\Repository\EntradaRepository;
 use App\Repository\SectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,7 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EntradaController extends AbstractController
 {
-
 
     /**
      * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
@@ -42,13 +40,14 @@ class EntradaController extends AbstractController
     }
 
 
-
     /**
      * @Route("/count/{id}/like", name="entrada_toggle_like", methods={"POST"})
      *
+     * @param Entrada $entrada
+     * @param EntityManagerInterface $em
      * @return JsonResponse
      */
-    public function toggleArticleHeart(Entrada $entrada, EntityManagerInterface $em)
+    public function toggleArticleHeart(Entrada $entrada, EntityManagerInterface $em): JsonResponse
     {
         $entrada->incrementaLikeCount();
         $em->flush();
@@ -77,12 +76,10 @@ class EntradaController extends AbstractController
      * @Route("/agregarSeccion/{id}", name="entrada_agregar_seccion", methods={"GET", "POST"})
      * @param Request $request
      * @param Entrada $entrada
-     * @param EntityManagerInterface $entityManager
      * @param SectionRepository $sectionRepository
-     * @param EntradaRepository $entradaRepository
      * @return RedirectResponse|Response
      */
-    public function agregarSeccion(Request $request, Entrada $entrada, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, EntradaRepository $entradaRepository)
+    public function agregarSeccion(Request $request, Entrada $entrada, SectionRepository $sectionRepository)
     {
         $form = $this->createForm(EntradaSectionType::class, $entrada);
         $form->handleRequest($request);
@@ -103,6 +100,5 @@ class EntradaController extends AbstractController
             'index' => $entrada,
             'form' => $form->createView(),
         ]);
-
     }
 }

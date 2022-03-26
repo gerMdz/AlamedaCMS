@@ -1,6 +1,12 @@
 <section class="u-content-space border-bottom py-5 bg-gris-medio ">
     <div class="container text-center">
-        {% for entrada in section.entrada %}
+        {% if section.entrada is defined %}
+            {% set entradas = section.entrada %}
+        {% else %}
+            {% set entradas = section.entradas %}
+        {% endif %}
+
+        {% for entrada in entradas %}
         <div class="row">
             <div class="col-sm-12">
                 <div class="show-article-container p-3 mt-4">
@@ -16,18 +22,18 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="show-article-container p-3 mt-4">
-                    <h4><strong class="ml-5"> {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }} </strong>
+                    <h4><strong class="ml-5"> {{ entrada.titulo | striptags | raw }} </strong>
                     </h4>
                 </div>
             </div>
             <div class="col-lg-6 align-self-center">
                 <img class="img-fluid rounded mb-4 mb-lg-0 overflow-auto align-items-center"
                      src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                     alt="{{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}">
+                     alt="{{ entrada.titulo | striptags | raw }}">
             </div>
             <div class="col-lg-6 align-self-center">
                 <h5 class="card-title text-uppercase">
-                    {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                    {{ entrada.titulo | striptags | raw }}
                 </h5>
                 <div class="middle-0">
                     <i class="fas fa-quote-left mr-5"></i><br/>

@@ -45,18 +45,30 @@
         <div class="row justify-content-center">
             <div id="carouselSection" class="carousel slide col-md-6" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    {% for entrada in section.entrada %}
+                    {% if section.entrada is defined %}
+                        {% set entradas = section.entrada %}
+                    {% else %}
+                        {% set entradas = section.entradas %}
+                    {% endif %}
+
+                    {% for entrada in entradas %}
                         <li data-target="#carouselSection"
                             data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
                     {% endfor %}
                 </ol>
                 <div class="carousel-inner ">
-                    {% for entrada in section.entrada %}
+                    {% if section.entrada is defined %}
+                        {% set entradas = section.entrada %}
+                    {% else %}
+                        {% set entradas = section.entradas %}
+                    {% endif %}
+
+                    {% for entrada in entradas %}
                         <div class="carousel-item {% if loop.first %} active {% endif %}">
                             <div class="carousel-caption top  ">
                                 <h5 class="text-dark text-left">
                                     <b>
-                                        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+                                        {{ entrada.titulo | striptags | raw }}
                                     </b>
                                 </h5>
                             </div>

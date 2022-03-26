@@ -40,9 +40,7 @@ yarn-error.log
 /assets/fonts/
 /public/js/
 /.php_cs.cache
-/public/stream-ui-kit/
 /public/business-casual/
-/public/material-kit/
 /public/shards-ui/
 /public/media/
 /public/media/cache
@@ -50,12 +48,8 @@ yarn-error.log
 /migrations/Version20200617115938.php
 
 /public/vendors/tilt/
-/public/css/stream-ui-kit/assets/vendors/
 /public/fonts/druk/
 /public/fonts/univers/
-/public/css/stream-ui-kit/assets/img/
-/public/css/stream-ui-kit/assets/img-temp/
-/public/css/stream-ui-kit/assets/include/
 /public/fonts/UniversLTStd-Obl.otf
 /public/fonts/Joyful Story.otf
 /public/fonts/Tuesnight.otf
@@ -72,8 +66,6 @@ yarn-error.log
 /public/fonts/GreatLakesNF.ttf
 /public/fonts/Black Diamond.otf
 /public/fonts/Matahati Regular.otf
-/public/css/stream-ui-kit/assets/js/vendors/
-/public/css/stream-ui-kit/starter-template.html
 /public/images/a2-fdoNegro-ltrBlanca.jpg
 /public/images/iglesiaAlamedaInstagram.jpg
 /public/images/logo-oracion.png
@@ -113,3 +105,8 @@ yarn-error.log
 /public/images/logo.png
 /migrations/
 /migrations/Version20210515203711.php
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

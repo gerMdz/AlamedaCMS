@@ -125,8 +125,21 @@ $ ./bin/phpunit
 
 #### AlamedaCMS se base en
 
-* [Symfony](https://symfony.com) framework PHP.
-* [Bootstrap](https://getbootstrap.com) plantillas.
-* [FontAwesome](https://fortawesome.github.io/Font-Awesome/) icons.
+- [Symfony][1] framework PHP.
+- [Bootstrap](https://getbootstrap.com/) plantillas.
+- [FontAwesome](https://fortawesome.github.io/Font-Awesome/) icons.
 
-Con licencia [MIT](https://github.com/gerMdz/AlamedaCMS/blob/AlamedaCMS/LICENSE) Uso [PhpStorm](https://jb.gg/OpenSource.)
+##### Gracias a (y seguro se me están quedando afuera alguno)
+Uso [PhpStorm][5]
+
+A mi parecer, soy 25% más productivo gracias a PHPStorm.
+
+ [Stream - UI Kit](https://htmlstream.com/preview/stream-ui-kit/)
+
+ Stream UI Kit is beautiful Open Source Bootstrap 4 UI Kit under MIT license. The UI Kit comes with 5 beautiful complete pages and includes over 20 reusable and customizable UI Blocks. It’s lightweight and only ~17kb when minified.
+
+
+Con licencia [MIT](https://github.com/gerMdz/AlamedaCMS/blob/AlamedaCMS/LICENSE)
+
+
+
