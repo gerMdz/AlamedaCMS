@@ -7,6 +7,7 @@ use App\Entity\Principal;
 use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;
+use App\Form\Step\Entrada\StepThreeType;
 use App\Form\Step\Entrada\StepTwoType;
 use App\Repository\EntradaRepository;
 use App\Repository\PrincipalRepository;
@@ -19,7 +20,6 @@ use Doctrine\ORM\Query\QueryException;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -266,6 +266,7 @@ class AdminEntradaController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/admin/new/step2/{id}", name="admin_entrada_new_step2", methods={"GET","POST"})
      * @param Request $request
@@ -289,6 +290,37 @@ class AdminEntradaController extends AbstractController
         }
 
         return $this->render('admin_entrada/new_step2.html.twig', [
+            'entrada' => $entrada,
+            'entradaForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/new/step3", name="admin_entrada_new_step3", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
+     * @throws Exception
+     * @IsGranted("ROLE_ESCRITOR")
+     */
+    public function newStepThree(Request $request): Response
+    {
+        $entrada = new Entrada();
+        $form = $this->createForm(StepThreeType::class, $entrada);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $section = $form['section']->getData();
+            $entrada->addSection($section);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($entrada);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_entrada_index', [
+                'id' => $entrada->getId()
+            ]);
+        }
+
+        return $this->render('admin_entrada/new_step3.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
