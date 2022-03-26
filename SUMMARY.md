@@ -1,12 +1,12 @@
 # Table of contents
 
-* [What is MyProduct?](README.md)
+* [¿Qué es AlamedaCMS?](README.md)
 
-## Guides
+## Guías
 
-* [Creating your first project](guides/creating-your-first-project.md)
-* [Creating your first task](guides/creating-your-first-task.md)
-* [Advanced permissions](guides/advanced-permissions.md)
+* [Creating your first project](guias/creating-your-first-project.md)
+* [Creating your first task](guias/creating-your-first-task.md)
+* [Advanced permissions](guias/advanced-permissions.md)
 
 ## Fundamentals
 
