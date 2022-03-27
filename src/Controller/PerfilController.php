@@ -2,18 +2,17 @@
 
 namespace App\Controller;
 
-
 use App\Entity\User;
 use App\Form\ChangePasswordType;
-use App\Form\UserType;
 use App\Repository\IndexAlamedaRepository;
-use App\Repository\UserRepository;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -29,10 +28,8 @@ class PerfilController extends BaseController
      * @param IndexAlamedaRepository $indexAlamedaRepository
      * @return Response
      */
-    public function index(IndexAlamedaRepository $indexAlamedaRepository)
+    public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
-
-
         return $this->render('perfil/perfil_index.html.twig', [
             'datosIndex' => $indexAlamedaRepository->findAll()[0],
         ]);
@@ -41,7 +38,7 @@ class PerfilController extends BaseController
     /**
      * @Route("/api/perfil", name="api_perfil")
      */
-    public function apiPerfil()
+    public function apiPerfil(): JsonResponse
     {
         $user = $this->getUser();
 
@@ -54,13 +51,12 @@ class PerfilController extends BaseController
      * @Route("/web/cambiopassword/{email}", name="app_changepassword")
      * @param Request $request
      * @param User $user
-     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param UserPasswordHasherInterface $passwordEncoder
      * @param AuthenticationUtils $authenticationUtils
-     * @param UserRepository $userRepository
      * @return Response
      */
-    public function changePassword(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder, AuthenticationUtils $authenticationUtils, UserRepository $userRepository){
-
+    public function changePassword(Request $request, User $user, UserPasswordHasherInterface $passwordEncoder, AuthenticationUtils $authenticationUtils): Response
+    {
         $form = $this->createForm(ChangePasswordType::class, $user);
         $form->handleRequest($request);
 
@@ -68,11 +64,14 @@ class PerfilController extends BaseController
             /** @var User $user */
             $password = $form['password']->getData();
             $user->setPassword(
-                $passwordEncoder->encodePassword($user, $password)
+                $passwordEncoder->hashPassword($user, $password)
             );
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            try {
+                $em = $this->container->get('doctrine')->getManager();
+                $em->persist($user);
+                $em->flush();
+            } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+            }
 
             $error = $authenticationUtils->getLastAuthenticationError();
             $lastUsername = $authenticationUtils->getLastUsername();
@@ -83,10 +82,9 @@ class PerfilController extends BaseController
             ]);
         }
 
-        return $this->render('security/changepassword.html.twig',[
+        return $this->render('security/change-password.html.twig',[
             'user' => $user,
             'form'=>$form->createView()
         ]);
-
     }
 }

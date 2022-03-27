@@ -54,7 +54,7 @@
                     <tr>
                         <td>
                            T: {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}<br/>
-                           Lr: {{ entrada.linkRoute | u.truncate(20, '...')}}
+                           Lr: <small><i>{{ entrada.linkRoute | u.truncate(20, '...')}}</i></small>
                         </td>
                         <td>
                             {% for section in entrada.sections %}
@@ -65,7 +65,7 @@
                                 {% if section.indexAlamedas is defined %}
                                     {% for index in section.indexAlamedas %}
                                     <a href="{{ path('index_alameda_index') }}">
-                                        i: {{ index.lema }}
+                                        i: <small><i>{{ index.base }}</i></small>
                                         </a><br/>
                                     {% endfor %}
                                 {% endif %}
@@ -73,8 +73,9 @@
                                 {% if section.principal is defined %}
                                     {% for principal in section.principales %}
                                     <a href="{{ path('principal_show', {'id': principal.id}) }}">
-                                        P: {{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}
-                                        </a> <br/>
+                                      P: <small><i>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}</i></small>
+                                    </a>
+                                    <br/>
                                     {% endfor %}
                                 {% endif %}
                             {% endfor %}
@@ -83,24 +84,6 @@
                             {{ entrada.autor }} <br/>
                             {{ entrada.autor.email }}
                         </td>
-{#                        <td>#}
-{#                            {% if entrada.createdAt %}#}
-{#                            <small> Creada:#}
-{#                                {{ entrada.createdAt ? entrada.createdAt | ago : 'No fue creada' }}#}
-{#                                </small>#}
-{#                                <br/>#}
-{#                            {% endif %}#}
-{#                            <small>#}
-{#                            Publicado?: <span class="fa fa-{{ entrada.publicadoAt ? 'check' : 'times' }}"></span><br/>#}
-{#                            {{ entrada.publicadoAt ? entrada.publicadoAt | ago : 'No publicada' }}#}
-{#                            </small><br/>#}
-
-{#                                {% if entrada.updatedAt %}#}
-{#                                <small> Actualizada:#}
-{#                                {{ entrada.updatedAt ? entrada.updatedAt | ago : 'Aún no fue actualizada' }}#}
-{#                                </small>#}
-{#                          {% endif %}#}
-{#                        </td>#}
                         <td class="text-center">
                         {{ entrada.isPermanente ? '<i class="fa fa-check"></i> <br/>' }}
                         {{ entrada.disponibleAt ?'Desde:'~ entrada.disponibleAt | ago : '' }}<br/>
