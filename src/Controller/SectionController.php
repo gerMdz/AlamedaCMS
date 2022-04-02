@@ -20,6 +20,7 @@ use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -332,12 +333,21 @@ class SectionController extends BaseController
     }
 
     /**
-     * @Route("/{id}/section_to_section")
+     * @Route("/{id}/section_to_section", name="add_section_to_section", methods={"GET", "POST"})
      * @param Section $section
+     * @param SectionRepository $sectionRepository
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse|Response
      */
     public function modalSectionToSection(Section $section, SectionRepository $sectionRepository, Request $request, EntityManagerInterface $entityManager)
     {
-        $form = $this->createForm(SectionAddType::class,null,   );
+        $form = $this->createForm(SectionAddType::class,null,[
+            'action' => $this->generateUrl('add_section_to_section', [
+                'id' => $section->getId()
+            ]),
+            'method' => 'POST',
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

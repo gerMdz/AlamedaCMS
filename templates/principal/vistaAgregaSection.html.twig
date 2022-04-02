@@ -1,5 +1,7 @@
 {%  if principal is defined %}
 {{ form_start(form, {'action' : path('principal_agregar_seccion', { 'id': principal.id })}) }}
+    {% else %}
+        {{ form_start(form) }}
 {% endif %}
 
 <div class="modal-header panel-info">

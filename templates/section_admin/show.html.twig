@@ -12,7 +12,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table align-items-center mb-0">
                     <tbody>
                     <tr>
                         <th>Id - Nombre Sección</th>
@@ -83,6 +83,20 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Secciones</th>
+                        <td>
+
+                            {% for child in section.childsection %}
+                                <a href="{{ path('admin_section_show', {'id': child.id}) }}">
+                                    {{ child.title | striptags | raw }}
+                                </a>
+                                <br/>
+                            {% else %}
+                                No posee
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Contenido</th>
                         <td>{{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}</td>
                     </tr>
@@ -141,6 +155,9 @@
             </a>
             <a href="{{ path('admin_section_edit', {'id': section.id}) }}" class="btn btn-warning">
                 {% include 'bases/_editar.html.twig' %}
+            </a>
+            <a href="{{ path('add_section_to_section', {'id': section.id}) }}" class="btn btn-modal btn-secondary">
+                {% include 'bases/_add.html.twig' %}
             </a>
         </div>
     </div>
