@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Entity\Principal;
 use App\Entity\Section;
+use App\Form\SectionAddType;
 use App\Form\SectionFormType;
 use App\Form\Step\Section\StepOneType;
 use App\Form\Step\Section\StepThreeType;
@@ -328,6 +329,34 @@ class SectionController extends BaseController
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/section_to_section")
+     * @param Section $section
+     */
+    public function modalSectionToSection(Section $section, SectionRepository $sectionRepository, Request $request, EntityManagerInterface $entityManager)
+    {
+        $form = $this->createForm(SectionAddType::class,null,   );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $id_section = $form->get('section')->getData();
+            $seccionChild = $sectionRepository->find($id_section);
+            $section->addChildsection($seccionChild);
+            $entityManager->persist($section);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_section_show', [
+                'id' => $section->getId(),
+            ]);
+        }
+
+        return $this->render('principal/vistaAgregaSection.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 
 }

@@ -26,17 +26,17 @@ class SectionFormType extends AbstractType
         $builder
             ->add('name', null, [
                 'label' => 'Nombre de la sección',
-                'help' => 'Nombre que identifica a la sección entre las otras secciones'
+                'help' => 'Nombre que identifica a la sección entre las otras secciones',
             ])
             ->add('cssClass', null, [
-                'label' => 'Clase css'
+                'label' => 'Clase css',
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Descripción',
-                'help' => 'Una descripción que diferencie a las otras secciones parecidas'
+                'help' => 'Una descripción que diferencie a las otras secciones parecidas',
             ])
             ->add('identificador', TextType::class, [
-                'help' => 'Opcional, para usar con funciones JS, identifica a la sección dentro de una página'
+                'help' => 'Opcional, para usar con funciones JS, identifica a la sección dentro de una página',
             ])
             ->add('disponible', CheckboxType::class, [
                 'required' => false,
@@ -48,27 +48,27 @@ class SectionFormType extends AbstractType
             ])
             ->add('disponibleAt', null, [
                 'widget' => 'single_text',
-                'label'=>'Inicia',
+                'label' => 'Inicia',
                 'html5' => true,
                 'required' => false,
 //                'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'datetimepicker'],
             ])
             ->add('columns', IntegerType::class, [
                 'label' => 'Cantidad de columnas',
-                'required' => false
+                'required' => false,
             ])
             ->add('disponibleHastaAt', DateTimeType::class, array(
                 'widget' => 'single_text',
-                'label'=>'Finaliza',
+                'label' => 'Finaliza',
                 'html5' => true,
                 'required' => false,
 //                'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'datetimepicker'],
             ))
             ->add('orden', IntegerType::class, [
                 'label' => 'Orden en la página',
-                'required' => false
+                'required' => false,
             ])
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
@@ -77,14 +77,15 @@ class SectionFormType extends AbstractType
                 },
                 'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                 'required' => false,
-                'attr'=>[
-                    'class'=>'select2-enable'
-                ]
+                'attr' => [
+                    'class' => 'select2-enable',
+                ],
             ])
             ->add('contenido', CKEditorType::class, [
                 'required' => false,
                 'config' => [
-                    'uiColor' => '#fafafa'],
+                    'uiColor' => '#fafafa',
+                ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
@@ -106,7 +107,8 @@ class SectionFormType extends AbstractType
             ->add('title', CKEditorType::class, [
                 'required' => false,
                 'config' => [
-                    'uiColor' => '#fafafa'],
+                    'uiColor' => '#fafafa',
+                ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
@@ -130,14 +132,17 @@ class SectionFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
-            ]); // ; Final del builder
+            ])
+
+            // ; Final del builder
+        ;
 
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Section::class
+            'data_class' => Section::class,
         ]);
     }
 }

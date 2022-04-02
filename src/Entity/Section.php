@@ -129,6 +129,16 @@ class Section
      */
     private Collection $entradas;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="parents")
+     */
+    private $childsection;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Section::class, mappedBy="childsection")
+     */
+    private $parents;
+
     public function __toString()
     {
         return $this->name;
@@ -142,6 +152,8 @@ class Section
         $this->createdAt = new DateTime();
         $this->markAsUpdated();
         $this->entradas = new ArrayCollection();
+        $this->childsection = new ArrayCollection();
+        $this->parents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -420,6 +432,57 @@ class Section
     {
         if ($this->entradas->removeElement($entrada)) {
             $entrada->removeSection($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getChildsection(): Collection
+    {
+        return $this->childsection;
+    }
+
+    public function addChildsection(self $childsection): self
+    {
+        if (!$this->childsection->contains($childsection)) {
+            $this->childsection[] = $childsection;
+        }
+
+        return $this;
+    }
+
+    public function removeChildsection(self $childsection): self
+    {
+        $this->childsection->removeElement($childsection);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getParents(): Collection
+    {
+        return $this->parents;
+    }
+
+    public function addParent(self $parent): self
+    {
+        if (!$this->parents->contains($parent)) {
+            $this->parents[] = $parent;
+            $parent->addChildsection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParent(self $parent): self
+    {
+        if ($this->parents->removeElement($parent)) {
+            $parent->removeChildsection($this);
         }
 
         return $this;
