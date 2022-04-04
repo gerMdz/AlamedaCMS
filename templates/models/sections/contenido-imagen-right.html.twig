@@ -1,5 +1,5 @@
-<section class=" {{ section.cssClass }} mb-0 js-parallax bg-light " id="{{ section.identificador }}">
-    <div class="container">
+<section class=" {{ section.cssClass }} mb-0 " id="{{ section.identificador }}">
+
         {% if section.entrada is defined %}
             {% set entradas = section.entrada %}
         {% else %}
@@ -7,7 +7,7 @@
         {% endif %}
 
         {% for entrada in entradas %}
-            <div class="row a-content-space-medium bg-white ">
+            <div class="row  bg-white ">
                 <div class="col-lg-7 order-first mb-4 mb-lg-0">
                     <!-- Mockup Browser -->
                     <figure>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <!-- End Video Principal -->
-            <hr class="my-6">
+            <hr class="my-2">
         {% endfor %}
-    </div>
+
 </section>
