@@ -5,9 +5,8 @@
         {% else %}
             {% set entradas = section.entradas %}
         {% endif %}
-
         {% for entrada in entradas %}
-            <div class="row  bg-white ">
+            <div class="row a-content-space-medium bg-white ">
                 <div class="col-lg-7 order-first mb-4 mb-lg-0">
                     <!-- Mockup Browser -->
                     <figure>
@@ -32,14 +31,14 @@
 
 
                 </div>
-                <div class="col-sm-5 mx-auto text-center">
+                <div class="col-sm-5 w-md-50 vh-100 mx-auto text-center my-auto">
                     <div class="row align-items-center">
                         <div class="border border-primary p-5 mb-auto p-2">
                             <p class="mb-4 mx-auto ">
                                 {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
                             </p>
                         </div>
-                        <div class="col-sm-12 text-center mb-0 vh-100 ">
+                        <div class="col-sm-12 text-center mb-0">
 
                             {% if (entrada.linkPosting) %}
                                 <a class="btn-alameda"
@@ -59,5 +58,5 @@
             <!-- End Video Principal -->
             <hr class="my-2">
         {% endfor %}
-
+    </div>
 </section>
