@@ -5,9 +5,8 @@
 <style>
 
     .carousel .carousel-indicators {
-        bottom: 4em !important;
+        bottom: 1em !important;
     }
-
     .carousel-caption.top {
         margin-top: 1em;
         padding-bottom: 1em;
@@ -22,9 +21,22 @@
     .carousel-caption {
         position: relative;
         border: 0;
-        padding-top: 0 !important;
-        bottom: 0 !important;
-        color: black;
+        /*margin-top: 5px;*/
+        text-align: center;
+        color: #fafafa !important;
+        top: 0;
+        bottom: auto;
+        background: rgba(0, 0, 0, 0.35);
+        width: 100%;
+        left: 0;
+        right: 0;
+        /*padding: 5px 10px;*/
+        margin-top: 1em;
+        min-height: 8em;
+        max-height: 8em;
+    }
+    .carousel-caption a{
+        color: #fafafa;
     }
 </style>
 <section class="a-content-space-medium bg-fam text-center my-2 py-3" id="{{ section.identificador }}">
@@ -55,12 +67,12 @@
                             <img class="d-block w-100"
                                  src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_carousel') }}"
                                  alt="{{ app.request.baseUrl }}" />
-                            <div class="carousel-caption d-none d-md-block ">
-                                <h5>
+                            <div class="carousel-caption d-md-block ">
+                                <h5 class="text-white">
                                     {{ entrada.titulo | striptags | upper| raw }}
                                 </h5>
-                                <small class="text-secondary">
-                                    {{ entrada.contenido | raw }}
+                                <small class="text-white">
+                                    {{ entrada.contenido|default('') | raw }}
                                     {% if (entrada.linkRoute or entrada.linkPosting ) %}
                                     <a
                                             {% if (entrada.linkPosting) %}
