@@ -2,78 +2,70 @@
 <section class="a-content-space-medium bg-fam text-center">
     <div class="container-fluid mt-lg-1 mt-sm-5">
         <div class="row gx-5 justify-content-center">
-            <div class="col-md-11 mx-auto">
-                <div class="row">
-                    <div class="col-md-8 d-flex">
-                        <div class="col-sm-12">
-                            {% for entrada in entradas %}
-                                {% if (entrada.orden == 1) %}
-                                    <div class="card shadow-none">
-                                        <div class="card-img">
-                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                 alt="{{ app.request.baseUrl }}"
-                                                 class="card-img">
-                                        </div>
-                                        <div class="card-footer bg-white d-flex justify-content-between">
-                                            <a class="card-link">
-                                                <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
-                                                <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
-                                                <small>por {{ entrada.autor }}</small>
-                                            </a>
-                                            <a href="{{ entrada.linkPosting }}"
-                                               class="btn-round btn-alameda mr-2 "
-                                               target="_blank">
-                                                Ver último mensaje
-                                            </a>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-flex">
-                        <div class="row gy-5">
-                            {% if section.entrada is defined %}
-                                {% set entradas = section.entrada %}
-                            {% else %}
-                                {% set entradas = section.entradas %}
-                            {% endif %}
+            <div class="col-md-7 d-flex">
+                <div class="col-sm-12">
+                    {% for entrada in entradas %}
+                        {% if (entrada.orden == 1) %}
+                            <div class="card shadow-none">
+                                <div class="card-img">
+                                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                         alt="{{ app.request.baseUrl }}"
+                                         class="card-img">
+                                </div>
+                                <div class="card-footer bg-white d-flex justify-content-between">
+                                    <a class="card-link">
+                                        <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
+                                        <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
+                                        <small>por {{ entrada.autor }}</small>
+                                    </a>
+                                    <a href="{{ entrada.linkPosting }}"
+                                       class="btn-round btn-alameda mr-2 "
+                                       target="_blank">
+                                        Ver último mensaje
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4 d-flex">
+                <div class="row gy-5">
+                    {% if section.entrada is defined %}
+                        {% set entradas = section.entrada %}
+                    {% else %}
+                        {% set entradas = section.entradas %}
+                    {% endif %}
 
-                            {% for entrada in entradas %}
-                                {% if (entrada.orden != 1) %}
-                                    <div class="col-sm-12 container-img
+                    {% for entrada in entradas %}
+                        {% if (entrada.orden != 1) %}
+                            <div class="col-sm-12 container-img
                                                     {% if (entrada.orden == 3) %}
 {# bottom-n10 #} mb-0
                                                         {% endif %}
                                                                 ">
-                                        <div class="card mb-0 contenedor ">
-                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                 alt="{{ app.request.baseUrl }}"
-                                                 class="card-img">
-                                            <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
-                                               href="{{ path(entrada.linkRoute) }}">
-                                                {{ entrada.titulo | striptags | raw }}
-                                                {# ¿Nuevo en la Alameda? #}
-                                                <!--                                            <br class="d-block d-md-none"/>-->
-                                                <!--                                            Queremos conocerte-->
+                                <div class="card mb-0 contenedor ">
+                                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                         alt="{{ app.request.baseUrl }}"
+                                         class="card-img">
+                                    <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
+                                       href="{{ path(entrada.linkRoute) }}">
+                                        {{ entrada.titulo | striptags | raw }}
+                                        {# ¿Nuevo en la Alameda? #}
+                                        <!--                                            <br class="d-block d-md-none"/>-->
+                                        <!--                                            Queremos conocerte-->
 
 
-                                            </a>
+                                    </a>
 
-                                        </div>
+                                </div>
 
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
 
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<style>
-
-</style>
