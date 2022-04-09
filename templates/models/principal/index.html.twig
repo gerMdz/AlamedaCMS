@@ -1,6 +1,7 @@
 {% extends 'base_material_kit.twig' %}
 
 {% block sections %}
+    <div class="container-fluid">
     <!-- Horarios - Invitación - Video -->
     {% for section in datosIndex.section %}
                 {{ render(controller(
@@ -10,6 +11,7 @@
             <!-- End Invitación: Header -->
 
     {% endfor %}
+    </div>
     <div class="bg-camino" style="height: 200px">
 
     </div>
