@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeFixe{% endblock %}
+
+{% block body %}
+    <h1>Create new TypeFixe</h1>
+
+    {{ include('type_fixe/_form.html.twig') }}
+
+    <a href="{{ path('app_type_fixe_index') }}">back to list</a>
+{% endblock %}

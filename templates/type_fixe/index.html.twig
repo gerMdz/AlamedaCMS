@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeFixe index{% endblock %}
+
+{% block body %}
+    <h1>TypeFixe index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Identificador</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_fixe in type_fixes %}
+            <tr>
+                <td>{{ type_fixe.id }}</td>
+                <td>{{ type_fixe.description }}</td>
+                <td>{{ type_fixe.createdAt ? type_fixe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ type_fixe.updatedAt ? type_fixe.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ type_fixe.identificador }}</td>
+                <td>
+                    <a href="{{ path('app_type_fixe_show', {'id': type_fixe.id}) }}">show</a>
+                    <a href="{{ path('app_type_fixe_edit', {'id': type_fixe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_fixe_new') }}">Create new</a>
+{% endblock %}
