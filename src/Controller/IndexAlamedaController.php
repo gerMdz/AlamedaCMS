@@ -90,7 +90,8 @@ class IndexAlamedaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
+
 
             return $this->redirectToRoute('index_alameda_index');
         }
