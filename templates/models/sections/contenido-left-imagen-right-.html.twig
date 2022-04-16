@@ -25,7 +25,7 @@ entrada: true
                         {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        {% if (entrada.linkPosting or entrada.linkRoute ) %}
+                        {% if (entrada.linkPosting != null or entrada.linkRoute != null) %}
                             <a class="btn-alameda btn-lg px-4 me-md-2"
                                     {% if (entrada.isLinkExterno) %}
                                         href="{{ entrada.linkPosting }}"
