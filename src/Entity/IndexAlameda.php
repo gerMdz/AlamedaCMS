@@ -99,6 +99,11 @@ class IndexAlameda
      */
     private Collection $blocs_fixes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
+     */
+    private $template;
+
     public function __construct()
     {
         $this->section = new ArrayCollection();
@@ -338,6 +343,18 @@ class IndexAlameda
                 $blocsFix->setIndexAlameda(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTemplate(): ?ModelTemplate
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(?ModelTemplate $template): self
+    {
+        $this->template = $template;
 
         return $this;
     }
