@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     message="Este email ya está registrado"
  * )
  */
-class User implements UserInterface
+class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id()

@@ -1,17 +1,17 @@
-<footer class="footer mb-0">
+<footer class="footer mb-2">
     <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-between">
             <div class="col-md-8 col-sm-6 col-xs-12">
-                <nav class="float-left">
-                    <ul>
-                        <li>
-                            <a href="{{ path('index') }}">
-                                {{ base.siteName|default('AlamedaCMS') }}
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright float-right">
+{#                <nav class="float-left">#}
+{#                    <ul>#}
+{#                        <li>#}
+{#                            <a href="{{ path('index') }}">#}
+{#                                {{ base.siteName }}#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </nav>#}
+                <div class="copyright float-left">
                     &copy;
                     <script>
                         document.write(new Date().getFullYear())
@@ -19,6 +19,7 @@
                     <a href="{{ path('index') }}" target="_blank">{{ base.siteName|default('AlamedaCMS') }}</a>
                 </div>
             </div>
+
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <ul class="social-icons">
                 </ul>

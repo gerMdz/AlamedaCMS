@@ -22,7 +22,7 @@
                                     {% for entrada in entradas %}
                                         <div class="col-md-4 mb-5">
                                             <div class="pasos h-100">
-                                                <a href="{{ (entrada.linkPosting is defined)? path(entrada.linkRoute): entrada.linkPosting }}">
+                                                <a href="{{ (entrada.linkPosting is defined)? entrada.linkPosting : path(entrada.linkRoute) }}">
                                                     <div class="card card-plain bg-white h-100">
                                                         <div class="col-sm-4 mx-auto text-center img-20">
                                                             <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"

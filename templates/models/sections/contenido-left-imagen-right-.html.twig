@@ -1,0 +1,46 @@
+{#
+container: only
+entrada: true
+#}
+<section class=" {{ section.cssClass }} mb-0 js-parallax " id="{{ section.identificador }}">
+    <div class="container col-xxl-8 px-4 py-5">
+        {% if section.entrada is defined %}
+            {% set entradas = section.entrada %}
+        {% else %}
+            {% set entradas = section.entradas %}
+        {% endif %}
+        {% for entrada in entradas %}
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
+                         class="d-block mx-lg-auto img-fluid"
+                         alt="{{ entrada.linkRoute|default('') }}"
+                         width="700" height="500" loading="lazy">
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">
+                        {{ entrada.titulo | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                    </h1>
+                    <p class="lead">
+                        {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        {% if (entrada.linkPosting != null or entrada.linkRoute != null) %}
+                            <a class="btn-alameda btn-lg px-4 me-md-2"
+                                    {% if (entrada.isLinkExterno) %}
+                                        href="{{ entrada.linkPosting }}"
+                                        target="_blank"
+                                    {% else %}
+                                        href="{{ entrada.linkRoute }}"
+                                    {% endif %}
+                            >
+                                {{ entrada.footer | default('Visitanos') }}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <hr class="my-2">
+        {% endfor %}
+    </div>
+</section>

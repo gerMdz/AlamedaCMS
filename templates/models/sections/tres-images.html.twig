@@ -14,9 +14,9 @@
                                 </div>
                                 <div class="card-footer bg-white d-flex justify-content-between">
                                     <a class="card-link">
-                                            <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
-                                            <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
-                                            <small>por {{ entrada.autor }}</small>
+                                        <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
+                                        <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
+                                        <small>por {{ entrada.autor }}</small>
                                     </a>
                                     <a href="{{ entrada.linkPosting }}"
                                        class="btn-round btn-alameda mr-2 "
@@ -44,16 +44,16 @@
 {# bottom-n10 #} mb-0
                                                         {% endif %}
                                                                 ">
-                                    <div class="card mb-0 contenedor ">
-                                        <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                             alt="{{ app.request.baseUrl }}"
-                                             class="card-img">
-                                        <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
-                                           href="{{ path(entrada.linkRoute) }}">
-                                            {{ entrada.titulo | striptags | raw }}
-                                            {# ¿Nuevo en la Alameda? #}
-                                            <!--                                            <br class="d-block d-md-none"/>-->
-                                            <!--                                            Queremos conocerte-->
+                                <div class="card mb-0 contenedor ">
+                                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                         alt="{{ app.request.baseUrl }}"
+                                         class="card-img">
+                                    <a class="btn-round btn-alameda-reverso btn-centered aire-2 e90"
+                                       href="{{ path(entrada.linkRoute) }}">
+                                        {{ entrada.titulo | striptags | raw }}
+                                        {# ¿Nuevo en la Alameda? #}
+                                        <!--                                            <br class="d-block d-md-none"/>-->
+                                        <!--                                            Queremos conocerte-->
 
 
                                     </a>
@@ -69,7 +69,3 @@
         </div>
     </div>
 </section>
-
-<style>
-
-</style>

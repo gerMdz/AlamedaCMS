@@ -1,0 +1,36 @@
+{% extends 'base_material_kit.twig' %}
+
+{% block sections %}
+    <div class="container-fluid">
+        <div class="row g-5">
+            <div class="col-md-8">
+                {% for section in datosIndex.section %}
+                    {{ render(controller(
+                        'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+                    )) }}
+                    {#                {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %} #}
+                    <!-- End Invitación: Header -->
+
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                {% for fixes in blocsFixes %}
+
+                    {% if fixes.fixesType == 'side-fixe-right' %}
+
+                        {% for blocsection in fixes.section %}
+
+                            {{ render(controller(
+                                'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
+                            )) }}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="bg-camino" style="height: 200px">
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
