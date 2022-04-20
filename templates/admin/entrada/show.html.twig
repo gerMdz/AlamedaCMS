@@ -1,11 +1,16 @@
-{% extends 'base_admin_board.html.twig' %}
-{#{% extends 'base_coreui.html.twig' %}#}
-
-{% block title %}Vista {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}{% endblock %}
+{% extends 'base_coreui.html.twig' %}
+{% block title %} Vista {{ entrada.titulo | striptags | raw }}{% endblock %}
 
 {% block nav %}
     {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
 {% endblock %}
+{% block breadcrumb%}
+    <li class="breadcrumb-item">
+        <!-- if breadcrumb is single--><span>Panel</span>
+    </li>
+    <li class="breadcrumb-item "><span>Entradas</span></li>
+    <li class="breadcrumb-item active"><span>Vista admin</span></li>
+{%endblock%}
 
 {% block content %}
     <div class="container">
@@ -126,7 +131,7 @@
 
         <a class="btn btn-outline-warning" href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">Editar</a>
 
-        {{ include('entrada/_delete_form.html.twig') }}
+        {{ include('admin/entrada/_delete_form.html.twig') }}
     </div>
 
 {% endblock %}

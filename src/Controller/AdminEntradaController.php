@@ -77,7 +77,7 @@ class AdminEntradaController extends AbstractController
             20/*limit per page*/
         );
 
-        return $this->render('admin_entrada/list.html.twig', [
+        return $this->render('admin/entrada/list.html.twig', [
             'entradas' => $entradas,
         ]);
     }
@@ -89,13 +89,26 @@ class AdminEntradaController extends AbstractController
      * @return Response
      * @throws QueryException
      */
-    public function listadoPublicado(EntradaRepository $entradaRepository): Response
-    {
-        $this->isGranted('ROLE_EDITOR') ? $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion(
-        ) : $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion($this->getUser());
+    public function listadoPublicado(
+        EntradaRepository $entradaRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
 
-        return $this->render('admin_entrada/list.html.twig', [
-            'entradas' => $entrada,
+//        $user = null;
+
+        $this->isGranted('ROLE_EDITOR') ? $user = $this->getUser(): $user = null;
+
+            $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacionQuery($user);
+
+        $entradas = $paginator->paginate(
+            $entrada, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
+
+        return $this->render('admin/entrada/list.html.twig', [
+            'entradas' => $entradas,
         ]);
     }
 
@@ -143,7 +156,7 @@ class AdminEntradaController extends AbstractController
 
         $ip = $datosHelper->getIpCliente();
 
-        return $this->render('entrada/edit.html.twig', [
+        return $this->render('admin/entrada/edit.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
             'ip' => $ip,
@@ -171,7 +184,7 @@ class AdminEntradaController extends AbstractController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->render('admin_entrada/edit_contenido.html.twig', [
+        return $this->render('admin/entrada/edit_contenido.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -233,7 +246,7 @@ class AdminEntradaController extends AbstractController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->render('admin_entrada/new.html.twig', [
+        return $this->render('admin/entrada/new.html.twig', [
             'entradaForm' => $form->createView(),
             'entrada' => $entrada,
         ]);
@@ -263,7 +276,7 @@ class AdminEntradaController extends AbstractController
             ]);
         }
 
-        return $this->render('admin_entrada/new_step1.html.twig', [
+        return $this->render('admin/entrada/new_step1.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -290,7 +303,7 @@ class AdminEntradaController extends AbstractController
             ]);
         }
 
-        return $this->render('admin_entrada/new_step2.html.twig', [
+        return $this->render('admin/entrada/new_step2.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -320,7 +333,7 @@ class AdminEntradaController extends AbstractController
             ]);
         }
 
-        return $this->render('admin_entrada/new_step3.html.twig', [
+        return $this->render('admin/entrada/new_step3.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -334,7 +347,7 @@ class AdminEntradaController extends AbstractController
      */
     public function link(Entrada $entrada): Response
     {
-        return $this->render('entrada/link.html.twig', [
+        return $this->render('admin/entrada/link.html.twig', [
             'entrada' => $entrada,
         ]);
     }
@@ -347,7 +360,7 @@ class AdminEntradaController extends AbstractController
     public function show(Entrada $entrada): Response
     {
 
-        return $this->render('entrada/show.html.twig', [
+        return $this->render('admin/entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);
     }
@@ -376,6 +389,7 @@ class AdminEntradaController extends AbstractController
     {
         $link = strtolower(str_replace(' ', '-', trim($titulo)));
         $link = strtolower(str_replace('<p>', '', trim($link)));
+
         return strtolower(str_replace('</p>', '', trim($link)));
     }
 
@@ -388,6 +402,7 @@ class AdminEntradaController extends AbstractController
         if (null === $principal) {
             return null;
         }
+
         return $principal->getLinkRoute();
     }
 
