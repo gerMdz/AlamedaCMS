@@ -4,136 +4,216 @@
 {% block nav %}
     {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
 {% endblock %}
-{% block breadcrumb%}
+{% block breadcrumb %}
     <li class="breadcrumb-item">
-        <!-- if breadcrumb is single--><span>Panel</span>
+        <!-- if breadcrumb is single--><span><a href="{{path('admin')}}">Panel</a></span>
     </li>
-    <li class="breadcrumb-item "><span>Entradas</span></li>
-    <li class="breadcrumb-item active"><span>Vista admin</span></li>
-{%endblock%}
+    <li class="breadcrumb-item "><span>
+            <a href="{{path('admin_entrada_index')}}">Entradas</a></span></li>
+    <li class="breadcrumb-item active"><span>Detalle</span></li>
+{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="show-article-container p-3 mt-4">
-                    <h4>Entrada: <strong class="ml-5"> {{ entrada.titulo }} </strong>
-{#                        <small>#}
-{#                            Le gustó a:#}
-{#                            <span class="js-like-entrada-count">{{ entrada.likes }}</span>#}
-{#                            <a href="{{ path('entrada_toggle_like', {id: entrada.id}) }}"#}
-{#                               class="fas fa-heart like-entrada js-like-entrada">#}
-{#                            </a>#}
-{#                        </small>#}
-                    </h4>
+            <div class="col-sm-12 show-article-container ">
+                <h4>Titulo: <strong class="ml-5"> {{ entrada.titulo | striptags }} </strong></h4>
+                <small>
+                    <a href="{{ path('admin_entrada_edit_complex', {'id': entrada.id}) }}">
+                        Editar </a>
+                </small>
+            </div>
+            <hr class="w-100"/>
+            <div class="col-sm-3">
+                <b>Id</b> <br/>
+                {{ entrada.id }}<br/>
+                <small><i>{{ entrada.identificador }}</i></small>
+            </div>
+            <div class="col-sm-3"><b>Autor</b> <br/>
+                {{ entrada.autor }} <br/>
+                <i>{{ entrada.autor.email }}</i>
+            </div>
+            <div class="col-sm-3"><b>linkRoute</b> <br/>
+                {{ entrada.linkRoute | default('No indicado') }}</div>
+            <div class="col-sm-3"><b>linkPosting</b> <br/>
+                {{ entrada.linkPosting | default('No indicado') }}<br/>
+                <small> ¿Externo? {{ booleano(entrada.isLinkExterno)|raw }} </small>
+            </div>
+            <hr class="w-100"/>
+            <div class="col-sm-3"><b>Publicada</b> <br/>
+                {% if(entrada.publicadoAt | default) %}
+                    {{ entrada.publicadoAt | date('d-m-Y H:i') }}
+                {% else %}
+                    <i class="fas fa-times text-danger"></i>
+                {% endif %}
+            </div>
+            <div class="col-sm-3"><b>Creada</b> <br/>
+                {% if(entrada.createdAt | default) %}
+                    {{ entrada.createdAt | date('d-m-Y H:i') }}
+                {% endif %}
+            </div>
+            <div class="col-sm-3"><b>Actualizada</b> <br/>
+                {% if(entrada.updatedAt | default) %}
+                    {{ entrada.updatedAt | date('d-m-Y H:i') }}
+                {% endif %}
+            </div>
+            <hr class="w-100"/>
+            <div class="col-sm-3"><b>Disponible desde</b> <br/>
+                {% if(entrada.disponibleAt | default) %}
+                    {{ entrada.disponibleAt | date('d-m-Y H:i') }}
+                {% else %}
+                    <i class="fas fa-times text-danger"></i>
+                {% endif %}
+            </div>
+            <div class="col-sm-3"><b>Disponible hasta</b> <br/>
+                {% if(entrada.disponibleHastaAt | default) %}
+                    {{ entrada.disponibleHastaAt | date('d-m-Y H:i') }}
+                {% else %}
+                    <i class="fas fa-times text-danger"></i>
+                {% endif %}
+            </div>
+            <div class="col-sm-3"><b>Evento</b> <br/>
+                {% if(entrada.eventoAt | default) %}
+                    {{ entrada.eventoAt | date('d-m-Y H:i') }}
+                {% else %}
+                    <i class="fas fa-times text-danger"></i>
+                {% endif %}
+            </div>
+            <div class="col-sm-3">
+                <b>Permanente</b> <br/>
+                <small>{{ booleano(entrada.isPermanente) | raw }}</small>
+            </div>
 
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>Imagen</th>
-                            <td>
-                                <img class="show-article-img"
-                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
-                                     alt="{{ base.siteName }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Id</th>
-                            <td>{{ entrada.id }}</td>
-                            <th>linkRoute</th>
-                            <td>{{ entrada.linkRoute }}</td>
-                        </tr>
-                        <tr>
-                            <th>Titulo</th>
-                            <td>{{ entrada.titulo }}</td>
-                            <th>Autor</th>
-                            <td>
-                                {{ entrada.autor }} <br/>
-                                {{ entrada.autor.email }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Contenido</th>
-                            <td>{{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}</td>
-                        </tr>
-                        <tr>
-                            <th>Publicado</th>
-                            <td>
-                                {% if(entrada.publicadoAt | default) %}
-                                    {{ entrada.publicadoAt | date('d-m-Y H:i') }}
-                                {% else %}
-                                    <i class="fas fa-times text-danger"></i>
-                                {% endif %}
-                            </td>
-                        </tr>
+            <hr class="w-100"/>
+            <div class="col-sm-3">
+                <b>Template</b> <br/>
+                {{ entrada.modelTemplate | default('No definido') }}
+            </div>
+            <div class="col-sm-3">
+                <b>CSS</b> <br/>
+                {{ entrada.cssClass | default('Sin CSS adicional') }}
+            </div>
+            <div class="col-sm-3">
+                <b>N° Orden</b> <br/>
+                {{ entrada.orden | default('Sin orden indicado') }}
+            </div>
+            <div class="col-sm-3">
+                <b>Footer <small>(Texto en botones por ej.)</small></b> <br/>
+                {{ entrada.footer | default('No indicado') }}
+            </div>
+            <hr class="w-100"/>
+            <div class="col-sm-4">
+                <b>Contactos</b> <br/>
+                {% for contato in entrada.contacto %}
+                    {{ contacto }}<br/>
+                {% else %}
+                    No definidos
+                {% endfor %}
+            </div>
+            <div class="col-sm-8">
+                <b>Secciones / Principal</b> <br/>
+                {% for section in entrada.sections %}
 
+                    <a href="{{ path('admin_section_show', {'id': section.id}) }}"> {{ section }}</a>
 
-                        </tbody>
-                    </table>
-                    <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 row ">
-                        {% for referencia in entrada.entradaReferences %}
-                            <div class="col-sm-12">
-                                Link descarga
-                                : {{ app.request.host }}{{ path('entrada_download_reference',{'filename': referencia.filename}) }}
-                                <br/>
-                                <a href="/descargas/referencias/{{ referencia.filename }}"
-                                        {# <a href="{{ referencia. }}" #}
-                                   target="_blank"
-                                   class="card-link text-center">
-                                    <i class="far fa-file-pdf ml-5 mr-1"></i>
-                                    <span class="text-alameda btn-icon ">Notas</span><br/>
-                                </a>
-                            </div>
+                    {% if section.indexAlamedas is defined %}
+                        {% for index in section.indexAlamedas %}
+                            <a href="{{ path('index_alameda_index') }}">
+                                / <small><i>{{ index.base }}</i></small>
+                            </a><br/>
                         {% endfor %}
-                        <br/>
-                        <div class="col-sm-12">
-                            link post: {{ entrada.linkPosting }}
-                            <a href="{{ entrada.linkPosting }}" class="card-link text-center"
-                               target="_blank">
-                                <i class="fab fa-youtube fa-fw mr-1"></i>
-                                <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                    {% endif %}
+
+                    {% if section.principal is defined %}
+                        {% for principal in section.principales %}
+                            <a href="{{ path('principal_show', {'id': principal.id}) }}">
+                                / <small><i>{{ principal.titulo |striptags | raw | u.truncate(20, '...') }}</i></small>
                             </a>
-                        </div>
+                            <br/>
+                        {% endfor %}
+                    {% endif %}
+
+                {% else %}
+                    No incluida
+                {% endfor %}
+            </div>
+            <hr class="w-100"/>
+            <div class="col-sm-3">
+                <b>Encabezado</b><br/>
+                <small>{{ booleano(entrada.encabezado) | raw }}</small>
+            </div>
+            <div class="col-sm-3">
+                <b>Destacado</b><br/>
+                <small>{{ booleano(entrada.destacado) | raw }}</small>
+            </div>
+            <div class="col-sm-3">
+                <b>Oculta título</b><br/>
+                <small>{{ booleano(entrada.isSinTitulo) | raw }}</small>
+            </div>
+            <hr class="w-100"/>
+
+            <div class="col-sm-3">
+                <b> Imagen</b>
+                {% if  entrada.imageFilename %}
+                    <img class="show-article-img"
+                         src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_small') }}"
+                         alt="{{ base.siteName }}">
+                {% else %}
+                    <h6> Sin imagen </h6>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-9">
+                <b>Contenido</b>
+                <small>
+                    <a href="{{ path('admin_entrada_edit_complex', {'id': entrada.id}) }}">
+                        Editar </a>
+                </small><br/>
+                <div class="col-sm-10 mx-auto bg-white p-2">
+                    {{ entrada.contenido | raw }}
+                </div>
+
+            </div>
+            <hr class="w-100"/>
+
+        </div>
+        <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 row ">
+            {% for referencia in entrada.entradaReferences %}
+                <div class="col-sm-12">
+                    Link descarga
+                    : {{ app.request.host }}{{ path('entrada_download_reference',{'filename': referencia.filename}) }}
+                    <br/>
+                    <a href="/descargas/referencias/{{ referencia.filename }}"
+                            {# <a href="{{ referencia. }}" #}
+                       target="_blank"
+                       class="card-link text-center">
+                        <i class="far fa-file-pdf ml-5 mr-1"></i>
+                        <span class="text-alameda btn-icon ">Notas</span><br/>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {% if(entrada.comentariosNoDeleted) %}
+                    <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h3><i class="pr-3 fa fa-comment"></i>
-{#                                {{ entrada.comentariosNoDeleted|length }}#}
-                                Nota mensaje (actualmente se agrega como comentario)
-                            </h3>
-                            {% if(entrada.comentariosNoDeleted) %}
-{#                                <div class="row">#}
+                {% endif %}
+            </div>
 
-                                        <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
-{#                                            <span class="commenter-name">{{ comentario.autor }}</span>#}
-
-                                            {% include('comentario/nota.html.twig') %}
-{#                                            <small>realizado {{ comentario.createdAt|ago }}</small>#}
-{#                                            {% if comentario.isDeleted %}#}
-{#                                                <span class="fas fa-times-circle text-danger"></span> Borrado#}
-{#                                            {% endif %}#}
-{#                                            <br/>#}
-{#                                            <span class="comment"> {{ comentario.contenido }}</span>#}
-                                            <hr class="border-bottom"/>
-                                        </div>
-
-{#                                    </div>#}
-{#                                </div>#}
-                            {% endif %}
-                        </div>
-
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a class="btn btn-info col-sm-4" href="{{ path('admin_entrada_index') }}">Volver al listado</a>
+                <a class="btn btn-warning col-sm-4"
+                   href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">Editar</a>
+                <div class="col-sm-4">
+                    {{ include('admin/entrada/_delete_form.html.twig') }}
                 </div>
             </div>
         </div>
-
-        <a class="btn btn-info" href="{{ path('admin_entrada_index') }}">Volver al listado</a>
-
-        <a class="btn btn-outline-warning" href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">Editar</a>
-
-        {{ include('admin/entrada/_delete_form.html.twig') }}
+        <hr class="w-100"/>
     </div>
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -141,20 +221,24 @@
     <script type="application/javascript">
 
         $(function () {
-            const pcentral= localStorage.getItem("AutenticosPcentral");
-            const puno= localStorage.getItem("AutenticosPuno");
-            const pdos= localStorage.getItem("AutenticosPdos");
-            const ptres= localStorage.getItem("AutenticosPtres");
-            const pcuatro= localStorage.getItem("AutenticosPcuatro");
+            const pcentral = localStorage.getItem("AutenticosPcentral");
+            const puno = localStorage.getItem("AutenticosPuno");
+            const pdos = localStorage.getItem("AutenticosPdos");
+            const ptres = localStorage.getItem("AutenticosPtres");
+            const pcuatro = localStorage.getItem("AutenticosPcuatro");
             if (pcentral != null) {
                 aceptado('central');
-            }if (puno != null) {
+            }
+            if (puno != null) {
                 aceptado('uno');
-            }if (pdos != null) {
+            }
+            if (pdos != null) {
                 aceptado('dos');
-            }if (ptres != null) {
+            }
+            if (ptres != null) {
                 aceptado('tres');
-            }if (pcuatro != null) {
+            }
+            if (pcuatro != null) {
                 aceptado('cuatro');
             }
 
@@ -171,10 +255,12 @@
             $('#xpdos').click(function () {
                 $('#lpdos').html('');
                 $('#sinpdos').show();
-            });$('#xptres').click(function () {
+            });
+            $('#xptres').click(function () {
                 $('#lptres').html('');
                 $('#sinptres').show();
-            });$('#xpcuatro').click(function () {
+            });
+            $('#xpcuatro').click(function () {
                 $('#lpcuatro').html('');
                 $('#sinpcuatro').show();
             });
@@ -206,7 +292,8 @@
                 let uno = 'uno';
                 aceptado(uno)
 
-            });$('#bdos').click(function () {
+            });
+            $('#bdos').click(function () {
                 const pdos = $('#pdos').val();
                 if (pdos == null || pdos == '') {
                     $('#pdos').attr('placeholder', 'Aquí debés completar la idea');
@@ -217,7 +304,8 @@
                 let dos = 'dos';
                 aceptado(dos)
 
-            });$('#btres').click(function () {
+            });
+            $('#btres').click(function () {
                 const ptres = $('#ptres').val();
                 if (ptres == null || ptres == '') {
                     $('#ptres').attr('placeholder', 'Aquí debés completar la idea');
@@ -228,7 +316,8 @@
                 let tres = 'tres';
                 aceptado(tres)
 
-            });$('#bcuatro').click(function () {
+            });
+            $('#bcuatro').click(function () {
                 const pcuatro = $('#pcuatro').val();
                 if (pcuatro == null || pcuatro == '') {
                     $('#pcuatro').attr('placeholder', 'Aquí debés completar la idea');
@@ -247,33 +336,36 @@
         function aceptado(p) {
 
 
-            if(p === 'uno') {
+            if (p === 'uno') {
                 const puno = JSON.parse(localStorage.AutenticosPuno);
 
                 $('#lpuno').addClass('fontTahu fa-2x');
                 $('#lpuno').html(puno + '         <small id="xpuno">*</small>');
                 $('#sinpuno').hide();
             }
-            if(p === 'central') {
+            if (p === 'central') {
 
                 const pcentral = JSON.parse(localStorage.AutenticosPcentral);
 
                 $('#lpcentral').addClass('fontTahu fa-2x');
                 $('#lpcentral').html(pcentral + '         <small id="xpcentral">*</small>');
                 $('#sinpcentral').hide();
-            }if(p === 'dos') {
+            }
+            if (p === 'dos') {
                 const pdos = JSON.parse(localStorage.AutenticosPdos);
 
                 $('#lpdos').addClass('fontTahu fa-2x');
                 $('#lpdos').html(pdos + '         <small id="xpdos">*</small>');
                 $('#sinpdos').hide();
-            }if(p === 'tres') {
+            }
+            if (p === 'tres') {
                 const ptres = JSON.parse(localStorage.AutenticosPtres);
 
                 $('#lptres').addClass('fontTahu fa-2x');
                 $('#lptres').html(ptres + '         <small id="xptres">*</small>');
                 $('#sinptres').hide();
-            }if(p === 'cuatro') {
+            }
+            if (p === 'cuatro') {
                 const pcuatro = JSON.parse(localStorage.AutenticosPcuatro);
 
                 $('#lpcuatro').addClass('fontTahu fa-2x');

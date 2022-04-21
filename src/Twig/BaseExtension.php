@@ -56,6 +56,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('completa_texto', [$this, 'completa_texto']),
             new TwigFunction('completa_lugar', [$this, 'completa_lugar']),
             new TwigFunction('form_suscripto_newsletter', [$this, 'form_suscripto_newsletter']),
+            new TwigFunction('booleano', [$this, 'booleano']),
         ];
     }
 
@@ -202,5 +203,19 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
         return [$crea_formulario[0]->getSrcCodigo(),$crea_formulario[0]->getSrcParameters()];
     }
+
+    /**
+     * @param $data
+     * @return string
+     */
+    public function booleano($data): string
+    {
+        $icono = '<i class="fa fa-close fa-2x text-danger"> </i>';
+        if ($data === true) {
+            $icono = '<i class="fa fa-check fa-2x text-success"> </i>';
+        }
+        return $icono;
+    }
+
 
 }

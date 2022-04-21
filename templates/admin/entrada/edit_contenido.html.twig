@@ -2,16 +2,15 @@
 
 {% block title %}Edit Entrada{% endblock %}
 
-{% block body %}
+{% block content %}
 
-    <h5>Nueva Entrada</h5>
-
+    <h5>Edición parcial Entrada</h5>
     {{ form_start(entradaForm) }}
 
-    {# {{ form_widget(entradaForm) }} #}
+
     <div class="row">
 
-        <div class="col-sm-6">
+        <div class="col-sm-8 mx-auto">
             {{ form_row(entradaForm.titulo) }}
         </div>
 
@@ -27,6 +26,7 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('app') }}
+    <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
 {% endblock %}
 {% block jslocal %}
     {{ encore_entry_script_tags('summernote') }}
