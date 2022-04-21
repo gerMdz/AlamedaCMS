@@ -86,6 +86,8 @@ class AdminEntradaController extends AbstractController
      * @Route("/admin/entrada/publicadas", name="admin_entrada_publicadas")
      * @IsGranted("ROLE_ESCRITOR")
      * @param EntradaRepository $entradaRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      * @throws QueryException
      */
@@ -95,12 +97,8 @@ class AdminEntradaController extends AbstractController
         Request $request
     ): Response {
 
-//        $user = null;
-
-        $this->isGranted('ROLE_EDITOR') ? $user = $this->getUser(): $user = null;
-
-            $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacionQuery($user);
-
+        $this->isGranted('ROLE_EDITOR') ? $user = $this->getUser() : $user = null;
+        $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacionQuery($user);
         $entradas = $paginator->paginate(
             $entrada, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
@@ -170,7 +168,6 @@ class AdminEntradaController extends AbstractController
      * @throws Exception
      * @Route("/admin/entrada/{id}/edit-complex", name="admin_entrada_edit_complex")
      * @IsGranted("MANAGE", subject="entrada")
-     *
      */
     public function editComplex(Request $request, Entrada $entrada): Response
     {
@@ -359,7 +356,6 @@ class AdminEntradaController extends AbstractController
      */
     public function show(Entrada $entrada): Response
     {
-
         return $this->render('admin/entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);

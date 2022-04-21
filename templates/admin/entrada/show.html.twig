@@ -6,10 +6,15 @@
 {% endblock %}
 {% block breadcrumb %}
     <li class="breadcrumb-item">
-        <!-- if breadcrumb is single--><span><a href="{{path('admin')}}">Panel</a></span>
+        <span><a href="{{ path('admin') }}">Panel</a></span>
     </li>
-    <li class="breadcrumb-item "><span>
-            <a href="{{path('admin_entrada_index')}}">Entradas</a></span></li>
+    <li class="breadcrumb-item ">
+        <span>
+            <a href="{{ path('admin_entrada_index') }}">
+                Entradas
+            </a>
+        </span>
+    </li>
     <li class="breadcrumb-item active"><span>Detalle</span></li>
 {% endblock %}
 
@@ -218,161 +223,4 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/entrada_show.js') }}"></script>
-    <script type="application/javascript">
-
-        $(function () {
-            const pcentral = localStorage.getItem("AutenticosPcentral");
-            const puno = localStorage.getItem("AutenticosPuno");
-            const pdos = localStorage.getItem("AutenticosPdos");
-            const ptres = localStorage.getItem("AutenticosPtres");
-            const pcuatro = localStorage.getItem("AutenticosPcuatro");
-            if (pcentral != null) {
-                aceptado('central');
-            }
-            if (puno != null) {
-                aceptado('uno');
-            }
-            if (pdos != null) {
-                aceptado('dos');
-            }
-            if (ptres != null) {
-                aceptado('tres');
-            }
-            if (pcuatro != null) {
-                aceptado('cuatro');
-            }
-
-        });
-        $(function () {
-            $('#xpcentral').click(function () {
-                $('#lpcentral').html('');
-                $('#sinpcentral').show();
-            });
-            $('#xpuno').click(function () {
-                $('#lpuno').html('');
-                $('#sinpuno').show();
-            });
-            $('#xpdos').click(function () {
-                $('#lpdos').html('');
-                $('#sinpdos').show();
-            });
-            $('#xptres').click(function () {
-                $('#lptres').html('');
-                $('#sinptres').show();
-            });
-            $('#xpcuatro').click(function () {
-                $('#lpcuatro').html('');
-                $('#sinpcuatro').show();
-            });
-
-        });
-
-        $(function () {
-            $('#bcentral').click(function () {
-                const pcentral = $('#pcentral').val();
-                if (pcentral == null || pcentral == '') {
-                    $('#pcentral').attr('placeholder', 'Aquí debés completar la idea');
-                    return false;
-                }
-
-                localStorage.AutenticosPcentral = JSON.stringify(pcentral);
-                let central = 'central';
-                aceptado(central)
-
-            });
-
-            $('#buno').click(function () {
-                const puno = $('#puno').val();
-                if (puno == null || puno == '') {
-                    $('#puno').attr('placeholder', 'Aquí debés completar la idea');
-                    return false;
-                }
-
-                localStorage.AutenticosPuno = JSON.stringify(puno);
-                let uno = 'uno';
-                aceptado(uno)
-
-            });
-            $('#bdos').click(function () {
-                const pdos = $('#pdos').val();
-                if (pdos == null || pdos == '') {
-                    $('#pdos').attr('placeholder', 'Aquí debés completar la idea');
-                    return false;
-                }
-
-                localStorage.AutenticosPdos = JSON.stringify(pdos);
-                let dos = 'dos';
-                aceptado(dos)
-
-            });
-            $('#btres').click(function () {
-                const ptres = $('#ptres').val();
-                if (ptres == null || ptres == '') {
-                    $('#ptres').attr('placeholder', 'Aquí debés completar la idea');
-                    return false;
-                }
-
-                localStorage.AutenticosPtres = JSON.stringify(ptres);
-                let tres = 'tres';
-                aceptado(tres)
-
-            });
-            $('#bcuatro').click(function () {
-                const pcuatro = $('#pcuatro').val();
-                if (pcuatro == null || pcuatro == '') {
-                    $('#pcuatro').attr('placeholder', 'Aquí debés completar la idea');
-                    return false;
-                }
-
-                localStorage.AutenticosPcuatro = JSON.stringify(pcuatro);
-                let cuatro = 'cuatro';
-                aceptado(cuatro)
-
-            });
-
-
-        });
-
-        function aceptado(p) {
-
-
-            if (p === 'uno') {
-                const puno = JSON.parse(localStorage.AutenticosPuno);
-
-                $('#lpuno').addClass('fontTahu fa-2x');
-                $('#lpuno').html(puno + '         <small id="xpuno">*</small>');
-                $('#sinpuno').hide();
-            }
-            if (p === 'central') {
-
-                const pcentral = JSON.parse(localStorage.AutenticosPcentral);
-
-                $('#lpcentral').addClass('fontTahu fa-2x');
-                $('#lpcentral').html(pcentral + '         <small id="xpcentral">*</small>');
-                $('#sinpcentral').hide();
-            }
-            if (p === 'dos') {
-                const pdos = JSON.parse(localStorage.AutenticosPdos);
-
-                $('#lpdos').addClass('fontTahu fa-2x');
-                $('#lpdos').html(pdos + '         <small id="xpdos">*</small>');
-                $('#sinpdos').hide();
-            }
-            if (p === 'tres') {
-                const ptres = JSON.parse(localStorage.AutenticosPtres);
-
-                $('#lptres').addClass('fontTahu fa-2x');
-                $('#lptres').html(ptres + '         <small id="xptres">*</small>');
-                $('#sinptres').hide();
-            }
-            if (p === 'cuatro') {
-                const pcuatro = JSON.parse(localStorage.AutenticosPcuatro);
-
-                $('#lpcuatro').addClass('fontTahu fa-2x');
-                $('#lpcuatro').html(pcuatro + '         <small id="xpcuatro">*</small>');
-                $('#sinpcuatro').hide();
-            }
-
-        }
-    </script>
 {% endblock %}

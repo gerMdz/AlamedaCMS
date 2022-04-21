@@ -59,7 +59,7 @@
                 {% for entrada in entradas %}
                     <tr>
                         <td>
-                           T: {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}<br/>
+                           T: {{ entrada.titulo | striptags | raw | u.truncate(20, '...') }}<br/>
                            Lr: <small><i>{{ entrada.linkRoute | u.truncate(20, '...')}}</i></small>
                         </td>
                         <td>
