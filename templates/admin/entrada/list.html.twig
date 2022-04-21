@@ -4,6 +4,12 @@
     {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
 {% endblock %}
 
+{% block breadcrumb %}
+{{parent()}}
+                            <li class="breadcrumb-item active"><span>Entradas</span></li>
+
+{%endblock%}
+
 {% block content %}
 <div class="col-md-12">
     <div class="card">
@@ -30,7 +36,7 @@
                 <tr>
                     <th>
                         Titulo <br/>
-                        Linkroute
+                        LinkRoute
                     </th>
                     <th>Sección<br/>
                         Página
