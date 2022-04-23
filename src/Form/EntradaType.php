@@ -34,7 +34,6 @@ class EntradaType extends AbstractType
      */
     public function __construct(PrincipalRepository $principalRepository)
     {
-
         $this->principalRepository = $principalRepository;
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
