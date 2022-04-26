@@ -1,0 +1,102 @@
+<style>
+    .home {
+        background-image: url('/uploads/image_entrada/{{ section.imageFilename}}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+    }
+
+    .para {
+        width: 50%;
+    }
+
+    .para-light {
+        opacity: 0.7;
+    }
+
+    .home,
+    .about,
+    .services,
+    .plans,
+    .work,
+    .contact {
+        height: 110vh;
+        position: relative;
+    }
+
+    .home_text,
+    .home .fas,
+    .plans .far,
+    .information .fas,
+    .work .fas,
+    .services .fas,
+    .location .far,
+    .location .fas {
+        padding: 15px 0;
+        background: -webkit-gradient(
+                linear,
+                left top,
+                left bottom,
+                from(#0ee951),
+                to(#00dabf)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    @media only screen and (max-width: 540px) {
+        h1 {
+            font-size: 30px;
+        }
+
+        .para {
+            width: 100%;
+        }
+
+        .swiper-container {
+            width: 92%;
+        }
+
+        .swiper-button-prev {
+            left: -16px;
+            width: 22px;
+            background-size: 22px 34px;
+        }
+
+        .swiper-button-next {
+            right: -16px;
+            width: 22px;
+            background-size: 22px 34px;
+        }
+    }
+
+</style>
+<section class="home py-5 d-flex align-items-center" id="header"
+        {#         style="background-image: url('/uploads/image_entrada/{{ section.imageFilename}}')" #}
+>
+    <div class="container text-light py-5" data-aos="fade-right">
+
+        <h1 class="headline">
+            {{ section.title | raw }}
+            {#            Best <span class="home_text">Broadband</span><br>Internet Plans For You #}
+        </h1>
+        <p class="para para-light py-3">
+            {{ section.contenido | raw }}
+        </p>
+        {#        <div class="d-flex align-items-center"> #}
+        {#            <p class="p-2"><i class="fas fa-laptop-house fa-lg"></i></p> #}
+        {#            <p>Lorem ipsum dolor sit amet.</p> #}
+        {#        </div> #}
+        {#        <div class="d-flex align-items-center"> #}
+        {#            <p class="p-2"><i class="fas fa-wifi fa-lg"></i></p> #}
+        {#            <p>Lorem ipsum dolor sit amet.</p> #}
+        {#        </div> #}
+        {#        <div class="my-3"> #}
+        {#            <a class="btn" href="#plans">View Plans</a> #}
+        {#        </div> #}
+    </div> <!-- end of container -->
+</section>

@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\ApiToken;
 use App\Entity\User;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixtures extends BaseFixture
+class UserFixtures extends BaseFixture implements FixtureGroupInterface
 {
 //    public function load(ObjectManager $manager)
 //    {
@@ -86,5 +87,10 @@ class UserFixtures extends BaseFixture
         });
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['groupuser'];
     }
 }

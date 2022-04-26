@@ -32,8 +32,6 @@ class IndexAlamedaController extends AbstractController
      */
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
-//        $em = $this->getDoctrine()->getManager();
-//        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
 
         return $this->render('index_alameda/index.html.twig', [
             'index_alamedas' => $indexAlamedaRepository->findAll(),

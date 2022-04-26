@@ -92,7 +92,7 @@ class IndexAlameda
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
      * @ORM\OrderBy({"orden"="ASC"})
      */
-    private $section;
+    private Collection $section;
 
     /**
      * @ORM\OneToMany(targetEntity=BlocsFixes::class, mappedBy="indexAlameda")
@@ -102,7 +102,7 @@ class IndexAlameda
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
      */
-    private $template;
+    private Collection $template;
 
     public function __construct()
     {
@@ -314,7 +314,7 @@ class IndexAlameda
     }
 
     /**
-     * @return ArrayCollection<int, BlocsFixes>
+     * @return Collection|BlocsFixes[]
      */
     public function getBlocsFixes(): Collection
     {
@@ -347,15 +347,18 @@ class IndexAlameda
         return $this;
     }
 
-    public function getTemplate(): ?ModelTemplate
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(?ModelTemplate $template): self
-    {
-        $this->template = $template;
-
-        return $this;
-    }
+//    /**
+//     * @return Collection|ModelTemplate[]
+//     */
+//    public function getTemplate(): Collection
+//    {
+//        return $this->template;
+//    }
+//
+//    public function setTemplate($template = null): self
+//    {
+//        $this->template = $template;
+//
+//        return $this;
+//    }
 }

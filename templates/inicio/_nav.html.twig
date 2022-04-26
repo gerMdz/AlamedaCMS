@@ -26,9 +26,12 @@
 {#        <!-- Links --> #}
 {#    </div> #}
 {# </nav> #}
-<nav class="navbar navbar-expand-lg navbar-dark px-0 py-3
-position-absolute fixed-top top-0 start-0 w-full bg-dark bg-lg-transparent">
-    <div class="container-xl max-w-screen-xl">
+<nav class="navbar navbar-expand-lg navbar-dark px-0 py-1
+position-absolute fixed-top top-0 start-0 w-full bg-lg-transparent bg-dark">
+{#    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation">#}
+
+{#    <div class="container-xl max-w-screen-xl">#}
+        <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ path('homepage') }}">
             <img src="{{ asset('images/logo-con-nombre.png') }}"
