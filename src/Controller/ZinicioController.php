@@ -38,7 +38,7 @@ class ZinicioController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
-        if($this->site_temporal == 'true'){
+        if ($this->site_temporal == 'true') {
             return $this->redirectToRoute('reserva_index');
 //            return $this->render('models/principal/temporalmente.html.twig', [
 //                'datosIndex' => null,
@@ -76,13 +76,16 @@ class ZinicioController extends AbstractController
      */
     public function test_index(): Response
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->container->get('doctrine')->getManager();
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
+//        $blocsFixes = $em->getRepository(BlocsFixes::class)->findBy(['indexAlameda' => $indexAlameda[0]->getId()]);
+        $blocsFixes = $indexAlameda[0]->getBlocsFixes();
 
-        return $this->render('models/principal/index.html.twig', [
+        return $this->render('models/principal/index-side-right.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda[0],
+            'blocsFixes' => $blocsFixes,
         ]);
     }
 
@@ -94,12 +97,13 @@ class ZinicioController extends AbstractController
      */
     public function ver_test(Principal $principal, PrincipalRepository $principalRepository): Response
     {
-        $vista =$principal->getModelTemplate();
-        if(!$vista) {
-            $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute() : $principal->getLinkRoute());
+        $vista = $principal->getModelTemplate();
+        if (!$vista) {
+            $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute(
+            ) : $principal->getLinkRoute());
         }
-        $visual = $principalRepository->findOneBy(['principal'=>$principal->getId(), 'isActive'=>true]);
-        if(!$visual){
+        $visual = $principalRepository->findOneBy(['principal' => $principal->getId(), 'isActive' => true]);
+        if (!$visual) {
             $visual = $principal;
         }
 
@@ -115,20 +119,25 @@ class ZinicioController extends AbstractController
      * @param SectionRepository $sectionRepository
      * @return Response
      */
-    public function ver(Principal $principal, PrincipalRepository $principalRepository, SectionRepository $sectionRepository): Response
-    {
-        $vista =$principal->getModelTemplate();
-        if(!$vista) {
-            $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute() : $principal->getLinkRoute());
+    public function ver(
+        Principal $principal,
+        PrincipalRepository $principalRepository,
+        SectionRepository $sectionRepository
+    ): Response {
+        $vista = $principal->getModelTemplate();
+        if (!$vista) {
+            $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute(
+            ) : $principal->getLinkRoute());
         }
-        $visual = $principalRepository->findOneBy(['principal'=>$principal->getId(), 'isActive'=>true]);
-        if(!$visual){
+        $visual = $principalRepository->findOneBy(['principal' => $principal->getId(), 'isActive' => true]);
+        if (!$visual) {
             $visual = $principal;
         }
         $secciones = $sectionRepository->queryFindSectionsByPrincipal($principal->getId())->getQuery()->getResult();
+
         return $this->render('models/principal/'.$vista.'.html.twig', [
             'principal' => $visual,
-            'secciones' => $secciones
+            'secciones' => $secciones,
         ]);
     }
 
@@ -140,8 +149,12 @@ class ZinicioController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function listado(Principal $principal, PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
-    {
+    public function listado(
+        Principal $principal,
+        PrincipalRepository $principalRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
 
         $query = $principalRepository->getQueryfindByPrincipalParentActive($principal);
 
@@ -154,7 +167,7 @@ class ZinicioController extends AbstractController
 
         return $this->render('models/principal/listadoPrincipal.html.twig', [
             'principales' => $principales,
-            'ppal' => $principal
+            'ppal' => $principal,
         ]);
     }
 

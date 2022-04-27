@@ -1,5 +1,14 @@
-# Tasks
+# Tareas actuales
 
 {% hint style="info" %}
-**Good to know:** Splitting your product into fundamental concepts, objects, or areas can be a great way to let readers deep dive into the concepts that matter most to them.
+* [ ] Entrada list
+* [ ] Entrada new
+* [ ] Entrada show
+* [ ] Entrada edit
+* [ ] Entrada delete
+
+#### Acciones con entradas
+
+* [ ] Entrada from template
+* [ ] Entrada from section
 {% endhint %}

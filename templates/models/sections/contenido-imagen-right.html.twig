@@ -1,8 +1,13 @@
-<section class=" {{ section.cssClass }} mb-0 js-parallax bg-light " id="{{ section.identificador }}">
+<section class=" {{ section.cssClass }} mb-0 js-parallax " id="{{ section.identificador }}">
     <div class="container">
-        {% for entrada in section.entrada %}
+        {% if section.entrada is defined %}
+            {% set entradas = section.entrada %}
+        {% else %}
+            {% set entradas = section.entradas %}
+        {% endif %}
+        {% for entrada in entradas %}
             <div class="row a-content-space-medium bg-white ">
-                <div class="col-lg-7 order-first mb-4 mb-lg-0">
+                <div class="col-lg-6 w-md-50 order-first mb-4 mb-lg-0">
                     <!-- Mockup Browser -->
                     <figure>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -26,14 +31,14 @@
 
 
                 </div>
-                <div class="col-sm-5 w-md-50 vh-100 mx-auto text-center my-auto">
+                <div class="col-sm-6 w-md-50  mx-auto text-center my-auto">
                     <div class="row align-items-center">
                         <div class="border border-primary p-5 mb-auto p-2">
                             <p class="mb-4 mx-auto ">
                                 {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
                             </p>
                         </div>
-                        <div class="col-sm-12 text-center mb-0 vh-100 ">
+                        <div class="col-sm-12 text-center mb-0">
 
                             {% if (entrada.linkPosting) %}
                                 <a class="btn-alameda"
@@ -51,7 +56,7 @@
                 </div>
             </div>
             <!-- End Video Principal -->
-            <hr class="my-6">
+            <hr class="my-2">
         {% endfor %}
     </div>
 </section>

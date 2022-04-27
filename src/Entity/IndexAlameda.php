@@ -21,72 +21,72 @@ class IndexAlameda
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lema;
+    private ?string $lema;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $lemaPrincipal;
+    private ?string $lemaPrincipal;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lemaSinEspacio;
+    private ?string $lemaSinEspacio;
 
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
      */
-    private $horario1;
+    private ?string $horario1;
 
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
      */
-    private $horario2;
+    private ?string $horario2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $textoVersiculo;
+    private ?string $textoVersiculo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $versiculo;
+    private ?string $versiculo;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $metaDescripcion;
+    private ?string $metaDescripcion;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $metaAutor;
+    private ?string $metaAutor;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $metaTitle;
+    private ?string $metaTitle;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $metaType;
+    private ?string $metaType;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $metaUrl;
+    private ?string $metaUrl;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $metaImage;
+    private ?string $metaImage;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $base;
+    private ?string $base;
 
     /**
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
@@ -94,9 +94,24 @@ class IndexAlameda
      */
     private $section;
 
+    /**
+     * @ORM\OneToMany(targetEntity=BlocsFixes::class, mappedBy="indexAlameda")
+     */
+    private Collection $blocs_fixes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
+     */
+    private $template;
+
     public function __construct()
     {
         $this->section = new ArrayCollection();
+        $this->blocs_fixes = new ArrayCollection();
+    }
+    public function __toString()
+    {
+     return $this->base;
     }
 
     public function getId(): ?int
@@ -294,6 +309,52 @@ class IndexAlameda
         if ($this->section->contains($section)) {
             $this->section->removeElement($section);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<int, BlocsFixes>
+     */
+    public function getBlocsFixes(): Collection
+    {
+        return $this->blocs_fixes;
+    }
+
+    /**
+     * @param BlocsFixes $blocsFix
+     * @return $this
+     */
+    public function addBlocsFix(BlocsFixes $blocsFix): self
+    {
+        if (!$this->blocs_fixes->contains($blocsFix)) {
+            $this->blocs_fixes[] = $blocsFix;
+            $blocsFix->setIndexAlameda($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlocsFix(BlocsFixes $blocsFix): self
+    {
+        if ($this->blocs_fixes->removeElement($blocsFix)) {
+            // set the owning side to null (unless already changed)
+            if ($blocsFix->getIndexAlameda() === $this) {
+                $blocsFix->setIndexAlameda(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTemplate(): ?ModelTemplate
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(?ModelTemplate $template): self
+    {
+        $this->template = $template;
 
         return $this;
     }

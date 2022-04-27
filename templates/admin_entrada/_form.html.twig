@@ -28,7 +28,7 @@
     <div class="col-sm-2 text-center form-check">
         <label class="text-primary" for="entrada_publicar" class="required">
             Publicar?<br/>
-            {% if entradaForm.vars.data.PublicadoAt | default %}
+            {% if  entradaForm.vars.data.PublicadoAt is defined %}
                 {{ form_row(entradaForm.publicar, { 'attr': {'checked': 'checked'} }) }}
             {% else %}
                 {{ form_row(entradaForm.publicar) }}
@@ -46,42 +46,24 @@
     </div>
 </div>
 <hr class="bg-primary"/>
-<div class="row pt-3 mx-5  align-items-center">
+<div class="row pt-3 mx-5">
+
     <div class="col-sm-3 mx-auto">
-        {{ form_label(entradaForm.footer) }}
-        {{ form_errors(entradaForm.footer) }}
-        {{ form_help(entradaForm.footer) }}
+        {{ form_row(entradaForm.footer) }}
     </div>
-    <div class="col-sm-3 mx-auto center-element">
-        {{ form_label(entradaForm.linkRoute) }}
-        {{ form_errors(entradaForm.linkRoute) }}
+
+    <div class="col-sm-3 mx-auto">
+        {{ form_widget(entradaForm.linkRoute) }}
         {{ form_help(entradaForm.linkRoute) }}
+        {{ form_errors(entradaForm.linkRoute) }}
     </div>
     <div class="col-sm-3 mx-auto">
-        {{ form_label(entradaForm.linkPosting) }}
-        {{ form_errors(entradaForm.linkPosting) }}
-        {{ form_help(entradaForm.linkPosting) }}
+        {{ form_row(entradaForm.linkPosting) }}
     </div>
     <div class="col-sm-2 mx-auto text-center form-check text-dark">
         <label for="entrada_isLinkExterno" class="text-primary">
             ¿Es Externo?<br/>
-            {{ form_label(entradaForm.isLinkExterno) }}
-            {{ form_errors(entradaForm.isLinkExterno) }}
-            {{ form_help(entradaForm.isLinkExterno) }}
-        </label>
-    </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_widget(entradaForm.footer) }}
-    </div>
-    <div class="col-sm-3 mx-auto center-element">
-        {{ form_widget(entradaForm.linkRoute) }}
-    </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_widget(entradaForm.linkPosting) }}
-    </div>
-    <div class="col-sm-2 mx-auto text-center form-check text-dark">
-        <label for="entrada_isLinkExterno" class="text-primary">
-            {{ form_widget(entradaForm.isLinkExterno) }}
+            {{ form_row(entradaForm.isLinkExterno) }}
         </label>
     </div>
 </div>
@@ -96,35 +78,26 @@
     <div class="col-sm-3 mx-auto">
         {{ form_row(entradaForm.disponibleHastaAt) }}
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         {{ form_row(entradaForm.autor) }}
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         {{ form_row(entradaForm.modelTemplate) }}
     </div>
-    <div class="col-sm-2 mx-auto">
-        {{ form_label(entradaForm.orden) }}
-        {{ form_widget(entradaForm.orden) }}
-        {{ form_help(entradaForm.orden) }}
-        {{ form_errors(entradaForm.orden) }}
+    <div class="col-sm-4">
+        {{ form_row(entradaForm.sections) }}
     </div>
     <div class="col-sm-2 mx-auto">
-        {{ form_label(entradaForm.cssClass) }}
-        {{ form_widget(entradaForm.cssClass) }}
-        {{ form_help(entradaForm.cssClass) }}
-        {{ form_errors(entradaForm.cssClass) }}
+        {{ form_row(entradaForm.orden) }}
     </div>
     <div class="col-sm-2 mx-auto">
-        {{ form_label(entradaForm.identificador) }}
-        {{ form_widget(entradaForm.identificador) }}
-        {{ form_help(entradaForm.identificador) }}
-        {{ form_errors(entradaForm.identificador) }}
+        {{ form_row(entradaForm.cssClass) }}
+    </div>
+    <div class="col-sm-2 mx-auto">
+        {{ form_row(entradaForm.identificador) }}
     </div>
     <div class="col-sm-3 mx-auto">
-        {{ form_label(entradaForm.contacto) }}
-        {{ form_widget(entradaForm.contacto) }}
-        {{ form_help(entradaForm.contacto) }}
-        {{ form_errors(entradaForm.contacto) }}
+        {{ form_row(entradaForm.contacto) }}
     </div>
 
     <div class="col-sm-9">
@@ -135,10 +108,10 @@
         }) }}
     </div>
     <div class="col-sm-3">
-        {% if entradaForm.vars.data.imageFilename | default %}
+        {% if entrada.imageFilename is defined %}
             <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
                 <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
-                     alt="Imagen">
+                     alt="">
             </a>
 
         {% endif %}

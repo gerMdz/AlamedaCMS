@@ -27,38 +27,38 @@ class Principal
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="principal")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $autor;
+    private ?User $autor;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="El título de la página, no debe estar en blanco")
      * @Groups("mail")
      */
-    private $titulo;
+    private ?string $titulo;
 
     /**
      * @ORM\Column(type="string", length=2550)
      * @Groups("mail")
      */
-    private $contenido;
+    private ?string $contenido;
 
     /**
      * @ORM\Column(type="string", length=150, unique=true, nullable=true)
      * @Groups("mail")
      */
-    private $linkRoute;
+    private ?string $linkRoute;
 
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $likes;
+    private ?int $likes;
 
     /**
      * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="principal")
@@ -73,7 +73,7 @@ class Principal
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isActive;
+    private ?bool $isActive;
 
     /**
      * @ORM\OneToMany(targetEntity=Section::class, mappedBy="principal")
@@ -120,13 +120,18 @@ class Principal
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups("mail")
      */
-    private $isLinkExterno;
+    private ?bool $isLinkExterno;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("mail")
      */
-    private $linkPosting;
+    private ?string $linkPosting;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=BlocsFixes::class, mappedBy="page")
+     */
+    private Collection $blocsFixes;
 
     public function __construct()
     {
@@ -134,9 +139,9 @@ class Principal
         $this->entradas = new ArrayCollection();
         $this->section = new ArrayCollection();
         $this->brote = new ArrayCollection();
-        $this->Secciones = new ArrayCollection();
         $this->button = new ArrayCollection();
         $this->itemMenus = new ArrayCollection();
+        $this->blocsFixes = new ArrayCollection();
     }
 
     public function __toString()
@@ -462,6 +467,33 @@ class Principal
     public function setLinkPosting(?string $linkPosting): self
     {
         $this->linkPosting = $linkPosting;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BlocsFixes>
+     */
+    public function getBlocsFixes(): Collection
+    {
+        return $this->blocsFixes;
+    }
+
+    public function addBlocsFix(BlocsFixes $blocsFix): self
+    {
+        if (!$this->blocsFixes->contains($blocsFix)) {
+            $this->blocsFixes[] = $blocsFix;
+            $blocsFix->addPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlocsFix(BlocsFixes $blocsFix): self
+    {
+        if ($this->blocsFixes->removeElement($blocsFix)) {
+            $blocsFix->removePage($this);
+        }
 
         return $this;
     }

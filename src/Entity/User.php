@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     message="Este email ya está registrado"
  * )
  */
-class User implements UserInterface
+class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id()
@@ -139,7 +139,8 @@ class User implements UserInterface
         return $this->getPrimerNombre();
     }
 
-    public function getId(): ?string
+
+    public function getId():?string
     {
         return $this->id;
     }
@@ -544,5 +545,15 @@ class User implements UserInterface
         $this->isActive = $isActive;
 
         return $this;
+    }
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
     }
 }

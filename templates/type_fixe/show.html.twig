@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeFixe{% endblock %}
+
+{% block body %}
+    <h1>TypeFixe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_fixe.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ type_fixe.description }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ type_fixe.createdAt ? type_fixe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ type_fixe.updatedAt ? type_fixe.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Identificador</th>
+                <td>{{ type_fixe.identificador }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_fixe_index') }}">back to list</a>
+
+    <a href="{{ path('app_type_fixe_edit', {'id': type_fixe.id}) }}">edit</a>
+
+    {{ include('type_fixe/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,17 +1,6 @@
-@font-face {
-  font-family: 'alameda';
-  src:  url('fonts/alameda.eot?qdterw');
-  src:  url('fonts/alameda.eot?qdterw#iefix') format('embedded-opentype'),
-    url('fonts/alameda.ttf?qdterw') format('truetype'),
-    url('fonts/alameda.woff?qdterw') format('woff'),
-    url('fonts/alameda.svg?qdterw#alameda') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'alameda' !important;
+  font-family: 'alameda', sans-serif !important;
   speak: none;
   font-style: normal;
   font-weight: normal;

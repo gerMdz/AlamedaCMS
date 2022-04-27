@@ -45,7 +45,7 @@
         <link href="{{ asset('material-kit/css/material-kit.min.css') }}?v=2.0.4" rel="stylesheet"/>
         <style>
             body {
-                font-family: 'ArialNova', "proxima-nova", "Helvetica Neue", sans-serif !important;
+                font-family: 'Roboto', sans-serif !important;
             }
         </style>
     {% endblock %}
@@ -100,10 +100,14 @@
 
 {% block javascripts %}
     <script src="https://kit.fontawesome.com/743c9941eb.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}"></script>
-    {# <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script> #}
+    <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>
+    <script src="{{ asset('material-kit/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('material-kit/js/plugins/parallax.min.js') }}"></script>
+{#         <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>#}
+{#    <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>#}
+{#    <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}"></script>#}
+{#     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>#}
     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
     {# <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script> #}
     {# <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script> #}
@@ -127,7 +131,6 @@
     <script src="{{ asset('material-kit/js/plugins/moment.min.js') }}"></script>
     <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
     <script src="{{ asset('material-kit/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="{{ asset('material-kit/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
     <!--  Google Maps Plugin  -->
     {# <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> #}
@@ -139,48 +142,8 @@
 {% endblock %}
 
 <script>
-    // $(document).on('ready', function () {
-    //     // initialization of text animation (typing)
-    //     $(".js-display-typing").typed({
-    //         strings: [
-    //             "Viví la experiencia ",
-    //             "Alameda OnLine",
-    //         ],
-    //         typeSpeed: 90,
-    //         loop: true,
-    //         backDelay: 2500
-    //     });
-    // });
-</script>
-<script>
-    // let swiper = new Swiper('.swiper-container', {
-    //     effect: 'coverflow',
-    //     grabCursor: true,
-    //     centeredSlides: true,
-    //     slidesPerView: 'auto',
-    //     coverflowEffect: {
-    //         rotate: 50,
-    //         stretch: 0,
-    //         depth: 100,
-    //         modifier: 1,
-    //         slideShadows: true,
-    //     },
-    //     pagination: {
-    //         el: '.swiper-pagination',
-    //     },
-    //     autoplay: {
-    //         delay: 7500,
-    //         disableOnInteraction: false,
-    //     },
-    //     navigation: {
-    //         nextEl: '.swiper-button-next',
-    //         prevEl: '.swiper-button-prev',
-    //     },
-    // });
-</script>
-<script>
     $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
+        // $('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
     });
 </script>
 

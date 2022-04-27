@@ -1,22 +1,22 @@
-<footer class="footer mb-0">
+<footer class="footer mb-2">
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12 mx-auto">
-                <nav class="float-left">
-                    <ul>
-                        <li>
-                            <a href="{{ path('index') }}">
-                                {{ base.siteName }}
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright float-right">
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+{#                <nav class="float-left">#}
+{#                    <ul>#}
+{#                        <li>#}
+{#                            <a href="{{ path('index') }}">#}
+{#                                {{ base.siteName }}#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </nav>#}
+                <div class="copyright float-left">
                     &copy;
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-{#                    <a href="{{ path('index') }}" target="_blank">{{ base.siteName }}</a>#}
+                    <a href="{{ path('index') }}" target="_blank">{{ base.siteName }}</a>
                 </div>
             </div>
 

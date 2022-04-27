@@ -1,5 +1,25 @@
-# Task Lists
+---
+description: Roadmap de AlamedaCMS
+---
+
+# Lista de tareas
 
 {% hint style="info" %}
-**Good to know:** Splitting your product into fundamental concepts, objects, or areas can be a great way to let readers deep dive into the concepts that matter most to them.
+* [ ] Entradas.
+* [ ] Dejar date\_format nativo.
+* [ ] Definir la diferencia entre publicar, mostrar y deshabilitar.
+* [ ] Definir likes.
+* [ ] Agregar manejo de imágenes.
+* [ ] El orden de los bloques debe ser relativo y no estático.
+* [ ] Asegurar Roboto en los editores.
+* [ ] Edición rápida.
+* [ ] Asegurar que solo se muestre lo habilitado.
+* [ ] Metadatos para las page.
+* [ ] Asegurar og:image en metadatos.
+* [ ] Optimizar query's.
+* [ ] Agregar cssClass en las twig de los modelTemplate.
+* [ ] Iniciar Menu y su manager.
+* [ ] Agregar template para A2 (recrear).
+* [ ] ModelTeplate CRUDI.
+* [ ] Contactos, Definir y Manejar.
 {% endhint %}
