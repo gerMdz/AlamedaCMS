@@ -376,6 +376,7 @@ class AdminEntradaController extends AbstractController
     {
         $link = strtolower(str_replace(' ', '-', trim($titulo)));
         $link = strtolower(str_replace('<p>', '', trim($link)));
+
         return strtolower(str_replace('</p>', '', trim($link)));
     }
 
@@ -388,6 +389,7 @@ class AdminEntradaController extends AbstractController
         if (null === $principal) {
             return null;
         }
+
         return $principal->getLinkRoute();
     }
 
