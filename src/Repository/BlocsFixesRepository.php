@@ -54,7 +54,7 @@ class BlocsFixesRepository extends ServiceEntityRepository
 
         if ($bus) {
             $qb->andWhere(
-                'upper(b.description) LIKE :search OR upper(b.identificador) LIKE :qsearch'
+                'upper(b.description) LIKE :search OR upper(b.identificador) LIKE :search'
             )
                 ->setParameter('search', '%'.strtoupper($bus).'%');
         }
