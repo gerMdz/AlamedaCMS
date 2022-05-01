@@ -1,0 +1,47 @@
+<section class="{{section.cssClass}}" id="{{ section.identificador }}">
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="card mb-3 col-sm-10 mx-auto">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="carouselSection" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        {%for entrada in section.entradas %}
+                                        <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}" class="d-block w-100" alt="{{entrada.titulo}}">
+                                        </div>
+                                        {%endfor%}
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title">{{section.title | raw}}</h5>
+                            <p class="card-text">
+                                {{ section.contenido | raw}}
+                            </p>
+                            <p class="card-text"><small class="text-muted">
+
+                                    {{section.footer | raw}}
+                                </small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

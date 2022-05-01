@@ -14,10 +14,15 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-6 mx-auto">
+    <div class="col-sm-4 mx-auto">
         {{ form_label(sectionForm.title) }}
         {{ form_widget(sectionForm.title) }}
         {{ form_errors(sectionForm.title) }}
+    </div>
+    <div class="col-sm-4 mx-auto">
+        {{ form_label(sectionForm.footer) }}
+        {{ form_widget(sectionForm.footer) }}
+        {{ form_errors(sectionForm.footer) }}
     </div>
     <div class="col-sm-4 mx-auto">
         {{ form_row(sectionForm.description) }}
