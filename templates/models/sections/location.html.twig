@@ -1,0 +1,26 @@
+{% block stylesheets %}
+    <style>
+        .location {
+            background-color: var(--primary-light);
+        }
+        .location .far,
+        .location .fas {
+            padding: 15px 0;
+        }
+    </style>
+{%endblock%}
+<section class="location {{section.cssClass}} py-5" id="{{section.identificador}}">
+    <div class="container" data-aos="zoom-in">
+        <div class="row ">
+            {% for entrada in section.entradas %}
+            <div class="col-lg-3 d-flex align-items-center mx-auto {{entrada.cssClass}}" id="{{entrada.identificador}}">
+                <div class="p-2">{{ entrada.footer | raw}}</div>
+                <div class="ms-2">
+                    <span>{{ entrada.titulo | striptags | raw }}</span>
+                    {{ entrada.contenido | raw }}
+                </div>
+            </div> <!-- end of entrada -->
+            {% endfor %}
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</section>
