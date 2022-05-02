@@ -21,7 +21,7 @@ class BlocsFixesController extends AbstractController
     public function index(BlocsFixesRepository $blocsFixesRepository, Request $request): Response
     {
         $bus = $request->get('busq');
-        $blocs_fixes = $blocsFixesRepository->queryAllBlocsFixes($bus);
+        $blocs_fixes = $blocsFixesRepository->queryAllBlocsFixes($bus)->getQuery()->getResult();
         return $this->render('admin/blocs_fixes/index.html.twig', [
             'blocs_fixes' => $blocs_fixes,
         ]);
