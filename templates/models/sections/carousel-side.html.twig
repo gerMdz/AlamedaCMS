@@ -68,10 +68,10 @@
                             >
                                 {% endif %}
 
-                                <img class="d-block img-fluid"
-                                     src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
+                                <img class="d-block w-100"
+                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
                                      alt="{{ app.request.baseUrl }}"/>
-                                <div class="carousel-caption d-md-block ">
+                                <div class="carousel-caption ">
 
                                     <small class="text-white">
                                         {{ entrada.contenido|default('') | raw }}
