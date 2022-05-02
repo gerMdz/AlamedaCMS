@@ -1,0 +1,102 @@
+{#
+# Template section carousel side
+# Lleva entradas pero sin template
+#
+#}
+<style>
+
+    .carousel .carousel-indicators {
+        bottom: 1em !important;
+    }
+
+    .carousel-caption.top {
+        margin-top: 1em;
+        padding-bottom: 1em;
+    }
+
+    .carousel-caption.bottom {
+        margin-top: 2em;
+        min-height: 3em;
+        max-height: 3em;
+    }
+
+    .carousel-caption {
+        position: relative;
+        border: 0;
+        /*margin-top: 5px;*/
+        text-align: center;
+        color: #fafafa !important;
+        top: 0;
+        bottom: auto;
+        background: rgba(0, 0, 0, 0.35);
+        width: 100%;
+        left: 0;
+        right: 0;
+        /*padding: 5px 10px;*/
+        margin-top: 1em;
+        min-height: 8em;
+        max-height: 8em;
+    }
+
+    .carousel-caption a {
+        color: #fafafa;
+    }
+</style>
+<section class="a-content-space-medium bg-fam text-center my-2 py-3" id="{{ section.identificador }}">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div id="carouselSection" class="carousel slide carousel-fade col-md-6" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for entrada in section.entradas %}
+                        <li data-bs-target="#carouselSection"
+                            data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for entrada in section.entradas %}
+                        <div class="carousel-item {% if loop.first %} active {% endif %}">
+                            {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                            <a
+                                    {% if (entrada.linkPosting) %}
+                                        href="{{ entrada.linkPosting }}"
+                                        {% if (entrada.isLinkExterno) %}
+                                            target="_blank"
+                                        {% endif %}
+                                    {% else %}
+                                        href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                                    {% endif %}
+                            >
+                                {% endif %}
+
+                                <img class="d-block w-100"
+                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_carousel-side') }}"
+                                     alt="{{ app.request.baseUrl }}"/>
+                                <div class="carousel-caption d-md-block ">
+
+                                    <small class="text-white">
+                                        {{ entrada.contenido|default('') | raw }}
+                                    </small>
+                                </div>
+
+
+                                {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                            </a>
+                            {% endif %}
+
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselSection" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselSection" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
