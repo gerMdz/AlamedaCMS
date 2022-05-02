@@ -20,23 +20,23 @@
     /*    max-height: 3em;*/
     /*}*/
 
-    /*.carousel-caption {*/
-    /*    position: relative;*/
-    /*    border: 0;*/
-    /*    !*margin-top: 5px;*!*/
-    /*    text-align: center;*/
-    /*    color: #fafafa !important;*/
-    /*    top: 0;*/
-    /*    bottom: auto;*/
-    /*    background: rgba(0, 0, 0, 0.35);*/
-    /*    width: 100%;*/
-    /*    left: 0;*/
-    /*    right: 0;*/
-    /*    !*padding: 5px 10px;*!*/
-    /*    margin-top: 1em;*/
-    /*    min-height: 8em;*/
-    /*    max-height: 8em;*/
-    /*}*/
+    .carousel-caption {
+        position: relative;
+        border: 0;
+        /*margin-top: 5px;*/
+        text-align: center;
+        /*color: #fafafa !important;*/
+        top: 0;
+        bottom: auto;
+        /*background: rgba(0, 0, 0, 0.35);*/
+        width: 100%;
+        left: 0;
+        right: 0;
+        /*padding: 5px 10px;*/
+        margin-top: 1em;
+        min-height: 8em;
+        max-height: 8em;
+    }
 
     /*.carousel-caption a {*/
     /*    color: #fafafa;*/
@@ -46,12 +46,12 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div id="carouselSection" class="carousel slide carousel-fade col-md-12" data-bs-ride="carousel">
-{#                <ol class="carousel-indicators">#}
-{#                    {% for entrada in section.entradas %}#}
-{#                        <li data-bs-target="#carouselSection"#}
-{#                            data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>#}
-{#                    {% endfor %}#}
-{#                </ol>#}
+                {#                <ol class="carousel-indicators"> #}
+                {#                    {% for entrada in section.entradas %} #}
+                {#                        <li data-bs-target="#carouselSection" #}
+                {#                            data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li> #}
+                {#                    {% endfor %} #}
+                {#                </ol> #}
                 <div class="carousel-inner">
                     {% for entrada in section.entradas %}
                         <div class="carousel-item {% if loop.first %} active {% endif %}">
@@ -72,13 +72,10 @@
                                      src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
                                      alt="{{ app.request.baseUrl }}"/>
                                 <div class="carousel-caption ">
-
-                                    <small class="text-white">
+                                    <small class="{{entrada.cssClass}}">
                                         {{ entrada.contenido|default('') | raw }}
                                     </small>
                                 </div>
-
-
                                 {% if (entrada.linkRoute or entrada.linkPosting ) %}
                             </a>
                             {% endif %}
