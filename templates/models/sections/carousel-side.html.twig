@@ -73,10 +73,10 @@
                                 <img class="d-block w-100"
                                      src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
                                      alt="{{ app.request.baseUrl }}"/>
-                                <div class="carousel-caption {{entrada.cssClass}} ">
+                                <div class="carousel-caption {{entrada.cssClass}} text-left ">
                                     <small>
-                                        {{ entrada.titulo|default('') |striptags |raw }}<br/>
-                                        {{ entrada.contenido|default('') | striptags | raw }}
+                                        {{ entrada.titulo|default('') | raw }}<br/>
+                                        {{ entrada.contenido|default('')  | raw }}
                                     </small>
                                 </div>
                                 {% if (entrada.linkRoute or entrada.linkPosting ) %}
