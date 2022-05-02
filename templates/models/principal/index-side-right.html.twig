@@ -14,9 +14,11 @@
             <div class="col-md-9 mr-0 pr-0">
                 {% for section in datosIndex.section %}
                     {% if section.orden != 0%}
+                        <div class="m-0 p-0 border-1">
                     {{ render(controller(
                         'App\\Controller\\SectionController::mostrarSection', {id: section.id}
                     )) }}
+                        </div>
                     {%endif%}
                 {% endfor %}
             </div>
