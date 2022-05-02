@@ -39,7 +39,11 @@
         padding-top: 1.25rem;
         padding-bottom: 0;
     }
-
+small > p {
+    margin-top: 0;
+    margin-bottom: 0rem;
+    line-height: 1;
+}
     /*.carousel-caption a {*/
     /*    color: #fafafa;*/
     /*}*/
@@ -75,7 +79,7 @@
                                      alt="{{ app.request.baseUrl }}"/>
                                 <div class="carousel-caption {{entrada.cssClass}} text-left ">
                                     <small>
-                                        {{ entrada.titulo|default('') | raw }}<br/>
+                                        {{ entrada.titulo|default('') | raw }}
                                         {{ entrada.contenido|default('')  | raw }}
                                     </small>
                                 </div>
