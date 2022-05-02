@@ -75,6 +75,7 @@
                                      alt="{{ app.request.baseUrl }}"/>
                                 <div class="carousel-caption ">
                                     <small class="{{entrada.cssClass}}">
+                                        {{ entrada.titulo|default('') | raw }}<br/>
                                         {{ entrada.contenido|default('') | raw }}
                                     </small>
                                 </div>
