@@ -26,7 +26,7 @@
                 {% for fixes in blocsFixes %}
                     {% if fixes.fixesType == 'side-fixe-right' %}
                         {% for blocsection in fixes.section %}
-            <div class="m-0 p-0 border-top border-secondary">
+            <div class="m-0 p-0 border-button border-secondary">
                             {{ render(controller(
                                 'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
                             )) }}
