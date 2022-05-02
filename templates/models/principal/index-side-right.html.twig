@@ -8,7 +8,7 @@
                     {{ render(controller(
                         'App\\Controller\\SectionController::mostrarSection', {id: section.id}
                     )) }}
-                    {% endfor %}
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="col-md-9 mr-0 pr-0">
