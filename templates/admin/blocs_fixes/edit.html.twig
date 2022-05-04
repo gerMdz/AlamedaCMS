@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit BlocsFixes</h1>
 
-    {{ include('blocs_fixes/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/blocs_fixes/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_blocs_fixes_index') }}">back to list</a>
 
-    {{ include('blocs_fixes/_delete_form.html.twig') }}
+    {{ include('admin/blocs_fixes/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}BlocsFixes index{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Blocks fixed</h4>
+                <p class="card-category">Listado </p>
+            </div>
+            <div class="card-body">
+                <a href="{{ path('app_blocs_fixes_new') }}" class="btn btn-sm btn-primary btn-round">
+                    Crear Block fixed <span class="fa fa-plus-circle"></span>
+                </a>
+            </div>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><small>Id</small> <br/>
+                        Identificador
+                    </th>
+                    <th>Descripción</th>
+                    <th>CssClass</th>
+                    <th>Imagen</th>
+                    <th>Actualizado <br/>
+                        <i>Creado</i></th>
+
+                    <th><i class="fa fa-cogs"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for blocs_fix in blocs_fixes %}
+                    <tr>
+                        <td>
+                            <small>{{ blocs_fix.id }}</small> <br/>
+                            {{ blocs_fix.identificador }}</td>
+                        <td>{{ blocs_fix.description }}</td>
+                        <td>{{ blocs_fix.cssClass }}</td>
+                        <td>{{ blocs_fix.imageFilename }}</td>
+
+                        <td>{{ blocs_fix.updatedAt ? blocs_fix.updatedAt|date('Y-m-d H:i:s') : '' }} <br/>
+                            <i>{{ blocs_fix.createdAt ? blocs_fix.createdAt|date('Y-m-d H:i:s') : '' }}</i></td>
+
+                        <td>
+                            <a href="{{ path('app_blocs_fixes_show', {'id': blocs_fix.id}) }}">show</a>
+                            <a href="{{ path('app_blocs_fixes_edit', {'id': blocs_fix.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('app_blocs_fixes_new') }}">Create new</a>
+        </div>
+    </div>
+{% endblock %}
