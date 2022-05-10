@@ -2,10 +2,11 @@
 
 {% block sections %}
     <div class="container-fluid">
-    <!-- Horarios - Invitación - Video -->
-    {% for section in datosIndex.section %}
-                {{ render(controller(
-                    'App\\Controller\\SectionController::mostrarSection', {id: section.id}
-                )) }}
-    {% endfor %}
+        <!-- Horarios - Invitación - Video -->
+        {% for section in datosIndex.section %}
+            {{ render(controller(
+                'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+            )) }}
+        {% endfor %}
+    </div>
 {% endblock %}
