@@ -10,7 +10,7 @@
     </style>
 {%endblock%}
 <section class="location {{section.cssClass}} py-5" id="{{section.identificador}}">
-    <div class="container" data-aos="zoom-in">
+    <div class="container-fluid" data-aos="zoom-in">
         <div class="row ">
             {% for entrada in section.entradas %}
             <div class="col-lg-3 d-flex align-items-center mx-auto {{entrada.cssClass}}" id="{{entrada.identificador}}">
