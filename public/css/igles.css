@@ -480,6 +480,9 @@ h3.quote:after {
     line-height: 1.5em;
     font-family: Roboto, sans-serif;
 }
+.text-14-300.centrado{
+    text-align: center!important;
+}
 b, i, sup, sub, u, del {
     color: rgb(41, 147, 229);
 }
@@ -707,6 +710,12 @@ body.frontal {
     font-size: 2rem;
     font-weight: 300;
     line-height: 1.2;
+}
+
+.display-15 {
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.4;
 }
 .btn-blue {
     background-color: #1976d2 !important;
@@ -956,4 +965,12 @@ h4.card-title{
 
 .card-title{
     font-family: 'Roboto', "proxima-nova", "Helvetica Neue", sans-serif !important;
+}
+
+.display-t-300 {
+    font-weight: 300 !important;
+}
+
+h5.text-izq {
+    text-align: left !important;
 }
