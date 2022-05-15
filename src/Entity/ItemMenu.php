@@ -25,64 +25,68 @@ class ItemMenu
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private ?string $id;
 
     /**
      * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="itemMenus")
+     * @ORM\Column(nullable=true)
      */
-    private $role;
+    private Collection $role;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    private ?string $label;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $badge;
+    private ?string $badge;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $icon;
+    private ?string $icon;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isExterno;
-
-
+    private ?bool $isExterno;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isActivo;
+    private ?bool $isActivo;
 
     /**
      * @ORM\ManyToOne(targetEntity=ItemMenu::class, inversedBy="itemMenus")
      */
-    private $parent;
+    private ?ItemMenu $parent;
 
     /**
      * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="parent")
      */
-    private $itemMenus;
+    private Collection $itemMenus;
 
     /**
      * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="itemMenus")
      */
-    private $pathInterno;
+    private ?Principal $pathInterno;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $pathLibre;
+    private ?string $pathLibre;
 
     /**
      * @ORM\ManyToMany(targetEntity=Menu::class, inversedBy="itemMenus")
      */
-    private $menu;
+    private Collection $menu;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $orderitem;
 
     public function __construct()
     {
@@ -91,7 +95,7 @@ class ItemMenu
         $this->menu = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -229,7 +233,7 @@ class ItemMenu
         return $this->pathInterno;
     }
 
-    public function getLinkRoute()
+    public function getLinkRoute(): ?string
     {
         return $this->pathInterno->getLinkRoute();
     }
@@ -273,6 +277,18 @@ class ItemMenu
     public function removeMenu(Menu $menu): self
     {
         $this->menu->removeElement($menu);
+
+        return $this;
+    }
+
+    public function getOrderitem(): ?int
+    {
+        return $this->orderitem;
+    }
+
+    public function setOrderitem(?int $orderitem): self
+    {
+        $this->orderitem = $orderitem;
 
         return $this;
     }
