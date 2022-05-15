@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ItemMenu index{% endblock %}
+
+{% block body %}
+    <h1>ItemMenu index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Role</th>
+                <th>Label</th>
+                <th>Badge</th>
+                <th>Icon</th>
+                <th>IsExterno</th>
+                <th>IsActivo</th>
+                <th>PathLibre</th>
+                <th>Orderitem</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>CssClass</th>
+                <th>Identificador</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item_menu in item_menus %}
+            <tr>
+                <td>{{ item_menu.id }}</td>
+                <td>{{ item_menu.role }}</td>
+                <td>{{ item_menu.label }}</td>
+                <td>{{ item_menu.badge }}</td>
+                <td>{{ item_menu.icon }}</td>
+                <td>{{ item_menu.isExterno ? 'Yes' : 'No' }}</td>
+                <td>{{ item_menu.isActivo ? 'Yes' : 'No' }}</td>
+                <td>{{ item_menu.pathLibre }}</td>
+                <td>{{ item_menu.orderitem }}</td>
+                <td>{{ item_menu.createdAt ? item_menu.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ item_menu.updatedAt ? item_menu.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ item_menu.cssClass }}</td>
+                <td>{{ item_menu.identificador }}</td>
+                <td>
+                    <a href="{{ path('app_item_menu_show', {'id': item_menu.id}) }}">show</a>
+                    <a href="{{ path('app_item_menu_edit', {'id': item_menu.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_item_menu_new') }}">Create new</a>
+{% endblock %}
