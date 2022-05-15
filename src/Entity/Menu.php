@@ -30,7 +30,7 @@ class Menu
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Nombre;
+    private ?string $Nombre;
 
 
     /**
