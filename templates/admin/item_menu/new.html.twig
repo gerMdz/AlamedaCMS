@@ -1,0 +1,11 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}New ItemMenu{% endblock %}
+
+{% block content %}
+    <h1>Create new ItemMenu</h1>
+
+    {{ include('admin/item_menu/_form.html.twig') }}
+
+    <a href="{{ path('app_item_menu_index') }}">back to list</a>
+{% endblock %}
