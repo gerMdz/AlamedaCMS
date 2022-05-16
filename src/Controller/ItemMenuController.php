@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\ItemMenu;
 use App\Form\ItemMenuType;
 use App\Repository\ItemMenuRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/item/menu")
+ * @Route("/admin/itemmenu")
  */
 class ItemMenuController extends AbstractController
 {
@@ -20,7 +21,7 @@ class ItemMenuController extends AbstractController
      */
     public function index(ItemMenuRepository $itemMenuRepository): Response
     {
-        return $this->render('item_menu/index.html.twig', [
+        return $this->render('admin/item_menu/index.html.twig', [
             'item_menus' => $itemMenuRepository->findAll(),
         ]);
     }
@@ -41,7 +42,7 @@ class ItemMenuController extends AbstractController
             return $this->redirectToRoute('app_item_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('item_menu/new.html.twig', [
+        return $this->renderForm('admin/item_menu/new.html.twig', [
             'item_menu' => $itemMenu,
             'form' => $form,
         ]);
@@ -52,7 +53,7 @@ class ItemMenuController extends AbstractController
      */
     public function show(ItemMenu $itemMenu): Response
     {
-        return $this->render('item_menu/show.html.twig', [
+        return $this->render('admin/item_menu/show.html.twig', [
             'item_menu' => $itemMenu,
         ]);
     }
@@ -71,7 +72,7 @@ class ItemMenuController extends AbstractController
             return $this->redirectToRoute('app_item_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('item_menu/edit.html.twig', [
+        return $this->renderForm('admin/item_menu/edit.html.twig', [
             'item_menu' => $itemMenu,
             'form' => $form,
         ]);

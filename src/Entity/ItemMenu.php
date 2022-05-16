@@ -27,11 +27,7 @@ class ItemMenu
      */
     private ?string $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="itemMenus")
-     * @ORM\Column(nullable=true)
-     */
-    private Collection $role;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -88,11 +84,22 @@ class ItemMenu
      */
     private ?int $orderitem;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="itemMenus")
+     */
+    private $rol;
+
     public function __construct()
     {
-        $this->role = new ArrayCollection();
+
         $this->itemMenus = new ArrayCollection();
         $this->menu = new ArrayCollection();
+        $this->rol = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->label;
     }
 
     public function getId(): ?string
@@ -100,29 +107,11 @@ class ItemMenu
         return $this->id;
     }
 
-    /**
-     * @return Collection|Roles[]
-     */
-    public function getRole(): Collection
-    {
-        return $this->role;
-    }
 
-    public function addRole(Roles $role): self
-    {
-        if (!$this->role->contains($role)) {
-            $this->role[] = $role;
-        }
 
-        return $this;
-    }
 
-    public function removeRole(Roles $role): self
-    {
-        $this->role->removeElement($role);
 
-        return $this;
-    }
+
 
     public function getLabel(): ?string
     {
@@ -289,6 +278,30 @@ class ItemMenu
     public function setOrderitem(?int $orderitem): self
     {
         $this->orderitem = $orderitem;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Roles>
+     */
+    public function getRol(): Collection
+    {
+        return $this->rol;
+    }
+
+    public function addRol(Roles $rol): self
+    {
+        if (!$this->rol->contains($rol)) {
+            $this->rol[] = $rol;
+        }
+
+        return $this;
+    }
+
+    public function removeRol(Roles $rol): self
+    {
+        $this->rol->removeElement($rol);
 
         return $this;
     }

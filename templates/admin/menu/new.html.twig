@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_coreui.html.twig' %}
 
 {% block title %}New Menu{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Create new Menu</h1>
 
-    {{ include('menu/_form.html.twig') }}
+    {{ include('admin/menu/_form.html.twig') }}
 
     <a href="{{ path('app_menu_index') }}">back to list</a>
 {% endblock %}

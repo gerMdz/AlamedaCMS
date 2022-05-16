@@ -25,50 +25,44 @@ class Menu
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private ?string $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $Nombre;
-
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $identificador;
+    private ?string $nombre;
 
     /**
      * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="menu")
      */
-    private $itemMenus;
+    private Collection $itemMenus;
 
     public function __construct()
     {
         $this->itemMenus = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+     return $this->nombre;
+    }
 
-
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
 
     public function getNombre(): ?string
     {
-        return $this->Nombre;
+        return $this->nombre;
     }
 
-    public function setNombre(string $Nombre): self
+    public function setNombre(string $nombre): self
     {
-        $this->Nombre = $Nombre;
+        $this->nombre = $nombre;
 
         return $this;
     }
-
-
-
 
     /**
      * @return Collection|ItemMenu[]

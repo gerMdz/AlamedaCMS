@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_coreui.html.twig' %}
 
 {% block title %}ItemMenu index{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>ItemMenu index</h1>
 
     <table class="table">
@@ -28,7 +28,10 @@
         {% for item_menu in item_menus %}
             <tr>
                 <td>{{ item_menu.id }}</td>
-                <td>{{ item_menu.role }}</td>
+                <td>{% for rol in item_menu.rol %}
+                    {{ rol }}
+                    {% endfor %}
+                </td>
                 <td>{{ item_menu.label }}</td>
                 <td>{{ item_menu.badge }}</td>
                 <td>{{ item_menu.icon }}</td>

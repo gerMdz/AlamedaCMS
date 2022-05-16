@@ -14,8 +14,6 @@ class MenuType extends AbstractType
         $builder
             ->add('Nombre')
             ->add('identificador')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('cssClass')
             ->add('itemMenus')
         ;

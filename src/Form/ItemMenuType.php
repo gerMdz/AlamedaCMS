@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\ItemMenu;
+use App\Entity\Roles;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,7 +14,7 @@ class ItemMenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('role')
+            ->add('rol')
             ->add('label')
             ->add('badge')
             ->add('icon')
@@ -20,8 +22,6 @@ class ItemMenuType extends AbstractType
             ->add('isActivo')
             ->add('pathLibre')
             ->add('orderitem')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('cssClass')
             ->add('identificador')
             ->add('parent')
