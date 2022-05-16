@@ -12,29 +12,29 @@ class ComentarioFixtures extends BaseFixture implements DependentFixtureInterfac
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(100, 'main_comentarios', function ($count) {
-
-            $comment = new Comentario();
-            $comment->setContenido(
-                $this->faker->boolean ? $this->faker->paragraph : $this->faker->sentences(2, true)
-            );
-            $comment->setAutor($this->getRandomReference('main_users'))
-                ->setCreatedAt($this->faker->dateTimeBetween('-1 months', '-1 seconds'))
-                ->setEntrada($this->getRandomReference('main_entradas'))
-                ->setIsDeleted($this->faker->boolean(20));
-
-            return $comment;
-
-        });
-        $manager->flush();
+//        $this->createMany(100, 'main_comentarios', function ($count) {
+//
+//            $comment = new Comentario();
+//            $comment->setContenido(
+//                $this->faker->boolean ? $this->faker->paragraph : $this->faker->sentences(2, true)
+//            );
+//            $comment->setAutor($this->getRandomReference('main_users'))
+//                ->setCreatedAt($this->faker->dateTimeBetween('-1 months', '-1 seconds'))
+//                ->setEntrada($this->getRandomReference('main_entradas'))
+//                ->setIsDeleted($this->faker->boolean(20));
+//
+//            return $comment;
+//
+//        });
+//        $manager->flush();
     }
 
     public function getDependencies()
     {
         return [
 //            TagFixture::class,
-            UserFixtures::class,
-            EntradaFixtures::class
+//            UserFixtures::class,
+//            EntradaFixtures::class
         ];
 }
 }
