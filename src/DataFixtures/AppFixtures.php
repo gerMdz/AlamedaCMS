@@ -39,10 +39,10 @@ class AppFixtures extends Fixture
         $base->setLemaPrincipal('Vení tal como sos');
         $base->setMetaAutor('Diseño Alameda');
         $base->setMetaDescripcion('Jesús, Dios, Igelsia, Amor, Esperanza, Fe, Arte');
-        $base->setMetaTitle('Iglesia de la Alameda');
+        $base->setMetaTitle('AlamedaCMS');
         $base->setMetaType('website');
-        $base->setMetaUrl('https://iglesiaalameda.com');
-        $base->setSiteName('Iglesia Alameda');
+        $base->setMetaUrl('https://ascendig.ar');
+        $base->setSiteName('AlamedaCMS');
 
         $manager->persist($inicio);
         $manager->persist($base);
