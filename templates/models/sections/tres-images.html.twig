@@ -2,7 +2,7 @@
 <section class="a-content-space-medium bg-fam text-center">
     <div class="container-fluid mt-lg-1 mt-sm-5">
         <div class="row gx-5 justify-content-center">
-            <div class="col-md-7 d-flex">
+            <div class="col-md-8 d-flex">
                 <div class="col-sm-12">
                     {% for entrada in entradas %}
                         {% if (entrada.orden == 1) %}
@@ -39,7 +39,7 @@
 
                     {% for entrada in entradas %}
                         {% if (entrada.orden != 1) %}
-                            <div class="col-sm-12 container-img
+                            <div class="col-sm-12 container-img mx-0 px-0
                                                     {% if (entrada.orden == 3) %}
 {# bottom-n10 #} mb-0
                                                         {% endif %}
