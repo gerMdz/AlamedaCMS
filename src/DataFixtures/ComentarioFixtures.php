@@ -7,7 +7,7 @@ use App\Entity\Comentario;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ComentarioFixtures extends BaseFixture implements DependentFixtureInterface
+class ComentarioFixtures extends BaseFixture
 {
 
     protected function loadData(ObjectManager $manager)
@@ -29,12 +29,12 @@ class ComentarioFixtures extends BaseFixture implements DependentFixtureInterfac
 //        $manager->flush();
     }
 
-    public function getDependencies()
-    {
-        return [
-//            TagFixture::class,
-//            UserFixtures::class,
-//            EntradaFixtures::class
-        ];
-}
+//    public function getDependencies()
+//    {
+////        return [
+//////            TagFixture::class,
+//////            UserFixtures::class,
+//////            EntradaFixtures::class
+////        ];
+//}
 }
