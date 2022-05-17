@@ -115,8 +115,7 @@ yarn-error.log
 ###< symfony/phpunit-bridge ###
 
 ###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
+
 ###< phpunit/phpunit ###
 /public/images/favicon/android-icon-36x36.png
 /public/images/favicon/android-icon-48x48.png
@@ -147,4 +146,4 @@ yarn-error.log
 /public/images/favicon/ms-icon-144x144.png
 /public/images/favicon/ms-icon-150x150.png
 /public/images/favicon/ms-icon-310x310.png
-/public/images/favicon/android-icon-192x192.png
+/public/images/favicon/*
