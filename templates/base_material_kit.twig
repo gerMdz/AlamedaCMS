@@ -22,9 +22,9 @@
     <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
     <meta property="og:description" content="{{ base_lema() }},{{ base_metaDescripcion() }}"/>
     <meta property="og:site_name" content="{{ base.siteName }}"/>
-    <link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon">
+{#    /<link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon">#}
     <title>{{ base.metaTitle }}</title>
-    {# {% include('inicio/_favicon_html.twig') %} #}
+     {% include('inicio/_favicon_html.twig') %}
     {% block icons %}
         <link href="{{ asset('icons/foundation-icons/foundation-icons.css') }}" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
