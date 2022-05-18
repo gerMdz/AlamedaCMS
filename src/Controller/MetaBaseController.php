@@ -37,7 +37,7 @@ class MetaBaseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($metaBase);
             $entityManager->flush();
 
@@ -69,8 +69,7 @@ class MetaBaseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+            $this->container->get('doctrine')->getManager()->flush();
             return $this->redirectToRoute('meta_base_index');
         }
 
