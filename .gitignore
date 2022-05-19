@@ -108,6 +108,7 @@ yarn-error.log
 
 /public/images/logo-con-nombre.png
 /public/images/logo-solo.png
+/public/images/logo-ascendig.png
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
