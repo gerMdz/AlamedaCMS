@@ -134,7 +134,7 @@ a.text-point-sec:hover {
     display: inline-flex;
     -moz-box-align: center;
     align-items: center;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, "Arial Nova", Arial, sans-serif !important;
+    font-family: Roboto, sans-serif  !important;
     user-select: none;
     margin-top: 1rem;
     font-size: 1rem;
