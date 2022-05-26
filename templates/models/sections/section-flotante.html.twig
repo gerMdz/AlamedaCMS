@@ -22,10 +22,10 @@
             <div class="col s12">
                 <div class="action-btn-wrapper">
                     <div class="fixed-action-btn my-float-btn horizontal">
-                        <ul class="list-group rounded-3 rounded-start">
+                        <ul class="list-group">
                             {% for entrada in entradas %}
                                 {% if (entrada.contacto) %}
-                                    <li class="list-group-item {{ section.cssClass }}">
+                                    <li class="list-group-item">
                                         {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto} %}
                                     </li>
                                 {% endif %}
