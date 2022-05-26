@@ -1,6 +1,6 @@
 {% for contacto in contactos %}
     <a href="{{ contacto.tipo.referencia }}{{ contacto.linkRoute }}{{ contacto.tipo.textoReferencia }}{{ contacto.textoMensaje }}"
-    class="text-white rounded-3 rounded-start "
+    class="text-white "
     >
         {{ contacto.textoPagina }}
         {{ contacto.tipo.icon | raw }}
