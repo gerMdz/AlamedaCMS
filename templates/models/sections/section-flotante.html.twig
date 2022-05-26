@@ -25,7 +25,7 @@
                         <ul class="list-group">
                             {% for entrada in entradas %}
                                 {% if (entrada.contacto) %}
-                                    <li class="list-group-item">
+                                    <li class="list-group-item {{ section.cssClass }}">
                                         {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto} %}
                                     </li>
                                 {% endif %}
