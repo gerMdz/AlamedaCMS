@@ -183,7 +183,7 @@ class AddUserCommand extends Command
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords
         $encodedPassword = $this->passwordEncoder->hashPassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
-        $user->setPassword($encodedPassword);
+        $user->setPrimerNombre($primerNombre);
         $user->aceptaTerminos( new DateTime('now'));
 
         $this->entityManager->persist($user);
