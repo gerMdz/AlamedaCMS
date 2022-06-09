@@ -74,7 +74,7 @@ class IndexAlameda
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
      * @ORM\OrderBy({"orden"="ASC"})
      */
-    private Collection $section;
+    private $section;
 
     /**
      * @ORM\OneToMany(targetEntity=BlocsFixes::class, mappedBy="indexAlameda")
@@ -84,7 +84,7 @@ class IndexAlameda
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
      */
-    private Collection $template;
+    private ?ModelTemplate $template;
 
     public function __construct()
     {
@@ -133,6 +133,54 @@ class IndexAlameda
     public function setLemaSinEspacio(string $lemaSinEspacio): self
     {
         $this->lemaSinEspacio = $lemaSinEspacio;
+
+        return $this;
+    }
+
+    public function getHorario1(): ?string
+    {
+        return $this->horario1;
+    }
+
+    public function setHorario1(?string $horario1): self
+    {
+        $this->horario1 = $horario1;
+
+        return $this;
+    }
+
+    public function getHorario2(): ?string
+    {
+        return $this->horario2;
+    }
+
+    public function setHorario2(?string $horario2): self
+    {
+        $this->horario2 = $horario2;
+
+        return $this;
+    }
+
+    public function getTextoVersiculo(): ?string
+    {
+        return $this->textoVersiculo;
+    }
+
+    public function setTextoVersiculo(?string $textoVersiculo): self
+    {
+        $this->textoVersiculo = $textoVersiculo;
+
+        return $this;
+    }
+
+    public function getVersiculo(): ?string
+    {
+        return $this->versiculo;
+    }
+
+    public function setVersiculo(?string $versiculo): self
+    {
+        $this->versiculo = $versiculo;
 
         return $this;
     }
@@ -281,4 +329,15 @@ class IndexAlameda
         return $this;
     }
 
+    public function getTemplate(): ?ModelTemplate
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(?ModelTemplate $template): self
+    {
+        $this->template = $template;
+
+        return $this;
+    }
 }
