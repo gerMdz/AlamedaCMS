@@ -102,7 +102,7 @@ class IndexAlameda
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
      */
-    private $template;
+    private ?ModelTemplate $template;
 
     public function __construct()
     {
