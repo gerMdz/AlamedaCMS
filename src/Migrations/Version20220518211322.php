@@ -30,7 +30,7 @@ final class Version20220518211322 extends AbstractMigration
 //        $this->addSql('ALTER TABLE item_menu ADD orderitem INT DEFAULT NULL');
 //        $this->addSql('ALTER TABLE menu CHANGE identificador identificador VARCHAR(150) NOT NULL');
 //        $this->addSql('CREATE UNIQUE INDEX UNIQ_7D053A93A8255881 ON menu (identificador)');
-        $this->addSql('ALTER TABLE meta_base ADD favicon LONGTEXT DEFAULT NULL');
+//        $this->addSql('ALTER TABLE meta_base ADD favicon LONGTEXT DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
