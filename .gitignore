@@ -109,6 +109,7 @@ yarn-error.log
 
 /public/images/logo-solo.png
 /public/images/logo-con-nombre.png
+/public/images/logo-con-nombre.jpg
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
@@ -149,3 +150,4 @@ yarn-error.log
 /public/images/favicon/ms-icon-310x310.png
 /public/images/favicon/*
 /public/images/logo-solo-3.png
+/public/images/logo-con-nombre.jpg
