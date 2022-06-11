@@ -5,8 +5,7 @@
 <section class="u-content-space border-bottom py-5 bg-gris-medio"
          style="background-image: url({{ section.imagePath|imagine_filter('squared_thumbnail_large_1920if') }});
                  background-repeat: no-repeat; background-size:cover;">
-
-    <div class="container text-center">
+    <div class="container {{ section.cssClass|default('text-center')}}" style="{{ section.cssStyle|default('text-center') }}">
         <h2 class="fuente-arial-nova">
             {{ section.title | striptags | raw }}
         </h2>

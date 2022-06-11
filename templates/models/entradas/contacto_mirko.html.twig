@@ -1,0 +1,9 @@
+{% for contacto in contactos %}
+    <div class="me-3">
+        <a href="{{ contacto.tipo.referencia }}{{ contacto.linkRoute }}{{ contacto.tipo.textoReferencia }}{{ contacto.textoMensaje }}">
+            {{ contacto.tipo.icon | raw }}
+            {{ contacto.textoPagina | default('') }}
+        </a>
+    </div>
+{% endfor %}
+

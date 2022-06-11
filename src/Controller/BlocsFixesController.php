@@ -20,7 +20,7 @@ class BlocsFixesController extends AbstractController
      */
     public function index(BlocsFixesRepository $blocsFixesRepository): Response
     {
-        return $this->render('blocs_fixes/index.html.twig', [
+        return $this->render('admin/blocs_fixes/index.html.twig', [
             'blocs_fixes' => $blocsFixesRepository->findAll(),
         ]);
     }
@@ -39,7 +39,7 @@ class BlocsFixesController extends AbstractController
             return $this->redirectToRoute('app_blocs_fixes_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('blocs_fixes/new.html.twig', [
+        return $this->renderForm('admin/blocs_fixes/new.html.twig', [
             'blocs_fix' => $blocsFix,
             'form' => $form,
         ]);
@@ -50,7 +50,7 @@ class BlocsFixesController extends AbstractController
      */
     public function show(BlocsFixes $blocsFix): Response
     {
-        return $this->render('blocs_fixes/show.html.twig', [
+        return $this->render('admin/blocs_fixes/show.html.twig', [
             'blocs_fix' => $blocsFix,
         ]);
     }
@@ -68,7 +68,7 @@ class BlocsFixesController extends AbstractController
             return $this->redirectToRoute('app_blocs_fixes_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('blocs_fixes/edit.html.twig', [
+        return $this->renderForm('admin/blocs_fixes/edit.html.twig', [
             'blocs_fix' => $blocsFix,
             'form' => $form,
         ]);
