@@ -1,6 +1,7 @@
 {% for contacto in contactos %}
-    <div class="me-3">
-        <a href="{{ contacto.tipo.referencia }}{{ contacto.linkRoute }}{{ contacto.tipo.textoReferencia }}{{ contacto.textoMensaje }}">
+    <div class="me-3 aling-item-center">
+        <a href="{{ contacto.tipo.referencia }}{{ contacto.linkRoute }}{{ contacto.tipo.textoReferencia }}{{ contacto.textoMensaje }}"
+        target="_blank">
             {{ contacto.tipo.icon | raw }}
             {{ contacto.textoPagina | default('') }}
         </a>
