@@ -3,7 +3,7 @@
 # No necesita entradas
 #}
 <section class="u-content-space border-bottom py-5 bg-gris-medio ">
-    <div class="container text-center">
+    <div class="container {{ section.cssClass|default('text-center') }}">
         <h2 class="fuente-arial-nova">
             {{ section.title | striptags | raw }}
         </h2>
