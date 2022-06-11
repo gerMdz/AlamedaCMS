@@ -3,12 +3,12 @@ section: empty
 entradas: true
     entrada.modelTemplate: true
 #}
-<section class="footer {{ section.cssClass }}" style="{{ section.cssStyle|default('') }}"
+<section class="footer {{ section.cssClass|default('text-light') }}" style="{{ section.cssStyle|default('') }}"
          id="{{ section.identificador }}">
     <div class="container">
         <div class="row" data-aos="fade-right">
             {% for entrada in section.entradas %}
-                <div class="{{ entrada.cssClass|default('col-lg-3 py-4 py-md-5') }}"
+                <div class="{{ entrada.cssClass|default('col-lg-3 py-4 py-md-5 mx-auto') }}"
                      style="{{ entrada.cssStyle|default('') }}">
                     {% include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
                 </div>
