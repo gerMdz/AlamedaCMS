@@ -1,0 +1,32 @@
+<section class="{{ section.cssClass }}" style="{{ section.cssStyle }}" id="{{ section.identificador }}">
+    <div class="container-fluid px-0">
+        <div class="mt-5">
+            <div class="card mb-3 col-sm-12 mx-auto">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <img src="{{ response_api.source ~'/'~ response_api.imageFilename}}"
+                                     class="d-block w-100" alt="{{ section.title }}">
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="card-body p-1">
+                                    <h5 class="card-title">
+                                        {{ response_api.title}}
+                                        | <sub class="text-muted">
+                                            {{ response_api.fullName }}
+                                        </sub>
+                                    </h5>
+                                    <p class="card-text">
+                                        {{ response_api.summary }}
+                                    </p>
+                                </div>
+                                <div class="card-footer p-1">
+                                    <a class="btn btn-outline-info" target="_blank"
+                                       href="{{ section.linkPosting~'/'~response_api.slug }}"
+                                    > {{ section.footer|default('Leer ahora')|striptags}} </a>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+</section>
