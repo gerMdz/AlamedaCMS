@@ -31,7 +31,7 @@
                         </tr>
                        </thead>
                     <tbody>
-{#                        {% for index_alameda in index_alamedas %}#}
+                        {% for index_alameda in index_alamedas %}
                             <tr>
                                 <td>{{ index_alameda.id }}</td>
                                 <td>
@@ -92,7 +92,7 @@
                                 </div>
                             </td>
                         </tr>
-                            {% endif %}
+
                         {% else %}
                             <tr>
                                 <td colspan="13">
@@ -102,7 +102,8 @@
                                     <i class="fas fa-plus-circle"></i> Crear Index</a>
                                 </td>
                             </tr>
-{#                        {% endfor %}#}
+                        {% endif %}
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

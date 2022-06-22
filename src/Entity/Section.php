@@ -132,7 +132,7 @@ class Section
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $footer;
+    private ?string $footer;
 
     public function __toString()
     {

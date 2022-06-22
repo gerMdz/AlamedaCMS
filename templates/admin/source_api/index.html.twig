@@ -1,0 +1,55 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}SourceApi index{% endblock %}
+
+{% block content %}
+    <h1>SourceApi index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Identifier</th>
+                <th>Base_uri</th>
+                <th>Auth_basic</th>
+                <th>Auth_bearer</th>
+                <th>Auth_ntlm</th>
+                <th>Base_auth</th>
+                <th>Auth_username</th>
+                <th>Auth_pass</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for source_api in source_apis %}
+            <tr>
+                <td>{{ source_api.id }}</td>
+                <td>{{ source_api.identifier }}</td>
+                <td>{{ source_api.baseUri }}</td>
+                <td>{{ source_api.authBasic }}</td>
+                <td>{{ source_api.authBearer }}</td>
+                <td>{{ source_api.authNtlm }}</td>
+                <td>{{ source_api.baseAuth }}</td>
+                <td>{{ source_api.authUsername }}</td>
+                <td>{{ source_api.authPass }}</td>
+                <td>
+                    <a href="{{ path('app_source_api_show', {'id': source_api.id}) }}">
+                        {{ include('bases/_ver.html.twig') }}
+                    </a>
+                    <a href="{{ path('app_source_api_edit', {'id': source_api.id}) }}">
+                        {{ include('bases/_editar.html.twig') }}
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">No se encontraron resultados</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_source_api_new') }}">
+        {{ include('bases/_crear_nuevo.html.twig', {'button_label':'Enlazar nueva api'}) }}
+    </a>
+{% endblock %}
