@@ -4,35 +4,16 @@
             <!-- Nav -->
             <ul class="navbar-nav mx-lg-auto">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#location-ascendig">
+            <a class="nav-link active" aria-current="page" href="#quienes-somos">
+                ¿Quienes somos?
+            </a>
+        </li>
+                <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#location-esmdz">
                 Conectate con nosotros
             </a>
         </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Cómo ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Cuándo ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Dónde ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Porqué ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Quienes ...?#}
-{#            </a>#}
-        </li>
+
         {# !!!       No elimina     !!! #}
 {#        <li class="nav-item dropdown">#}
 {#            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
@@ -61,15 +42,8 @@
                     aria-labelledby="navbarDropdownMenuLink">
 {#                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
                     <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
-                    {% if is_granted('ROLE_ADMIN_RESERVA') %}
-                        <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar
-                            Voluntario</a>
-                    {% endif %}
-                    {% if is_granted('ROLE_RESERVA') %}
-                        <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
-                        <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
-                        <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Lectura QR</a>
-                    {% endif %}
+
+
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
                         {# <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a> #}
