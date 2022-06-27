@@ -1,23 +1,17 @@
 {#LLeva entradas#}
 {#    Entradas: No modelTemplate#}
-<section class="information">
+<section class="information {{ section.cssClass }}" style="{{ section.cssStyle }}">
     <div class="container-fluid">
         <div class="row text-light">
-            <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
-                <i class="fas fa-tachometer-alt fa-3x p-2"></i>
-                <h4 class="py-3">Download 1 GBPS</h4>
-                <p class="para-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam odit consequatur doloribus natus in suscipit!</p>
+            {% for entrada in section.entradas   %}
+            <div class="{{entrada.cssClass | default('col-lg-4 text-center p-5') }}" style="{{ entrada.cssStyle }}">
+                {{ entrada.footer | raw}}
+                <h4 class="py-3">{{ entrada.titulo| raw }}</h4>
+                <p class="para-light">
+                    {{ entrada.contenido | striptags | raw }}
+                </p>
             </div>
-            <div class="col-lg-4 text-center p-5"  data-aos="zoom-in">
-                <i class="fas fa-clock fa-3x p-2"></i>
-                <h4 class="py-3">99% Internet Uptime</h4>
-                <p class="para-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam odit consequatur doloribus natus in suscipit!</p>
-            </div>
-            <div class="col-lg-4 text-center p-5 text-dark"  data-aos="zoom-in">
-                <i class="fas fa-headset fa-3x p-2"></i>
-                <h4 class="py-3">24/7 Support </h4>
-                <p class="para-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam odit consequatur doloribus natus in suscipit!</p>
-            </div>
+            {% endfor %}
         </div>
     </div> <!-- end of container -->
 </section>
