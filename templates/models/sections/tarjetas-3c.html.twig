@@ -7,7 +7,7 @@
                                     {% set entradas = section.entrada %}
                                 {% endif %}
                                 {% for entrada in entradas %}
-                                    <div {{ (entrada.destacado == true)?'class="col-md-8 mb-2 mx-auto d-flex align-self-stretch"':'class="col-md-4 mb-2 mx-auto d-flex align-self-stretch"' }}>
+                                    <div {{ (entrada.destacado == true)?'class="col-md-12 mb-2 mx-auto d-flex align-self-stretch"':'class="col-md-4 mb-2 mx-auto d-flex align-self-stretch"' }}>
                                         <div class="card shadow-none">
                                             <div class="contenedor">
                                                 <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
