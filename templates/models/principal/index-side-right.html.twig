@@ -1,35 +1,45 @@
 {% extends 'base_material_kit.twig' %}
-
 {% block sections %}
     <div class="container-fluid">
-        <div class="row g-5">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-sm-12">
                 {% for section in datosIndex.section %}
+                    {% if section.orden == 0%}
                     {{ render(controller(
                         'App\\Controller\\SectionController::mostrarSection', {id: section.id}
                     )) }}
-                    {#                {%  include 'sections/'~section.modelTemplate~'.html.twig' with { 'section':section } %} #}
-                    <!-- End Invitación: Header -->
-
+                    {% endif %}
                 {% endfor %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-9 col-sm-12 mr-0 pr-0 mt-md-0 mb-sm-5">
+                {% for section in datosIndex.section %}
+                    {% if section.orden != 0%}
+
+                    {{ render(controller(
+                        'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+                    )) }}
+
+                    {%endif%}
+                {% endfor %}
+            </div>
+            <div class="col-sm-12 d-md-none mt-8">
+
+            </div>
+            <div class="col-md-3 col-sm-12 ml-0 pl-0 mt-md-0 mt-sm-5">
                 {% for fixes in blocsFixes %}
-
                     {% if fixes.fixesType == 'side-fixe-right' %}
-
                         {% for blocsection in fixes.section %}
-
+            <div class="m-0 p-0 border-bottom border-secondary">
                             {{ render(controller(
                                 'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
                             )) }}
+            </div>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
             </div>
-            <div class="bg-camino" style="height: 200px">
-
-            </div>
+{#            <div class="bg-camino" style="height: 200px">#}
+{#            </div>#}
         </div>
     </div>
 

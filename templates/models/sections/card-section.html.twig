@@ -7,7 +7,7 @@
         {% endif %}
 
         {% for entrada in entradas %}
-            {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'section':entrada } %}
+            {#  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'section':entrada } #}
             {%  include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
         {% endfor %}
 

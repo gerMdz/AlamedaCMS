@@ -20,6 +20,7 @@ class MetaBaseType extends AbstractType
             ->add('metaType')
             ->add('metaUrl')
             ->add('siteName')
+            ->add('favicon')
         ;
     }
 

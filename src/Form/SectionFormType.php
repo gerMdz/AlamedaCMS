@@ -111,6 +111,14 @@ class SectionFormType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+            ->add('footer', CKEditorType::class, [
+                'required' => false,
+                'config' => [
+                    'uiColor' => '#fafafa'],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
             ->add('isLinkExterno', CheckboxType::class, [
                 'required' => false,
                 'label' => false,

@@ -61,6 +61,11 @@ class MetaBase
      */
     private $base;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $favicon;
+
     public function __construct()
     {
         $this->base = 'index';
@@ -175,6 +180,18 @@ class MetaBase
     public function setBase(string $base): self
     {
         $this->base = $base;
+
+        return $this;
+    }
+
+    public function getFavicon(): ?string
+    {
+        return $this->favicon;
+    }
+
+    public function setFavicon(?string $favicon): self
+    {
+        $this->favicon = $favicon;
 
         return $this;
     }

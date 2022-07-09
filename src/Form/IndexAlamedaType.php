@@ -27,6 +27,7 @@ class IndexAlamedaType extends AbstractType
             ->add('metaImage')
             ->add('base')
             ->add('section')
+            ->add('template')
         ;
     }
 

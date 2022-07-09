@@ -2,7 +2,7 @@
 # Template section blockquote.html.twig
 # Necesita template entrada
 #}
-<section class=" {{ section.cssClass}} " id="inicio">
+<section class=" {{ section.cssClass}}" id="inicio" style="{{ section.cssStyle|default('text-center')}}">
     <div class="container">
         <div class="row fullscreen align-items-center justify-content-center">
             <div class="col-sm-12 text-center mx-auto mt-1">
@@ -14,7 +14,7 @@
                     {% endif %}
 
                     {% for entrada in entradas %}
-                    {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
+                    {#  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } #}
                     {%  include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
                     {% endfor %}
                     <hr/>

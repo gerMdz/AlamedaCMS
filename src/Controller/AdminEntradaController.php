@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminEntradaController extends AbstractController
+class AdminEntradaController extends BaseController
 {
     private LoggerClient $loggerClient;
     private BoleanToDateHelper $boleanToDateHelper;
@@ -362,17 +362,56 @@ class AdminEntradaController extends AbstractController
     }
 
     /**
-     * @Route("/admin/entrada/{id}", name="entrada_delete", methods={"DELETE"})
+     * @Route("/admin/entrada/{id}/delete", name="entrada_delete", methods={"DELETE", "POST"})
      * @param Request $request
      * @param Entrada $entrada
      * @return Response
      */
     public function delete(Request $request, Entrada $entrada): Response
     {
+        $status = 'error';
+        $msg = 'No se puede borrar esta entrada. Comuníquese con el administrador';
+
         if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
-            $this->managerRegistry->getManager()->remove($entrada);
-            $this->managerRegistry->getManager()->flush();
+
+            $msg = 'No cuenta con los permisos para borrar esta entrada. Comuníquese con el administrador';
+
+            if ($this->getUser() === $entrada->getAutor() or $this->isGranted('ROLE_EDITOR')) {
+
+                {
+                    foreach ($entrada->getPrincipals() as $principal) {
+                        $entrada->removePrincipal($principal);
+                    }
+                }
+
+                foreach ($entrada->getSections() as $section) {
+                    $entrada->removeSection($section);
+                }
+
+                foreach ($entrada->getComentarios() as $comentario) {
+                    $entrada->removeComentario($comentario);
+                }
+
+                foreach ($entrada->getContacto() as $contacto) {
+                    $entrada->removeContacto($contacto);
+                }
+
+                foreach ($entrada->getButton() as $button) {
+                    $entrada->removeButton($button);
+                }
+
+                foreach ($entrada->getEntradaReferences() as $reference) {
+                    $this->managerRegistry->getManager()->remove($reference);
+                }
+
+                $this->managerRegistry->getManager()->remove($entrada);
+                $this->managerRegistry->getManager()->flush();
+                $status = 'success';
+                $msg = 'Se borro la entrada';
+            }
         }
+
+        $this->addFlash($status, $msg);
 
         return $this->redirectToRoute('admin_entrada_index');
     }

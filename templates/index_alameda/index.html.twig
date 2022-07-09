@@ -34,7 +34,11 @@
                         {% for index_alameda in index_alamedas %}
                             <tr>
                                 <td>{{ index_alameda.id }}</td>
-                                <td>{{ index_alameda.blocsFixes }}</td>
+                                <td>
+                                {%for blocsFixes in index_alameda.blocsFixes %}
+                                    {{ blocsFixes }} <br/>
+                                {%endfor%}
+                                </td>
                                 <td>{{ index_alameda.lema }}</td>
                                 <td>{{ index_alameda.lemaPrincipal }}<br/>
                                     {{ index_alameda.lemaSinEspacio }}</td>
@@ -88,7 +92,7 @@
                                 </div>
                             </td>
                         </tr>
-                            {% endif %}
+
                         {% else %}
                             <tr>
                                 <td colspan="13">
@@ -98,6 +102,7 @@
                                     <i class="fas fa-plus-circle"></i> Crear Index</a>
                                 </td>
                             </tr>
+                        {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>

@@ -133,9 +133,9 @@ a.text-point-sec:hover {
     display: inline-flex;
     -moz-box-align: center;
     align-items: center;
-    font-family: "Proxima Nova", ArialNova, "Helvetica Neue", Helvetica, "Arial Nova", Arial, sans-serif !important;
+    font-family: Roboto, sans-serif  !important;
     user-select: none;
-    margin-top: 8px;
+    margin-top: 1rem;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.25;
@@ -154,9 +154,9 @@ a.text-point-sec:hover {
     display: inline-flex;
     -moz-box-align: center;
     align-items: center;
-    font-family: ArialNova, "Arial Nova", Arial, sans-serif, "Proxima Nova", "Helvetica Neue", Helvetica !important;
+    font-family: Roboto, sans-serif  !important;
     user-select: none;
-    margin-top: 8px;
+    margin-top: 1rem;
     font-size: 1rem;
     font-weight: 900 !important;
     text-transform: uppercase;
@@ -480,6 +480,9 @@ h3.quote:after {
     line-height: 1.5em;
     font-family: Roboto, sans-serif;
 }
+.text-14-300.centrado{
+    text-align: center!important;
+}
 b, i, sup, sub, u, del {
     color: rgb(41, 147, 229);
 }
@@ -707,6 +710,12 @@ body.frontal {
     font-size: 2rem;
     font-weight: 300;
     line-height: 1.2;
+}
+
+.display-15 {
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.4;
 }
 .btn-blue {
     background-color: #1976d2 !important;
@@ -956,4 +965,12 @@ h4.card-title{
 
 .card-title{
     font-family: 'Roboto', "proxima-nova", "Helvetica Neue", sans-serif !important;
+}
+
+.display-t-300 {
+    font-weight: 300 !important;
+}
+
+h5.text-izq {
+    text-align: left !important;
 }

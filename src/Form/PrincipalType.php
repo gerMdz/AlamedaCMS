@@ -21,7 +21,6 @@ class PrincipalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
             ->add('titulo', CKEditorType::class, [
                 'required' => false,
                 'config' => [
@@ -31,7 +30,6 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-
             ->add('contenido', CKEditorType::class, [
                 'required' => true,
                 'config' => [
@@ -41,7 +39,6 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-
             ->add('linkRoute', TextType::class, [
                 'label' => 'linkRoute',
                 'help' => 'Texto de la url '
@@ -62,7 +59,6 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'required' => false,
@@ -78,14 +74,12 @@ class PrincipalType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
-
             ->add('autor', HiddenType::class, [
                 'property_path' => 'autor.id',
                 'attr' => [
                     'class' => 'hidden'
                 ]
             ])
-
             ->add(
                 'principal',
                 EntityType::class,
@@ -103,13 +97,11 @@ class PrincipalType extends AbstractType
 
                 ]
             )
-
             ->add('cssClass', TextType::class, [
                 'label'=> 'Css',
                 'help' => 'Agregar una clase css ya definida',
                 'required' => false,
             ])
-
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
                 'query_builder' => function (ModelTemplateRepository $er) {
@@ -123,7 +115,6 @@ class PrincipalType extends AbstractType
                     'class' => 'select2-enable'
                 ]
             ])
-
             ->add('isActive',CheckboxType::class, [
                 'required' => false,
                 'label' => 'Activa?',

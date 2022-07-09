@@ -34,12 +34,9 @@ Encore
     .addEntry('select2-parent', './assets/js/select2-parent.js')
     .addEntry('select2-entrada', './assets/js/select2-entrada.js')
     .addEntry('nota_mensaje', './assets/js/nota_mensaje.js')
-    .addEntry('tailwind', './assets/js/tailwind.js')
-    // .addEntry('summernote', './assets/js/summer.js')
-    //.addEntry('page1', './assets/js/page1.js')
     .addStyleEntry('loginStyle', './assets/css/styles.css')
     .addStyleEntry('perfilStyle', './assets/css/account.css')
-    .addStyleEntry('tailwindStyle', './assets/css/tailwind.css')
+
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

@@ -24,4 +24,21 @@ trait CssClass
 
         return $this;
     }
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $cssStyle;
+
+    public function getCssStyle(): ?string
+    {
+        return $this->cssStyle;
+    }
+
+    public function setCssStyle(?string $cssStyle): self
+    {
+        $this->cssStyle = $cssStyle;
+
+        return $this;
+    }
 }

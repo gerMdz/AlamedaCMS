@@ -84,8 +84,16 @@
                 {#                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use> #}
                 {#                        </svg> #}
                 {#                        Typography</a></li> #}
-                <li class="nav-title">Blocks</li>
-                <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                <li class="nav-group">
+                    <a class="nav-link nav-group-toggle" href="#">
+                        <i class="fa fa-building me-3"></i>
+                        Blocks</a>
+                    <ul class="nav-group-items">
+
+
+
+                <li class="nav-group">
+                    <a class="nav-link nav-group-toggle" href="#">
                         <svg class="nav-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
                         </svg>
@@ -126,6 +134,63 @@
                         {#                                Tabs</a></li> #}
                         {#                        <li class="nav-item"><a class="nav-link" href="base/tooltips.html"><span #}
                         {#                                        class="nav-icon"></span> Tooltips</a></li> #}
+                    </ul>
+                </li>
+                <li class="nav-group">
+                    <a class="nav-link nav-group-toggle" href="#">
+                        <svg class="nav-icon">
+                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+                        </svg>
+                        Block-fixes </a>
+                    <ul class="nav-group-items">
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_blocs_fixes_index') }}">
+                                <span class="nav-icon"></span> Listado</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_blocs_fixes_new') }}">
+                                <span class="nav-icon"></span> Crear</a></li>
+{#                        <li class="nav-item"><a class="nav-link" href="{{ path('admin_entrada_new_step1') }}">#}
+{#                                <span class="nav-icon"></span> Crear <small> (<i#}
+{#                                            class="fas fa-hand-sparkles"></i>)</small></a>#}
+{#                        </li>#}
+{#                        <li class="nav-item"><a class="nav-link" href="{{ path('admin_entrada_publicadas') }}">#}
+{#                                <span#}
+{#                                        class="nav-icon"></span> Publicadas</a></li>#}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/collapse.html"><span #}
+                        {#                                        class="nav-icon"></span> Collapse</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/list-group.html"><span #}
+                        {#                                        class="nav-icon"></span> List group</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/navs.html"><span class="nav-icon"></span> #}
+                        {#                                Navs</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/pagination.html"><span #}
+                        {#                                        class="nav-icon"></span> Pagination</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/placeholders.html"><span #}
+                        {#                                        class="nav-icon"></span> Placeholders</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/popovers.html"><span #}
+                        {#                                        class="nav-icon"></span> Popovers</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/progress.html"><span #}
+                        {#                                        class="nav-icon"></span> Progress</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/scrollspy.html"><span #}
+                        {#                                        class="nav-icon"></span> Scrollspy</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/spinners.html"><span #}
+                        {#                                        class="nav-icon"></span> Spinners</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/tables.html"><span class="nav-icon"></span> #}
+                        {#                                Tables</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/tabs.html"><span class="nav-icon"></span> #}
+                        {#                                Tabs</a></li> #}
+                        {#                        <li class="nav-item"><a class="nav-link" href="base/tooltips.html"><span #}
+                        {#                                        class="nav-icon"></span> Tooltips</a></li> #}
+                    </ul>
+                </li>
+                <li class="nav-group">
+                    <a class="nav-link nav-group-toggle" href="#">
+                        <svg class="nav-icon">
+                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+                        </svg>
+                        Apis <span class="badge badge-sm bg-info ms-auto">Nuevo</span></a>
+                    <ul class="nav-group-items">
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_source_api_index') }}">
+                                <span class="nav-icon"></span> Listado</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_source_api_new') }}">
+                                <span class="nav-icon"></span> Crear</a></li>
                     </ul>
                 </li>
                 {#                <li class="nav-group"><a class="nav-link nav-group-toggle" href="#"> #}
@@ -243,11 +308,14 @@
                 {#                        <div class="fw-semibold">PRO</div> #}
                 {#                    </a></li> #}
             </ul>
+                </li>
+            </ul>
+
             <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
         {% endblock %}
     </div>
     <div class="wrapper d-flex flex-column min-vh-100 ">
-        <header class="header header-sticky mb-4">
+        <header class="header header-sticky mb-1">
             <div class="container-fluid">
 
                 {% block buttonSidebar %}
@@ -377,7 +445,23 @@
                 </nav>
             </div>
         </header>
-        <div class="container-lg">
+        <div class="container-fluid p-0">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-5 pt-5 mb-0 pb-0">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger mt-5 pt-5 mb-0 pb-0">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                <div class="alert alert-warning" style="position: fixed; bottom: 50px">
+                    Temporalmente
+                    <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+                </div>
+            {% endif %}
             <div class="row">
 
                 {% block content %}

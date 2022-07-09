@@ -129,6 +129,11 @@ class Section
      */
     private Collection $entradas;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $footer;
+
     public function __toString()
     {
         return $this->name;
@@ -421,6 +426,18 @@ class Section
         if ($this->entradas->removeElement($entrada)) {
             $entrada->removeSection($this);
         }
+
+        return $this;
+    }
+
+    public function getFooter(): ?string
+    {
+        return $this->footer;
+    }
+
+    public function setFooter(?string $footer): self
+    {
+        $this->footer = $footer;
 
         return $this;
     }
