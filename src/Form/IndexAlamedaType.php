@@ -15,10 +15,6 @@ class IndexAlamedaType extends AbstractType
             ->add('lema')
             ->add('lemaPrincipal')
             ->add('lemaSinEspacio')
-            ->add('horario1')
-            ->add('horario2')
-            ->add('textoVersiculo')
-            ->add('versiculo')
             ->add('metaDescripcion')
             ->add('metaAutor')
             ->add('metaTitle')
@@ -27,6 +23,7 @@ class IndexAlamedaType extends AbstractType
             ->add('metaImage')
             ->add('base')
             ->add('section')
+            ->add('template')
         ;
     }
 

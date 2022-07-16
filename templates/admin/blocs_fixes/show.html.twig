@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BlocsFixes{% endblock %}
+
+{% block body %}
+    <h1>BlocsFixes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ blocs_fix.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ blocs_fix.description }}</td>
+            </tr>
+            <tr>
+                <th>CssClass</th>
+                <td>{{ blocs_fix.cssClass }}</td>
+            </tr>
+            <tr>
+                <th>ImageFilename</th>
+                <td>{{ blocs_fix.imageFilename }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ blocs_fix.createdAt ? blocs_fix.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ blocs_fix.updatedAt ? blocs_fix.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Identificador</th>
+                <td>{{ blocs_fix.identificador }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_blocs_fixes_index') }}">back to list</a>
+
+    <a href="{{ path('app_blocs_fixes_edit', {'id': blocs_fix.id}) }}">edit</a>
+
+    {{ include('admin/blocs_fixes/_delete_form.html.twig') }}
+{% endblock %}

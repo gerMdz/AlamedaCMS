@@ -41,7 +41,7 @@ class Roles
     private $isActivo;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="role")
+     * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="rol")
      */
     private $itemMenus;
 
@@ -49,6 +49,7 @@ class Roles
     {
         $this->itemMenus = new ArrayCollection();
     }
+
 
     public function __toString(): string
     {
@@ -126,7 +127,7 @@ class Roles
     }
 
     /**
-     * @return Collection|ItemMenu[]
+     * @return Collection<int, ItemMenu>
      */
     public function getItemMenus(): Collection
     {
@@ -137,7 +138,7 @@ class Roles
     {
         if (!$this->itemMenus->contains($itemMenu)) {
             $this->itemMenus[] = $itemMenu;
-            $itemMenu->addRole($this);
+            $itemMenu->addRol($this);
         }
 
         return $this;
@@ -146,9 +147,15 @@ class Roles
     public function removeItemMenu(ItemMenu $itemMenu): self
     {
         if ($this->itemMenus->removeElement($itemMenu)) {
-            $itemMenu->removeRole($this);
+            $itemMenu->removeRol($this);
         }
 
         return $this;
     }
+
+
+
+
+
+
 }

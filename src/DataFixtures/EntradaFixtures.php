@@ -55,15 +55,6 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
                 ->setLinkRoute($link);
 
 
-
-
-
-
-//            $tags = $this->getRandomReferences('main_tags', $this->faker->numberBetween(0, 5));
-//            foreach ($tags as $tag) {
-//                $article->addTag($tag);
-//            }
-
             return $entrada;
         });
 
@@ -87,5 +78,9 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
 //            TagFixture::class,
             UserFixtures::class,
         ];
+    }
+    public static function getGroups(): array
+    {
+        return ['groupentradas'];
     }
 }

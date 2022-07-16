@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Entrada;
 use App\Entity\Principal;
 use App\Entity\Section;
+use App\Entity\SourceApi;
 use App\Form\SectionFormType;
 use App\Form\Step\Section\StepOneType;
 use App\Form\Step\Section\StepThreeType;
@@ -12,17 +13,26 @@ use App\Form\Step\Section\StepTwoType;
 use App\Repository\EntradaRepository;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\SectionRepository;
+use App\Service\Handler\SourceApi\HandlerSourceApi;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class SectionController
@@ -33,14 +43,16 @@ class SectionController extends BaseController
 {
 
     private $session;
+    private $api;
 
     /**
      * SectionController constructor.
      * @param SessionInterface $session
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, HandlerSourceApi $api)
     {
         $this->session = $session;
+        $this->api = $api;
     }
 
     /**
@@ -60,7 +72,7 @@ class SectionController extends BaseController
         );
 
         return $this->render('section_admin/list.html.twig', [
-            'sections' => $secciones
+            'sections' => $secciones,
         ]);
     }
 
@@ -91,10 +103,10 @@ class SectionController extends BaseController
                 $section->setImageFilename($newFilename);
             }
 
-            if($this->session->get('principal_id')){
+            if ($this->session->get('principal_id')) {
                 $principal_id = $this->session->get('principal_id');
                 $principal = $em->getRepository(Principal::class)->find($principal_id);
-                if($principal){
+                if ($principal) {
                     $section->addPrincipale($principal);
                 }
                 $this->session->remove('principal_id');
@@ -109,7 +121,7 @@ class SectionController extends BaseController
         }
 
         return $this->render('section_admin/new.html.twig', [
-            'sectionForm' => $form->createView()
+            'sectionForm' => $form->createView(),
         ]);
     }
 
@@ -147,7 +159,6 @@ class SectionController extends BaseController
     }
 
 
-
     /**
      * @Route("/index/{id}", name="admin_index_delete_section", methods={"DELETE"})
      * @param Section $section
@@ -162,6 +173,7 @@ class SectionController extends BaseController
         $section->removeIndexAlameda($indexAlameda[0]);
 
         $entityManager->flush();
+
         return new Response(null, 204);
     }
 
@@ -172,12 +184,16 @@ class SectionController extends BaseController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function deleteEntradaSection(Section $section, Entrada $entrada, EntityManagerInterface $entityManager): Response
-    {
+    public function deleteEntradaSection(
+        Section $section,
+        Entrada $entrada,
+        EntityManagerInterface $entityManager
+    ): Response {
 
         $section->removeEntrada($entrada);
 
         $entityManager->flush();
+
         return new Response(null, 204);
     }
 
@@ -188,14 +204,18 @@ class SectionController extends BaseController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function deletePrincipalSection(Section $section, Principal $principal, EntityManagerInterface $entityManager): Response
-    {
-        if($principal->getSecciones() !== null) {
+    public function deletePrincipalSection(
+        Section $section,
+        Principal $principal,
+        EntityManagerInterface $entityManager
+    ): Response {
+        if ($principal->getSecciones() !== null) {
             $section->removePrincipale($principal);
         }
 
         $section->setPrincipal(null);
         $entityManager->flush();
+
         return new Response(null, 204);
     }
 
@@ -204,20 +224,42 @@ class SectionController extends BaseController
      * @param Section $section
      * @param EntradaRepository $entradaRepository
      * @return Response
-     * @throws QueryException
      */
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
     {
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
         $twig = $section->getModelTemplate().".html.twig";
-        $model = 'models/sections/'.$twig;
-        if($this->get('twig')->getLoader()->exists('models/sections/'.$twig)) {
-            $model = 'models/sections/'.$twig;
+        $response_api = null;
+        $apiSource = null;
+
+        if ($twig == 'api.html.twig') {
+
+            try {
+                $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
+                 'identifier' => $section->getIdentificador()
+                ]);
+
+            } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+            }
+            if ($apiSource) {
+                try {
+                    $response_api = $this->api->fetchSourceApi($apiSource[0])[0];
+                    $response_api['source'] = $apiSource[0]->getBaseUri();
+
+
+                } catch (ClientExceptionInterface|DecodingExceptionInterface|ServerExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface $e) {
+                }
+            }
+
         }
-        return $this->render($model,[
-           'entradas' => $entradas,
-            'section' => $section
+        $model = 'models/sections/'.$twig;
+
+
+        return $this->render($model, [
+            'entradas' => $entradas,
+            'section' => $section,
+            'response_api' => $response_api,
         ]);
     }
 
@@ -255,7 +297,7 @@ class SectionController extends BaseController
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_section_new_step2', [
-                'id' => $section->getId()
+                'id' => $section->getId(),
             ]);
         }
 
@@ -273,8 +315,11 @@ class SectionController extends BaseController
      * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
-    public function newStepTwo(Request $request, Section $section, ModelTemplateRepository $modelTemplateRepository ): Response
-    {
+    public function newStepTwo(
+        Request $request,
+        Section $section,
+        ModelTemplateRepository $modelTemplateRepository
+    ): Response {
         $section->setTitle($section->getName());
         $form = $this->createForm(StepTwoType::class, $section);
         $form->handleRequest($request);
@@ -282,9 +327,9 @@ class SectionController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $model_template_id = $this->session->get('model_template_id');
-            if($model_template_id){
+            if ($model_template_id) {
                 $model_template = $modelTemplateRepository->find($model_template_id);
-                if($model_template){
+                if ($model_template) {
                     $section->setModelTemplate($model_template);
                 }
                 $this->session->remove('model_template_id');
@@ -292,7 +337,7 @@ class SectionController extends BaseController
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step3', [
-                'id' => $section->getId()
+                'id' => $section->getId(),
             ]);
         }
 
@@ -320,7 +365,7 @@ class SectionController extends BaseController
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_show', [
-                'id' => $section->getId()
+                'id' => $section->getId(),
             ]);
         }
 
@@ -330,4 +375,12 @@ class SectionController extends BaseController
         ]);
     }
 
+    /**
+     * @Route("/test/api/{identifier}", name="admin_section_test_api", methods={"GET","POST"})
+     * @param SourceApi $api
+     */
+    public function getDataSourceApi(SourceApi $api)
+    {
+            return new JsonResponse($this->api->fetchSourceApi($api));
+    }
 }

@@ -161,7 +161,7 @@
                                         <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
                                              class="card-img-top img-modal"
                                              data-toggle="modal" data-target="#modal-02"
-                                             alt="{{ base.lema }}">
+                                             alt="{{ base.lema|default('AlamedaCMS') }}">
                                     </div>
                                     <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
                                         <h5 class="card-title text-uppercase">

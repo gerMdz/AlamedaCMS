@@ -37,18 +37,26 @@ class ZinicioController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         /** @var IndexAlameda $indexAlameda */
-        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
+        $indexAlameda = $em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
         if ($this->site_temporal == 'true') {
             return $this->redirectToRoute('reserva_index');
 //            return $this->render('models/principal/temporalmente.html.twig', [
 //                'datosIndex' => null,
 //            ]);
         }
+        $vista = 'index';
+        if($indexAlameda->getTemplate()){
+            $vista = $indexAlameda->getTemplate();
+        }
 
 
-        return $this->render('models/principal/index.html.twig', [
+            $blocsFixes = $indexAlameda->getBlocsFixes()?? [];
+
+
+        return $this->render('models/principal/'.$vista .'.html.twig', [
             'controller_name' => 'InicioController',
-            'datosIndex' => $indexAlameda[0],
+            'datosIndex' => $indexAlameda,
+            'blocsFixes' => $blocsFixes,
         ]);
     }
 

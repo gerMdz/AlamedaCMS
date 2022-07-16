@@ -8,13 +8,10 @@
     {% set version = 'now' | date('YmdH') %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>
-        {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
-    </title>
+    <title>{% block title %}{{ base.siteName }} Bienvenido! {% endblock %}</title>
     {% set index = 'base' %}
-
-    <meta name="description" content="{{ base.siteName }},  {{ base_metaDescripcion() }}">
-    <meta name="keywords" content="{{ base.siteName}},{{base.lema}},{{base_metaDescripcion()}}">
+    <meta name="description" content="{% block meta_description_content%}{{base_metaDescripcion()}}{% endblock %}. {{ base.siteName }}">
+    <meta name="keywords" content="{{ base.siteName }}, {% block meta_keywords_content%}{{ base.lema }}, {{ base_metaDescripcion() }} {% endblock%}">
     <meta name="author" content="{{ base.metaAutor }}">
     <meta property="og:title" content="{{ base.metaTitle }}"/>
     <meta property="og:type" content="{{ base.metaTYpe }}"/>
@@ -24,7 +21,7 @@
     <meta property="og:site_name" content="{{ base.siteName }}" />
     <link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon">
     <title>{{ base.metaTitle }}</title>
-    {# {% include('inicio/_favicon_html.twig') %} #}
+     {% include('inicio/_favicon_html.twig') %}
     {% block icons %}
         <link href="{{ asset('icons/foundation-icons/foundation-icons.css') }}" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -42,7 +39,7 @@
         {# <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}"> #}
         <link href="{{ asset('css/igles.min.css') }}?v={{ version }}" rel="stylesheet">
         <link href="{{ asset('css/bg.css') }}?v={{ version }}" rel="stylesheet">
-        <link href="{{ asset('material-kit/css/material-kit.min.css') }}?v=2.0.4" rel="stylesheet"/>
+        <link href="{{ asset('material-kit/css/material-kit.min.css') }}?v=3.0.1" rel="stylesheet"/>
         <style>
             body {
                 font-family: 'Roboto', sans-serif !important;
@@ -137,7 +134,8 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script>
+{#    <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script>#}
+    <script src="{{ asset('material-kit/js/material-kit.min.js')}}?v=3.0.1" type="text/javascript"></script>
 
 {% endblock %}
 

@@ -33,7 +33,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('loginStyle') }}
-    <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
@@ -51,7 +51,7 @@
             'class': 'form-signin'
         }
     }) }}
-    <h1 class="h3 mb-3 font-weight-normal">Registro de Usuarios de La Alameda </h1>
+    <h1 class="h3 mb-3 font-weight-normal">Registro de Usuarios de AlamedaCMS </h1>
 
     {# {{ form_widget(regristroForm) }} #}
 

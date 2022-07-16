@@ -19,7 +19,7 @@ class ComentarioType extends AbstractType
             ->add('autor')
             ->add('entrada')
             ->add('principal')
-            ->add('brote')
+
         ;
     }
 

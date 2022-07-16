@@ -1,0 +1,16 @@
+<div class="d-flex align-items-center">
+    <h4>
+        {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw }}
+    </h4>
+</div>
+<div>
+    {{ entrada.contenido| raw }}
+</div>
+<div class="d-flex">
+    {% if (entrada.contacto) %}
+        {% include 'models/entradas/contacto_mirko.html.twig' with { 'contactos':entrada.contacto } %}
+    {% endif %}
+</div>
+
+
+

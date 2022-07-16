@@ -1,0 +1,11 @@
+{% extends 'base_admin_board.html.twig' %}
+
+{% block title %}Nuevo BlocsFixes{% endblock %}
+
+{% block content %}
+    <h1>Create new BlocsFixes</h1>
+
+    {{ include('admin/blocs_fixes/_form.html.twig') }}
+
+    <a href="{{ path('app_blocs_fixes_index') }}">back to list</a>
+{% endblock %}

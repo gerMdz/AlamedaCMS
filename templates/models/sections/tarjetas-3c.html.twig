@@ -1,0 +1,34 @@
+<section class="{{ section.cssClass | default('a-content-space-medium bg-fam') }} ">
+    <div class="container-fluid mt-lg-1 mt-sm-5">
+                    <div class="row justify-content-center ">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                {% if entradas is not defined %}
+                                    {% set entradas = section.entrada %}
+                                {% endif %}
+                                {% for entrada in entradas %}
+                                    <div {{ (entrada.destacado == true)?'class="col-md-8 mb-2 mx-auto d-flex align-self-stretch"':'class="col-md-4 mb-2 mx-auto d-flex align-self-stretch"' }}>
+                                        <div class="card shadow-none">
+                                            <div class="contenedor">
+                                                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                                     alt="{{ app.request.baseUrl }}"
+                                                     class="card-img">
+                                            </div>
+                                            <div class="card-footer bg-white justify-content-between ">
+                                                <a href="{{ (entrada.linkPosting != null)? entrada.linkPosting : path('principal_ver', {'linkRoute': entrada.linkRoute}) }}"
+                                                   class="card-link text-left">
+                                                    <span class="text-alameda">{{ entrada.titulo|striptags | raw }}</span><br/>
+                                                    <small>{{ entrada.contenido|replace({'<p>':'', '</p>':'<br/>'}) | raw }}</small>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+    </div>
+</section>

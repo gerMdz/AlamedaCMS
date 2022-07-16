@@ -1,5 +1,7 @@
 {% extends 'base_material_kit.twig' %}
 {% block title %} {{ principal.titulo | striptags | raw }}  {% endblock %}
+{% block meta_description_content %}{{ parent() }}{% endblock %}
+{% block meta_keywords_content %}{{ parent() }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
 

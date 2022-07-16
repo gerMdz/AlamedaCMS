@@ -211,7 +211,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*----------------------------------
-  Carousel
+  Carousell
 ------------------------------------*/
 .carousel-control-size {
   font-size: 2rem;
@@ -220,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
 /*----------------------------------
   Forms
 ------------------------------------*/
-/* Form Label States */
+/* Form Lable States */
 .is-valid .form-label-text {
   color: #0dd157;
 }
@@ -1047,7 +1047,10 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   height: 3.75rem;
   overflow: hidden;
-  padding: 0.3125rem 0.9375rem;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
   color: #fff;
   background-color: #59287a;
   transition: all .2s ease;
@@ -1293,13 +1296,3 @@ Sorteable
   cursor: grab;
 }
 
-.action-btn-wrapper {
-  position: relative;
-}
-
-.fixed-action-btn.my-float-btn {
-  position: fixed;
-  right: 0;
-  bottom: 15%;
-  padding-top: 15px;
-}

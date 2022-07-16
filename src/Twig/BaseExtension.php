@@ -59,25 +59,27 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         ];
     }
 
-    public function lema(): ?string
+    public function lema()
     {
         $lema = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
 
         return $lema->getLema();
     }
 
-    public function metaDescripcion(): ?string
+    public function metaDescripcion()
     {
         $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
-
-        return $base->getMetaDescripcion();
+        //        return $base->getMetaDescripcion();
+        return $base->getMetaDescripcion() ?? '';
     }
 
     public function base()
     {
         //        $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
 
-        return $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(['base' => 'index']);
+        return $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(
+            ['base' => 'index']
+        );
     }
 
 
@@ -88,18 +90,23 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             ->getPublicPath($path);
     }
 
-    public function capacidad_restante(string $celebracion, int $cantidad): int
+    public function capacidad_restante(string $celebracion, int $cantidad)
     {
-        $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+        $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(
+            Invitado::class
+        )->countByCelebracion($celebracion);
+
         return $cantidad - $invitados;
     }
 
     public function capacidad_ocupada(string $celebracion)
     {
-        return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+        return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion(
+            $celebracion
+        );
     }
 
-    public static function getSubscribedServices(): array
+    public static function getSubscribedServices()
     {
         return [
             UploaderHelper::class,
@@ -129,11 +136,16 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
             if ($inicio !== false) {
                 $fin = strpos($campo, $this->ind_final);
-                $servicio = substr($campo,
+                $servicio = substr(
+                    $campo,
                     ($inicio + strlen($this->ind_inicio)),
-                    $fin - ($inicio + strlen($this->ind_inicio)));
-                $campo = str_replace($this->ind_inicio . $servicio . $this->ind_final,
-                    $this->addTexto(trim($servicio)), $campo);
+                    $fin - ($inicio + strlen($this->ind_inicio))
+                );
+                $campo = str_replace(
+                    $this->ind_inicio.$servicio.$this->ind_final,
+                    $this->addTexto(trim($servicio)),
+                    $campo
+                );
 
                 $encontro = true;
             } else {
@@ -162,18 +174,12 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return sprintf($texto, $valor, $valor, $valor, $valor);
     }
 
-    /**
-     * @param string $type
-     * @param string $fuente
-     * @return array|string|void
-     */
-    public function form_suscripto_newsletter(string $type,string $fuente)
+    public function form_suscripto_newsletter(string $type,string $fuente): string
     {
-        switch ($type){
+        switch ($type) {
             case 'script':
+            default:
                 return $this->divScript($fuente);
-            case 'iframe':
-                return $this->divIframe($fuente);
         }
     }
 
@@ -185,22 +191,9 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     {
         $crea_formulario = $this->container->get(EntityManagerInterface::class)
             ->getRepository(NewsSite::class)
-            ->findBy(['srcType' =>'script', 'srcSite' => $fuente]);
+            ->findBy(['srcType' => 'script', 'srcSite' => $fuente]);
 
         return $crea_formulario[0]->getSrcCodigo();
-    }
-
-    /**
-     * @param string $fuente
-     * @return array
-     */
-    protected function divIframe(string $fuente): array
-    {
-        $crea_formulario = $this->container->get(EntityManagerInterface::class)
-            ->getRepository(NewsSite::class)
-            ->findBy(['srcType' =>'iframe', 'srcSite' => $fuente]);
-
-        return [$crea_formulario[0]->getSrcCodigo(),$crea_formulario[0]->getSrcParameters()];
     }
 
 }
