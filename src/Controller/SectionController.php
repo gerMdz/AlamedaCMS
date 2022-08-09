@@ -234,26 +234,26 @@ class SectionController extends BaseController
         $response_api = null;
         $apiSource = null;
 
-        if ($twig == 'api.html.twig') {
-
-            try {
-                $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
-                 'identifier' => $section->getIdentificador()
-                ]);
-
-            } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
-            }
-            if ($apiSource) {
-                try {
-                    $response_api = $this->api->fetchSourceApi($apiSource[0])[0];
-                    $response_api['source'] = $apiSource[0]->getBaseUri();
-
-
-                } catch (ClientExceptionInterface|DecodingExceptionInterface|ServerExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface $e) {
-                }
-            }
-
-        }
+//        if ($twig == 'api.html.twig') {
+//
+//            try {
+//                $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
+//                 'identifier' => $section->getIdentificador()
+//                ]);
+//
+//            } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+//            }
+//            if ($apiSource) {
+//                try {
+//                    $response_api = $this->api->fetchSourceApi($apiSource[0])[0];
+//                    $response_api['source'] = $apiSource[0]->getBaseUri();
+//
+//
+//                } catch (ClientExceptionInterface|DecodingExceptionInterface|ServerExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface $e) {
+//                }
+//            }
+//
+//        }
         $model = 'models/sections/'.$twig;
 
 
