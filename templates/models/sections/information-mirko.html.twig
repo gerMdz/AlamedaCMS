@@ -1,0 +1,17 @@
+{#LLeva entradas#}
+{#    Entradas: No modelTemplate#}
+<section class="information {{ section.cssClass }}" style="{{ section.cssStyle }}">
+    <div class="container-fluid">
+        <div class="row text-light">
+            {% for entrada in section.entradas   %}
+            <div class="{{entrada.cssClass | default('col-lg-4 text-center p-5') }}" style="{{ entrada.cssStyle }}">
+                {{ entrada.footer | raw}}
+                <h4 class="py-3">{{ entrada.titulo| raw }}</h4>
+                <p class="para-light">
+                    {{ entrada.contenido | striptags | raw }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div> <!-- end of container -->
+</section>

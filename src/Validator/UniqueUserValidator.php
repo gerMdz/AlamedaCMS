@@ -9,7 +9,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 class UniqueUserValidator extends ConstraintValidator
 {
 
-    private $userRepository;
+    private UserRepository $userRepository;
 
     /**
      * UniqueUserValidator constructor.

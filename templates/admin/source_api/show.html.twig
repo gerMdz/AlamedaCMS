@@ -1,0 +1,58 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}SourceApi{% endblock %}
+
+{% block content %}
+    <h1>SourceApi</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ source_api.id }}</td>
+            </tr>
+            <tr>
+                <th>Identifier</th>
+                <td>{{ source_api.identifier }}</td>
+            </tr>
+            <tr>
+                <th>Base_uri</th>
+                <td>{{ source_api.baseUri }}</td>
+            </tr>
+            <tr>
+                <th>Auth_basic</th>
+                <td>{{ source_api.authBasic }}</td>
+            </tr>
+            <tr>
+                <th>Auth_bearer</th>
+                <td>{{ source_api.authBearer }}</td>
+            </tr>
+            <tr>
+                <th>Auth_ntlm</th>
+                <td>{{ source_api.authNtlm }}</td>
+            </tr>
+            <tr>
+                <th>Base_auth</th>
+                <td>{{ source_api.baseAuth }}</td>
+            </tr>
+            <tr>
+                <th>Auth_username</th>
+                <td>{{ source_api.authUsername }}</td>
+            </tr>
+            <tr>
+                <th>Auth_pass</th>
+                <td>{{ source_api.authPass }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_source_api_index') }}">
+        {{ include('bases/_volver.html.twig') }}
+    </a>
+
+    <a href="{{ path('app_source_api_edit', {'id': source_api.id}) }}">
+        {{ include('bases/_editar.html.twig') }}
+    </a>
+
+    {{ include('admin/source_api/_delete_form.html.twig') }}
+{% endblock %}

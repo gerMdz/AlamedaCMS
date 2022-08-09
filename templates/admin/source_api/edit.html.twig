@@ -1,0 +1,13 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}Edit SourceApi{% endblock %}
+
+{% block content %}
+    <h1>Edit SourceApi</h1>
+
+    {{ include('admin/source_api/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_source_api_index') }}">back to list</a>
+
+    {{ include('admin/source_api/_delete_form.html.twig') }}
+{% endblock %}
