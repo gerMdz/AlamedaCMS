@@ -224,6 +224,7 @@ class SectionController extends BaseController
      * @param Section $section
      * @param EntradaRepository $entradaRepository
      * @return Response
+     * @throws QueryException
      */
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
     {
@@ -378,9 +379,14 @@ class SectionController extends BaseController
     /**
      * @Route("/test/api/{identifier}", name="admin_section_test_api", methods={"GET","POST"})
      * @param SourceApi $api
+     * @return JsonResponse|void
      */
     public function getDataSourceApi(SourceApi $api)
     {
+        try {
             return new JsonResponse($this->api->fetchSourceApi($api));
+        } catch (ClientExceptionInterface|DecodingExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+
+        }
     }
 }
