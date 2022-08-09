@@ -39,6 +39,7 @@
         "symfony/flex": "^1.17.1",
         "symfony/form": "^v5.4.0",
         "symfony/framework-bundle": "^v5.4.0",
+        "symfony/http-client": "^5.4",
         "symfony/intl": "^5.4",
         "symfony/mailer": "^5.4",
         "symfony/polyfill-intl-messageformatter": "^1.12",
