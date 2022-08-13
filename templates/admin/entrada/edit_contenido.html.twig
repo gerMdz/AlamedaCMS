@@ -1,0 +1,44 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}Edición Entrada{% endblock %}
+{% block breadcrumb %}
+    {{parent()}}
+    <li class="breadcrumb-item">
+        <span>
+            <a href="{{path('admin_entrada_index')}}">
+                Entradas
+            </a>
+        </span>
+    </li>
+    <li class="breadcrumb-item active">
+        <span>
+                Edición Parcial
+        </span>
+    </li>
+{%endblock%}
+
+{% block content %}
+    <h5>Edición parcial Entrada</h5>
+    {{ form_start(entradaForm) }}
+    <div class="row">
+        <div class="col-sm-8 mx-auto">
+            {{ form_row(entradaForm.titulo) }}
+        </div>
+
+        <div class="col-sm-12">
+            {{ form_row(entradaForm.contenido) }}
+        </div>
+    </div>
+    <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+
+    {{ form_end(entradaForm) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+    <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
+{% endblock %}
+{% block jslocal %}
+    {{ encore_entry_script_tags('summernote') }}
+{% endblock %}

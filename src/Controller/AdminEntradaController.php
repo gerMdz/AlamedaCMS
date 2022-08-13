@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminEntradaController extends AbstractController
+class AdminEntradaController extends BaseController
 {
     private LoggerClient $loggerClient;
     private BoleanToDateHelper $boleanToDateHelper;
@@ -77,7 +77,7 @@ class AdminEntradaController extends AbstractController
             20/*limit per page*/
         );
 
-        return $this->render('admin_entrada/list.html.twig', [
+        return $this->render('admin/entrada/list.html.twig', [
             'entradas' => $entradas,
         ]);
     }
@@ -86,16 +86,27 @@ class AdminEntradaController extends AbstractController
      * @Route("/admin/entrada/publicadas", name="admin_entrada_publicadas")
      * @IsGranted("ROLE_ESCRITOR")
      * @param EntradaRepository $entradaRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      * @throws QueryException
      */
-    public function listadoPublicado(EntradaRepository $entradaRepository): Response
-    {
-        $this->isGranted('ROLE_EDITOR') ? $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion(
-        ) : $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacion($this->getUser());
+    public function listadoPublicado(
+        EntradaRepository $entradaRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
 
-        return $this->render('admin_entrada/list.html.twig', [
-            'entradas' => $entrada,
+        $this->isGranted('ROLE_EDITOR') ? $user = $this->getUser() : $user = null;
+        $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacionQuery($user);
+        $entradas = $paginator->paginate(
+            $entrada, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
+
+        return $this->render('admin/entrada/list.html.twig', [
+            'entradas' => $entradas,
         ]);
     }
 
@@ -143,7 +154,7 @@ class AdminEntradaController extends AbstractController
 
         $ip = $datosHelper->getIpCliente();
 
-        return $this->render('entrada/edit.html.twig', [
+        return $this->render('admin/entrada/edit.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
             'ip' => $ip,
@@ -157,7 +168,6 @@ class AdminEntradaController extends AbstractController
      * @throws Exception
      * @Route("/admin/entrada/{id}/edit-complex", name="admin_entrada_edit_complex")
      * @IsGranted("MANAGE", subject="entrada")
-     *
      */
     public function editComplex(Request $request, Entrada $entrada): Response
     {
@@ -171,7 +181,7 @@ class AdminEntradaController extends AbstractController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->render('admin_entrada/edit_contenido.html.twig', [
+        return $this->render('admin/entrada/edit_contenido.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -233,7 +243,7 @@ class AdminEntradaController extends AbstractController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->render('admin_entrada/new.html.twig', [
+        return $this->render('admin/entrada/new.html.twig', [
             'entradaForm' => $form->createView(),
             'entrada' => $entrada,
         ]);
@@ -263,7 +273,7 @@ class AdminEntradaController extends AbstractController
             ]);
         }
 
-        return $this->render('admin_entrada/new_step1.html.twig', [
+        return $this->render('admin/entrada/new_step1.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -290,7 +300,7 @@ class AdminEntradaController extends AbstractController
             ]);
         }
 
-        return $this->render('admin_entrada/new_step2.html.twig', [
+        return $this->render('admin/entrada/new_step2.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -320,7 +330,7 @@ class AdminEntradaController extends AbstractController
             ]);
         }
 
-        return $this->render('admin_entrada/new_step3.html.twig', [
+        return $this->render('admin/entrada/new_step3.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
         ]);
@@ -334,7 +344,7 @@ class AdminEntradaController extends AbstractController
      */
     public function link(Entrada $entrada): Response
     {
-        return $this->render('entrada/link.html.twig', [
+        return $this->render('admin/entrada/link.html.twig', [
             'entrada' => $entrada,
         ]);
     }
@@ -346,24 +356,62 @@ class AdminEntradaController extends AbstractController
      */
     public function show(Entrada $entrada): Response
     {
-
-        return $this->render('entrada/show.html.twig', [
+        return $this->render('admin/entrada/show.html.twig', [
             'entrada' => $entrada,
         ]);
     }
 
     /**
-     * @Route("/admin/entrada/{id}", name="entrada_delete", methods={"DELETE"})
+     * @Route("/admin/entrada/{id}/delete", name="entrada_delete", methods={"DELETE", "POST"})
      * @param Request $request
      * @param Entrada $entrada
      * @return Response
      */
     public function delete(Request $request, Entrada $entrada): Response
     {
+        $status = 'error';
+        $msg = 'No se puede borrar esta entrada. Comuníquese con el administrador';
+
         if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
-            $this->managerRegistry->getManager()->remove($entrada);
-            $this->managerRegistry->getManager()->flush();
+
+            $msg = 'No cuenta con los permisos para borrar esta entrada. Comuníquese con el administrador';
+
+            if ($this->getUser() === $entrada->getAutor() or $this->isGranted('ROLE_EDITOR')) {
+
+                {
+                    foreach ($entrada->getPrincipals() as $principal) {
+                        $entrada->removePrincipal($principal);
+                    }
+                }
+
+                foreach ($entrada->getSections() as $section) {
+                    $entrada->removeSection($section);
+                }
+
+                foreach ($entrada->getComentarios() as $comentario) {
+                    $entrada->removeComentario($comentario);
+                }
+
+                foreach ($entrada->getContacto() as $contacto) {
+                    $entrada->removeContacto($contacto);
+                }
+
+                foreach ($entrada->getButton() as $button) {
+                    $entrada->removeButton($button);
+                }
+
+                foreach ($entrada->getEntradaReferences() as $reference) {
+                    $this->managerRegistry->getManager()->remove($reference);
+                }
+
+                $this->managerRegistry->getManager()->remove($entrada);
+                $this->managerRegistry->getManager()->flush();
+                $status = 'success';
+                $msg = 'Se borro la entrada';
+            }
         }
+
+        $this->addFlash($status, $msg);
 
         return $this->redirectToRoute('admin_entrada_index');
     }

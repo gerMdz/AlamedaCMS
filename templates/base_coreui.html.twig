@@ -84,8 +84,16 @@
                 {#                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use> #}
                 {#                        </svg> #}
                 {#                        Typography</a></li> #}
-                <li class="nav-title">Blocks</li>
-                <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                <li class="nav-group">
+                    <a class="nav-link nav-group-toggle" href="#">
+                        <i class="fa fa-building me-3"></i>
+                        Blocks</a>
+                    <ul class="nav-group-items">
+
+
+
+                <li class="nav-group">
+                    <a class="nav-link nav-group-toggle" href="#">
                         <svg class="nav-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
                         </svg>
@@ -128,7 +136,6 @@
                         {#                                        class="nav-icon"></span> Tooltips</a></li> #}
                     </ul>
                 </li>
-
                 <li class="nav-group">
                     <a class="nav-link nav-group-toggle" href="#">
                         <svg class="nav-icon">
@@ -301,11 +308,14 @@
                 {#                        <div class="fw-semibold">PRO</div> #}
                 {#                    </a></li> #}
             </ul>
+                </li>
+            </ul>
+
             <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
         {% endblock %}
     </div>
     <div class="wrapper d-flex flex-column min-vh-100 ">
-        <header class="header header-sticky mb-4">
+        <header class="header header-sticky mb-1">
             <div class="container-fluid">
 
                 {% block buttonSidebar %}
@@ -435,7 +445,23 @@
                 </nav>
             </div>
         </header>
-        <div class="container-lg">
+        <div class="container-fluid p-0">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-5 pt-5 mb-0 pb-0">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger mt-5 pt-5 mb-0 pb-0">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                <div class="alert alert-warning" style="position: fixed; bottom: 50px">
+                    Temporalmente
+                    <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+                </div>
+            {% endif %}
             <div class="row">
 
                 {% block content %}

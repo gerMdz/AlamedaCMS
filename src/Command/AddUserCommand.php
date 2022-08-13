@@ -79,14 +79,14 @@ class AddUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Creates users and stores them in the database')
+            ->setDescription('Crear usuarios y guardarlos en la base de datos')
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see https://symfony.com/doc/current/components/console/console_arguments.html
-            ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
-            ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
-            ->addArgument('primerNombre', InputArgument::OPTIONAL, 'The primer nombre of the new user')
-            ->addOption('role', null, InputOption::VALUE_OPTIONAL, 'If set, the user is created as Role')
+            ->addArgument('email', InputArgument::OPTIONAL, 'El email del nuevo usuario')
+            ->addArgument('password', InputArgument::OPTIONAL, 'Clave en texto plano del nuevo usuario')
+            ->addArgument('primerNombre', InputArgument::OPTIONAL, 'Primer nombre del usuario, se usará para identificación')
+            ->addOption('role', null, InputOption::VALUE_OPTIONAL, 'Si lo asigna se creará con ese rol, sino usuario normal "--role="')
         ;
     }
 

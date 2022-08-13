@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0f955949984860bfb3582dd5ffeb5b7",
+    "content-hash": "f7ab53e6acfff74b3bcf8d632e4241e1",
     "packages": [
         {
             "name": "antishov/doctrine-extensions-bundle",
@@ -9332,6 +9332,104 @@
             "time": "2022-04-03T13:03:10+00:00"
         },
         {
+            "name": "symfony/ux-turbo",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ux-turbo.git",
+                "reference": "0ac0bbc70b86aa4883c7eb8ac17bc6e3a774dc17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/0ac0bbc70b86aa4883c7eb8ac17bc6e3a774dc17",
+                "reference": "0ac0bbc70b86aa4883c7eb8ac17bc6e3a774dc17",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/webpack-encore-bundle": "^1.11"
+            },
+            "conflict": {
+                "symfony/flex": "<1.13"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.12",
+                "doctrine/doctrine-bundle": "^2.2",
+                "doctrine/orm": "^2.8 | 3.0",
+                "phpstan/phpstan": "^0.12",
+                "symfony/debug-bundle": "^5.2|^6.0",
+                "symfony/expression-language": "^5.4|^6.0",
+                "symfony/form": "^5.2|^6.0",
+                "symfony/framework-bundle": "^5.2|^6.0",
+                "symfony/mercure-bundle": "^0.3",
+                "symfony/messenger": "^5.2|^6.0",
+                "symfony/panther": "^1.0|^2.0",
+                "symfony/phpunit-bridge": "^5.2.1|^6.0",
+                "symfony/property-access": "^5.2|^6.0",
+                "symfony/security-core": "^5.2|^6.0",
+                "symfony/stopwatch": "^5.2|^6.0",
+                "symfony/twig-bundle": "^5.2|^6.0",
+                "symfony/web-profiler-bundle": "^5.2|^6.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/ux",
+                    "url": "https://github.com/symfony/ux"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\UX\\Turbo\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kévin Dunglas",
+                    "email": "kevin@dunglas.fr"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Hotwire Turbo integration for Symfony",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "hotwire",
+                "javascript",
+                "mercure",
+                "symfony-ux",
+                "turbo",
+                "turbo-stream"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/ux-turbo/tree/v2.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-07-08T14:57:18+00:00"
+        },
+        {
             "name": "symfony/validator",
             "version": "v5.4.11",
             "source": {
@@ -10116,16 +10214,16 @@
         },
         {
             "name": "twig/intl-extra",
-            "version": "v3.4.0",
+            "version": "v3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/intl-extra.git",
-                "reference": "8dca6f4c5a00cdd3c43b6bd080f50d32aca33a84"
+                "reference": "151e50fad9c7915bd56f0adf3f0cb3c47e6ed28a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/intl-extra/zipball/8dca6f4c5a00cdd3c43b6bd080f50d32aca33a84",
-                "reference": "8dca6f4c5a00cdd3c43b6bd080f50d32aca33a84",
+                "url": "https://api.github.com/repos/twigphp/intl-extra/zipball/151e50fad9c7915bd56f0adf3f0cb3c47e6ed28a",
+                "reference": "151e50fad9c7915bd56f0adf3f0cb3c47e6ed28a",
                 "shasum": ""
             },
             "require": {
@@ -10169,7 +10267,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/twigphp/intl-extra/tree/v3.4.0"
+                "source": "https://github.com/twigphp/intl-extra/tree/v3.4.2"
             },
             "funding": [
                 {
@@ -10181,7 +10279,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-02T10:02:25+00:00"
+            "time": "2022-06-10T08:33:05+00:00"
         },
         {
             "name": "twig/markdown-extra",
@@ -10330,16 +10428,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.15.1",
+            "version": "v2.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3b7cedb2f736899a7dbd0ba3d6da335a015f5cc4"
+                "reference": "3e43405a9a8b578809426339cc3780e16fba0c52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3b7cedb2f736899a7dbd0ba3d6da335a015f5cc4",
-                "reference": "3b7cedb2f736899a7dbd0ba3d6da335a015f5cc4",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e43405a9a8b578809426339cc3780e16fba0c52",
+                "reference": "3e43405a9a8b578809426339cc3780e16fba0c52",
                 "shasum": ""
             },
             "require": {
@@ -10394,7 +10492,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v2.15.1"
+                "source": "https://github.com/twigphp/Twig/tree/v2.15.2"
             },
             "funding": [
                 {
@@ -10406,7 +10504,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-17T05:46:24+00:00"
+            "time": "2022-08-12T06:43:37+00:00"
         },
         {
             "name": "webmozart/assert",
