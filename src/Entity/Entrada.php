@@ -546,8 +546,6 @@ class Entrada
     public function removeSection(Section $section): self
     {
         $this->sections->removeElement($section);
-
         return $this;
     }
-
 }

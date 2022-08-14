@@ -3,7 +3,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-
+    {{ encore_entry_link_tags('select2-parent') }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css"
           integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
@@ -11,20 +11,26 @@
             crossorigin="anonymous"></script>
 
 {% endblock %}
-{% block sidebar %}
-{% endblock %}
-{% block buttonSidebar %}
-{% endblock %}
-{% block navHeader %}
-{% endblock %}
-{% block navHeaderMenu %}
-{% endblock %}
-{% block navHeaderUser %}
-{% endblock %}
-{% block breadcrumb %}
-    {{ encore_entry_link_tags('select2-parent') }}
+
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
 {% endblock %}
 
+{% block breadcrumb %}
+{{ parent()}}
+    <li class="breadcrumb-item ">
+        <span>
+            <a href="{{path('admin_entrada_index')}}">
+                Entradas
+            </a>
+        </span>
+    </li>
+    <li class="breadcrumb-item active ">
+        <span>
+            Edición
+        </span>
+    </li>
+{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -40,9 +46,9 @@
         <div class="row">
             <div class="col-sm-12 mx-auto">
                 <h3>Detalles</h3>
-                {{ include('admin_entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
+                {{ include('admin/entrada/_form.html.twig', {'button_label': 'Actualizar'}) }}
                 <a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">Volver al Listado</a>
-                {{ include('entrada/_delete_form.html.twig') }}
+                {{ include('admin/entrada/_delete_form.html.twig') }}
             </div>
             <div class="col-sm-12">
                 <h3>Referencias</h3>

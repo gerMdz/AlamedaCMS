@@ -56,17 +56,18 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('completa_texto', [$this, 'completa_texto']),
             new TwigFunction('completa_lugar', [$this, 'completa_lugar']),
             new TwigFunction('form_suscripto_newsletter', [$this, 'form_suscripto_newsletter']),
+            new TwigFunction('booleano', [$this, 'booleano']),
         ];
     }
 
-    public function lema()
+    public function lema(): ?string
     {
         $lema = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
 
         return $lema->getLema();
     }
 
-    public function metaDescripcion()
+    public function metaDescripcion(): ?string
     {
         $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
         //        return $base->getMetaDescripcion();
@@ -90,23 +91,11 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             ->getPublicPath($path);
     }
 
-    public function capacidad_restante(string $celebracion, int $cantidad)
-    {
-        $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(
-            Invitado::class
-        )->countByCelebracion($celebracion);
 
-        return $cantidad - $invitados;
-    }
 
-    public function capacidad_ocupada(string $celebracion)
-    {
-        return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion(
-            $celebracion
-        );
-    }
 
-    public static function getSubscribedServices()
+
+    public static function getSubscribedServices(): array
     {
         return [
             UploaderHelper::class,
@@ -174,12 +163,18 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return sprintf($texto, $valor, $valor, $valor, $valor);
     }
 
-    public function form_suscripto_newsletter(string $type,string $fuente): string
+    /**
+     * @param string $type
+     * @param string $fuente
+     * @return array|string|void
+     */
+    public function form_suscripto_newsletter(string $type,string $fuente)
     {
-        switch ($type) {
+        switch ($type){
             case 'script':
-            default:
                 return $this->divScript($fuente);
+            case 'iframe':
+                return $this->divIframe($fuente);
         }
     }
 
@@ -195,5 +190,32 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
         return $crea_formulario[0]->getSrcCodigo();
     }
+
+    /**
+     * @param string $fuente
+     * @return array
+     */
+    protected function divIframe(string $fuente): array
+    {
+        $crea_formulario = $this->container->get(EntityManagerInterface::class)
+            ->getRepository(NewsSite::class)
+            ->findBy(['srcType' =>'iframe', 'srcSite' => $fuente]);
+
+        return [$crea_formulario[0]->getSrcCodigo(),$crea_formulario[0]->getSrcParameters()];
+    }
+
+    /**
+     * @param $data
+     * @return string
+     */
+    public function booleano($data): string
+    {
+        $icono = '<i class="fa fa-close fa-2x text-danger"> </i>';
+        if ($data === true) {
+            $icono = '<i class="fa fa-check fa-2x text-success"> </i>';
+        }
+        return $icono;
+    }
+
 
 }
