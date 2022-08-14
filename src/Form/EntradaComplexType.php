@@ -22,30 +22,44 @@ class EntradaComplexType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo', TextareaType::class, [
-                'required' => true,
-//                'config' => [
-//                    'uiColor' => '#ffffff',
-//                    'toolbar' => 'full',
-//                    'language' => 'es',
-//                    'input_sync' => true
-//                    ],
-                'attr' => [
+            ->add(
+                'titulo', CKEditorType::class,
+                [
+                    'required' => true,
+                    'config' => [
+                        'uiColor' => '#ffffff',
+                        'language' => 'es',
+                        'input_sync' => true,
+                    ],
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Título de la entrada, se muestra en pantalla',
+                    'attr' => [
+                        'required' => true,
+                    ],
+                ]
+            )
+            ->add(
+                'contenido',
+                CKEditorType::class,
+                [
                     'required' => false,
-                    'class' => 'summernote',
-                ],
-            ])
-
-            ->add('contenido', TextareaType::class, [
-                'required' => false,
-
-                'attr' => [
-                    'required' => false,
-                    'class' => 'summernote',
-                ],
-            ])
-
-        ; // ; Final Builder
+                    'config' => [
+                        'uiColor' => '#ffffff',
+                    'toolbar' => 'full',
+                        'language' => 'es',
+                    ],
+                    'label_attr' => [
+                        'class' => 'text-primary',
+                    ],
+                    'help' => 'Contenido de la entrada, se muestra en pantalla',
+                    'attr' => [
+                        'required' => false,
+                        'rows' => 10,
+                    ],
+                ]
+            ); // ; Final Builder
     }
 
     public function configureOptions(OptionsResolver $resolver)

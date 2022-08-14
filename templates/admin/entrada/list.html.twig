@@ -1,8 +1,14 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends 'base_coreui.html.twig' %}
 {% block title %}Admin Listado Entradas{% endblock %}
 {% block nav %}
     {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
 {% endblock %}
+
+{% block breadcrumb %}
+{{parent()}}
+                            <li class="breadcrumb-item active"><span>Entradas</span></li>
+
+{%endblock%}
 
 {% block content %}
 <div class="col-md-12">
@@ -24,13 +30,13 @@
             <div class="text-center align-items-center">
         {{ knp_pagination_render(entradas) }}
     </div>
-            <div class="table-responsive sticky-header  ">
+            <div class="table-responsive sticky-header header-sticky">
                     <table class="table sticky-header" data-toggle="table">
                     <thead class=" text-primary ">
                 <tr>
                     <th>
                         Titulo <br/>
-                        Linkroute
+                        LinkRoute
                     </th>
                     <th>Sección<br/>
                         Página
@@ -53,7 +59,7 @@
                 {% for entrada in entradas %}
                     <tr>
                         <td>
-                           T: {{ entrada.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}<br/>
+                           T: {{ entrada.titulo | striptags | raw | u.truncate(20, '...') }}<br/>
                            Lr: <small><i>{{ entrada.linkRoute | u.truncate(20, '...')}}</i></small>
                         </td>
                         <td>

@@ -53,21 +53,28 @@ class EntradaRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param null $user
      *
      * @return Entrada[]
      * @throws QueryException
      */
     public function findAllPublicadosOrderedByPublicacion($user = null): array
     {
+        return $this->findAllPublicadosOrderedByPublicacionQuery($user = null)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @throws QueryException
+     */
+    public function findAllPublicadosOrderedByPublicacionQuery($user = null): QueryBuilder
+    {
         $this->createQueryBuilder('e')
             ->addCriteria(self::createNoDeletedCriteria());
 
         return $this->addIsPublishedQueryBuilder(null, $user)
-            ->orderBy('e.publicadoAt', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
+            ->orderBy('e.publicadoAt', 'DESC');
+}
 
     /**
      *
@@ -175,7 +182,7 @@ class EntradaRepository extends ServiceEntityRepository
             ->select()
 //            ->andWhere('e.disponibleAt is not null')
 //            ->orderBy('e.updatedAt', 'DESC')
-;
+        ;
         $qb->andWhere(
             $qb->expr()->between(
                 'e.updatedAt',
