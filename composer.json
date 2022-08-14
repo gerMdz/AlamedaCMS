@@ -52,6 +52,7 @@
         "symfony/translation": "^5.4",
         "symfony/twig-bridge": "^v5.4.0",
         "symfony/twig-bundle": "^v5.4.0",
+        "symfony/ux-turbo": "^2.1",
         "symfony/validator": "^5.4",
         "symfony/webpack-encore-bundle": "^1.13",
         "symfony/yaml": "^5.4",
