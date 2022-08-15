@@ -103,6 +103,7 @@ class SectionFormType extends AbstractType
                     'placeholder' => 'Ingrese una imagen para esta sección',
                 ],
             ])
+
             ->add('title', CKEditorType::class, [
                 'required' => false,
                 'config' => [

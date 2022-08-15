@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SectionImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -12,6 +13,7 @@ use Ramsey\Uuid\UuidInterface;
  */
 class SectionImage
 {
+    use TimestampableEntity;
     /**
      * @ORM\Id()
      * @ORM\Column(type="uuid", length=36)
@@ -40,12 +42,12 @@ class SectionImage
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isPrincipal;
+    private ?bool $isPrincipal;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isUsable;
+    private ?bool $isUsable;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

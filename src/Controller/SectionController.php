@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Entity\Image;
 use App\Entity\Principal;
 use App\Entity\Section;
+use App\Entity\SectionImage;
 use App\Entity\SourceApi;
+use App\Form\SectionFormImageType;
 use App\Form\SectionFormType;
 use App\Form\Step\Section\StepOneType;
 use App\Form\Step\Section\StepThreeType;
@@ -83,7 +86,7 @@ class SectionController extends BaseController
      * @return Response
      * @throws Exception
      * @Route("/new", name="admin_section_new")
-     * @IsGranted("ROLE_EDITOR")
+     * @IsGranted("ROLE_ESCRITOR")
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
     {
@@ -126,6 +129,73 @@ class SectionController extends BaseController
     }
 
     /**
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @param UploaderHelper $uploaderHelper
+     * @param Section $section
+     * @return Response
+     * @throws Exception
+     * @Route("/{section}/add_images", name="admin_section_add_images")
+     * @IsGranted("ROLE_ESCRITOR")
+     */
+    public function addImagesSection(
+        EntityManagerInterface $em,
+        Request $request,
+        UploaderHelper $uploaderHelper,
+        Section $section
+    ): Response
+    {
+        $form = $this->createForm(SectionFormImageType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+//            /** @var Section $section */
+//            $section = $form->getData();
+
+            /** @var UploadedFile $uploadedFile */
+
+            $uploadsFiles = $form['imagesFiles']->getData();
+
+            if ($uploadsFiles) {
+                foreach ($uploadsFiles as $uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                    $image = new Image();
+                    $image->setImageFilename($newFilename);
+                    $em->getRepository(Image::class)->add($image, true);
+                    $section_image = new SectionImage();
+                    $section_image->setImageId($image);
+                    $section_image->setSectionId($section);
+                    $em->getRepository(SectionImage::class)->add($section_image, true);
+                    $section->addSectionImage($section_image);
+                    $em->persist($section);
+                }
+            };
+
+
+            $em->persist($section);
+            $em->flush();
+
+            $this->addFlash('success', 'Se agregaron imágenes a la sección');
+
+            return $this->redirectToRoute('admin_section_list');
+        }
+
+        $image = [];
+        foreach ($section->getSectionImages() as $si)
+        {
+            $image = [$si->getImageId()];
+        }
+
+//        dd($image);
+
+        return $this->render('section_admin/addImages.html.twig', [
+            'sectionForm' => $form->createView(),
+            'section' => $section
+        ]);
+    }
+
+    /**
      * @Route("/{id}/edit", name="admin_section_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Section $section
@@ -147,6 +217,9 @@ class SectionController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $section->getImageFilename());
                 $section->setImageFilename($newFilename);
             }
+
+            $uploadedFile = $form['imageFile']->getData();
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_list');
@@ -237,7 +310,7 @@ class SectionController extends BaseController
 
             try {
                 $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
-                 'identifier' => $section->getIdentificador()
+                    'identifier' => $section->getIdentificador(),
                 ]);
 
             } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
@@ -381,6 +454,6 @@ class SectionController extends BaseController
      */
     public function getDataSourceApi(SourceApi $api)
     {
-            return new JsonResponse($this->api->fetchSourceApi($api));
+        return new JsonResponse($this->api->fetchSourceApi($api));
     }
 }
