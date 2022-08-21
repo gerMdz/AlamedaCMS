@@ -62,7 +62,7 @@ class StepOneType extends AbstractType
                     'required' => false,
                     'help' => 'En qué sección estará esta entrada?',
                     'attr' => [
-                        'class' => 'select2-enable form-control',
+                        'class' => 'select2-enable',
                     ],
                 ]
             )
