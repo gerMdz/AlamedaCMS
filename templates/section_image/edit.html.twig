@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SectionImage{% endblock %}
+
+{% block body %}
+    <h1>Edit SectionImage</h1>
+
+    {{ include('section_image/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_section_image_index') }}">back to list</a>
+
+    {{ include('section_image/_delete_form.html.twig') }}
+{% endblock %}

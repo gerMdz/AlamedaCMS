@@ -141,5 +141,12 @@ A mi parecer, soy 25% más productivo gracias a PHPStorm.
 
 Con licencia [MIT](https://github.com/gerMdz/AlamedaCMS/blob/AlamedaCMS/LICENSE)
 
+###### Readme template-section-header-carrusel
+- [ ] Funcionalidades faltantes
+  - [ ] Edit nro orden
+  - [ ] Edit isPrincipal
+  - [ ] Edit isUsable
+  - [ ] Edit filter (por si hace falta el LiipImage)
+- [ ] Crear el template carrusel par multiple imágenes
 
 

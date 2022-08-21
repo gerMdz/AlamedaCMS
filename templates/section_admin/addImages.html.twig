@@ -28,33 +28,47 @@
     </style>
 {% endblock %}
 {% block content %}
-<div class="col-sm-6 mx-auto text-center">
-    <h4>Imágenes de la sección</h4>
-</div>
+    <div class="col-sm-6 mx-auto text-center">
+        <h4>Imágenes de la sección</h4>
+    </div>
     <div class="row">
 
-        {% for sectionImage  in section.sectionImages %}
-        <div class="col-sm-8">
-            {% if (sectionImage.imageId.imageFilename != null) %}
-                <img class="article-img" alt="{{ base.lema }}"
-                     src="{{ sectionImage.imageId.imagePath|imagine_filter('squared_thumbnail_50') }}">
-                {{ sectionImage.imageId.imageFilename | u.truncate(30, '...') }}
-            {% else %}
-                No tiene imagen
-            {% endif %}
-        </div>
-        <div class="col-sm-4"></div>
+        {% for section_image  in section.sectionImages %}
+            <div class="col-sm-2">
+                {% if (section_image.imageId.imageFilename != null) %}
+                    <img class="article-img" alt="{{ base.lema }}"
+                         src="{{ section_image.imageId.imagePath|imagine_filter('squared_thumbnail_50') }}">
+                    {{ section_image.imageId.imageFilename | u.truncate(30, '...') }}
+                {% else %}
+                    No tiene imagen
+                {% endif %}
+            </div>
+            <div class="col-sm-2">
+                {{ section_image.nOrder|default('-') }}
+            </div>
+            <div class="col-sm-1">
+                {{ section_image.isPrincipal?'<i class="fa fa-check"></i>':'<i class="fa fa-minus"></i>' }}
+            </div>
+            <div class="col-sm-1">
+                {{ section_image.isUsable?'<i class="fa fa-check"></i>':'<i class="fa fa-minus"></i>' }}
+            </div>
+            <div class="col-sm-4">
+                {{ section_image.filter }}
+            </div>
+            <div class="col-sm-2">
+                {{ include('section_image/_delete_form.html.twig', {'button_label':'Eliminar de la sección'}) }}
+            </div>
         {% endfor %}
 
     </div>
-<div class="form-container">
     <div class="form-container">
-        {{ include('section_admin/_form_add_images.html.twig',
-            {
-                button_label:'Agregar Imágenes'
-            }) }}
+        <div class="form-container">
+            {{ include('section_admin/_form_add_images.html.twig',
+                {
+                    button_label:'Agregar Imágenes'
+                }) }}
+        </div>
     </div>
-</div>
     <a class="btn btn-info" href="{{ path('admin_section_list') }}">Ir al Listado</a>
 {% endblock %}
 {% block javascripts %}
