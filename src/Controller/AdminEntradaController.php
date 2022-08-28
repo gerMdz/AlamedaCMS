@@ -69,7 +69,7 @@ class AdminEntradaController extends BaseController
             $entrada = $entradaRepository->queryFindAllEntradas($bus);
         } else {
             $user = $this->getUser();
-            $entrada = $entradaRepository->queryFindByAutor($user);
+            $entrada = $entradaRepository->queryFindByAutor($user, $bus);
         }
 
         $entradas = $paginator->paginate(
