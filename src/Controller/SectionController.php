@@ -15,6 +15,7 @@ use App\Form\Step\Section\StepThreeType;
 use App\Form\Step\Section\StepTwoType;
 use App\Repository\EntradaRepository;
 use App\Repository\ModelTemplateRepository;
+use App\Repository\SectionImageRepository;
 use App\Repository\SectionRepository;
 use App\Service\Handler\SourceApi\HandlerSourceApi;
 use App\Service\UploaderHelper;
@@ -181,13 +182,6 @@ class SectionController extends BaseController
             return $this->redirectToRoute('admin_section_list');
         }
 
-        $image = [];
-        foreach ($section->getSectionImages() as $si)
-        {
-            $image = [$si->getImageId()];
-        }
-
-//        dd($image);
 
         return $this->render('section_admin/addImages.html.twig', [
             'sectionForm' => $form->createView(),
@@ -365,7 +359,7 @@ class SectionController extends BaseController
 
             $principal = $form['principal']->getData();
             $section->addPrincipale($principal);
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($section);
             $entityManager->flush();
 
@@ -407,7 +401,7 @@ class SectionController extends BaseController
                 }
                 $this->session->remove('model_template_id');
             }
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step3', [
                 'id' => $section->getId(),
@@ -435,7 +429,7 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_show', [
                 'id' => $section->getId(),
@@ -452,8 +446,33 @@ class SectionController extends BaseController
      * @Route("/test/api/{identifier}", name="admin_section_test_api", methods={"GET","POST"})
      * @param SourceApi $api
      */
-    public function getDataSourceApi(SourceApi $api)
+    public function getDataSourceApi(SourceApi $api): JsonResponse
     {
         return new JsonResponse($this->api->fetchSourceApi($api));
+    }
+
+    /**
+     * @param Request $request
+     * @param SectionImageRepository $sectionImageRepository
+     * @return JsonResponse <b>ok</b> si el cambio se hizo, <b>ko</b> si no se hizo
+     * @Route("/image/change_order/section_image", name="section_image_change_order" , methods={"GET"}, )
+     */
+    public function changeOrderImageSection(Request $request, SectionImageRepository $sectionImageRepository): JsonResponse
+    {
+        $id = $request->get('id_sectionImage');
+        $order = $request->get('order_sectionImage');
+
+
+        $sectionImage = $sectionImageRepository->find($id);
+
+        if(!$sectionImage){
+            return new JsonResponse('ko');
+        }
+
+        $sectionImage->setNOrder((int)$order);
+        $sectionImageRepository->add($sectionImage, true);
+
+        return new JsonResponse('ok');
+
     }
 }

@@ -32,9 +32,29 @@
         <h4>Imágenes de la sección</h4>
     </div>
     <div class="row">
+        <div class="col-sm-3">
+            <h6>Imagen</h6>
+        </div>
+        <div class="col-sm-2">
+            <h6>Orden</h6>
+        </div>
+        <div class="col-sm-1">
+            <h6>¿Principal?</h6>
+        </div>
+        <div class="col-sm-1">
+            <h6>¿Usar?</h6>
+        </div>
+        <div class="col-sm-3">
+            <h6>Filtro</h6>
+        </div>
+        <div class="col-sm-2 text-center">
+            <i class="fa fa-cogs"></i>
+        </div>
+    </div>
+    <div class="row">
 
         {% for section_image  in section.sectionImages %}
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 {% if (section_image.imageId.imageFilename != null) %}
                     <img class="article-img" alt="{{ base.lema }}"
                          src="{{ section_image.imageId.imagePath|imagine_filter('squared_thumbnail_50') }}">
@@ -43,8 +63,19 @@
                     No tiene imagen
                 {% endif %}
             </div>
-            <div class="col-sm-2">
-                {{ section_image.nOrder|default('-') }}
+            <div class="col-sm-2 form-inline">
+                <label for="{{ section_image.id }}" class="form-inline">
+                    <input type="number" min="0" value="{{ section_image.nOrder|default(0) }}"
+                           id="{{ section_image.id }}" class="form-control form-inline">
+
+                    <button type="submit" class="btn btn-sm btn-secondary btn-guardar"
+                            data-id="{{ section_image.id }}"
+                    >
+                        <i class="fa fa-save"></i>
+                    </button>
+                </label>
+
+
             </div>
             <div class="col-sm-1">
                 {{ section_image.isPrincipal?'<i class="fa fa-check"></i>':'<i class="fa fa-minus"></i>' }}
@@ -52,7 +83,7 @@
             <div class="col-sm-1">
                 {{ section_image.isUsable?'<i class="fa fa-check"></i>':'<i class="fa fa-minus"></i>' }}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 {{ section_image.filter }}
             </div>
             <div class="col-sm-2">
