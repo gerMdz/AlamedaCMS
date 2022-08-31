@@ -44,12 +44,23 @@ class EntradaRepository extends ServiceEntityRepository
      * @param $user
      * @return QueryBuilder
      */
-    public function queryFindByAutor($user): QueryBuilder
+    public function queryFindByAutor($user, ?string $qSearch): QueryBuilder
     {
-        return $this->createQueryBuilder('e')
+        $qb = $this->createQueryBuilder('e')
             ->andWhere('e.autor = :val')
             ->setParameter('val', $user)
             ->orderBy('e.updatedAt', 'DESC');
+
+        if ($qSearch) {
+            $qb->innerJoin('e.autor', 'a')
+                ->addSelect('a');
+            $qb->andWhere(
+                'upper(e.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(e.titulo) LIKE :qsearch'
+            )
+                ->setParameter('qsearch', '%'.strtoupper($qSearch).'%');
+        }
+
+        return $qb;
     }
 
     /**
