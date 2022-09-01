@@ -475,4 +475,26 @@ class SectionController extends BaseController
         return new JsonResponse('ok');
 
     }
+
+    /**
+     * @param Request $request
+     * @param SectionImageRepository $sectionImageRepository
+     * @return JsonResponse <b>ok</b> si el cambio se hizo, <b>ko</b> si no se hizo
+     * @Route("/image/change_principal/section_image", name="section_image_change_principal" , methods={"GET"}, )
+     */
+    public function changePrincipalImageSection(Request $request, SectionImageRepository $sectionImageRepository): JsonResponse
+    {
+        $id = $request->get('id_sectionImage');
+        $sectionImage = $sectionImageRepository->find($id);
+
+        if(!$sectionImage){
+            return new JsonResponse('ko');
+        }
+
+        $sectionImage->setIsPrincipal(!$sectionImage->isIsPrincipal());
+        $sectionImageRepository->add($sectionImage, true);
+
+        return new JsonResponse(['principal'=> $sectionImage->isIsPrincipal()]);
+
+    }
 }

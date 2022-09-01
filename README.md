@@ -145,7 +145,9 @@ Con licencia [MIT](https://github.com/gerMdz/AlamedaCMS/blob/AlamedaCMS/LICENSE)
 - [ ] Funcionalidades faltantes
   - [X] Edit nro orden
     - [ ] Mensaje de cambio realizado
-  - [ ] Edit isPrincipal
+  - [X] Edit isPrincipal
+    - [ ] Aviso cambio
+    - [ ] Refrescar solo el componente
   - [ ] Edit isUsable
   - [ ] Edit filter (por si hace falta el LiipImage)
 - [ ] Vista images por orden de la section
