@@ -66,26 +66,6 @@
         {% endif %}
     </div>
 </div>
-<div class="row">
-    <fieldset > Solo para múltiple imágenes
-    <div class="col-sm-7 mx-auto">
-        {{ form_row(sectionForm.imagesFiles, {
-            attr: {
-                'placeholder': 'Seleccione una imagen para la sección'
-            }
-        }) }}
-    </div>
-{#    <div class="col-sm-3 mx-auto">#}
-{#        {% if sectionForm.vars.data.imageFilename | default %}#}
-{#            <a href="{{ uploaded_asset(sectionForm.vars.data.imagePath) }}" target="_blank">#}
-{#                <img src="{{ sectionForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"#}
-{#                     alt="{{ base.siteName }}">#}
-{#            </a>#}
-{#        {% endif %}#}
-{#    </div>#}
-    </fieldset>
-</div>
-
 <div class="row mt-3">
     <div class="col-sm-4 mx-auto">
         {{ form_row(sectionForm.cssClass) }}
