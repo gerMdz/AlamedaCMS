@@ -1,6 +1,6 @@
 ### GraceCMS
 ##### branch
-- 98-asegurar-la-busqueda-de-entradas
+- 100-nueva-entrada-revisión
 
 ### Elyon
 ##### branch
