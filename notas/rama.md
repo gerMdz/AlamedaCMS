@@ -1,6 +1,6 @@
 ### GraceCMS
 ##### branch
-- 100-nueva-entrada-revisión
+-[X] 100-nueva-entrada-revisión 
 
 ### Elyon
 ##### branch
