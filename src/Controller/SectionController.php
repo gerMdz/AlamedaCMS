@@ -8,6 +8,7 @@ use App\Entity\Principal;
 use App\Entity\Section;
 use App\Entity\SectionImage;
 use App\Entity\SourceApi;
+use App\Form\EntradaSectionType;
 use App\Form\SectionFormImageType;
 use App\Form\SectionFormType;
 use App\Form\Step\Section\StepOneType;
@@ -46,12 +47,13 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class SectionController extends BaseController
 {
 
-    private $session;
-    private $api;
+    private SessionInterface $session;
+    private HandlerSourceApi $api;
 
     /**
      * SectionController constructor.
      * @param SessionInterface $session
+     * @param HandlerSourceApi $api
      */
     public function __construct(SessionInterface $session, HandlerSourceApi $api)
     {
@@ -87,7 +89,7 @@ class SectionController extends BaseController
      * @return Response
      * @throws Exception
      * @Route("/new", name="admin_section_new")
-     * @IsGranted("ROLE_ESCRITOR")
+     * @IsGranted("ROLE_EDITOR")
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
     {
@@ -212,9 +214,7 @@ class SectionController extends BaseController
                 $section->setImageFilename($newFilename);
             }
 
-            $uploadedFile = $form['imageFile']->getData();
-
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_list');
         }
@@ -291,6 +291,7 @@ class SectionController extends BaseController
      * @param Section $section
      * @param EntradaRepository $entradaRepository
      * @return Response
+     * @throws QueryException
      */
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
     {
@@ -304,7 +305,7 @@ class SectionController extends BaseController
 
             try {
                 $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
-                    'identifier' => $section->getIdentificador(),
+                 'identifier' => $section->getIdentificador()
                 ]);
 
             } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
@@ -449,6 +450,34 @@ class SectionController extends BaseController
     public function getDataSourceApi(SourceApi $api): JsonResponse
     {
         return new JsonResponse($this->api->fetchSourceApi($api));
+    }
+
+    /**
+     * @Route("/agregarEntrada/{id}", name="section_agregar_entrada", methods={"GET", "POST"})
+     * @param Request $request
+     */
+    public function agregarEntrada(Request $request, Section $section, EntradaRepository $entradaRepository)
+    {
+        die('en desa');
+        $form = $this->createForm(EntradaSectionType::class, $section);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $id_section = $form->get('section')->getData();
+            $seccion = $sectionRepository->find($id_section);
+            $entrada->addSection($seccion);
+            $entityManager = $this->container->get('doctrine')->getManager();
+            $entityManager->persist($entrada);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_entrada_index');
+        }
+
+        return $this->render('admin/entrada/vistaAgregaSection.html.twig', [
+            'index' => $entrada,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

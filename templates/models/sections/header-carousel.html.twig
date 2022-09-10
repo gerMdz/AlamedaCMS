@@ -17,6 +17,10 @@
     .para {
         width: 50%;
     }
+    img.mix-carousel{
+        height: 70% !important;
+        width: 100% !important;
+    }
 
     .para-light {
         opacity: 0.7;
@@ -80,9 +84,9 @@
     }
 
 </style>
-<section class="{{ section.cssClass|default('py-5 d-flex align-items-center') }}"
-         id="{{ section.identifier|default('header') }}" style="{{ section.cssStyle|default('') }}">
-    <div class="container text-light py-5" data-aos="fade-right">
+<section class="{{ section.cssClass|default('py-3 d-flex align-items-center') }}"
+         id="{{ section.identifier|default('header-carousel') }}" style="{{ section.cssStyle|default('') }}">
+    <div class="container text-light py-3 mw-100" data-aos="fade-right">
         <div id="carouselTemplateCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {% for imageSection in section.sectionImages %}
@@ -97,9 +101,9 @@
             </div>
             <div class="carousel-inner">
                 {% for imageSection in section.sectionImages %}
-                <div class="carousel-item {% if loop.first %} active {% endif %}" data-bs-interval="5000">
-                    <img src="{{ imageSection.imageId.imagePath|imagine_filter('squared_thumbnail_carousel') }}"
-                    alt="{{ app.request.baseUrl }}"  class="d-block w-100" >
+                <div class="carousel-item {% if loop.first %} active {% endif %} col-sm-12" data-bs-interval="5000">
+                    <img src="{{ imageSection.imageId.imagePath|imagine_filter('squared_thumbnail_large_16-5') }}"
+                    alt="{{ app.request.baseUrl }}"  class="d-block mix-carousel" >
                     <div class="carousel-caption_top d-none d-md-block">
                         <h5>{{ section.title| raw }}</h5>
                         <p>{{ section.contenido | raw }}</p>
