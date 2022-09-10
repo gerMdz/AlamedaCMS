@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Entrada;
 use App\Entity\Principal;
+use App\Entity\Section;
 use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;
@@ -203,6 +204,9 @@ class AdminEntradaController extends BaseController
         $entrada = new Entrada();
         $user = $this->getUser();
         $entrada->setAutor($user);
+        if($request->get('section')){
+            $entrada->addSection($this->container->get('doctrine')->getRepository(Section::class)->find($request->get('section')));
+        }
 
         $form = $this->createForm(EntradaType::class, $entrada);
 

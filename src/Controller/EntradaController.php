@@ -96,7 +96,7 @@ class EntradaController extends AbstractController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->render('admin_entrada/vistaAgregaSection.html.twig', [
+        return $this->render('admin/entrada/vistaAgregaSection.html.twig', [
             'index' => $entrada,
             'form' => $form->createView(),
         ]);
