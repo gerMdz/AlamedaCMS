@@ -154,11 +154,11 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div id="carouselAlamedaIndicators" class="carousel slide bg-light u-box-shadow-lg"
-                     data-ride="carousel">
+                     data-bs-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselAlamedaIndicators" data-slide-to="0" class="rounded active"></li>
-                        <li data-target="#carouselAlamedaIndicators" data-slide-to="1" class="rounded"></li>
-                        <li data-target="#carouselAlamedaIndicators" data-slide-to="2" class="rounded"></li>
+                        <li data-bs-target="#carouselAlamedaIndicators" data-bs-slide-to="0" class="rounded active"></li>
+                        <li data-bs-target="#carouselAlamedaIndicators" data-bs-slide-to="1" class="rounded"></li>
+                        <li data-bs-target="#carouselAlamedaIndicators" data-bs-slide-to="2" class="rounded"></li>
                     </ol>
 
                     <div class="carousel-inner">
@@ -190,13 +190,13 @@
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselAlamedaIndicators" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#carouselAlamedaIndicators" role="button" data-bs-slide="prev">
                   <span aria-hidden="true">
                     <i class="fas fa-angle-left carousel-control-size"></i>
                   </span>
                         <span class="sr-only">Previa</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselAlamedaIndicators" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#carouselAlamedaIndicators" role="button" data-bs-slide="next">
                   <span aria-hidden="true">
                     <i class="fas fa-angle-right carousel-control-size"></i>
                   </span>
@@ -217,7 +217,7 @@
         <div class="container">
             <div class="text-center w-md-50 mx-auto py-5">
                 <a class="display-4 d-inline-block mb-3 text-dark" target="_blank" href="{{ path('avanza') }}"
-                   data-toggle="tooltip" data-placement="top" title="" data-original-title="Avanza">
+                   data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Avanza">
                     <i class="fas fa-hand-holding-heart fa-2x mb-1"></i>
 
                 </a>
@@ -600,7 +600,7 @@
             </div>
             <div class="col-sm-12">
                 <a href="{{ path('notas') }}" class="text-light-blue"
-                   data-toggle="tooltip"
+                   data-bs-toggle="tooltip"
                    title="<h5 class='bg-light-blue'><strong>Mas detallles aquí</strong> "><i
                             class="material-icons btn-sm text-point-sec">local_library</i> Empieza aquí</a>
             </div>
@@ -628,9 +628,9 @@
             </div>
             <div class="col-sm-9 pull-right ">
 
-                <a title="Reviví los mensajes" data-placement="bottom" style="text-decoration-line: none"
+                <a title="Reviví los mensajes" data-bs-placement="bottom" style="text-decoration-line: none"
                    href="https://youtube.com/user/IglesiaAlameda" target="_blank"
-                   data-original-title="Reviví los mensajes"
+                   data-bs-original-title="Reviví los mensajes"
                 >
                     <blockquote class="bg-danger text-tan blockquote rounded d-flex align-items-center">
                         <i class="fab fa-youtube-square fa-4x" style="color: #FFF"></i>
@@ -752,7 +752,7 @@
 
 <script>
     $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
+        $('[data-bs-toggle="tooltip"]').tooltip({html: true, placement: "bottom"});
     });
 </script>
 <script type="text/javascript">
