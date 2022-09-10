@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Entrada;
 use App\Entity\Principal;
+use App\Entity\Section;
 use App\Form\EntradaComplexType;
 use App\Form\EntradaType;
 use App\Form\Step\Entrada\StepOneType;
 use App\Form\Step\Entrada\StepThreeType;
 use App\Form\Step\Entrada\StepTwoType;
 use App\Repository\EntradaRepository;
+use App\Repository\ModelTemplateRepository;
 use App\Repository\PrincipalRepository;
 use App\Service\BoleanToDateHelper;
 use App\Service\LoggerClient;
@@ -68,7 +70,7 @@ class AdminEntradaController extends BaseController
             $entrada = $entradaRepository->queryFindAllEntradas($bus);
         } else {
             $user = $this->getUser();
-            $entrada = $entradaRepository->queryFindByAutor($user);
+            $entrada = $entradaRepository->queryFindByAutor($user, $bus);
         }
 
         $entradas = $paginator->paginate(
@@ -202,6 +204,9 @@ class AdminEntradaController extends BaseController
         $entrada = new Entrada();
         $user = $this->getUser();
         $entrada->setAutor($user);
+        if($request->get('section')){
+            $entrada->addSection($this->container->get('doctrine')->getRepository(Section::class)->find($request->get('section')));
+        }
 
         $form = $this->createForm(EntradaType::class, $entrada);
 
@@ -254,9 +259,9 @@ class AdminEntradaController extends BaseController
      * @param Request $request
      * @return Response
      * @throws Exception
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_ESCRITOR")
      */
-    public function newStepOne(Request $request): Response
+    public function newStepOne(Request $request, ModelTemplateRepository $modelTemplateRepository): Response
     {
         $entrada = new Entrada();
         $form = $this->createForm(StepOneType::class, $entrada);
@@ -265,6 +270,12 @@ class AdminEntradaController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $section = $form['section']->getData();
             $entrada->addSection($section);
+            if($session_template = $this->container->get('session')->get('model_template_id'))
+            {
+                if($modelTemplate = $modelTemplateRepository->find($session_template)){
+                    $entrada->setModelTemplate($modelTemplate);
+                }
+            }
             $this->managerRegistry->getManager()->persist($entrada);
             $this->managerRegistry->getManager()->flush();
 
@@ -272,6 +283,8 @@ class AdminEntradaController extends BaseController
                 'id' => $entrada->getId(),
             ]);
         }
+
+
 
         return $this->render('admin/entrada/new_step1.html.twig', [
             'entrada' => $entrada,
@@ -286,10 +299,12 @@ class AdminEntradaController extends BaseController
      * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
-    public function newStepTwo(Request $request, Entrada $entrada): Response
+    public function newStepTwo(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
     {
         $form = $this->createForm(StepTwoType::class, $entrada);
         $form->handleRequest($request);
+
+        $linkRoutes = $principalRepository->getPrincipalSelect();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -303,6 +318,7 @@ class AdminEntradaController extends BaseController
         return $this->render('admin/entrada/new_step2.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
+            'LinkRoutes' => $linkRoutes
         ]);
     }
 

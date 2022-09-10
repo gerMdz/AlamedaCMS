@@ -534,12 +534,13 @@ class Entrada
         return $this->sections;
     }
 
-    public function addSection(Section $section): self
+    public function addSection(Section $section=null): self
     {
-        if (!$this->sections->contains($section)) {
-            $this->sections[] = $section;
+        if($section) {
+            if (!$this->sections->contains($section)) {
+                $this->sections[] = $section;
+            }
         }
-
         return $this;
     }
 

@@ -29,6 +29,7 @@ class StepTwoType extends AbstractType
                 'help'=>'Tiene un link interno? No debe contener link externo',
                 'attr' => [
                     'class' => 'form-control',
+                    'list'          => 'LinkRoutes'
                 ],
             ])
             ->add('linkPosting', TextType::class, [
