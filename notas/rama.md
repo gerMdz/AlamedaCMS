@@ -1,6 +1,6 @@
 ### GraceCMS
 ##### branch
-- 98-asegurar-la-busqueda-de-entradas
+- git checkout 101-entrada-desde-sección
 
 ### Elyon
 ##### branch
