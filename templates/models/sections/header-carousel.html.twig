@@ -86,7 +86,7 @@
 </style>
 <section class="{{ section.cssClass|default('py-3 d-flex align-items-center') }}"
          id="{{ section.identifier|default('header-carousel') }}" style="{{ section.cssStyle|default('') }}">
-    <div class="container text-light py-3 mw-100" data-aos="fade-right">
+    <div class="container-fluid text-light py-3 mw-100" data-aos="fade-right">
         <div id="carouselTemplateCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {% for imageSection in section.sectionImages %}
