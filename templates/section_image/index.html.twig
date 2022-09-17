@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SectionImage index{% endblock %}
+
+{% block body %}
+    <h1>SectionImage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NOrder</th>
+                <th>IsPrincipal</th>
+                <th>IsUsable</th>
+                <th>Filter</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for section_image in section_images %}
+            <tr>
+                <td>{{ section_image.id }}</td>
+                <td>{{ section_image.nOrder }}</td>
+                <td>{{ section_image.isPrincipal ? 'Yes' : 'No' }}</td>
+                <td>{{ section_image.isUsable ? 'Yes' : 'No' }}</td>
+                <td>{{ section_image.filter }}</td>
+                <td>{{ section_image.createdAt ? section_image.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ section_image.updatedAt ? section_image.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_section_image_show', {'id': section_image.id}) }}">show</a>
+                    <a href="{{ path('app_section_image_edit', {'id': section_image.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_section_image_new') }}">Create new</a>
+{% endblock %}

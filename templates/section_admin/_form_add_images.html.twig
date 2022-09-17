@@ -1,0 +1,30 @@
+{{ form_start(sectionForm) }}
+<div class="row">
+    <fieldset >
+        <label class="label label-info">Solo para múltiple imágenes</label>
+    <div class="col-sm-7 mx-auto">
+        {{ form_row(sectionForm.imagesFiles, {
+            attr: {
+                'placeholder': 'Seleccione una imagen para la sección'
+            }
+        }) }}
+    </div>
+{#    <div class="col-sm-3 mx-auto">#}
+{#        {% if sectionForm.vars.data.imageFilename | default %}#}
+{#            <a href="{{ uploaded_asset(sectionForm.vars.data.imagePath) }}" target="_blank">#}
+{#                <img src="{{ sectionForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"#}
+{#                     alt="{{ base.siteName }}">#}
+{#            </a>#}
+{#        {% endif %}#}
+{#    </div>#}
+    </fieldset>
+</div>
+
+
+
+{{ form_widget(sectionForm._token) }}
+
+<button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+<a class="btn btn-info btn--pill" href="{{ path('admin_section_list') }}">Cancelar</a>
+{{ form_end(sectionForm, {'render_rest': true}) }}
+{# {{ form_end(sectionForm) }} #}
