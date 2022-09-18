@@ -1,0 +1,69 @@
+{# section: #}
+{#    imagen: false #}
+{#    entradas: true #}
+{# entrada:
+      imagen: true #}
+
+<style>
+    .bg-icons-elyon {
+        background-color: #cab897;
+    }
+</style>
+
+<section class="{{ section.cssClass|default('d-flex align-items-center') }}"
+         id="{{ section.identifier|default('six-columns') }}" style="{{ section.cssStyle|default('') }}">
+    {% if section.contenido %}
+        <div class="container text-center">
+            <h4 class="text-alameda">
+                <b class="aire-2 fuente-arial-nova">
+                    {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                </b>
+            </h4>
+            <hr/>
+        </div>
+    {% endif %}
+    <div class="container-fluid px-2 g-0 h-25">
+        <div class="row row-cols-1 row-cols-sm-6 p-0">
+
+            {#                {% for entrada in section.entradas %} #}
+            {% for entrada in entradas %}
+                {% if entrada.publicadoAt %}
+                    <div class="col-sm-2 mx-auto text-center py-0 {{ entrada.cssClass }} "
+                         id="{{ entrada.identificador }}">
+                        <div class="col-sm-12 align-self-center">
+
+                        {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                        <a class="mx-auto"
+                                {% if (entrada.linkPosting) %}
+                                    href="{{ entrada.linkPosting }}"
+                                    {% if (entrada.isLinkExterno) %}
+                                        target="_blank"
+                                    {% endif %}
+                                {% else %}
+                                    href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                                {% endif %}
+                        >
+                            {% endif %}
+
+
+                            <img class="text-center mx-auto img-fluid"
+                                 src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
+                                 alt="AlamedaCMS"/>
+
+
+                            {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                        </a>
+
+                        {% endif %}
+                        </div>
+                        <div class="col-sm-12 align-self-center">
+                            {{ entrada.contenido|raw }}
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- end of entrada -->
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
