@@ -23,41 +23,43 @@
         </div>
     {% endif %}
     <div class="container-fluid px-2 g-0 h-25">
-        <div class="row row-cols-1 row-cols-sm-6 p-0">
+        <div class="row py-0">
 
             {#                {% for entrada in section.entradas %} #}
             {% for entrada in entradas %}
                 {% if entrada.publicadoAt %}
-                    <div class="col-sm-2 mx-auto text-center py-0 {{ entrada.cssClass }} "
+                    <div class="text-center d-grid {{ entrada.cssClass }}"
                          id="{{ entrada.identificador }}">
-                        <div class="col-sm-12 align-self-center">
-
-                        {% if (entrada.linkRoute or entrada.linkPosting ) %}
-                        <a class="mx-auto"
-                                {% if (entrada.linkPosting) %}
-                                    href="{{ entrada.linkPosting }}"
-                                    {% if (entrada.isLinkExterno) %}
-                                        target="_blank"
-                                    {% endif %}
-                                {% else %}
-                                    href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
-                                {% endif %}
-                        >
-                            {% endif %}
-
-
-                            <img class="text-center mx-auto img-fluid"
-                                 src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
-                                 alt="AlamedaCMS"/>
-
+                        <div class="mx-1  d-grid align-self-center justify-content-center ">
+                        <div class=" ">
 
                             {% if (entrada.linkRoute or entrada.linkPosting ) %}
-                        </a>
+                            <a class="mx-auto"
+                                    {% if (entrada.linkPosting) %}
+                                        href="{{ entrada.linkPosting }}"
+                                        {% if (entrada.isLinkExterno) %}
+                                            target="_blank"
+                                        {% endif %}
+                                    {% else %}
+                                        href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                                    {% endif %}
+                            >
+                                {% endif %}
 
-                        {% endif %}
-                        </div>
-                        <div class="col-sm-12 align-self-center">
+
+                                <img class="text-center mx-auto img-fluid"
+                                     src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
+                                     alt="AlamedaCMS"/>
+
+
+                                {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                            </a>
+
+                            {% endif %}
+
+                            <br/>
                             {{ entrada.contenido|raw }}
+                        </div>
                         </div>
                     </div>
                 {% endif %}
