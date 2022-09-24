@@ -1,6 +1,6 @@
-{#<div class="bg-white" style="height: 200px">#}
+{# <div class="bg-white" style="height: 200px"> #}
 
-{#</div>#}
+{# </div> #}
 <section class="{{ section.cssClass | default('a-content-space-medium text-center h-100') }} ">
     <div class="container-fluid">
         <div class="row">
@@ -20,27 +20,29 @@
                             <div class="container mb-5">
                                 <div class="row">
                                     {% for entrada in entradas %}
-                                        <div class="col-md-4 mb-5">
-                                            <div class="pasos h-100">
-                                                <a href="{{ (entrada.linkPosting is defined)? entrada.linkPosting : path(entrada.linkRoute) }}">
-                                                    <div class="card card-plain bg-white h-100">
-                                                        <div class="col-sm-4 mx-auto text-center img-20">
-                                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                                                 alt="{{ app.request.baseUrl }}"
-                                                                 class="img-raised rounded-circle img-fluid"/>
+                                        {% if(entrada.publicadoAt is not null) %}
+                                            <div class="col-md-4 mb-5">
+                                                <div class="pasos h-100">
+                                                    <a href="{{ (entrada.linkPosting is defined)? entrada.linkPosting : path(entrada.linkRoute) }}">
+                                                        <div class="card card-plain bg-white h-100">
+                                                            <div class="col-sm-4 mx-auto text-center img-20">
+                                                                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                                                     alt="{{ app.request.baseUrl }}"
+                                                                     class="img-raised rounded-circle img-fluid"/>
+                                                            </div>
+                                                            <h4 class="card-title text-center text-alameda ">
+                                                                <i>{{ entrada.titulo | striptags | raw }}</i>
+                                                            </h4>
+                                                            <div class="card-body">
+                                                                <p class="card-description text-center text-dark">
+                                                                    {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                        <h4 class="card-title text-center text-alameda ">
-                                                            <i>{{ entrada.titulo | striptags | raw }}</i>
-                                                        </h4>
-                                                        <div class="card-body">
-                                                            <p class="card-description text-center text-dark">
-                                                                {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     {% endfor %}
 
                                 </div>

@@ -8,10 +8,12 @@ entradas: true
     <div class="container">
         <div class="row" data-aos="fade-right">
             {% for entrada in section.entradas %}
-                <div class="{{ entrada.cssClass|default('col-lg-3 py-4 py-md-5 mx-auto') }}"
-                     style="{{ entrada.cssStyle|default('') }}">
-                    {% include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
-                </div>
+                {% if(entrada.publicadoAt is not null) %}
+                    <div class="{{ entrada.cssClass|default('col-lg-3 py-4 py-md-5 mx-auto') }}"
+                         style="{{ entrada.cssStyle|default('') }}">
+                        {% include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

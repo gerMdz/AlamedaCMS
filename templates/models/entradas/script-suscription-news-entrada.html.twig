@@ -1,3 +1,4 @@
+{% if(entrada.publicadoAt is not null) %}
 <div class="{{ entrada.destacado?'col-lg-6':'col-lg-3'}}  col-md-6 mb-5 mx-auto">
     <div class="card h-90">
         <div class="card-body">
@@ -17,3 +18,4 @@
         </div>
     </div>
 </div>
+{% endif %}

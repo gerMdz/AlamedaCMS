@@ -1,4 +1,4 @@
-<section class="{{section.cssClass}}" id="{{ section.identificador }}">
+<section class="{{ section.cssClass }}" id="{{ section.identificador }}">
     <div class="container-fluid">
         <div class="row mt-5">
             <div class="card mb-3 col-sm-10 mx-auto">
@@ -8,11 +8,14 @@
                             <div class="col-sm-12">
                                 <div id="carouselSection" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                     <div class="carousel-inner">
-                                        {%for entrada in section.entradas %}
-                                        <div class="carousel-item {% if loop.first %} active {% endif %}">
-                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}" class="d-block w-100" alt="{{entrada.titulo}}">
-                                        </div>
-                                        {%endfor%}
+                                        {% for entrada in section.entradas %}
+                                            {% if(entrada.publicadoAt is not null) %}
+                                                <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
+                                                         class="d-block w-100" alt="{{ entrada.titulo }}">
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
                                     <button class="carousel-control-prev" type="button"
                                             data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -30,13 +33,13 @@
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title">{{section.title | raw}}</h5>
+                            <h5 class="card-title">{{ section.title | raw }}</h5>
                             <p class="card-text">
-                                {{ section.contenido | raw}}
+                                {{ section.contenido | raw }}
                             </p>
                             <p class="card-text"><small class="text-muted">
 
-                                    {{section.footer | raw}}
+                                    {{ section.footer | raw }}
                                 </small></p>
                         </div>
                     </div>
