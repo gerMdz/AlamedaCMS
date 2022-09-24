@@ -7,6 +7,7 @@
     .carousel .carousel-indicators {
         bottom: 1em !important;
     }
+
     .carousel-caption.top {
         margin-top: 1em;
         padding-bottom: 1em;
@@ -35,7 +36,8 @@
         min-height: 8em;
         max-height: 8em;
     }
-    .carousel-caption a{
+
+    .carousel-caption a {
         color: #fafafa;
     }
 </style>
@@ -63,35 +65,38 @@
                     {% endif %}
 
                     {% for entrada in entradas %}
-                        <div class="carousel-item {% if loop.first %} active {% endif %}">
-                            <img class="d-block w-100"
-                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_carousel') }}"
-                                 alt="{{ app.request.baseUrl }}" />
-                            <div class="carousel-caption d-md-block ">
-                                <h5 class="text-white">
-                                    {{ entrada.titulo | striptags | upper| raw }}
-                                </h5>
-                                <small class="text-white">
-                                    {{ entrada.contenido|default('') | raw }}
-                                    {% if (entrada.linkRoute or entrada.linkPosting ) %}
-                                    <a
-                                            {% if (entrada.linkPosting) %}
-                                                href="{{ entrada.linkPosting }}"
-                                                {% if (entrada.isLinkExterno) %}
-                                                    target="_blank"
-                                                {% endif %}
-                                            {% else %}
-                                                href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
-                                            {% endif %}
-                                    >
-                                        {% endif %}
-                                        {{ entrada.footer }}
+                        {% if(entrada.publicadoAt is not null) %}
+                            <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                <img class="d-block w-100"
+                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_carousel') }}"
+                                     alt="{{ app.request.baseUrl }}"/>
+                                <div class="carousel-caption d-md-block ">
+                                    <h5 class="text-white">
+                                        {{ entrada.titulo | striptags | upper| raw }}
+                                    </h5>
+                                    <small class="text-white">
+                                        {{ entrada.contenido|default('') | raw }}
                                         {% if (entrada.linkRoute or entrada.linkPosting ) %}
-                                    </a>
-                                    {% endif %}
-                                </small>
+                                        <a
+                                                {% if (entrada.linkPosting) %}
+                                                    href="{{ entrada.linkPosting }}"
+                                                    {% if (entrada.isLinkExterno) %}
+                                                        target="_blank"
+                                                    {% endif %}
+                                                {% else %}
+                                                    href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                                                {% endif %}
+                                        >
+                                            {% endif %}
+                                            {{ entrada.footer }}
+                                            {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                                        </a>
+                                        {% endif %}
+                                    </small>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
+
                     {% endfor %}
 
                 </div>

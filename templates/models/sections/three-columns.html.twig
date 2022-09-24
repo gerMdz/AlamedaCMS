@@ -10,7 +10,9 @@
     <div class="container mt-5">
         <div class="row">
             {% for entrada in entradas %}
-                {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' with { 'section':entrada } %}
+                {% if(entrada.publicadoAt is not null) %}
+                    {% include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' with { 'section':entrada } %}
+                {% endif %}
             {% endfor %}
         </div>
     </div>

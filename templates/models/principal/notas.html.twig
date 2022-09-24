@@ -142,78 +142,79 @@
         </section>
         <!-- Charlas -->
         {% for section in principal.section %}
-        <section class="a-content-space-medium bg-fam text-center">
-            <div class="container">
-                <div class="row">
-                    {% if section.entrada is defined %}
-                        {% set entradas = section.entrada %}
-                    {% else %}
-                        {% set entradas = section.entradas %}
-                    {% endif %}
+            <section class="a-content-space-medium bg-fam text-center">
+                <div class="container">
+                    <div class="row">
+                        {% if section.entrada is defined %}
+                            {% set entradas = section.entrada %}
+                        {% else %}
+                            {% set entradas = section.entradas %}
+                        {% endif %}
 
-                    {% for entrada in entradas %}
-                            <!--                charla 1-->
-                            <div class="col-md-4 mb-2 mx-auto   ">
-                                <!--                                        <div class="card h-100"> -->
-                                <div class="card card-a h-100 overflow-hidden">
-                                    <div class="position-relative">
-                                        <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
-                                             class="card-img-top img-modal"
-                                             data-toggle="modal" data-target="#modal-02"
-                                             alt="{{ base.lema }}">
-                                    </div>
-                                    <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
-                                        <h5 class="card-title text-uppercase">
-                                            {{ entrada.titulo }}
-                                        </h5>
-                                        <div class="middle-0">
-                                            <i class="fas fa-quote-left mr-5"></i><br/>
-                                            {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
-                                            <i class="fas fa-quote-right ml-5"></i>
+                        {% for entrada in entradas %}
+                            {% if(entrada.publicadoAt is not null) %}
+                                <div class="col-md-4 mb-2 mx-auto   ">
+                                    <!--                                        <div class="card h-100"> -->
+                                    <div class="card card-a h-100 overflow-hidden">
+                                        <div class="position-relative">
+                                            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                                                 class="card-img-top img-modal"
+                                                 data-toggle="modal" data-target="#modal-02"
+                                                 alt="{{ base.lema }}">
                                         </div>
-                                        <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
-                                            {% for referencia in entrada.entradaReferences %}
-                                            <a href="/descargas/referencias/{{ referencia.filename}}"
-{#                                            <a href="{{ referencia. }}"#}
-                                               target="_blank"
-                                               class="card-link text-center">
-                                                <i class="far fa-file-pdf ml-5 mr-1"></i>
-                                                <span class="text-alameda btn-icon ">Notas</span><br/>
-                                            </a>
-                                            {% endfor %}
-                                            <a href="{{ entrada.linkPosting }}" class="card-link text-center"
-                                               target="_blank">
-                                                <i class="fab fa-youtube fa-fw mr-1"></i>
-                                                <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
-                                            </a>
+                                        <div class="card-body position-relative mt-n6 mx-2 bg-white text-center rounded border border-light u-box-shadow-lg">
+                                            <h5 class="card-title text-uppercase">
+                                                {{ entrada.titulo }}
+                                            </h5>
+                                            <div class="middle-0">
+                                                <i class="fas fa-quote-left mr-5"></i><br/>
+                                                {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                                                <i class="fas fa-quote-right ml-5"></i>
+                                            </div>
+                                            <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">
+                                                {% for referencia in entrada.entradaReferences %}
+                                                    <a href="/descargas/referencias/{{ referencia.filename }}"
+                                                            {#                                            <a href="{{ referencia. }}" #}
+                                                       target="_blank"
+                                                       class="card-link text-center">
+                                                        <i class="far fa-file-pdf ml-5 mr-1"></i>
+                                                        <span class="text-alameda btn-icon ">Notas</span><br/>
+                                                    </a>
+                                                {% endfor %}
+                                                <a href="{{ entrada.linkPosting }}" class="card-link text-center"
+                                                   target="_blank">
+                                                    <i class="fab fa-youtube fa-fw mr-1"></i>
+                                                    <span class="text-alameda btn-icon mr-5  ">Video</span><br/>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endif %}
                         {% endfor %}
 
-                    <div class="col-sm-12">
-                        <div class="show-article-container p-3 mt-4">
+                        <div class="col-sm-12">
+                            <div class="show-article-container p-3 mt-4">
 
                                 <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
                                     {% include('bases/_nota.html.twig') %}
                                     <hr class="border-bottom"/>
                                 </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         {% endfor %}
     </main>
     <footer class="footer">
-{#        <div class="card-body">#}
-{#            <h4 class="text-darker card-text text-center">Ver series anteriores </h4>#}
-{#            <div class="col-sm-2 mx-auto text-center">#}
-{#                <a href="notas-oraciones-audaces.php" class="btn btn-xl btn-primary"> Oraciones Audaces</a>#}
-{#            </div>#}
-{#        </div>#}
+        {#        <div class="card-body"> #}
+        {#            <h4 class="text-darker card-text text-center">Ver series anteriores </h4> #}
+        {#            <div class="col-sm-2 mx-auto text-center"> #}
+        {#                <a href="notas-oraciones-audaces.php" class="btn btn-xl btn-primary"> Oraciones Audaces</a> #}
+        {#            </div> #}
+        {#        </div> #}
 
     </footer>
 {% endblock %}

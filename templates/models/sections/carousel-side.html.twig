@@ -39,11 +39,13 @@
         padding-top: 1.25rem;
         padding-bottom: 0;
     }
-small > p {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 1;
-}
+
+    small > p {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 1;
+    }
+
     /*.carousel-caption a {*/
     /*    color: #fafafa;*/
     /*}*/
@@ -60,35 +62,37 @@ small > p {
                 {#                </ol> #}
                 <div class="carousel-inner">
                     {% for entrada in section.entradas %}
-                        <div class="carousel-item {% if loop.first %} active {% endif %}">
-                            {% if (entrada.linkRoute or entrada.linkPosting ) %}
-                            <a
-                                    {% if (entrada.linkPosting) %}
-                                        href="{{ entrada.linkPosting }}"
-                                        {% if (entrada.isLinkExterno) %}
-                                            target="_blank"
+                        {% if(entrada.publicadoAt is not null) %}
+                            <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                                <a
+                                        {% if (entrada.linkPosting) %}
+                                            href="{{ entrada.linkPosting }}"
+                                            {% if (entrada.isLinkExterno) %}
+                                                target="_blank"
+                                            {% endif %}
+                                        {% else %}
+                                            href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
                                         {% endif %}
-                                    {% else %}
-                                        href="{{ path('principal_ver',{'linkRoute':entrada.linkRoute}) }}"
+                                >
                                     {% endif %}
-                            >
+
+                                    <img class="d-block w-100"
+                                         src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
+                                         alt="{{ app.request.baseUrl }}"/>
+                                    <div class="carousel-caption {{ entrada.cssClass }} text-left ">
+                                        <small>
+                                            {{ entrada.titulo|default('') | raw }}
+                                            {{ entrada.contenido|default('')  | raw }}
+                                        </small>
+                                    </div>
+                                    {% if (entrada.linkRoute or entrada.linkPosting ) %}
+                                </a>
                                 {% endif %}
 
-                                <img class="d-block w-100"
-                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}"
-                                     alt="{{ app.request.baseUrl }}"/>
-                                <div class="carousel-caption {{entrada.cssClass}} text-left ">
-                                    <small>
-                                        {{ entrada.titulo|default('') | raw }}
-                                        {{ entrada.contenido|default('')  | raw }}
-                                    </small>
-                                </div>
-                                {% if (entrada.linkRoute or entrada.linkPosting ) %}
-                            </a>
-                            {% endif %}
 
-
-                        </div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
 
                 </div>

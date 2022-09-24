@@ -2,17 +2,20 @@
     .action-btn-wrapper {
         position: relative;
     }
+
     .fixed-action-btn.my-float-btn {
         position: fixed;
         right: 0;
         bottom: 15%;
         padding-top: 15px;
-        z-index:9999;
+        z-index: 9999;
     }
-    .fixed-action-btn.my-float-btn>a{
+
+    .fixed-action-btn.my-float-btn > a {
         text-decoration: none;
     }
-    .list-group{
+
+    .list-group {
         border-radius: 0.375rem 0 0 0.375rem;
     }
 </style>
@@ -24,10 +27,12 @@
                     <div class="fixed-action-btn my-float-btn horizontal">
                         <ul class="list-group">
                             {% for entrada in entradas %}
-                                {% if (entrada.contacto) %}
-                                    <li class="list-group-item {{ section.cssClass }}">
-                                        {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto} %}
-                                    </li>
+                                {% if(entrada.publicadoAt is not null) %}
+                                    {% if (entrada.contacto) %}
+                                        <li class="list-group-item {{ section.cssClass }}">
+                                            {% include 'modelEntrada/_pContacto.html.twig' with { 'contactos':entrada.contacto} %}
+                                        </li>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         </ul>

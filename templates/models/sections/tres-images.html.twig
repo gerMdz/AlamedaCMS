@@ -5,26 +5,28 @@
             <div class="col-md-8 d-flex">
                 <div class="col-sm-12">
                     {% for entrada in entradas %}
-                        {% if (entrada.orden == 1) %}
-                            <div class="card shadow-none">
-                                <div class="card-img">
-                                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
-                                         alt="{{ app.request.baseUrl }}"
-                                         class="card-img">
+                        {% if(entrada.publicadoAt is not null) %}
+                            {% if (entrada.orden == 1) %}
+                                <div class="card shadow-none">
+                                    <div class="card-img">
+                                        <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
+                                             alt="{{ app.request.baseUrl }}"
+                                             class="card-img">
+                                    </div>
+                                    <div class="card-footer bg-white d-flex justify-content-between">
+                                        <a class="card-link">
+                                            <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
+                                            <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
+                                            <small>por {{ entrada.autor }}</small>
+                                        </a>
+                                        <a href="{{ entrada.linkPosting }}"
+                                           class="btn-round btn-alameda mr-2 "
+                                           target="_blank">
+                                            Ver último mensaje
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="card-footer bg-white d-flex justify-content-between">
-                                    <a class="card-link">
-                                        <small>{{ entrada.eventoAt|date('d-M-Y')|ago }}</small><br/>
-                                        <span class="text-alameda">{{ entrada.titulo | striptags | raw }}</span><br/>
-                                        <small>por {{ entrada.autor }}</small>
-                                    </a>
-                                    <a href="{{ entrada.linkPosting }}"
-                                       class="btn-round btn-alameda mr-2 "
-                                       target="_blank">
-                                        Ver último mensaje
-                                    </a>
-                                </div>
-                            </div>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </div>
