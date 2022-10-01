@@ -22,7 +22,7 @@
                 </div>
                 <div class="table-responsive sticky-header  ">
                     <table class="table sticky-header" data-toggle="table">
-                        <thead class="text-primary" >
+                        <thead class="text-primary">
                         <tr>
                             <th>Nombre</th>
                             <th>Ubicación</th>
@@ -93,12 +93,17 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="{{ path('admin_section_show', {'id': section.id}) }}">
-                                        {{ include('bases/_ver.html.twig') }}
-                                    </a><br/>
-                                    <a href="{{ path('admin_section_edit', {'id': section.id}) }}">
-                                        {{ include('bases/_editar.html.twig') }}
-                                    </a>
+                                    <small>
+                                        <a href="{{ path('admin_section_show', {'id': section.id}) }}">
+                                            {{ include('bases/_ver.html.twig') }}
+                                        </a><br/>
+                                        <a href="{{ path('admin_section_edit', {'id': section.id}) }}">
+                                            {{ include('bases/_editar.html.twig') }}
+                                        </a><br/>
+                                        <a href="{{ path('admin_section_add_images', {'section': section.id}) }}">
+                                            {{ include('bases/_images.html.twig') }}
+                                        </a>
+                                    </small>
                                 </td>
                             </tr>
                         {% else %}

@@ -79,7 +79,11 @@
                                 <br/>
                             {% else %}
                                 No posee
+                                <br/>
                             {% endfor %}
+                            <a href="{{ path('admin_entrada_new', {'section': section.id }) }}">
+                                Crear entrada
+                            </a>
                         </td>
                     </tr>
                     <tr>

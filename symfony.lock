@@ -277,9 +277,6 @@
     "phpoffice/phpspreadsheet": {
         "version": "1.0.0"
     },
-    "phpspec/prophecy": {
-        "version": "v1.15.0"
-    },
     "phpunit/php-code-coverage": {
         "version": "9.2.15"
     },

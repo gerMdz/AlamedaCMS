@@ -6,7 +6,24 @@
 
 {% block breadcrumb %}
 {{parent()}}
-                            <li class="breadcrumb-item active"><span>Entradas</span></li>
+<li class="breadcrumb-item active"><span>Entradas</span></li>
+<li class="breadcrumb-item float-end">
+<div class="form-group form-inline">
+<form action="" method="get">
+        <span class="input-group-prepend">
+            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="submit"
+            id="btn-search"
+            data-id="search-input" >
+                    <i class="fa fa-search"></i>
+                    </button>
+
+         <input class="form-control border-end-0 border rounded-pill"  type="search"
+            value="" id="busq" name="busq" placeholder="Buscar ...">
+            </span>
+        </label>
+        </form>
+        </div>
+</li>
 
 {%endblock%}
 
@@ -141,5 +158,18 @@
     {{ parent() }}
     <script>
         $('#entrada').addClass('active');
+        // $('#btn-search').click(function(e) {
+        //     e.preventDefault();
+        //     console.log('s');
+        // })
+        $( "#btn-search" ).on( "click", function() {
+                alert( $( this ).text() );
+        });
+        $(document).ready(function() {
+    $("#btn-search").click(function(e){
+        e.preventDefault();
+        alert("button");
+    });
+});
     </script>
 {% endblock %}

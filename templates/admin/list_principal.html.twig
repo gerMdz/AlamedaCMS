@@ -48,7 +48,7 @@
                                         <p class="text-muted">
                                             {% if principal.principal.linkRoute is defined %}
                                                 <small>
-                                                    <a class="text-info" data-toggle="tooltip"
+                                                    <a class="text-info" data-bs-toggle="tooltip"
                                                        title="Ver linkRoute principal"
                                                        href="{{ path('principal_show', {'id': principal.principal.id}) }}">
                                                         {{ include('bases/_ver.html.twig', {'button_label': principal.principal.linkRoute  }) }}
