@@ -26,7 +26,7 @@ class Comentario
     private $autor;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=8000, nullable=true)
      */
     private $contenido;
 
