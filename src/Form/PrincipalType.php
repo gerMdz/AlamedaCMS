@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\ModelTemplate;
 use App\Entity\Principal;
 use App\Repository\ModelTemplateRepository;
+use FM\ElfinderBundle\Form\Type\ElFinderType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -59,7 +60,7 @@ class PrincipalType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('imageFile', FileType::class, [
+            ->add('imageFile', ElFinderType::class, [
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
