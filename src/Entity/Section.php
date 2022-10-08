@@ -84,7 +84,7 @@ class Section
     private ?string $template;
 
     /**
-     * @ORM\Column(type="string", length=5100, nullable=true)
+     * @ORM\Column(type="text", length=8000, nullable=true)
      * @Groups("mail")
      */
     private ?string $contenido;

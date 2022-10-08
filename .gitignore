@@ -110,3 +110,4 @@ yarn-error.log
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+public/images/logo-solo.png
