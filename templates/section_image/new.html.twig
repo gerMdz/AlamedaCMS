@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SectionImage{% endblock %}
+
+{% block body %}
+    <h1>Create new SectionImage</h1>
+
+    {{ include('section_image/_form.html.twig') }}
+
+    <a href="{{ path('app_section_image_index') }}">back to list</a>
+{% endblock %}

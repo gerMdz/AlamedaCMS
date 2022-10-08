@@ -134,6 +134,13 @@ class Section
      */
     private ?string $footer;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SectionImage::class, mappedBy="sectionId")
+     */
+    private $sectionImages;
+
+
+
     public function __toString()
     {
         return $this->name;
@@ -147,6 +154,7 @@ class Section
         $this->createdAt = new DateTime();
         $this->markAsUpdated();
         $this->entradas = new ArrayCollection();
+        $this->sectionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -442,5 +450,34 @@ class Section
         return $this;
     }
 
+    /**
+     * @return Collection<int, SectionImage>
+     */
+    public function getSectionImages(): Collection
+    {
+        return $this->sectionImages;
+    }
+
+    public function addSectionImage(SectionImage $sectionImage): self
+    {
+        if (!$this->sectionImages->contains($sectionImage)) {
+            $this->sectionImages[] = $sectionImage;
+            $sectionImage->setSectionId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSectionImage(SectionImage $sectionImage): self
+    {
+        if ($this->sectionImages->removeElement($sectionImage)) {
+            // set the owning side to null (unless already changed)
+            if ($sectionImage->getSectionId() === $this) {
+                $sectionImage->setSectionId(null);
+            }
+        }
+
+        return $this;
+    }
 
 }
