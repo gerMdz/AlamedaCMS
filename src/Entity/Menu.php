@@ -30,8 +30,7 @@ class Menu
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Nombre;
-
+    private $nombre;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -42,6 +41,11 @@ class Menu
      * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="menu")
      */
     private $itemMenus;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $content;
 
     public function __construct()
     {
@@ -57,12 +61,12 @@ class Menu
 
     public function getNombre(): ?string
     {
-        return $this->Nombre;
+        return $this->nombre;
     }
 
-    public function setNombre(string $Nombre): self
+    public function setNombre(string $nombre): self
     {
-        $this->Nombre = $Nombre;
+        $this->nombre = $nombre;
 
         return $this;
     }
@@ -93,6 +97,18 @@ class Menu
         if ($this->itemMenus->removeElement($itemMenu)) {
             $itemMenu->removeMenu($this);
         }
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }
