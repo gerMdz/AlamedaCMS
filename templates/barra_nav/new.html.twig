@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New BarraNav{% endblock %}
+
+{% block body %}
+    <h1>Create new BarraNav</h1>
+
+    {{ include('barra_nav/_form.html.twig') }}
+
+    <a href="{{ path('app_barra_nav_index') }}">back to list</a>
+{% endblock %}

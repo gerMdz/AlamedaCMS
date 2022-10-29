@@ -133,6 +133,11 @@ class Principal
      */
     private Collection $blocsFixes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=BarraNav::class, inversedBy="principals")
+     */
+    private $navbar;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -494,6 +499,18 @@ class Principal
         if ($this->blocsFixes->removeElement($blocsFix)) {
             $blocsFix->removePage($this);
         }
+
+        return $this;
+    }
+
+    public function getNavbar(): ?BarraNav
+    {
+        return $this->navbar;
+    }
+
+    public function setNavbar(?BarraNav $navbar): self
+    {
+        $this->navbar = $navbar;
 
         return $this;
     }

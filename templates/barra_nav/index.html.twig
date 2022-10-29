@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BarraNav index{% endblock %}
+
+{% block body %}
+    <h1>BarraNav index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Identifier</th>
+                <th>Content</th>
+                <th>ImageFilename</th>
+                <th>Description</th>
+                <th>IsIndex</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>CssClass</th>
+                <th>CssStyle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for barra_nav in barra_navs %}
+            <tr>
+                <td>{{ barra_nav.id }}</td>
+                <td>{{ barra_nav.title }}</td>
+                <td>{{ barra_nav.identifier }}</td>
+                <td>{{ barra_nav.content }}</td>
+                <td>{{ barra_nav.imageFilename }}</td>
+                <td>{{ barra_nav.description }}</td>
+                <td>{{ barra_nav.isIndex ? 'Yes' : 'No' }}</td>
+                <td>{{ barra_nav.createdAt ? barra_nav.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ barra_nav.updatedAt ? barra_nav.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ barra_nav.cssClass }}</td>
+                <td>{{ barra_nav.cssStyle }}</td>
+                <td>
+                    <a href="{{ path('app_barra_nav_show', {'id': barra_nav.id}) }}">show</a>
+                    <a href="{{ path('app_barra_nav_edit', {'id': barra_nav.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_barra_nav_new') }}">Create new</a>
+{% endblock %}

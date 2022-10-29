@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BarraNav{% endblock %}
+
+{% block body %}
+    <h1>BarraNav</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ barra_nav.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ barra_nav.title }}</td>
+            </tr>
+            <tr>
+                <th>Identifier</th>
+                <td>{{ barra_nav.identifier }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ barra_nav.content }}</td>
+            </tr>
+            <tr>
+                <th>ImageFilename</th>
+                <td>{{ barra_nav.imageFilename }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ barra_nav.description }}</td>
+            </tr>
+            <tr>
+                <th>IsIndex</th>
+                <td>{{ barra_nav.isIndex ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ barra_nav.createdAt ? barra_nav.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ barra_nav.updatedAt ? barra_nav.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CssClass</th>
+                <td>{{ barra_nav.cssClass }}</td>
+            </tr>
+            <tr>
+                <th>CssStyle</th>
+                <td>{{ barra_nav.cssStyle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_barra_nav_index') }}">back to list</a>
+
+    <a href="{{ path('app_barra_nav_edit', {'id': barra_nav.id}) }}">edit</a>
+
+    {{ include('barra_nav/_delete_form.html.twig') }}
+{% endblock %}

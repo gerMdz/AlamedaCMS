@@ -58,11 +58,17 @@ class ModelTemplate
      */
     private $entradas;
 
+    /**
+     * @ORM\OneToMany(targetEntity=BarraNav::class, mappedBy="modelTemplate")
+     */
+    private $barraNavs;
+
     public function __construct()
     {
         $this->principals = new ArrayCollection();
         $this->sections = new ArrayCollection();
         $this->entradas = new ArrayCollection();
+        $this->barraNavs = new ArrayCollection();
     }
 
     public function __toString()
@@ -210,6 +216,36 @@ class ModelTemplate
             // set the owning side to null (unless already changed)
             if ($entrada->getModelTemplate() === $this) {
                 $entrada->setModelTemplate(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BarraNav>
+     */
+    public function getBarraNavs(): Collection
+    {
+        return $this->barraNavs;
+    }
+
+    public function addBarraNav(BarraNav $barraNav): self
+    {
+        if (!$this->barraNavs->contains($barraNav)) {
+            $this->barraNavs[] = $barraNav;
+            $barraNav->setModelTemplate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBarraNav(BarraNav $barraNav): self
+    {
+        if ($this->barraNavs->removeElement($barraNav)) {
+            // set the owning side to null (unless already changed)
+            if ($barraNav->getModelTemplate() === $this) {
+                $barraNav->setModelTemplate(null);
             }
         }
 
