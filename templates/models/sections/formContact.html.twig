@@ -1,0 +1,43 @@
+<section class="{{ section.cssClass }}" style="{{ section.cssStyle }}" id="{{ section.identificador }}">
+    <div class="container-fluid px-0">
+        <div class="mt-5">
+            <div class="card mb-3 col-sm-12 mx-auto">
+                <div class="container py-4">
+
+                    <!-- Bootstrap 5 starter form -->
+                    <form id="contactForm" method="post" action="{{ path('app_form_contact_new') }}">
+
+                        <!-- Name input -->
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Nombre</label>
+                            <input class="form-control" id="name" type="text" placeholder="Nombre" />
+                        </div>
+
+                        <!-- Email address input -->
+                        <div class="mb-3">
+                            <label class="form-label" for="subject">Asunto</label>
+                            <input class="form-control" id="subject" type="text" placeholder="Asunto" value="{{ section.footer }}" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Dirección de mail</label>
+                            <input class="form-control" id="email" type="email" placeholder="Dirección de mail" />
+                        </div>
+
+                        <!-- Message input -->
+                        <div class="mb-3">
+                            <label class="form-label" for="text">Mensaje</label>
+                            <textarea class="form-control" id="text" type="text" placeholder="Mensaje" style="height: 10rem;"></textarea>
+                        </div>
+                        <input type="hidden" name="_token" value="{{ csrf_token('contact') }}">
+                        <!-- Form submit button -->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Enviar</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
