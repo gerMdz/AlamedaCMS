@@ -14,6 +14,7 @@ use App\Repository\EntradaRepository;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\PrincipalRepository;
 use App\Service\BoleanToDateHelper;
+use App\Service\Handler\Image\ImageOptimizer;
 use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
 use App\Service\UploaderHelper;
@@ -34,21 +35,26 @@ class AdminEntradaController extends BaseController
     private LoggerClient $loggerClient;
     private BoleanToDateHelper $boleanToDateHelper;
     private ManagerRegistry $managerRegistry;
+    private ImageOptimizer $imageOptimizer;
 
     /**
      * NO usado es opcional.
      * @param LoggerClient $loggerClient
      * @param BoleanToDateHelper $boleanToDateHelper
      * @param ManagerRegistry $managerRegistry
+     * @param ImageOptimizer $imageOptimizer
      */
     public function __construct(
         LoggerClient $loggerClient,
         BoleanToDateHelper $boleanToDateHelper,
-        ManagerRegistry $managerRegistry
+        ManagerRegistry $managerRegistry,
+        ImageOptimizer $imageOptimizer
+
     ) {
         $this->loggerClient = $loggerClient;
         $this->boleanToDateHelper = $boleanToDateHelper;
         $this->managerRegistry = $managerRegistry;
+        $this->imageOptimizer = $imageOptimizer;
     }
 
     /**
@@ -143,6 +149,11 @@ class AdminEntradaController extends BaseController
 
             if ($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $entrada->getImageFilename());
+                $sizes = '500x500';
+                if($entrada->getModelTemplate() && $entrada->getModelTemplate()->getSizes()){
+                    $sizes = $entrada->getModelTemplate()->getSizes();
+                }
+                $this->imageOptimizer->resize($newFilename);
                 $entrada->setImageFilename($newFilename);
             }
 
@@ -203,8 +214,10 @@ class AdminEntradaController extends BaseController
         $entrada = new Entrada();
         $user = $this->getUser();
         $entrada->setAutor($user);
-        if($request->get('section')){
-            $entrada->addSection($this->container->get('doctrine')->getRepository(Section::class)->find($request->get('section')));
+        if ($request->get('section')) {
+            $entrada->addSection(
+                $this->container->get('doctrine')->getRepository(Section::class)->find($request->get('section'))
+            );
         }
 
         $form = $this->createForm(EntradaType::class, $entrada);
@@ -269,9 +282,8 @@ class AdminEntradaController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $section = $form['section']->getData();
             $entrada->addSection($section);
-            if($session_template = $this->container->get('session')->get('model_template_id'))
-            {
-                if($modelTemplate = $modelTemplateRepository->find($session_template)){
+            if ($session_template = $this->container->get('session')->get('model_template_id')) {
+                if ($modelTemplate = $modelTemplateRepository->find($session_template)) {
                     $entrada->setModelTemplate($modelTemplate);
                 }
             }
@@ -282,7 +294,6 @@ class AdminEntradaController extends BaseController
                 'id' => $entrada->getId(),
             ]);
         }
-
 
 
         return $this->render('admin/entrada/new_step1.html.twig', [
@@ -317,7 +328,7 @@ class AdminEntradaController extends BaseController
         return $this->render('admin/entrada/new_step2.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
-            'LinkRoutes' => $linkRoutes
+            'LinkRoutes' => $linkRoutes,
         ]);
     }
 

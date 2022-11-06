@@ -58,6 +58,11 @@ class ModelTemplate
      */
     private $entradas;
 
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $sizes;
+
     public function __construct()
     {
         $this->principals = new ArrayCollection();
@@ -212,6 +217,18 @@ class ModelTemplate
                 $entrada->setModelTemplate(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSizes(): ?string
+    {
+        return $this->sizes;
+    }
+
+    public function setSizes(?string $sizes): self
+    {
+        $this->sizes = $sizes;
 
         return $this;
     }
