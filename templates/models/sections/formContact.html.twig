@@ -5,30 +5,33 @@
                 <div class="container py-4">
 
                     <!-- Bootstrap 5 starter form -->
-                    <form id="contactForm" method="post" action="{{ path('app_form_contact_new') }}">
+                    <form id="contactForm" name="form_contact" method="post" action="{{ path('app_form_contact_procesa') }}">
 
                         <!-- Name input -->
                         <div class="mb-3">
                             <label class="form-label" for="name">Nombre</label>
-                            <input class="form-control" id="name" type="text" placeholder="Nombre" />
+                            <input class="form-control" id="name" name="form_contact[name]" type="text" placeholder="Nombre" />
                         </div>
 
-                        <!-- Email address input -->
+                        <!-- Email subject input -->
                         <div class="mb-3">
                             <label class="form-label" for="subject">Asunto</label>
-                            <input class="form-control" id="subject" type="text" placeholder="Asunto" value="{{ section.footer }}" />
+                            <input class="form-control" id="subject" name="form_contact[subject]" type="text" placeholder="Asunto" value="{{ section.footer }}" />
                         </div>
+                        <!-- Email address input -->
                         <div class="mb-3">
                             <label class="form-label" for="email">Dirección de mail</label>
-                            <input class="form-control" id="email" type="email" placeholder="Dirección de mail" />
+                            <input class="form-control" id="email" type="email" name="form_contact[email]" placeholder="Dirección de mail" />
                         </div>
 
                         <!-- Message input -->
                         <div class="mb-3">
                             <label class="form-label" for="text">Mensaje</label>
-                            <textarea class="form-control" id="text" type="text" placeholder="Mensaje" style="height: 10rem;"></textarea>
+                            <textarea class="form-control" id="text" type="text" name="form_contact[text]" placeholder="Mensaje" style="height: 10rem;"></textarea>
                         </div>
-                        <input type="hidden" name="_token" value="{{ csrf_token('contact') }}">
+                        <input type="hidden" name="token"
+                               value="{{ csrf_token('form_contact') }}"
+                        >
                         <!-- Form submit button -->
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" type="submit">Enviar</button>

@@ -90,7 +90,16 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             ->get(UploaderHelper::class)
             ->getPublicPath($path);
     }
+    public function capacidad_restante(string $celebracion, int $cantidad): int
+    {
+        $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+        return $cantidad - $invitados;
+    }
 
+    public function capacidad_ocupada(string $celebracion)
+    {
+        return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+    }
 
 
 

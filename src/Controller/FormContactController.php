@@ -38,13 +38,42 @@ class FormContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if(!$this->isCsrfTokenValid('contact', $request->request->get('_token'))){
-                return $this->redirectToRoute('app_form_contact_index', [], Response::HTTP_BAD_REQUEST);
+                return $this->redirectToRoute('index', [], Response::HTTP_BAD_REQUEST);
             }
             $formContactRepository->add($formContact, true);
 
-            return $this->redirectToRoute('app_form_contact_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        }
+dd('da');
+        return $this->renderForm('form_contact/new.html.twig', [
+            'form_contact' => $formContact,
+            'form' => $form,
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/procesa_form", name="app_form_contact_procesa", methods={"GET", "POST"})
+     */
+    public function procesa(Request $request, FormContactRepository $formContactRepository): Response
+    {
+        $formContact = new FormContact();
+        $form = $this->createForm(FormContactType::class, $formContact);
+
+        $submittedToken = $request->request->get('token');
+        $form->handleRequest($request);
+        if(!$this->isCsrfTokenValid('form_contact', $submittedToken)){
+            return $this->redirectToRoute('index');
         }
 
+        if ($form->isSubmitted() ) {
+
+            $formContactRepository->add($formContact, true);
+
+            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        }
+dd('da');
         return $this->renderForm('form_contact/new.html.twig', [
             'form_contact' => $formContact,
             'form' => $form,
