@@ -12,7 +12,6 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
 /**
- * @Broadcast()
  * @ORM\Entity(repositoryClass=BarraNavRepository::class)
  */
 class BarraNav

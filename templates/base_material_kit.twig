@@ -57,7 +57,11 @@
 {% endif %}
 {% block header %}
     <header>
+        {% if(nav_bar is defined) %}
+        {%  include 'models/sections/'~nav_bar.modelTemplate~'.html.twig' with { 'section':nav_bar } %}
+        {% else %}
         {% include('inicio/_nav.html.twig') %}
+        {% endif %}
         <div class="mt-lg-1 d-none d-lg-block"></div>
     </header>
 {% endblock %}

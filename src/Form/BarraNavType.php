@@ -46,7 +46,7 @@ class BarraNavType extends AbstractType
             ->add('description')
             ->add('isIndex', CheckboxType::class, [
                     'required' => false,
-                    'label' => false,
+                    'label' => 'Es parte del index',
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
                     'attr' => [
                         'class' => 'form-check-input ',
@@ -76,7 +76,7 @@ class BarraNavType extends AbstractType
                 [
                     'class' => ModelTemplate::class,
                     'query_builder' => function (ModelTemplateRepository $er) {
-                        return $er->findByTypeEntrada();
+                        return $er->findByTypeSection();
                     },
                     'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,

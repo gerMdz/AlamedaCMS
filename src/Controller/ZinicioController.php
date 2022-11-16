@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BarraNav;
 use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Repository\PrincipalRepository;
@@ -35,7 +36,7 @@ class ZinicioController extends AbstractController
      */
     public function index()
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->container->get('doctrine')->getManager();
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
         if ($this->site_temporal == 'true') {
@@ -51,12 +52,15 @@ class ZinicioController extends AbstractController
 
 
             $blocsFixes = $indexAlameda->getBlocsFixes()?? [];
+        $nav_bar = $em->getRepository(BarraNav::class)->findOneBy(['isIndex'=>'1']);
+
 
 
         return $this->render('models/principal/'.$vista .'.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda,
             'blocsFixes' => $blocsFixes,
+            'nav_bar' => $nav_bar
         ]);
     }
 
