@@ -61,6 +61,7 @@
             <h1> Vista Navbar</h1>
         {%  include 'models/sections/'~nav_bar.modelTemplate~'.html.twig' with { 'section':nav_bar } %}
         {% else %}
+            <h1> Vista No Navbar</h1>
         {% include('inicio/_nav.html.twig') %}
         {% endif %}
         <div class="mt-lg-1 d-none d-lg-block"></div>
