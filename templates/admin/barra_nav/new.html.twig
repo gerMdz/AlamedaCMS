@@ -1,0 +1,16 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}Nueva barra de navegación{% endblock %}
+
+{% block content %}
+
+    <div class="col-sm-6 mx-auto text-center m-4">
+        <h4 class="border border-primary border-top-0">Crear nueva barra de navegación</h4>
+    </div>
+
+    <div class="form-container">
+        {{ include('admin/barra_nav/_form.html.twig') }}
+    </div>
+
+    <a class="btn btn-link" href="{{ path('admin_barra_nav_index') }}"><i class="fas fa-backspace"></i> Volver al listado</a>
+{% endblock %}

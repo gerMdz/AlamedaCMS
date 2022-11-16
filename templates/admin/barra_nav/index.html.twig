@@ -1,0 +1,130 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}Barra de navegación{% endblock %}
+{% block nav %}
+    {{ include('admin/_nav.html.twig',  {'marca_label': 'barra_nav'}) }}
+{% endblock %}
+{% block breadcrumb %}
+    {{parent()}}
+    <li class="breadcrumb-item active"><span>Barra de navegación</span></li>
+    <li class="breadcrumb-item float-end">
+        <div class="form-group form-inline">
+            <form action="" method="get">
+                <label for="busq">
+                    <span class="input-group-prepend">
+                        <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="submit"
+                        id="btn-search"
+                        data-id="search-input" >
+                        <i class="fa fa-search"></i>
+                        </button>
+
+                        <input class="form-control border-end-0 border rounded-pill"  type="search"
+                    value="" id="busq" name="busq" placeholder="Buscar ...">
+                    </span>
+                </label>
+            </form>
+        </div>
+    </li>
+
+{%endblock%}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Barra de navegación</h4>
+            <p class="card-category">Listado </p>
+        </div>
+        <div class="card-body">
+            <a href="{{ path('admin_barra_nav_new') }}" class="btn btn-sm btn-primary btn-round">
+                Crear Barra de navegación <span class="fa fa-plus-circle"></span>
+            </a>
+{#            <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_entrada_new_step1') }}">#}
+{#                <i class="fas fa-hand-sparkles"></i> Asistente Crear Entrada#}
+{#            </a>#}
+{#            <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">#}
+{#                Ver Publicados <span class="fa fa-eye"></span>#}
+{#            </a>#}
+{#            <div class="text-center align-items-center">#}
+{#                {{ knp_pagination_render(entradas) }}#}
+{#            </div>#}
+            <div class="table-responsive sticky-header header-sticky">
+                <table class="table sticky-header" data-toggle="table">
+                    <thead class=" text-primary ">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Identifier</th>
+                <th>Content</th>
+                <th>ImageFilename</th>
+                <th>Description</th>
+                <th>IsIndex</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>CssClass</th>
+                <th>CssStyle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for barra_nav in barra_navs %}
+            <tr>
+                <td>{{ barra_nav.id }}</td>
+                <td>{{ barra_nav.title }}</td>
+                <td>{{ barra_nav.identifier }}</td>
+                <td>{{ barra_nav.content }}</td>
+                <td>{{ barra_nav.imageFilename }}</td>
+                <td>{{ barra_nav.description }}</td>
+                <td>{{ barra_nav.isIndex ? 'Yes' : 'No' }}</td>
+                <td>{{ barra_nav.createdAt ? barra_nav.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ barra_nav.updatedAt ? barra_nav.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ barra_nav.cssClass }}</td>
+                <td>{{ barra_nav.cssStyle }}</td>
+                 <td class="list-inline">
+                            <a href="{{ path('admin_barra_nav_show', {'id': barra_nav.id}) }}">
+                                <i class="fa fa-eye"></i> Ver
+                            </a>
+                            <br/>
+                            <a href="{{ path('admin_barra_nav_edit', {'id': barra_nav.id}) }}">
+                                <i class="fa fa-edit"></i> Editar
+                            </a>
+                        </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">No hay barras de navegación creadas</td>
+            </tr>
+        {% endfor %}
+             </tbody>
+            </table>
+            </div>
+            <a href="{{ path('admin_barra_nav_new') }}" class="btn btn-sm btn-primary btn-round">
+                Crear Barra de navegación <span class="fa fa-plus-circle"></span>
+            </a>
+{#            <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">#}
+{#                Ver Publicados <span class="fa fa-eye"></span>#}
+{#            </a>#}
+{#            <div class="text-center align-items-center">#}
+{#        {{ knp_pagination_render(entradas) }}#}
+{#    </div>#}
+        </div>
+            {% endblock %}
+{% block jslocal %}
+    {{ parent() }}
+    <script>
+        $('#barran_nav').addClass('active');
+        // $('#btn-search').click(function(e) {
+        //     e.preventDefault();
+        //     console.log('s');
+        // })
+        $( "#btn-search" ).on( "click", function() {
+                alert( $( this ).text() );
+        });
+        $(document).ready(function() {
+    $("#btn-search").click(function(e){
+        e.preventDefault();
+        alert("button");
+    });
+});
+    </script>
+{% endblock %}

@@ -1,0 +1,35 @@
+<ul class="navbar-nav mx-2">
+    <li class="nav-item dropdown dropdown-hover mx-2">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            <img src="{{ app.user.avatarUrl(30) }}"
+                 class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName }}">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3"
+            aria-labelledby="navbarDropdownMenuLink">
+            {#                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
+            <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
+            {% if is_granted('ROLE_ADMIN_RESERVA') %}
+                <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar
+                    Voluntario</a>
+            {% endif %}
+            {% if is_granted('ROLE_RESERVA') %}
+                <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
+                <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
+                <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Lectura QR</a>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
+                <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
+            {% endif %}
+            <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
+            {#                </div>#}
+        </ul>
+    </li>
+    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+        <div class="alert alert-warning">
+            Temporalmente
+            <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+        </div>
+    {% endif %}
+</ul>
