@@ -1,0 +1,22 @@
+{#entradas: false#}
+{#image: true#}
+
+<style>
+    .banner-area {
+        background: url('/uploads/image_entrada/{{ section.imageFilename}}') no-repeat center center/cover;
+    }
+</style>
+<section class="banner-area relative" id="{{ section.identifier }}">
+    <div class="container">
+
+        <div class="row fullscreen align-items-center justify-content-center"
+             style="{{ content.cssStyle | default('height: 735px;') }}">
+            <div class="col-lg-10">
+                <div class="banner-content text-center">
+                    {{ section.title }}
+                    {{ section.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
