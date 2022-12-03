@@ -232,7 +232,7 @@ class SectionController extends BaseController
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
         $twig = $section->getModelTemplate().".html.twig";
-        $response_api = null;
+        $response_api = '';
         $apiSource = null;
 
         if ($twig == 'api.html.twig') {
