@@ -234,11 +234,6 @@ class Section
         return $this;
     }
 
-
-
-
-
-
     /**
      * @return Collection|IndexAlameda[]
      */

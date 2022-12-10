@@ -63,6 +63,41 @@ class ModelTemplate
      */
     private $sizes;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $needEntrada;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isContainer;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isModelEntrada;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isImage;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isImageMultiple;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showTitle;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showContent;
+
     public function __construct()
     {
         $this->principals = new ArrayCollection();
@@ -229,6 +264,91 @@ class ModelTemplate
     public function setSizes(?string $sizes): self
     {
         $this->sizes = $sizes;
+
+        return $this;
+    }
+
+
+    public function isNeedEntrada(): ?bool
+    {
+        return $this->needEntrada;
+    }
+
+    public function setNeedEntrada(?bool $needEntrada): self
+    {
+        $this->needEntrada = $needEntrada;
+
+        return $this;
+    }
+
+    public function isIsContainer(): ?bool
+    {
+        return $this->isContainer;
+    }
+
+    public function setIsContainer(?bool $isContainer): self
+    {
+        $this->isContainer = $isContainer;
+
+        return $this;
+    }
+
+    public function isIsModelEntrada(): ?bool
+    {
+        return $this->isModelEntrada;
+    }
+
+    public function setIsModelEntrada(?bool $isModelEntrada): self
+    {
+        $this->isModelEntrada = $isModelEntrada;
+
+        return $this;
+    }
+
+    public function isIsImage(): ?bool
+    {
+        return $this->isImage;
+    }
+
+    public function setIsImage(?bool $isImage): self
+    {
+        $this->isImage = $isImage;
+
+        return $this;
+    }
+
+    public function isIsImageMultiple(): ?bool
+    {
+        return $this->isImageMultiple;
+    }
+
+    public function setIsImageMultiple(?bool $isImageMultiple): self
+    {
+        $this->isImageMultiple = $isImageMultiple;
+
+        return $this;
+    }
+
+    public function isShowTitle(): ?bool
+    {
+        return $this->showTitle;
+    }
+
+    public function setShowTitle(?bool $showTitle): self
+    {
+        $this->showTitle = $showTitle;
+
+        return $this;
+    }
+
+    public function isShowContent(): ?bool
+    {
+        return $this->showContent;
+    }
+
+    public function setShowContent(?bool $showContent): self
+    {
+        $this->showContent = $showContent;
 
         return $this;
     }
