@@ -39,6 +39,7 @@
         {# <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}"> #}
         <link href="{{ asset('css/igles.min.css') }}?v={{ version }}" rel="stylesheet">
         <link href="{{ asset('css/bg.css') }}?v={{ version }}" rel="stylesheet">
+        <link href="{{ asset('custom/css/my.css') }}?v={{ version }}" rel="stylesheet">
         <link href="{{ asset('material-kit/css/material-kit.min.css') }}?v=3.0.1" rel="stylesheet"/>
         <style>
             body {
@@ -101,6 +102,7 @@
 
 {% block javascripts %}
     <script src="https://kit.fontawesome.com/743c9941eb.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('custom/js/my.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/bootstrap.min.js') }}"></script>

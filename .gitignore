@@ -111,3 +111,5 @@ yarn-error.log
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 public/images/logo-solo.png
+/public/custom/css/my.css
+/public/custom/js/my.js
