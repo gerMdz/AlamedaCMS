@@ -4,22 +4,22 @@
         <div class="row">
             <div class="col-sm-12">
                 {% for section in datosIndex.section %}
-                    {% if section.orden == 0%}
-                    {{ render(controller(
-                        'App\\Controller\\SectionController::mostrarSection', {id: section.id}
-                    )) }}
+                    {% if section.orden == 0 %}
+                        {{ render(controller(
+                            'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+                        )) }}
                     {% endif %}
                 {% endfor %}
             </div>
             <div class="col-md-9 col-sm-12 mr-0 pr-0 mt-md-0 mb-sm-5">
                 {% for section in datosIndex.section %}
-                    {% if section.orden != 0%}
+                    {% if section.orden != 0 %}
 
-                    {{ render(controller(
-                        'App\\Controller\\SectionController::mostrarSection', {id: section.id}
-                    )) }}
+                        {{ render(controller(
+                            'App\\Controller\\SectionController::mostrarSection', {id: section.id}
+                        )) }}
 
-                    {%endif%}
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="col-sm-12 d-md-none mt-8">
@@ -29,17 +29,17 @@
                 {% for fixes in blocsFixes %}
                     {% if fixes.fixesType == 'side-fixe-right' %}
                         {% for blocsection in fixes.section %}
-            <div class="m-0 p-0 border-bottom border-secondary">
-                            {{ render(controller(
-                                'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
-                            )) }}
-            </div>
+                            <div class="m-0 p-0 border-bottom border-secondary">
+                                {{ render(controller(
+                                    'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
+                                )) }}
+                            </div>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
             </div>
-{#            <div class="bg-camino" style="height: 200px">#}
-{#            </div>#}
+            {#            <div class="bg-camino" style="height: 200px"> #}
+            {#            </div> #}
         </div>
     </div>
 

@@ -55,10 +55,16 @@ class Contacto
      */
     private $entradas;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="contact")
+     */
+    private $organizations;
+
     public function __construct()
     {
         $this->ministerio = new ArrayCollection();
         $this->entradas = new ArrayCollection();
+        $this->organizations = new ArrayCollection();
     }
 
     public function __toString()
@@ -178,6 +184,36 @@ class Contacto
     {
         if ($this->entradas->removeElement($entrada)) {
             $entrada->removeContacto($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Organization>
+     */
+    public function getOrganizations(): Collection
+    {
+        return $this->organizations;
+    }
+
+    public function addOrganization(Organization $organization): self
+    {
+        if (!$this->organizations->contains($organization)) {
+            $this->organizations[] = $organization;
+            $organization->setContact($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrganization(Organization $organization): self
+    {
+        if ($this->organizations->removeElement($organization)) {
+            // set the owning side to null (unless already changed)
+            if ($organization->getContact() === $this) {
+                $organization->setContact(null);
+            }
         }
 
         return $this;
