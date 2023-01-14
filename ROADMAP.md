@@ -3,8 +3,13 @@
 
 ### main-linea2020
 
-* Iniciando el admin de organización
-  * Hacer el crud
+* Iniciando el admin de organización.
+  - [X] Hacer el crud.
+  - [ ] Ajustar componentes.
+  - [ ] Ajustar el comportamiento si es activo o no.
 
-#### Ideas
-  * twig function para organización 
+#### Siguiente
+* Form buscar.
+
+##### Ideas
+  * Twig function para organización. 

@@ -1,62 +1,91 @@
 {% extends 'base_coreui.html.twig' %}
 
-{% block title %}Organization index{% endblock %}
+{% block title %}Organización | Admin{% endblock %}
 {% block breadcrumb %}
-    <li class="breadcrumb-item">
-        <span><a href="{{ path('admin') }}">Panel</a></span>
-    </li>
+    {{ parent() }}
+    <li class="breadcrumb-item active"><span>Organización</span></li>
     <li class="breadcrumb-item ">
-        <span>
-            <a href="{{ path('admin_organization_index') }}">
-                Organización
-            </a>
-        </span>
+        <form action="" method="get" class="row align-items-center">
+            <div class="col-12 inline-flex">
+                <div class="col-3 inline-flex">
+                    <label class="visually-hidden" for="busq">Buscar</label>
+
+                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill
+input-group col-3" type="submit"
+                            id="btn-search"
+                            data-id="search-input">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="col-9 inline-flex">
+                    <input class="form-control  border-end-0 border rounded-pill" type="search"
+                           value="" id="busq" name="busq" placeholder="Buscar ...">
+
+                </div>
+            </div>
+        </form>
+
+
     </li>
-    <li class="breadcrumb-item active"><span>Detalle</span></li>
 {% endblock %}
 
 {% block content %}
-    <h1>Organization index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address1</th>
-                <th>Address2</th>
-                <th>Identifier</th>
-                <th>Responsable</th>
-                <th>Owner</th>
-                <th>Email</th>
-                <th>IsActive</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for organization in organizations %}
-            <tr>
-                <td>{{ organization.id }}</td>
-                <td>{{ organization.name }}</td>
-                <td>{{ organization.address1 }}</td>
-                <td>{{ organization.address2 }}</td>
-                <td>{{ organization.identifier }}</td>
-                <td>{{ organization.responsable }}</td>
-                <td>{{ organization.owner }}</td>
-                <td>{{ organization.email }}</td>
-                <td>{{ organization.isActive ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('admin_organization_show', {'id': organization.id}) }}">show</a>
-                    <a href="{{ path('admin_organization_edit', {'id': organization.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Organización</h4>
+            </div>
 
-    <a href="{{ path('admin_organization_new') }}">Create new</a>
+            <div class="card-body">
+                {% if organizations|length == 0 %}
+                    <a href="{{ path('admin_organization_new') }}" class="btn btn-sm btn-primary btn-round">
+                        Crear Organización <span class="fa fa-plus-circle"></span>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="table-responsive sticky-header header-sticky">
+                <table class="table sticky-header" data-toggle="table">
+                    <thead class=" text-primary ">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Identificador</th>
+                        <th>Responsable</th>
+                        <th>Email</th>
+                        <th>Activo</th>
+                        <th><i class="fa fa-cogs"></i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for organization in organizations %}
+                        <tr>
+                            <td>{{ organization.name }}</td>
+                            <td>{{ organization.address1 }}<br/>
+                                {{ organization.address2 }}</td>
+                            <td>{{ organization.identifier }}</td>
+                            <td>{{ organization.responsable }} <br/>
+                                {{ organization.owner }}</td>
+                            <td>{{ organization.email }}</td>
+                            <td>{{ organization.isActive ? '<i class="fa fa-check"></i>' : ' <i class="fa fa-times"></i>' }}</td>
+                            <td>
+                                <a href="{{ path('admin_organization_show', {'id': organization.id}) }}">
+                                    <i class="fa fa-eye"></i> Ver
+                                </a><br/>
+                                <a href="{{ path('admin_organization_edit', {'id': organization.id}) }}">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">Sin datos de la organización</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

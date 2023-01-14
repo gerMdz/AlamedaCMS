@@ -13,13 +13,15 @@
             </a>
         </span>
     </li>
-    <li class="breadcrumb-item active"><span>Detalle</span></li>
+    <li class="breadcrumb-item active"><span>Crear</span></li>
 {% endblock %}
 
 {% block content %}
-    <h1>Crear Organización</h1>
-
-    {{ include('organization/_form.html.twig') }}
-
-    <a href="{{ path('admin_organization_index') }}">Vovler al listado</a>
+    <div class="col-sm-6 mx-auto text-center m-4">
+        <h4 class="border border-primary border-top-0">Agregar datos organización</h4>
+    </div>
+<div class="form-container">
+    {{ include('admin/organization/_form.html.twig') }}
+</div>
+    <a href="{{ path('admin_organization_index') }}">Volver al listado</a>
 {% endblock %}
