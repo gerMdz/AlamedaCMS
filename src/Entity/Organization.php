@@ -13,9 +13,10 @@ use Symfony\UX\Turbo\Attribute\Broadcast;
 class Organization
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Id()
+     * @ORM\Column(type="string", length=40)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 
@@ -64,7 +65,7 @@ class Organization
      */
     private $contact;
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }

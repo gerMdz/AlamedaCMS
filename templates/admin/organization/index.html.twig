@@ -1,0 +1,62 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}Organization index{% endblock %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <span><a href="{{ path('admin') }}">Panel</a></span>
+    </li>
+    <li class="breadcrumb-item ">
+        <span>
+            <a href="{{ path('admin_organization_index') }}">
+                Organización
+            </a>
+        </span>
+    </li>
+    <li class="breadcrumb-item active"><span>Detalle</span></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Organization index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address1</th>
+                <th>Address2</th>
+                <th>Identifier</th>
+                <th>Responsable</th>
+                <th>Owner</th>
+                <th>Email</th>
+                <th>IsActive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for organization in organizations %}
+            <tr>
+                <td>{{ organization.id }}</td>
+                <td>{{ organization.name }}</td>
+                <td>{{ organization.address1 }}</td>
+                <td>{{ organization.address2 }}</td>
+                <td>{{ organization.identifier }}</td>
+                <td>{{ organization.responsable }}</td>
+                <td>{{ organization.owner }}</td>
+                <td>{{ organization.email }}</td>
+                <td>{{ organization.isActive ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('admin_organization_show', {'id': organization.id}) }}">show</a>
+                    <a href="{{ path('admin_organization_edit', {'id': organization.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_organization_new') }}">Create new</a>
+{% endblock %}
