@@ -97,22 +97,24 @@
 
 
 {% block footer %}
-    {% for fixes in blocsFixes %}
-        {% if fixes.fixesType == 'footer-fix' %}
-            {% for blocsection in fixes.section %}
-                <div class="m-0 p-0 border-bottom border-secondary">
-                    {{ render(controller(
-                        'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
-                    )) }}
-                </div>
-            {% endfor %}
-        {% endif %}
+    {% if blocsFixes is defined %}
+        {% for fixes in blocsFixes %}
+            {% if fixes.fixesType == 'footer-fix' %}
+                {% for blocsection in fixes.section %}
+                    <div class="m-0 p-0 border-bottom border-secondary">
+                        {{ render(controller(
+                            'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
+                        )) }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
     {% else %}
         {% include 'inicio/_footer_ar.html.twig' %}
         {% if mautic_enable == 'true' %}
             {% include('inicio/_etiqueta_global_mautic.html.twig') %}
         {% endif %}
-    {% endfor %}
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
