@@ -22,6 +22,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use FM\ElfinderBundle\Form\Type\ElFinderType;
 
 class EntradaType extends AbstractType
 {
@@ -290,8 +291,9 @@ class EntradaType extends AbstractType
 
             ->add(
                 'imageFile',
-                FileType::class,
-                [
+                ElFinderType::class, [
+                    'instance' => 'form',
+                    'enable' => true,
                     'mapped' => false,
                     'required' => false,
                     'label' => 'Imagen',

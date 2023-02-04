@@ -6,6 +6,9 @@
 
 ### Elfinder
 
+Agregando elfinder a las entradas.
+    No muestra la opción de elegir.
+
 ### LiipImagineBundle
 
     https://github.com/liip/LiipImagineBundle

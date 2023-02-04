@@ -6,3 +6,19 @@ fm_elfinder:
                     uploads:
                         driver: LocalFileSystem
                         path: uploads
+        form:
+            locale: es # defaults to current request locale
+            editor: form # other choices are tinymce or simple, and form
+            fullscreen: true # defaults true, applies to simple and ckeditor editors
+            relative_path: false
+            connector:
+                debug: false # defaults to false
+                roots: # at least one root must be defined
+                    uploads:
+                        show_hidden: false # defaults to false
+                        driver: LocalFileSystem
+                        path: uploads
+                        upload_allow: [ 'image/png', 'image/jpg', 'image/jpeg' ]
+                        upload_deny: [ 'all' ]
+                        upload_max_size: 2M
+                        url: '%env(APP_URL_IMAGES)%'
