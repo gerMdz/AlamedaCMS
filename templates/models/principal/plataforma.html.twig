@@ -18,7 +18,11 @@
 {% endblock %}
 {% block header %}
     <header>
-        {% include 'inicio/_nav.html.twig' %}
+        {% if(nav_bar is defined) %}
+            {% include 'models/sections/'~nav_bar.modelTemplate~'.html.twig' with { 'section':nav_bar } %}
+        {% else %}
+            {% include('inicio/_nav.html.twig') %}
+        {% endif %}
         <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay bg-gris-medio text-white "
                  style=" background-image: url({{ principal.imagePath|imagine_filter('squared_thumbnail_large_1920if') }})">
             <!-- Promo Content -->
