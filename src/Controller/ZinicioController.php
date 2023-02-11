@@ -137,6 +137,8 @@ class ZinicioController extends AbstractController
         SectionRepository $sectionRepository
     ): Response {
         $vista = $principal->getModelTemplate();
+        $blocsFixes = $principal->getBlocsFixes();
+
         if (!$vista) {
             $vista = ($principal->getPrincipal() ? $principal->getPrincipal()->getLinkRoute(
             ) : $principal->getLinkRoute());
@@ -153,7 +155,8 @@ class ZinicioController extends AbstractController
         return $this->render('models/principal/'.$vista.'.html.twig', [
             'principal' => $visual,
             'secciones' => $secciones,
-            'nav_bar' => $nav_bar
+            'nav_bar' => $nav_bar,
+            'blocsFixes' => $blocsFixes,
         ]);
     }
 
