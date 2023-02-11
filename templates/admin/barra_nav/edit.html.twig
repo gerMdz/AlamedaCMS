@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit BarraNav</h1>
 
-    {{ include('barra_nav/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/barra_nav/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_barra_nav_index') }}">back to list</a>
+    <a href="{{ path('admin_barra_nav_index') }}">back to list</a>
 
-    {{ include('barra_nav/_delete_form.html.twig') }}
+    {{ include('admin/barra_nav/_delete_form.html.twig') }}
 {% endblock %}
