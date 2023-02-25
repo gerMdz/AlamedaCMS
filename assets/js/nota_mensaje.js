@@ -33,10 +33,10 @@ $(function () {
         $('#puno').val(JSON.parse(localStorage.lav04Puno))
         muestra1('#lpuno', '#sinpuno')
         aceptado('uno');
-        console.log('19')
+        console.log('19');
     } else {
         oculta1('#lpuno', '#sinpuno')
-        console.log('21')
+        console.log('21');
     }
 
     if (pdos != null) {
