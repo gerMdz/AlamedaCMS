@@ -2,7 +2,7 @@
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
         "@hotwired/turbo": "^7.0.1",
-        "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
+        "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
         "@symfony/webpack-encore": "^2.1.0",
         "autoprefixer": "^10.4.7",
         "bootstrap": "^5.1.3",
