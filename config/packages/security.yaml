@@ -67,4 +67,6 @@ security:
         - { path: ^/admin/ingreso, role: PUBLIC_ACCESS }
         - { path: ^/index, role: PUBLIC_ACCESS }
         - { path: ^/admin, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/elfinder', roles: ROLE_ESCRITOR }
+        - { path: ^/efconnect', roles: ROLE_ESCRITOR }
 

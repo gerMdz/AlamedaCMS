@@ -8,6 +8,7 @@ parameters:
     uploads_base_url: '%env(resolve:SITE_BASE_URL)%/%uploads_dir_name%'
     site_temporal: '%env(SITE_TEMPORAL)%'
     image_directory : '%kernel.project_dir%/public/image'
+    locale: '%env(LOCALE)%'
 
 services:
     # default configuration for services in *this* file
