@@ -13,7 +13,11 @@
 {% endblock %}
 {% block header %}
     <header>
-        {% include 'inicio/_nav.html.twig' %}
+        {% if(nav_bar is defined) %}
+            {% include 'models/sections/'~nav_bar.modelTemplate~'.html.twig' with { 'section':nav_bar } %}
+        {% else %}
+            {% include('inicio/_nav.html.twig') %}
+        {% endif %}
     </header>
 {% endblock %}
 {% block sections %}
