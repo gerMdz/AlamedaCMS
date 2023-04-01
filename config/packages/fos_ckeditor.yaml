@@ -15,3 +15,5 @@ fos_ck_editor:
       extraPlugins: "fontawesome5"
       allowedContent: true
       fontawesome: { 'path':'/fonts/awasome/web-fonts-with-css/css/all.css', 'version':'5.0.9', 'edition':'free', 'element':'i' };
+      filebrowserBrowseRoute: elfinder
+      filebrowserBrowseRouteParameters: [ ]

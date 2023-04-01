@@ -136,9 +136,12 @@ class AdminEntradaController extends BaseController
         $form = $this->createForm(EntradaType::class, $entrada);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
+
+
             $boolean = $form['publicar']->getData();
             $link = $form['linkRoute']->getData();
 

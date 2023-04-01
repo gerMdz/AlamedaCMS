@@ -13,17 +13,19 @@ fm_elfinder:
                     uploads:
                         show_hidden: false
                         driver: LocalFileSystem
-                        path: uploads/images
+                        path: uploads/image_entrada
                         upload_allow: [ 'image/png', 'image/jpg', 'image/jpeg' ]
                         upload_deny: [ 'all' ]
                         upload_max_size: 2M
-                        url: '%env(APP_URL_IMAGES)%'
+                        url: '%env(APP_URL_IMAGES)%/image_entrada'
         form:
 #            locale: '%locale%' # defaults to current request locale
-            editor: ckeditor # other choices are tinymce or simple, and form
+            editor: form # other choices are tinymce or simple, and form
             fullscreen: true # defaults true, applies to simple and ckeditor editors
+#            relative_path: false #default true, will produce absolute urls to specified file(s)
+#            path_prefix: uploads
             connector:
-                debug: false # defaults to false
+                debug: true # defaults to false
                 roots: # at least one root must be defined
                     uploads:
                         show_hidden: false # defaults to false

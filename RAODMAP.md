@@ -45,9 +45,9 @@ elfinder no muestra las opciones de carga de imágenes, muestra pantalla en blan
 
 probables soluciones
 
-    * Verificar que la ruta al directorio raíz de ElFinder esté configurada correctamente. Debe apuntar a la carpeta en tu servidor donde se encuentran los archivos que quieres administrar con ElFinder.
+    //* Verificar que la ruta al directorio raíz de ElFinder esté configurada correctamente. Debe apuntar a la carpeta en tu servidor donde se encuentran los archivos que quieres administrar con ElFinder.
 
-    * Asegurar de que el directorio raíz de ElFinder tenga los permisos de lectura y escritura necesarios para el usuario del servidor web. Si los permisos no son correctos, ElFinder no podrá cargar los archivos.
+    //* Asegurar de que el directorio raíz de ElFinder tenga los permisos de lectura y escritura necesarios para el usuario del servidor web. Si los permisos no son correctos, ElFinder no podrá cargar los archivos.
 
     * Verificar que la versión de jQuery utilizada en tu aplicación sea compatible con la versión de jQuery UI utilizada por ElFinder. Si hay incompatibilidades, esto podría causar que la pantalla se quede en blanco.
 
