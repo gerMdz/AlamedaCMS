@@ -7,7 +7,7 @@ seccion: true
 #}
 <section class="{{ section.cssClass|default('pt-5') }}" id="{{ section.identificador }}">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
                 {{ section.title | striptags | raw }}
                 {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
