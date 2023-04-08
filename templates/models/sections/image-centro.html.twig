@@ -1,0 +1,57 @@
+{#
+container: only
+entrada: true
+    image:true
+seccion: true
+    image: false
+#}
+<section class="{{ section.cssClass|default('pt-5') }}" id="{{ section.identificador }}">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="text-center mb-5">
+                {{ section.title | striptags | raw }}
+                {{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+            </div>
+
+            <div class="row mx-auto">
+                {% for entrada in section.entradas %}
+                    <div class="{{ entrada.cssClass|default('col-lg-10 mt-2 mb-4 mx-auto') }}"
+                         id="{{ entrada.identificador }}">
+                        <div class="position-relative mb-1 text-center">
+                            {% if (entrada.imageFilename) %}
+                                <img alt="{{ entrada.linkRoute }}"
+                                     src="{{ entrada.imagePath|imagine_filter('squared_800-500') }}"
+                                     class="img-fluid rounded-3 mb-2 col-lg-12 text-center"/>
+                            {% endif %}
+                        </div>
+                        <div class="text-center mt-0 pt-0">
+                            {% if (entrada.linkPosting) %}
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link"
+                                   href="{{ entrada.linkPosting }}"
+                                        {% if (entrada.isLinkExterno) %}
+                                            target="_blank"
+                                        {% endif %}
+                                >
+                                    {{ entrada.footer }}
+                                </a>
+                            {% else %}
+                                {% if (entrada.linkRoute) %}
+                                    <a class="h3 fw-bolder text-decoration-none link-dark stretched-link"
+                                       href="{{ entrada.linkRoute }}"
+                                    >
+                                        {{ entrada.footer }}
+                                    </a>
+                                {% else %}
+                                    <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">
+                                        {{ entrada.footer }}
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% endfor %}
+        </div>
+</section>
