@@ -1,7 +1,17 @@
 {% extends 'base_material_kit.twig' %}
 
-{% block title %} {{ app.request.pathInfo }} Lo lamentamos {{ base.siteName}}{% endblock %}
+{% block title %} {{ app.request.pathInfo }} Lo lamentamos {{ base.siteName }}{% endblock %}
 
+{% block header %}
+    <header>
+        {% if(nav_bar is defined) %}
+            {% include 'models/sections/'~nav_bar.modelTemplate~'.html.twig' with { 'section':nav_bar } %}
+{#        {% else %}#}
+{#            {% include('inicio/_nav.html.twig') %}#}
+        {% endif %}
+        {#        <div class="mt-lg-1 d-none d-lg-block"></div> #}
+    </header>
+{% endblock %}
 {% block sections %}
 
     <h1>Hubo un error.</h1>
