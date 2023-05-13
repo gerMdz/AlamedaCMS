@@ -76,8 +76,8 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand flex-column " href="{{ path('index') }}" >
-                    <img src="images/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="Logo Iglesia Alameda">
-                    <strong >Iglesia de la Alameda</strong>
+                    <img src="images/logo_n1.png" width="30" height="30" class="d-inline-block align-top .d-none .d-md-block .d-lg-none" alt="{{ base.siteName |default('Alameda CMS') }}">
+                    <strong >{{ base.siteName |default('Alameda CMS') }}</strong>
                 </a>
 
                 <!-- Collapse -->
@@ -244,7 +244,7 @@
             <div class="container">
                 <div class="row">
                     <!--<div class="col-sm-3">
-                        <span class="text-left">Iglesia de la Alameda</span> <br/>
+                        <span class="text-left">{{ base.siteName |default('Alameda CMS') }}</span> <br/>
 
 
                         <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
@@ -315,7 +315,7 @@
                     <p class="m-0 small ">San Martín  2020 de la Ciudad de Mendoza <br/>
                         <strong>Horario de Reuniones</strong><br/>
                         <em>Domingos por la mañana: 11hs. - Domingo por la tarde: 19hs.</em><br/>
-                        Copyright &copy; Iglesia Alameda 2018</p>
+                        Copyright &copy; {{ base.siteName |default('Alameda CMS') }} 2018</p>
                 </div>
             </div>
         </footer>
