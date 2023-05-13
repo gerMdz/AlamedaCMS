@@ -8,10 +8,10 @@
         {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
     </title>
     {% set index = 'base' %}
-    <meta name="description" content="Iglesia de La Alameda,  {{ base_metaDescripcion() }}">
+    <meta name="description" content="{{ base_metaDescripcion()| default('Alameda CMS') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
-    <meta name="keywords" content="Iglesia de la Alameda, {% block keywords_content -%} {{ base.lema }},{% endblock%} {{ base_metaDescripcion() }}">
+    <meta name="keywords" content="{% block keywords_content -%} {{ base.lema }},{% endblock%} {{ base_metaDescripcion(), Alameda CMS }}">
     <meta name="author" content="{{ base.metaAutor }}">
     <meta name="author" content="{{ base.metaAutor }}">
 
