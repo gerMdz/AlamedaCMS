@@ -9,7 +9,7 @@
     <meta property="og:title" content="Alameda CMS"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://iglesiaalameda.com/index.php"/>
-    <meta property="og:image" content="https://iglesiaalameda.com/images/og/og-base.png">
+    <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>{% block title %} Bienvenido! {% endblock %} - {{ base.siteName|default('Alameda CMS') }}</title>
     {% include 'bases/_favicon.html.twig' %}
