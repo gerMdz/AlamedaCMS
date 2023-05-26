@@ -152,3 +152,7 @@ public/images/logo-solo.png
 /public/images/favicon/*
 /public/images/logo-solo-3.png
 /public/images/logo-con-nombre.jpg
+/public/custom/js/my.js
+/public/custom/fonts/Molle-Italic.ttf
+/public/custom/css/my.css
+/public/custom/fonts/OFL.txt
