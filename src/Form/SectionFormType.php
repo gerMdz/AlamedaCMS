@@ -94,7 +94,7 @@ class SectionFormType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Image([
-                        'maxSize' => '2M',
+                        'maxSize' => '5M',
                         'maxSizeMessage' => 'La imagen no debe superar los 2MB',
                         'mimeTypesMessage' => 'El archivo no es considerada una imagen',
                     ]),

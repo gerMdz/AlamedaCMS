@@ -70,8 +70,8 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     public function metaDescripcion(): ?string
     {
         $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
-
-        return $base->getMetaDescripcion();
+        //        return $base->getMetaDescripcion();
+        return $base->getMetaDescripcion() ?? '';
     }
 
     public function base()
@@ -91,13 +91,18 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
     public function capacidad_restante(string $celebracion, int $cantidad): int
     {
-        $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+        $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(
+            Invitado::class
+        )->countByCelebracion($celebracion);
+
         return $cantidad - $invitados;
     }
 
     public function capacidad_ocupada(string $celebracion)
     {
-        return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+        return $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion(
+            $celebracion
+        );
     }
 
     public static function getSubscribedServices(): array
@@ -130,11 +135,16 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
             if ($inicio !== false) {
                 $fin = strpos($campo, $this->ind_final);
-                $servicio = substr($campo,
+                $servicio = substr(
+                    $campo,
                     ($inicio + strlen($this->ind_inicio)),
-                    $fin - ($inicio + strlen($this->ind_inicio)));
-                $campo = str_replace($this->ind_inicio . $servicio . $this->ind_final,
-                    $this->addTexto(trim($servicio)), $campo);
+                    $fin - ($inicio + strlen($this->ind_inicio))
+                );
+                $campo = str_replace(
+                    $this->ind_inicio.$servicio.$this->ind_final,
+                    $this->addTexto(trim($servicio)),
+                    $campo
+                );
 
                 $encontro = true;
             } else {
@@ -186,7 +196,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     {
         $crea_formulario = $this->container->get(EntityManagerInterface::class)
             ->getRepository(NewsSite::class)
-            ->findBy(['srcType' =>'script', 'srcSite' => $fuente]);
+            ->findBy(['srcType' => 'script', 'srcSite' => $fuente]);
 
         return $crea_formulario[0]->getSrcCodigo();
     }

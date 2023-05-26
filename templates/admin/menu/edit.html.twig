@@ -1,0 +1,13 @@
+{% extends 'base_coreui.html.twig' %}
+
+{% block title %}Edit Menu{% endblock %}
+
+{% block content %}
+    <h1>Edit Menu</h1>
+
+    {{ include('admin/menu/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_menu_index') }}">back to list</a>
+
+    {{ include('admin/menu/_delete_form.html.twig') }}
+{% endblock %}

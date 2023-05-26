@@ -5,31 +5,25 @@
     {% set base = base_base() %}
     <meta charset="UTF-8">
     <title>
-        {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
+        {% block title %}{{ base.siteName|default('AlamedaCMS') }} Bienvenido! {% endblock %}
     </title>
     {% set index = 'base' %}
-    <meta name="description" content="Iglesia de La Alameda,  {{ base_metaDescripcion() }}">
+    <meta name="description" content="AlamedaCMS,  {{ base_metaDescripcion() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
-    <meta name="keywords" content="Iglesia de la Alameda, {% block keywords_content -%} {{ base.lema }},{% endblock%} {{ base_metaDescripcion() }}">
-    <meta name="author" content="{{ base.metaAutor }}">
-    <meta name="author" content="{{ base.metaAutor }}">
-
-    {# <meta name="author" content="{{ base['autor'] }}"> #}
-
-    <meta property="og:title" content="{{ base.metaTitle }}"/>
-    <meta property="og:type" content="{{ base.metaType }}"/>
-
-    <meta property="og:url" content="{{ base.metaUrl }}"/>
-    <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-    <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
-    <title>{{ base.metaTitle }}</title>
+    <meta name="description" content="{{ base.lema|default('AlamedaCMS') }}{{ base_metaDescripcion() }}">
+    <meta name="keywords" content="AlamedaCMS, {% block keywords_content -%} {{ base.lema|default('AlamedaCMS') }},{% endblock%} {{ base_metaDescripcion() }}">
+    <meta name="author" content="{{ base.metaAutor|default('AlamedaCMS') }}">
+    <meta property="og:title" content="{{ base.metaTitle|default('AlamedaCMS') }}"/>
+    <meta property="og:type" content="{{ base.metaType|default('site') }}"/>
+    <meta property="og:url" content="{{ base.metaUrl|default('AlamedaCMS') }}"/>
+    <meta property="og:image" content="{{ base.metaUrl|default('AlamedaCMS') }}{{ asset('images/og-base.png') }}">
+    <title>{{ base.metaTitle|default('AlamedaCMS') }}</title>
     {% include('inicio/_favicon_html.twig') %}
 
     {% block stylesheets %}
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap/css/bootstrap.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('business-casual/css/business-casual.min.css') }}">
         {# <link rel="stylesheet" type="text/css" href="{{ asset('material-kit/assets/css/material-kit.min.css') }}"> #}
         <link rel="stylesheet" type="text/css" href="{{ asset('shards-ui/dist/css/shards-extras.min.css') }}">

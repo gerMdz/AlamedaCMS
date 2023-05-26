@@ -6,7 +6,6 @@ use App\Entity\BlocsFixes;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -41,27 +40,6 @@ class BlocsFixesRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
-
-    /**
-     * @param string|null $bus Texto para búsqueda
-     * @return QueryBuilder with all blocks fixes register
-     */
-    public function queryAllBlocsFixes(?string $bus): QueryBuilder
-    {
-        $qb = $this->createQueryBuilder('b')
-            ->orderBy('b.updatedAt', 'DESC');
-
-        if ($bus) {
-            $qb->andWhere(
-                'upper(b.description) LIKE :search OR upper(b.identificador) LIKE :search'
-            )
-                ->setParameter('search', '%'.strtoupper($bus).'%');
-        }
-
-        return  $qb;
-    }
-
 
     // /**
     //  * @return BlocsFixes[] Returns an array of BlocsFixes objects

@@ -5,61 +5,33 @@
     {% set base = base_base() %}
     <meta charset="UTF-8">
     <title>
-        {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
+        {% block title %}{{ base.siteName|default('AlamedaCMS') }} Bienvenido! {% endblock %}
     </title>
     {% set index = 'base' %}
-    <meta name="description" content="Iglesia de La Alameda,  {{ base_metaDescripcion() }}">
+    <meta name="description" content="AlamedaCMS,  {{ base_metaDescripcion() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ base.lema }}{{ base_metaDescripcion() }}">
-    <meta name="keywords" content="Iglesia de la Alameda, {% block keywords_content -%} {{ base.lema }},{% endblock%} {{ base_metaDescripcion() }}">
-    <meta name="author" content="{{ base.metaAutor }}">
-    <meta name="author" content="{{ base.metaAutor }}">
-
-    {# <meta name="author" content="{{ base['autor'] }}"> #}
-
-    <meta property="og:title" content="{{ base.metaTitle }}"/>
-    <meta property="og:type" content="{{ base.metaType }}"/>
-
-    <meta property="og:url" content="{{ base.metaUrl }}"/>
-    <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
-    <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
-    <title>{{ base.metaTitle }}</title>
+    <meta name="description" content="{{ base.lema|default('AlamedaCMS') }}{{ base_metaDescripcion() }}">
+    <meta name="keywords" content="AlamedaCMS, {% block keywords_content -%} {{ base.lema|default('AlamedaCMS') }},{% endblock%} {{ base_metaDescripcion() }}">
+    <meta name="author" content="{{ base.metaAutor|default('AlamedaCMS') }}">
+    <meta property="og:title" content="{{ base.metaTitle|default('AlamedaCMS') }}"/>
+    <meta property="og:type" content="{{ base.metaType|default('site') }}"/>
+    <meta property="og:url" content="{{ base.metaUrl|default('AlamedaCMS') }}"/>
+    <meta property="og:image" content="{{ base.metaUrl|default('AlamedaCMS') }}{{ asset('images/og-base.png') }}">
+    <title>{{ base.metaTitle|default('AlamedaCMS') }}</title>
     {% include('inicio/_favicon_html.twig') %}
 
     {% block stylesheets %}
-        <!-- Bootstrap core CSS -->
 
-        <!-- Theme Styles -->
-        {# <link rel="stylesheet" type="text/css" href="assets/css/styles.css"> #}
-
-        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        <!-- Material Design Bootstrap -->
-        {# <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet"> #}
+
         {{ encore_entry_link_tags('tailwindStyle') }}
-        {# <link href="css/foundation-icons.css" rel="stylesheet"> #}
 
-
-        {# <link href="css/igles.css?v=<?php echo $version ?>" rel="stylesheet"> #}
-
-        {# <link href="css/alameda/fontAlameda.css" rel="stylesheet"> #}
-        {# <link href="css/swiper.min.css" rel="stylesheet"> #}
-
-        <!--    <link href="css/awasome/web-fonts-with-css/css/fontawesome-all.min.css " rel="stylesheet">-->
-
-
-        <!--<script src="js/awasome/fontawesome-all.min.js"></script>-->
-
-        <!-- Custom fonts for this template -->
-
-        {# <link href="css/fonts/univers/font.css?v=<?php echo $version ?>" rel="stylesheet"> #}
         <style>
             .swiper-container {
                 width: 100%;
                 padding-top: 50px;
                 padding-bottom: 50px;
             }
-
             .swiper-slide {
                 background-position: center;
                 background-size: cover;
@@ -67,7 +39,6 @@
                 height: 300px;
             }
         </style>
-
     {% endblock %}
 </head>
 <body>

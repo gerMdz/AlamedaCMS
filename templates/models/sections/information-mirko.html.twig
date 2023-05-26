@@ -1,7 +1,7 @@
 {#LLeva entradas#}
 {#    Entradas: No modelTemplate#}
-<section class="information {{ section.cssClass }}" style="{{ section.cssStyle }}">
-    <div class="container-fluid">
+<section class="information {{ section.cssClass }}" style="{{ section.cssStyle }}" id="{{section.identificador}}">
+    <div class="container-fluid mx-0 px-0">
         <div class="row text-light">
             {% for entrada in section.entradas   %}
             <div class="{{entrada.cssClass | default('col-lg-4 text-center p-5') }}" style="{{ entrada.cssStyle }}">

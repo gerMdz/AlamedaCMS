@@ -18,12 +18,10 @@ class BlocsFixesController extends AbstractController
     /**
      * @Route("/", name="app_blocs_fixes_index", methods={"GET"})
      */
-    public function index(BlocsFixesRepository $blocsFixesRepository, Request $request): Response
+    public function index(BlocsFixesRepository $blocsFixesRepository): Response
     {
-        $bus = $request->get('busq');
-        $blocs_fixes = $blocsFixesRepository->queryAllBlocsFixes($bus)->getQuery()->getResult();
         return $this->render('admin/blocs_fixes/index.html.twig', [
-            'blocs_fixes' => $blocs_fixes,
+            'blocs_fixes' => $blocsFixesRepository->findAll(),
         ]);
     }
 

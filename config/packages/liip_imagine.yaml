@@ -127,14 +127,6 @@ liip_imagine:
                     # set the fixed size to "120x90" pixels
                     width: 540
                     height: 304
-        squared_thumbnail_carousel-side:
-            filters:
-                fixed:
-
-                    # set the fixed size to "120x90" pixels
-                    width: 100%
-                    height: auto
-                    allow_upscale: true
 
 
 #
