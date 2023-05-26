@@ -106,8 +106,49 @@ yarn-error.log
 /migrations/
 /migrations/Version20210515203711.php
 
+
+/public/images/logo-solo.png
+/public/images/logo-con-nombre.png
+/public/images/logo-con-nombre.jpg
+
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 public/images/logo-solo.png
+
+###> phpunit/phpunit ###
+
+###< phpunit/phpunit ###
+/public/images/favicon/android-icon-36x36.png
+/public/images/favicon/android-icon-48x48.png
+/public/images/favicon/android-icon-72x72.png
+/public/images/favicon/android-icon-96x96.png
+/public/images/favicon/android-icon-144x144.png
+/public/images/favicon/android-icon-192x192.png
+/public/images/favicon/apple-icon.png
+/public/images/favicon/apple-icon-57x57.png
+/public/images/favicon/apple-icon-60x60.png
+/public/images/favicon/apple-icon-72x72.png
+/public/images/favicon/apple-icon-76x76.png
+/public/images/favicon/apple-icon-114x114.png
+/public/images/favicon/apple-icon-120x120.png
+/public/images/favicon/apple-icon-144x144.png
+/public/images/favicon/apple-icon-152x152.png
+/public/images/favicon/apple-icon-180x180.png
+/public/images/favicon/apple-icon-precomposed.png
+/public/images/favicon/browserconfig.xml
+/public/images/favicon/favicon.ico
+/public/images/favicon/favicon-16x16.png
+/public/images/favicon/favicon-32x32.png
+/public/images/favicon/favicon-96x96.png
+/public/images/favicon/favicon-256x256.png
+/public/images/favicon/instructions.txt
+/public/images/favicon/manifest.json
+/public/images/favicon/ms-icon-70x70.png
+/public/images/favicon/ms-icon-144x144.png
+/public/images/favicon/ms-icon-150x150.png
+/public/images/favicon/ms-icon-310x310.png
+/public/images/favicon/*
+/public/images/logo-solo-3.png
+/public/images/logo-con-nombre.jpg
