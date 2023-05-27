@@ -102,7 +102,7 @@ class Section
     private ?Principal $principal;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Groups({"main", "mail"})
      */
     private ?string $title;

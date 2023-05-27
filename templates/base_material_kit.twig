@@ -5,23 +5,26 @@
         {% include('inicio/_etiqueta_global_google.html.twig') %}
     {% endif %}
     {% set base = base_base() %}
-    {% set version = 'now' | date('YmdH') %}
+    {% set version = 'now' | date('YmdHi') %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{{ base.siteName }} Bienvenido! {% endblock %}</title>
     {% set index = 'base' %}
-    <meta name="description" content="{% block meta_description_content%}{{base_metaDescripcion()}}{% endblock %}. {{ base.siteName }}">
-    <meta name="keywords" content="{{ base.siteName }}, {% block meta_keywords_content%}{{ base.lema }}, {{ base_metaDescripcion() }} {% endblock%}">
+    <meta name="description"
+          content="{% block meta_description_content %}{{ base_metaDescripcion() }}{% endblock %}. {{ base.siteName }}">
+    <meta name="keywords"
+          content="{{ base.siteName }}, {% block meta_keywords_content %}{{ base.lema }}, {{ base_metaDescripcion() }} {% endblock %}">
     <meta name="author" content="{{ base.metaAutor }}">
     <meta property="og:title" content="{{ base.metaTitle }}"/>
     <meta property="og:type" content="{{ base.metaTYpe }}"/>
     <meta property="og:url" content="{{ base.metaUrl }}"/>
     <meta property="og:image" content="{{ base.metaUrl }}{{ asset('images/og-base.png') }}">
-    <meta property="og:description" content="{% block meta_og_description_content%}{{base_metaDescripcion()}}{% endblock %}. {{ base.siteName }}"/>
+    <meta property="og:description"
+          content="{% block meta_og_description_content %}{{ base_metaDescripcion() }}{% endblock %}. {{ base.siteName }}"/>
     <meta property="og:site_name" content="{{ base.siteName }}"/>
-{#    /<link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon">#}
+    {#    /<link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon"> #}
     <title>{{ base.metaTitle }}</title>
-     {% include('inicio/_favicon_html.twig') %}
+    {% include('inicio/_favicon_html.twig') %}
     {% block icons %}
         <link href="{{ asset('icons/foundation-icons/foundation-icons.css') }}" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -40,6 +43,7 @@
         {# <link rel="stylesheet" type="text/css" href="{{ asset('stream-ui-kit/assets/css/styles.css') }}"> #}
         <link href="{{ asset('css/igles.min.css') }}?v={{ version }}" rel="stylesheet">
         <link href="{{ asset('css/bg.css') }}?v={{ version }}" rel="stylesheet">
+        <link href="{{ asset('custom/css/my.css') }}?v={{ version }}" rel="stylesheet">
         <link href="{{ asset('material-kit/css/material-kit.min.css') }}?v=3.0.1" rel="stylesheet"/>
         <style>
             body {
@@ -58,8 +62,12 @@
 {% endif %}
 {% block header %}
     <header>
-        {% include('inicio/_nav.html.twig') %}
-        <div class="mt-lg-1 d-none d-lg-block"></div>
+        {% if(nav_bar is defined) %}
+            {% include 'models/sections/'~nav_bar.modelTemplate~'.html.twig' with { 'section':nav_bar } %}
+        {% else %}
+            {% include('inicio/_nav.html.twig') %}
+        {% endif %}
+        {#        <div class="mt-lg-1 d-none d-lg-block"></div> #}
     </header>
 {% endblock %}
 {% block usuario %}
@@ -90,22 +98,37 @@
 
 
 {% block footer %}
-    {% include 'inicio/_footer_ar.html.twig' %}
-    {% if mautic_enable == 'true' %}
-        {% include('inicio/_etiqueta_global_mautic.html.twig') %}
+    {% if blocsFixes is defined %}
+        {% for fixes in blocsFixes %}
+            {% if fixes.fixesType == 'footer-fix' %}
+                {% for blocsection in fixes.section %}
+                    <div class="m-0 p-0 border-bottom border-secondary">
+                        {{ render(controller(
+                            'App\\Controller\\SectionController::mostrarSection', {id: blocsection.id}
+                        )) }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% include 'inicio/_footer_ar.html.twig' %}
+        {% if mautic_enable == 'true' %}
+            {% include('inicio/_etiqueta_global_mautic.html.twig') %}
+        {% endif %}
     {% endif %}
 {% endblock %}
 
 {% block javascripts %}
     <script src="https://kit.fontawesome.com/743c9941eb.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('custom/js/my.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/plugins/parallax.min.js') }}"></script>
-{#         <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>#}
-{#    <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>#}
-{#    <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}"></script>#}
-{#     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script>#}
+    {#         <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script> #}
+    {#    <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script> #}
+    {#    <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}"></script> #}
+    {#     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script> #}
     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
     {# <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script> #}
     {# <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script> #}
@@ -122,7 +145,7 @@
     <script src="{{ asset('stream-ui-kit/assets/vendors/counters/counterup.min.js') }}"></script>
 
     <!-- Theme Settings and Calls -->
-{#    <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script>#}
+    {#    <script src="{{ asset('stream-ui-kit/assets/js/global.js') }}"></script> #}
 
     <!-- Theme Components and Settings -->
 
@@ -135,8 +158,8 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-{#    <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script>#}
-    <script src="{{ asset('material-kit/js/material-kit.min.js')}}?v=3.0.1" type="text/javascript"></script>
+    {#    <script src="{{ asset('material-kit/js/material-kit.js') }}?v=2.0.4" type="text/javascript"></script> #}
+    <script src="{{ asset('material-kit/js/material-kit.min.js') }}?v=3.0.1" type="text/javascript"></script>
 
 {% endblock %}
 

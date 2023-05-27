@@ -33,11 +33,12 @@
     -->
         <div class="logo">
             <a href="{{ path('index') }}" class="simple-text logo-mini">
-                <img src="{{ asset('images/institucional/logo_n1.png') }}" height="30px" width="30px"/>
+                <img src="{{ asset('images/institucional/logo_n1.png') }}" height="30px" width="30px"
+                     alt="{{ base.siteName|default('Alameda CMS') }}"
+                />
             </a>
             <a href="{{ path('index') }}" class="simple-text logo-normal">
-                Iglesia de la <br/>
-                Alameda
+                {{ base.siteName }}
             </a>
         </div>
         <div class="sidebar-wrapper">

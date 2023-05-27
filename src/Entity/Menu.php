@@ -32,10 +32,21 @@ class Menu
      */
     private ?string $nombre;
 
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $identificador;
+
     /**
      * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="menu")
      */
     private Collection $itemMenus;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $content;
 
     public function __construct()
     {
@@ -87,6 +98,18 @@ class Menu
         if ($this->itemMenus->removeElement($itemMenu)) {
             $itemMenu->removeMenu($this);
         }
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }

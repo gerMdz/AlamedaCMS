@@ -37,7 +37,7 @@
 <body>
 <div class="header text-center">
     <a href="{{ url('index') }}">
-        <img src="{{ absolute_url(asset('images/logo-con-nombre.png')) }}" style="height: 30px; width: 120px;" class="logo" alt="AlamedaCMS">
+        <img src="{{ absolute_url(asset('images/logo-con-nombre.png')) }}" style="height: 30px; width: 120px;" class="logo" alt="{{ base.siteName |default('Alameda CMS') }}">
     </a>
 </div>
     <h1>Hola {{ email.toName }}!</h1>

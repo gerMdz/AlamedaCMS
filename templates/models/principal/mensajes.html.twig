@@ -100,9 +100,9 @@
                     <div class="col-12">
                         <div class="text-center">
                             <div class="site-heading p-5">
-                                <img src="{{ asset('/images/LOGO_ALAMEDA_CON_TEXTO_B.png') }}"
+                                <img src="{{ asset('/images/logo-con-nombre.png') }}"
                                      style="max-height: 150px"
-                                     class="img-fluid" alt="AlamedaCMS">
+                                     class="img-fluid" alt="{{ base.siteName |default('Alameda CMS') }}">
                             </div>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
             </button>
             <div class="modal-content">
                 <div class="modal-body  ">
-                    <img src="" class="img-fluid" alt="AlamedaCMS">
+                    <img src="" class="img-fluid" alt="{{ base.siteName |default('Alameda CMS') }}">
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@
     </title>
     {% set index = 'base' %}
     <meta name="description" content="AlamedaCMS,  {{ base_metaDescripcion() }}">
+    <meta name="description" content="{{ base_metaDescripcion()| default('Alameda CMS') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ base.lema|default('AlamedaCMS') }}{{ base_metaDescripcion() }}">
     <meta name="keywords" content="AlamedaCMS, {% block keywords_content -%} {{ base.lema|default('AlamedaCMS') }},{% endblock%} {{ base_metaDescripcion() }}">
@@ -18,6 +19,19 @@
     <meta property="og:url" content="{{ base.metaUrl|default('AlamedaCMS') }}"/>
     <meta property="og:image" content="{{ base.metaUrl|default('AlamedaCMS') }}{{ asset('images/og-base.png') }}">
     <title>{{ base.metaTitle|default('AlamedaCMS') }}</title>
+    <meta name="description" content="{{ base.lema |default('Alameda CMS') }}{{ base_metaDescripcion() |default('Alameda CMS') }}">
+    <meta name="keywords" content="{% block keywords_content -%} {{ base.lema |default('Alameda CMS')}},{% endblock%} {{ base_metaDescripcion() |default('Alameda CMS') }}">
+    <meta name="author" content="{{ base.metaAutor |default('Alameda CMS')}}">
+
+    {# <meta name="author" content="{{ base['autor'] }}"> #}
+
+    <meta property="og:title" content="{{ base.metaTitle |default('Alameda CMS')}}"/>
+    <meta property="og:type" content="{{ base.metaType|default('Alameda CMS') }}"/>
+
+    <meta property="og:url" content="{{ base.metaUrl }}"/>
+    <!--    <meta property="og:image" content="https://www.iglesialameda.com/imagenes/meta/">-->
+    <meta property="og:image" content="{{ base.metaUrl|default('Alameda CMS') }}{{ asset('images/og-base.png') }}">
+    <title>{{ base.metaTitle |default('Alameda CMS')}}</title>
     {% include('inicio/_favicon_html.twig') %}
 
     {% block stylesheets %}

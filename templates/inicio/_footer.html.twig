@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <!--<div class="col-sm-3">
-                <span class="text-left">AlamedaCMS</span> <br/>
+                <span class="text-left">{{ base.siteName |default('Alameda CMS') }}</span> <br/>
 
 
                 <a class="text-tan text-center" href="nuestraAlameda.php"> Horarios de Nuestras Celebraciones</a>
@@ -61,7 +61,7 @@
             <p class="m-0 small ">San Martín 2020 de la Ciudad de Mendoza <br/>
                 <strong>Horario de Reuniones</strong><br/>
                 <em>Domingos por la mañana: 11hs. - Domingo por la tarde: 20hs.</em><br/>
-                Copyright &copy; Iglesia Alameda 2020</p>
+                Copyright &copy; {{ base.siteName |default('Alameda CMS') }} 2020</p>
         </div>
     </div>
 </footer>

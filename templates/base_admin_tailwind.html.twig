@@ -35,8 +35,7 @@
                 <img src="{{ asset('images/institucional/logo_n1.png') }}" height="30px" width="30px"/>
             </a>
             <a href="{{ path('index') }}" class="simple-text logo-normal">
-                Iglesia de la <br/>
-                Alameda
+                {{ base.siteName| default('Alameda CMS') }}
             </a>
         </div>
         <div class="sidebar-wrapper">

@@ -1087,6 +1087,17 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
 }
 
+.u-promo-block--vheight-25 {
+  min-height: 25vh;
+}
+.u-promo-block--vheight-50 {
+  min-height: 50vh;
+}
+
+.u-promo-block--vheight-75 {
+  min-height: 75vh;
+}
+
 .u-promo-block--mheight-450 {
   min-height: 450px;
 }

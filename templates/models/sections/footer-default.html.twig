@@ -1,0 +1,21 @@
+{#
+section: empty
+entradas: true
+   entrada.modelTemplate: false
+    entrada.content=true
+#}
+<section class="footer {{ section.cssClass|default('text-light') }}" style="{{ section.cssStyle|default('') }}"
+         id="{{ section.identificador }}">
+    <div class="container">
+        <div class="row" data-aos="fade-right">
+            {% for entrada in section.entradas %}
+                <div class="{{ entrada.cssClass|default('col-lg-3 py-4 py-md-5 mx-auto') }}"
+                     style="{{ entrada.cssStyle|default('') }}">
+                    {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+

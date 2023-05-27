@@ -100,6 +100,7 @@ yarn-error.log
 /public/images/institucional/qr-dom-10hs.jpg
 /public/images/institucional/qr-dom-21hs.jpg
 /public/images/institucional/qr-sab-21hs.jpg
+/public/images/institucional/logo_n1.png
 /public/images/base.jpg
 /public/images/logo-mail.png
 /public/images/logo.png
@@ -161,3 +162,8 @@ public/images/logo-solo.png
 /public/custom/fonts/OFL.txt
 public/images/logo-solo-3.png
 src/Migrations/.gitignore
+
+/public/custom/css/my.css
+/public/custom/js/my.js
+/public/custom/fonts/Molle-Italic.ttf
+/public/custom/fonts/OFL.txt
