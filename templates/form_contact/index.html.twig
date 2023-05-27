@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FormContact index{% endblock %}
+
+{% block body %}
+    <h1>FormContact index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Text</th>
+                <th>Subject</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for form_contact in form_contacts %}
+            <tr>
+                <td>{{ form_contact.id }}</td>
+                <td>{{ form_contact.name }}</td>
+                <td>{{ form_contact.email }}</td>
+                <td>{{ form_contact.text }}</td>
+                <td>{{ form_contact.subject }}</td>
+                <td>{{ form_contact.createdAt ? form_contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ form_contact.updatedAt ? form_contact.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_form_contact_show', {'id': form_contact.id}) }}">show</a>
+                    <a href="{{ path('app_form_contact_edit', {'id': form_contact.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_form_contact_new') }}">Create new</a>
+{% endblock %}

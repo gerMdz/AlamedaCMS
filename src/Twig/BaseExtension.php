@@ -78,7 +78,9 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     {
         //        $base = $this->em->getRepository(MetaBase::class)->findOneBy(['base'=>'index']);
 
-        return $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(['base' => 'index']);
+        return $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(
+            ['base' => 'index']
+        );
     }
 
 

@@ -110,11 +110,13 @@ yarn-error.log
 /public/images/logo-solo.png
 /public/images/logo-con-nombre.png
 /public/images/logo-con-nombre.jpg
+/public/images/logo-ascendig.png
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/notas/
 public/images/logo-solo.png
 
 ###> phpunit/phpunit ###
@@ -151,6 +153,7 @@ public/images/logo-solo.png
 /public/images/favicon/ms-icon-310x310.png
 /public/images/favicon/*
 /public/images/logo-solo-3.png
+public/images/logo-solo.png
 /public/images/logo-con-nombre.jpg
 /public/custom/js/my.js
 /public/custom/fonts/Molle-Italic.ttf

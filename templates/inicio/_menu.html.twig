@@ -6,6 +6,10 @@
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#quienes-somos">
                 ¿Quienes somos?
+            <ul class="navbar-nav mx-lg-auto text-elyon text-black-75">
+        <li class="nav-item text-black ">
+            <a class="nav-link active text-elyon" aria-current="page" href="#header">
+                Nosotros
             </a>
         </li>
                 <li class="nav-item">
@@ -42,8 +46,15 @@
                     aria-labelledby="navbarDropdownMenuLink">
 {#                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
                     <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
-
-
+                    {% if is_granted('ROLE_ADMIN_RESERVA') %}
+                        <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar
+                            Voluntario</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_RESERVA') %}
+                        <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
+                        <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
+                        <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Lectura QR</a>
+                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
                         {# <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a> #}

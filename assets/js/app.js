@@ -12,6 +12,7 @@ require('../css/igles.css');
 require('../css/foundation-icons/foundation-icons.css');
 require('../css/stream.css');
 require('../css/styles.css');
+require('../css/features.css');
 // require('../fonts/univers/font.css');
 
 

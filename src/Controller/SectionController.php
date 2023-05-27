@@ -3,16 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Entity\Image;
 use App\Entity\Principal;
 use App\Entity\Section;
+use App\Entity\SectionImage;
 use App\Entity\SourceApi;
 use App\Form\EntradaSectionType;
+use App\Form\SectionFormImageType;
 use App\Form\SectionFormType;
 use App\Form\Step\Section\StepOneType;
 use App\Form\Step\Section\StepThreeType;
 use App\Form\Step\Section\StepTwoType;
 use App\Repository\EntradaRepository;
 use App\Repository\ModelTemplateRepository;
+use App\Repository\SectionImageRepository;
 use App\Repository\SectionRepository;
 use App\Service\Handler\SourceApi\HandlerSourceApi;
 use App\Service\UploaderHelper;
@@ -25,7 +29,6 @@ use Psr\Container\NotFoundExceptionInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -44,12 +47,13 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class SectionController extends BaseController
 {
 
-    private $session;
-    private $api;
+    private SessionInterface $session;
+    private HandlerSourceApi $api;
 
     /**
      * SectionController constructor.
      * @param SessionInterface $session
+     * @param HandlerSourceApi $api
      */
     public function __construct(SessionInterface $session, HandlerSourceApi $api)
     {
@@ -128,6 +132,66 @@ class SectionController extends BaseController
     }
 
     /**
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @param UploaderHelper $uploaderHelper
+     * @param Section $section
+     * @return Response
+     * @throws Exception
+     * @Route("/{section}/add_images", name="admin_section_add_images")
+     * @IsGranted("ROLE_ESCRITOR")
+     */
+    public function addImagesSection(
+        EntityManagerInterface $em,
+        Request $request,
+        UploaderHelper $uploaderHelper,
+        Section $section
+    ): Response
+    {
+        $form = $this->createForm(SectionFormImageType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+//            /** @var Section $section */
+//            $section = $form->getData();
+
+            /** @var UploadedFile $uploadedFile */
+
+            $uploadsFiles = $form['imagesFiles']->getData();
+
+            if ($uploadsFiles) {
+                foreach ($uploadsFiles as $uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                    $image = new Image();
+                    $image->setImageFilename($newFilename);
+                    $em->getRepository(Image::class)->add($image, true);
+                    $section_image = new SectionImage();
+                    $section_image->setImageId($image);
+                    $section_image->setSectionId($section);
+                    $em->getRepository(SectionImage::class)->add($section_image, true);
+                    $section->addSectionImage($section_image);
+                    $em->persist($section);
+                }
+            };
+
+
+            $em->persist($section);
+            $em->flush();
+
+            $this->addFlash('success', 'Se agregaron imágenes a la sección');
+
+            return $this->redirectToRoute('admin_section_list');
+        }
+
+
+        return $this->render('section_admin/addImages.html.twig', [
+            'sectionForm' => $form->createView(),
+            'section' => $section
+        ]);
+    }
+
+    /**
      * @Route("/{id}/edit", name="admin_section_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Section $section
@@ -149,7 +213,8 @@ class SectionController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $section->getImageFilename());
                 $section->setImageFilename($newFilename);
             }
-            $this->getDoctrine()->getManager()->flush();
+
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_list');
         }
@@ -226,6 +291,7 @@ class SectionController extends BaseController
      * @param Section $section
      * @param EntradaRepository $entradaRepository
      * @return Response
+     * @throws QueryException
      */
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
     {
@@ -294,7 +360,7 @@ class SectionController extends BaseController
 
             $principal = $form['principal']->getData();
             $section->addPrincipale($principal);
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($section);
             $entityManager->flush();
 
@@ -336,7 +402,7 @@ class SectionController extends BaseController
                 }
                 $this->session->remove('model_template_id');
             }
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step3', [
                 'id' => $section->getId(),
@@ -364,7 +430,7 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_show', [
                 'id' => $section->getId(),
@@ -380,22 +446,25 @@ class SectionController extends BaseController
     /**
      * @Route("/test/api/{identifier}", name="admin_section_test_api", methods={"GET","POST"})
      * @param SourceApi $api
+     * @return JsonResponse|void
      */
-    public function getDataSourceApi(SourceApi $api)
+    public function getDataSourceApi(SourceApi $api): JsonResponse
     {
+        try {
             return new JsonResponse($this->api->fetchSourceApi($api));
+        } catch (ClientExceptionInterface|DecodingExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+
+        }
     }
 
     /**
      * @Route("/agregarEntrada/{id}", name="section_agregar_entrada", methods={"GET", "POST"})
      * @param Request $request
-     * @param Entrada $entrada
-     * @param SectionRepository $sectionRepository
-     * @return RedirectResponse|Response
      */
-    public function agregarSeccion(Request $request, Section $section, EntradaRepository $entradaRepository)
+    public function agregarEntrada(Request $request, Section $section, EntradaRepository $entradaRepository)
     {
-        $form = $this->createForm(EntradaSectionType::class, $entrada);
+        die('en desa');
+        $form = $this->createForm(EntradaSectionType::class, $section);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -403,16 +472,63 @@ class SectionController extends BaseController
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $entrada->addSection($seccion);
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($entrada);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->render('admin_entrada/vistaAgregaSection.html.twig', [
+        return $this->render('admin/entrada/vistaAgregaSection.html.twig', [
             'index' => $entrada,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param SectionImageRepository $sectionImageRepository
+     * @return JsonResponse <b>ok</b> si el cambio se hizo, <b>ko</b> si no se hizo
+     * @Route("/image/change_order/section_image", name="section_image_change_order" , methods={"GET"}, )
+     */
+    public function changeOrderImageSection(Request $request, SectionImageRepository $sectionImageRepository): JsonResponse
+    {
+        $id = $request->get('id_sectionImage');
+        $order = $request->get('order_sectionImage');
+
+
+        $sectionImage = $sectionImageRepository->find($id);
+
+        if(!$sectionImage){
+            return new JsonResponse('ko');
+        }
+
+        $sectionImage->setNOrder((int)$order);
+        $sectionImageRepository->add($sectionImage, true);
+
+        return new JsonResponse('ok');
+
+    }
+
+    /**
+     * @param Request $request
+     * @param SectionImageRepository $sectionImageRepository
+     * @return JsonResponse <b>ok</b> si el cambio se hizo, <b>ko</b> si no se hizo
+     * @Route("/image/change_principal/section_image", name="section_image_change_principal" , methods={"GET"}, )
+     */
+    public function changePrincipalImageSection(Request $request, SectionImageRepository $sectionImageRepository): JsonResponse
+    {
+        $id = $request->get('id_sectionImage');
+        $sectionImage = $sectionImageRepository->find($id);
+
+        if(!$sectionImage){
+            return new JsonResponse('ko');
+        }
+
+        $sectionImage->setIsPrincipal(!$sectionImage->isIsPrincipal());
+        $sectionImageRepository->add($sectionImage, true);
+
+        return new JsonResponse(['principal'=> $sectionImage->isIsPrincipal()]);
+
     }
 }

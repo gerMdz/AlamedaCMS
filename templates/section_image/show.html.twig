@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SectionImage{% endblock %}
+
+{% block body %}
+    <h1>SectionImage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ section_image.id }}</td>
+            </tr>
+            <tr>
+                <th>NOrder</th>
+                <td>{{ section_image.nOrder }}</td>
+            </tr>
+            <tr>
+                <th>IsPrincipal</th>
+                <td>{{ section_image.isPrincipal ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsUsable</th>
+                <td>{{ section_image.isUsable ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Filter</th>
+                <td>{{ section_image.filter }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ section_image.createdAt ? section_image.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ section_image.updatedAt ? section_image.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_section_image_index') }}">back to list</a>
+
+    <a href="{{ path('app_section_image_edit', {'id': section_image.id}) }}">edit</a>
+
+    {{ include('section_image/_delete_form.html.twig') }}
+{% endblock %}
