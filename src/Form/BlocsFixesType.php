@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\BlocsFixes;
+use App\Entity\Principal;
+use App\Entity\Section;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,8 +19,20 @@ class BlocsFixesType extends AbstractType
             ->add('cssClass')
             ->add('imageFilename')
             ->add('identificador')
-            ->add('page')
-            ->add('section')
+            ->add('page', EntityType::class, [
+                'class' => Principal::class,
+                'multiple' => true,
+                'attr' => [
+                    'class' => 'select2-enable'
+                ]
+            ])
+            ->add('section', EntityType::class, [
+                'class' => Section::class,
+                'multiple' => true,
+                'attr' => [
+                    'class' => 'select2-enable'
+                ]
+            ])
             ->add('indexAlameda')
             ->add('fixes_type')
         ;
