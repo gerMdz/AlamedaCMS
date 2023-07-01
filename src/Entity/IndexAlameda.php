@@ -33,7 +33,25 @@ class IndexAlameda
      */
     private ?string $lemaSinEspacio;
 
+    /**
+     * @ORM\Column(type="string", length=5, nullable=true)
+     */
+    private ?string $horario1;
 
+    /**
+     * @ORM\Column(type="string", length=5, nullable=true)
+     */
+    private ?string $horario2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $textoVersiculo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $versiculo;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -296,7 +314,7 @@ class IndexAlameda
     }
 
     /**
-     * @return Collection|BlocsFixes[]
+     * @return ArrayCollection<int, BlocsFixes>
      */
     public function getBlocsFixes(): Collection
     {
