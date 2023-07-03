@@ -20,7 +20,6 @@
         "erusev/parsedown": "^1.6",
         "friendsofsymfony/ckeditor-bundle": "^2.2",
         "gedmo/doctrine-extensions": "^v3.4.0",
-        "knplabs/knp-markdown-bundle": "^1.8",
         "knplabs/knp-paginator-bundle": "^5.2",
         "knplabs/knp-time-bundle": "^1.11",
         "laminas/laminas-code": "^3.4",
@@ -88,7 +87,12 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "endroid/installer": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
     },
     "autoload": {
         "psr-4": {

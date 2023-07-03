@@ -11,8 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
-
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 /**
  * @ORM\Entity(repositoryClass=BlocsFixesRepository::class)
  */
@@ -28,7 +27,7 @@ class BlocsFixes
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private UuidInterface $id;
+    private $id;
 
     /**
      * @ORM\ManyToMany(targetEntity=Principal::class, inversedBy="blocsFixes")
@@ -68,7 +67,7 @@ class BlocsFixes
      return $this->description;
     }
 
-    public function getId(): UuidInterface
+    public function getId()
     {
         return $this->id;
     }
