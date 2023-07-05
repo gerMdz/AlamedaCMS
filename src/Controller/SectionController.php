@@ -30,8 +30,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -47,15 +47,15 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class SectionController extends BaseController
 {
 
-    private SessionInterface $session;
     private HandlerSourceApi $api;
+    private RequestStack $session;
 
     /**
      * SectionController constructor.
-     * @param SessionInterface $session
+     * @param RequestStack $session
      * @param HandlerSourceApi $api
      */
-    public function __construct(SessionInterface $session, HandlerSourceApi $api)
+    public function __construct(RequestStack $session, HandlerSourceApi $api)
     {
         $this->session = $session;
         $this->api = $api;
@@ -109,13 +109,13 @@ class SectionController extends BaseController
                 $section->setImageFilename($newFilename);
             }
 
-            if ($this->session->get('principal_id')) {
-                $principal_id = $this->session->get('principal_id');
+            if ($this->session->getSession()->get('principal_id')) {
+                $principal_id = $this->session->getSession()->get('principal_id');
                 $principal = $em->getRepository(Principal::class)->find($principal_id);
                 if ($principal) {
                     $section->addPrincipale($principal);
                 }
-                $this->session->remove('principal_id');
+                $this->session->getSession()->remove('principal_id');
             }
 
             $em->persist($section);
@@ -394,13 +394,13 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $model_template_id = $this->session->get('model_template_id');
+            $model_template_id = $this->session->getSession()->get('model_template_id');
             if ($model_template_id) {
                 $model_template = $modelTemplateRepository->find($model_template_id);
                 if ($model_template) {
                     $section->setModelTemplate($model_template);
                 }
-                $this->session->remove('model_template_id');
+                $this->session->getSession()->remove('model_template_id');
             }
             $this->container->get('doctrine')->getManager()->flush();
 

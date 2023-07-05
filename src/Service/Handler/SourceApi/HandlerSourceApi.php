@@ -12,32 +12,32 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HandlerSourceApi
 {
-//    private HttpClientInterface $client;
-//
-//    /**
-//     * @param HttpClientInterface $client
-//     */
-//    public function __construct(HttpClientInterface $client)
-//    {
-//        $this->client = $client;
-//    }
-//
-//    /**
-//     * @throws TransportExceptionInterface
-//     * @throws ServerExceptionInterface
-//     * @throws RedirectionExceptionInterface
-//     * @throws DecodingExceptionInterface
-//     * @throws ClientExceptionInterface
-//     */
-//    public function fetchSourceApi(SourceApi $api): array
-//    {
-//        $response = $this->client->request(
-//            'GET',
-//            $api->getBaseEndpoint()
-//        );
-//
-//        return $response->toArray();
-//
-//    }
+    private HttpClientInterface $client;
+
+    /**
+     * @param HttpClientInterface $client
+     */
+    public function __construct(HttpClientInterface $client)
+    {
+        $this->client = $client;
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws ClientExceptionInterface
+     */
+    public function fetchSourceApi(SourceApi $api): array
+    {
+        $response = $this->client->request(
+            'GET',
+            $api->getBaseEndpoint()
+        );
+
+        return $response->toArray();
+
+    }
 
 }

@@ -30,7 +30,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {% endblock %}
-{#    {% include('bases/_favicon.html.twig') %}#}
+    {#    {% include('bases/_favicon.html.twig') %} #}
 
     {% block fonts %}
         <link href="{{ asset('fonts/fonts.css') }}?v={{ version }}" rel="stylesheet">
@@ -62,12 +62,13 @@
 {% endif %}
 {% block header %}
     <header>
-        {% if(nav_bar is defined) %}
+        {% if(nav_bar is defined and nav_bar is not null) %}
+
             {% include 'models/sections/'~nav_bar.modelTemplate~'.html.twig' with { 'section':nav_bar } %}
-{#        {% else %}#}
-                {% endif %}
-            {% include('inicio/_nav.html.twig') %}
-{#        {% endif %}#}
+            {#        {% else %} #}
+        {% endif %}
+        {% include('inicio/_nav.html.twig') %}
+        {#        {% endif %} #}
         {#        <div class="mt-lg-1 d-none d-lg-block"></div> #}
     </header>
 {% endblock %}
