@@ -1,7 +1,6 @@
 import $ from 'jquery';
 
 $(function () {
-
     const puno = localStorage.getItem("excep05Puno");
     const pdos = localStorage.getItem("excep05Pdos");
     const ptres = localStorage.getItem("excep05Ptres");
