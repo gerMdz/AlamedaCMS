@@ -20,6 +20,7 @@ class BlocsFixesType extends AbstractType
             ->add('imageFilename')
             ->add('identificador')
             ->add('page', EntityType::class, [
+                'required' => false,
                 'class' => Principal::class,
                 'multiple' => true,
                 'attr' => [
