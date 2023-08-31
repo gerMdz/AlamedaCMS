@@ -12,12 +12,14 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/v4-shims.min.css') }}">
-        <link href="{{ asset('material-dashboard/assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('material-dashboard/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('material-dashboard/assets/css/') }}">
+        <link href="{{ asset('material-dashboard/assets/css/nucleo-icons.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('material-dashboard/assets/css/plugins/bootstrap-datetimepicker.min.css') }}"
+              rel="stylesheet"/>
         <!-- Material Kit CSS -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-        <link href="{{ asset('material-dashboard/assets/css/material-dashboard.css')}}?v=3.0.0" rel="stylesheet"/>
-{#        <link href="{{ asset('css/alameda.min.css') }}?v=2.1.2" rel="stylesheet"/>#}
+        <link href="{{ asset('material-dashboard/assets/css/material-dashboard.css') }}?v=3.0.0" rel="stylesheet"/>
+        {#        <link href="{{ asset('css/alameda.min.css') }}?v=2.1.2" rel="stylesheet"/> #}
         <style>
             .main-panel {
                 /*position: relative;*/
@@ -140,7 +142,7 @@
     <script src="{{ asset('material-dashboard/assets/js/plugins/jquery.bootstrap-wizard.js') }}"></script>
 
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-{#    <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-selectpicker.js') }}"></script>#}
+    {#    <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-selectpicker.js') }}"></script> #}
 
     <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
     <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
@@ -179,7 +181,7 @@
     <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-notify.js') }}"></script>
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('material-dashboard/assets/js/material-dashboard.min.js')}}?v=3.0.0"
+    <script src="{{ asset('material-dashboard/assets/js/material-dashboard.min.js') }}?v=3.0.0"
             type="text/javascript"></script>
 {% endblock %}
 
