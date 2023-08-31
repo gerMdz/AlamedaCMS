@@ -52,7 +52,7 @@ class SectionFormType extends AbstractType
                 'html5' => true,
                 'required' => false,
 //                'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'datetimepicker form-control']
             ])
             ->add('columns', IntegerType::class, [
                 'label' => 'Cantidad de columnas',
@@ -64,7 +64,7 @@ class SectionFormType extends AbstractType
                 'html5' => true,
                 'required' => false,
 //                'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'datetimepicker form-control']
             ))
             ->add('orden', IntegerType::class, [
                 'label' => 'Orden en la página',
