@@ -1,46 +1,72 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_coreui.html.twig' %}
 
 {% block title %}BlocsFixes{% endblock %}
-
-{% block body %}
-    <h1>BlocsFixes</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ blocs_fix.id }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ blocs_fix.description }}</td>
-            </tr>
-            <tr>
-                <th>CssClass</th>
-                <td>{{ blocs_fix.cssClass }}</td>
-            </tr>
-            <tr>
-                <th>ImageFilename</th>
-                <td>{{ blocs_fix.imageFilename }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ blocs_fix.createdAt ? blocs_fix.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ blocs_fix.updatedAt ? blocs_fix.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Identificador</th>
-                <td>{{ blocs_fix.identificador }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_blocs_fixes_index') }}">back to list</a>
-
-    <a href="{{ path('app_blocs_fixes_edit', {'id': blocs_fix.id}) }}">edit</a>
-
-    {{ include('admin/blocs_fixes/_delete_form.html.twig') }}
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <span><a href="{{ path('admin') }}">Panel</a></span>
+    </li>
+    <li class="breadcrumb-item ">
+        <span>
+            <a href="{{ path('app_blocs_fixes_index') }}">
+                Bloques fijos (BlocsFixes)
+            </a>
+        </span>
+    </li>
+    <li class="breadcrumb-item active"><span>Detalle</span></li>
 {% endblock %}
+
+
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 show-article-container ">
+                    <h4>Identificador: <strong class="ml-5"> {{ blocs_fix.identificador }} </strong></h4>
+                    <small>
+                        <a href="{{ path('app_blocs_fixes_edit', {'id': blocs_fix.id}) }}">
+                            Editar </a>
+                    </small>
+                </div>
+                <hr class="w-100"/>
+                <div class="col-sm-6">
+                    Id: <h6>{{ blocs_fix.id }}</h6>
+                </div>
+                <div class="col-sm-6">
+                    Descripción: <h6>{{ blocs_fix.description }}</h6>
+                </div>
+                <div class="col-sm-6">
+                    CssClass: <h6>{{ blocs_fix.cssClass|default('No definida') }}</h6>
+                </div>
+                <div class="col-sm-6">
+                    ImageFilename: {% if  blocs_fix.imageFilename %}
+                        <img class="show-article-img"
+                             src="{{ blocs_fix.imagePath|imagine_filter('squared_thumbnail_small') }}"
+                             alt="{{ base.siteName }}">
+                    {% else %}
+                        <h6> Sin imagen </h6>
+                    {% endif %}
+
+                </div>
+                <div class="col-sm-6">
+                    Creada: <h6>{{ blocs_fix.createdAt ? blocs_fix.createdAt|date('Y-m-d H:i:s') : '' }}</h6>
+                </div>
+                <div class="col-sm-6">
+                    Actualizada: <h6>{{ blocs_fix.updatedAt ? blocs_fix.updatedAt|date('Y-m-d H:i:s') : '' }}</h6>
+                </div>
+
+            </div>
+
+            <div class="d-flex gap-1 mb-3">
+            <a href="{{ path('app_blocs_fixes_index') }}"
+               class="btn btn-info col-4"
+            >Volver al listado</a>
+
+            <a href="{{ path('app_blocs_fixes_edit', {'id': blocs_fix.id}) }}"
+            class="btn btn-warning col-4"
+            >Editar</a>
+                <div class="col-4">
+
+            {{ include('admin/blocs_fixes/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    {% endblock %}

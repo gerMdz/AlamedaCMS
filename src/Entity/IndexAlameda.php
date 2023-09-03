@@ -35,6 +35,8 @@ class IndexAlameda
 
 
 
+
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -137,53 +139,11 @@ class IndexAlameda
         return $this;
     }
 
-    public function getHorario1(): ?string
-    {
-        return $this->horario1;
-    }
 
-    public function setHorario1(?string $horario1): self
-    {
-        $this->horario1 = $horario1;
 
-        return $this;
-    }
 
-    public function getHorario2(): ?string
-    {
-        return $this->horario2;
-    }
 
-    public function setHorario2(?string $horario2): self
-    {
-        $this->horario2 = $horario2;
 
-        return $this;
-    }
-
-    public function getTextoVersiculo(): ?string
-    {
-        return $this->textoVersiculo;
-    }
-
-    public function setTextoVersiculo(?string $textoVersiculo): self
-    {
-        $this->textoVersiculo = $textoVersiculo;
-
-        return $this;
-    }
-
-    public function getVersiculo(): ?string
-    {
-        return $this->versiculo;
-    }
-
-    public function setVersiculo(?string $versiculo): self
-    {
-        $this->versiculo = $versiculo;
-
-        return $this;
-    }
 
     public function getMetaDescripcion(): ?string
     {

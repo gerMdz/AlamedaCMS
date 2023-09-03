@@ -1,0 +1,22 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Envío de mail para recuperar contraseña{% endblock %}
+
+{% block body %}
+
+    <div class="login_wrapper">
+        <div class="animate ">
+            <section class="check_content">
+                <h4>
+                    Si existe una cuenta que coincide con su correo electrónico,<br/>
+                    se le enviará un correo electrónico que contiene un enlace que puede utilizar para restablecer su
+                    contraseña.<br/>
+                    Este enlace caducará
+                    en {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                </h4>
+                <h6>Si no recibe un correo electrónico, revise su carpeta de correo no deseado o <a
+                            href="{{ path('app_forgot_password_request') }}">intente nuevamente</a>.</h6>
+            </section>
+        </div>
+    </div>
+{% endblock %}

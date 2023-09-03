@@ -99,6 +99,12 @@ liip_imagine:
                     size:          [100%, 100%]
                     mode:          outbound
                     allow_upscale: true
+        squared_800-500:
+            filters:
+                thumbnail:
+                    size:          [800, 500]
+                    mode:          outbound
+                    allow_upscale: true
 
         squared_icon:
             filters:
