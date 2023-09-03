@@ -39,6 +39,7 @@
         "symfony/flex": "^1.17.1",
         "symfony/form": "^v5.4.0",
         "symfony/framework-bundle": "^v5.4.0",
+        "symfony/http-client": "5.4.*",
         "symfony/intl": "^5.4",
         "symfony/mailer": "^5.4",
         "symfony/polyfill-intl-messageformatter": "^1.12",
@@ -56,6 +57,7 @@
         "symfony/validator": "^5.4",
         "symfony/webpack-encore-bundle": "^1.13",
         "symfony/yaml": "^5.4",
+        "symfonycasts/reset-password-bundle": "^1.17",
         "tgalopin/html-sanitizer-bundle": "^1.4",
         "twig/cssinliner-extra": "^3.1",
         "twig/extensions": "^1.5",
@@ -85,7 +87,12 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "endroid/installer": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
     },
     "autoload": {
         "psr-4": {

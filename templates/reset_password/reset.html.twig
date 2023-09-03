@@ -1,0 +1,18 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Cambiar contraseña{% endblock %}
+
+{% block body %}
+    <div class="login_wrapper">
+        <div class="animate ">
+            <section class="reset_content">
+                <h1>Cambiar contraseña</h1>
+
+                {{ form_start(resetForm) }}
+                {{ form_row(resetForm.plainPassword) }}
+                <button class="btn btn-primary">Cambiar contraseña</button>
+                {{ form_end(resetForm) }}
+            </section>
+        </div>
+    </div>
+{% endblock %}
