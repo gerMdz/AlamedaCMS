@@ -1,0 +1,32 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Recuperar contraseña{% endblock %}
+
+{% block body %}
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="request_content">
+                {% for flash_error in app.flashes('reset_password_error') %}
+                    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                {% endfor %}
+                <div>
+                    <h1> Recuperar contraseña /<br/><br/>
+                        <small class="mt-3 pt-3">Cambiar contraseña</small>
+                    </h1>
+
+                    {{ form_start(requestForm) }}
+                    {{ form_row(requestForm.email) }}
+                    <div>
+                        <small>
+                            Ingrese su dirección de correo electrónico y le enviaremos un
+                            enlace para restablecer su contraseña.
+                        </small>
+                    </div>
+
+                    <button class="btn btn-primary">Enviar mail de recuperación de contraseña</button>
+                    {{ form_end(requestForm) }}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
