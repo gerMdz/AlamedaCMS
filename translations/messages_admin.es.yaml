@@ -1,0 +1,90 @@
+backend:
+  global:
+    welcome: Hola
+    you_are_logged: Has ingresado como
+    leave_impersonate: Cambiando usuario
+    change_my_password: Cambiar mi password
+    logout: Salir
+    error: Error
+    success: Exitoso
+    an_unexpected_error: Ha ocurrido un error inesperado
+    must_not_be_empty: No debe estar vacío
+    please_confirm: ¿Confirma su acción?
+    choice_action: Seleccione una acción
+    no_item_selected: No ha se ha seleccionado nana
+  menu:
+    home: Home
+    manage: Manage
+    categories: Categorías
+    blog: Blog
+    history: Historia
+    settings: Ajustes
+    general: General
+    faq: FAQ
+    contact: Contacto
+    inbox: Bandeja de entrada
+    api: Api
+    blocks_fixes: Bloques fijos
+    button_link: Borón de enlace
+    celebration: Celebración
+    channel_feed: Channel Feed
+    comment: Comentario
+    short_link: Enlace corto
+    post: Entrada
+    post_reference: Referencias de entrada
+    group_celebration: Grupo de celebración
+    index: index
+    guest: invitado
+    item_feed: item de canal
+    item_menu: item de menú
+    menu: Menú
+    metabase: metabase
+    ministry: ministerio
+    model_template: Modelo de plantilla
+    new_site: Nuevo sitio
+    page_index: Página principal
+    principal: principal
+    booker: Reservante
+    reset_password: Restablecer contraseña
+    reset_password_request: Restablecer contraseña
+    roles: Roles
+    section: Sección
+    source_api: Origen de la api
+    type_contact: Tipo de contacto
+    type_block: Tipo de bloque
+    type_fixe: Tipo Fijo
+    user: Usuario
+    waiting_list: Lista de espera
+  role:
+    choice_role: Elija un rol
+  user:
+    listing: Listado
+    user_listing: Listado de usuario
+    group_actions: Grupo de acción
+    deactivate: Desactivar
+    Activate: Activar
+    delete: Borrar
+    username: Nombre de usuario
+    email: Email
+    name: Nombre completo
+    modifier: Edita
+    status: Estado
+    password: Contraseña
+    cancel: Cancela
+    register: Registrar
+    changer_password: Cambiar contraseña
+    changer_my_password: Cambiar contraseña
+    current_password: Contraseña actual
+    new_password: Nueva contraseña
+    confirm_password: Confirmar contraseña
+    remember_password: Recuerda tu contraseña actual
+    new_password_must_be: Las nuevas contraseñas deben ser idénticas
+    changed_password: Contraseña cambiada
+    add_user: Agregar usuario
+    modify_user: Editar usuario
+  login:
+    new_site: Primer ingreso site?
+    create_account: Crear cuenta
+    all_rights: Todos los derechos reservados.
+    already_member: ¿Ya habías ingresado antes?
+    log_in: Ingreso

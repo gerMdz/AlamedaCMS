@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" target-language="es" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="ZjmD79F" resname="label_previous">
+        <source>label_previous</source>
+        <target>Ant.</target>
+      </trans-unit>
+      <trans-unit id="FAwb90d" resname="label_next">
+        <source>label_next</source>
+        <target>Sig.</target>
+      </trans-unit>
+      <trans-unit id="o8nRv4N" resname="filter_searchword">
+        <source>filter_searchword</source>
+        <target>Buscar...</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
