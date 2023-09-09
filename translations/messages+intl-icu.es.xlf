@@ -19,7 +19,7 @@
             </trans-unit>
             <trans-unit id="5lht90g" resname="backend.global.change_my_password">
               <source>backend.global.change_my_password</source>
-              <target>Cambiar mi password</target>
+              <target>Cambiar mi contraseña</target>
             </trans-unit>
             <trans-unit id="PTebdlY" resname="backend.global.logout">
               <source>backend.global.logout</source>
@@ -113,9 +113,13 @@
               <source>backend.menu.channel_feed</source>
               <target>Channel Feed</target>
             </trans-unit>
+        <trans-unit id="ff_fqNT" resname="backend.menu.rss">
+              <source>backend.menu.rss</source>
+              <target>RSS</target>
+            </trans-unit>
             <trans-unit id="fXqpDzD" resname="backend.menu.comment">
               <source>backend.menu.comment</source>
-              <target>Comentario</target>
+              <target>Comentarios</target>
             </trans-unit>
             <trans-unit id="45as_M8" resname="backend.menu.short_link">
               <source>backend.menu.short_link</source>
@@ -123,7 +127,7 @@
             </trans-unit>
             <trans-unit id="Gm_pHAu" resname="backend.menu.post">
               <source>backend.menu.post</source>
-              <target>Entrada</target>
+              <target>Entradas</target>
             </trans-unit>
             <trans-unit id="3JHrFyC" resname="backend.menu.post_reference">
               <source>backend.menu.post_reference</source>
@@ -135,7 +139,7 @@
             </trans-unit>
             <trans-unit id="OWaZt.j" resname="backend.menu.index">
               <source>backend.menu.index</source>
-              <target>index</target>
+              <target>Index</target>
             </trans-unit>
             <trans-unit id="SZcHrEf" resname="backend.menu.guest">
               <source>backend.menu.guest</source>
@@ -175,7 +179,7 @@
             </trans-unit>
             <trans-unit id="n8HL3PH" resname="backend.menu.principal">
               <source>backend.menu.principal</source>
-              <target>principal</target>
+              <target>Principal</target>
             </trans-unit>
             <trans-unit id="4yO3p30" resname="backend.menu.booker">
               <source>backend.menu.booker</source>
@@ -184,6 +188,10 @@
             <trans-unit id="GVMk92U" resname="backend.menu.reset_password">
               <source>backend.menu.reset_password</source>
               <target>Restablecer contraseña</target>
+            </trans-unit>
+        <trans-unit id="GVMk93T" resname="backend.menu.register">
+              <source>backend.menu.register</source>
+              <target>Registrar usuarios</target>
             </trans-unit>
             <trans-unit id="IK1J_iT" resname="backend.menu.reset_password_request">
               <source>backend.menu.reset_password_request</source>
