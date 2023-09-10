@@ -1,90 +1,91 @@
 {#<div class="collapse navbar-collapse bg-white text-right" id="navigation">#}
-{#    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">#}
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <!-- Nav -->
-            <ul class="navbar-nav mx-lg-auto">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#location-ascendig">
-                Conectate con nosotros
-            </a>
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Cómo ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Cuándo ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Dónde ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Porqué ...?#}
-{#            </a>#}
-        </li>
-        <li class="nav-item">
-{#            <a class="nav-link" href="#">#}
-{#                ¿Quienes ...?#}
-{#            </a>#}
-        </li>
-        {# !!!       No elimina     !!! #}
-{#        <li class="nav-item dropdown">#}
-{#            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                Dropdown#}
-{#            </a>#}
-{#            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-{#                <li><a class="dropdown-item" href="#">Action</a></li>#}
-{#                <li><a class="dropdown-item" href="#">Another action</a></li>#}
-{#                <li><hr class="dropdown-divider"></li>#}
-{#                <li><a class="dropdown-item" href="#">Something else here</a></li>#}
-{#            </ul>#}
-{#        </li>#}
-        {# !!!       No elimina     !!! #}
-    </ul>
-
-    {% if is_granted('ROLE_USER') %}
-        <ul class="navbar-nav ml-auto">
-
-            <li class="nav-item dropdown" style="margin-right: 75px;">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ app.user.avatarUrl(30) }}"
-                         class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName }}">
+{#        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">#}
+{#    <div class="collapse navbar-collapse" id="navbarCollapse">#}
+        <!-- Nav -->
+        <ul class="navbar-nav mx-lg-auto">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#location-ascendig">
+                    Conectate con nosotros
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3"
-                    aria-labelledby="navbarDropdownMenuLink">
-{#                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
-                    <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
-                    {% if is_granted('ROLE_ADMIN_RESERVA') %}
-                        <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar
-                            Voluntario</a>
-                    {% endif %}
-                    {% if is_granted('ROLE_RESERVA') %}
-                        <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
-                        <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
-                        <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Lectura QR</a>
-                    {% endif %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
-                        {# <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a> #}
-                        <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
-                    {% endif %}
-                    <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
-{#                </div>#}
-                </ul>
             </li>
-            {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                <div class="alert alert-warning">
-                    Temporalmente
-                    <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
-                </div>
-            {% endif %}
+{#            <li class="nav-item">#}
+{#                #}{#            <a class="nav-link" href="#"> #}
+{#                #}{#                ¿Cómo ...? #}
+{#                #}{#            </a> #}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                #}{#            <a class="nav-link" href="#"> #}
+{#                #}{#                ¿Cuándo ...? #}
+{#                #}{#            </a> #}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                #}{#            <a class="nav-link" href="#"> #}
+{#                #}{#                ¿Dónde ...? #}
+{#                #}{#            </a> #}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                #}{#            <a class="nav-link" href="#"> #}
+{#                #}{#                ¿Porqué ...? #}
+{#                #}{#            </a> #}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                #}{#            <a class="nav-link" href="#"> #}
+{#                #}{#                ¿Quienes ...? #}
+{#                #}{#            </a> #}
+{#            </li>#}
+            {# !!!       No eliminar     !!! #}
+            {#        <li class="nav-item dropdown"> #}
+            {#            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> #}
+            {#                Dropdown #}
+            {#            </a> #}
+            {#            <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> #}
+            {#                <li><a class="dropdown-item" href="#">Action</a></li> #}
+            {#                <li><a class="dropdown-item" href="#">Another action</a></li> #}
+            {#                <li><hr class="dropdown-divider"></li> #}
+            {#                <li><a class="dropdown-item" href="#">Something else here</a></li> #}
+            {#            </ul> #}
+            {#        </li> #}
+            {# !!!       No eliminar     !!! #}
         </ul>
-    {% endif %}
-</div>
+
+        {% if is_granted('ROLE_USER') %}
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item dropdown" style="margin-right: 75px;">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ app.user.avatarUrl(30) }}"
+                             class="nav-profile-img rounded-circle img-fluid img-thumbnail" alt="{{ base.siteName }}">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        {#                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> #}
+                        <a class="dropdown-item" href="{{ path('app_perfil') }}">Perfil</a>
+                        {% if is_granted('ROLE_ADMIN_RESERVA') %}
+                            <a class="dropdown-item" href="{{ path('app_registro_voluntario_reserva') }}">Agregar
+                                Voluntario</a>
+                        {% endif %}
+                        {% if is_granted('ROLE_RESERVA') %}
+                            <a class="dropdown-item" href="{{ path('celebracion_index') }}">Ver Celebraciones</a>
+                            <a class="dropdown-item" href="{{ path('invitado_index') }}">Ver Invitados</a>
+                            <a class="dropdown-item" href="{{ path('reserva_lectura') }}">Lectura QR</a>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="dropdown-item" href="{{ path('index_alameda_index') }}">Editar datos index</a>
+                            {# <a class="dropdown-item" href="{{ path('meta_base_edit', {'id': base.id}) }}">Editar datos metabase</a> #}
+                            <a class="dropdown-item" href="{{ path('app_registro') }}">Registrar Usuario</a>
+                        {% endif %}
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar Sesión</a>
+                        {#                </div> #}
+                    </ul>
+                </li>
+                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                    <div class="alert alert-warning">
+                        Temporalmente
+                        <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>
+                    </div>
+                {% endif %}
+            </ul>
+        {% endif %}
+{#    </div>#}
+{#</div>#}

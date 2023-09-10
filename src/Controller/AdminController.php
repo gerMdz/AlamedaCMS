@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Serializer;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin/general", name="admin")
      * @param PrincipalRepository $principalRepository
      * @param MetaBaseRepository $metaBaseRepository
      * @param PaginatorInterface $paginator
@@ -47,6 +47,37 @@ class AdminController extends AbstractController
 //        if ($this->isGranted('ROLE_ADMIN')) {
         return $this->render('admin/index.html.twig', [
             'principals' => $principales,
+            'meta_bases' => $metaBaseRepository->findAll(),
+        ]);
+//        }
+
+//        return $this->render('admin/index_escritor.html.twig', [
+//            'principals' => $principales,
+//        ]);
+    }
+
+
+    /**
+     * @Route("/admin", name="app_admin_main")
+     * @param MetaBaseRepository $metaBaseRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    public function main(
+        MetaBaseRepository $metaBaseRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $bus = $request->get('busq');
+
+
+
+
+
+//        if ($this->isGranted('ROLE_ADMIN')) {
+        return $this->render('admin/main.html.twig', [
+
             'meta_bases' => $metaBaseRepository->findAll(),
         ]);
 //        }

@@ -1,76 +1,31 @@
-<style>
-    /*.dropdown-menu {*/
-    /*    margin-left: -100px !important;*/
-    /*}*/
-</style>
-{# <nav class="navbar navbar-expand-lg bg-white fixed-top start-0 end-0 mx-4 mb-sm-2 top-0 " style="height: 64px "> #}
-{#    <div class="container-fluid px-0"> #}
-{#        <a class="navbar-brand" href="{{ path('index') }}" data-placement="bottom"> #}
-{#            <!--                <img class="rounded-circle" src="/images/logo_n1.png" style="width: 30px;" alt="Logo Iglesia Alameda">--> #}
-{#            <img class="rounded d-none d-lg-block" src="{{ asset('images/logo-con-nombre.png') }}" #}
-{#                 style="width: 130px;" alt="Logo Iglesia Alameda"> #}
-{#            <img class="rounded d-lg-none" src="{{ asset('/images/logo-solo.png') }}" style="width: 35px;" #}
-{#                 alt="Logo Iglesia Alameda"> #}
-{#        </a> #}
-{#        <button class="navbar-toggler shadow-none me-0" type="button" data-bs-toggle="collapse" #}
-{#                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" #}
-{#                aria-label="Toggle navigation"> #}
-{#      <span class="navbar-toggler-icon mt-2"> #}
-{#        <span class="navbar-toggler-bar bar1"></span> #}
-{#        <span class="navbar-toggler-bar bar2"></span> #}
-{#        <span class="navbar-toggler-bar bar3"></span> #}
-{#      </span> #}
-{#        </button> #}
-{#        <!-- Links --> #}
-{#        {% include 'inicio/_menu.html.twig' %} #}
-{#        <!-- Links --> #}
-{#    </div> #}
-{# </nav> #}
 <nav class="navbar navbar-expand-lg navbar-transparent px-0 py-1 fixed-top top-0 start-0 w-full bg-lg-transparent bg-dark">
-{#    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation">#}
-
-{#    <div class="container-xl max-w-screen-xl">#}
-        <div class="container">
+    <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ path('homepage') }}">
             <img src="{{ asset('images/logo-con-nombre.png') }}"
                  class="w-25 d-none d-lg-block" alt="{{ base.siteName|default('AlamedaCMS') }}"/>
             <img class="rounded d-lg-none" src="{{ asset('images/logo-solo.png') }}" style="width: 35px;"
-alt="{{ base.siteName|default('AlamedaCMS') }}">
+                 alt="{{ base.siteName|default('AlamedaCMS') }}">
+
+            {# <nav class="navbar navbar-expand-lg bg-white fixed-top start-0 end-0 mx-4 mb-sm-2 top-0 " style="height: 64px "> #}
+            {#    <div class="container-fluid px-0"> #}
+            {#        <a class="navbar-brand" href="{{ path('index') }}" data-placement="bottom"> #}
+            {#            <!--                <img class="rounded-circle" src="/images/logo_n1.png" style="width: 30px;" alt="Logo Iglesia Alameda">--> #}
+            {#            <img class="rounded d-none d-lg-block" src="{{ asset('images/logo-con-nombre.png') }}" #}
+            {#                 style="width: 130px;" alt="AlamedaCMS"> #}
+            {#            <img class="rounded d-lg-none" src="{{ asset('/images/logo-solo.png') }}" style="width: 35px;" #}
+            {#                 alt="AlamedaCMS"> #}
         </a>
-        <!-- Navbar toggle -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler shadow-none me-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+                aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
         </button>
-        <!-- Collapse -->
-        {#        <div class="collapse navbar-collapse" id="navbarCollapse"> #}
-        {#            <!-- Nav --> #}
-        {#            <ul class="navbar-nav mx-lg-auto"> #}
-        {#                <li class="nav-item"> #}
-        {#                    <a class="nav-link" href="#">Home</a> #}
-        {#                </li> #}
-        {#                <li class="nav-item"> #}
-        {#                    <a class="nav-link" href="#">Product</a> #}
-        {#                </li> #}
-        {#                <li class="nav-item"> #}
-        {#                    <a class="nav-link" href="#">Features</a> #}
-        {#                </li> #}
-        {#                <li class="nav-item"> #}
-        {#                    <a class="nav-link" href="#">Pricing</a> #}
-        {#                </li> #}
-        {#            </ul> #}
-        {#            <!-- Right navigation --> #}
-        {#            <div class="navbar-nav ms-lg-4"> #}
-        {#                <a class="nav-item nav-link" href="#">Sign in</a> #}
-        {#            </div> #}
-        {#            <!-- Action --> #}
-        {#            <div class="d-flex align-items-lg-center mt-3 mt-lg-0"> #}
-        {#                <a href="#" class="btn btn-sm btn-neutral w-full w-lg-auto"> #}
-        {#                    Register #}
-        {#                </a> #}
-        {#            </div> #}
-        {#        </div> #}
+        <!-- Links -->
         {% include 'inicio/_menu.html.twig' %}
     </div>
 </nav>

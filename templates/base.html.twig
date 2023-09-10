@@ -75,7 +75,7 @@
 
     {% endblock %}
 </head>
-<body>
+<body {% block bodyclass %}class="" {% endblock %}>
 
 {% block nav %}
     {% include('inicio/_nav.html.twig') %}
