@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" target-language="es" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+       <trans-unit id="LsvRHdR" resname="backend.global.welcome">
+              <source>backend.global.welcome</source>
+              <target>Hola</target>
+            </trans-unit>
+            <trans-unit id="MAWZ0f5" resname="backend.global.you_are_logged">
+              <source>backend.global.you_are_logged</source>
+              <target>Has ingresado como</target>
+            </trans-unit>
+            <trans-unit id="o0ovQHG" resname="backend.global.leave_impersonate">
+              <source>backend.global.leave_impersonate</source>
+              <target>Cambiando usuario</target>
+            </trans-unit>
+            <trans-unit id="5lht90g" resname="backend.global.change_my_password">
+              <source>backend.global.change_my_password</source>
+              <target>Cambiar mi contraseña</target>
+            </trans-unit>
+            <trans-unit id="PTebdlY" resname="backend.global.logout">
+              <source>backend.global.logout</source>
+              <target>Salir</target>
+            </trans-unit>
+            <trans-unit id="77l57Ax" resname="backend.global.error">
+              <source>backend.global.error</source>
+              <target>Error</target>
+            </trans-unit>
+            <trans-unit id="_5GWhWS" resname="backend.global.success">
+              <source>backend.global.success</source>
+              <target>Exitoso</target>
+            </trans-unit>
+            <trans-unit id="lN7TiiU" resname="backend.global.an_unexpected_error">
+              <source>backend.global.an_unexpected_error</source>
+              <target>Ha ocurrido un error inesperado</target>
+            </trans-unit>
+            <trans-unit id="svSumqc" resname="backend.global.must_not_be_empty">
+              <source>backend.global.must_not_be_empty</source>
+              <target>No debe estar vacío</target>
+            </trans-unit>
+            <trans-unit id="DBaWvb0" resname="backend.global.please_confirm">
+              <source>backend.global.please_confirm</source>
+              <target>¿Confirma su acción?</target>
+            </trans-unit>
+            <trans-unit id="aBTBOnS" resname="backend.global.choice_action">
+              <source>backend.global.choice_action</source>
+              <target>Seleccione una acción</target>
+            </trans-unit>
+            <trans-unit id="zdoxhCP" resname="backend.global.no_item_selected">
+              <source>backend.global.no_item_selected</source>
+              <target>No ha se ha seleccionado nana</target>
+            </trans-unit>
+            <trans-unit id="k4A.7IG" resname="backend.menu.home">
+              <source>backend.menu.home</source>
+              <target>Home</target>
+            </trans-unit>
+            <trans-unit id="Ve9U0n_" resname="backend.menu.manage">
+              <source>backend.menu.manage</source>
+              <target>Manage</target>
+            </trans-unit>
+            <trans-unit id="a.VOyrE" resname="backend.menu.categories">
+              <source>backend.menu.categories</source>
+              <target>Categorías</target>
+            </trans-unit>
+            <trans-unit id="pu_WOWH" resname="backend.menu.blog">
+              <source>backend.menu.blog</source>
+              <target>Blog</target>
+            </trans-unit>
+            <trans-unit id="XLuW8rO" resname="backend.menu.history">
+              <source>backend.menu.history</source>
+              <target>Historia</target>
+            </trans-unit>
+            <trans-unit id="tViFTDq" resname="backend.menu.settings">
+              <source>backend.menu.settings</source>
+              <target>Ajustes</target>
+            </trans-unit>
+            <trans-unit id="NZjCiGy" resname="backend.menu.general">
+              <source>backend.menu.general</source>
+              <target>General</target>
+            </trans-unit>
+            <trans-unit id="xJxMZs3" resname="backend.menu.faq">
+              <source>backend.menu.faq</source>
+              <target>FAQ</target>
+            </trans-unit>
+            <trans-unit id="OpUpwkq" resname="backend.menu.contact">
+              <source>backend.menu.contact</source>
+              <target>Contacto</target>
+            </trans-unit>
+            <trans-unit id="KYCq17H" resname="backend.menu.inbox">
+              <source>backend.menu.inbox</source>
+              <target>Bandeja de entrada</target>
+            </trans-unit>
+            <trans-unit id="jZLJx6u" resname="backend.menu.api">
+              <source>backend.menu.api</source>
+              <target>Api</target>
+            </trans-unit>
+            <trans-unit id="eVviIvx" resname="backend.menu.blocks_fixes">
+              <source>backend.menu.blocks_fixes</source>
+              <target>Bloques fijos</target>
+            </trans-unit>
+            <trans-unit id="HeYzdFR" resname="backend.menu.button_link">
+              <source>backend.menu.button_link</source>
+              <target>Borón de enlace</target>
+            </trans-unit>
+            <trans-unit id="F7q4Oo3" resname="backend.menu.celebration">
+              <source>backend.menu.celebration</source>
+              <target>Celebración</target>
+            </trans-unit>
+            <trans-unit id="ff_fqNS" resname="backend.menu.channel_feed">
+              <source>backend.menu.channel_feed</source>
+              <target>Channel Feed</target>
+            </trans-unit>
+        <trans-unit id="ff_fqNT" resname="backend.menu.rss">
+              <source>backend.menu.rss</source>
+              <target>RSS</target>
+            </trans-unit>
+            <trans-unit id="fXqpDzD" resname="backend.menu.comment">
+              <source>backend.menu.comment</source>
+              <target>Comentarios</target>
+            </trans-unit>
+            <trans-unit id="45as_M8" resname="backend.menu.short_link">
+              <source>backend.menu.short_link</source>
+              <target>Enlace corto</target>
+            </trans-unit>
+            <trans-unit id="Gm_pHAu" resname="backend.menu.post">
+              <source>backend.menu.post</source>
+              <target>Entradas</target>
+            </trans-unit>
+            <trans-unit id="3JHrFyC" resname="backend.menu.post_reference">
+              <source>backend.menu.post_reference</source>
+              <target>Referencias de entrada</target>
+            </trans-unit>
+            <trans-unit id="oP_zJD7" resname="backend.menu.group_celebration">
+              <source>backend.menu.group_celebration</source>
+              <target>Grupo de celebración</target>
+            </trans-unit>
+            <trans-unit id="OWaZt.j" resname="backend.menu.index">
+              <source>backend.menu.index</source>
+              <target>Index</target>
+            </trans-unit>
+            <trans-unit id="SZcHrEf" resname="backend.menu.guest">
+              <source>backend.menu.guest</source>
+              <target>invitado</target>
+            </trans-unit>
+            <trans-unit id="y.W2sLx" resname="backend.menu.item_feed">
+              <source>backend.menu.item_feed</source>
+              <target>item de canal</target>
+            </trans-unit>
+            <trans-unit id="l7ni7rp" resname="backend.menu.item_menu">
+              <source>backend.menu.item_menu</source>
+              <target>item de menú</target>
+            </trans-unit>
+            <trans-unit id="MHKdCwx" resname="backend.menu.menu">
+              <source>backend.menu.menu</source>
+              <target>Menú</target>
+            </trans-unit>
+            <trans-unit id="y0oOKt0" resname="backend.menu.metabase">
+              <source>backend.menu.metabase</source>
+              <target>metabase</target>
+            </trans-unit>
+            <trans-unit id="tlEUo.M" resname="backend.menu.ministry">
+              <source>backend.menu.ministry</source>
+              <target>ministerio</target>
+            </trans-unit>
+            <trans-unit id="s7NgLjN" resname="backend.menu.model_template">
+              <source>backend.menu.model_template</source>
+              <target>Modelo de plantilla</target>
+            </trans-unit>
+            <trans-unit id="znORLGn" resname="backend.menu.new_site">
+              <source>backend.menu.new_site</source>
+              <target>Nuevo sitio</target>
+            </trans-unit>
+            <trans-unit id="KylyeYG" resname="backend.menu.page_index">
+              <source>backend.menu.page_index</source>
+              <target>Página principal</target>
+            </trans-unit>
+            <trans-unit id="n8HL3PH" resname="backend.menu.principal">
+              <source>backend.menu.principal</source>
+              <target>Principal</target>
+            </trans-unit>
+            <trans-unit id="4yO3p30" resname="backend.menu.booker">
+              <source>backend.menu.booker</source>
+              <target>Reservante</target>
+            </trans-unit>
+            <trans-unit id="GVMk92U" resname="backend.menu.reset_password">
+              <source>backend.menu.reset_password</source>
+              <target>Restablecer contraseña</target>
+            </trans-unit>
+        <trans-unit id="GVMk93T" resname="backend.menu.register">
+              <source>backend.menu.register</source>
+              <target>Registrar usuarios</target>
+            </trans-unit>
+            <trans-unit id="IK1J_iT" resname="backend.menu.reset_password_request">
+              <source>backend.menu.reset_password_request</source>
+              <target>Restablecer contraseña</target>
+            </trans-unit>
+            <trans-unit id="dgWV8kQ" resname="backend.menu.roles">
+              <source>backend.menu.roles</source>
+              <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="S4hX0it" resname="backend.menu.section">
+              <source>backend.menu.section</source>
+              <target>Sección</target>
+            </trans-unit>
+            <trans-unit id="JJV3pJA" resname="backend.menu.source_api">
+              <source>backend.menu.source_api</source>
+              <target>Origen de la api</target>
+            </trans-unit>
+            <trans-unit id="fv1x1Tu" resname="backend.menu.type_contact">
+              <source>backend.menu.type_contact</source>
+              <target>Tipo de contacto</target>
+            </trans-unit>
+            <trans-unit id="fNI6tmS" resname="backend.menu.type_block">
+              <source>backend.menu.type_block</source>
+              <target>Tipo de bloque</target>
+            </trans-unit>
+            <trans-unit id="NkaH2K8" resname="backend.menu.type_fixe">
+              <source>backend.menu.type_fixe</source>
+              <target>Tipo Fijo</target>
+            </trans-unit>
+            <trans-unit id="i23jp5w" resname="backend.menu.user">
+              <source>backend.menu.user</source>
+              <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="tQFbM3I" resname="backend.menu.waiting_list">
+              <source>backend.menu.waiting_list</source>
+              <target>Lista de espera</target>
+            </trans-unit>
+            <trans-unit id="CN323hz" resname="backend.role.choice_role">
+              <source>backend.role.choice_role</source>
+              <target>Elija un rol</target>
+            </trans-unit>
+            <trans-unit id="z619lTv" resname="backend.user.listing">
+              <source>backend.user.listing</source>
+              <target>Listado</target>
+            </trans-unit>
+            <trans-unit id="2ekLAh4" resname="backend.user.user_listing">
+              <source>backend.user.user_listing</source>
+              <target>Listado de usuario</target>
+            </trans-unit>
+            <trans-unit id="4qESeFB" resname="backend.user.group_actions">
+              <source>backend.user.group_actions</source>
+              <target>Grupo de acción</target>
+            </trans-unit>
+            <trans-unit id="ynU.TNd" resname="backend.user.deactivate">
+              <source>backend.user.deactivate</source>
+              <target>Desactivar</target>
+            </trans-unit>
+            <trans-unit id="eyxctqK" resname="backend.user.Activate">
+              <source>backend.user.Activate</source>
+              <target>Activar</target>
+            </trans-unit>
+            <trans-unit id="am3cCqQ" resname="backend.user.delete">
+              <source>backend.user.delete</source>
+              <target>Borrar</target>
+            </trans-unit>
+            <trans-unit id="5WNMY.1" resname="backend.user.username">
+              <source>backend.user.username</source>
+              <target>Nombre de usuario</target>
+            </trans-unit>
+            <trans-unit id="9IucMDH" resname="backend.user.email">
+              <source>backend.user.email</source>
+              <target>Email</target>
+            </trans-unit>
+            <trans-unit id="Gbin0Y1" resname="backend.user.name">
+              <source>backend.user.name</source>
+              <target>Nombre completo</target>
+            </trans-unit>
+            <trans-unit id="ZLECM_O" resname="backend.user.modifier">
+              <source>backend.user.modifier</source>
+              <target>Edita</target>
+            </trans-unit>
+            <trans-unit id="o4sacxE" resname="backend.user.status">
+              <source>backend.user.status</source>
+              <target>Estado</target>
+            </trans-unit>
+            <trans-unit id="8JioOBe" resname="backend.user.password">
+              <source>backend.user.password</source>
+              <target>Contraseña</target>
+            </trans-unit>
+            <trans-unit id="RPHe1U6" resname="backend.user.cancel">
+              <source>backend.user.cancel</source>
+              <target>Cancela</target>
+            </trans-unit>
+            <trans-unit id="3QTbK0V" resname="backend.user.register">
+              <source>backend.user.register</source>
+              <target>Registrar</target>
+            </trans-unit>
+            <trans-unit id="VR5Y4AR" resname="backend.user.changer_password">
+              <source>backend.user.changer_password</source>
+              <target>Cambiar contraseña</target>
+            </trans-unit>
+            <trans-unit id="sOPp8O7" resname="backend.user.changer_my_password">
+              <source>backend.user.changer_my_password</source>
+              <target>Cambiar contraseña</target>
+            </trans-unit>
+            <trans-unit id="xmX02SQ" resname="backend.user.current_password">
+              <source>backend.user.current_password</source>
+              <target>Contraseña actual</target>
+            </trans-unit>
+            <trans-unit id="NIAZGX8" resname="backend.user.new_password">
+              <source>backend.user.new_password</source>
+              <target>Nueva contraseña</target>
+            </trans-unit>
+            <trans-unit id="Rgqf5rX" resname="backend.user.confirm_password">
+              <source>backend.user.confirm_password</source>
+              <target>Confirmar contraseña</target>
+            </trans-unit>
+            <trans-unit id="OXO6C2." resname="backend.user.remember_password">
+              <source>backend.user.remember_password</source>
+              <target>Recuerda tu contraseña actual</target>
+            </trans-unit>
+            <trans-unit id="HFekP7N" resname="backend.user.new_password_must_be">
+              <source>backend.user.new_password_must_be</source>
+              <target>Las nuevas contraseñas deben ser idénticas</target>
+            </trans-unit>
+            <trans-unit id="wIiop2u" resname="backend.user.changed_password">
+              <source>backend.user.changed_password</source>
+              <target>Contraseña cambiada</target>
+            </trans-unit>
+            <trans-unit id="R_zRBOU" resname="backend.user.add_user">
+              <source>backend.user.add_user</source>
+              <target>Agregar usuario</target>
+            </trans-unit>
+            <trans-unit id="MbTHHJb" resname="backend.user.modify_user">
+              <source>backend.user.modify_user</source>
+              <target>Editar usuario</target>
+            </trans-unit>
+            <trans-unit id="F5bRpNO" resname="backend.login.new_site">
+              <source>backend.login.new_site</source>
+              <target>Primer ingreso site?</target>
+            </trans-unit>
+            <trans-unit id="fgGfxzk" resname="backend.login.create_account">
+              <source>backend.login.create_account</source>
+              <target>Crear cuenta</target>
+            </trans-unit>
+            <trans-unit id="wyNl7.0" resname="backend.login.all_rights">
+              <source>backend.login.all_rights</source>
+              <target>Todos los derechos reservados.</target>
+            </trans-unit>
+            <trans-unit id="V3AXypu" resname="backend.login.already_member">
+              <source>backend.login.already_member</source>
+              <target>¿Ya habías ingresado antes?</target>
+            </trans-unit>
+            <trans-unit id="lhasAnO" resname="backend.login.log_in">
+              <source>backend.login.log_in</source>
+              <target>Ingreso</target>
+            </trans-unit>
+    </body>
+  </file>
+</xliff>
