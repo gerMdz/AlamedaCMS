@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" target-language="es" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="LsvRHdR" resname="backend.global.welcome">
+        <source>backend.global.welcome</source>
+        <target>Hola</target>
+      </trans-unit>
+      <trans-unit id="QlOaaz7" resname="diff.ago.month">
+        <source>diff.ago.month</source>
+        <target>hace 1 mes|hace %count% meses</target>
+      </trans-unit>
+      <trans-unit id="0icjxey" resname="diff.ago.day">
+        <source>diff.ago.day</source>
+        <target>hace 1 día|hace %count% días</target>
+      </trans-unit>
+      <trans-unit id="Qb4ReOq" resname="diff.ago.hour">
+        <source>diff.ago.hour</source>
+        <target>hace 1 hora|hace %count% horas</target>
+      </trans-unit>
+      <trans-unit id="ildUKt_" resname="diff.ago.minute">
+        <source>diff.ago.minute</source>
+        <target>hace 1 minuto|hace %count% minutos</target>
+      </trans-unit>
+      <trans-unit id="UQtErIZ" resname="diff.ago.second">
+        <source>diff.ago.second</source>
+        <target>hace 1 segundo|hace %count% segundos</target>
+      </trans-unit>
+      <trans-unit id="M4RAXb_" resname="diff.empty">
+        <source>diff.empty</source>
+        <target>ahora</target>
+      </trans-unit>
+      <trans-unit id="VgQkGkv" resname="diff.in.second">
+        <source>diff.in.second</source>
+        <target>en 1 segundo|en %count% segundos</target>
+      </trans-unit>
+      <trans-unit id="dJQGobP" resname="diff.in.hour">
+        <source>diff.in.hour</source>
+        <target>en 1 hora|en %count% horas</target>
+      </trans-unit>
+      <trans-unit id="AFqulYH" resname="diff.in.minute">
+        <source>diff.in.minute</source>
+        <target>en 1 minuto|en %count% minutos</target>
+      </trans-unit>
+      <trans-unit id="vKk2WhV" resname="diff.in.day">
+        <source>diff.in.day</source>
+        <target>en 1 día|en %count% días</target>
+      </trans-unit>
+      <trans-unit id="INy1OSI" resname="diff.in.month">
+        <source>diff.in.month</source>
+        <target>en 1 mes|en %count% meses</target>
+      </trans-unit>
+      <trans-unit id="Zy1_IlC" resname="diff.in.year">
+        <source>diff.in.year</source>
+        <target>en 1 año|en %count% años</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

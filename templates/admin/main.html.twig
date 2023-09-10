@@ -1,5 +1,7 @@
 {% extends "admin/bars.html.twig" %}
 
 {% block contenpage %}
-    <h1>Main</h1>
+    <div class="flex justify-content-center align-content-center center-element">
+        <h1>{{ "backend.global.welcome"|trans }} {{ app.user.primerNombre }}</h1>
+    </div>
 {% endblock %}

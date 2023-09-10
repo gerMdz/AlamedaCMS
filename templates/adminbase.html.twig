@@ -27,7 +27,7 @@
     <link href="{{ asset('vendors_admin/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet"/>
 
     <!-- Custom Theme Style -->
-    <link href="{{ asset('vendors_admin/build/css/custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors_admin/build/css/custom.css') }}" rel="stylesheet">
     <!-- Datatables -->
     <link href="{{ asset('vendors_admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"
           rel="stylesheet">
@@ -43,6 +43,8 @@
 {% endblock %}
 
 {% block bodyclass %} class="nav-md" {% endblock %}
+{% block nav %}
+{% endblock %}
 {% block body %}
     <div class="container body">
         <div class="main_container">
@@ -91,7 +93,7 @@
     <script src="{{ asset('vendors_admin/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset('build/js/custom.min.js') }}"></script>
+    <script src="{{ asset('vendors_admin/build/js/custom.min.js') }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('vendors_admin/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendors_admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
