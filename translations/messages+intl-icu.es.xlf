@@ -59,7 +59,7 @@
             </trans-unit>
             <trans-unit id="Ve9U0n_" resname="backend.menu.manage">
               <source>backend.menu.manage</source>
-              <target>Manage</target>
+              <target>Gestionar</target>
             </trans-unit>
             <trans-unit id="a.VOyrE" resname="backend.menu.categories">
               <source>backend.menu.categories</source>
@@ -127,6 +127,10 @@
             </trans-unit>
             <trans-unit id="Gm_pHAu" resname="backend.menu.post">
               <source>backend.menu.post</source>
+              <target>Entrada</target>
+            </trans-unit>
+            <trans-unit id="Gm_pHBt" resname="backend.menu.posts">
+              <source>backend.menu.posts</source>
               <target>Entradas</target>
             </trans-unit>
             <trans-unit id="3JHrFyC" resname="backend.menu.post_reference">
@@ -236,6 +240,10 @@
             <trans-unit id="z619lTv" resname="backend.user.listing">
               <source>backend.user.listing</source>
               <target>Listado</target>
+            </trans-unit>
+            <trans-unit id="z619lUw" resname="backend.post.listing">
+              <source>backend.post.listing</source>
+              <target>Listado de entradas</target>
             </trans-unit>
             <trans-unit id="2ekLAh4" resname="backend.user.user_listing">
               <source>backend.user.user_listing</source>

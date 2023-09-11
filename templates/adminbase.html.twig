@@ -112,8 +112,12 @@
         var dataminetables = $('.dataminetables').dataTable({
             "columnDefs": [
                 {"orderable": false, "targets": 0}
-            ]
+            ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-AR.json',
+            },
         });
+
 
         var datasorttables = $('.dataminetables').DataTable();
 
