@@ -1,56 +1,72 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 {% block title %}Admin Listado Entradas{% endblock %}
-{% block nav %}
-    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
-{% endblock %}
+{#{% block nav %}#}
+{#    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}#}
+{#{% endblock %}#}
 
-{% block breadcrumb %}
-{{parent()}}
-<li class="breadcrumb-item active"><span>Entradas</span></li>
-<li class="breadcrumb-item float-end">
-<div class="form-group form-inline">
-<form action="" method="get">
-        <span class="input-group-prepend">
-            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="submit"
-            id="btn-search"
-            data-id="search-input" >
-                    <i class="fa fa-search"></i>
-                    </button>
+{#{% block breadcrumb %}#}
+{#{{parent()}}#}
+{#<li class="breadcrumb-item active"><span>Entradas</span></li>#}
+{#<li class="breadcrumb-item float-end">#}
+{#<div class="form-group form-inline">#}
+{#<form action="" method="get">#}
+{#        <span class="input-group-prepend">#}
+{#            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="submit"#}
+{#            id="btn-search"#}
+{#            data-id="search-input" >#}
+{#                    <i class="fa fa-search"></i>#}
+{#                    </button>#}
 
-         <input class="form-control border-end-0 border rounded-pill"  type="search"
-            value="" id="busq" name="busq" placeholder="Buscar ...">
-            </span>
-        </label>
-        </form>
+{#         <label for="busq"></label><input class="form-control border-end-0 border rounded-pill"  type="search"#}
+{#            value="" id="busq" name="busq" placeholder="Buscar ...">#}
+{#            </span>#}
+
+{#        </form>#}
+{#        </div>#}
+{#</li>#}
+
+{#{%endblock%}#}
+
+{% block contenpage %}
+<div class="">
+<div class="page-title">
+            <div class="title_left">
+                <h5> {{ "backend.menu.posts" | trans}} </h5>
+            </div>
         </div>
-</li>
-
-{%endblock%}
-
-{% block content %}
-<div class="col-md-12">
-    <div class="card">
-        <div class="card-header card-header-primary">
-            <h4 class="card-title">Entradas</h4>
-            <p class="card-category">Listado </p>
-        </div>
-        <div class="card-body">
-            <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary btn-round">
-                Crear Entrada <span class="fa fa-plus-circle"></span>
-            </a>
-             <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_entrada_new_step1') }}">
-                    <i class="fas fa-hand-sparkles"></i> Asistente Crear Entrada
-                </a>
-            <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">
-                Ver Publicados <span class="fa fa-eye"></span>
-            </a>
+        <div class="clearfix"></div>
+    <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>{{ "backend.post.listing"|trans }}</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary btn-round">
+                                    Crear Entrada <span class="fa fa-plus-circle"></span>
+                                </a>
+                            </li>
+                            <li>
+                                 <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_entrada_new_step1') }}">
+                                        <i class="fas fa-hand-sparkles"></i> Asistente Crear Entrada
+                                    </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">
+                                    Ver Publicados <span class="fa fa-eye"></span>
+                                </a>
+                            </li>
+                        </ul>
             <div class="text-center align-items-center">
         {{ knp_pagination_render(entradas) }}
     </div>
             <div class="table-responsive sticky-header header-sticky">
-                    <table class="table sticky-header" data-toggle="table">
+                    <table class="table sticky-header dataminetables" data-toggle="table">
                     <thead class=" text-primary ">
                 <tr>
+                <th>
+                Id.
+</th>
                     <th>
                         Titulo <br/>
                         LinkRoute
@@ -59,12 +75,12 @@
                         Página
                     </th>
                     <th>
-                        <i class="fa fa-user-alt"></i>
+                        <i class="fa fa-user"></i><br/>
                         <i class="fa fa-envelope"></i>
                     </th>
-                    <th class="text-center"><i class="fa fa-calendar-alt"></i> </th>
+                    <th class="text-center"><i class="fa fa-calendar"></i> </th>
                       <th>
-                      <i class="fa fa-file-archive"></i>
+                      <i class="fa fa-file-archive-o"></i>
                         </th>
                     <th>Imagen</th>
                     <th>
@@ -75,6 +91,9 @@
                 <tbody>
                 {% for entrada in entradas %}
                     <tr>
+                        <td>
+                            {{ entrada.id }}
+                        </td>
                         <td>
                            T: {{ entrada.titulo | striptags | raw | u.truncate(20, '...') }}<br/>
                            Lr: <small><i>{{ entrada.linkRoute | u.truncate(20, '...')}}</i></small>
