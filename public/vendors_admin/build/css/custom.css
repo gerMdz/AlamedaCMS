@@ -1893,7 +1893,7 @@ a:hover, a:focus {
 .toggle {
     float: left;
     margin: 0;
-    width: 70px;
+    /*width: 70px;*/
 }
 
 .toggle a {

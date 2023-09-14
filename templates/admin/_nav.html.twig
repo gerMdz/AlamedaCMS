@@ -12,11 +12,10 @@
         <div class="collapse navbar-collapse justify-content-end">
             <form class="navbar-form">
                 <div class="input-group no-border">
-{#                    {{ app.request.queryString }}#}
+                    <label for="busq"></label>
                     <input type="text" value="" id="busq" name="busq" class="form-control" placeholder="Buscar...">
                     <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                        <i class="material-icons">search</i>
-                        <div class="ripple-container"></div>
+                        <i class="fa fa-search"></i>
                     </button>
                 </div>
             </form>
@@ -30,7 +29,7 @@
 {#                    </a>#}
 {#                </li>#}
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="https://iglesialameda.com" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="{{ path('index') }}" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 {#                        <i class="material-icons">notifications</i>#}
 {#                        <span class="notification">5</span>#}
                         <p class="d-lg-none d-md-block">
