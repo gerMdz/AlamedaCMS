@@ -17,23 +17,23 @@
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-{#            <div class="profile clearfix">#}
-{#                <div class="profile_pic">#}
-{#                    {% if is_granted('ROLE_USER') %}#}
-{#                        <img src="{{ app.user.avatarUrl() }}" alt="AlamedaCMS"#}
-{#                             class="img-circle profile_img"#}
-{#                             style="width: 35px;"#}
-{#                        >#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#                <div class="profile_info">#}
-{#                    <span>{{ "backend.global.welcome"|trans }},</span>#}
-{#                    <h2>{{ app.user.primerNombre }}</h2>#}
-{#                </div>#}
-{#            </div>#}
+            {#            <div class="profile clearfix"> #}
+            {#                <div class="profile_pic"> #}
+            {#                    {% if is_granted('ROLE_USER') %} #}
+            {#                        <img src="{{ app.user.avatarUrl() }}" alt="AlamedaCMS" #}
+            {#                             class="img-circle profile_img" #}
+            {#                             style="width: 35px;" #}
+            {#                        > #}
+            {#                    {% endif %} #}
+            {#                </div> #}
+            {#                <div class="profile_info"> #}
+            {#                    <span>{{ "backend.global.welcome"|trans }},</span> #}
+            {#                    <h2>{{ app.user.primerNombre }}</h2> #}
+            {#                </div> #}
+            {#            </div> #}
             <!-- /menu profile quick info -->
 
-{#            <br/>#}
+            {#            <br/> #}
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -45,40 +45,40 @@
                             </a>
                         </li>
 
-                        {% if is_granted("ROLE_ESCRITOR") %}
-                            <li>
-                                <a>
-                                    <i class="fa fa-clipboard"></i>
-                                    {{ "backend.menu.post"|trans }}
-                                    <span class="fa fa-chevron-down">
+
+                        <li>
+                            <a>
+                                <i class="fa fa-clipboard"></i>
+                                {{ "backend.menu.posts"|trans }}
+                                <span class="fa fa-chevron-down">
                                     </span>
-                                </a>
-                                <ul class="nav child_menu">
-                                    <li>
-                                        <a href="{{ path('admin_entrada_index') }}">
-                                            {{ "backend.menu.post"|trans }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span
-                                            class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
+                            </a>
+                            <ul class="nav child_menu">
+                                <li>
+                                    <a href="{{ path('admin_entrada_index') }}">
+                                        {{ "backend.menu.manage"|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span
+                                        class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
 
-                                    {% if is_granted("ROLE_EDITOR") %}
-                                        <li>
-                                            <a href="{{ path('admin_section_list') }}">{{ "backend.menu.history"|trans }}</a>
-                                        </li>
-                                    {% endif %}
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="{{ path('principal_index') }}">
-                                    <i class="fa fa-laptop" aria-hidden="true"></i>
-                                    {{ "backend.menu.principal"|trans }}</a>
 
-                            </li>
-                        {% endif %}
+                                <li>
+                                    <a href="{{ path('admin_section_list') }}">{{ "backend.menu.history"|trans }}</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ path('principal_index') }}">
+                                <i class="fa fa-laptop" aria-hidden="true"></i>
+                                {{ "backend.menu.principal"|trans }}</a>
+
+                        </li>
+
                         {% if is_granted("ROLE_ADMIN") %}
 
                             <li><a><i class="fa fa-cog"></i> {{ "backend.menu.settings"|trans }} <span
@@ -249,26 +249,44 @@
     <!-- top navigation -->
     <div class="top_nav">
         <div class="nav_menu ml-auto">
-            <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
-            <nav class="nav navbar-nav">
-                <ul class="navbar-right">
-                    <li class="nav-item dropdown open" style="padding-left: 15px;">
-                        <a href="javascript:" class="user-profile dropdown-toggle" aria-haspopup="true"
-                           id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ app.user.avatarUrl() }}" alt="">{{ app.user.primerNombre }}
-                        </a>
-                        <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('app_changepassword', {'email': app.user.email}) }}"><i
-                                        class="fa fa-key pull-right"></i>{{ "backend.global.change_my_password"|trans }}
+            <div class="container-fluid">
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    <div class="nav navbar-nav  my-2">
+                        <form class="navbar-form ">
+                            <div class="input-group no-border">
+                                <label for="busq"></label>
+                                <input type="text" value="" id="busq" name="busq" class="form-control"
+                                       placeholder="Buscar...">
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <nav class="nav navbar-nav">
+
+                    <ul class="navbar-right">
+
+                        <li class="nav-item dropdown open" style="padding-left: 15px;">
+                            <a href="javascript:" class="user-profile dropdown-toggle" aria-haspopup="true"
+                               id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ app.user.avatarUrl() }}" alt="">{{ app.user.primerNombre }}
                             </a>
-                            <a class="dropdown-item" href="{{ path('app_logout') }}"><i
-                                        class="fa fa-sign-out pull-right"></i>{{ "backend.global.logout"|trans }}</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item"
+                                   href="{{ path('app_changepassword', {'email': app.user.email}) }}"><i
+                                            class="fa fa-key pull-right"></i>{{ "backend.global.change_my_password"|trans }}
+                                </a>
+                                <a class="dropdown-item" href="{{ path('app_logout') }}"><i
+                                            class="fa fa-sign-out pull-right"></i>{{ "backend.global.logout"|trans }}
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
     <!-- /top navigation -->
