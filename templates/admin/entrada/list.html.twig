@@ -1,41 +1,41 @@
 {% extends "admin/bars.html.twig" %}
 {% block title %}Admin Listado Entradas{% endblock %}
-{#{% block nav %}#}
-{#    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}#}
-{#{% endblock %}#}
+{# {% block nav %} #}
+{#    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }} #}
+{# {% endblock %} #}
 
-{#{% block breadcrumb %}#}
-{#{{parent()}}#}
-{#<li class="breadcrumb-item active"><span>Entradas</span></li>#}
-{#<li class="breadcrumb-item float-end">#}
-{#<div class="form-group form-inline">#}
-{#<form action="" method="get">#}
-{#        <span class="input-group-prepend">#}
-{#            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="submit"#}
-{#            id="btn-search"#}
-{#            data-id="search-input" >#}
-{#                    <i class="fa fa-search"></i>#}
-{#                    </button>#}
+{# {% block breadcrumb %} #}
+{# {{parent()}} #}
+{# <li class="breadcrumb-item active"><span>Entradas</span></li> #}
+{# <li class="breadcrumb-item float-end"> #}
+{# <div class="form-group form-inline"> #}
+{# <form action="" method="get"> #}
+{#        <span class="input-group-prepend"> #}
+{#            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="submit" #}
+{#            id="btn-search" #}
+{#            data-id="search-input" > #}
+{#                    <i class="fa fa-search"></i> #}
+{#                    </button> #}
 
-{#         <label for="busq"></label><input class="form-control border-end-0 border rounded-pill"  type="search"#}
-{#            value="" id="busq" name="busq" placeholder="Buscar ...">#}
-{#            </span>#}
+{#         <label for="busq"></label><input class="form-control border-end-0 border rounded-pill"  type="search" #}
+{#            value="" id="busq" name="busq" placeholder="Buscar ..."> #}
+{#            </span> #}
 
-{#        </form>#}
-{#        </div>#}
-{#</li>#}
+{#        </form> #}
+{#        </div> #}
+{# </li> #}
 
-{#{%endblock%}#}
+{# {%endblock%} #}
 
 {% block contenpage %}
-<div class="">
-<div class="page-title">
+    <div class="">
+        <div class="page-title">
             <div class="title_left">
-                <h5> {{ "backend.menu.posts" | trans}} </h5>
+                <h5> {{ "backend.menu.posts" | trans }} </h5>
             </div>
         </div>
         <div class="clearfix"></div>
-    <div class="row">
+        <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -47,9 +47,9 @@
                                 </a>
                             </li>
                             <li>
-                                 <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_entrada_new_step1') }}">
-                                        <i class="fas fa-hand-sparkles"></i> Asistente Crear Entrada
-                                    </a>
+                                <a class="btn btn-sm btn-info btn-round" href="{{ path('admin_entrada_new_step1') }}">
+                                    <i class="fas fa-hand-sparkles"></i> Asistente Crear Entrada
+                                </a>
                             </li>
                             <li>
                                 <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">
@@ -57,122 +57,127 @@
                                 </a>
                             </li>
                         </ul>
-            <div class="text-center align-items-center">
-        {{ knp_pagination_render(entradas) }}
-    </div>
-            <div class="table-responsive sticky-header header-sticky">
-                    <table class="table sticky-header dataminetables" data-toggle="table">
-                    <thead class=" text-primary ">
-                <tr>
-                <th>
-                Id.
-</th>
-                    <th>
-                        Titulo <br/>
-                        LinkRoute
-                    </th>
-                    <th>Sección<br/>
-                        Página
-                    </th>
-                    <th>
-                        <i class="fa fa-user"></i><br/>
-                        <i class="fa fa-envelope"></i>
-                    </th>
-                    <th class="text-center"><i class="fa fa-calendar"></i> </th>
-                      <th>
-                      <i class="fa fa-file-archive-o"></i>
-                        </th>
-                    <th>Imagen</th>
-                    <th>
-                        <i class="fa fa-cogs"> </i>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for entrada in entradas %}
-                    <tr>
-                        <td>
-                            {{ entrada.id }}
-                        </td>
-                        <td>
-                           T: {{ entrada.titulo | striptags | raw | u.truncate(20, '...') }}<br/>
-                           Lr: <small><i>{{ entrada.linkRoute | u.truncate(20, '...')}}</i></small>
-                        </td>
-                        <td>
-                            {% for section in entrada.sections %}
-                            <a href="{{ path('admin_section_show', {'id': section.id}) }}">
-                                S: {{ section }}
-                                </a>
-                                 <br/>
-                                {% if section.indexAlamedas is defined %}
-                                    {% for index in section.indexAlamedas %}
-                                    <a href="{{ path('index_alameda_index') }}">
-                                        i: <small><i>{{ index.base }}</i></small>
-                                        </a><br/>
-                                    {% endfor %}
-                                {% endif %}
+                        <div class="text-center align-items-center">
+                            {{ knp_pagination_render(entradas) }}
+                        </div>
+                        <div class="table-responsive sticky-header header-sticky">
+                            <table class="table sticky-header " data-toggle="table">
+                                <thead class=" text-primary ">
+                                <tr>
+                                    <th>
+                                        Id.
+                                    </th>
+                                    <th>
+                                        Titulo <br/>
+                                        LinkRoute
+                                    </th>
+                                    <th>Sección<br/>
+                                        Página
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-user"></i><br/>
+                                        <i class="fa fa-envelope"></i>
+                                    </th>
+                                    <th class="text-center"><i class="fa fa-calendar"></i></th>
+                                    <th>
+                                        <i class="fa fa-file-archive-o"></i>
+                                    </th>
+                                    <th>Imagen</th>
+                                    <th>
+                                        <i class="fa fa-cogs"> </i>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for entrada in entradas %}
+                                    <tr>
+                                        <td>
+                                            {{ entrada.id }}
+                                        </td>
+                                        <td>
+                                            T: {{ entrada.titulo | striptags | raw | u.truncate(20, '...') }}<br/>
+                                            Lr: <small><i>{{ entrada.linkRoute | u.truncate(20, '...') }}</i></small>
+                                        </td>
+                                        <td>
+                                            {% for section in entrada.sections %}
+                                                <a href="{{ path('admin_section_show', {'id': section.id}) }}">
+                                                    S: {{ section }}
+                                                </a>
+                                                <br/>
+                                                {% if section.indexAlamedas is defined %}
+                                                    {% for index in section.indexAlamedas %}
+                                                        <a href="{{ path('index_alameda_index') }}">
+                                                            i: <small><i>{{ index.base }}</i></small>
+                                                        </a><br/>
+                                                    {% endfor %}
+                                                {% endif %}
 
-                                {% if section.principal is defined %}
-                                    {% for principal in section.principales %}
-                                    <a href="{{ path('principal_show', {'id': principal.id}) }}">
-                                      P: <small><i>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}</i></small>
-                                    </a>
-                                    <br/>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
-                        </td>
-                        <td>
-                            {{ entrada.autor }} <br/>
-                            {{ entrada.autor.email }}
-                        </td>
-                        <td class="text-center">
-                        {{ entrada.isPermanente ? '<i class="fa fa-check"></i> <br/>' }}
-                        {{ entrada.disponibleAt ?'Desde:'~ entrada.disponibleAt | ago : '' }}<br/>
-                        {{ entrada.disponibleHastaAt ? 'Hasta:' ~ entrada.disponibleHastaAt | ago : '' }}
-                        </td>
-                        <td>
-                            {% if (entrada.entradaReferences | length > 0)  %}
-                            <i class="fa fa-check"></i>
-                            {% else %}
-                            <i class="fa fa-times"></i>
-                            {% endif %}
-                        </td>
-                        <td>
-                        {% if (entrada.imageFilename != null) %}
-                            <img class="article-img" alt="{{ base.lema }}"
-                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_100') }}">
-                            <br/>
-                            {{ entrada.imageFilename | u.truncate(20, '...') }}
-                            {% else %}
-                            No tiene imagen
-                            {% endif %}
-                        </td>
-                        <td class="list-inline">
-                            <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
-                                <i class="fa fa-eye"></i> Ver
-                            </a>
-                            <br/>
-                            <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
-                                <i class="fa fa-edit"></i> Editar
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                                                {% if section.principal is defined %}
+                                                    {% for principal in section.principales %}
+                                                        <a href="{{ path('principal_show', {'id': principal.id}) }}">
+                                                            P:
+                                                            <small><i>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}</i></small>
+                                                        </a>
+                                                        <br/>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {{ entrada.autor }} <br/>
+                                            {{ entrada.autor.email }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ entrada.isPermanente ? '<i class="fa fa-check"></i> <br/>' }}
+                                            {{ entrada.disponibleAt ?'Desde:'~ entrada.disponibleAt | ago : '' }}<br/>
+                                            {{ entrada.disponibleHastaAt ? 'Hasta:' ~ entrada.disponibleHastaAt | ago : '' }}
+                                        </td>
+                                        <td>
+                                            {% if (entrada.entradaReferences | length > 0) %}
+                                                <i class="fa fa-check"></i>
+                                            {% else %}
+                                                <i class="fa fa-times"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if (entrada.imageFilename != null) %}
+                                                <img class="article-img" alt="{{ base.lema }}"
+                                                     src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_100') }}">
+                                                <br/>
+                                                {{ entrada.imageFilename | u.truncate(20, '...') }}
+                                            {% else %}
+                                                No tiene imagen
+                                            {% endif %}
+                                        </td>
+                                        <td class="list-inline">
+                                            <a href="{{ path('entrada_show', {'id': entrada.id}) }}">
+                                                <i class="fa fa-eye"></i> Ver
+                                            </a>
+                                            <br/>
+                                            <a href="{{ path('admin_entrada_edit', {'id': entrada.id}) }}">
+                                                <i class="fa fa-edit"></i> Editar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary btn-round">
+                            Crear Entrada <span class="fa fa-plus-circle"></span>
+                        </a>
+                        <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">
+                            Ver Publicados <span class="fa fa-eye"></span>
+                        </a>
+                        <div class="text-center align-items-center">
+                            {{ knp_pagination_render(entradas) }}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="{{ path('admin_entrada_new') }}" class="btn btn-sm btn-primary btn-round">
-                Crear Entrada <span class="fa fa-plus-circle"></span>
-            </a>
-            <a href="{{ path('admin_entrada_publicadas') }}" class="btn btn-sm btn-info btn-round">
-                Ver Publicados <span class="fa fa-eye"></span>
-            </a>
-            <div class="text-center align-items-center">
-        {{ knp_pagination_render(entradas) }}
-    </div>
         </div>
-            {% endblock %}
+    </div>
+{% endblock %}
 {% block jslocal %}
     {{ parent() }}
     <script>
@@ -181,14 +186,14 @@
         //     e.preventDefault();
         //     console.log('s');
         // })
-        $( "#btn-search" ).on( "click", function() {
-                alert( $( this ).text() );
+        $("#btn-search").on("click", function () {
+            alert($(this).text());
         });
-        $(document).ready(function() {
-    $("#btn-search").click(function(e){
-        e.preventDefault();
-        alert("button");
-    });
-});
+        $(document).ready(function () {
+            $("#btn-search").click(function (e) {
+                e.preventDefault();
+                alert("button");
+            });
+        });
     </script>
 {% endblock %}
