@@ -308,19 +308,26 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="bg-dark fixed-bottom m-0">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-8 mx-auto text-center">
-                    PANEL GENERAL <br/>
+    <footer>
+        <div class="pull-right">
+            PANEL GENERAL <br/>
 
-                    {{ base.siteName }}
-                    <p>©{{ "now"|date("Y") }}
-                        {{ base.siteName|trans }}
-                    </p>
+            {{ base.siteName }}
+            <p>©{{ "now"|date("Y") }}
+                {{ base.siteName|trans }}
+            </p>
 
-                </div>
-            </div>
         </div>
+        <div class="clearfix"></div>
     </footer>
+
+{#    <footer class="bg-dark fixed-bottom m-0">#}
+{#        <div class="container-fluid">#}
+{#            <div class="row">#}
+{#                <div class="col-8 mx-auto text-center">#}
+{#             #}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </footer>#}
 {% endblock %}
