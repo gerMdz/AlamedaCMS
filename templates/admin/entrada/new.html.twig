@@ -1,6 +1,10 @@
 {% extends "admin/bars.html.twig" %}
 
 {% block title %}Nueva Entrada{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('select2') }}
+{% endblock %}
 
 {% block contenpage %}
 <div class="">
@@ -31,6 +35,8 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('select2') }}
+
 {#    <script type="application/javascript">#}
 {#        $(function () {#}
 {#            $('.datetimepicker').datetimepicker({#}

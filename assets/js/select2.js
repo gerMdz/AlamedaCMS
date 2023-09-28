@@ -10,6 +10,6 @@ $(function () {
         width: '100%'
     });
 
-    console.log('select2')
+    console.log('select2');
 });
 
