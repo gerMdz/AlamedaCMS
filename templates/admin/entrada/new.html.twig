@@ -1,26 +1,42 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 
 {% block title %}Nueva Entrada{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-
+    {{ encore_entry_link_tags('select2') }}
 {% endblock %}
 
-{% block content %}
-
-    <div class="col-sm-6 mx-auto text-center m-4">
-        <h4 class="border border-primary border-top-0">Crear nueva entrada</h4>
+{% block contenpage %}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h6><a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">
+                    Volver al Listado de Entradas
+                </a></h6>
+            <h4>Crear nueva entrada</h4>
+        </div>
     </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
 
-    <div class="form-container">
+{#    <div class="form-container">#}
         {{ include('admin/entrada/_form.html.twig') }}
-    </div>
+
 
     <a class="btn btn-link" href="{{ path('admin_section_list') }}"><i class="fas fa-backspace"></i> Volver al listado</a>
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('select2') }}
+
 {#    <script type="application/javascript">#}
 {#        $(function () {#}
 {#            $('.datetimepicker').datetimepicker({#}
