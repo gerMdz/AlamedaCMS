@@ -35,11 +35,13 @@
     <link href="{{ asset('vendors_admin/vendors/pnotify/dist/pnotify.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors_admin/vendors/pnotify/dist/pnotify.buttons.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors_admin/vendors/pnotify/dist/pnotify.nonblock.css') }}" rel="stylesheet">
+{#    <link href="{{ asset('vendors_admin/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">#}
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+{#    <link rel="stylesheet"#}
+{#          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">#}
+{#    <!-- include summernote css/js -->#}
+{#    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">#}
+
 {% endblock %}
 
 {% block bodyclass %} class="nav-md" {% endblock %}
@@ -102,8 +104,10 @@
     <script src="{{ asset('vendors_admin/vendors/pnotify/dist/pnotify.js') }}"></script>
     <script src="{{ asset('vendors_admin/vendors/pnotify/dist/pnotify.buttons.js') }}"></script>
     <script src="{{ asset('vendors_admin/vendors/pnotify/dist/pnotify.nonblock.js') }}"></script>
+{#    <script src="{{ asset('vendors_admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>#}
+{#    <script src="{{ asset('vendors_admin/vendors/select2/dist/js/i18n/es.js') }}"></script>#}
     <!-- select-custom Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+{#    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>#}
     <!-- Tagsinput -->
     <script src="{{ asset('vendors_admin/vendors/jquery.tagsinput/src/jquery.tagsinput.js') }}"></script>
     <!-- Summernote -->
@@ -308,19 +312,26 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="bg-dark fixed-bottom m-0">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-8 mx-auto text-center">
-                    PANEL GENERAL <br/>
+    <footer>
+        <div class="pull-right">
+            PANEL GENERAL <br/>
 
-                    {{ base.siteName }}
-                    <p>©{{ "now"|date("Y") }}
-                        {{ base.siteName|trans }}
-                    </p>
+            {{ base.siteName }}
+            <p>©{{ "now"|date("Y") }}
+                {{ base.siteName|trans }}
+            </p>
 
-                </div>
-            </div>
         </div>
+        <div class="clearfix"></div>
     </footer>
+
+{#    <footer class="bg-dark fixed-bottom m-0">#}
+{#        <div class="container-fluid">#}
+{#            <div class="row">#}
+{#                <div class="col-8 mx-auto text-center">#}
+{#             #}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </footer>#}
 {% endblock %}

@@ -1,123 +1,126 @@
-{{ form_start(entradaForm) }}
-<div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-2 text-center form-check">
-        <label class="text-primary" for="entrada_encabezado">
-            Encabezado?<br/>
-            {{ form_row(entradaForm.encabezado) }}
-        </label>
+<div class="x_content">
+    {{ form_start(entradaForm) }}
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2 text-center form-check">
+            <label class="text-primary" for="entrada_encabezado">
+                Encabezado?<br/>
+                {{ form_row(entradaForm.encabezado) }}
+            </label>
+        </div>
+        <div class="col-sm-2 text-center form-check">
+            <label class="text-primary" for="entrada_destacado">
+                Destacado?<br/>
+                {{ form_row(entradaForm.destacado) }}
+            </label>
+        </div>
+        <div class="col-sm-2 text-center form-check">
+            <label class="text-primary" for="entrada_isSinTitulo">
+                Sin titulo?<br/>
+                {{ form_row(entradaForm.isSinTitulo) }}
+            </label>
+        </div>
+        <div class="col-sm-2 text-center form-check">
+            <label class="text-primary" for="entrada_isPermanente">
+                Es Permanente?<br/>
+                {{ form_row(entradaForm.isPermanente) }}
+            </label>
+        </div>
+        <div class="col-sm-2 text-center form-check">
+            <label class="text-primary" for="entrada_publicar" class="required">
+                Publicar?<br/>
+                {% if  entradaForm.vars.data.PublicadoAt is defined %}
+                    {{ form_row(entradaForm.publicar, { 'attr': {'checked': 'checked'} }) }}
+                {% else %}
+                    {{ form_row(entradaForm.publicar) }}
+                {% endif %}
+            </label>
+        </div>
+        <div class="col-sm-1"></div>
     </div>
-    <div class="col-sm-2 text-center form-check">
-        <label class="text-primary" for="entrada_destacado">
-            Destacado?<br/>
-            {{ form_row(entradaForm.destacado) }}
-        </label>
+    <div class="row">
+        <div class="col-sm-4">
+            {{ form_row(entradaForm.titulo) }}
+        </div>
+        <div class="col-sm-8">
+            {{ form_row(entradaForm.contenido) }}
+        </div>
     </div>
-    <div class="col-sm-2 text-center form-check">
-        <label class="text-primary" for="entrada_isSinTitulo">
-            Sin titulo?<br/>
-            {{ form_row(entradaForm.isSinTitulo) }}
-        </label>
+    <hr class="bg-primary"/>
+    <div class="row pt-3 mx-5">
+
+        <div class="col-sm-3 mx-auto">
+            {{ form_row(entradaForm.footer) }}
+        </div>
+
+        <div class="col-sm-3 mx-auto">
+            {{ form_widget(entradaForm.linkRoute) }}
+            {{ form_help(entradaForm.linkRoute) }}
+            {{ form_errors(entradaForm.linkRoute) }}
+        </div>
+        <div class="col-sm-3 mx-auto">
+            {{ form_row(entradaForm.linkPosting) }}
+        </div>
+        <div class="col-sm-2 mx-auto text-center form-check text-dark">
+            <label for="entrada_isLinkExterno" class="text-primary">
+                ¿Es Externo?<br/>
+                {{ form_row(entradaForm.isLinkExterno) }}
+            </label>
+        </div>
     </div>
-    <div class="col-sm-2 text-center form-check">
-        <label class="text-primary" for="entrada_isPermanente">
-            Es Permanente?<br/>
-            {{ form_row(entradaForm.isPermanente) }}
-        </label>
-    </div>
-    <div class="col-sm-2 text-center form-check">
-        <label class="text-primary" for="entrada_publicar" class="required">
-            Publicar?<br/>
-            {% if  entradaForm.vars.data.PublicadoAt is defined %}
-                {{ form_row(entradaForm.publicar, { 'attr': {'checked': 'checked'} }) }}
-            {% else %}
-                {{ form_row(entradaForm.publicar) }}
+    <hr class="bg-primary"/>
+    <div class="row pt-3">
+        <div class="col-sm-3 mx-auto">
+            {{ form_row(entradaForm.eventoAt) }}
+        </div>
+        <div class="col-sm-3 mx-auto">
+            {{ form_row(entradaForm.disponibleAt) }}
+        </div>
+        <div class="col-sm-3 mx-auto">
+            {{ form_row(entradaForm.disponibleHastaAt) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(entradaForm.autor) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(entradaForm.modelTemplate) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(entradaForm.sections) }}
+        </div>
+        <div class="col-sm-2 mx-auto">
+            {{ form_row(entradaForm.orden) }}
+        </div>
+        <div class="col-sm-2 mx-auto">
+            {{ form_row(entradaForm.cssClass) }}
+        </div>
+        <div class="col-sm-2 mx-auto">
+            {{ form_row(entradaForm.identificador) }}
+        </div>
+        <div class="col-sm-3 mx-auto">
+            {{ form_row(entradaForm.contacto) }}
+        </div>
+
+        <div class="col-sm-9">
+            {{ form_row(entradaForm.imageFile, {
+                attr: {
+                    'placeholder': 'Seleccione una imagen para la entrada'
+                }
+            }) }}
+        </div>
+        <div class="col-sm-3">
+            {% if entrada.imageFilename is defined %}
+                <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
+                    <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}"
+                         height="100"
+                         alt="">
+                </a>
+
             {% endif %}
-        </label>
+        </div>
+
     </div>
-    <div class="col-sm-1"></div>
+    <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+
+    {{ form_end(entradaForm) }}
 </div>
-<div class="row">
-    <div class="col-sm-4">
-        {{ form_row(entradaForm.titulo) }}
-    </div>
-    <div class="col-sm-8">
-        {{ form_row(entradaForm.contenido) }}
-    </div>
-</div>
-<hr class="bg-primary"/>
-<div class="row pt-3 mx-5">
-
-    <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.footer) }}
-    </div>
-
-    <div class="col-sm-3 mx-auto">
-        {{ form_widget(entradaForm.linkRoute) }}
-        {{ form_help(entradaForm.linkRoute) }}
-        {{ form_errors(entradaForm.linkRoute) }}
-    </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.linkPosting) }}
-    </div>
-    <div class="col-sm-2 mx-auto text-center form-check text-dark">
-        <label for="entrada_isLinkExterno" class="text-primary">
-            ¿Es Externo?<br/>
-            {{ form_row(entradaForm.isLinkExterno) }}
-        </label>
-    </div>
-</div>
-<hr class="bg-primary"/>
-<div class="row pt-3">
-    <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.eventoAt) }}
-    </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.disponibleAt) }}
-    </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.disponibleHastaAt) }}
-    </div>
-    <div class="col-sm-4">
-        {{ form_row(entradaForm.autor) }}
-    </div>
-    <div class="col-sm-4">
-        {{ form_row(entradaForm.modelTemplate) }}
-    </div>
-    <div class="col-sm-4">
-        {{ form_row(entradaForm.sections) }}
-    </div>
-    <div class="col-sm-2 mx-auto">
-        {{ form_row(entradaForm.orden) }}
-    </div>
-    <div class="col-sm-2 mx-auto">
-        {{ form_row(entradaForm.cssClass) }}
-    </div>
-    <div class="col-sm-2 mx-auto">
-        {{ form_row(entradaForm.identificador) }}
-    </div>
-    <div class="col-sm-3 mx-auto">
-        {{ form_row(entradaForm.contacto) }}
-    </div>
-
-    <div class="col-sm-9">
-        {{ form_row(entradaForm.imageFile, {
-            attr: {
-                'placeholder': 'Seleccione una imagen para la entrada'
-            }
-        }) }}
-    </div>
-    <div class="col-sm-3">
-        {% if entrada.imageFilename is defined %}
-            <a href="{{ uploaded_asset(entradaForm.vars.data.imagePath) }}" target="_blank">
-                <img src="{{ entradaForm.vars.data.imagePath|imagine_filter('squared_thumbnail_small') }}" height="100"
-                     alt="">
-            </a>
-
-        {% endif %}
-    </div>
-
-</div>
-<button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
-
-{{ form_end(entradaForm) }}
