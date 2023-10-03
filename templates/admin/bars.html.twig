@@ -41,16 +41,16 @@
                     <ul class="nav side-menu">
                         <li>
                             <a href="{{ path('app_admin_main') }}">
-                                <i class="fa fa-home"></i> {{ "backend.menu.home"|trans }}
+                                <i class="fa-solid fa-house"></i> {{ "backend.menu.home"|trans }}
                             </a>
                         </li>
 
 
                         <li>
                             <a>
-                                <i class="fas fa-clipboard"></i>
+                                <i class="fa-regular fa-clipboard"></i>
                                 {{ "backend.menu.posts"|trans }}
-                                <span class="fa fa-chevron-down">
+                                <span class="fa-solid fa-chevron-down">
                                     </span>
                             </a>
                             <ul class="nav child_menu">
@@ -61,8 +61,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a><i class="fas fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span
-                                        class="fa fa-chevron-down"></span></a>
+                        <li><a><i class="fa-regular fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span
+                                        class="fa-solid fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
 
 
@@ -82,7 +82,7 @@
                         {% if is_granted("ROLE_ADMIN") %}
 
                             <li><a><i class="fa fa-cog"></i> {{ "backend.menu.settings"|trans }} <span
-                                            class="fa fa-chevron-down"></span></a>
+                                            class="fa-solid fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li>
                                         <a href="{{ path('meta_base_index') }}">{{ "backend.menu.metabase"|trans }}</a>
@@ -93,7 +93,7 @@
                             <li>
                                 <a>
                                     <i class="fa fa-user"></i> {{ "backend.menu.user"|trans }} <span
-                                            class="fa fa-chevron-down"></span></a>
+                                            class="fa-solid fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ path('admin_list_user') }}">{{ "backend.menu.manage"|trans }}</a>
                                     </li>
@@ -122,7 +122,7 @@
                             <a>
                                 <i class="fa fa-building" aria-hidden="true"></i>
                                 {{ "backend.menu.contact"|trans }}
-                                <span class="fa fa-chevron-down"></span>
+                                <span class="fa-solid fa-chevron-down"></span>
                             </a>
                             <ul class="nav child_menu">
                                 <li>
@@ -186,7 +186,7 @@
                             <a>
                                 <i class="fa fa-rss"></i>
                                 {{ "backend.menu.channel_feed"|trans }} <span
-                                        class="fa fa-chevron-down"></span></a>
+                                        class="fa-solid fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li>
                                     <a href="{{ path('channel_feed_index') }}">
