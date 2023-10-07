@@ -37,7 +37,7 @@
         "codemirror": "^5.59.0",
         "jquery": "^3.5.0",
         "popper.js": "^1.16.1",
-        "postcss": "^8.2.2",
+        "postcss": "^8.4.31",
         "select2": "^4.1.0-rc.0",
         "selectize": "^0.12.6",
         "urix": "^0.1.0",
