@@ -1,24 +1,10 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 {% block title %} Vista {{ entrada.titulo | striptags | raw }}{% endblock %}
 
 {% block nav %}
     {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
 {% endblock %}
-{% block breadcrumb %}
-    <li class="breadcrumb-item">
-        <span><a href="{{ path('admin') }}">Panel</a></span>
-    </li>
-    <li class="breadcrumb-item ">
-        <span>
-            <a href="{{ path('admin_entrada_index') }}">
-                Entradas
-            </a>
-        </span>
-    </li>
-    <li class="breadcrumb-item active"><span>Detalle</span></li>
-{% endblock %}
-
-{% block content %}
+{% block contenpage %}
     <div class="container">
         <div class="row">
             <div class="col-sm-12 show-article-container ">

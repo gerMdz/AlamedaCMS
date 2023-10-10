@@ -1,12 +1,65 @@
-{% extends 'base_coreui.html.twig' %}
-
+{% extends "admin/bars.html.twig" %}
 {% block title %}
+    Paso 3 - Entradas
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    {{ encore_entry_link_tags('select2') }}
 
 {% endblock %}
 
-{% block content %}
-    <div class="col-sm-9 mx-auto">
-        <a class="btn btn-info" href="{{ path('admin_entrada_index') }}">Cancelar e ir al Listado</a>
+{% block contenpage %}
+
+    <h4>Asistente para crear nueva entrada - Paso 3 {{ entrada.titulo| replace({'<p>':'', '</p>':''}) | raw }}<br/></h4>
+
+
+    <div class="form-container">
+        {{ form_start(entradaForm) }}
+        <div class="row">
+
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-2 text-center form-check">
+                <label class="text-primary" for="step_three_encabezado">
+                    ¿Encabezado?<br/>
+                    {{ form_row(entradaForm.encabezado) }}
+                </label>
+            </div>
+            <div class="col-sm-2 text-center form-check">
+                <label class="text-primary" for="step_three_destacado">
+                    ¿Destacado?<br/>
+                    {{ form_row(entradaForm.destacado) }}
+                </label>
+            </div>
+            <div class="col-sm-2 text-center form-check">
+                <label class="text-primary" for="step_three_isSinTitulo">
+                    ¿Es sin Título?<br/>
+                    {{ form_row(entradaForm.isSinTitulo) }}
+                </label>
+            </div>
+
+
+            {{ form_widget(entradaForm._token) }}
+
+            {{ form_end(entradaForm, {'render_rest': true}) }}
+            <div class="col-sm-9 mx-auto">
+                <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
+                <a class="btn btn-info" href="{{ path('admin_entrada_index') }}">Cancelar e ir al Listado</a>
+            </div>
+
+        </div>
+
     </div>
 {% endblock %}
+   {% block javascripts %}
+       {{ parent() }}
+       {{ encore_entry_script_tags('app') }}
+       {{ encore_entry_script_tags('select2') }}
 
+   {% endblock %}
+{% block jslocal %}
+    {#    {{ encore_entry_script_tags('select2-parent') }} #}
+
+{% endblock %}
