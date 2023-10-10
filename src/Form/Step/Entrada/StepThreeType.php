@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,65 +23,33 @@ class StepThreeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add(
-                'titulo',
-                CKEditorType::class, [
-                'required' => true,
-                'config' => [
-                    'uiColor' => '#ffffff',
-//                    'toolbar' => 'full',
-                    'language' => 'es',
-                    'input_sync' => true
-                ],
-                'attr' => [
+            ->add('encabezado', CheckboxType::class, [
                     'required' => false,
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('contenido', CKEditorType::class, [
-                'required' => false,
-                'config' => [
-                    'uiColor' => '#ffffff',
-//                    'toolbar' => 'full',
-                    'language' => 'es',
-                ],
-                'attr' => [
-                    'required' => false,
-                    'rows' => 10,
-//                    'class' => 'form-control',
-                ],
-            ])
-            ->add(
-                'section',
-                EntityType::class,
-                [
-                    'class' => Section::class,
-                    'mapped' => false,
-                    'label' => 'Sección?',
-                    'choice_label' => 'identificador',
-                    'placeholder' => 'Seleccione la sección donde se insertará la entrada',
-                    'required' => false,
-                    'help' => 'En qué sección estará esta entrada?',
+                    'label' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                    'help' => 'A futuro, aun no implementado',
                     'attr' => [
-                        'class' => 'select2-enable form-control',
+                        'class' => 'form-check-input ',
                     ],
                 ]
             )
-            ->add(
-                'autor',
-                EntityType::class,
-                [
-                    'class' => User::class,
-                    'query_builder' => function (UserRepository $ur) {
-                        return $ur->findByRoleAutor();
-                    },
-                    'label' => 'Autor?',
-                    'choice_label' => 'primerNombre',
-                    'placeholder' => 'Seleccione autor',
+            ->add('destacado', CheckboxType::class, [
                     'required' => false,
-                    'help' => 'Autor de la entrada entrada?',
+                    'label' => false,
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                    'help' => 'Acción especial, ej.: doble tamaño según el template de la entrada',
                     'attr' => [
-                        'class' => 'select2-enable',
+                        'class' => 'form-check-input ',
+                    ],
+                ]
+            )
+            ->add('isSinTitulo', CheckboxType::class, [
+                    'required' => false,
+                    'label' => false,
+                    'help' => 'Para omitir el título según el template',
+                    'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                    'attr' => [
+                        'class' => 'form-check-input ',
                     ],
                 ]
             )

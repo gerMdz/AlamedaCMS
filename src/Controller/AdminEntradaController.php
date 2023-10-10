@@ -322,15 +322,15 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @Route("/admin/new/step3", name="admin_entrada_new_step3", methods={"GET","POST"})
+     * @Route("/admin/new/step3/{id}", name="admin_entrada_new_step3", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      * @throws Exception
      * @IsGranted("ROLE_ESCRITOR")
      */
-    public function newStepThree(Request $request): Response
+    public function newStepThree(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
     {
-        $entrada = new Entrada();
+
         $form = $this->createForm(StepThreeType::class, $entrada);
         $form->handleRequest($request);
 

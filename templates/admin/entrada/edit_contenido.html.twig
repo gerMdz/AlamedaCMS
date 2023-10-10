@@ -1,23 +1,7 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 
-{% block title %}Edición Entrada{% endblock %}
-{% block breadcrumb %}
-    {{parent()}}
-    <li class="breadcrumb-item">
-        <span>
-            <a href="{{path('admin_entrada_index')}}">
-                Entradas
-            </a>
-        </span>
-    </li>
-    <li class="breadcrumb-item active">
-        <span>
-                Edición Parcial
-        </span>
-    </li>
-{%endblock%}
-
-{% block content %}
+{% block title %}Edición Simple Entrada {{ entrada.id }} {% endblock %}
+{% block contenpage %}
     <h5>Edición parcial Entrada</h5>
     {{ form_start(entradaForm) }}
     <div class="row">
