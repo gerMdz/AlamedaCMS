@@ -1,9 +1,10 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 {% block title %}Edición Entrada {{ entrada.id }} {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('select2-parent') }}
+{#    {{ encore_entry_link_tags('select2-parent') }}#}
+    {{ encore_entry_link_tags('select2') }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css"
           integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
@@ -12,27 +13,7 @@
 
 {% endblock %}
 
-{% block nav %}
-    {{ include('admin/_nav.html.twig',  {'marca_label': 'entrada'}) }}
-{% endblock %}
-
-{% block breadcrumb %}
-{{ parent()}}
-    <li class="breadcrumb-item ">
-        <span>
-            <a href="{{path('admin_entrada_index')}}">
-                Entradas
-            </a>
-        </span>
-    </li>
-    <li class="breadcrumb-item active ">
-        <span>
-            Edición
-        </span>
-    </li>
-{% endblock %}
-
-{% block content %}
+{% block contenpage %}
     <div class="container">
         {% for message in app.flashes('error') %}
             <div class="alert alert-danger">
@@ -85,6 +66,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('select2') }}
 
     <script src="{{ asset('js/admin_section_entrada_form.js') }}"></script>
 
@@ -106,5 +88,6 @@
 {% endblock %}
 {% block jslocal %}
 {#    {{ encore_entry_script_tags('summernote') }}#}
-    {{ encore_entry_script_tags('select2-parent') }}
+{#    {{ encore_entry_script_tags('select2-parent') }}#}
+{#    {{ encore_entry_script_tags('select2') }}#}
 {% endblock %}

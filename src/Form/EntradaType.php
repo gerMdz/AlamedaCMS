@@ -49,7 +49,6 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
-
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
@@ -59,7 +58,6 @@ class EntradaType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'label_attr' => ['class' => 'checkbox-custom text-dark'],
-
                     'attr' => [
                         'class' => 'form-check-input ',
                     ],
