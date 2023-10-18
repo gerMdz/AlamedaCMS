@@ -61,17 +61,23 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a><i class="fa-regular fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span
-                                        class="fa-solid fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-
-
-                                <li>
-                                    <a href="{{ path('admin_section_list') }}">{{ "backend.menu.history"|trans }}</a>
-                                </li>
-
-                            </ul>
+                        <li>
+                            <a href="{{ path('admin_section_list') }}">
+                                <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
+                                {{ "backend.menu.section"|trans }}
+                            </a>
                         </li>
+{#                        <li><a><i class="fa-regular fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span#}
+{#                                        class="fa-solid fa-chevron-down"></span></a>#}
+{#                            <ul class="nav child_menu">#}
+
+
+{#                                <li>#}
+{#                                    <a href="{{ path('admin_section_list') }}">{{ "backend.menu.history"|trans }}</a>#}
+{#                                </li>#}
+
+{#                            </ul>#}
+{#                        </li>#}
                         <li>
                             <a href="{{ path('principal_index') }}">
                                 <i class="fa fa-laptop" aria-hidden="true"></i>
@@ -209,12 +215,7 @@
 
                             </ul>
                         </li>
-                        <li>
-                            <a href="{{ path('admin_section_list') }}">
-                                <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
-                                {{ "backend.menu.section"|trans }}
-                            </a>
-                        </li>
+
                         <li>
                             <a href="{{ path('app_source_api_index') }}">
                                 <i class="fa fa-cloud" aria-hidden="true"></i>

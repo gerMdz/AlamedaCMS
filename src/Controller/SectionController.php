@@ -66,7 +66,9 @@ class SectionController extends BaseController
      */
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
-        $seccion = $repository->getSections();
+        $bus = $request->get('busq');
+
+        $seccion = $repository->getSections($bus);
         $secciones = $paginator->paginate(
             $seccion, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
