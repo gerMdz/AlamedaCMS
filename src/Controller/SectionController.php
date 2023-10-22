@@ -75,7 +75,7 @@ class SectionController extends BaseController
             20/*limit per page*/
         );
 
-        return $this->render('section_admin/list.html.twig', [
+        return $this->render('admin/section_admin/list.html.twig', [
             'sections' => $secciones,
         ]);
     }
@@ -124,7 +124,7 @@ class SectionController extends BaseController
             return $this->redirectToRoute('admin_section_list');
         }
 
-        return $this->render('section_admin/new.html.twig', [
+        return $this->render('admin/section_admin/new.html.twig', [
             'sectionForm' => $form->createView(),
         ]);
     }
@@ -156,7 +156,7 @@ class SectionController extends BaseController
             return $this->redirectToRoute('admin_section_list');
         }
 
-        return $this->render('section_admin/edit.html.twig', [
+        return $this->render('admin/section_admin/edit.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
@@ -274,7 +274,7 @@ class SectionController extends BaseController
      */
     public function show(Section $section): Response
     {
-        return $this->render('section_admin/show.html.twig', [
+        return $this->render('admin/section_admin/show.html.twig', [
             'section' => $section,
         ]);
     }
@@ -305,7 +305,7 @@ class SectionController extends BaseController
             ]);
         }
 
-        return $this->render('section_admin/new_step1.html.twig', [
+        return $this->render('admin/section_admin/new_step1.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
@@ -345,7 +345,7 @@ class SectionController extends BaseController
             ]);
         }
 
-        return $this->render('section_admin/new_step2.html.twig', [
+        return $this->render('admin/section_admin/new_step2.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
@@ -373,7 +373,7 @@ class SectionController extends BaseController
             ]);
         }
 
-        return $this->render('section_admin/new_step3.html.twig', [
+        return $this->render('admin/section_admin/new_step3.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);

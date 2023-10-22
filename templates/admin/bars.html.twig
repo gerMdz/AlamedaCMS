@@ -41,25 +41,15 @@
                     <ul class="nav side-menu">
                         <li>
                             <a href="{{ path('app_admin_main') }}">
-                                <i class="fa-solid fa-house"></i> {{ "backend.menu.home"|trans }}
+                                <i class="fa-solid fa-house"></i>
+                                {{ "backend.menu.home"|trans }}
                             </a>
                         </li>
-
-
                         <li>
-                            <a>
-                                <i class="fa-regular fa-clipboard"></i>
+                            <a href="{{ path('admin_entrada_index') }}">
+                                <i class="fa fa-clipboard" aria-hidden="true"></i>
                                 {{ "backend.menu.posts"|trans }}
-                                <span class="fa-solid fa-chevron-down">
-                                    </span>
                             </a>
-                            <ul class="nav child_menu">
-                                <li>
-                                    <a href="{{ path('admin_entrada_index') }}">
-                                        {{ "backend.menu.manage"|trans }}
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="{{ path('admin_section_list') }}">
@@ -67,17 +57,17 @@
                                 {{ "backend.menu.section"|trans }}
                             </a>
                         </li>
-{#                        <li><a><i class="fa-regular fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span#}
-{#                                        class="fa-solid fa-chevron-down"></span></a>#}
-{#                            <ul class="nav child_menu">#}
+                        {#                        <li><a><i class="fa-regular fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span #}
+                        {#                                        class="fa-solid fa-chevron-down"></span></a> #}
+                        {#                            <ul class="nav child_menu"> #}
 
 
-{#                                <li>#}
-{#                                    <a href="{{ path('admin_section_list') }}">{{ "backend.menu.history"|trans }}</a>#}
-{#                                </li>#}
+                        {#                                <li> #}
+                        {#                                    <a href="{{ path('admin_section_list') }}">{{ "backend.menu.history"|trans }}</a> #}
+                        {#                                </li> #}
 
-{#                            </ul>#}
-{#                        </li>#}
+                        {#                            </ul> #}
+                        {#                        </li> #}
                         <li>
                             <a href="{{ path('principal_index') }}">
                                 <i class="fa fa-laptop" aria-hidden="true"></i>
