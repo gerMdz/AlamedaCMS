@@ -1,18 +1,18 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 {% block title %}
     Paso 1 - Secciones
 {% endblock %}
 {% block stylesheets %}
-{#{{ parent() }}#}
+{{ parent() }}
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">
+{#<link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">#}
 
 {{ encore_entry_link_tags('select2') }}
 
 {% endblock %}
 
-{% block content %}
+{% block contenpage %}
 
     <h4>Asistente para crear nueva sección - Paso 1</h4>
 
