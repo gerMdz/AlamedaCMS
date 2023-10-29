@@ -5,12 +5,10 @@ namespace App\Form\Step\Section;
 
 
 use App\Entity\Section;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,16 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class StepTwoType extends AbstractType
 {
 
-    private $registry;
 
-    /**
-     * SectionFormType constructor.
-     * @param ManagerRegistry $registry
-     */
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
-    }
 
 
     public function buildForm(FormBuilderInterface $builder, array $options)

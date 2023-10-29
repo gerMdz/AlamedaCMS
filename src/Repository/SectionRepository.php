@@ -67,11 +67,25 @@ class SectionRepository extends ServiceEntityRepository
     }
 
 
-    public function getSections(): QueryBuilder
+    public function getSections(?string $qSearch): QueryBuilder
     {
-        return $this->createQueryBuilder('s')
+        $qb = $this->createQueryBuilder('s')
             ->orderBy('s.updatedAt', 'DESC')
             ->addOrderBy('s.name', 'ASC');
+        if ($qSearch) {
+            $qb->leftJoin('s.autor', 'a')
+                ->addSelect('a');
+            $qb->leftJoin('s.entradas', 'e')
+                ->addSelect('e');
+            $qb->leftJoin('s.principales', 'p')
+                ->addSelect('p');
+            $qb->andWhere(
+                'UPPER(s.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(s.title) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(e.titulo) LIKE :qsearch'
+            )
+                ->setParameter('qsearch', '%' . mb_strtoupper($qSearch) . '%');
+        }
+
+        return $qb;
     }
 
 
@@ -120,10 +134,11 @@ class SectionRepository extends ServiceEntityRepository
     }
 
     public function sectionByDateAndActiveAndModification(
-        $fecha_inicial ,
-        $fecha_final ,
+        $fecha_inicial,
+        $fecha_final,
         ?array $notSection
-    ): QueryBuilder {
+    ): QueryBuilder
+    {
 
         $qb = $this->createQueryBuilder('s')
             ->select()

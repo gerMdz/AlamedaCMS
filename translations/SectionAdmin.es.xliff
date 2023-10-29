@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="cefc74c8" resname="admin.section.new">
+                <source>admin.section.new</source>
+                <target>Crear nueva sección</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

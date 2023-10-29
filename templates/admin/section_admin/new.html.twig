@@ -1,0 +1,84 @@
+{% extends "admin/bars.html.twig" %}
+{% block title %}{{ "admin.section.new"|trans }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('select2') }}
+    {#    <link rel="stylesheet" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}"> #}
+    <style>
+        .custom-file-input ~ .custom-file-label.custom-file-label::after {
+            content: "Elegir imagen";
+            color: #fff;
+            background-color: #9c27b0;
+            top: 10px;
+            box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+            position: absolute;
+            /*padding: 3px 9px;*/
+            /*margin: auto 1px;*/
+            font-size: .75rem;
+            font-weight: 400;
+            /*line-height: 1.428571;*/
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            cursor: pointer;
+            border: 0 currentcolor;
+            border-radius: 0.2rem;
+            outline: 0;
+            transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: box-shadow, transform;
+        }
+    </style>
+{% endblock %}
+{% block contenpage %}
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h4>{{ "admin.section.new"|trans }}</h4>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-container">
+            <div class="form-container">
+                {{ include('admin/section_admin/_form.html.twig',
+                    {
+                        button_label:'Agregar Sección'
+                    }) }}
+            </div>
+        </div>
+        <a class="btn btn-info" href="{{ path('admin_section_list') }}">
+            <i class="fas fa-backspace"></i>
+            Volver al Listado
+        </a>
+    </div>
+{% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/admin_section_form.js') }}"></script>
+
+        <script src="{{ asset('material-dashboard/assets/js/core/jquery.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('material-dashboard/assets/js/core/popper.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('material-dashboard/assets/js/plugins/moment-with-locales.min.js') }}"></script>
+        <script src="{{ asset('material-dashboard/assets/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
+        {{ encore_entry_script_tags('select2') }}
+
+
+        <script type="application/javascript">
+            $(function () {
+                $('.datetimepicker').datetimepicker({
+                    format: 'YYYY-MM-DD HH:mm ',
+                    locale: 'es',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+                });
+            })
+        </script>
+    {% endblock %}

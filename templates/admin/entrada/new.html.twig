@@ -7,58 +7,58 @@
 {% endblock %}
 
 {% block contenpage %}
-<div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h6><a href="{{ path('admin_entrada_index') }}" class="btn btn-sm btn-info">
-                    Volver al Listado de Entradas
-                </a></h6>
-            <h4>Crear nueva entrada</h4>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-
-{#    <div class="form-container">#}
-        {{ include('admin/entrada/_form.html.twig') }}
-
-
-    <a class="btn btn-link" href="{{ path('admin_section_list') }}"><i class="fas fa-backspace"></i> Volver al listado</a>
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h4>Crear nueva sección</h4>
             </div>
         </div>
-    </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
 
-</div>
+                    {#    <div class="form-container"> #}
+                    {{ include('admin/entrada/_form.html.twig') }}
+
+
+                    <a class="btn btn-info" href="{{ path('admin_section_list') }}">
+                        <i class="fas fa-backspace"></i>
+                        Volver al listado</a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('select2') }}
 
-{#    <script type="application/javascript">#}
-{#        $(function () {#}
-{#            $('.datetimepicker').datetimepicker({#}
-{#                format: 'YYYY-MM-DD HH:mm ',#}
-{#                locale: 'es',#}
-{#                inline: false,#}
-{#                // sideBySide: true,#}
-{#                icons: {#}
-{#                    time: "fas fa-clock text-primary",#}
-{#                    date: "fa fa-calendar text-primary",#}
-{#                    up: "fa fa-chevron-up",#}
-{#                    down: "fa fa-chevron-down",#}
-{#                    previous: 'fa fa-chevron-left',#}
-{#                    next: 'fa fa-chevron-right',#}
-{#                    today: 'fa fa-screenshot',#}
-{#                    clear: 'fa fa-trash',#}
-{#                    close: 'fa fa-remove'#}
-{#                },#}
-{#                tooltips: {#}
-{#                    selectTime: "Seleccione Hora"#}
-{#                },#}
-{#            });#}
-{#        })#}
-{#    </script>#}
+    {#    <script type="application/javascript"> #}
+    {#        $(function () { #}
+    {#            $('.datetimepicker').datetimepicker({ #}
+    {#                format: 'YYYY-MM-DD HH:mm ', #}
+    {#                locale: 'es', #}
+    {#                inline: false, #}
+    {#                // sideBySide: true, #}
+    {#                icons: { #}
+    {#                    time: "fas fa-clock text-primary", #}
+    {#                    date: "fa fa-calendar text-primary", #}
+    {#                    up: "fa fa-chevron-up", #}
+    {#                    down: "fa fa-chevron-down", #}
+    {#                    previous: 'fa fa-chevron-left', #}
+    {#                    next: 'fa fa-chevron-right', #}
+    {#                    today: 'fa fa-screenshot', #}
+    {#                    clear: 'fa fa-trash', #}
+    {#                    close: 'fa fa-remove' #}
+    {#                }, #}
+    {#                tooltips: { #}
+    {#                    selectTime: "Seleccione Hora" #}
+    {#                }, #}
+    {#            }); #}
+    {#        }) #}
+    {#    </script> #}
 {% endblock %}

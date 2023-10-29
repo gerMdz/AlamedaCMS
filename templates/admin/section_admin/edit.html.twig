@@ -1,5 +1,5 @@
-{% extends 'base_admin_board.html.twig' %}
-{% block title %}Secciones {{ base.siteName }}{% endblock %}
+{% extends "admin/bars.html.twig" %}
+{% block title %}Edit {{ section.identificador }} | {{ base.siteName }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('select2') }}
@@ -52,13 +52,13 @@
         })
     </script>
 {% endblock %}
-{% block nav %}
-    {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
-{% endblock %}
-{% block content %}
+{#{% block nav %}#}
+{#    {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}#}
+{#{% endblock %}#}
+{% block contenpage %}
     <h5>Edición de "{{ section.name }} - {{ section.identificador }}" </h5>
     <div class="form-container">
-        {{ include('section_admin/_form.html.twig',
+        {{ include('admin/section_admin/_form.html.twig',
             {
                 button_label :'Actualizar'
             }) }}

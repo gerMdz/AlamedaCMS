@@ -45,6 +45,7 @@ class SectionFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-check-input ',
                 ],
+                'help' => 'Se mostrará la sección'
             ])
             ->add('disponibleAt', null, [
                 'widget' => 'single_text',
@@ -52,7 +53,9 @@ class SectionFormType extends AbstractType
                 'html5' => true,
                 'required' => false,
 //                'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+//                'attr' => ['class' => 'datetimepicker']
+                 'attr' => ['class' => 'form-control '],
+                'input' => 'datetime',
             ])
             ->add('columns', IntegerType::class, [
                 'label' => 'Cantidad de columnas',
@@ -64,7 +67,9 @@ class SectionFormType extends AbstractType
                 'html5' => true,
                 'required' => false,
 //                'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => ['class' => 'datetimepicker']
+//                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'form-control '],
+                'input' => 'datetime',
             ))
             ->add('orden', IntegerType::class, [
                 'label' => 'Orden en la página',
