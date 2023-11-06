@@ -1,9 +1,9 @@
-{% extends 'base_admin_board.html.twig' %}
-{% block title %}Secciones {{ base.siteName }}{% endblock %}
-{% block nav %}
-    {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
-{% endblock %}
-{% block content %}
+{% extends "admin/bars.html.twig" %}
+{% block title %}Secciones Listado Admin{% endblock %}
+{#{% block nav %}#}
+{#    {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}#}
+{#{% endblock %}#}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">

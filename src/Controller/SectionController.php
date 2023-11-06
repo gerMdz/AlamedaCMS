@@ -66,14 +66,16 @@ class SectionController extends BaseController
      */
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
-        $seccion = $repository->getSections();
+        $bus = $request->get('busq');
+
+        $seccion = $repository->getSections($bus);
         $secciones = $paginator->paginate(
             $seccion, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             20/*limit per page*/
         );
 
-        return $this->render('section_admin/list.html.twig', [
+        return $this->render('admin/section_admin/list.html.twig', [
             'sections' => $secciones,
         ]);
     }
@@ -122,7 +124,7 @@ class SectionController extends BaseController
             return $this->redirectToRoute('admin_section_list');
         }
 
-        return $this->render('section_admin/new.html.twig', [
+        return $this->render('admin/section_admin/new.html.twig', [
             'sectionForm' => $form->createView(),
         ]);
     }
@@ -149,12 +151,12 @@ class SectionController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $section->getImageFilename());
                 $section->setImageFilename($newFilename);
             }
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_list');
         }
 
-        return $this->render('section_admin/edit.html.twig', [
+        return $this->render('admin/section_admin/edit.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
@@ -272,7 +274,7 @@ class SectionController extends BaseController
      */
     public function show(Section $section): Response
     {
-        return $this->render('section_admin/show.html.twig', [
+        return $this->render('admin/section_admin/show.html.twig', [
             'section' => $section,
         ]);
     }
@@ -282,7 +284,7 @@ class SectionController extends BaseController
      * @param Request $request
      * @return Response
      * @throws Exception
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepOne(Request $request): Response
     {
@@ -294,7 +296,7 @@ class SectionController extends BaseController
 
             $principal = $form['principal']->getData();
             $section->addPrincipale($principal);
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($section);
             $entityManager->flush();
 
@@ -303,7 +305,7 @@ class SectionController extends BaseController
             ]);
         }
 
-        return $this->render('section_admin/new_step1.html.twig', [
+        return $this->render('admin/section_admin/new_step1.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
@@ -315,7 +317,7 @@ class SectionController extends BaseController
      * @param Section $section
      * @param ModelTemplateRepository $modelTemplateRepository
      * @return Response
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepTwo(
         Request $request,
@@ -336,14 +338,14 @@ class SectionController extends BaseController
                 }
                 $this->session->remove('model_template_id');
             }
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step3', [
                 'id' => $section->getId(),
             ]);
         }
 
-        return $this->render('section_admin/new_step2.html.twig', [
+        return $this->render('admin/section_admin/new_step2.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
@@ -354,7 +356,7 @@ class SectionController extends BaseController
      * @param Request $request
      * @param Section $section
      * @return Response
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepThree(Request $request, Section $section): Response
     {
@@ -364,14 +366,14 @@ class SectionController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrine()->getManager()->flush();
+            $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_show', [
                 'id' => $section->getId(),
             ]);
         }
 
-        return $this->render('section_admin/new_step3.html.twig', [
+        return $this->render('admin/section_admin/new_step3.html.twig', [
             'section' => $section,
             'sectionForm' => $form->createView(),
         ]);
@@ -387,15 +389,16 @@ class SectionController extends BaseController
     }
 
     /**
+     * La idea es agregar una entrada ya creada a una sección, falta el modal que selecciona la entrada
      * @Route("/agregarEntrada/{id}", name="section_agregar_entrada", methods={"GET", "POST"})
      * @param Request $request
-     * @param Entrada $entrada
+     * @param Entrada $section
      * @param SectionRepository $sectionRepository
      * @return RedirectResponse|Response
      */
     public function agregarSeccion(Request $request, Section $section, EntradaRepository $entradaRepository)
     {
-        $form = $this->createForm(EntradaSectionType::class, $entrada);
+        $form = $this->createForm(EntradaSectionType::class, $section);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -403,14 +406,14 @@ class SectionController extends BaseController
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $entrada->addSection($seccion);
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($entrada);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->render('admin_entrada/vistaAgregaSection.html.twig', [
+        return $this->render('admin/entrada/vistaAgregaSection.html.twig', [
             'index' => $entrada,
             'form' => $form->createView(),
         ]);

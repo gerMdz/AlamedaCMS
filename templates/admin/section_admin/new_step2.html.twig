@@ -1,20 +1,20 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 {% block title %}
-    Paso 1 - Secciones
+    Paso 2 - Secciones
 {% endblock %}
 {% block stylesheets %}
-{#{{ parent() }}#}
+{{ parent() }}
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">
+
 
 {{ encore_entry_link_tags('select2') }}
 
 {% endblock %}
 
-{% block content %}
+{% block contenpage %}
 
-    <h4>Asistente para crear nueva sección - Paso 1</h4>
+    <h4>Asistente para crear nueva sección - Paso 2</h4>
 
 
 <div class="form-container">
@@ -22,14 +22,16 @@
         {{ form_start(sectionForm) }}
         <div class="row">
             <div class="col-sm-12">
-                {{ form_row(sectionForm.name) }}
+                {{ form_row(sectionForm.title) }}
             </div>
             <div class="col-sm-12">
-                {{ form_row(sectionForm.description) }}
+                {{ form_row(sectionForm.identificador) }}
             </div>
             <div class="col-sm-12">
-                {{ form_row(sectionForm.principal) }}
+                {{ form_row(sectionForm.orden) }}
             </div>
+
+
 
         {{ form_widget(sectionForm._token) }}
 
