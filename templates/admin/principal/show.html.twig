@@ -1,19 +1,19 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 
 {% block title %}Principal Datos{% endblock %}
 
 {% block stylesheets %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('fonts/awesome/web-fonts-with-css/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bt5-softui-dash/css/soft-ui-dashboard.min.css') }}">
-    {{ encore_entry_link_tags('section_select') }}
+    {{ parent() }}
+    {{ encore_entry_link_tags('select2') }}
 {% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title ">Principal <i>{{ principal.linkRoute }}</i> <small>{{ principal.isActive ? '<i class="fa fa-check text-success"> </i> Activa' : '<i class="fa fa-times text-danger"> </i> Activa'  }}</small></h4>
+                <h4 class="card-title ">Principal <i>{{ principal.linkRoute }}</i>
+                    <small>{{ principal.isActive ? '<i class="fa fa-check text-success"> </i> Activa' : '<i class="fa fa-times text-danger"> </i> Activa' }}</small>
+                </h4>
                 <p class="card-category"> Datos </p>
             </div>
             <div class="card-body">
@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <th>Contenido</th>
-                            <td colspan="2">{{ principal.contenido | raw}}</td>
+                            <td colspan="2">{{ principal.contenido | raw }}</td>
                         </tr>
                         <tr>
                             <th>Imagen</th>
@@ -68,7 +68,7 @@
                         <tr>
                             <td>{{ principal.createdAt ? principal.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                             <td>{{ principal.updatedAt ? principal.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>{{ principal.modelTemplate}}</td>
+                            <td>{{ principal.modelTemplate }}</td>
                         </tr>
                         {% if brotes %}
                             <tr>
@@ -80,7 +80,7 @@
                             <tr>
                                 <td>Título</td>
                                 <td>LinkRoute</td>
-                                <td><i class="fa fa-cogs"> </i> </td>
+                                <td><i class="fa fa-cogs"> </i></td>
                             </tr>
                             {% for brote in brotes %}
                                 <tr>
@@ -133,7 +133,7 @@
 
                 <a href="{{ path('principal_edit', {'id': principal.id}) }}" class="btn btn-warning">Editar</a>
 
-                {{ include('principal/_delete_form.html.twig') }}
+                {{ include('admin/principal/_delete_form.html.twig') }}
             </div>
         </div>
     </div>
@@ -145,6 +145,7 @@
     <script src="{{ asset('bt5-softui-dash/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('bt5-softui-dash/js/soft-ui-dashboard.js') }}"
     {{ encore_entry_script_tags('section_select') }}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"
             integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q=="
             crossorigin="anonymous"></script>
@@ -160,6 +161,9 @@
                     $("#modalPlantillaWeb").modal("show");
                 });
             });
+        });
+        $('#section_add_section').select2({
+            dropdownParent: $('#modalPlantillaWeb')
         });
 
 

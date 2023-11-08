@@ -117,7 +117,7 @@ class PrincipalType extends AbstractType
             ])
             ->add('isActive',CheckboxType::class, [
                 'required' => false,
-                'label' => 'Activa?',
+                'label' => false,
                 'label_attr' => ['class' => 'checkbox-custom text-dark'],
                 'attr' => [
                     'class' => 'form-check-input ',

@@ -1,8 +1,8 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 
 {% block title %}Principal Listado{% endblock %}
 
-{% block content %}
+{% block contenpage %}
 
     <div class="col-md-12">
         <div class="card">
@@ -29,7 +29,6 @@
                                 LinkRoute
                             </th>
                             <th>Contenido</th>
-
                             <th>ImageFilename</th>
                             <th>Likes</th>
                             <th>Creada <br/>
@@ -50,13 +49,12 @@
                                     </a>
                                 </td>
                                 <td>
-                                    {{ principal.contenido | u.truncate(15, '') | raw }}
+                                    {{ principal.contenido | u.truncate(15, '') | raw | striptags}}
                                     <span class="text-primary" data-toggle="modal"
                                           data-target=".modal-content-sm"
                                           data-content="{{ principal.contenido }}">... ver</span>
 
                                 </td>
-
                                 <td>
                                     {% if (principal.imageFilename != null) %}
                                         <img class="article-img" alt="{{ base.lema }}"

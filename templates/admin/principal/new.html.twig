@@ -1,9 +1,9 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends "admin/bars.html.twig" %}
 
 {% block title %}Crear Página Principal{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('select2-parent') }}
+    {{ encore_entry_link_tags('select2') }}
     <style>
         .custom-file-input ~ .custom-file-label.custom-file-label::after {
             content: "Elegir imagen";
@@ -31,20 +31,21 @@
 
 {% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
                 <h4 class="card-title col-sm-6">Crear nueva página principal</h4>
-                <a href="{{ path('principal_index') }}" class="pull-right text-dark col-sm-6">Volver al listado</a>
             </div>
             <div class="card-body">
-                {{ include('principal/_form.html.twig') }}
+                {{ include('admin/principal/_form.html.twig') }}
             </div>
         </div>
     </div>
 {% endblock %}
-{% block jslocal %}
-    {{ encore_entry_script_tags('select2-parent') }}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('select2') }}
 
 {% endblock %}

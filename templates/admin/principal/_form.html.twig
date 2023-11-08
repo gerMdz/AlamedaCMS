@@ -36,28 +36,33 @@
         </div>
         <div class="col-sm-2 text-center form-check text-dark mx-auto">
             <label for="entrada_isLinkExterno">
-                Es Externo?<br/>
+                ¿Es Externo?<br/>
                 {{ form_row(form.isLinkExterno) }}
+            </label>
+        </div>
+        <div class="col-sm-2 text-center form-check text-dark mx-auto">
+            <label for="entrada_isActive">
+                ¿Activa?<br/>
+                {{ form_row(form.isActive) }}
             </label>
         </div>
         <div class="col-sm-4">
             {{ form_row(form.cssClass) }}
-        </div><div class="col-sm-4">
-            {{ form_row(form.isActive) }}
         </div>
-        <div class="col-sm-6">
+
+        <div class="col-sm-4">
             {{ form_label(form.principal) }}
             {{ form_widget(form.principal) }}
             {{ form_help(form.principal) }}
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             {{ form_label(form.modelTemplate) }}
             {{ form_widget(form.modelTemplate) }}
             {{ form_help(form.modelTemplate) }}
         </div>
     </div>
     <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
-    <a href="{{ path('principal_index') }}">Volver al listado</a>
+
 </div>
 
 {{ form_end(form) }}

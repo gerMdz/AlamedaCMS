@@ -92,9 +92,9 @@ class PrincipalRepository extends ServiceEntityRepository
             $qb->innerJoin('p.autor', 'a')
                 ->addSelect('a');
             $qb->andWhere(
-                'upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(p.linkRoute) LIKE :qsearch'
+                'upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(p.linkRoute) LIKE :qsearch OR upper(p.contenido) LIKE :qsearch'
             )
-                ->setParameter('qsearch', '%'.strtoupper($qSearch).'%');
+                ->setParameter('qsearch', '%' . strtoupper($qSearch) . '%');
         };
 
         return $qb;
@@ -109,8 +109,9 @@ class PrincipalRepository extends ServiceEntityRepository
     public function principalByDateAndActiveAndModification(
         DateTime $fecha_inicial,
         DateTime $fecha_final,
-        ?array $notPrincipals
-    ): QueryBuilder {
+        ?array   $notPrincipals
+    ): QueryBuilder
+    {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.isActive = :boolean')
             ->setParameter('boolean', true)
@@ -134,7 +135,7 @@ class PrincipalRepository extends ServiceEntityRepository
                     ':inicio',
                     ':final'
                 ),
-                $qb->expr()->eq('s.disponible',  true)
+                $qb->expr()->eq('s.disponible', true)
             )
         )
             ->setParameter('inicio', $fecha_inicial)

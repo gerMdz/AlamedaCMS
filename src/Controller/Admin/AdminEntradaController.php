@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
+use App\Controller\BaseController;
 use App\Entity\Entrada;
 use App\Entity\Principal;
 use App\Entity\Section;

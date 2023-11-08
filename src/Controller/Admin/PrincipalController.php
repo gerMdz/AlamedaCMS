@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
+use App\Controller\BaseController;
 use App\Entity\Principal;
 use App\Form\PrincipalType;
 use App\Form\SectionAddType;
@@ -54,7 +55,7 @@ class PrincipalController extends BaseController
             $request->query->getInt('page', 1)/*page number*/,
             15/*limit per page*/
         );
-        return $this->render('principal/index.html.twig', [
+        return $this->render('admin/principal/index.html.twig', [
             'principals' => $principales,
         ]);
     }
@@ -101,10 +102,10 @@ class PrincipalController extends BaseController
             $entityManager->persist($principal);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('principal_index');
         }
 
-        return $this->render('principal/new.html.twig', [
+        return $this->render('admin/principal/new.html.twig', [
             'principal' => $principal,
             'form' => $form->createView(),
         ]);
@@ -156,7 +157,7 @@ class PrincipalController extends BaseController
             return $this->redirectToRoute('admin');
         }
 
-        return $this->render('principal/newAssistant.html.twig', [
+        return $this->render('admin/principal/newAssistant.html.twig', [
             'principal' => $principal,
             'form' => $form->createView(),
         ]);
@@ -200,7 +201,7 @@ class PrincipalController extends BaseController
             return $this->redirectToRoute('admin');
         }
 
-        return $this->render('principal/edit.html.twig', [
+        return $this->render('admin/principal/edit.html.twig', [
             'principal' => $principal,
             'form' => $form->createView(),
         ]);
@@ -218,7 +219,7 @@ class PrincipalController extends BaseController
         if(!$brotes){
             $brotes = null;
         }
-        return $this->render('principal/show.html.twig', [
+        return $this->render('admin/principal/show.html.twig', [
             'principal' => $principal,
             'brotes' => $brotes
         ]);
@@ -291,7 +292,7 @@ class PrincipalController extends BaseController
             ]);
         }
 
-        return $this->render('principal/vistaAgregaSection.html.twig', [
+        return $this->render('admin/principal/vistaAgregaSection.html.twig', [
             'principal' => $principal,
             'form' => $form->createView(),
         ]);

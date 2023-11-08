@@ -14,7 +14,7 @@ $(function () {
     });
 
 
-    console.log('select2Modal')
+    console.log('select2Modal');
 
     // $("#modalPlantillaWeb").on('shown.bs.modal', function (e) {
     //         $(this).find('.select2-modal').select2({
