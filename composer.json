@@ -42,7 +42,7 @@
         "symfony/http-client": "^5.4",
         "symfony/intl": "^5.4",
         "symfony/mailer": "^5.4",
-        "symfony/monolog-bundle": "^3.8",
+        "symfony/monolog-bundle": "^3.10",
         "symfony/polyfill-intl-messageformatter": "^1.12",
         "symfony/polyfill-php72": "^1.15",
         "symfony/property-access": "^v5.4.0",
