@@ -111,3 +111,4 @@ yarn-error.log
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 public/images/logo-solo.png
+/ROADMAP.md
