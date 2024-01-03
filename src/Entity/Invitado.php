@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -15,15 +14,18 @@ class Invitado
     use TimestampableEntity;
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=36)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Groups("export_invitado")
      */
     private $telefono;
@@ -45,12 +47,14 @@ class Invitado
 
     /**
      * @ORM\ManyToOne(targetEntity=Reservante::class, inversedBy="invitados")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $enlace;
 
     /**
      * @ORM\ManyToOne(targetEntity=Celebracion::class, inversedBy="invitados")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $celebracion;
@@ -72,7 +76,7 @@ class Invitado
 
     public function __toString()
     {
-        return $this->email . ' - ' .$this->apellido . ', '. $this->nombre;
+        return $this->email.' - '.$this->apellido.', '.$this->nombre;
     }
 
     public function getId(): ?string

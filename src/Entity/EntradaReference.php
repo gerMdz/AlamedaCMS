@@ -15,8 +15,11 @@ class EntradaReference
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
+     *
      * @Groups("main")
      */
     private $id;
@@ -28,20 +31,25 @@ class EntradaReference
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @Groups("main")
      */
     private $filename;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @Groups({"main", "input"})
+     *
      * @Assert\NotBlank()
+     *
      * @Assert\Length(max="100")
      */
     private $originalFilename;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @Groups("main")
      */
     private $mimeType;

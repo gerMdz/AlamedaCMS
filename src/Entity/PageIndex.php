@@ -11,7 +11,9 @@ class PageIndex
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -23,6 +25,7 @@ class PageIndex
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="pageIndices")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $autor;

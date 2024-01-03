@@ -12,7 +12,9 @@ class ItemFeed
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -64,6 +66,7 @@ class ItemFeed
 
     /**
      * @ORM\ManyToOne(targetEntity=ChannelFeed::class, inversedBy="item")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $channelFeed;

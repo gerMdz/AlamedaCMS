@@ -14,18 +14,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use DateTime;
 
 /**
  * @Route("/admin/celebracion")
+ *
  * @IsGranted("ROLE_RESERVA")
  */
 class CelebracionController extends AbstractController
 {
     /**
      * @Route("/", name="celebracion_index", methods={"GET"})
-     * @param CelebracionRepository $celebracionRepository
-     * @return Response
      */
     public function index(CelebracionRepository $celebracionRepository): Response
     {
@@ -36,8 +34,6 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/new", name="celebracion_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -47,11 +43,11 @@ class CelebracionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
-            $ahora = new DateTime('now');
+            $ahora = new \DateTime('now');
             $hasta = $form['disponibleHastaAt']->getData();
 
             $celebracion->setDisponibleHastaAt($ahora->modify('+1 hour'));
-            if ($hasta){
+            if ($hasta) {
                 $celebracion->setDisponibleHastaAt($hasta);
             }
             $celebracion->setCreaEvento($user);
@@ -73,8 +69,6 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/{id}", name="celebracion_show", methods={"GET"})
-     * @param Celebracion $celebracion
-     * @return Response
      */
     public function show(Celebracion $celebracion): Response
     {
@@ -85,9 +79,6 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="celebracion_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Celebracion $celebracion
-     * @return Response
      */
     public function edit(Request $request, Celebracion $celebracion): Response
     {
@@ -108,9 +99,6 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/{id}", name="celebracion_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Celebracion $celebracion
-     * @return Response
      */
     public function delete(Request $request, Celebracion $celebracion): Response
     {
@@ -125,10 +113,7 @@ class CelebracionController extends AbstractController
 
     /**
      * @Route("/agregarGrupo/{id}", name="celebracion_agregar_grupo", methods={"GET", "POST"})
-     * @param Request $request
-     * @param Celebracion $celebracion
-     * @param EntityManagerInterface $em
-     * @param GroupCelebrationRepository $groupCelebrationRepository
+     *
      * @return RedirectResponse|Response
      */
     public function agregarGrupo(Request $request, Celebracion $celebracion, EntityManagerInterface $em, GroupCelebrationRepository $groupCelebrationRepository)
@@ -137,7 +122,6 @@ class CelebracionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $id_grupo = $form->get('groupCelebration')->getData();
             $grupo = $groupCelebrationRepository->find($id_grupo);
             $celebracion->addGroupCelebration($grupo);
@@ -145,7 +129,6 @@ class CelebracionController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('celebracion_index', [
-
             ]);
         }
 
@@ -153,6 +136,5 @@ class CelebracionController extends AbstractController
             'celebracion' => $celebracion,
             'form' => $form->createView(),
         ]);
-
     }
 }

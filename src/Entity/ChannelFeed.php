@@ -14,7 +14,9 @@ class ChannelFeed
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -58,7 +60,6 @@ class ChannelFeed
     {
         $this->item = new ArrayCollection();
     }
-
 
     public function __toString()
     {

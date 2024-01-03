@@ -14,7 +14,9 @@ class TipoContacto
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -53,7 +55,6 @@ class TipoContacto
     {
         return $this->tipo;
     }
-
 
     public function getId(): ?int
     {
@@ -137,6 +138,4 @@ class TipoContacto
 
         return $this;
     }
-
-
 }

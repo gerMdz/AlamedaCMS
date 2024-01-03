@@ -8,7 +8,6 @@ use App\Entity\MetaBase;
 use App\Entity\NewsSite;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
-use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
@@ -19,13 +18,11 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 {
     protected $em;
     private $container;
-    protected $ind_inicio = "{{";
-    protected $ind_final = "}}";
+    protected $ind_inicio = '{{';
+    protected $ind_final = '}}';
 
     /**
      * BaseExtension constructor.
-     * @param EntityManagerInterface $em
-     * @param ContainerInterface $container
      */
     public function __construct(EntityManagerInterface $em, ContainerInterface $container)
     {
@@ -81,7 +78,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return $this->container->get(EntityManagerInterface::class)->getRepository(MetaBase::class)->findOneBy(['base' => 'index']);
     }
 
-
     public function getUploadedAssetPath(string $path): string
     {
         return $this->container
@@ -92,6 +88,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     public function capacidad_restante(string $celebracion, int $cantidad): int
     {
         $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)->countByCelebracion($celebracion);
+
         return $cantidad - $invitados;
     }
 
@@ -111,45 +108,40 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     public function redirection(string $link)
     {
         if ('' === ($link ?? '')) {
-            throw new InvalidArgumentException('No se puede redireccionar a una URL vacía.');
+            throw new \InvalidArgumentException('No se puede redireccionar a una URL vacía.');
         }
 
         echo "<meta http-equiv = 'refresh' content='5;url = $link' />";
-
     }
 
     public function completa_texto(string $campo)
     {
-
         $encontro = false;
 
         $i = 0;
         do {
+            $inicio = strpos($campo, (string) $this->ind_inicio);
 
-            $inicio = strpos($campo, $this->ind_inicio);
-
-            if ($inicio !== false) {
-                $fin = strpos($campo, $this->ind_final);
+            if (false !== $inicio) {
+                $fin = strpos($campo, (string) $this->ind_final);
                 $servicio = substr($campo,
-                    ($inicio + strlen($this->ind_inicio)),
+                    $inicio + strlen($this->ind_inicio),
                     $fin - ($inicio + strlen($this->ind_inicio)));
-                $campo = str_replace($this->ind_inicio . $servicio . $this->ind_final,
+                $campo = str_replace($this->ind_inicio.$servicio.$this->ind_final,
                     $this->addTexto(trim($servicio)), $campo);
 
                 $encontro = true;
             } else {
                 $encontro = false;
             }
-
         } while ($encontro && $i < 10);
-        return $campo;
 
+        return $campo;
     }
 
     public function completa_lugar(string $lugar): string
     {
         return $this->addTexto(trim($lugar));
-
     }
 
     private function addTexto($valor): string
@@ -164,13 +156,11 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     }
 
     /**
-     * @param string $type
-     * @param string $fuente
      * @return array|string|void
      */
-    public function form_suscripto_newsletter(string $type,string $fuente)
+    public function form_suscripto_newsletter(string $type, string $fuente)
     {
-        switch ($type){
+        switch ($type) {
             case 'script':
                 return $this->divScript($fuente);
             case 'iframe':
@@ -178,44 +168,31 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         }
     }
 
-    /**
-     * @param string $fuente
-     * @return string
-     */
     protected function divScript(string $fuente): string
     {
         $crea_formulario = $this->container->get(EntityManagerInterface::class)
             ->getRepository(NewsSite::class)
-            ->findBy(['srcType' =>'script', 'srcSite' => $fuente]);
+            ->findBy(['srcType' => 'script', 'srcSite' => $fuente]);
 
         return $crea_formulario[0]->getSrcCodigo();
     }
 
-    /**
-     * @param string $fuente
-     * @return array
-     */
     protected function divIframe(string $fuente): array
     {
         $crea_formulario = $this->container->get(EntityManagerInterface::class)
             ->getRepository(NewsSite::class)
-            ->findBy(['srcType' =>'iframe', 'srcSite' => $fuente]);
+            ->findBy(['srcType' => 'iframe', 'srcSite' => $fuente]);
 
-        return [$crea_formulario[0]->getSrcCodigo(),$crea_formulario[0]->getSrcParameters()];
+        return [$crea_formulario[0]->getSrcCodigo(), $crea_formulario[0]->getSrcParameters()];
     }
 
-    /**
-     * @param $data
-     * @return string
-     */
     public function booleano($data): string
     {
         $icono = '<i class="fa fa-close fa-2x text-danger"> </i>';
-        if ($data === true) {
+        if (true === $data) {
             $icono = '<i class="fa fa-check fa-2x text-success"> </i>';
         }
+
         return $icono;
     }
-
-
 }

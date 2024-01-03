@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Entity\Traits;
-
 
 use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,6 +10,7 @@ trait ImageTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Groups("mail")
      */
     protected $imageFilename;

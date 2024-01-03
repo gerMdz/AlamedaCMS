@@ -17,8 +17,6 @@ class ContactoController extends AbstractController
 {
     /**
      * @Route("/", name="contacto_index", methods={"GET"})
-     * @param ContactoRepository $contactoRepository
-     * @return Response
      */
     public function index(ContactoRepository $contactoRepository): Response
     {
@@ -29,8 +27,6 @@ class ContactoController extends AbstractController
 
     /**
      * @Route("/new", name="contacto_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -54,8 +50,6 @@ class ContactoController extends AbstractController
 
     /**
      * @Route("/{id}", name="contacto_show", methods={"GET"})
-     * @param Contacto $contacto
-     * @return Response
      */
     public function show(Contacto $contacto): Response
     {
@@ -66,9 +60,6 @@ class ContactoController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="contacto_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Contacto $contacto
-     * @return Response
      */
     public function edit(Request $request, Contacto $contacto): Response
     {
@@ -89,9 +80,6 @@ class ContactoController extends AbstractController
 
     /**
      * @Route("/{id}", name="contacto_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Contacto $contacto
-     * @return Response
      */
     public function delete(Request $request, Contacto $contacto): Response
     {

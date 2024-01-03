@@ -21,8 +21,11 @@ class Menu
 
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=36)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
@@ -31,7 +34,6 @@ class Menu
      * @ORM\Column(type="string", length=255)
      */
     private $Nombre;
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,8 +49,6 @@ class Menu
     {
         $this->itemMenus = new ArrayCollection();
     }
-
-
 
     public function getId(): ?int
     {
@@ -66,9 +66,6 @@ class Menu
 
         return $this;
     }
-
-
-
 
     /**
      * @return Collection|ItemMenu[]
@@ -96,6 +93,4 @@ class Menu
 
         return $this;
     }
-
-
 }

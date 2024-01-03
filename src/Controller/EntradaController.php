@@ -19,13 +19,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EntradaController extends AbstractController
 {
-
     /**
      * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
-     *
-     * @param Entrada $entrada
-     * @param EntradaRepository $er
-     * @return Response
      */
     public function ver(Entrada $entrada, EntradaRepository $er): Response
     {
@@ -39,13 +34,8 @@ class EntradaController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/count/{id}/like", name="entrada_toggle_like", methods={"POST"})
-     *
-     * @param Entrada $entrada
-     * @param EntityManagerInterface $em
-     * @return JsonResponse
      */
     public function toggleArticleHeart(Entrada $entrada, EntityManagerInterface $em): JsonResponse
     {
@@ -57,8 +47,6 @@ class EntradaController extends AbstractController
 
     /**
      * @Route("/admin/entrada/section/{id}", methods="GET", name="admin_entrada_list_section")
-     * @param Entrada $entrada
-     * @return JsonResponse
      */
     public function getSectionPrincipal(Entrada $entrada): JsonResponse
     {
@@ -67,16 +55,14 @@ class EntradaController extends AbstractController
             200,
             [],
             [
-                'groups' => ['main']
+                'groups' => ['main'],
             ]
         );
     }
 
     /**
      * @Route("/agregarSeccion/{id}", name="entrada_agregar_seccion", methods={"GET", "POST"})
-     * @param Request $request
-     * @param Entrada $entrada
-     * @param SectionRepository $sectionRepository
+     *
      * @return RedirectResponse|Response
      */
     public function agregarSeccion(Request $request, Entrada $entrada, SectionRepository $sectionRepository)
@@ -85,7 +71,6 @@ class EntradaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $entrada->addSection($seccion);

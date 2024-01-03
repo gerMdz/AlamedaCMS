@@ -17,8 +17,6 @@ class BroteController extends AbstractController
 {
     /**
      * @Route("/", name="derivada_index", methods={"GET"})
-     * @param BroteRepository $derivadaRepository
-     * @return Response
      */
     public function index(BroteRepository $derivadaRepository): Response
     {
@@ -29,8 +27,6 @@ class BroteController extends AbstractController
 
     /**
      * @Route("/new", name="derivada_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -54,8 +50,6 @@ class BroteController extends AbstractController
 
     /**
      * @Route("/{id}", name="derivada_show", methods={"GET"})
-     * @param Brote $derivada
-     * @return Response
      */
     public function show(Brote $derivada): Response
     {
@@ -66,9 +60,6 @@ class BroteController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="derivada_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Brote $derivada
-     * @return Response
      */
     public function edit(Request $request, Brote $derivada): Response
     {
@@ -89,9 +80,6 @@ class BroteController extends AbstractController
 
     /**
      * @Route("/{id}", name="derivada_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Brote $derivada
-     * @return Response
      */
     public function delete(Request $request, Brote $derivada): Response
     {

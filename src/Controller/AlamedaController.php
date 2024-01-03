@@ -13,12 +13,11 @@ class AlamedaController extends AbstractController
 {
     /**
      * @Route("/{name}", name="alameda_name")
-     * @param string $name
-     * @return Response
      */
-    public function routeLink(string $name)
+    public function routeLink(string $name): Response
     {
         $ruta = $name.'.html.twig';
+
         return $this->render('alameda/'.$ruta, [
         ]);
     }
@@ -26,7 +25,7 @@ class AlamedaController extends AbstractController
     /**
      * @Route("/", name="alameda")
      */
-    public function index()
+    public function index(): Response
     {
         return $this->render('alameda/index.html.twig', [
             'controller_name' => 'AlamedaController',

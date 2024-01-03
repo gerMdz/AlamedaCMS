@@ -22,6 +22,7 @@ class BlocsFixesController extends AbstractController
     {
         $bus = $request->get('busq');
         $blocs_fixes = $blocsFixesRepository->queryAllBlocsFixes($bus)->getQuery()->getResult();
+
         return $this->render('admin/blocs_fixes/index.html.twig', [
             'blocs_fixes' => $blocs_fixes,
         ]);
@@ -38,6 +39,7 @@ class BlocsFixesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blocsFixesRepository->add($blocsFix);
+
             return $this->redirectToRoute('app_blocs_fixes_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -67,6 +69,7 @@ class BlocsFixesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blocsFixesRepository->add($blocsFix);
+
             return $this->redirectToRoute('app_blocs_fixes_index', [], Response::HTTP_SEE_OTHER);
         }
 

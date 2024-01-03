@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\IndexAlameda;
 use App\Entity\Section;
-use App\Repository\CelebracionRepository;
 use App\Repository\SectionRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,25 +16,19 @@ class IndexSectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('section', EntityType::class,[
-                'class'=>Section::class,
+            ->add('section', EntityType::class, [
+                'class' => Section::class,
                 'mapped' => false,
                 'placeholder' => 'Seleccione sección',
                 'label' => 'Secciones disponibles',
-                'query_builder' => function (SectionRepository $er) {
-                    return $er->findDisponible();
-                },
+                'query_builder' => fn (SectionRepository $er) => $er->findDisponible(),
 
-                'attr'=>[
+                'attr' => [
                     'class' => 'select2-enable',
-                    'placeholder' => 'Seleccione sección'
-
-                ]
+                    'placeholder' => 'Seleccione sección',
+                ],
             ])
-            ->add('save', SubmitType::class, array(
-                'label' => 'Agregar',
-                'attr' => array('class' => 'btn btn-primary btn--pill')
-            ))
+            ->add('save', SubmitType::class, ['label' => 'Agregar', 'attr' => ['class' => 'btn btn-primary btn--pill']])
         ;
     }
 

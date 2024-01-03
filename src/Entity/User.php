@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ *
  * @UniqueEntity(
  *     fields={"email"},
  *     message="Este email ya está registrado"
@@ -23,16 +23,22 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=40)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
      * @Groups("perfil")
+     *
      * @Assert\NotBlank(message="Por Favor ingrese un email válido")
+     *
      * @Assert\Email(message="Por Favor ingrese un email válido")
      */
     private $email;
@@ -44,6 +50,7 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Groups("perfil")
      */
     private $primerNombre;
@@ -55,12 +62,14 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Groups("perfil")
      */
     private $twitterUsername;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Groups("perfil")
      */
     private $avatarUrl;
@@ -89,8 +98,6 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
      * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="autor")
      */
     private $comentarios;
-
-
 
     /**
      * @ORM\Column(type="datetime")
@@ -139,8 +146,7 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
         return $this->getPrimerNombre();
     }
 
-
-    public function getId():?string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -178,7 +184,6 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
 
         return array_unique($roles);
     }
-
 
     public function setRoles(array $roles): self
     {
@@ -415,15 +420,14 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
         return $this;
     }
 
-    public function getAceptaTerminosAt(): ?DateTimeInterface
+    public function getAceptaTerminosAt(): ?\DateTimeInterface
     {
         return $this->aceptaTerminosAt;
     }
 
-
     public function aceptaTerminos()
     {
-        $this->aceptaTerminosAt = new DateTime();
+        $this->aceptaTerminosAt = new \DateTime();
     }
 
     /**
@@ -548,7 +552,7 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
     }
 
     /**
-     * The public representation of the user (e.g. a username, an email address, etc.)
+     * The public representation of the user (e.g. a username, an email address, etc.).
      *
      * @see UserInterface
      */

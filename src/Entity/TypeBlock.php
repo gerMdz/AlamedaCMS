@@ -15,7 +15,9 @@ class TypeBlock
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -32,6 +34,7 @@ class TypeBlock
 
     /**
      * @ORM\Column(type="string", length=150, unique=true)
+     *
      * @Gedmo\Slug(fields={"name"})
      */
     private $identifier;

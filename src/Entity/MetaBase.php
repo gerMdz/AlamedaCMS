@@ -11,7 +11,9 @@ class MetaBase
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -59,16 +61,15 @@ class MetaBase
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $base;
+    private $base = 'index';
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $favicon;
+    private ?string $favicon = null;
 
     public function __construct()
     {
-        $this->base = 'index';
     }
 
     public function getId(): ?int

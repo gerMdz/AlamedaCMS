@@ -14,55 +14,49 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 /**
  * @Route("/admin/invitado")
+ *
  * @IsGranted("ROLE_RESERVA")
  */
 class InvitadoController extends AbstractController
 {
     /**
      * @Route("/", name="invitado_index", methods={"GET"})
-     * @param InvitadoRepository $invitadoRepository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @param CelebracionRepository $celebracionRepository
-     * @return Response
      */
     public function index(InvitadoRepository $invitadoRepository, PaginatorInterface $paginator, Request $request, CelebracionRepository $celebracionRepository): Response
     {
         $q = $request->query->get('c');
         $busq = $request->query->get('busq');
         $celebracion = null;
-        if(isset($q)){
+        if (isset($q)) {
             $celebracion = $celebracionRepository->find($q);
         }
         $queryBuilder = $invitadoRepository->searchQueryBuilder($q, $busq);
         $invitados = $paginator->paginate(
             $queryBuilder, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            20/* limit per page */
         );
+
         return $this->render('invitado/index.html.twig', [
             'invitados' => $invitados,
-            'celebracion' => $celebracion
+            'celebracion' => $celebracion,
         ]);
     }
 
     /**
      * @Route("/update_ausente", name="invitado_update_ausente", methods={"GET"})
-     * @param Request $request
-     * @param InvitadoRepository $invitadoRepository
-     * @param EntityManagerInterface $entityManager
+     *
      * @return JsonResponse
      */
     public function updateAusente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $entityManager)
     {
         $q = $request->query->get('c');
         $invitados = $invitadoRepository->getAusentesCelebracion($q);
-        foreach ($invitados as $invitado){
-            /** @var Invitado $invitado */
+        foreach ($invitados as $invitado) {
+            /* @var Invitado $invitado */
             $invitado->setIsPresente(false);
             $entityManager->persist($invitado);
         }
@@ -70,7 +64,6 @@ class InvitadoController extends AbstractController
         $ausentes = $invitadoRepository->countAusentesByCelebracion($q);
 
         return new JsonResponse(['ausentes' => $ausentes]);
-
     }
 
     /**
@@ -98,8 +91,6 @@ class InvitadoController extends AbstractController
 
     /**
      * @Route("/{id}", name="invitado_show", methods={"GET"})
-     * @param Invitado $invitado
-     * @return Response
      */
     public function show(Invitado $invitado): Response
     {
@@ -128,8 +119,6 @@ class InvitadoController extends AbstractController
         ]);
     }
 
-
-
     /**
      * @Route("/{id}", name="invitado_delete", methods={"DELETE"})
      */
@@ -146,9 +135,7 @@ class InvitadoController extends AbstractController
 
     /**
      * @Route("/cambia_presente", name="cambia_presente", methods={"GET", "POST"})
-     * @param Request $request
-     * @param InvitadoRepository $invitadoRepository
-     * @param EntityManagerInterface $em
+     *
      * @return JsonResponse
      */
     public function cambiaPresente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $em)
@@ -158,7 +145,7 @@ class InvitadoController extends AbstractController
         $invitado->setIsPresente(!$invitado->getIsPresente());
         $em->persist($invitado);
         $em->flush();
-        return new JsonResponse(['presente' => $invitado->getIsPresente()]);
 
+        return new JsonResponse(['presente' => $invitado->getIsPresente()]);
     }
 }

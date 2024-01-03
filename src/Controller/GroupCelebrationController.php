@@ -21,8 +21,6 @@ class GroupCelebrationController extends AbstractController
 {
     /**
      * @Route("/", name="group_celebration_index", methods={"GET"})
-     * @param GroupCelebrationRepository $groupCelebrationRepository
-     * @return Response
      */
     public function index(GroupCelebrationRepository $groupCelebrationRepository): Response
     {
@@ -33,8 +31,6 @@ class GroupCelebrationController extends AbstractController
 
     /**
      * @Route("/new", name="group_celebration_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -58,8 +54,6 @@ class GroupCelebrationController extends AbstractController
 
     /**
      * @Route("/{id}", name="group_celebration_show", methods={"GET"})
-     * @param GroupCelebration $groupCelebration
-     * @return Response
      */
     public function show(GroupCelebration $groupCelebration): Response
     {
@@ -70,9 +64,6 @@ class GroupCelebrationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="group_celebration_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @return Response
      */
     public function edit(Request $request, GroupCelebration $groupCelebration): Response
     {
@@ -93,10 +84,6 @@ class GroupCelebrationController extends AbstractController
 
     /**
      * @Route("/{id}/remove/{celebracion}", name="group_celebration_remove_celebracion", methods={"GET","POST"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @param CelebracionRepository $celebracionRepository
-     * @return Response
      */
     public function removeCelebracion(Request $request, GroupCelebration $groupCelebration, CelebracionRepository $celebracionRepository): Response
     {
@@ -107,7 +94,6 @@ class GroupCelebrationController extends AbstractController
 
         $this->getDoctrine()->getManager()->flush();
 
-
         return $this->render('group_celebration/show.html.twig', [
             'group_celebration' => $groupCelebration,
         ]);
@@ -115,13 +101,10 @@ class GroupCelebrationController extends AbstractController
 
     /**
      * @Route("/{id}", name="group_celebration_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @return Response
      */
     public function delete(Request $request, GroupCelebration $groupCelebration): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $groupCelebration->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$groupCelebration->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($groupCelebration);
             $entityManager->flush();
@@ -132,11 +115,7 @@ class GroupCelebrationController extends AbstractController
 
     /**
      * @Route("/agregarCelebracion/{id}", name="grupo_agregar_celebracion", methods={"GET", "POST"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @param EntityManagerInterface $em
-     * @param GroupCelebrationRepository $groupCelebrationRepository
-     * @param CelebracionRepository $celebracionRepository
+     *
      * @return RedirectResponse|Response
      */
     public function agregarCelebracion(Request $request, GroupCelebration $groupCelebration, EntityManagerInterface $em, GroupCelebrationRepository $groupCelebrationRepository, CelebracionRepository $celebracionRepository)
@@ -145,7 +124,6 @@ class GroupCelebrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $id_celebracion = $form->get('celebration')->getData();
             $celebracion = $celebracionRepository->find($id_celebracion);
             $celebracion->addGroupCelebration($groupCelebration);
@@ -153,7 +131,7 @@ class GroupCelebrationController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('group_celebration_show', [
-                'id' => $groupCelebration->getId()
+                'id' => $groupCelebration->getId(),
             ]);
         }
 

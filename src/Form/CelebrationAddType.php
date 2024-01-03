@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-
 use App\Entity\Celebracion;
 use App\Form\Model\CelebrationsFormModel;
 use App\Repository\CelebracionRepository;
@@ -17,24 +16,19 @@ class CelebrationAddType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('celebration', EntityType::class,[
-                'class'=>Celebracion::class,
+            ->add('celebration', EntityType::class, [
+                'class' => Celebracion::class,
                 'mapped' => false,
                 'placeholder' => 'Seleccione celebración',
                 'label' => 'Celebraciones disponibles',
-                'query_builder' => function (CelebracionRepository $er) {
-                    return $er->puedeAgruparse();
-                },
+                'query_builder' => fn (CelebracionRepository $er) => $er->puedeAgruparse(),
 
-                'attr'=>[
+                'attr' => [
                     'class' => 'select2-enable',
-                    'placeholder' => 'Seleccione celebracion'
-                ]
+                    'placeholder' => 'Seleccione celebracion',
+                ],
             ])
-            ->add('save', SubmitType::class, array(
-                'label' => 'Agregar',
-                'attr' => array('class' => 'btn btn-primary btn--pill')
-            ))
+            ->add('save', SubmitType::class, ['label' => 'Agregar', 'attr' => ['class' => 'btn btn-primary btn--pill']])
         ;
     }
 

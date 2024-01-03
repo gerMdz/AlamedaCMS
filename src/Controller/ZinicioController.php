@@ -23,7 +23,6 @@ class ZinicioController extends AbstractController
 
     /**
      * ZinicioController constructor.
-     * @param string $site_temporal
      */
     public function __construct(string $site_temporal)
     {
@@ -37,23 +36,21 @@ class ZinicioController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         /** @var IndexAlameda $indexAlameda */
-        $indexAlameda = $em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
-        if ($this->site_temporal == 'true') {
+        $indexAlameda = $em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
+        if ('true' == $this->site_temporal) {
             return $this->redirectToRoute('reserva_index');
-//            return $this->render('models/principal/temporalmente.html.twig', [
-//                'datosIndex' => null,
-//            ]);
+            //            return $this->render('models/principal/temporalmente.html.twig', [
+            //                'datosIndex' => null,
+            //            ]);
         }
         $vista = 'index';
-        if($indexAlameda->getTemplate()){
+        if ($indexAlameda->getTemplate()) {
             $vista = $indexAlameda->getTemplate();
         }
 
+        $blocsFixes = $indexAlameda->getBlocsFixes() ?? [];
 
-            $blocsFixes = $indexAlameda->getBlocsFixes()?? [];
-
-
-        return $this->render('models/principal/'.$vista .'.html.twig', [
+        return $this->render('models/principal/'.$vista.'.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda,
             'blocsFixes' => $blocsFixes,
@@ -62,8 +59,6 @@ class ZinicioController extends AbstractController
 
     /**
      * @Route("/ingreso", name="app_ingreso")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return RedirectResponse
      */
     public function ingreso(AuthenticationUtils $authenticationUtils): RedirectResponse
     {
@@ -72,7 +67,6 @@ class ZinicioController extends AbstractController
 
     /**
      * @Route("/reserva", name="app_reserva")
-     * @return RedirectResponse
      */
     public function app_reserva(): RedirectResponse
     {
@@ -87,7 +81,7 @@ class ZinicioController extends AbstractController
         $em = $this->container->get('doctrine')->getManager();
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
-//        $blocsFixes = $em->getRepository(BlocsFixes::class)->findBy(['indexAlameda' => $indexAlameda[0]->getId()]);
+        //        $blocsFixes = $em->getRepository(BlocsFixes::class)->findBy(['indexAlameda' => $indexAlameda[0]->getId()]);
         $blocsFixes = $indexAlameda[0]->getBlocsFixes();
 
         return $this->render('models/principal/index-side-right.html.twig', [
@@ -99,9 +93,6 @@ class ZinicioController extends AbstractController
 
     /**
      * @Route("/test/{linkRoute}", name="test_principal_ver", methods={"GET"})
-     * @param Principal $principal
-     * @param PrincipalRepository $principalRepository
-     * @return Response
      */
     public function ver_test(Principal $principal, PrincipalRepository $principalRepository): Response
     {
@@ -122,10 +113,6 @@ class ZinicioController extends AbstractController
 
     /**
      * @Route("/{linkRoute}", name="principal_ver", methods={"GET"})
-     * @param Principal $principal
-     * @param PrincipalRepository $principalRepository
-     * @param SectionRepository $sectionRepository
-     * @return Response
      */
     public function ver(
         Principal $principal,
@@ -151,11 +138,6 @@ class ZinicioController extends AbstractController
 
     /**
      * @Route("/{linkRoute}/listado", name="principal_listado", methods={"GET"})
-     * @param Principal $principal
-     * @param PrincipalRepository $principalRepository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
      */
     public function listado(
         Principal $principal,
@@ -163,15 +145,13 @@ class ZinicioController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
-
         $query = $principalRepository->getQueryfindByPrincipalParentActive($principal);
 
         $principales = $paginator->paginate(
             $query, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            5/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            5/* limit per page */
         );
-
 
         return $this->render('models/principal/listadoPrincipal.html.twig', [
             'principales' => $principales,
@@ -179,11 +159,10 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/contacto", name="contacto")
      */
-    public function contacto()
+    public function contacto(): Response
     {
         return $this->render('models/principal/contacto.html.twig', []);
     }
@@ -191,7 +170,7 @@ class ZinicioController extends AbstractController
     /**
      * @Route("/avanza", name="avanza")
      */
-    public function avanza()
+    public function avanza(): Response
     {
         return $this->render('models/principal/avanza.html.twig', []);
     }
@@ -199,7 +178,7 @@ class ZinicioController extends AbstractController
     /**
      * @Route("/grupospequeños", name="grupospequeños", options = {"utf8": true })
      */
-    public function gpc()
+    public function gpc(): Response
     {
         return $this->render('models/principal/grupospequeños.html.twig', []);
     }
@@ -207,7 +186,7 @@ class ZinicioController extends AbstractController
     /**
      * @Route("/ofrenda", name="ofrenda", options = {"utf8": true })
      */
-    public function ofrenda()
+    public function ofrenda(): Response
     {
         return $this->render('models/principal/ofrenda.html.twig', []);
     }
@@ -223,7 +202,7 @@ class ZinicioController extends AbstractController
     /**
      * @Route("/oracion", name="oracion", options = {"utf8": true })
      */
-    public function oracion()
+    public function oracion(): Response
     {
         return $this->render('models/principal/oracion.html.twig', []);
     }

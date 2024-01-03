@@ -11,8 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -24,9 +24,6 @@ class PerfilController extends BaseController
 {
     /**
      * @Route("web/perfil", name="app_perfil")
-     *
-     * @param IndexAlamedaRepository $indexAlamedaRepository
-     * @return Response
      */
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
@@ -49,22 +46,20 @@ class PerfilController extends BaseController
 
     /**
      * @Route("/web/cambiopassword/{email}", name="app_changepassword")
-     * @param Request $request
-     * @param User $user
-     * @param UserPasswordHasherInterface $passwordEncoder
-     * @param AuthenticationUtils $authenticationUtils
-     * @return Response
      */
-    public function changePassword(Request $request, User $user, UserPasswordHasherInterface $passwordEncoder, AuthenticationUtils $authenticationUtils): Response
+    public function changePassword(
+        Request $request, User $user,
+        UserPasswordHasherInterface $userPasswordHasher,
+        AuthenticationUtils $authenticationUtils): Response
     {
         $form = $this->createForm(ChangePasswordType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
             $password = $form['password']->getData();
             $user->setPassword(
-                $passwordEncoder->hashPassword($user, $password)
+                $userPasswordHasher->hashPassword($user, $password)
             );
             try {
                 $em = $this->container->get('doctrine')->getManager();
@@ -82,9 +77,9 @@ class PerfilController extends BaseController
             ]);
         }
 
-        return $this->render('security/change-password.html.twig',[
+        return $this->render('security/change-password.html.twig', [
             'user' => $user,
-            'form'=>$form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

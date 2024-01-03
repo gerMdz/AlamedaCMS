@@ -7,7 +7,6 @@ use App\Repository\ModelTemplateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ModelTemplateRepository::class)
@@ -17,7 +16,9 @@ class ModelTemplate
     use ImageTrait;
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -39,6 +40,7 @@ class ModelTemplate
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeBlock::class, inversedBy="modelTemplates")
+     *
      * @ORM\OrderBy({"name"= "ASC"})
      */
     private $block;

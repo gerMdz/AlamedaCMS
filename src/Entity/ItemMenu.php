@@ -21,8 +21,11 @@ class ItemMenu
 
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=36)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
@@ -51,8 +54,6 @@ class ItemMenu
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isExterno;
-
-
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -167,8 +168,6 @@ class ItemMenu
 
         return $this;
     }
-
-
 
     public function getIsActivo(): ?bool
     {

@@ -36,6 +36,7 @@ class TypeFixeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $typeFixeRepository->add($typeFixe);
+
             return $this->redirectToRoute('app_type_fixe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,6 +66,7 @@ class TypeFixeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $typeFixeRepository->add($typeFixe);
+
             return $this->redirectToRoute('app_type_fixe_index', [], Response::HTTP_SEE_OTHER);
         }
 

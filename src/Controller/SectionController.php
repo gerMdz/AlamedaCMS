@@ -17,8 +17,6 @@ use App\Repository\SectionRepository;
 use App\Service\Handler\SourceApi\HandlerSourceApi;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Query\QueryException;
-use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -37,19 +35,17 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
- * Class SectionController
- * @package App\Controller
+ * Class SectionController.
+ *
  * @Route("/admin/section")
  */
 class SectionController extends BaseController
 {
-
     private $session;
     private $api;
 
     /**
      * SectionController constructor.
-     * @param SessionInterface $session
      */
     public function __construct(SessionInterface $session, HandlerSourceApi $api)
     {
@@ -58,10 +54,6 @@ class SectionController extends BaseController
     }
 
     /**
-     * @param SectionRepository $repository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
      * @Route("/", name="admin_section_list")
      */
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
@@ -71,8 +63,8 @@ class SectionController extends BaseController
         $seccion = $repository->getSections($bus);
         $secciones = $paginator->paginate(
             $seccion, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            20/* limit per page */
         );
 
         return $this->render('admin/section_admin/list.html.twig', [
@@ -81,12 +73,10 @@ class SectionController extends BaseController
     }
 
     /**
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @param UploaderHelper $uploaderHelper
-     * @return Response
-     * @throws Exception
+     * @throws \Exception
+     *
      * @Route("/new", name="admin_section_new")
+     *
      * @IsGranted("ROLE_EDITOR")
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
@@ -131,12 +121,10 @@ class SectionController extends BaseController
 
     /**
      * @Route("/{id}/edit", name="admin_section_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Section $section
-     * @param UploaderHelper $uploaderHelper
-     * @return Response
+     *
      * @IsGranted("MANAGE", subject="section")
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function edit(Request $request, Section $section, UploaderHelper $uploaderHelper): Response
     {
@@ -144,7 +132,6 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             if ($uploadedFile) {
@@ -162,103 +149,80 @@ class SectionController extends BaseController
         ]);
     }
 
-
     /**
      * @Route("/index/{id}", name="admin_index_delete_section", methods={"DELETE"})
-     * @param Section $section
-     * @param EntityManagerInterface $entityManager
-     * @return Response
      */
     public function deleteIndexSection(Section $section, EntityManagerInterface $entityManager): Response
     {
         $indexAlameda = $section->getIndexAlamedas();
 
-
         $section->removeIndexAlameda($indexAlameda[0]);
 
         $entityManager->flush();
 
-        return new Response(null, 204);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
      * @Route("/entrada/{id}/{entrada}", name="admin_entrada_delete_section", methods={"DELETE"})
-     * @param Section $section
-     * @param Entrada $entrada
-     * @param EntityManagerInterface $entityManager
-     * @return Response
      */
     public function deleteEntradaSection(
         Section $section,
         Entrada $entrada,
         EntityManagerInterface $entityManager
     ): Response {
-
         $section->removeEntrada($entrada);
 
         $entityManager->flush();
 
-        return new Response(null, 204);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
      * @Route("/principal/{id}/{principal}", name="admin_principal_delete_section", methods={"DELETE"})
-     * @param Section $section
-     * @param Principal $principal
-     * @param EntityManagerInterface $entityManager
-     * @return Response
      */
     public function deletePrincipalSection(
         Section $section,
         Principal $principal,
         EntityManagerInterface $entityManager
     ): Response {
-        if ($principal->getSecciones() !== null) {
+        if (null !== $principal->getSecciones()) {
             $section->removePrincipale($principal);
         }
 
         $section->setPrincipal(null);
         $entityManager->flush();
 
-        return new Response(null, 204);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
      * @Route("/muestra/seccion/{id}")
-     * @param Section $section
-     * @param EntradaRepository $entradaRepository
-     * @return Response
      */
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
     {
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
-        $twig = $section->getModelTemplate().".html.twig";
+        $twig = $section->getModelTemplate().'.html.twig';
         $response_api = null;
         $apiSource = null;
 
-        if ($twig == 'api.html.twig') {
-
+        if ('api.html.twig' == $twig) {
             try {
                 $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
-                 'identifier' => $section->getIdentificador()
+                 'identifier' => $section->getIdentificador(),
                 ]);
-
             } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
             }
             if ($apiSource) {
                 try {
                     $response_api = $this->api->fetchSourceApi($apiSource[0])[0];
                     $response_api['source'] = $apiSource[0]->getBaseUri();
-
-
                 } catch (ClientExceptionInterface|DecodingExceptionInterface|ServerExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface $e) {
                 }
             }
-
         }
         $model = 'models/sections/'.$twig;
-
 
         return $this->render($model, [
             'entradas' => $entradas,
@@ -269,8 +233,6 @@ class SectionController extends BaseController
 
     /**
      * @Route("/{id}", name="admin_section_show", methods={"GET"})
-     * @param Section $section
-     * @return Response
      */
     public function show(Section $section): Response
     {
@@ -281,9 +243,9 @@ class SectionController extends BaseController
 
     /**
      * @Route("/new/step1", name="admin_section_new_step1", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
-     * @throws Exception
+     *
+     * @throws \Exception
+     *
      * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepOne(Request $request): Response
@@ -293,7 +255,6 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $principal = $form['principal']->getData();
             $section->addPrincipale($principal);
             $entityManager = $this->container->get('doctrine')->getManager();
@@ -313,10 +274,7 @@ class SectionController extends BaseController
 
     /**
      * @Route("/new/step2/{id}", name="admin_section_new_step2", methods={"GET","POST"})
-     * @param Request $request
-     * @param Section $section
-     * @param ModelTemplateRepository $modelTemplateRepository
-     * @return Response
+     *
      * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepTwo(
@@ -329,7 +287,6 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $model_template_id = $this->session->get('model_template_id');
             if ($model_template_id) {
                 $model_template = $modelTemplateRepository->find($model_template_id);
@@ -353,9 +310,7 @@ class SectionController extends BaseController
 
     /**
      * @Route("/new/step3/{id}", name="admin_section_new_step3", methods={"GET","POST"})
-     * @param Request $request
-     * @param Section $section
-     * @return Response
+     *
      * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepThree(Request $request, Section $section): Response
@@ -365,7 +320,6 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->container->get('doctrine')->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_show', [
@@ -381,19 +335,19 @@ class SectionController extends BaseController
 
     /**
      * @Route("/test/api/{identifier}", name="admin_section_test_api", methods={"GET","POST"})
-     * @param SourceApi $api
      */
     public function getDataSourceApi(SourceApi $api)
     {
-            return new JsonResponse($this->api->fetchSourceApi($api));
+        return new JsonResponse($this->api->fetchSourceApi($api));
     }
 
     /**
-     * La idea es agregar una entrada ya creada a una sección, falta el modal que selecciona la entrada
+     * La idea es agregar una entrada ya creada a una sección, falta el modal que selecciona la entrada.
+     *
      * @Route("/agregarEntrada/{id}", name="section_agregar_entrada", methods={"GET", "POST"})
-     * @param Request $request
+     *
      * @param Entrada $section
-     * @param SectionRepository $sectionRepository
+     *
      * @return RedirectResponse|Response
      */
     public function agregarSeccion(Request $request, Section $section, EntradaRepository $entradaRepository)
@@ -402,7 +356,6 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $entrada->addSection($seccion);

@@ -10,7 +10,6 @@ class ObtenerDatosHelper
 
     /**
      * ObtenerDatosHelper constructor.
-     * @param RequestStack $requestStack
      */
     public function __construct(RequestStack $requestStack)
     {
@@ -36,7 +35,7 @@ class ObtenerDatosHelper
                 $entries = preg_split('/[, ]/', $_SERVER['HTTP_X_FORWARDED_FOR']);
 
                 reset($entries);
-                while (list(, $entry) = each($entries)) {
+                foreach ($entries as $entry) {
                     $entry = trim($entry);
                     if (preg_match("/^([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/", $entry, $ip_list)) {
                         // http://www.faqs.org/rfcs/rfc1918.html

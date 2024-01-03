@@ -12,8 +12,11 @@ class WaitingList
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=36)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
@@ -35,6 +38,7 @@ class WaitingList
 
     /**
      * @ORM\ManyToOne(targetEntity=Celebracion::class, inversedBy="waitingLists")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $celebracion;

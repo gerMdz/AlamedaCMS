@@ -12,8 +12,6 @@ class SitemapController extends AbstractController
 {
     /**
      * @Route("/sitemap.xml", name="sitemap", defaults={"_format"="xml"})
-     * @param Request $request
-     * @return Response
      */
     public function index(Request $request): Response
     {
@@ -21,9 +19,8 @@ class SitemapController extends AbstractController
 
         $urls = [];
 
-// On ajoute les URLs "statiques"
+        // On ajoute les URLs "statiques"
         $urls[] = ['loc' => $this->generateUrl('reserva_index')];
-
 
         foreach ($this->getDoctrine()->getRepository(Principal::class)->findAll() as $principal) {
             $urls[] = [
@@ -37,7 +34,7 @@ class SitemapController extends AbstractController
         $response = new Response(
             $this->renderView('sitemap/index.html.twig', ['urls' => $urls,
                 'hostname' => $hostname]),
-            200
+            Response::HTTP_OK
         );
 
         $response->headers->set('Content-Type', 'text/xml');

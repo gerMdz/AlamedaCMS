@@ -14,13 +14,17 @@ class Reservante
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=36)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
     /**
      * @ORM\ManyToOne(targetEntity=Celebracion::class, inversedBy="reservantes")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $celebracion;
@@ -57,21 +61,20 @@ class Reservante
 
     /**
      * @ORM\OneToMany(targetEntity=Invitado::class, mappedBy="enlace")
+     *
      * @ORM\OrderBy({"nombre"= "ASC"})
      */
     private $invitados;
 
     public function __toString()
     {
-        return $this->email . ' - ' .$this->apellido . ', '. $this->getNombre();
+        return $this->email.' - '.$this->apellido.', '.$this->getNombre();
     }
 
     public function __construct()
     {
         $this->invitados = new ArrayCollection();
     }
-
-
 
     public function getId(): ?string
     {
@@ -191,6 +194,4 @@ class Reservante
 
         return $this;
     }
-
-
 }

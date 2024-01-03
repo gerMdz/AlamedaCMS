@@ -14,7 +14,6 @@ namespace App\Command;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Utils\Validator;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -25,6 +24,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
+
 use function Symfony\Component\String\u;
 
 /**
@@ -53,9 +53,6 @@ class AddUserCommand extends Command
     // so it will be instantiated only when the command is actually called.
     protected static $defaultName = 'app:add-user';
 
-    /**
-     * @var SymfonyStyle
-     */
     private SymfonyStyle $io;
 
     private EntityManagerInterface $entityManager;
@@ -73,9 +70,6 @@ class AddUserCommand extends Command
         $this->users = $users;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this
@@ -146,7 +140,6 @@ class AddUserCommand extends Command
             $input->setArgument('password', $password);
         }
 
-
         // Ask for the primer nombre if it's not defined
         $primerNombre = $input->getArgument('primerNombre');
         if (null !== $primerNombre) {
@@ -184,12 +177,12 @@ class AddUserCommand extends Command
         $encodedPassword = $this->passwordEncoder->hashPassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
         $user->setPrimerNombre($primerNombre);
-        $user->aceptaTerminos( new DateTime('now'));
+        $user->aceptaTerminos();
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        $this->io->success(sprintf('%s was successfully created: %s ', $isAdmin ? $isAdmin . ' user' : 'User', $user->getEmail()));
+        $this->io->success(sprintf('%s was successfully created: %s ', $isAdmin ? $isAdmin.' user' : 'User', $user->getEmail()));
 
         $event = $stopwatch->stop('add-user-command');
         if ($output->isVerbose()) {
@@ -212,7 +205,6 @@ class AddUserCommand extends Command
         $this->validator->validatePassword($plainPassword);
         $this->validator->validateEmail($email);
         $this->validator->validatePrimerNombre($primerNombre);
-
     }
 
     /**

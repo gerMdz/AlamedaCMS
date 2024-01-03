@@ -18,8 +18,6 @@ class TypeBlockController extends AbstractController
 {
     /**
      * @Route("/", name="type_block_index", methods={"GET"})
-     * @param TypeBlockRepository $typeBlockRepository
-     * @return Response
      */
     public function index(TypeBlockRepository $typeBlockRepository): Response
     {
@@ -30,8 +28,7 @@ class TypeBlockController extends AbstractController
 
     /**
      * @Route("/new", name="type_block_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
@@ -56,8 +53,6 @@ class TypeBlockController extends AbstractController
 
     /**
      * @Route("/{id}", name="type_block_show", methods={"GET"})
-     * @param TypeBlock $typeBlock
-     * @return Response
      */
     public function show(TypeBlock $typeBlock): Response
     {
@@ -68,9 +63,7 @@ class TypeBlockController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="type_block_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param TypeBlock $typeBlock
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, TypeBlock $typeBlock): Response
@@ -92,9 +85,7 @@ class TypeBlockController extends AbstractController
 
     /**
      * @Route("/{id}", name="type_block_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param TypeBlock $typeBlock
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, TypeBlock $typeBlock): Response

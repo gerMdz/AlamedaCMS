@@ -16,13 +16,16 @@ class EnlaceCorto
 
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=150, unique=true, nullable=true)
+     *
      * @Gedmo\Slug(fields={"linkRoute"})
      */
     private $linkRoute;

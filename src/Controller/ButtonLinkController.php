@@ -17,8 +17,6 @@ class ButtonLinkController extends AbstractController
 {
     /**
      * @Route("/", name="button_link_index", methods={"GET"})
-     * @param ButtonLinkRepository $buttonLinkRepository
-     * @return Response
      */
     public function index(ButtonLinkRepository $buttonLinkRepository): Response
     {
@@ -29,8 +27,6 @@ class ButtonLinkController extends AbstractController
 
     /**
      * @Route("/new", name="button_link_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -54,8 +50,6 @@ class ButtonLinkController extends AbstractController
 
     /**
      * @Route("/{id}", name="button_link_show", methods={"GET"})
-     * @param ButtonLink $buttonLink
-     * @return Response
      */
     public function show(ButtonLink $buttonLink): Response
     {
@@ -66,9 +60,6 @@ class ButtonLinkController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="button_link_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param ButtonLink $buttonLink
-     * @return Response
      */
     public function edit(Request $request, ButtonLink $buttonLink): Response
     {
@@ -89,9 +80,6 @@ class ButtonLinkController extends AbstractController
 
     /**
      * @Route("/{id}", name="button_link_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param ButtonLink $buttonLink
-     * @return Response
      */
     public function delete(Request $request, ButtonLink $buttonLink): Response
     {

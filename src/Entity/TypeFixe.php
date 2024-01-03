@@ -6,8 +6,8 @@ use App\Entity\Traits\IdentificadorTrait;
 use App\Repository\TypeFixeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
@@ -20,8 +20,11 @@ class TypeFixe
 
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="uuid", length=36)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      */
     private UuidInterface $id;
@@ -29,7 +32,7 @@ class TypeFixe
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $description;
+    private ?string $description = null;
 
     public function __construct()
     {

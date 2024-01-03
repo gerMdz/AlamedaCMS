@@ -20,7 +20,6 @@ use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\Persistence\ManagerRegistry;
-use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -37,9 +36,6 @@ class AdminEntradaController extends BaseController
 
     /**
      * NO usado es opcional.
-     * @param LoggerClient $loggerClient
-     * @param BoleanToDateHelper $boleanToDateHelper
-     * @param ManagerRegistry $managerRegistry
      */
     public function __construct(
         LoggerClient $loggerClient,
@@ -53,11 +49,8 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/entrada", name="admin_entrada_index")
+     *
      * @IsGranted("ROLE_ESCRITOR")
-     * @param EntradaRepository $entradaRepository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
      */
     public function index(
         EntradaRepository $entradaRepository,
@@ -74,8 +67,8 @@ class AdminEntradaController extends BaseController
 
         $entradas = $paginator->paginate(
             $entrada, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            20/* limit per page */
         );
 
         return $this->render('admin/entrada/list.html.twig', [
@@ -85,11 +78,9 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/entrada/publicadas", name="admin_entrada_publicadas")
+     *
      * @IsGranted("ROLE_ESCRITOR")
-     * @param EntradaRepository $entradaRepository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
+     *
      * @throws QueryException
      */
     public function listadoPublicado(
@@ -97,13 +88,12 @@ class AdminEntradaController extends BaseController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
-
         $this->isGranted('ROLE_EDITOR') ? $user = $this->getUser() : $user = null;
         $entrada = $entradaRepository->findAllPublicadosOrderedByPublicacionQuery($user);
         $entradas = $paginator->paginate(
             $entrada, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            20/* limit per page */
         );
 
         return $this->render('admin/entrada/list.html.twig', [
@@ -112,13 +102,12 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @param Request $request
-     * @param Entrada $entrada
-     * @param UploaderHelper $uploaderHelper
-     * @param ObtenerDatosHelper $datosHelper
      * @return RedirectResponse
-     * @throws Exception
+     *
+     * @throws \Exception
+     *
      * @Route("/admin/entrada/{id}/edit", name="admin_entrada_edit")
+     *
      * @IsGranted("MANAGE", subject="entrada")
      */
     public function edit(
@@ -163,11 +152,12 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @param Request $request
-     * @param Entrada $entrada
      * @return RedirectResponse
-     * @throws Exception
+     *
+     * @throws \Exception
+     *
      * @Route("/admin/entrada/{id}/edit-complex", name="admin_entrada_edit_complex")
+     *
      * @IsGranted("MANAGE", subject="entrada")
      */
     public function editComplex(Request $request, Entrada $entrada): Response
@@ -190,20 +180,19 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/entrada/new", name="admin_entrada_new")
+     *
      * @IsGranted("ROLE_ESCRITOR")
      *
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @param UploaderHelper $uploaderHelper
      * @return RedirectResponse|Response
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
         $entrada = new Entrada();
         $user = $this->getUser();
         $entrada->setAutor($user);
-        if($request->get('section')){
+        if ($request->get('section')) {
             $entrada->addSection($this->container->get('doctrine')->getRepository(Section::class)->find($request->get('section')));
         }
 
@@ -255,9 +244,9 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/new/step1", name="admin_entrada_new_step1", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
-     * @throws Exception
+     *
+     * @throws \Exception
+     *
      * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepOne(Request $request, ModelTemplateRepository $modelTemplateRepository): Response
@@ -269,9 +258,8 @@ class AdminEntradaController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $section = $form['section']->getData();
             $entrada->addSection($section);
-            if($session_template = $this->container->get('session')->get('model_template_id'))
-            {
-                if($modelTemplate = $modelTemplateRepository->find($session_template)){
+            if ($session_template = $this->container->get('session')->get('model_template_id')) {
+                if ($modelTemplate = $modelTemplateRepository->find($session_template)) {
                     $entrada->setModelTemplate($modelTemplate);
                 }
             }
@@ -283,8 +271,6 @@ class AdminEntradaController extends BaseController
             ]);
         }
 
-
-
         return $this->render('admin/entrada/new_step1.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
@@ -293,9 +279,7 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/new/step2/{id}", name="admin_entrada_new_step2", methods={"GET","POST"})
-     * @param Request $request
-     * @param Entrada $entrada
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function newStepTwo(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
@@ -306,7 +290,6 @@ class AdminEntradaController extends BaseController
         $linkRoutes = $principalRepository->getPrincipalSelect();
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('admin_entrada_new_step3', [
@@ -317,20 +300,19 @@ class AdminEntradaController extends BaseController
         return $this->render('admin/entrada/new_step2.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form->createView(),
-            'LinkRoutes' => $linkRoutes
+            'LinkRoutes' => $linkRoutes,
         ]);
     }
 
     /**
      * @Route("/admin/new/step3/{id}", name="admin_entrada_new_step3", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
-     * @throws Exception
+     *
+     * @throws \Exception
+     *
      * @IsGranted("ROLE_ESCRITOR")
      */
     public function newStepThree(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
     {
-
         $form = $this->createForm(StepThreeType::class, $entrada);
         $form->handleRequest($request);
 
@@ -353,9 +335,6 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/entrada/{linkRoute}", name="entrada_admin_link")
-     *
-     * @param Entrada $entrada
-     * @return Response
      */
     public function link(Entrada $entrada): Response
     {
@@ -366,8 +345,6 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/entrada/{id}/show", name="entrada_show", methods={"GET"})
-     * @param Entrada $entrada
-     * @return Response
      */
     public function show(Entrada $entrada): Response
     {
@@ -378,9 +355,6 @@ class AdminEntradaController extends BaseController
 
     /**
      * @Route("/admin/entrada/{id}/delete", name="entrada_delete", methods={"DELETE", "POST"})
-     * @param Request $request
-     * @param Entrada $entrada
-     * @return Response
      */
     public function delete(Request $request, Entrada $entrada): Response
     {
@@ -388,15 +362,11 @@ class AdminEntradaController extends BaseController
         $msg = 'No se puede borrar esta entrada. Comuníquese con el administrador';
 
         if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
-
             $msg = 'No cuenta con los permisos para borrar esta entrada. Comuníquese con el administrador';
 
             if ($this->getUser() === $entrada->getAutor() or $this->isGranted('ROLE_EDITOR')) {
-
-                {
-                    foreach ($entrada->getPrincipals() as $principal) {
-                        $entrada->removePrincipal($principal);
-                    }
+                foreach ($entrada->getPrincipals() as $principal) {
+                    $entrada->removePrincipal($principal);
                 }
 
                 foreach ($entrada->getSections() as $section) {
@@ -431,10 +401,6 @@ class AdminEntradaController extends BaseController
         return $this->redirectToRoute('admin_entrada_index');
     }
 
-    /**
-     * @param string $titulo
-     * @return string
-     */
     private function limpiaLink(string $titulo): string
     {
         $link = strtolower(str_replace(' ', '-', trim($titulo)));
@@ -443,10 +409,6 @@ class AdminEntradaController extends BaseController
         return strtolower(str_replace('</p>', '', trim($link)));
     }
 
-    /**
-     * @param Principal|null $principal
-     * @return string|null
-     */
     private function getLinkRoute(?Principal $principal): ?string
     {
         if (null === $principal) {
@@ -456,11 +418,6 @@ class AdminEntradaController extends BaseController
         return $principal->getLinkRoute();
     }
 
-    /**
-     * @param string|null $linkRoute
-     * @param PrincipalRepository $principalRepository
-     * @return Principal|null
-     */
     private function getPrincipal(?string $linkRoute, PrincipalRepository $principalRepository): ?Principal
     {
         if (null === $linkRoute) {

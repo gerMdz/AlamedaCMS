@@ -14,13 +14,16 @@ class Comentario
     use TimestampableEntity;
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comentarios")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $autor;

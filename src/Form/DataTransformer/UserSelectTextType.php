@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Form\DataTransformer;
-
 
 use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
@@ -15,14 +13,11 @@ use Symfony\Component\Routing\RouterInterface;
 
 class UserSelectTextType extends AbstractType
 {
-
     protected $userRepository;
     protected $router;
 
     /**
      * UserSelectTextType constructor.
-     * @param UserRepository $userRepository
-     * @param RouterInterface $router
      */
     public function __construct(UserRepository $userRepository, RouterInterface $router)
     {
@@ -46,13 +41,10 @@ class UserSelectTextType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'invalid_message'=>'Usuario no encontrado',
-            'finder_callback' => function(UserRepository $userRepository, string $email) {
-                return $userRepository->findOneBy(['email' => $email]);
-            },
-            'attr'=>[
-
-            ]
+           'invalid_message' => 'Usuario no encontrado',
+            'finder_callback' => fn (UserRepository $userRepository, string $email) => $userRepository->findOneBy(['email' => $email]),
+            'attr' => [
+            ],
         ]);
     }
 
@@ -67,6 +59,4 @@ class UserSelectTextType extends AbstractType
         $attr['data-autocomplete-url'] = $this->router->generate('admin_utility_user');
         $view->vars['attr'] = $attr;
     }
-
-
 }

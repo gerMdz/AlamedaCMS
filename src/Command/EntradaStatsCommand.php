@@ -29,7 +29,7 @@ class EntradaStatsCommand extends Command
 
         $data = [
             'identificador' => $identificador,
-            'vistas' => rand(10, 100),
+            'vistas' => random_int(10, 100),
         ];
 
         if ($identificador) {

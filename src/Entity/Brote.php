@@ -22,14 +22,18 @@ class Brote
 
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="derivadas")
+     *
      * @ORM\JoinColumn(nullable=false)
+     *
      * @Assert\NotNull(message="Por favor indique autor")
      */
     private $autor;
@@ -46,6 +50,7 @@ class Brote
 
     /**
      * @ORM\Column(type="string", length=150, unique=true)
+     *
      * @Gedmo\Slug(fields={"titulo"})
      */
     private $linkRoute;

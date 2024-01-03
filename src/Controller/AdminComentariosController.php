@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Repository\ComentarioRepository;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,23 +13,20 @@ class AdminComentariosController extends AbstractController
 {
     /**
      * @Route("/admin/comentarios", name="admin_comentarios")
-     * @param ComentarioRepository $comentarioRepository
-     * @param Request $request
-     * @param PaginatorInterface $paginator
-     * @return Response
      */
-    public function index(ComentarioRepository $comentarioRepository, Request $request, PaginatorInterface $paginator)
+    public function index(ComentarioRepository $comentarioRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $q = $request->query->get('q');
         $queryBuilder = $comentarioRepository->searchQueryBuilder($q);
 
         $comentarios = $paginator->paginate(
             $queryBuilder, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            10/* limit per page */
         );
+
         return $this->render('admin_comentarios/index.html.twig', [
-            'comentarios' => $comentarios
+            'comentarios' => $comentarios,
         ]);
     }
 }

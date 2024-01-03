@@ -14,7 +14,9 @@ class ButtonLink
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -63,7 +65,7 @@ class ButtonLink
 
     public function __toString()
     {
-     return $this->textButton;
+        return $this->textButton;
     }
 
     public function getId(): ?int

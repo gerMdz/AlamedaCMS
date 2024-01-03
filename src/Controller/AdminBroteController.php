@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Exception;
 
 class AdminBroteController extends AbstractController
 {
@@ -27,9 +26,6 @@ class AdminBroteController extends AbstractController
 
     /**
      * NO usado es opcional.
-     * @param bool $isDebug
-     * @param LoggerClient $loggerClient
-     * @param BoleanToDateHelper $boleanToDateHelper
      */
     public function __construct(bool $isDebug, LoggerClient $loggerClient, BoleanToDateHelper $boleanToDateHelper)
     {
@@ -40,13 +36,12 @@ class AdminBroteController extends AbstractController
 
     /**
      * @Route("/admin/brote/new", name="admin_brote_new")
+     *
      * @IsGranted("ROLE_ESCRITOR")
      *
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @param UploaderHelper $uploaderHelper
      * @return RedirectResponse|Response
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
@@ -100,13 +95,12 @@ class AdminBroteController extends AbstractController
 
     /**
      * @Route("/admin/brote/{linkRoute}/edit", name="admin_brote_edit")
+     *
      * @IsGranted("ROLE_ESCRITOR")
-     * @param Brote $brote
-     * @param Request $request
-     * @param EntityManagerInterface $em
-     * @param UploaderHelper $uploaderHelper
+     *
      * @return RedirectResponse|Response
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function edit(Brote $brote, Request $request, EntityManagerInterface $em, UploaderHelper $uploaderHelper)
     {
@@ -124,25 +118,23 @@ class AdminBroteController extends AbstractController
                 $brote->setImageFilename($newFilename);
             }
 
-
-
             $em->persist($brote);
             $em->flush();
             $this->addFlash('success', 'Elemento Actualizado');
+
             return $this->redirectToRoute('admin_brote_edit', [
-                'linkRoute'=>$brote->getLinkRoute()
+                'linkRoute' => $brote->getLinkRoute(),
             ]);
         }
+
         return $this->render('admin_brote/edit.html.twig', [
             'broteForm' => $form->createView(),
-            'brote' => $brote
+            'brote' => $brote,
         ]);
     }
 
     /**
      * @Route("/admin/brote", name="admin_brote_list")
-     * @param BroteRepository $broteRepository
-     * @return Response
      */
     public function list(BroteRepository $broteRepository): Response
     {

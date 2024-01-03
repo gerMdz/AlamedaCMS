@@ -17,8 +17,6 @@ class MetaBaseController extends AbstractController
 {
     /**
      * @Route("/", name="meta_base_index", methods={"GET"})
-     * @param MetaBaseRepository $metaBaseRepository
-     * @return Response
      */
     public function index(MetaBaseRepository $metaBaseRepository): Response
     {
@@ -70,6 +68,7 @@ class MetaBaseController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->container->get('doctrine')->getManager()->flush();
+
             return $this->redirectToRoute('meta_base_index');
         }
 

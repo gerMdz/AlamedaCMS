@@ -17,7 +17,6 @@ class RSSController extends AbstractController
 
     /**
      * RSSController constructor.
-     * @param string $site_podcasts
      */
     public function __construct(string $site_podcasts)
     {
@@ -26,17 +25,15 @@ class RSSController extends AbstractController
 
     /**
      * @Route("/rss", name="rss-feed")
-     * @param ChannelFeedRepository $channelFeedRepository
-     * @return Response
      */
     public function rss(ChannelFeedRepository $channelFeedRepository): Response
     {
-
         $channels = $channelFeedRepository->findFirst();
 
         $response = new Response();
-        $response->headers->set("Content-type", "text/xml");
+        $response->headers->set('Content-type', 'text/xml');
         $response->setContent(Xml::generate($channels, $this->site_podcasts));
+
         return $response;
     }
 }

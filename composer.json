@@ -72,6 +72,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fzaninotto/faker": "^1.9",
         "phpunit/phpunit": "^9.5",
+        "rector/rector": "^0.18.13",
         "sensiolabs/security-checker": "^6.0",
         "symfony/browser-kit": "^5.4",
         "symfony/css-selector": "^5.4",

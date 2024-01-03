@@ -5,26 +5,26 @@ namespace App\Entity;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\CelebracionRepository;
 use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use IntlDateFormatter;
 
 /**
  * @ORM\Entity(repositoryClass=CelebracionRepository::class)
  */
 class Celebracion
 {
-
     use TimestampableEntity;
     use OfertTrait;
 
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=36)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
@@ -46,6 +46,7 @@ class Celebracion
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="celebracions")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $creaEvento;
@@ -87,10 +88,11 @@ class Celebracion
 
     public function __toString()
     {
-        $formatter = new IntlDateFormatter('es_ES', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
+        $formatter = new \IntlDateFormatter('es_ES', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
         $formatter->setPattern(" d 'de' MMMM");
-//      return $this->getNombre() . ' ' . date_format($this->getFechaCelebracionAt(), 'd/M');
-      return $this->getNombre() . ' ' . $formatter->format($this->getFechaCelebracionAt());
+
+        //      return $this->getNombre() . ' ' . date_format($this->getFechaCelebracionAt(), 'd/M');
+        return $this->getNombre().' '.$formatter->format($this->getFechaCelebracionAt());
     }
 
     public function __construct()
@@ -101,19 +103,17 @@ class Celebracion
         $this->groupCelebrations = new ArrayCollection();
     }
 
-
-
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getFechaCelebracionAt(): ?DateTimeInterface
+    public function getFechaCelebracionAt(): ?\DateTimeInterface
     {
         return $this->fechaCelebracionAt;
     }
 
-    public function setFechaCelebracionAt(DateTimeInterface $fechaCelebracionAt): self
+    public function setFechaCelebracionAt(\DateTimeInterface $fechaCelebracionAt): self
     {
         $this->fechaCelebracionAt = $fechaCelebracionAt;
 
@@ -143,9 +143,6 @@ class Celebracion
 
         return $this;
     }
-
-
-
 
     public function getCreaEvento(): ?User
     {
@@ -255,12 +252,10 @@ class Celebracion
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getInvitadosPresentes(): ?int
     {
         $criterio = CelebracionRepository::createIsPresenteCriteria();
+
         return count($this->invitados->matching($criterio));
     }
 
@@ -320,6 +315,4 @@ class Celebracion
 
         return $this;
     }
-
-
 }

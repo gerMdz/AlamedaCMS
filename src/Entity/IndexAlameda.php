@@ -13,7 +13,9 @@ class IndexAlameda
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -21,60 +23,56 @@ class IndexAlameda
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $lema;
+    private ?string $lema = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $lemaPrincipal;
+    private ?string $lemaPrincipal = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $lemaSinEspacio;
-
-
-
-
-
+    private ?string $lemaSinEspacio = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $metaDescripcion;
+    private ?string $metaDescripcion = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $metaAutor;
+    private ?string $metaAutor = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $metaTitle;
+    private ?string $metaTitle = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $metaType;
+    private ?string $metaType = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $metaUrl;
+    private ?string $metaUrl = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $metaImage;
+    private ?string $metaImage = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $base;
+    private ?string $base = null;
 
     /**
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
+     *
      * @ORM\OrderBy({"orden"="ASC"})
      */
     private $section;
@@ -87,16 +85,17 @@ class IndexAlameda
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
      */
-    private ?ModelTemplate $template;
+    private ?ModelTemplate $template = null;
 
     public function __construct()
     {
         $this->section = new ArrayCollection();
         $this->blocs_fixes = new ArrayCollection();
     }
+
     public function __toString()
     {
-     return $this->base;
+        return $this->base;
     }
 
     public function getId(): ?int
@@ -139,12 +138,6 @@ class IndexAlameda
 
         return $this;
     }
-
-
-
-
-
-
 
     public function getMetaDescripcion(): ?string
     {
@@ -265,7 +258,6 @@ class IndexAlameda
     }
 
     /**
-     * @param BlocsFixes $blocsFix
      * @return $this
      */
     public function addBlocsFix(BlocsFixes $blocsFix): self

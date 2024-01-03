@@ -3,7 +3,6 @@
 namespace App\Security;
 
 use App\Repository\ApiTokenRepository;
-use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -61,7 +60,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     {
         return new JsonResponse([
             'message' => $exception->getMessageKey(),
-        ], 401);
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_UNAUTHORIZED);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -71,7 +70,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        throw new Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
+        throw new \Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
     }
 
     public function supportsRememberMe()

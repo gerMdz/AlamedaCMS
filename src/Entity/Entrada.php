@@ -7,12 +7,11 @@ use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -29,44 +28,51 @@ class Entrada
 
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @Groups("mail")
+     *
      * @Assert\NotBlank
      */
-
     private string $titulo;
 
     /**
      * @ORM\Column(type="text", length=8000, nullable=true)
+     *
      * @Groups("mail")
      */
-    private ?string $contenido;
+    private ?string $contenido = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="entradas")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $autor;
+    private ?User $autor = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Groups("mail")
      */
-    private ?string $imageFilename=null;
+    private ?string $imageFilename = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?DateTimeInterface $publicadoAt;
+    private ?\DateTimeInterface $publicadoAt = null;
 
     /**
      * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
+     *
      * @ORM\OrderBy({"posicion"="ASC"})
      */
     private ?Collection $entradaReferences;
@@ -78,6 +84,7 @@ class Entrada
 
     /**
      * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada", fetch="EXTRA_LAZY")
+     *
      * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private ?Collection $comentarios;
@@ -87,41 +94,40 @@ class Entrada
      */
     private ?Collection $principals;
 
-
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?DateTimeInterface $eventoAt;
+    private ?\DateTimeInterface $eventoAt = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $typeOrigin;
+    private ?string $typeOrigin = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $typeCarry;
+    private ?string $typeCarry = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private ?int $orden;
+    private ?int $orden = null;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $encabezado;
+    private ?bool $encabezado = null;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $destacado;
+    private ?bool $destacado = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="entradas")
      */
-    private ?ModelTemplate $modelTemplate;
+    private ?ModelTemplate $modelTemplate = null;
 
     /**
      * @ORM\ManyToMany(targetEntity=Contacto::class, inversedBy="entradas")
@@ -131,17 +137,17 @@ class Entrada
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $isSinTitulo;
+    private ?bool $isSinTitulo = null;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $isPermanente;
+    private ?bool $isPermanente = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $footer;
+    private ?string $footer = null;
 
     /**
      * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="entradas")
@@ -151,10 +157,11 @@ class Entrada
     /**
      * @ORM\Column(type="string", length=150, nullable=true, unique=true)
      */
-    private ?string $identificador;
+    private ?string $identificador = null;
 
     /**
      * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="entradas")
+     *
      * @JoinTable(name="section_entrada",
      *     joinColumns={@JoinColumn(name="entrada_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="section_id", referencedColumnName="id")}
@@ -217,6 +224,7 @@ class Entrada
     public function setAutor(?User $autor): self
     {
         $this->autor = $autor;
+
         return $this;
     }
 
@@ -228,27 +236,29 @@ class Entrada
     public function setImageFilename(?string $imageFilename): self
     {
         $this->imageFilename = $imageFilename;
+
         return $this;
     }
 
-    public function getPublicadoAt(): ?DateTimeInterface
+    public function getPublicadoAt(): ?\DateTimeInterface
     {
         return $this->publicadoAt;
     }
 
-    public function setPublicadoAt(?DateTimeInterface $publicadoAt): self
+    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
     {
         $this->publicadoAt = $publicadoAt;
+
         return $this;
     }
 
     public function getImagePath(): ?string
     {
-        return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
+        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 
     /**
-     * @return null|Collection|EntradaReference[]
+     * @return Collection|EntradaReference[]|null
      */
     public function getEntradaReferences(): ?Collection
     {
@@ -263,26 +273,29 @@ class Entrada
     public function setLikes(int $likes): self
     {
         $this->likes = $likes;
+
         return $this;
     }
 
     public function incrementaLikeCount(): self
     {
         $this->likes = $this->likes + 1;
+
         return $this;
     }
 
     /**
-     * @return null|Collection|Comentario[]
+     * @return Collection|Comentario[]|null
      */
     public function getComentariosNoDeleted(): ?Collection
     {
         $criterio = EntradaRepository::createNoDeletedCriteria();
+
         return $this->comentarios->matching($criterio);
     }
 
     /**
-     * @return null|Collection|Comentario[]
+     * @return Collection|Comentario[]|null
      */
     public function getComentarios(): ?Collection
     {
@@ -313,7 +326,7 @@ class Entrada
     }
 
     /**
-     * @return null|Collection|Principal[]
+     * @return Collection|Principal[]|null
      */
     public function getPrincipals(): ?Collection
     {
@@ -340,19 +353,17 @@ class Entrada
         return $this;
     }
 
-
-    public function getEventoAt(): ?DateTimeInterface
+    public function getEventoAt(): ?\DateTimeInterface
     {
         return $this->eventoAt;
     }
 
-    public function setEventoAt(?DateTimeInterface $eventoAt): self
+    public function setEventoAt(?\DateTimeInterface $eventoAt): self
     {
         $this->eventoAt = $eventoAt;
 
         return $this;
     }
-
 
     public function getTypeOrigin(): ?string
     {
@@ -427,7 +438,7 @@ class Entrada
     }
 
     /**
-     * @return null|Collection|Contacto[]
+     * @return Collection|Contacto[]|null
      */
     public function getContacto(): ?Collection
     {
@@ -474,7 +485,6 @@ class Entrada
         return $this;
     }
 
-
     public function getFooter(): ?string
     {
         return $this->footer;
@@ -488,7 +498,7 @@ class Entrada
     }
 
     /**
-     * @return null|Collection|ButtonLink[]
+     * @return Collection|ButtonLink[]|null
      */
     public function getButton(): ?Collection
     {
@@ -518,8 +528,8 @@ class Entrada
 
     public function setIdentificador(?string $identificador): self
     {
-        if(null === $identificador){
-            $identificador = str_replace(' ', '-',strip_tags($this->titulo));
+        if (null === $identificador) {
+            $identificador = str_replace(' ', '-', strip_tags($this->titulo));
         }
         $this->identificador = $identificador;
 
@@ -534,19 +544,21 @@ class Entrada
         return $this->sections;
     }
 
-    public function addSection(Section $section=null): self
+    public function addSection(Section $section = null): self
     {
-        if($section) {
+        if ($section) {
             if (!$this->sections->contains($section)) {
                 $this->sections[] = $section;
             }
         }
+
         return $this;
     }
 
     public function removeSection(Section $section): self
     {
         $this->sections->removeElement($section);
+
         return $this;
     }
 }

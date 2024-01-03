@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Comentario;
 use App\Form\ComentarioType;
-use App\Repository\ComentarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ComentarioController extends AbstractController
 {
-
     /**
      * @Route("/new", name="comentario_new", methods={"GET","POST"})
      */

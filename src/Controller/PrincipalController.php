@@ -8,9 +8,7 @@ use App\Form\SectionAddType;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -26,12 +24,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PrincipalController extends BaseController
 {
-
     private $session;
 
-    /**
-     * @param SessionInterface $session
-     */
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
@@ -39,10 +33,7 @@ class PrincipalController extends BaseController
 
     /**
      * @Route("/", name="principal_index", methods={"GET"})
-     * @param PrincipalRepository $principalRepository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
@@ -51,9 +42,10 @@ class PrincipalController extends BaseController
         $queryPrincipales = $principalRepository->queryFindAllPrincipals($bus);
         $principales = $paginator->paginate(
             $queryPrincipales, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            15/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            15/* limit per page */
         );
+
         return $this->render('principal/index.html.twig', [
             'principals' => $principales,
         ]);
@@ -61,18 +53,16 @@ class PrincipalController extends BaseController
 
     /**
      * @Route("/new", name="principal_new", methods={"GET","POST"})
-     * @param Request $request
-     * @param UploaderHelper $uploaderHelper
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function new(Request $request, UploaderHelper $uploaderHelper): Response
     {
-
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new DateTime('now');
+        $ahora = new \DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -80,7 +70,6 @@ class PrincipalController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var Principal $principal */
             $principal = $form->getData();
 
@@ -92,9 +81,9 @@ class PrincipalController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $principal->setImageFilename($newFilename);
             }
-            if($principal->getLinkRoute() != null){
+            if (null != $principal->getLinkRoute()) {
                 $principal->setLinkRoute($principal->getLinkRoute());
-            }else{
+            } else {
                 $principal->setLinkRoute($principal->getTitulo());
             }
             $entityManager = $this->getDoctrine()->getManager();
@@ -110,21 +99,18 @@ class PrincipalController extends BaseController
         ]);
     }
 
-
     /**
      * @Route("/new-for-assistant", name="principal_new_assistant", methods={"GET","POST"})
-     * @param Request $request
-     * @param UploaderHelper $uploaderHelper
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
-     * @throws Exception
+     *
+     * @throws \Exception
      */
     public function newAssistant(Request $request, UploaderHelper $uploaderHelper): Response
     {
-
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new DateTime('now');
+        $ahora = new \DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -132,7 +118,6 @@ class PrincipalController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var Principal $principal */
             $principal = $form->getData();
 
@@ -144,9 +129,9 @@ class PrincipalController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $principal->setImageFilename($newFilename);
             }
-            if($principal->getLinkRoute() != null){
+            if (null != $principal->getLinkRoute()) {
                 $principal->setLinkRoute($principal->getLinkRoute());
-            }else{
+            } else {
                 $principal->setLinkRoute($principal->getTitulo());
             }
             $entityManager = $this->getDoctrine()->getManager();
@@ -162,14 +147,11 @@ class PrincipalController extends BaseController
         ]);
     }
 
-
     /**
      * @Route("/{id}/edit", name="principal_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Principal $principal
-     * @param UploaderHelper $uploaderHelper
-     * @return Response
-     * @throws Exception
+     *
+     * @throws \Exception
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper): Response
@@ -178,7 +160,6 @@ class PrincipalController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             $linkRoute = $form['linkRoute']->getData();
@@ -187,13 +168,11 @@ class PrincipalController extends BaseController
                 $principal->setImageFilename($newFilename);
             }
 
-
-            if($linkRoute){
+            if ($linkRoute) {
                 $principal->setLinkRoute($linkRoute);
-            }else{
+            } else {
                 $principal->setLinkRoute($principal->getTitulo());
             }
-
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -208,27 +187,23 @@ class PrincipalController extends BaseController
 
     /**
      * @Route("/{id}/show", name="principal_show", methods={"GET"})
-     * @param Principal $principal
-     * @param PrincipalRepository $repository
-     * @return Response
      */
     public function show(Principal $principal, PrincipalRepository $repository): Response
     {
         $brotes = $repository->findByPrincipalParent($principal);
-        if(!$brotes){
+        if (!$brotes) {
             $brotes = null;
         }
+
         return $this->render('principal/show.html.twig', [
             'principal' => $principal,
-            'brotes' => $brotes
+            'brotes' => $brotes,
         ]);
     }
 
     /**
      * @Route("/{id}", name="principal_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Principal $principal
-     * @return Response
+     *
      * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Principal $principal): Response
@@ -244,8 +219,6 @@ class PrincipalController extends BaseController
 
     /**
      * @Route("/section/{id}", methods="GET", name="admin_principal_list_section")
-     * @param Principal $principal
-     * @return JsonResponse
      */
     public function getSectionPrincipal(Principal $principal): JsonResponse
     {
@@ -254,18 +227,14 @@ class PrincipalController extends BaseController
             200,
             [],
             [
-                'groups' => ['main']
+                'groups' => ['main'],
             ]
         );
     }
 
     /**
      * @Route("/agregarSeccion/{id}", name="principal_agregar_seccion", methods={"GET", "POST"})
-     * @param Request $request
-     * @param Principal $principal
-     * @param EntityManagerInterface $entityManager
-     * @param SectionRepository $sectionRepository
-     * @param PrincipalRepository $principalRepository
+     *
      * @return RedirectResponse|Response
      */
     public function agregarSeccion(Request $request, Principal $principal, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, PrincipalRepository $principalRepository)
@@ -275,14 +244,13 @@ class PrincipalController extends BaseController
         $this->session->set('principal_id', $principal->getId());
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $principal->addSeccione($seccion);
             $entityManager->persist($principal);
             $entityManager->flush();
 
-            if($this->session->get('principal_id')){
+            if ($this->session->get('principal_id')) {
                 $this->session->remove('principal_id');
             }
 
@@ -295,6 +263,5 @@ class PrincipalController extends BaseController
             'principal' => $principal,
             'form' => $form->createView(),
         ]);
-
     }
 }

@@ -14,13 +14,16 @@ class Contacto
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=TipoContacto::class, inversedBy="contactos")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $tipo;
@@ -65,7 +68,6 @@ class Contacto
     {
         return $this->nombre;
     }
-
 
     public function getId(): ?int
     {
@@ -182,6 +184,4 @@ class Contacto
 
         return $this;
     }
-
-
 }

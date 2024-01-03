@@ -9,13 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RolesRepository::class)
+ *
  * @ORM\HasLifecycleCallbacks()
  */
 class Roles
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -55,11 +58,11 @@ class Roles
         return $this->getIdentificador();
     }
 
-//    public function __construct()
-//    {
-//        $nombre = $this->nombre;
-//        $this->identificador = 'ROLE_'.$this->nombre;
-//    }
+    //    public function __construct()
+    //    {
+    //        $nombre = $this->nombre;
+    //        $this->identificador = 'ROLE_'.$this->nombre;
+    //    }
 
     public function getId(): ?int
     {
@@ -83,14 +86,14 @@ class Roles
         return $this->identificador;
     }
 
-//    public function setIdentificador(string $nombre): self
-//    {
-//
-////        $this->identificador = $identificador;
-//        $this->identificador = 'ROLE_'.$this->getNombre();
-//
-//        return $this;
-//    }
+    //    public function setIdentificador(string $nombre): self
+    //    {
+    //
+    // //        $this->identificador = $identificador;
+    //        $this->identificador = 'ROLE_'.$this->getNombre();
+    //
+    //        return $this;
+    //    }
 
     public function getDescripcion(): ?string
     {
@@ -106,6 +109,7 @@ class Roles
 
     /**
      * @ORM\PrePersist
+     *
      * @ORM\PreUpdate
      */
     public function setIdentificador(): void

@@ -17,8 +17,6 @@ class RolesController extends AbstractController
 {
     /**
      * @Route("/", name="roles_list", methods={"GET"})
-     * @param RolesRepository $rolesRepository
-     * @return Response
      */
     public function list(RolesRepository $rolesRepository): Response
     {
@@ -29,8 +27,6 @@ class RolesController extends AbstractController
 
     /**
      * @Route("/new", name="roles_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -54,8 +50,6 @@ class RolesController extends AbstractController
 
     /**
      * @Route("/{id}", name="roles_show", methods={"GET"})
-     * @param Roles $role
-     * @return Response
      */
     public function show(Roles $role): Response
     {
@@ -66,9 +60,6 @@ class RolesController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="roles_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Roles $role
-     * @return Response
      */
     public function edit(Request $request, Roles $role): Response
     {
@@ -89,9 +80,6 @@ class RolesController extends AbstractController
 
     /**
      * @Route("/{id}", name="roles_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Roles $role
-     * @return Response
      */
     public function delete(Request $request, Roles $role): Response
     {

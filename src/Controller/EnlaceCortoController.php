@@ -103,10 +103,7 @@ class EnlaceCortoController extends AbstractController
 
     /**
      * @Route("/{enlace}", name="enlace_corto_pagina", methods={"GET"})
-     * @param string $enlace
-     * @return RedirectResponse
      */
-
     public function irEnlace(string $enlace): RedirectResponse
     {
         return $this->redirect(
