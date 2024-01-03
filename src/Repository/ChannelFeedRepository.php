@@ -37,10 +37,6 @@ class ChannelFeedRepository extends ServiceEntityRepository
     }
     */
 
-
-    /**
-     * @return ChannelFeed|null
-     */
     public function findFirst(): ?ChannelFeed
     {
         try {
@@ -53,5 +49,4 @@ class ChannelFeedRepository extends ServiceEntityRepository
         } catch (NonUniqueResultException $e) {
         }
     }
-
 }

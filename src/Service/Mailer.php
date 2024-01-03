@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\Celebracion;
 use App\Entity\Invitado;
 use App\Entity\Reservante;
@@ -21,12 +20,8 @@ class Mailer
     private $twig;
     private $waitingListRepository;
 
-
     /**
      * Mailer constructor.
-     * @param MailerInterface $mailer
-     * @param Environment $twig
-     * @param WaitingListRepository $waitingListRepository
      */
     public function __construct(MailerInterface $mailer, Environment $twig, WaitingListRepository $waitingListRepository)
     {
@@ -36,9 +31,6 @@ class Mailer
     }
 
     /**
-     * @param Reservante $reservante
-     * @param null|int $invitados
-     * @return TemplatedEmail
      * @throws TransportExceptionInterface
      */
     public function sendReservaMessage(Reservante $reservante, ?int $invitados): TemplatedEmail
@@ -51,7 +43,7 @@ class Mailer
             ->context([
                 // You can pass whatever data you want
                 'reservante' => $reservante,
-                'invitados' => $invitados
+                'invitados' => $invitados,
             ]);
 
         $this->mailer->send($email);
@@ -60,8 +52,6 @@ class Mailer
     }
 
     /**
-     * @param WaitingList $espera
-     * @return TemplatedEmail
      * @throws TransportExceptionInterface
      */
     public function sendAvisoRegistroReservaMessage(WaitingList $espera): TemplatedEmail
@@ -82,17 +72,13 @@ class Mailer
     }
 
     /**
-     * @param Celebracion $celebracion
-     * @return bool
      * @throws TransportExceptionInterface
      */
     public function sendAvisoLugarMessage(Celebracion $celebracion): bool
     {
-
         $esperan = $celebracion->getWaitingLists();
 
         foreach ($esperan as $espera) {
-
             $email = (new TemplatedEmail())
                 ->from(new Address('contacto@alameda.ar', 'Iglesia de La Alameda'))
                 ->to(new Address($espera->getEmail(), $espera->getNombre()))
@@ -101,7 +87,7 @@ class Mailer
                 ->context([
                     // You can pass whatever data you want
                     'espera' => $espera,
-                    'celebracion' => $celebracion
+                    'celebracion' => $celebracion,
                 ]);
 
             $this->mailer->send($email);

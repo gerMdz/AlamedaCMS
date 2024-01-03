@@ -63,6 +63,4 @@ class BroteRepository extends ServiceEntityRepository
     {
         return $qb ?: $this->createQueryBuilder('b');
     }
-
-
 }

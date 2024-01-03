@@ -16,21 +16,21 @@ class TypeBlockType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Que nombre tendrá el nuevo TypeBlock?',
-                'attr' =>[
-                    'class' => 'form-control'
+                'attr' => [
+                    'class' => 'form-control',
     ],
             ])
             ->add('description', TextType::class, [
                 'label' => 'Agregue una descripción para el nuevo TypeBlock',
-                'attr' =>[
-                    'class' => 'form-control'
+                'attr' => [
+                    'class' => 'form-control',
                 ],
             ])
             ->add('identifier', TextType::class, [
                 'label' => 'Agregue un identificador único para el nuevo TypeBlock',
                 'help' => 'En minúsculas y sin espacios, puede usar guiones medios "-"',
-                'attr' =>[
-                    'class' => 'form-control'
+                'attr' => [
+                    'class' => 'form-control',
                 ],
             ])
             ->add('isActive', CheckboxType::class, [

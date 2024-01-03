@@ -2,18 +2,15 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Comentario;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class ComentarioFixtures extends BaseFixture implements DependentFixtureInterface
 {
-
     protected function loadData(ObjectManager $manager)
     {
         $this->createMany(100, 'main_comentarios', function ($count) {
-
             $comment = new Comentario();
             $comment->setContenido(
                 $this->faker->boolean ? $this->faker->paragraph : $this->faker->sentences(2, true)
@@ -24,7 +21,6 @@ class ComentarioFixtures extends BaseFixture implements DependentFixtureInterfac
                 ->setIsDeleted($this->faker->boolean(20));
 
             return $comment;
-
         });
         $manager->flush();
     }
@@ -34,7 +30,7 @@ class ComentarioFixtures extends BaseFixture implements DependentFixtureInterfac
         return [
 //            TagFixture::class,
             UserFixtures::class,
-            EntradaFixtures::class
+            EntradaFixtures::class,
         ];
-}
+    }
 }

@@ -14,9 +14,6 @@ class HandlerSourceApi
 {
     private HttpClientInterface $client;
 
-    /**
-     * @param HttpClientInterface $client
-     */
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
@@ -37,7 +34,5 @@ class HandlerSourceApi
         );
 
         return $response->toArray();
-
     }
-
 }

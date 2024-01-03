@@ -14,8 +14,6 @@ class ReservaSubscriber implements EventSubscriberInterface
 
     /**
      * ReservaSubscriber constructor.
-     * @param HandlerCelebracion $handlerCelebracion
-     * @param Mailer $mailer
      */
     public function __construct(HandlerCelebracion $handlerCelebracion, Mailer $mailer)
     {
@@ -25,14 +23,12 @@ class ReservaSubscriber implements EventSubscriberInterface
 
     public function onAnulaReservaEvent($event)
     {
-        if($this->handlerCelebracion->hayLugar($event->getData())){
-
+        if ($this->handlerCelebracion->hayLugar($event->getData())) {
             try {
                 $this->mailer->sendAvisoLugarMessage($event->getData());
             } catch (TransportExceptionInterface $e) {
             }
         }
-
     }
 
     public static function getSubscribedEvents(): array

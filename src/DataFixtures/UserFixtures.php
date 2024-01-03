@@ -9,13 +9,13 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends BaseFixture
 {
-//    public function load(ObjectManager $manager)
-//    {
-//        // $product = new Product();
-//        // $manager->persist($product);
-//
-//        $manager->flush();
-//    }
+    //    public function load(ObjectManager $manager)
+    //    {
+    //        // $product = new Product();
+    //        // $manager->persist($product);
+    //
+    //        $manager->flush();
+    //    }
 
     private $userPasswordEncoder;
 

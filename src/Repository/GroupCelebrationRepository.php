@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\GroupCelebration;
-use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,22 +20,19 @@ class GroupCelebrationRepository extends ServiceEntityRepository
         parent::__construct($registry, GroupCelebration::class);
     }
 
-     /**
-      * @return QueryBuilder Returns an array of GroupCelebration objects
-      */
-
+    /**
+     * @return QueryBuilder Returns an array of GroupCelebration objects
+     */
     public function findByActive(): QueryBuilder
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.isActivo = :val')
             ->setParameter('val', true)
             ->orderBy('g.title', 'ASC');
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-        ;
+        //            ->setMaxResults(10)
+        //            ->getQuery()
+        //            ->getResult()
     }
-
 
     /*
     public function findOneBySomeField($value): ?GroupCelebration
@@ -50,11 +46,9 @@ class GroupCelebrationRepository extends ServiceEntityRepository
     }
     */
 
-
     /**
      * @return QueryBuilder Returns an array of Celebracion objects
      */
-
     public function puedeMostrarse(): QueryBuilder
     {
         return $this->createQueryBuilder('g')
@@ -75,7 +69,7 @@ class GroupCelebrationRepository extends ServiceEntityRepository
             ->addOrderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('activo', true)
 //            ->setParameter('hab', true)
-            ->setParameter('today',new DateTime('now'))
-            ;
+            ->setParameter('today', new \DateTime('now'))
+        ;
     }
 }

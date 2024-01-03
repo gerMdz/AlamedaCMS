@@ -8,9 +8,6 @@ class LoggerClient
 {
     use LoggerTait;
 
-    /**
-     * @param string $context|null
-     */
     public function logMessage(string $message, string $context)
     {
         $this->logInfo('Edit Entrada', [

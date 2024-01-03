@@ -3,8 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Entrada;
-use DateInterval;
-use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\QueryException;
@@ -28,10 +26,6 @@ class EntradaRepository extends ServiceEntityRepository
     //  * @return Entrada[] Returns an array of Entrada objects
     //  */
 
-    /**
-     * @param $user
-     * @return mixed
-     */
     public function findByAutor($user)
     {
         return $this->queryFindByAutor($user)
@@ -39,11 +33,6 @@ class EntradaRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-    /**
-     * @param $user
-     * @return QueryBuilder
-     */
     public function queryFindByAutor($user, ?string $qSearch): QueryBuilder
     {
         $qb = $this->createQueryBuilder('e')
@@ -64,8 +53,8 @@ class EntradaRepository extends ServiceEntityRepository
     }
 
     /**
-     *
      * @return Entrada[]
+     *
      * @throws QueryException
      */
     public function findAllPublicadosOrderedByPublicacion($user = null): array
@@ -85,12 +74,11 @@ class EntradaRepository extends ServiceEntityRepository
 
         return $this->addIsPublishedQueryBuilder(null, $user)
             ->orderBy('e.publicadoAt', 'DESC');
-}
+    }
 
     /**
-     *
-     * @param $seccion
      * @return Entrada[]
+     *
      * @throws QueryException
      */
     public function findAllEntradasBySeccion($seccion): array
@@ -108,7 +96,7 @@ class EntradaRepository extends ServiceEntityRepository
             )
             ->andWhere('e.publicadoAt is not null')
             ->andWhere('s.id = :section')
-            ->setParameter('today', new DateTime('now'))
+            ->setParameter('today', new \DateTime('now'))
             ->setParameter('section', $seccion)
             ->getQuery()
             ->getResult();
@@ -127,7 +115,6 @@ class EntradaRepository extends ServiceEntityRepository
             ->andWhere(Criteria::expr()->eq('disponible', true))
             ->orderBy(['disponibleAt' => 'ASC']);
     }
-
 
     /*
     public function findOneBySomeField($value): ?Article
@@ -163,10 +150,6 @@ class EntradaRepository extends ServiceEntityRepository
         return $qb ?: $this->createQueryBuilder('e');
     }
 
-    /**
-     * @param string|null $qSearch
-     * @return QueryBuilder
-     */
     public function queryFindAllEntradas(?string $qSearch): QueryBuilder
     {
         $qb = $this->createQueryBuilder('e')
@@ -184,11 +167,8 @@ class EntradaRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    /**
-     */
     public function entradasByDateAndActiveAndModification($fecha_inicial, $fecha_final): QueryBuilder
     {
-
         $qb = $this->createQueryBuilder('e')
             ->select()
 //            ->andWhere('e.disponibleAt is not null')
@@ -206,5 +186,4 @@ class EntradaRepository extends ServiceEntityRepository
 
         return $qb;
     }
-
 }

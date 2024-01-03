@@ -21,12 +21,10 @@ class UserRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $email
-     * @param $role
      * @return User[] Returns an array of User objects
+     *
      * @throws NonUniqueResultException
      */
-
     public function findByRoleAndEmail($email, $role)
     {
         return $this->createQueryBuilder('u')
@@ -49,29 +47,28 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllEmailsRoleAlfa(string $role =  null, string $query, int $limit = 5)
+    public function findAllEmailsRoleAlfa(string $role = null, string $query, int $limit = 5)
     {
         $qb = $this->createQueryBuilder('u');
 
-
-        if($role){
+        if ($role) {
             $qb->andWhere('u.roles LIKE :roles')
                 ->setParameter('roles', '%'.$role.'%');
         }
-//
-            $qb->andWhere('u.email LIKE :email')
-                ->setParameter('email', '%'.$query.'%');
-//            dd($qb);
-//
-//            $qb->orderBy('u.email', 'ASC')
-//
-//            ;
+
+        $qb->andWhere('u.email LIKE :email')
+            ->setParameter('email', '%'.$query.'%');
+
+        //            dd($qb);
+        //
+        //            $qb->orderBy('u.email', 'ASC')
+        //
+        //            ;
         return $qb
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
-
 
     /*
     public function findOneBySomeField($value): ?User

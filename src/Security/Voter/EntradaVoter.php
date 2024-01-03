@@ -51,7 +51,7 @@ class EntradaVoter extends Voter
                     return true;
                 }
 
-                 return false;
+                return false;
         }
 
         return false;
