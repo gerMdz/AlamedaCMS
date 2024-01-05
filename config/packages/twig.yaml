@@ -19,3 +19,7 @@ twig:
         site_robot: '%env(resolve:SITE_ROBOT)%'
 
 
+
+when@test:
+    twig:
+        strict_variables: true
