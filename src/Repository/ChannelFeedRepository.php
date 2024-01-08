@@ -37,7 +37,10 @@ class ChannelFeedRepository extends ServiceEntityRepository
     }
     */
 
-    public function findFirst(): ?ChannelFeed
+    /**
+     * @return float|int|mixed|string|void|null
+     */
+    public function findFirst()
     {
         try {
             return $this->createQueryBuilder('c')
@@ -50,3 +53,4 @@ class ChannelFeedRepository extends ServiceEntityRepository
         }
     }
 }
+
