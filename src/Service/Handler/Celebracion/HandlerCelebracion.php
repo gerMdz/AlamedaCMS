@@ -11,16 +11,11 @@ use Doctrine\Common\Collections\Collection;
 
 class HandlerCelebracion
 {
-    private $invitadoRepository;
-    private $celebracionRepository;
-
     /**
      * HandlerCelebracion constructor.
      */
-    public function __construct(InvitadoRepository $invitadoRepository, CelebracionRepository $celebracionRepository)
+    public function __construct(private InvitadoRepository $invitadoRepository, private CelebracionRepository $celebracionRepository)
     {
-        $this->invitadoRepository = $invitadoRepository;
-        $this->celebracionRepository = $celebracionRepository;
     }
 
     public function hayLugar(Celebracion $celebracion): bool
