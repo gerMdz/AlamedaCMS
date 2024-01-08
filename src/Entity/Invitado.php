@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InvitadoRepository")
  */
-class Invitado
+class Invitado implements \Stringable
 {
     use TimestampableEntity;
     /**
@@ -74,7 +74,7 @@ class Invitado
      */
     private $isPresente;
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->email.' - '.$this->apellido.', '.$this->nombre;
     }

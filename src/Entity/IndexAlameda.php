@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\IndexAlamedaRepository")
  */
-class IndexAlameda
+class IndexAlameda implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -93,9 +93,9 @@ class IndexAlameda
         $this->blocs_fixes = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->base;
+        return (string) $this->base;
     }
 
     public function getId(): ?int
