@@ -13,7 +13,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 /**
  * @ORM\Entity(repositoryClass=CelebracionRepository::class)
  */
-class Celebracion
+class Celebracion implements \Stringable
 {
     use TimestampableEntity;
     use OfertTrait;
@@ -86,7 +86,7 @@ class Celebracion
      */
     private $groupCelebrations;
 
-    public function __toString()
+    public function __toString(): string
     {
         $formatter = new \IntlDateFormatter('es_ES', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
         $formatter->setPattern(" d 'de' MMMM");
