@@ -49,7 +49,7 @@ class StepThreeType extends AbstractType
         ; // Fin del builder
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [
