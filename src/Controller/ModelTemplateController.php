@@ -16,8 +16,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -25,14 +25,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ModelTemplateController extends AbstractController
 {
-    private $session;
-
     /**
      * ModelTemplateController constructor.
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(private RequestStack $requestStack)
     {
-        $this->session = $session;
     }
 
     /**
@@ -215,7 +212,7 @@ class ModelTemplateController extends AbstractController
      */
     public function createBlockFromModelTemplate(ModelTemplate $modelTemplate): RedirectResponse
     {
-        $this->session->set('model_template_id', $modelTemplate->getId());
+        $this->requestStack->getSession()->set('model_template_id', $modelTemplate->getId());
         $entity = $modelTemplate->getBlock()->getEntity();
 
         return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower($entity)));
