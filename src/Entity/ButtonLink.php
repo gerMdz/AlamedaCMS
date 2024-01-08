@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ButtonLinkRepository::class)
  */
-class ButtonLink
+class ButtonLink implements \Stringable
 {
     /**
      * @ORM\Id
@@ -63,9 +63,9 @@ class ButtonLink
         $this->entradas = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->textButton;
+        return (string) $this->textButton;
     }
 
     public function getId(): ?int
