@@ -20,12 +20,12 @@ import './bootstrap';
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.css');
-require('../css/igles.css');
+require('./styles/app.css');
+require('./css/igles.css');
 // require('../css/igle.scss');
-require('../css/foundation-icons/foundation-icons.css');
-require('../css/stream.css');
-require('../css/styles.css');
+require('./css/foundation-icons/foundation-icons.css');
+require('./css/stream.css');
+require('./css/styles.css');
 // require('../fonts/univers/font.css');
 
 

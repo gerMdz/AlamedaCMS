@@ -1,7 +1,8 @@
-import { startStimulusApp } from '@symfony/stimulus-bridge';
+// import { startStimulusApp } from '@symfony/stimulus-bridge';
+import { Controller } from '@hotwired/stimulus';
 
 // Registers Stimulus controllers from controllers.json and in the controllers/ directory
-export const app = startStimulusApp(require.context(
+export const app = Controller(require.context(
     '@symfony/stimulus-bridge/lazy-controller-loader!./controllers',
     true,
     /\.[jt]sx?$/
