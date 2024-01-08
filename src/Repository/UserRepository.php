@@ -47,7 +47,7 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllEmailsRoleAlfa(string $role = null, string $query, int $limit = 5)
+    public function findAllEmailsRoleAlfa(string $query, string $role = null, int $limit = 5)
     {
         $qb = $this->createQueryBuilder('u');
 

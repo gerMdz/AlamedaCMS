@@ -101,7 +101,7 @@ class SectionRepository extends ServiceEntityRepository
     }
     */
 
-    public function findOneBySomeField($section, $entrada): ?Section
+    public function findOneBySomeField($section, $entrada)
     {
         try {
             return $this->createQueryBuilder('s')
@@ -112,7 +112,8 @@ class SectionRepository extends ServiceEntityRepository
                 ->setParameter('section', $entrada)
                 ->getQuery()
                 ->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException $exception) {
+            return $exception->getMessage();
         }
     }
 

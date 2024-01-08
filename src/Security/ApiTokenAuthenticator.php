@@ -14,18 +14,15 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 {
-    private $apiTokenRepository;
-
-    public function __construct(ApiTokenRepository $apiTokenRepository)
+    public function __construct(private ApiTokenRepository $apiTokenRepository)
     {
-        $this->apiTokenRepository = $apiTokenRepository;
     }
 
     public function supports(Request $request)
     {
         // Reviso las cabeceras "Authorization: Bearer <token>"
         return $request->headers->has('Authorization')
-            && 0 === strpos($request->headers->get('Authorization'), 'Bearer ');
+            && str_starts_with($request->headers->get('Authorization'), 'Bearer ');
     }
 
     public function getCredentials(Request $request)
