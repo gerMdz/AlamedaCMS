@@ -15,27 +15,11 @@ class UploaderHelper
     public const IMAGE_ENTRADA = 'image_entrada';
     public const ENTRADA_REFERENCE = 'entrada_reference';
 
-    private $context;
-    private $filesystem;
-    private $uploadedAssetsBaseUrl;
-    private $privateFilesystem;
-    private $logger;
-
     /**
      * UploaderHelper constructor.
      */
-    public function __construct(
-        FilesystemInterface $publicUploadsFilesystem,
-        RequestStackContext $context,
-        string $uploadedAssetsBaseUrl,
-        FilesystemInterface $privateUploadsFilesystem,
-        LoggerInterface $logger
-    ) {
-        $this->context = $context;
-        $this->filesystem = $publicUploadsFilesystem;
-        $this->uploadedAssetsBaseUrl = $uploadedAssetsBaseUrl;
-        $this->privateFilesystem = $privateUploadsFilesystem;
-        $this->logger = $logger;
+    public function __construct(private FilesystemInterface $filesystem, private RequestStackContext $context, private string $uploadedAssetsBaseUrl, private FilesystemInterface $privateFilesystem, private LoggerInterface $logger)
+    {
     }
 
     public function uploadEntradaImage(File $file, ?string $existingFilename): string
@@ -48,7 +32,7 @@ class UploaderHelper
                 if (false === $result) {
                     throw new \Exception(sprintf('No se pudo borrar la imagen anterior "%s"', $existingFilename));
                 }
-            } catch (FileNotFoundException $e) {
+            } catch (FileNotFoundException) {
                 $this->logger->alert(sprintf('No se pudo borrar "%s" imagen perdida', $existingFilename));
             }
         }
