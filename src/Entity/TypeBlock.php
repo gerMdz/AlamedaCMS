@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity(repositoryClass=TypeBlockRepository::class)
  */
-class TypeBlock
+class TypeBlock implements \Stringable
 {
     /**
      * @ORM\Id
@@ -59,9 +59,9 @@ class TypeBlock
         $this->modelTemplates = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->identifier;
+        return (string) $this->identifier;
     }
 
     public function getId(): ?int

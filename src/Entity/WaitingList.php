@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=WaitingListRepository::class)
  */
-class WaitingList
+class WaitingList implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -43,9 +43,9 @@ class WaitingList
      */
     private $celebracion;
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->email;
+        return (string) $this->email;
     }
 
     public function getId(): ?int

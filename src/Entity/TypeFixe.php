@@ -13,7 +13,7 @@ use Ramsey\Uuid\UuidInterface;
 /**
  * @ORM\Entity(repositoryClass=TypeFixeRepository::class)
  */
-class TypeFixe
+class TypeFixe implements \Stringable
 {
     use TimestampableEntity;
     use IdentificadorTrait;
@@ -39,9 +39,9 @@ class TypeFixe
         $this->id = Uuid::uuid4();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->identificador;
+        return (string) $this->identificador;
     }
 
     public function getId(): UuidInterface

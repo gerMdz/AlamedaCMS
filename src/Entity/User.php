@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     message="Este email ya está registrado"
  * )
  */
-class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface, \Stringable
 {
     /**
      * @ORM\Id()
@@ -143,7 +143,7 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
 
     public function __toString(): string
     {
-        return $this->getPrimerNombre();
+        return (string) $this->getPrimerNombre();
     }
 
     public function getId(): ?string
