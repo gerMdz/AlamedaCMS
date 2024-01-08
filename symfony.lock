@@ -247,12 +247,12 @@
         "version": "v4.5.0"
     },
     "oneup/flysystem-bundle": {
-        "version": "3.0",
+        "version": "3.7",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
+            "branch": "main",
             "version": "3.0",
-            "ref": "0eb87bba411c227da027fe5f7c1dc7954b02f242"
+            "ref": "e6c6440b279273a468e1f570b0fc1d4ff54ad69e"
         },
         "files": [
             "config/packages/oneup_flysystem.yaml"
