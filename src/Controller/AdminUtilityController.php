@@ -22,7 +22,7 @@ class AdminUtilityController extends AbstractController
         $role = empty($request->query->get('role')) ? 'ROLE_NADA' : $request->query->get('role');
         $query = $request->query->get('query');
 
-        $user = $userRepository->findAllEmailsRoleAlfa($role, $query);
+        $user = $userRepository->findAllEmailsRoleAlfa($query, $role);
 
         return $this->json(['users' => $user], 200, [], [
             'groups' => ['perfil'],

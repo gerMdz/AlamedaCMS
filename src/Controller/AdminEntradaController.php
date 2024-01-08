@@ -30,21 +30,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminEntradaController extends BaseController
 {
-    private LoggerClient $loggerClient;
-    private BoleanToDateHelper $boleanToDateHelper;
-    private ManagerRegistry $managerRegistry;
-
     /**
      * NO usado es opcional.
      */
-    public function __construct(
-        LoggerClient $loggerClient,
-        BoleanToDateHelper $boleanToDateHelper,
-        ManagerRegistry $managerRegistry
-    ) {
-        $this->loggerClient = $loggerClient;
-        $this->boleanToDateHelper = $boleanToDateHelper;
-        $this->managerRegistry = $managerRegistry;
+    public function __construct(private LoggerClient $loggerClient, private BoleanToDateHelper $boleanToDateHelper, private ManagerRegistry $managerRegistry)
+    {
     }
 
     /**
