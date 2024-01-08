@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=SectionRepository::class)
  */
-class Section
+class Section implements \Stringable
 {
     use OfertTrait;
     use ImageTrait;
@@ -141,9 +141,9 @@ class Section
      */
     private ?string $footer = null;
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->name;
+        return (string) $this->name;
     }
 
     public function __construct()

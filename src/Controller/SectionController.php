@@ -25,8 +25,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -41,16 +41,11 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  */
 class SectionController extends BaseController
 {
-    private $session;
-    private $api;
-
     /**
      * SectionController constructor.
      */
-    public function __construct(SessionInterface $session, HandlerSourceApi $api)
+    public function __construct(private RequestStack $requestStack, private HandlerSourceApi $api)
     {
-        $this->session = $session;
-        $this->api = $api;
     }
 
     /**
@@ -97,13 +92,13 @@ class SectionController extends BaseController
                 $section->setImageFilename($newFilename);
             }
 
-            if ($this->session->get('principal_id')) {
-                $principal_id = $this->session->get('principal_id');
+            if ($this->requestStack->getSession()->get('principal_id')) {
+                $principal_id = $this->requestStack->getSession()->get('principal_id');
                 $principal = $em->getRepository(Principal::class)->find($principal_id);
                 if ($principal) {
                     $section->addPrincipale($principal);
                 }
-                $this->session->remove('principal_id');
+                $this->requestStack->getSession()->remove('principal_id');
             }
 
             $em->persist($section);
@@ -212,13 +207,13 @@ class SectionController extends BaseController
                 $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
                  'identifier' => $section->getIdentificador(),
                 ]);
-            } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+            } catch (NotFoundExceptionInterface|ContainerExceptionInterface) {
             }
             if ($apiSource) {
                 try {
                     $response_api = $this->api->fetchSourceApi($apiSource[0])[0];
                     $response_api['source'] = $apiSource[0]->getBaseUri();
-                } catch (ClientExceptionInterface|DecodingExceptionInterface|ServerExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface $e) {
+                } catch (ClientExceptionInterface|DecodingExceptionInterface|ServerExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface) {
                 }
             }
         }
@@ -287,13 +282,13 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $model_template_id = $this->session->get('model_template_id');
+            $model_template_id = $this->requestStack->getSession()->get('model_template_id');
             if ($model_template_id) {
                 $model_template = $modelTemplateRepository->find($model_template_id);
                 if ($model_template) {
                     $section->setModelTemplate($model_template);
                 }
-                $this->session->remove('model_template_id');
+                $this->requestStack->getSession()->remove('model_template_id');
             }
             $this->container->get('doctrine')->getManager()->flush();
 

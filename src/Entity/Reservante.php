@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ReservanteRepository::class)
  */
-class Reservante
+class Reservante implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -66,7 +66,7 @@ class Reservante
      */
     private $invitados;
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->email.' - '.$this->apellido.', '.$this->getNombre();
     }

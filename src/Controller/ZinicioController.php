@@ -17,16 +17,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class ZinicioController extends AbstractController
 {
     /**
-     * @var bool
-     */
-    private $site_temporal;
-
-    /**
      * ZinicioController constructor.
      */
-    public function __construct(string $site_temporal)
+    public function __construct(private string $site_temporal)
     {
-        $this->site_temporal = $site_temporal;
     }
 
     /**

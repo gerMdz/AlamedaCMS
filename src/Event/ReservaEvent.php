@@ -8,11 +8,8 @@ class ReservaEvent extends Event
 {
     public const ANULA_RESERVA = 'anula.reserva.event';
 
-    protected $data;
-
-    public function __construct($data)
+    public function __construct(protected $data)
     {
-        $this->data = $data;
     }
 
     public function getData()

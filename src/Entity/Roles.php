@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\HasLifecycleCallbacks()
  */
-class Roles
+class Roles implements \Stringable
 {
     /**
      * @ORM\Id
@@ -55,7 +55,7 @@ class Roles
 
     public function __toString(): string
     {
-        return $this->getIdentificador();
+        return (string) $this->getIdentificador();
     }
 
     //    public function __construct()

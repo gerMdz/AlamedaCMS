@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=PrincipalRepository::class)
  */
-class Principal
+class Principal implements \Stringable
 {
     use TimestampableEntity;
     use ImageTrait;
@@ -152,9 +152,9 @@ class Principal
         $this->blocsFixes = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->titulo;
+        return (string) $this->titulo;
     }
 
     public function getId(): ?int

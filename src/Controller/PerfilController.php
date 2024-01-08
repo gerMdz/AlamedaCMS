@@ -65,7 +65,7 @@ class PerfilController extends BaseController
                 $em = $this->container->get('doctrine')->getManager();
                 $em->persist($user);
                 $em->flush();
-            } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+            } catch (NotFoundExceptionInterface|ContainerExceptionInterface) {
             }
 
             $error = $authenticationUtils->getLastAuthenticationError();

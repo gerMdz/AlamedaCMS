@@ -42,7 +42,7 @@ class SecurityController extends AbstractController
     {
         try {
             $em = $this->container->get('doctrine');
-        } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+        } catch (NotFoundExceptionInterface|ContainerExceptionInterface) {
         }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();

@@ -24,11 +24,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PrincipalController extends BaseController
 {
-    private $session;
-
-    public function __construct(SessionInterface $session)
+    public function __construct(private SessionInterface $session)
     {
-        $this->session = $session;
     }
 
     /**

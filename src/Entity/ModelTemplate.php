@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ModelTemplateRepository::class)
  */
-class ModelTemplate
+class ModelTemplate implements \Stringable
 {
     use ImageTrait;
     /**
@@ -67,9 +67,9 @@ class ModelTemplate
         $this->entradas = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->identifier;
+        return (string) $this->identifier;
     }
 
     public function getId(): ?int

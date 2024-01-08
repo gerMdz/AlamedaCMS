@@ -11,16 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class RSSController extends AbstractController
 {
     /**
-     * @var string
-     */
-    private $site_podcasts;
-
-    /**
      * RSSController constructor.
      */
-    public function __construct(string $site_podcasts)
+    public function __construct(private string $site_podcasts)
     {
-        $this->site_podcasts = $site_podcasts;
     }
 
     /**

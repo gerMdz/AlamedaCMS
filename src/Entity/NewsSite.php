@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @ORM\Entity(repositoryClass=NewsSiteRepository::class)
  */
-class NewsSite
+class NewsSite implements \Stringable
 {
     /**
      * @ORM\Id
@@ -57,9 +57,9 @@ class NewsSite
         $this->id = Uuid::uuid4()->toString();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->getIdentificador();
+        return (string) $this->getIdentificador();
     }
 
     public function getId(): ?string
