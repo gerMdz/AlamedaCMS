@@ -63,7 +63,7 @@ abstract class BaseFixture extends Fixture
             $this->referencesIndex[$groupName] = [];
 
             foreach ($this->referenceRepository->getReferences() as $key => $ref) {
-                if (0 === strpos($key, $groupName.'_')) {
+                if (str_starts_with($key, $groupName.'_')) {
                     $this->referencesIndex[$groupName][] = $key;
                 }
             }
