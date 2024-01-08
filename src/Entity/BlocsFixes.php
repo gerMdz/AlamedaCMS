@@ -16,7 +16,7 @@ use Ramsey\Uuid\UuidInterface;
 /**
  * @ORM\Entity(repositoryClass=BlocsFixesRepository::class)
  */
-class BlocsFixes
+class BlocsFixes implements \Stringable
 {
     use CssClass;
     use ImageTrait;
@@ -67,9 +67,9 @@ class BlocsFixes
         $this->section = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->description;
+        return (string) $this->description;
     }
 
     public function getId(): UuidInterface
