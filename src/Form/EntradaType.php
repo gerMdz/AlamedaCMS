@@ -25,14 +25,11 @@ use Symfony\Component\Validator\Constraints\Image;
 
 class EntradaType extends AbstractType
 {
-    private PrincipalRepository $principalRepository;
-
     /**
      * EntradaType constructor.
      */
-    public function __construct(PrincipalRepository $principalRepository)
+    public function __construct(private PrincipalRepository $principalRepository)
     {
-        $this->principalRepository = $principalRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -416,7 +413,7 @@ class EntradaType extends AbstractType
         ; // ; Final Builder
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [
