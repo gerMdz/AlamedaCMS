@@ -17,17 +17,15 @@ use Twig\TwigFunction;
 class BaseExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
     protected $em;
-    private $container;
     protected $ind_inicio = '{{';
     protected $ind_final = '}}';
 
     /**
      * BaseExtension constructor.
      */
-    public function __construct(EntityManagerInterface $em, ContainerInterface $container)
+    public function __construct(EntityManagerInterface $em, private ContainerInterface $container)
     {
         $this->em = $em;
-        $this->container = $container;
     }
 
     public function getFilters(): array
