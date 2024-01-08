@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ChannelFeedRepository::class)
  */
-class ChannelFeed
+class ChannelFeed implements \Stringable
 {
     /**
      * @ORM\Id
@@ -61,9 +61,9 @@ class ChannelFeed
         $this->item = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->title;
+        return (string) $this->title;
     }
 
     public function getId(): ?int

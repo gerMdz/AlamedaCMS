@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ContactoRepository::class)
  */
-class Contacto
+class Contacto implements \Stringable
 {
     /**
      * @ORM\Id
@@ -64,9 +64,9 @@ class Contacto
         $this->entradas = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->nombre;
+        return (string) $this->nombre;
     }
 
     public function getId(): ?int

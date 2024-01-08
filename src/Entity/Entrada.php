@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
  */
-class Entrada
+class Entrada implements \Stringable
 {
     use TimestampableEntity;
     use OfertTrait;
@@ -182,7 +182,7 @@ class Entrada
     /**
      * @return string|null
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->titulo;
     }
