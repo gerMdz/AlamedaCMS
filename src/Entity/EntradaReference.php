@@ -25,11 +25,6 @@ class EntradaReference
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Entrada::class, inversedBy="entradaReferences")
-     */
-    private $entrada;
-
-    /**
      * @ORM\Column(type="string", length=255)
      *
      * @Groups("main")
@@ -59,9 +54,13 @@ class EntradaReference
      */
     private $posicion = 0;
 
-    public function __construct(Entrada $entrada)
+    public function __construct(
+        /**
+         * @ORM\ManyToOne(targetEntity=Entrada::class, inversedBy="entradaReferences")
+         */
+        private Entrada $entrada
+    )
     {
-        $this->entrada = $entrada;
     }
 
     public function getId(): ?int

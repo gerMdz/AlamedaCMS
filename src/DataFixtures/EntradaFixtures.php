@@ -26,14 +26,11 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
         '03-Rescate-en-las-llamas.jpg',
     ];
 
-    private $uploaderHelper;
-
     /**
      * EntradaFixtures constructor.
      */
-    public function __construct(UploaderHelper $uploaderHelper)
+    public function __construct(private UploaderHelper $uploaderHelper)
     {
-        $this->uploaderHelper = $uploaderHelper;
     }
 
     protected function loadData(ObjectManager $manager)

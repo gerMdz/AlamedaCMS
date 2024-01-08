@@ -12,7 +12,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 /**
  * @ORM\Entity(repositoryClass=GroupCelebrationRepository::class)
  */
-class GroupCelebration
+class GroupCelebration implements \Stringable
 {
     use TimestampableEntity;
     use ImageTrait;
@@ -68,9 +68,9 @@ class GroupCelebration
         $this->celebraciones = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->title;
+        return (string) $this->title;
     }
 
     public function getId(): ?string
