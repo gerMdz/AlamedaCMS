@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,21 +31,18 @@ class ApiToken
     private $expiraAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="apiTokens")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * ApiToken constructor.
      *
      * @throws \Exception
      */
-    public function __construct(User $user)
+    public function __construct(/**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="apiTokens")
+     *
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private User $user)
     {
         $this->token = bin2hex(random_bytes(60));
-        $this->user = $user;
         $this->expiraAt = new \DateTime('+3 hour');
     }
 
@@ -58,7 +56,7 @@ class ApiToken
         return $this->token;
     }
 
-    public function getExpiraAt(): ?\DateTimeInterface
+    public function getExpiraAt(): ?DateTimeInterface
     {
         return $this->expiraAt;
     }
