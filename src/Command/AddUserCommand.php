@@ -55,19 +55,9 @@ class AddUserCommand extends Command
 
     private SymfonyStyle $io;
 
-    private EntityManagerInterface $entityManager;
-    private UserPasswordHasherInterface $passwordEncoder;
-    private Validator $validator;
-    private UserRepository $users;
-
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $encoder, Validator $validator, UserRepository $users)
+    public function __construct(private EntityManagerInterface $entityManager, private UserPasswordHasherInterface $passwordEncoder, private Validator $validator, private UserRepository $users)
     {
         parent::__construct();
-
-        $this->entityManager = $em;
-        $this->passwordEncoder = $encoder;
-        $this->validator = $validator;
-        $this->users = $users;
     }
 
     protected function configure(): void
