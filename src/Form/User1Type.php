@@ -11,14 +11,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class User1Type extends AbstractType
 {
-    private $rolesRepository;
-
     /**
      * User1Type constructor.
      */
-    public function __construct(RolesRepository $rolesRepository)
+    public function __construct(private RolesRepository $rolesRepository)
     {
-        $this->rolesRepository = $rolesRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -39,8 +36,7 @@ class User1Type extends AbstractType
             ])
 
             ->add('primerNombre')
-//            ->add('twitterUsername')
-//            ->add('avatarUrl')
+
 
         ;
     }

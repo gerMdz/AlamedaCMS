@@ -139,7 +139,7 @@ class EntradaRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    private function addIsDisponibleForSeccion(QueryBuilder $qb = null, $seccion): QueryBuilder
+    private function addIsDisponibleForSeccion($seccion, QueryBuilder $qb = null): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('s.publicadoAt IS NOT NULL');
