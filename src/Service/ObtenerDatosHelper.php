@@ -6,14 +6,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class ObtenerDatosHelper
 {
-    private $requestStack;
-
     /**
      * ObtenerDatosHelper constructor.
      */
-    public function __construct(RequestStack $requestStack)
+    public function __construct(private RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
     }
 
     public function getIpCliente(): string

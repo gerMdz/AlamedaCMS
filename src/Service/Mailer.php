@@ -16,18 +16,11 @@ use Twig\Environment;
 
 class Mailer
 {
-    private $mailer;
-    private $twig;
-    private $waitingListRepository;
-
     /**
      * Mailer constructor.
      */
-    public function __construct(MailerInterface $mailer, Environment $twig, WaitingListRepository $waitingListRepository)
+    public function __construct(private MailerInterface $mailer, private Environment $twig, private WaitingListRepository $waitingListRepository)
     {
-        $this->mailer = $mailer;
-        $this->twig = $twig;
-        $this->waitingListRepository = $waitingListRepository;
     }
 
     /**
