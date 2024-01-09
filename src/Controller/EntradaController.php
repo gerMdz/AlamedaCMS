@@ -14,14 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/entrada")
- */
+#[Route(path: '/entrada')]
 class EntradaController extends AbstractController
 {
-    /**
-     * @Route("/{linkRoute}", name="entrada_ver", methods={"GET"})
-     */
+    #[Route(path: '/{linkRoute}', name: 'entrada_ver', methods: ['GET'])]
     public function ver(Entrada $entrada, EntradaRepository $er): Response
     {
         $entrada = $er->findOneBy(['linkRoute' => $entrada->getLinkRoute()]);
@@ -34,9 +30,7 @@ class EntradaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/count/{id}/like", name="entrada_toggle_like", methods={"POST"})
-     */
+    #[Route(path: '/count/{id}/like', name: 'entrada_toggle_like', methods: ['POST'])]
     public function toggleArticleHeart(Entrada $entrada, EntityManagerInterface $em): JsonResponse
     {
         $entrada->incrementaLikeCount();
@@ -45,9 +39,7 @@ class EntradaController extends AbstractController
         return new JsonResponse(['like' => $entrada->getLikes()]);
     }
 
-    /**
-     * @Route("/admin/entrada/section/{id}", methods="GET", name="admin_entrada_list_section")
-     */
+    #[Route(path: '/admin/entrada/section/{id}', methods: 'GET', name: 'admin_entrada_list_section')]
     public function getSectionPrincipal(Entrada $entrada): JsonResponse
     {
         return $this->json(
@@ -61,10 +53,9 @@ class EntradaController extends AbstractController
     }
 
     /**
-     * @Route("/agregarSeccion/{id}", name="entrada_agregar_seccion", methods={"GET", "POST"})
-     *
      * @return RedirectResponse|Response
      */
+    #[Route(path: '/agregarSeccion/{id}', name: 'entrada_agregar_seccion', methods: ['GET', 'POST'])]
     public function agregarSeccion(Request $request, Entrada $entrada, SectionRepository $sectionRepository)
     {
         $form = $this->createForm(EntradaSectionType::class, $entrada);

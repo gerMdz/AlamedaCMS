@@ -15,16 +15,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/invitado")
- *
- * @IsGranted("ROLE_RESERVA")
- */
+#[Route(path: '/admin/invitado')]
+#[IsGranted('ROLE_RESERVA')]
 class InvitadoController extends AbstractController
 {
-    /**
-     * @Route("/", name="invitado_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'invitado_index', methods: ['GET'])]
     public function index(InvitadoRepository $invitadoRepository, PaginatorInterface $paginator, Request $request, CelebracionRepository $celebracionRepository): Response
     {
         $q = $request->query->get('c');
@@ -47,10 +42,9 @@ class InvitadoController extends AbstractController
     }
 
     /**
-     * @Route("/update_ausente", name="invitado_update_ausente", methods={"GET"})
-     *
      * @return JsonResponse
      */
+    #[Route(path: '/update_ausente', name: 'invitado_update_ausente', methods: ['GET'])]
     public function updateAusente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $entityManager)
     {
         $q = $request->query->get('c');
@@ -66,9 +60,7 @@ class InvitadoController extends AbstractController
         return new JsonResponse(['ausentes' => $ausentes]);
     }
 
-    /**
-     * @Route("/new", name="invitado_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'invitado_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $invitado = new Invitado();
@@ -89,9 +81,7 @@ class InvitadoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="invitado_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'invitado_show', methods: ['GET'])]
     public function show(Invitado $invitado): Response
     {
         return $this->render('invitado/show.html.twig', [
@@ -99,9 +89,7 @@ class InvitadoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="invitado_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'invitado_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Invitado $invitado): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
@@ -119,9 +107,7 @@ class InvitadoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="invitado_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'invitado_delete', methods: ['DELETE'])]
     public function delete(Request $request, Invitado $invitado): Response
     {
         if ($this->isCsrfTokenValid('delete'.$invitado->getId(), $request->request->get('_token'))) {
@@ -134,10 +120,9 @@ class InvitadoController extends AbstractController
     }
 
     /**
-     * @Route("/cambia_presente", name="cambia_presente", methods={"GET", "POST"})
-     *
      * @return JsonResponse
      */
+    #[Route(path: '/cambia_presente', name: 'cambia_presente', methods: ['GET', 'POST'])]
     public function cambiaPresente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $em)
     {
         $id = $request->get('id');

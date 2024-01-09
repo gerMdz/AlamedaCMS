@@ -118,3 +118,5 @@ phpstan.neon
 ###< phpstan/phpstan ###
 /tools/php-cs-fixer/vendor/
 /.php-cs-fixer.cache
+/tools/php-cs-fixer/composer.json
+/tools/php-cs-fixer/composer.lock

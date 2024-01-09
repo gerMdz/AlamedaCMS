@@ -16,15 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * @IsGranted("ROLE_USER")
- *
  * @method User|null getUser()
  */
+#[IsGranted('ROLE_USER')]
 class PerfilController extends BaseController
 {
-    /**
-     * @Route("web/perfil", name="app_perfil")
-     */
+    #[Route(path: 'web/perfil', name: 'app_perfil')]
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
         return $this->render('perfil/perfil_index.html.twig', [
@@ -32,9 +29,7 @@ class PerfilController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/api/perfil", name="api_perfil")
-     */
+    #[Route(path: '/api/perfil', name: 'api_perfil')]
     public function apiPerfil(): JsonResponse
     {
         $user = $this->getUser();
@@ -44,9 +39,7 @@ class PerfilController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/web/cambiopassword/{email}", name="app_changepassword")
-     */
+    #[Route(path: '/web/cambiopassword/{email}', name: 'app_changepassword')]
     public function changePassword(
         Request $request, User $user,
         UserPasswordHasherInterface $userPasswordHasher,

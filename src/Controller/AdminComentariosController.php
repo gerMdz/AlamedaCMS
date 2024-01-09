@@ -11,9 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminComentariosController extends AbstractController
 {
-    /**
-     * @Route("/admin/comentarios", name="admin_comentarios")
-     */
+    #[Route(path: '/admin/comentarios', name: 'admin_comentarios')]
     public function index(ComentarioRepository $comentarioRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $q = $request->query->get('q');

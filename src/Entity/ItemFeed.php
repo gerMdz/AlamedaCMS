@@ -5,70 +5,43 @@ namespace App\Entity;
 use App\Repository\ItemFeedRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ItemFeedRepository::class)
- */
+#[ORM\Entity(repositoryClass: ItemFeedRepository::class)]
 class ItemFeed
 {
-    /**
-     * @ORM\Id
-     *
-     * @ORM\GeneratedValue
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $descripcion;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $pubDateAt;
 
-    /**
-     * @ORM\Column(type="string", length=510)
-     */
+    #[ORM\Column(type: 'string', length: 510)]
     private $linkUrl;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $linkType;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $linkLength;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $linkLongitud;
 
-    /**
-     * @ORM\Column(type="time")
-     */
+    #[ORM\Column(type: 'time')]
     private $duracion;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $guid;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ChannelFeed::class, inversedBy="item")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: ChannelFeed::class, inversedBy: 'item')]
+    #[ORM\JoinColumn(nullable: false)]
     private $channelFeed;
 
     public function getId(): ?int

@@ -7,25 +7,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 trait LinksTrait
 {
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    #[Groups('mail')]
     private ?bool $isLinkExterno;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('mail')]
     private ?string $linkPosting;
 
-    /**
-     * @ORM\Column(type="string", length=150, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 150, nullable: true)]
+    #[Groups('mail')]
     private ?string $linkRoute;
 
     public function getLinkRoute(): ?string

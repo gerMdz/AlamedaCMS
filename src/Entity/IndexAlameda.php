@@ -6,85 +6,52 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\IndexAlamedaRepository")
- */
+#[ORM\Entity(repositoryClass: 'App\Repository\IndexAlamedaRepository')]
 class IndexAlameda implements \Stringable
 {
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\GeneratedValue()
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $lema = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $lemaPrincipal = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $lemaSinEspacio = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $metaDescripcion = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $metaAutor = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $metaTitle = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $metaType = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $metaUrl = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $metaImage = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $base = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
-     *
-     * @ORM\OrderBy({"orden"="ASC"})
-     */
+    #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'indexAlamedas')]
+    #[ORM\OrderBy(['orden' => 'ASC'])]
     private $section;
 
-    /**
-     * @ORM\OneToMany(targetEntity=BlocsFixes::class, mappedBy="indexAlameda")
-     */
+    #[ORM\OneToMany(targetEntity: BlocsFixes::class, mappedBy: 'indexAlameda')]
     private Collection $blocs_fixes;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
-     */
+    #[ORM\ManyToOne(targetEntity: ModelTemplate::class)]
     private ?ModelTemplate $template = null;
 
     public function __construct()

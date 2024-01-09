@@ -8,50 +8,33 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-/**
- * @ORM\Entity(repositoryClass=TypeBlockRepository::class)
- */
+#[ORM\Entity(repositoryClass: TypeBlockRepository::class)]
 class TypeBlock implements \Stringable
 {
-    /**
-     * @ORM\Id
-     *
-     * @ORM\GeneratedValue
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=150, unique=true)
-     *
      * @Gedmo\Slug(fields={"name"})
      */
+    #[ORM\Column(type: 'string', length: 150, unique: true)]
     private $identifier;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isActive;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ModelTemplate::class, mappedBy="block")
-     */
+    #[ORM\OneToMany(targetEntity: ModelTemplate::class, mappedBy: 'block')]
     private $modelTemplates;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $entity;
 
     public function __construct()

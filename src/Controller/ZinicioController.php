@@ -23,9 +23,7 @@ class ZinicioController extends AbstractController
     {
     }
 
-    /**
-     * @Route("/", name="index")
-     */
+    #[Route(path: '/', name: 'index')]
     public function index()
     {
         $em = $this->getDoctrine()->getManager();
@@ -51,25 +49,19 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/ingreso", name="app_ingreso")
-     */
+    #[Route(path: '/ingreso', name: 'app_ingreso')]
     public function ingreso(AuthenticationUtils $authenticationUtils): RedirectResponse
     {
         return $this->redirectToRoute('app_login');
     }
 
-    /**
-     * @Route("/reserva", name="app_reserva")
-     */
+    #[Route(path: '/reserva', name: 'app_reserva')]
     public function app_reserva(): RedirectResponse
     {
         return $this->redirectToRoute('reserva_index');
     }
 
-    /**
-     * @Route("/test/index", name="test_index")
-     */
+    #[Route(path: '/test/index', name: 'test_index')]
     public function test_index(): Response
     {
         $em = $this->container->get('doctrine')->getManager();
@@ -85,9 +77,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/test/{linkRoute}", name="test_principal_ver", methods={"GET"})
-     */
+    #[Route(path: '/test/{linkRoute}', name: 'test_principal_ver', methods: ['GET'])]
     public function ver_test(Principal $principal, PrincipalRepository $principalRepository): Response
     {
         $vista = $principal->getModelTemplate();
@@ -105,9 +95,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{linkRoute}", name="principal_ver", methods={"GET"})
-     */
+    #[Route(path: '/{linkRoute}', name: 'principal_ver', methods: ['GET'])]
     public function ver(
         Principal $principal,
         PrincipalRepository $principalRepository,
@@ -130,9 +118,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{linkRoute}/listado", name="principal_listado", methods={"GET"})
-     */
+    #[Route(path: '/{linkRoute}/listado', name: 'principal_listado', methods: ['GET'])]
     public function listado(
         Principal $principal,
         PrincipalRepository $principalRepository,
@@ -153,49 +139,37 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/contacto", name="contacto")
-     */
+    #[Route(path: '/contacto', name: 'contacto')]
     public function contacto(): Response
     {
         return $this->render('models/principal/contacto.html.twig', []);
     }
 
-    /**
-     * @Route("/avanza", name="avanza")
-     */
+    #[Route(path: '/avanza', name: 'avanza')]
     public function avanza(): Response
     {
         return $this->render('models/principal/avanza.html.twig', []);
     }
 
-    /**
-     * @Route("/grupospequeños", name="grupospequeños", options = {"utf8": true })
-     */
+    #[Route(path: '/grupospequeños', name: 'grupospequeños', options: ['utf8' => true])]
     public function gpc(): Response
     {
         return $this->render('models/principal/grupospequeños.html.twig', []);
     }
 
-    /**
-     * @Route("/ofrenda", name="ofrenda", options = {"utf8": true })
-     */
+    #[Route(path: '/ofrenda', name: 'ofrenda', options: ['utf8' => true])]
     public function ofrenda(): Response
     {
         return $this->render('models/principal/ofrenda.html.twig', []);
     }
 
-    /**
-     * @Route("/notas", name="notas", options = {"utf8": true })
-     */
+    #[Route(path: '/notas', name: 'notas', options: ['utf8' => true])]
     public function notas(): Response
     {
         return $this->render('models/principal/notas.html.twig', []);
     }
 
-    /**
-     * @Route("/oracion", name="oracion", options = {"utf8": true })
-     */
+    #[Route(path: '/oracion', name: 'oracion', options: ['utf8' => true])]
     public function oracion(): Response
     {
         return $this->render('models/principal/oracion.html.twig', []);

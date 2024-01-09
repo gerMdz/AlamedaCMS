@@ -6,51 +6,33 @@ use App\Repository\ComentarioRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=ComentarioRepository::class)
- */
+#[ORM\Entity(repositoryClass: ComentarioRepository::class)]
 class Comentario
 {
     use TimestampableEntity;
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\GeneratedValue()
-     *
-     * @ORM\Column(type="integer")
-     */
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comentarios")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comentarios')]
+    #[ORM\JoinColumn(nullable: false)]
     private $autor;
 
-    /**
-     * @ORM\Column(type="text", length=8000, nullable=true)
-     */
+    #[ORM\Column(type: 'text', length: 8000, nullable: true)]
     private $contenido;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Entrada::class, inversedBy="comentarios")
-     */
+    #[ORM\ManyToOne(targetEntity: Entrada::class, inversedBy: 'comentarios')]
     private $entrada;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="comentarios")
-     */
+    #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'comentarios')]
     private $principal;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isDeleted = false;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Brote::class, inversedBy="comenttarios")
-     */
+    #[ORM\ManyToOne(targetEntity: Brote::class, inversedBy: 'comenttarios')]
     private $brote;
 
     public function getId(): ?int

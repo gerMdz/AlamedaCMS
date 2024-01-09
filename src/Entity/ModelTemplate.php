@@ -8,56 +8,36 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ModelTemplateRepository::class)
- */
+#[ORM\Entity(repositoryClass: ModelTemplateRepository::class)]
 class ModelTemplate implements \Stringable
 {
     use ImageTrait;
-    /**
-     * @ORM\Id
-     *
-     * @ORM\GeneratedValue
-     *
-     * @ORM\Column(type="integer")
-     */
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=150, unique=true)
-     */
+    #[ORM\Column(type: 'string', length: 150, unique: true)]
     private $identifier;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=TypeBlock::class, inversedBy="modelTemplates")
-     *
-     * @ORM\OrderBy({"name"= "ASC"})
-     */
+    #[ORM\ManyToOne(targetEntity: TypeBlock::class, inversedBy: 'modelTemplates')]
+    #[ORM\OrderBy(['name' => 'ASC'])]
     private $block;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="modelTemplate")
-     */
+    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'modelTemplate')]
     private $principals;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="modelTemplate")
-     */
+    #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'modelTemplate')]
     private $sections;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Entrada::class, mappedBy="modelTemplate")
-     */
+    #[ORM\OneToMany(targetEntity: Entrada::class, mappedBy: 'modelTemplate')]
     private $entradas;
 
     public function __construct()

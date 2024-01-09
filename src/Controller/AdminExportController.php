@@ -13,16 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/export")
- */
+#[Route(path: '/admin/export')]
 class AdminExportController extends AbstractController
 {
     public const FILENAME = 'AlamedaCMS';
 
-    /**
-     * @Route("/invitado/{id}", name="admin_export_invitado", methods={"GET", "POST"})
-     */
+    #[Route(path: '/invitado/{id}', name: 'admin_export_invitado', methods: ['GET', 'POST'])]
     public function index(Celebracion $celebracion, InvitadoRepository $invitadoRepository): Response
     {
         $dataColumns = $invitadoRepository->byCelebracionForExport($celebracion->getId());

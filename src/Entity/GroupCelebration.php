@@ -9,58 +9,37 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=GroupCelebrationRepository::class)
- */
+#[ORM\Entity(repositoryClass: GroupCelebrationRepository::class)]
 class GroupCelebration implements \Stringable
 {
     use TimestampableEntity;
     use ImageTrait;
 
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\Column(type="string", length=36)
-     *
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     *
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
     private $id;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isActivo;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Celebracion::class, inversedBy="groupCelebrations")
-     */
+    #[ORM\ManyToMany(targetEntity: Celebracion::class, inversedBy: 'groupCelebrations')]
     private $celebraciones;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $baseCss;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $btonCss;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $imageBg;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
     private $orden;
 
     public function __construct()

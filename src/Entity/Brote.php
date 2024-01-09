@@ -12,92 +12,59 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=BroteRepository::class)
- */
+#[ORM\Entity(repositoryClass: BroteRepository::class)]
 class Brote
 {
     use TimestampableEntity;
     use OfertTrait;
 
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\GeneratedValue()
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="derivadas")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     *
-     * @Assert\NotNull(message="Por favor indique autor")
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'derivadas')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull(message: 'Por favor indique autor')]
     private $autor;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $titulo;
 
-    /**
-     * @ORM\Column(type="string", length=2550)
-     */
+    #[ORM\Column(type: 'string', length: 2550)]
     private $contenido;
 
     /**
-     * @ORM\Column(type="string", length=150, unique=true)
-     *
      * @Gedmo\Slug(fields={"titulo"})
      */
+    #[ORM\Column(type: 'string', length: 150, unique: true)]
     private $linkRoute;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $imageFilename;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
     private $likes;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="derivada")
-     */
+    #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'derivada')]
     private $comenttarios;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="derivadas")
-     */
+    #[ORM\ManyToMany(targetEntity: Entrada::class, inversedBy: 'derivadas')]
     private $entrada;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="derivadas")
-     */
+    #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'derivadas')]
     private $principal;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $publicadoAt;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $activa;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $eventoAt;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $linkPosting;
 
     public function __construct()

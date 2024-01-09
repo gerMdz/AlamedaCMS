@@ -10,15 +10,14 @@ use App\Service\UploaderHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
- */
+#[ORM\Entity(repositoryClass: 'App\Repository\EntradaRepository')]
 class Entrada implements \Stringable
 {
     use TimestampableEntity;
@@ -26,147 +25,88 @@ class Entrada implements \Stringable
     use LinksTrait;
     use CssClass;
 
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\GeneratedValue()
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @Groups("mail")
-     *
-     * @Assert\NotBlank
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('mail')]
+    #[Assert\NotBlank]
     private string $titulo;
 
-    /**
-     * @ORM\Column(type="text", length=8000, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'text', length: 8000, nullable: true)]
+    #[Groups('mail')]
     private ?string $contenido = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="entradas")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: 'App\Entity\User', inversedBy: 'entradas')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $autor = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('mail')]
     private ?string $imageFilename = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $publicadoAt = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
-     *
-     * @ORM\OrderBy({"posicion"="ASC"})
-     */
+    #[ORM\OneToMany(targetEntity: EntradaReference::class, mappedBy: 'entrada')]
+    #[ORM\OrderBy(['posicion' => 'ASC'])]
     private ?Collection $entradaReferences;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private ?int $likes = 0;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada", fetch="EXTRA_LAZY")
-     *
-     * @ORM\OrderBy({"createdAt" = "DESC"})
-     */
+    #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'entrada', fetch: 'EXTRA_LAZY')]
+    #[ORM\OrderBy(['createdAt' => 'DESC'])]
     private ?Collection $comentarios;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="entradas")
-     */
+    #[ORM\ManyToMany(targetEntity: Principal::class, mappedBy: 'entradas')]
     private ?Collection $principals;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $eventoAt = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $typeOrigin = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $typeCarry = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $orden = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $encabezado = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $destacado = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="entradas")
-     */
+    #[ORM\ManyToOne(targetEntity: ModelTemplate::class, inversedBy: 'entradas')]
     private ?ModelTemplate $modelTemplate = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Contacto::class, inversedBy="entradas")
-     */
+    #[ORM\ManyToMany(targetEntity: Contacto::class, inversedBy: 'entradas')]
     private ?Collection $contacto;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isSinTitulo = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isPermanente = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $footer = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="entradas")
-     */
+    #[ORM\ManyToMany(targetEntity: ButtonLink::class, inversedBy: 'entradas')]
     private ?Collection $button;
 
-    /**
-     * @ORM\Column(type="string", length=150, nullable=true, unique=true)
-     */
+    #[ORM\Column(type: 'string', length: 150, nullable: true, unique: true)]
     private ?string $identificador = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="entradas")
-     *
-     * @JoinTable(name="section_entrada",
-     *     joinColumns={@JoinColumn(name="entrada_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="section_id", referencedColumnName="id")}
-     *     )
-     */
+    #[JoinTable(name: 'section_entrada')]
+    #[JoinColumn(name: 'entrada_id', referencedColumnName: 'id')]
+    #[InverseJoinColumn(name: 'section_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'entradas')]
     private Collection $sections;
 
     public function __construct()

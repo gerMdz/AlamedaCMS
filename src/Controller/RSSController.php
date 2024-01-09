@@ -17,9 +17,7 @@ class RSSController extends AbstractController
     {
     }
 
-    /**
-     * @Route("/rss", name="rss-feed")
-     */
+    #[Route(path: '/rss', name: 'rss-feed')]
     public function rss(ChannelFeedRepository $channelFeedRepository): Response
     {
         $channels = $channelFeedRepository->findFirst();

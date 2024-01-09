@@ -7,37 +7,26 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=EnlaceCortoRepository::class)
- */
+#[ORM\Entity(repositoryClass: EnlaceCortoRepository::class)]
 class EnlaceCorto
 {
     use TimestampableEntity;
 
-    /**
-     * @ORM\Id
-     *
-     * @ORM\GeneratedValue
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=150, unique=true, nullable=true)
-     *
      * @Gedmo\Slug(fields={"linkRoute"})
      */
+    #[ORM\Column(type: 'string', length: 150, unique: true, nullable: true)]
     private $linkRoute;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $urlDestino;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="enlaceCortos")
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'enlaceCortos')]
     private $usuario;
 
     public function getId(): ?int

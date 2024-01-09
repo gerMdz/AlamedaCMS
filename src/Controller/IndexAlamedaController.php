@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\IndexAlameda;
-use App\Entity\Section;
 use App\Form\IndexAlamedaType;
 use App\Form\IndexSectionType;
 use App\Repository\IndexAlamedaRepository;
@@ -17,16 +16,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/index/alameda")
- *
- * @IsGranted("ROLE_ADMIN")
- */
+#[Route(path: '/index/alameda')]
+#[IsGranted('ROLE_ADMIN')]
 class IndexAlamedaController extends AbstractController
 {
-    /**
-     * @Route("/", name="index_alameda_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'index_alameda_index', methods: ['GET'])]
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
         return $this->render('index_alameda/index.html.twig', [
@@ -35,9 +29,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="index_alameda_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'index_alameda_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $indexAlameda = new IndexAlameda();
@@ -58,9 +50,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="index_alameda_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'index_alameda_show', methods: ['GET'])]
     public function show(IndexAlameda $indexAlameda): Response
     {
         return $this->render('index_alameda/show.html.twig', [
@@ -68,9 +58,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="index_alameda_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'index_alameda_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, IndexAlameda $indexAlameda): Response
     {
         $form = $this->createForm(IndexAlamedaType::class, $indexAlameda);
@@ -89,9 +77,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="index_alameda_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'index_alameda_delete', methods: ['DELETE'])]
     public function delete(Request $request, IndexAlameda $indexAlameda): Response
     {
         if ($this->isCsrfTokenValid('delete'.$indexAlameda->getId(), $request->request->get('_token'))) {
@@ -103,9 +89,7 @@ class IndexAlamedaController extends AbstractController
         return $this->redirectToRoute('index_alameda_index');
     }
 
-    /**
-     * @Route("/admin/index/section/{id}", methods="GET", name="admin_index_list_section")
-     */
+    #[Route(path: '/admin/index/section/{id}', methods: 'GET', name: 'admin_index_list_section')]
     public function getSectionPrincipal(IndexAlameda $indexAlameda): JsonResponse
     {
         return $this->json(
@@ -118,9 +102,7 @@ class IndexAlamedaController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/admin/index/section/{id}/reorder", methods="POST", name="admin_principal_reorder_section")
-     */
+    #[Route(path: '/admin/index/section/{id}/reorder', methods: 'POST', name: 'admin_principal_reorder_section')]
     public function reorderPrincipalSections(IndexAlameda $indexAlameda, EntityManagerInterface $entityManager, Request $request): JsonResponse
     {
         $orderedIds = json_decode($request->getContent(), true);
@@ -149,10 +131,9 @@ class IndexAlamedaController extends AbstractController
     }
 
     /**
-     * @Route("/agregarSeccion/{id}", name="index_agregar_seccion", methods={"GET", "POST"})
-     *
      * @return RedirectResponse|Response
      */
+    #[Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]
     public function agregarSeccion(Request $request, IndexAlameda $indexAlameda, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, IndexAlamedaRepository $indexAlamedaRepository)
     {
         $form = $this->createForm(IndexSectionType::class, $indexAlameda);

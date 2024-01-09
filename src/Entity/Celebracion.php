@@ -4,86 +4,55 @@ namespace App\Entity;
 
 use App\Entity\Traits\OfertTrait;
 use App\Repository\CelebracionRepository;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=CelebracionRepository::class)
- */
+#[ORM\Entity(repositoryClass: CelebracionRepository::class)]
 class Celebracion implements \Stringable
 {
     use TimestampableEntity;
     use OfertTrait;
 
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\Column(type="string", length=36)
-     *
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     *
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $fechaCelebracionAt;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $nombre;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $capacidad;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="celebracions")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'celebracions')]
+    #[ORM\JoinColumn(nullable: false)]
     private $creaEvento;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Reservante::class, mappedBy="celebracion")
-     */
+    #[ORM\OneToMany(targetEntity: Reservante::class, mappedBy: 'celebracion')]
     private $reservantes;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Invitado::class, mappedBy="celebracion")
-     */
+    #[ORM\OneToMany(targetEntity: Invitado::class, mappedBy: 'celebracion')]
     private $invitados;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $descripcion;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isHabilitada;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $imageQr;
 
-    /**
-     * @ORM\OneToMany(targetEntity=WaitingList::class, mappedBy="celebracion")
-     */
+    #[ORM\OneToMany(targetEntity: WaitingList::class, mappedBy: 'celebracion')]
     private $waitingLists;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=GroupCelebration::class, mappedBy="celebraciones")
-     */
+    #[ORM\ManyToMany(targetEntity: GroupCelebration::class, mappedBy: 'celebraciones')]
     private $groupCelebrations;
 
     public function __toString(): string

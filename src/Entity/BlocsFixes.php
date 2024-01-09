@@ -13,51 +13,34 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-/**
- * @ORM\Entity(repositoryClass=BlocsFixesRepository::class)
- */
+#[ORM\Entity(repositoryClass: BlocsFixesRepository::class)]
 class BlocsFixes implements \Stringable
 {
     use CssClass;
     use ImageTrait;
     use TimestampableEntity;
     use IdentificadorTrait;
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\Column(type="uuid", length=36)
-     *
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     *
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+
+    #[ORM\Id]
+    #[ORM\Column(type: 'uuid', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
     private UuidInterface $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Principal::class, inversedBy="blocsFixes")
-     */
+    #[ORM\ManyToMany(targetEntity: Principal::class, inversedBy: 'blocsFixes')]
     private Collection $page;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class)
-     */
+    #[ORM\ManyToMany(targetEntity: Section::class)]
     private Collection $section;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $description = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=TypeFixe::class)
-     */
+    #[ORM\ManyToOne(targetEntity: TypeFixe::class)]
     private ?TypeFixe $fixes_type = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=IndexAlameda::class, inversedBy="blocs_fixes")
-     *
-     * @ORM\JoinTable(name="blocs_fixes_index_alameda")
-     */
+    #[ORM\JoinTable(name: 'blocs_fixes_index_alameda')]
+    #[ORM\ManyToOne(targetEntity: IndexAlameda::class, inversedBy: 'blocs_fixes')]
     private ?IndexAlameda $indexAlameda = null;
 
     public function __construct()

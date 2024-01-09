@@ -4,7 +4,7 @@
     "name": "germdz/alamedacms",
     "description": "CMS Sencillo con reservas por email, y manejo de usuarios, bootstrap en CSS",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
@@ -70,9 +70,9 @@
     "require-dev": {
         "dama/doctrine-test-bundle": "^6.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "fzaninotto/faker": "^1.9",
+        "fakerphp/faker": "*",
         "phpunit/phpunit": "^9.5",
-        "rector/rector": "^0.18.13",
+        "rector/rector": "^0.19.0",
         "sensiolabs/security-checker": "^6.0",
         "symfony/browser-kit": "^5.4",
         "symfony/css-selector": "^5.4",
@@ -89,6 +89,9 @@
             "*": "dist"
         },
         "sort-packages": true,
+        "platform": {
+            "php": "8.0.2"
+        },
         "allow-plugins": {
             "endroid/installer": true,
             "symfony/flex": true,

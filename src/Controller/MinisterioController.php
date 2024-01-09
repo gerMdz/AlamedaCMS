@@ -10,14 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/ministerio")
- */
+#[Route(path: '/admin/ministerio')]
 class MinisterioController extends AbstractController
 {
-    /**
-     * @Route("/", name="ministerio_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'ministerio_index', methods: ['GET'])]
     public function index(MinisterioRepository $ministerioRepository): Response
     {
         return $this->render('ministerio/index.html.twig', [
@@ -25,9 +21,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="ministerio_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'ministerio_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $ministerio = new Ministerio();
@@ -48,9 +42,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="ministerio_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'ministerio_show', methods: ['GET'])]
     public function show(Ministerio $ministerio): Response
     {
         return $this->render('ministerio/show.html.twig', [
@@ -58,9 +50,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="ministerio_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'ministerio_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Ministerio $ministerio): Response
     {
         $form = $this->createForm(MinisterioType::class, $ministerio);
@@ -78,9 +68,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="ministerio_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'ministerio_delete', methods: ['DELETE'])]
     public function delete(Request $request, Ministerio $ministerio): Response
     {
         if ($this->isCsrfTokenValid('delete'.$ministerio->getId(), $request->request->get('_token'))) {

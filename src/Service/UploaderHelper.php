@@ -4,7 +4,7 @@ namespace App\Service;
 
 use Gedmo\Sluggable\Util\Urlizer;
 use League\Flysystem\FileNotFoundException;
-use League\Flysystem\FilesystemInterface;
+use League\Flysystem\Filesystem;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Asset\Context\RequestStackContext;
 use Symfony\Component\HttpFoundation\File\File;
@@ -18,7 +18,9 @@ class UploaderHelper
     /**
      * UploaderHelper constructor.
      */
-    public function __construct(private FilesystemInterface $filesystem, private RequestStackContext $context, private string $uploadedAssetsBaseUrl, private FilesystemInterface $privateFilesystem, private LoggerInterface $logger)
+    public function __construct(private Filesystem $filesystem, private RequestStackContext $context,
+        private string $uploadedAssetsBaseUrl, private Filesystem $privateFilesystem,
+        private LoggerInterface $logger)
     {
     }
 

@@ -10,39 +10,26 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=MenuRepository::class)
- */
+#[ORM\Entity(repositoryClass: MenuRepository::class)]
 class Menu
 {
     use TimestampableEntity;
     use CssClass;
     use IdentificadorTrait;
 
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\Column(type="string", length=36)
-     *
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     *
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $Nombre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $identificador;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="menu")
-     */
+    #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'menu')]
     private $itemMenus;
 
     public function __construct()

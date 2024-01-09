@@ -17,9 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
-    /**
-     * @Route("/admin/general", name="admin")
-     */
+    #[Route(path: '/admin/general', name: 'admin')]
     public function index(
         PrincipalRepository $principalRepository,
         MetaBaseRepository $metaBaseRepository,
@@ -47,9 +45,7 @@ class AdminController extends AbstractController
         //        ]);
     }
 
-    /**
-     * @Route("/admin", name="app_admin_main")
-     */
+    #[Route(path: '/admin', name: 'app_admin_main')]
     public function main(
         MetaBaseRepository $metaBaseRepository,
         PaginatorInterface $paginator,
@@ -68,9 +64,7 @@ class AdminController extends AbstractController
         //        ]);
     }
 
-    /**
-     * @Route("/admin/consulta-entradas-nuevas", name="admin_entradas_nuevas")
-     */
+    #[Route(path: '/admin/consulta-entradas-nuevas', name: 'admin_entradas_nuevas')]
     public function consultaEntradasNuevas(
         EntradaRepository $entradaRepository,
         SectionRepository $sectionRepository,

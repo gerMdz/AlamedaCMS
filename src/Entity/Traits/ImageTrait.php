@@ -8,11 +8,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 trait ImageTrait
 {
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('mail')]
     protected $imageFilename;
 
     public function getImageFilename()

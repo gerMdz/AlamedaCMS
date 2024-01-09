@@ -6,50 +6,31 @@ use App\Repository\NewsSiteRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
-/**
- * @ORM\Entity(repositoryClass=NewsSiteRepository::class)
- */
+#[ORM\Entity(repositoryClass: NewsSiteRepository::class)]
 class NewsSite implements \Stringable
 {
-    /**
-     * @ORM\Id
-     *
-     * @ORM\Column(type="string", length=36)
-     *
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     *
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $srcSite;
 
-    /**
-     * @ORM\Column(type="string", length=510)
-     */
+    #[ORM\Column(type: 'string', length: 510)]
     private $srcCodigo;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isEnabled;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $srcType;
 
-    /**
-     * @ORM\Column(type="string", length=510, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 510, nullable: true)]
     private $srcParameters;
 
-    /**
-     * @ORM\Column(type="string", length=155, unique=true )
-     */
+    #[ORM\Column(type: 'string', length: 155, unique: true)]
     private $identificador;
 
     public function __construct()

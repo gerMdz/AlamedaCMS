@@ -12,133 +12,81 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=PrincipalRepository::class)
- */
+#[ORM\Entity(repositoryClass: PrincipalRepository::class)]
 class Principal implements \Stringable
 {
     use TimestampableEntity;
     use ImageTrait;
     use CssClass;
 
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\GeneratedValue()
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="principal")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'principal')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $autor = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @Assert\NotBlank(message="El título de la página, no debe estar en blanco")
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'El título de la página, no debe estar en blanco')]
+    #[Groups('mail')]
     private ?string $titulo = null;
 
-    /**
-     * @ORM\Column(type="string", length=2550)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 2550)]
+    #[Groups('mail')]
     private ?string $contenido = null;
 
-    /**
-     * @ORM\Column(type="string", length=150, unique=true, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 150, unique: true, nullable: true)]
+    #[Groups('mail')]
     private ?string $linkRoute = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $likes = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="principal")
-     */
+    #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'principal')]
     private $comentarios;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="principals")
-     */
+    #[ORM\ManyToMany(targetEntity: Entrada::class, inversedBy: 'principals')]
     private $entradas;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isActive = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="principal")
-     */
+    #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'principal')]
     private $section;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="brote")
-     */
+    #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'brote')]
     private $principal;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="principal")
-     */
+    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'principal')]
     private $brote;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="principals")
-     */
+    #[ORM\ManyToOne(targetEntity: ModelTemplate::class, inversedBy: 'principals')]
     private $modelTemplate;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Ministerio::class, inversedBy="page")
-     */
+    #[ORM\ManyToOne(targetEntity: Ministerio::class, inversedBy: 'page')]
     private $ministerio;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="principales")
-     *
-     * @ORM\OrderBy({"orden"="ASC"})
-     */
+    #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'principales')]
+    #[ORM\OrderBy(['orden' => 'ASC'])]
     private $secciones;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="principals")
-     */
+    #[ORM\ManyToMany(targetEntity: ButtonLink::class, inversedBy: 'principals')]
     private $button;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="pathInterno")
-     */
+    #[ORM\OneToMany(targetEntity: ItemMenu::class, mappedBy: 'pathInterno')]
     private $itemMenus;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    #[Groups('mail')]
     private ?bool $isLinkExterno = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('mail')]
     private ?string $linkPosting = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=BlocsFixes::class, mappedBy="page")
-     */
+    #[ORM\ManyToMany(targetEntity: BlocsFixes::class, mappedBy: 'page')]
     private Collection $blocsFixes;
 
     public function __construct()

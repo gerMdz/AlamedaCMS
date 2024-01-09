@@ -7,16 +7,13 @@ use App\Entity\Traits\ImageTrait;
 use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass=SectionRepository::class)
- */
+#[ORM\Entity(repositoryClass: SectionRepository::class)]
 class Section implements \Stringable
 {
     use OfertTrait;
@@ -25,120 +22,70 @@ class Section implements \Stringable
     use CssClass;
     use TimestampableEntity;
 
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\GeneratedValue()
-     *
-     * @ORM\Column(type="integer")
-     *
-     * @Groups("main")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    #[Groups('main')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @Groups("main")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('main')]
     private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     *
-     * @Groups("main")
-     */
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    #[Groups('main')]
     private ?string $identificador = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $disponible = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $columns = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     *
-     * @Groups("main")
-     */
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups('main')]
     private ?string $description = null;
 
-
-
-    /**
-     * @ORM\ManyToMany(targetEntity=IndexAlameda::class, mappedBy="section")
-     */
+    #[ORM\ManyToMany(targetEntity: IndexAlameda::class, mappedBy: 'section')]
     private Collection $indexAlamedas;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sections")
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'sections')]
     private ?User $autor = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $template = null;
 
-    /**
-     * @ORM\Column(type="text", length=8000, nullable=true)
-     *
-     * @Groups("mail")
-     */
+    #[ORM\Column(type: 'text', length: 8000, nullable: true)]
+    #[Groups('mail')]
     private ?string $contenido = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     *
-     * @Groups("main")
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Groups('main')]
     private ?int $orden = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="section")
-     *
-     * @Groups("mail")
-     */
+    #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'section')]
+    #[Groups('mail')]
     private ?Principal $principal = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups({"main", "mail"})
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['main', 'mail'])]
     private ?string $title = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="sections")
-     *
-     * @Groups("main")
-     */
+    #[ORM\ManyToOne(targetEntity: ModelTemplate::class, inversedBy: 'sections')]
+    #[Groups('main')]
     private ?ModelTemplate $modelTemplate = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="secciones")
-     *
-     * @Groups("mail")
-     */
+    #[ORM\ManyToMany(targetEntity: Principal::class, mappedBy: 'secciones')]
+    #[Groups('mail')]
     private Collection $principales;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="sections")
-     */
+    #[ORM\ManyToMany(targetEntity: ButtonLink::class, inversedBy: 'sections')]
     private Collection $button;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="sections")
-     */
+    #[ORM\ManyToMany(targetEntity: Entrada::class, mappedBy: 'sections')]
     private Collection $entradas;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $footer = null;
 
     public function __toString(): string

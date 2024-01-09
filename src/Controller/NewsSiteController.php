@@ -10,14 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/news-site")
- */
+#[Route(path: '/admin/news-site')]
 class NewsSiteController extends AbstractController
 {
-    /**
-     * @Route("/", name="news_site_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'news_site_index', methods: ['GET'])]
     public function index(NewsSiteRepository $newsSiteRepository): Response
     {
         return $this->render('news_site/index.html.twig', [
@@ -25,9 +21,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="news_site_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'news_site_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $newsSite = new NewsSite();
@@ -48,9 +42,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="news_site_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'news_site_show', methods: ['GET'])]
     public function show(NewsSite $newsSite): Response
     {
         return $this->render('news_site/show.html.twig', [
@@ -58,9 +50,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="news_site_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'news_site_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, NewsSite $newsSite): Response
     {
         $form = $this->createForm(NewsSiteType::class, $newsSite);
@@ -78,9 +68,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="news_site_delete", methods={"POST"})
-     */
+    #[Route(path: '/{id}', name: 'news_site_delete', methods: ['POST'])]
     public function delete(Request $request, NewsSite $newsSite): Response
     {
         if ($this->isCsrfTokenValid('delete'.$newsSite->getId(), $request->request->get('_token'))) {

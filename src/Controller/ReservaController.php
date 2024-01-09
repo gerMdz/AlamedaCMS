@@ -25,14 +25,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/reserva")
- */
+#[Route(path: '/reserva')]
 class ReservaController extends AbstractController
 {
-    /**
-     * @Route("/ver", name="reserva_index")
-     */
+    #[Route(path: '/ver', name: 'reserva_index')]
     public function index(CelebracionRepository $celebracionRepository, GroupCelebrationRepository $groupCelebrationRepository): Response
     {
         $grupos = $groupCelebrationRepository->puedeMostrarse()->getQuery()->getResult();
@@ -47,10 +43,9 @@ class ReservaController extends AbstractController
     }
 
     /**
-     * @Route("/creaReserva/{id}", name="crea_reserva" )
-     *
      * @throws TransportExceptionInterface
      */
+    #[Route(path: '/creaReserva/{id}', name: 'crea_reserva')]
     public function creaReserva(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $reservante = new Reservante();
@@ -133,9 +128,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/agregaInvitado/{id}", name="agrega_invitado", methods={"GET", "POST"})
-     */
+    #[Route(path: '/agregaInvitado/{id}', name: 'agrega_invitado', methods: ['GET', 'POST'])]
     public function agregaInvitado(Reservante $reservante, Request $request): Response
     {
         $invitado = new Invitado();
@@ -173,9 +166,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/vistaReserva/{celebracion}/{email}", name="vista_reserva")
-     */
+    #[Route(path: '/vistaReserva/{celebracion}/{email}', name: 'vista_reserva')]
     public function vistaReserva(ReservanteRepository $reservanteRepository, string $celebracion, string $email): Response
     {
         $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
@@ -185,9 +176,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/vistaReserva/{celebracion}/{email}/presente", name="vista_reserva_presente")
-     */
+    #[Route(path: '/vistaReserva/{celebracion}/{email}/presente', name: 'vista_reserva_presente')]
     public function vistaReservaPresente(ReservanteRepository $reservanteRepository, string $celebracion, string $email, EntityManagerInterface $em): Response
     {
         if ($this->isGranted('ROLE_RESERVA')) {
@@ -209,9 +198,7 @@ class ReservaController extends AbstractController
         }
     }
 
-    /**
-     * @Route("/vistaReservaInvitado/{invitado}/{email}", name="vista_reserva_invitado")
-     */
+    #[Route(path: '/vistaReservaInvitado/{invitado}/{email}', name: 'vista_reserva_invitado')]
     public function vistaReservaInvitado(InvitadoRepository $invitadoRepository, string $invitado): Response
     {
         $invitado = $invitadoRepository->find($invitado);
@@ -221,9 +208,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/completa", name="invitado_completa", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/completa', name: 'invitado_completa', methods: ['GET', 'POST'])]
     public function edit(Request $request, Invitado $invitado, Mailer $mailer): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
@@ -261,9 +246,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/completa_invitado", name="invitado_completa_self", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/completa_invitado', name: 'invitado_completa_self', methods: ['GET', 'POST'])]
     public function editSelf(Request $request, Invitado $invitado, Mailer $mailer): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
@@ -287,9 +270,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/consulta", name="reserva_consulta", methods={"GET","POST"})
-     */
+    #[Route(path: '/consulta', name: 'reserva_consulta', methods: ['GET', 'POST'])]
     public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository): Response
     {
         $form = $this->createForm(ReservaByEmailFilterType::class);
@@ -317,9 +298,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="reserva_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'reserva_delete', methods: ['DELETE'])]
     public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher): Response
     {
         if ($this->isCsrfTokenValid('delete'.$reservante->getId(), $request->request->get('_token'))) {
@@ -346,9 +325,7 @@ class ReservaController extends AbstractController
         return $this->redirectToRoute('reserva_index');
     }
 
-    /**
-     * @Route("/cancela/{id}/invitado", name="cancela_invitado", methods={"GET"})
-     */
+    #[Route(path: '/cancela/{id}/invitado', name: 'cancela_invitado', methods: ['GET'])]
     public function cancelaReserva(Invitado $invitado): Response
     {
         $celebracion = $invitado->getCelebracion()->getId();
@@ -366,10 +343,9 @@ class ReservaController extends AbstractController
     }
 
     /**
-     * @Route("/avisarme/{celebracion}", name="add_to_waiting_list")
-     *
      * @throws TransportExceptionInterface
      */
+    #[Route(path: '/avisarme/{celebracion}', name: 'add_to_waiting_list')]
     public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $espera = new WaitingList();

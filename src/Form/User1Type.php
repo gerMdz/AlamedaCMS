@@ -37,7 +37,6 @@ class User1Type extends AbstractType
 
             ->add('primerNombre')
 
-
         ;
     }
 

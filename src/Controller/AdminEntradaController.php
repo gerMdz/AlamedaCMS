@@ -37,11 +37,8 @@ class AdminEntradaController extends BaseController
     {
     }
 
-    /**
-     * @Route("/admin/entrada", name="admin_entrada_index")
-     *
-     * @IsGranted("ROLE_ESCRITOR")
-     */
+    #[Route(path: '/admin/entrada', name: 'admin_entrada_index')]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function index(
         EntradaRepository $entradaRepository,
         PaginatorInterface $paginator,
@@ -67,12 +64,10 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @Route("/admin/entrada/publicadas", name="admin_entrada_publicadas")
-     *
-     * @IsGranted("ROLE_ESCRITOR")
-     *
      * @throws QueryException
      */
+    #[Route(path: '/admin/entrada/publicadas', name: 'admin_entrada_publicadas')]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function listadoPublicado(
         EntradaRepository $entradaRepository,
         PaginatorInterface $paginator,
@@ -95,11 +90,9 @@ class AdminEntradaController extends BaseController
      * @return RedirectResponse
      *
      * @throws \Exception
-     *
-     * @Route("/admin/entrada/{id}/edit", name="admin_entrada_edit")
-     *
-     * @IsGranted("MANAGE", subject="entrada")
      */
+    #[Route(path: '/admin/entrada/{id}/edit', name: 'admin_entrada_edit')]
+    #[IsGranted('MANAGE', subject: 'entrada')]
     public function edit(
         Request $request,
         Entrada $entrada,
@@ -145,11 +138,9 @@ class AdminEntradaController extends BaseController
      * @return RedirectResponse
      *
      * @throws \Exception
-     *
-     * @Route("/admin/entrada/{id}/edit-complex", name="admin_entrada_edit_complex")
-     *
-     * @IsGranted("MANAGE", subject="entrada")
      */
+    #[Route(path: '/admin/entrada/{id}/edit-complex', name: 'admin_entrada_edit_complex')]
+    #[IsGranted('MANAGE', subject: 'entrada')]
     public function editComplex(Request $request, Entrada $entrada): Response
     {
         $form = $this->createForm(EntradaComplexType::class, $entrada);
@@ -169,14 +160,12 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @Route("/admin/entrada/new", name="admin_entrada_new")
-     *
-     * @IsGranted("ROLE_ESCRITOR")
-     *
      * @return RedirectResponse|Response
      *
      * @throws \Exception
      */
+    #[Route(path: '/admin/entrada/new', name: 'admin_entrada_new')]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper)
     {
         $entrada = new Entrada();
@@ -233,12 +222,10 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @Route("/admin/new/step1", name="admin_entrada_new_step1", methods={"GET","POST"})
-     *
      * @throws \Exception
-     *
-     * @IsGranted("ROLE_ESCRITOR")
      */
+    #[Route(path: '/admin/new/step1', name: 'admin_entrada_new_step1', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function newStepOne(Request $request, ModelTemplateRepository $modelTemplateRepository): Response
     {
         $entrada = new Entrada();
@@ -267,11 +254,8 @@ class AdminEntradaController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/admin/new/step2/{id}", name="admin_entrada_new_step2", methods={"GET","POST"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route(path: '/admin/new/step2/{id}', name: 'admin_entrada_new_step2', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function newStepTwo(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
     {
         $form = $this->createForm(StepTwoType::class, $entrada);
@@ -295,12 +279,10 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @Route("/admin/new/step3/{id}", name="admin_entrada_new_step3", methods={"GET","POST"})
-     *
      * @throws \Exception
-     *
-     * @IsGranted("ROLE_ESCRITOR")
      */
+    #[Route(path: '/admin/new/step3/{id}', name: 'admin_entrada_new_step3', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function newStepThree(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
     {
         $form = $this->createForm(StepThreeType::class, $entrada);
@@ -323,9 +305,7 @@ class AdminEntradaController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/admin/entrada/{linkRoute}", name="entrada_admin_link")
-     */
+    #[Route(path: '/admin/entrada/{linkRoute}', name: 'entrada_admin_link')]
     public function link(Entrada $entrada): Response
     {
         return $this->render('admin/entrada/link.html.twig', [
@@ -333,9 +313,7 @@ class AdminEntradaController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/admin/entrada/{id}/show", name="entrada_show", methods={"GET"})
-     */
+    #[Route(path: '/admin/entrada/{id}/show', name: 'entrada_show', methods: ['GET'])]
     public function show(Entrada $entrada): Response
     {
         return $this->render('admin/entrada/show.html.twig', [
@@ -343,9 +321,7 @@ class AdminEntradaController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/admin/entrada/{id}/delete", name="entrada_delete", methods={"DELETE", "POST"})
-     */
+    #[Route(path: '/admin/entrada/{id}/delete', name: 'entrada_delete', methods: ['DELETE', 'POST'])]
     public function delete(Request $request, Entrada $entrada): Response
     {
         $status = 'error';

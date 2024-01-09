@@ -7,45 +7,28 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=RolesRepository::class)
- *
- * @ORM\HasLifecycleCallbacks()
- */
+#[ORM\Entity(repositoryClass: RolesRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Roles implements \Stringable
 {
-    /**
-     * @ORM\Id
-     *
-     * @ORM\GeneratedValue
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $nombre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $identificador;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $descripcion;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: 'boolean')]
     private $isActivo;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="role")
-     */
+    #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'role')]
     private $itemMenus;
 
     public function __construct()
@@ -107,11 +90,8 @@ class Roles implements \Stringable
         return $this;
     }
 
-    /**
-     * @ORM\PrePersist
-     *
-     * @ORM\PreUpdate
-     */
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
     public function setIdentificador(): void
     {
         $this->identificador = 'ROLE_'.$this->nombre;

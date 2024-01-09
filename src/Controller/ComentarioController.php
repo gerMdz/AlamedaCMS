@@ -9,14 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/comentario")
- */
+#[Route(path: '/admin/comentario')]
 class ComentarioController extends AbstractController
 {
-    /**
-     * @Route("/new", name="comentario_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'comentario_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $comentario = new Comentario();
@@ -37,9 +33,7 @@ class ComentarioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="comentario_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'comentario_show', methods: ['GET'])]
     public function show(Comentario $comentario): Response
     {
         return $this->render('comentario/show.html.twig', [
@@ -47,9 +41,7 @@ class ComentarioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="comentario_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'comentario_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Comentario $comentario): Response
     {
         $form = $this->createForm(ComentarioType::class, $comentario);
@@ -67,9 +59,7 @@ class ComentarioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="comentario_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'comentario_delete', methods: ['DELETE'])]
     public function delete(Request $request, Comentario $comentario): Response
     {
         if ($this->isCsrfTokenValid('delete'.$comentario->getId(), $request->request->get('_token'))) {

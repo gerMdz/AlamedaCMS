@@ -34,10 +34,7 @@ class SecurityController extends AbstractController
     //
     //        ]);
     //    }
-
-    /**
-     * @Route("/admin/ingreso", name="app_login")
-     */
+    #[Route(path: '/admin/ingreso', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         try {
@@ -53,19 +50,16 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/admin/logout", name="app_logout")
-     */
+    #[Route(path: '/admin/logout', name: 'app_logout')]
     public function logout()
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     /**
-     * @Route("/admin/registro", name="app_registro")
-     *
      * @return Response
      */
+    #[Route(path: '/admin/registro', name: 'app_registro')]
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -131,10 +125,9 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/admin/registro_voluntario_reserva", name="app_registro_voluntario_reserva")
-     *
      * @return Response
      */
+    #[Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]
     public function registerVoluntarioReserva(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,

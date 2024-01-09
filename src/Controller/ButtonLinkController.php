@@ -10,14 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/buttonlink")
- */
+#[Route(path: '/admin/buttonlink')]
 class ButtonLinkController extends AbstractController
 {
-    /**
-     * @Route("/", name="button_link_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'button_link_index', methods: ['GET'])]
     public function index(ButtonLinkRepository $buttonLinkRepository): Response
     {
         return $this->render('button_link/index.html.twig', [
@@ -25,9 +21,7 @@ class ButtonLinkController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="button_link_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'button_link_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $buttonLink = new ButtonLink();
@@ -48,9 +42,7 @@ class ButtonLinkController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="button_link_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'button_link_show', methods: ['GET'])]
     public function show(ButtonLink $buttonLink): Response
     {
         return $this->render('button_link/show.html.twig', [
@@ -58,9 +50,7 @@ class ButtonLinkController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="button_link_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'button_link_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ButtonLink $buttonLink): Response
     {
         $form = $this->createForm(ButtonLinkType::class, $buttonLink);
@@ -78,9 +68,7 @@ class ButtonLinkController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="button_link_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'button_link_delete', methods: ['DELETE'])]
     public function delete(Request $request, ButtonLink $buttonLink): Response
     {
         if ($this->isCsrfTokenValid('delete'.$buttonLink->getId(), $request->request->get('_token'))) {

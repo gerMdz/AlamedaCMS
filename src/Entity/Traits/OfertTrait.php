@@ -6,14 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait OfertTrait
 {
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $disponibleAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $disponibleHastaAt;
 
     public function getDisponibleAt(): ?\DateTimeInterface

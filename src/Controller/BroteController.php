@@ -10,14 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/derivada")
- */
+#[Route(path: '/derivada')]
 class BroteController extends AbstractController
 {
-    /**
-     * @Route("/", name="derivada_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'derivada_index', methods: ['GET'])]
     public function index(BroteRepository $derivadaRepository): Response
     {
         return $this->render('derivada/index.html.twig', [
@@ -25,9 +21,7 @@ class BroteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="derivada_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'derivada_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $derivada = new Brote();
@@ -48,9 +42,7 @@ class BroteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="derivada_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'derivada_show', methods: ['GET'])]
     public function show(Brote $derivada): Response
     {
         return $this->render('derivada/show.html.twig', [
@@ -58,9 +50,7 @@ class BroteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="derivada_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'derivada_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Brote $derivada): Response
     {
         $form = $this->createForm(BroteType::class, $derivada);
@@ -78,9 +68,7 @@ class BroteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="derivada_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'derivada_delete', methods: ['DELETE'])]
     public function delete(Request $request, Brote $derivada): Response
     {
         if ($this->isCsrfTokenValid('delete'.$derivada->getId(), $request->request->get('_token'))) {

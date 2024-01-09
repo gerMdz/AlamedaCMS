@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,122 +10,71 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- *
- * @UniqueEntity(
- *     fields={"email"},
- *     message="Este email ya está registrado"
- * )
- */
+#[ORM\Entity(repositoryClass: 'App\Repository\UserRepository')]
+#[UniqueEntity(fields: ['email'], message: 'Este email ya está registrado')]
 class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface, \Stringable
 {
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\Column(type="string", length=40)
-     *
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     *
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 40)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     *
-     * @Groups("perfil")
-     *
-     * @Assert\NotBlank(message="Por Favor ingrese un email válido")
-     *
-     * @Assert\Email(message="Por Favor ingrese un email válido")
-     */
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Groups('perfil')]
+    #[Assert\NotBlank(message: 'Por Favor ingrese un email válido')]
+    #[Assert\Email(message: 'Por Favor ingrese un email válido')]
     private $email;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: 'json')]
     private $roles = [];
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups("perfil")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('perfil')]
     private $primerNombre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $password = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups("perfil")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('perfil')]
     private $twitterUsername;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Groups("perfil")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('perfil')]
     private $avatarUrl;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ApiToken", mappedBy="user", orphanRemoval=true)
-     */
+    #[ORM\OneToMany(targetEntity: 'App\Entity\ApiToken', mappedBy: 'user', orphanRemoval: true)]
     private $apiTokens;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PageIndex", mappedBy="autor")
-     */
+    #[ORM\OneToMany(targetEntity: 'App\Entity\PageIndex', mappedBy: 'autor')]
     private $pageIndices;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Entrada", mappedBy="autor")
-     */
+    #[ORM\OneToMany(targetEntity: 'App\Entity\Entrada', mappedBy: 'autor')]
     private $entradas;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="autor")
-     */
+    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'autor')]
     private $principal;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="autor")
-     */
+    #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'autor')]
     private $comentarios;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $aceptaTerminosAt;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="autor", fetch="EXTRA_LAZY")
-     */
+    #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'autor', fetch: 'EXTRA_LAZY')]
     private $sections;
 
-    /**
-     * @ORM\OneToMany(targetEntity=EnlaceCorto::class, mappedBy="usuario")
-     */
+    #[ORM\OneToMany(targetEntity: EnlaceCorto::class, mappedBy: 'usuario')]
     private $enlaceCortos;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Celebracion::class, mappedBy="creaEvento")
-     */
+    #[ORM\OneToMany(targetEntity: Celebracion::class, mappedBy: 'creaEvento')]
     private $celebracions;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isDeleted;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isActive;
 
     public function __construct()

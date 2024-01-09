@@ -19,20 +19,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/principal")
- */
+#[Route(path: '/admin/principal')]
 class PrincipalController extends BaseController
 {
     public function __construct(private SessionInterface $session)
     {
     }
 
-    /**
-     * @Route("/", name="principal_index", methods={"GET"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route(path: '/', name: 'principal_index', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $bus = $request->get('busq');
@@ -49,12 +44,10 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @Route("/new", name="principal_new", methods={"GET","POST"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     *
      * @throws \Exception
      */
+    #[Route(path: '/new', name: 'principal_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, UploaderHelper $uploaderHelper): Response
     {
         $principal = new Principal();
@@ -97,12 +90,10 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @Route("/new-for-assistant", name="principal_new_assistant", methods={"GET","POST"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     *
      * @throws \Exception
      */
+    #[Route(path: '/new-for-assistant', name: 'principal_new_assistant', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function newAssistant(Request $request, UploaderHelper $uploaderHelper): Response
     {
         $principal = new Principal();
@@ -145,12 +136,10 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @Route("/{id}/edit", name="principal_edit", methods={"GET","POST"})
-     *
      * @throws \Exception
-     *
-     * @IsGranted("ROLE_ADMIN")
      */
+    #[Route(path: '/{id}/edit', name: 'principal_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(PrincipalType::class, $principal);
@@ -182,9 +171,7 @@ class PrincipalController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/{id}/show", name="principal_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}/show', name: 'principal_show', methods: ['GET'])]
     public function show(Principal $principal, PrincipalRepository $repository): Response
     {
         $brotes = $repository->findByPrincipalParent($principal);
@@ -198,11 +185,8 @@ class PrincipalController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="principal_delete", methods={"DELETE"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route(path: '/{id}', name: 'principal_delete', methods: ['DELETE'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Principal $principal): Response
     {
         if ($this->isCsrfTokenValid('delete'.$principal->getId(), $request->request->get('_token'))) {
@@ -214,9 +198,7 @@ class PrincipalController extends BaseController
         return $this->redirectToRoute('principal_index');
     }
 
-    /**
-     * @Route("/section/{id}", methods="GET", name="admin_principal_list_section")
-     */
+    #[Route(path: '/section/{id}', methods: 'GET', name: 'admin_principal_list_section')]
     public function getSectionPrincipal(Principal $principal): JsonResponse
     {
         return $this->json(
@@ -230,10 +212,9 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @Route("/agregarSeccion/{id}", name="principal_agregar_seccion", methods={"GET", "POST"})
-     *
      * @return RedirectResponse|Response
      */
+    #[Route(path: '/agregarSeccion/{id}', name: 'principal_agregar_seccion', methods: ['GET', 'POST'])]
     public function agregarSeccion(Request $request, Principal $principal, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, PrincipalRepository $principalRepository)
     {
         $form = $this->createForm(SectionAddType::class);

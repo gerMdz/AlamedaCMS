@@ -11,14 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/typeblock")
- */
+#[Route(path: '/admin/typeblock')]
 class TypeBlockController extends AbstractController
 {
-    /**
-     * @Route("/", name="type_block_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'type_block_index', methods: ['GET'])]
     public function index(TypeBlockRepository $typeBlockRepository): Response
     {
         return $this->render('type_block/index.html.twig', [
@@ -26,11 +22,8 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="type_block_new", methods={"GET","POST"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route(path: '/new', name: 'type_block_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request): Response
     {
         $typeBlock = new TypeBlock();
@@ -51,9 +44,7 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="type_block_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'type_block_show', methods: ['GET'])]
     public function show(TypeBlock $typeBlock): Response
     {
         return $this->render('type_block/show.html.twig', [
@@ -61,11 +52,8 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="type_block_edit", methods={"GET","POST"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route(path: '/{id}/edit', name: 'type_block_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, TypeBlock $typeBlock): Response
     {
         $form = $this->createForm(TypeBlockType::class, $typeBlock);
@@ -83,11 +71,8 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="type_block_delete", methods={"DELETE"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route(path: '/{id}', name: 'type_block_delete', methods: ['DELETE'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, TypeBlock $typeBlock): Response
     {
         if ($this->isCsrfTokenValid('delete'.$typeBlock->getId(), $request->request->get('_token'))) {

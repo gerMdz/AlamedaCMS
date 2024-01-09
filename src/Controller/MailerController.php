@@ -17,10 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class MailerController extends AbstractController
 {
     /**
-     * @Route("/email/{id}", name="envia_mail" )
-     *
      * @throws TransportExceptionInterface
      */
+    #[Route(path: '/email/{id}', name: 'envia_mail')]
     public function sendEmail(MailerInterface $mailer, Reservante $reservante): RedirectResponse
     {
         $email = $reservante->getEmail();
@@ -47,12 +46,11 @@ class MailerController extends AbstractController
     }
 
     /**
-     * @Route("/email_invitado/{id}", name="envia_mail_invitado" )
-     *
      * @return RedirectResponse
      *
      * @throws TransportExceptionInterface
      */
+    #[Route(path: '/email_invitado/{id}', name: 'envia_mail_invitado')]
     public function sendEmailInvitado(MailerInterface $mailer, Invitado $reservante)
     {
         $email = $reservante->getEmail();

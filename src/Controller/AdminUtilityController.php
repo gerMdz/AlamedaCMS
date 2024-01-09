@@ -12,11 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminUtilityController extends AbstractController
 {
-    /**
-     * @Route("/admin/utility/user", methods={"GET"}, name="admin_utility_user")
-     *
-     * @IsGranted("ROLE_ESCRITOR")
-     */
+    #[Route(path: '/admin/utility/user', methods: ['GET'], name: 'admin_utility_user')]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function getUserEscritorApi(UserRepository $userRepository, Request $request): JsonResponse
     {
         $role = empty($request->query->get('role')) ? 'ROLE_NADA' : $request->query->get('role');
@@ -29,9 +26,7 @@ class AdminUtilityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/admin/list/user", methods={"GET"}, name="admin_list_user")
-     */
+    #[Route(path: '/admin/list/user', methods: ['GET'], name: 'admin_list_user')]
     public function usersList(UserRepository $userRepository): Response
     {
         return $this->render('admin/users.html.twig', [

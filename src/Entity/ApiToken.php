@@ -2,32 +2,20 @@
 
 namespace App\Entity;
 
-use DateTime;
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\ApiTokenRepository")
- */
+#[ORM\Entity(repositoryClass: 'App\Repository\ApiTokenRepository')]
 class ApiToken
 {
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\GeneratedValue()
-     *
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $token;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $expiraAt;
 
     /**
@@ -35,12 +23,10 @@ class ApiToken
      *
      * @throws \Exception
      */
-    public function __construct(/**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="apiTokens")
-     *
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private User $user)
+    public function __construct(
+        #[ORM\ManyToOne(targetEntity: 'App\Entity\User', inversedBy: 'apiTokens')]
+        #[ORM\JoinColumn(nullable: false)]
+        private User $user)
     {
         $this->token = bin2hex(random_bytes(60));
         $this->expiraAt = new \DateTime('+3 hour');
@@ -56,7 +42,7 @@ class ApiToken
         return $this->token;
     }
 
-    public function getExpiraAt(): ?DateTimeInterface
+    public function getExpiraAt(): ?\DateTimeInterface
     {
         return $this->expiraAt;
     }
