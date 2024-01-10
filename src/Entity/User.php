@@ -6,13 +6,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: 'App\Repository\UserRepository')]
 #[UniqueEntity(fields: ['email'], message: 'Este email ya está registrado')]
-class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface, \Stringable
+class User implements UserInterface, PasswordAuthenticatedUserInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 40)]
@@ -117,6 +118,16 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
      * @see UserInterface
      */
     public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.).
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
@@ -499,13 +510,5 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
         return $this;
     }
 
-    /**
-     * The public representation of the user (e.g. a username, an email address, etc.).
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
-    }
+
 }

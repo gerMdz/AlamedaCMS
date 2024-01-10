@@ -8,21 +8,23 @@ use App\Form\SectionAddType;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/admin/principal')]
 class PrincipalController extends BaseController
 {
-    public function __construct(private SessionInterface $session)
+    public function __construct(private RequestStack $requestStack)
     {
     }
 
@@ -44,7 +46,7 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     #[Route(path: '/new', name: 'principal_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
@@ -52,7 +54,7 @@ class PrincipalController extends BaseController
     {
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new \DateTime('now');
+        $ahora = new DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -90,7 +92,7 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     #[Route(path: '/new-for-assistant', name: 'principal_new_assistant', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
@@ -98,7 +100,7 @@ class PrincipalController extends BaseController
     {
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new \DateTime('now');
+        $ahora = new DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -136,7 +138,7 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     #[Route(path: '/{id}/edit', name: 'principal_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
@@ -219,7 +221,7 @@ class PrincipalController extends BaseController
     {
         $form = $this->createForm(SectionAddType::class);
         $form->handleRequest($request);
-        $this->session->set('principal_id', $principal->getId());
+        $this->requestStack->getSession()->set('principal_id', $principal->getId());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $id_section = $form->get('section')->getData();
@@ -228,8 +230,8 @@ class PrincipalController extends BaseController
             $entityManager->persist($principal);
             $entityManager->flush();
 
-            if ($this->session->get('principal_id')) {
-                $this->session->remove('principal_id');
+            if ( $this->requestStack->getSession()->get('principal_id')) {
+                $this->requestStack->getSession()->remove('principal_id');
             }
 
             return $this->redirectToRoute('principal_show', [
