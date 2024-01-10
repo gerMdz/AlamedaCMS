@@ -22,9 +22,8 @@ class TypeBlock implements \Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $description;
 
-    /**
-     * @Gedmo\Slug(fields={"name"})
-     */
+
+    #[Gedmo\Slug(fields: ['name'])]
     #[ORM\Column(type: 'string', length: 150, unique: true)]
     private $identifier;
 

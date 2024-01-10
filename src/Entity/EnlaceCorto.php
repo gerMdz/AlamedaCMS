@@ -17,9 +17,8 @@ class EnlaceCorto
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @Gedmo\Slug(fields={"linkRoute"})
-     */
+
+    #[Gedmo\Slug(fields: ['linkRoute'])]
     #[ORM\Column(type: 'string', length: 150, unique: true, nullable: true)]
     private $linkRoute;
 
