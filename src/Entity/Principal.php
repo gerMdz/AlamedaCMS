@@ -47,7 +47,7 @@ class Principal implements \Stringable
     private ?int $likes = null;
 
     #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'principal')]
-    private $comentarios;
+    private Collection $comentarios;
 
     #[ORM\ManyToMany(targetEntity: Entrada::class, inversedBy: 'principals')]
     private $entradas;
@@ -56,13 +56,13 @@ class Principal implements \Stringable
     private ?bool $isActive = null;
 
     #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'principal')]
-    private $section;
+    private Collection $section;
 
     #[ORM\ManyToOne( inversedBy: 'brote')]
     private ?Principal $principal = null;
 
     #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'principal')]
-    private $brote;
+    private Collection $brote;
 
     #[ORM\ManyToOne( inversedBy: 'principals')]
     private ?ModelTemplate $modelTemplate = null;
@@ -78,7 +78,7 @@ class Principal implements \Stringable
     private $button;
 
     #[ORM\OneToMany(targetEntity: ItemMenu::class, mappedBy: 'pathInterno')]
-    private $itemMenus;
+    private Collection $itemMenus;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     #[Groups('mail')]

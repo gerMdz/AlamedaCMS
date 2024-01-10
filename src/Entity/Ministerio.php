@@ -18,8 +18,8 @@ class Ministerio implements \Stringable
     #[ORM\Column(type: 'string', length: 255)]
     private $nombre;
 
-    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'ministerio')]
-    private $page;
+    #[ORM\OneToMany(mappedBy: 'ministerio', targetEntity: Principal::class)]
+    private Collection $page;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $referente;

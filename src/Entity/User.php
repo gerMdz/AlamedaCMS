@@ -45,31 +45,31 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
     private $avatarUrl;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity:ApiToken::class, orphanRemoval: true)]
-    private $apiTokens;
+    private Collection $apiTokens;
 
     #[ORM\OneToMany(mappedBy: 'autor', targetEntity: PageIndex::class)]
-    private $pageIndices;
+    private Collection $pageIndices;
 
     #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Entrada::class)]
-    private $entradas;
+    private Collection $entradas;
 
     #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Principal::class)]
-    private $principal;
+    private Collection $principal;
 
     #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Comentario::class)]
-    private $comentarios;
+    private Collection $comentarios;
 
     #[ORM\Column(type: 'datetime')]
     private $aceptaTerminosAt;
 
     #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'autor', fetch: 'EXTRA_LAZY')]
-    private $sections;
+    private Collection $sections;
 
     #[ORM\OneToMany(targetEntity: EnlaceCorto::class, mappedBy: 'usuario')]
-    private $enlaceCortos;
+    private Collection $enlaceCortos;
 
     #[ORM\OneToMany(targetEntity: Celebracion::class, mappedBy: 'creaEvento')]
-    private $celebracions;
+    private Collection $celebracions;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $isDeleted;

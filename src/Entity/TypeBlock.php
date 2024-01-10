@@ -32,7 +32,7 @@ class TypeBlock implements \Stringable
     private $isActive;
 
     #[ORM\OneToMany(targetEntity: ModelTemplate::class, mappedBy: 'block')]
-    private $modelTemplates;
+    private Collection $modelTemplates;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $entity;

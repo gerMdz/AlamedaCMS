@@ -34,7 +34,7 @@ class ChannelFeed implements \Stringable
     private $link;
 
     #[ORM\OneToMany(targetEntity: ItemFeed::class, mappedBy: 'channelFeed')]
-    private $item;
+    private Collection $item;
 
     public function __construct()
     {

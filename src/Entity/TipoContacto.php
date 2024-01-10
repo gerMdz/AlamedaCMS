@@ -28,7 +28,7 @@ class TipoContacto implements \Stringable
     private $textoReferencia;
 
     #[ORM\OneToMany(targetEntity: Contacto::class, mappedBy: 'tipo')]
-    private $contactos;
+    private Collection $contactos;
 
     public function __construct()
     {

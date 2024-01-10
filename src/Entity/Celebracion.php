@@ -36,10 +36,10 @@ class Celebracion implements \Stringable
     private ?User $creaEvento = null;
 
     #[ORM\OneToMany(mappedBy: 'celebracion', targetEntity: Reservante::class)]
-    private $reservantes;
+    private Collection $reservantes;
 
     #[ORM\OneToMany(targetEntity: Invitado::class, mappedBy: 'celebracion')]
-    private $invitados;
+    private Collection $invitados;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $descripcion;
@@ -51,7 +51,7 @@ class Celebracion implements \Stringable
     private $imageQr;
 
     #[ORM\OneToMany(targetEntity: WaitingList::class, mappedBy: 'celebracion')]
-    private $waitingLists;
+    private Collection $waitingLists;
 
     #[ORM\ManyToMany(targetEntity: GroupCelebration::class, mappedBy: 'celebraciones')]
     private $groupCelebrations;

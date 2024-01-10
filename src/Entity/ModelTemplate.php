@@ -32,13 +32,13 @@ class ModelTemplate implements \Stringable
     private ?TypeBlock $block = null;
 
     #[ORM\OneToMany(mappedBy: 'modelTemplate', targetEntity: Principal::class)]
-    private $principals;
+    private Collection $principals;
 
     #[ORM\OneToMany(mappedBy: 'modelTemplate', targetEntity: Section::class)]
-    private $sections;
+    private Collection $sections;
 
     #[ORM\OneToMany(mappedBy: 'modelTemplate', targetEntity: Entrada::class)]
-    private $entradas;
+    private Collection $entradas;
 
     public function __construct()
     {

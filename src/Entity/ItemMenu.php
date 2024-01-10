@@ -47,7 +47,7 @@ class ItemMenu
     private ?ItemMenu $parent = null;
 
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: ItemMenu::class)]
-    private $itemMenus;
+    private Collection $itemMenus;
 
     #[ORM\ManyToOne( inversedBy: 'itemMenus')]
     private ?Principal $pathInterno = null;

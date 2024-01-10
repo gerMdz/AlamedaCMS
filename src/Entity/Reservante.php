@@ -35,12 +35,12 @@ class Reservante implements \Stringable
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $isPresente;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $documento;
 
-    #[ORM\OneToMany(targetEntity: Invitado::class, mappedBy: 'enlace')]
+    #[ORM\OneToMany(mappedBy: 'enlace', targetEntity: Invitado::class)]
     #[ORM\OrderBy(['nombre' => 'ASC'])]
-    private $invitados;
+    private Collection $invitados;
 
     public function __toString(): string
     {
