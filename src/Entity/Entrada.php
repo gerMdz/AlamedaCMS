@@ -42,7 +42,7 @@ class Entrada implements \Stringable
     #[Groups('mail')]
     private ?string $contenido = null;
 
-    #[ORM\ManyToOne(targetEntity: 'App\Entity\User', inversedBy: 'entradas')]
+    #[ORM\ManyToOne( inversedBy: 'entradas')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $autor = null;
 
@@ -85,7 +85,7 @@ class Entrada implements \Stringable
     #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $destacado = null;
 
-    #[ORM\ManyToOne(targetEntity: ModelTemplate::class, inversedBy: 'entradas')]
+    #[ORM\ManyToOne( inversedBy: 'entradas')]
     private ?ModelTemplate $modelTemplate = null;
 
     #[ORM\ManyToMany(targetEntity: Contacto::class, inversedBy: 'entradas')]

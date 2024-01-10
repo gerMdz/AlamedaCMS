@@ -39,11 +39,11 @@ class BlocsFixes implements \Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(targetEntity: TypeFixe::class)]
+    #[ORM\ManyToOne()]
     private ?TypeFixe $fixes_type = null;
 
     #[ORM\JoinTable(name: 'blocs_fixes_index_alameda')]
-    #[ORM\ManyToOne(targetEntity: IndexAlameda::class, inversedBy: 'blocs_fixes')]
+    #[ORM\ManyToOne(inversedBy: 'blocs_fixes')]
     private ?IndexAlameda $indexAlameda = null;
 
     public function __construct()

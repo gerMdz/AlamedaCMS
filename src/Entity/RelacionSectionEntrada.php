@@ -13,10 +13,10 @@ class RelacionSectionEntrada
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Section::class, inversedBy: 'relacionSectionEntradas')]
+    #[ORM\ManyToOne( inversedBy: 'relacionSectionEntradas')]
     private ?Section $section = null;
 
-    #[ORM\ManyToOne(targetEntity: Entrada::class, inversedBy: 'relacionSectionEntradas')]
+    #[ORM\ManyToOne( inversedBy: 'relacionSectionEntradas')]
     private ?Entrada $entrada = null;
 
     #[ORM\Column(type: 'integer', nullable: true)]

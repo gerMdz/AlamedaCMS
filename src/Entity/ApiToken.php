@@ -25,7 +25,7 @@ class ApiToken
      * @throws Exception
      */
     public function __construct(
-        #[ORM\ManyToOne(targetEntity: 'App\Entity\User', inversedBy: 'apiTokens')]
+        #[ORM\ManyToOne(inversedBy: 'apiTokens')]
         #[ORM\JoinColumn(nullable: false)]
         private User $user)
     {

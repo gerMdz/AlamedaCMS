@@ -31,7 +31,7 @@ class Celebracion implements \Stringable
     #[ORM\Column(type: 'integer')]
     private $capacidad;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'celebracions')]
+    #[ORM\ManyToOne( inversedBy: 'celebracions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $creaEvento = null;
 

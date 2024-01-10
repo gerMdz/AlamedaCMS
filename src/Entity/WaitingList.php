@@ -23,7 +23,7 @@ class WaitingList implements \Stringable
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
-    #[ORM\ManyToOne(targetEntity: Celebracion::class, inversedBy: 'waitingLists')]
+    #[ORM\ManyToOne( inversedBy: 'waitingLists')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Celebracion $celebracion = null;
 

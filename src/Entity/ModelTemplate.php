@@ -27,7 +27,7 @@ class ModelTemplate implements \Stringable
     #[ORM\Column(type: 'string', length: 150, unique: true)]
     private $identifier;
 
-    #[ORM\ManyToOne(targetEntity: TypeBlock::class, inversedBy: 'modelTemplates')]
+    #[ORM\ManyToOne( inversedBy: 'modelTemplates')]
     #[ORM\OrderBy(['name' => 'ASC'])]
     private ?TypeBlock $block = null;
 

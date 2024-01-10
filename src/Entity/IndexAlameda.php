@@ -51,7 +51,7 @@ class IndexAlameda implements \Stringable
     #[ORM\OneToMany(targetEntity: BlocsFixes::class, mappedBy: 'indexAlameda')]
     private Collection $blocs_fixes;
 
-    #[ORM\ManyToOne(targetEntity: ModelTemplate::class)]
+    #[ORM\ManyToOne()]
     private ?ModelTemplate $template = null;
 
     public function __construct()

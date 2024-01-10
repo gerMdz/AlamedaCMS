@@ -16,7 +16,7 @@ class Reservante implements \Stringable
     #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Celebracion::class, inversedBy: 'reservantes')]
+    #[ORM\ManyToOne( inversedBy: 'reservantes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Celebracion $celebracion = null;
 

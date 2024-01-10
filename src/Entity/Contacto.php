@@ -15,7 +15,7 @@ class Contacto implements \Stringable
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: TipoContacto::class, inversedBy: 'contactos')]
+    #[ORM\ManyToOne(inversedBy: 'contactos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?TipoContacto $tipo = null;
 

@@ -26,7 +26,7 @@ class Principal implements \Stringable
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'principal')]
+    #[ORM\ManyToOne( inversedBy: 'principal')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $autor = null;
 
@@ -58,16 +58,16 @@ class Principal implements \Stringable
     #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'principal')]
     private $section;
 
-    #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'brote')]
+    #[ORM\ManyToOne( inversedBy: 'brote')]
     private ?Principal $principal = null;
 
     #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'principal')]
     private $brote;
 
-    #[ORM\ManyToOne(targetEntity: ModelTemplate::class, inversedBy: 'principals')]
+    #[ORM\ManyToOne( inversedBy: 'principals')]
     private ?ModelTemplate $modelTemplate = null;
 
-    #[ORM\ManyToOne(targetEntity: Ministerio::class, inversedBy: 'page')]
+    #[ORM\ManyToOne( inversedBy: 'page')]
     private ?Ministerio $ministerio = null;
 
     #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'principales')]
