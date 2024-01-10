@@ -14,7 +14,9 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class ItemMenu
 {
     use TimestampableEntity;
+
     use CssClass;
+
     use IdentificadorTrait;
 
     #[ORM\Id]
@@ -42,13 +44,13 @@ class ItemMenu
     private $isActivo;
 
     #[ORM\ManyToOne(targetEntity: ItemMenu::class, inversedBy: 'itemMenus')]
-    private $parent;
+    private ?ItemMenu $parent = null;
 
-    #[ORM\OneToMany(targetEntity: ItemMenu::class, mappedBy: 'parent')]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: ItemMenu::class)]
     private $itemMenus;
 
     #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'itemMenus')]
-    private $pathInterno;
+    private ?Principal $pathInterno = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $pathLibre;

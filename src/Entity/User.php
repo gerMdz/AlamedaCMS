@@ -44,19 +44,19 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
     #[Groups('perfil')]
     private $avatarUrl;
 
-    #[ORM\OneToMany(targetEntity: 'App\Entity\ApiToken', mappedBy: 'user', orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity:ApiToken::class, orphanRemoval: true)]
     private $apiTokens;
 
-    #[ORM\OneToMany(targetEntity: 'App\Entity\PageIndex', mappedBy: 'autor')]
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: PageIndex::class)]
     private $pageIndices;
 
-    #[ORM\OneToMany(targetEntity: 'App\Entity\Entrada', mappedBy: 'autor')]
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Entrada::class)]
     private $entradas;
 
-    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'autor')]
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Principal::class)]
     private $principal;
 
-    #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'autor')]
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Comentario::class)]
     private $comentarios;
 
     #[ORM\Column(type: 'datetime')]

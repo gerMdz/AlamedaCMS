@@ -13,6 +13,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class GroupCelebration implements \Stringable
 {
     use TimestampableEntity;
+
     use ImageTrait;
 
     #[ORM\Id]

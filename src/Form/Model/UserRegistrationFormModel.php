@@ -13,6 +13,7 @@ class UserRegistrationFormModel
     #[Assert\NotBlank(message: 'Por favor ingrese un email')]
     #[Assert\Email]
     public $email;
+
     public $primerNombre;
 
     #[Assert\IsTrue(message: 'Por favor, debe aceptar los términos de amable convivencia.')]

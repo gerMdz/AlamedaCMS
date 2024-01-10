@@ -18,7 +18,7 @@ class Reservante implements \Stringable
 
     #[ORM\ManyToOne(targetEntity: Celebracion::class, inversedBy: 'reservantes')]
     #[ORM\JoinColumn(nullable: false)]
-    private $celebracion;
+    private ?Celebracion $celebracion = null;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $email;

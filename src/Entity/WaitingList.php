@@ -25,7 +25,7 @@ class WaitingList implements \Stringable
 
     #[ORM\ManyToOne(targetEntity: Celebracion::class, inversedBy: 'waitingLists')]
     #[ORM\JoinColumn(nullable: false)]
-    private $celebracion;
+    private ?Celebracion $celebracion = null;
 
     public function __toString(): string
     {

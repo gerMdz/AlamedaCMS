@@ -13,6 +13,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class Celebracion implements \Stringable
 {
     use TimestampableEntity;
+
     use OfertTrait;
 
     #[ORM\Id]
@@ -32,9 +33,9 @@ class Celebracion implements \Stringable
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'celebracions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $creaEvento;
+    private ?User $creaEvento = null;
 
-    #[ORM\OneToMany(targetEntity: Reservante::class, mappedBy: 'celebracion')]
+    #[ORM\OneToMany(mappedBy: 'celebracion', targetEntity: Reservante::class)]
     private $reservantes;
 
     #[ORM\OneToMany(targetEntity: Invitado::class, mappedBy: 'celebracion')]
@@ -229,7 +230,7 @@ class Celebracion implements \Stringable
     }
 
     /**
-     * @return Collection|WaitingList[]
+     * @return Collection
      */
     public function getWaitingLists(): Collection
     {
@@ -259,7 +260,7 @@ class Celebracion implements \Stringable
     }
 
     /**
-     * @return Collection|GroupCelebration[]
+     * @return Collection
      */
     public function getGroupCelebrations(): Collection
     {

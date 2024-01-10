@@ -120,3 +120,4 @@ phpstan.neon
 /.php-cs-fixer.cache
 /tools/php-cs-fixer/composer.json
 /tools/php-cs-fixer/composer.lock
+/sqls/

@@ -27,7 +27,7 @@ class EnlaceCorto
     private $urlDestino;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'enlaceCortos')]
-    private $usuario;
+    private ?User $usuario = null;
 
     public function getId(): ?int
     {

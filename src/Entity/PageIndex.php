@@ -15,9 +15,9 @@ class PageIndex
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\ManyToOne(targetEntity: 'App\Entity\User', inversedBy: 'pageIndices')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'pageIndices')]
     #[ORM\JoinColumn(nullable: false)]
-    private $autor;
+    private ?User $autor = null;
 
     public function getId(): ?int
     {

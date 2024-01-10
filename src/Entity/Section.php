@@ -17,9 +17,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Section implements \Stringable
 {
     use OfertTrait;
+
     use ImageTrait;
+
     use LinksTrait;
+
     use CssClass;
+
     use TimestampableEntity;
 
     #[ORM\Id]

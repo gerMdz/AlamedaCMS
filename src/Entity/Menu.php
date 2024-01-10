@@ -14,7 +14,9 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class Menu
 {
     use TimestampableEntity;
+
     use CssClass;
+
     use IdentificadorTrait;
 
     #[ORM\Id]

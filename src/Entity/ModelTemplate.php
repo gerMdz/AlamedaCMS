@@ -29,15 +29,15 @@ class ModelTemplate implements \Stringable
 
     #[ORM\ManyToOne(targetEntity: TypeBlock::class, inversedBy: 'modelTemplates')]
     #[ORM\OrderBy(['name' => 'ASC'])]
-    private $block;
+    private ?TypeBlock $block = null;
 
-    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'modelTemplate')]
+    #[ORM\OneToMany(mappedBy: 'modelTemplate', targetEntity: Principal::class)]
     private $principals;
 
-    #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'modelTemplate')]
+    #[ORM\OneToMany(mappedBy: 'modelTemplate', targetEntity: Section::class)]
     private $sections;
 
-    #[ORM\OneToMany(targetEntity: Entrada::class, mappedBy: 'modelTemplate')]
+    #[ORM\OneToMany(mappedBy: 'modelTemplate', targetEntity: Entrada::class)]
     private $entradas;
 
     public function __construct()

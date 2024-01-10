@@ -18,22 +18,20 @@ class Comentario
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comentarios')]
     #[ORM\JoinColumn(nullable: false)]
-    private $autor;
+    private ?User $autor = null;
 
     #[ORM\Column(type: 'text', length: 8000, nullable: true)]
     private $contenido;
 
     #[ORM\ManyToOne(targetEntity: Entrada::class, inversedBy: 'comentarios')]
-    private $entrada;
+    private ?Entrada $entrada = null;
 
     #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'comentarios')]
-    private $principal;
+    private ?Principal $principal =  null;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $isDeleted = false;
 
-    #[ORM\ManyToOne(targetEntity: Brote::class, inversedBy: 'comenttarios')]
-    private $brote;
 
     public function getId(): ?int
     {
@@ -100,15 +98,5 @@ class Comentario
         return $this;
     }
 
-    public function getbrote(): ?Brote
-    {
-        return $this->brote;
-    }
 
-    public function setbrote(?Brote $brote): self
-    {
-        $this->brote = $brote;
-
-        return $this;
-    }
 }

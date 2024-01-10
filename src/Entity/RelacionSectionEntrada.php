@@ -14,10 +14,10 @@ class RelacionSectionEntrada
     private $id;
 
     #[ORM\ManyToOne(targetEntity: Section::class, inversedBy: 'relacionSectionEntradas')]
-    private $section;
+    private ?Section $section = null;
 
     #[ORM\ManyToOne(targetEntity: Entrada::class, inversedBy: 'relacionSectionEntradas')]
-    private $entrada;
+    private ?Entrada $entrada = null;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $orden;

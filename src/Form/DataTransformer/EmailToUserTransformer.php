@@ -10,6 +10,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class EmailToUserTransformer implements DataTransformerInterface
 {
     protected $userRepository;
+
     private $finderCallback;
 
     /**

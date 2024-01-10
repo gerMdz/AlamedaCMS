@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 #[ORM\Entity(repositoryClass: 'App\Repository\ApiTokenRepository')]
 class ApiToken
@@ -21,7 +22,7 @@ class ApiToken
     /**
      * ApiToken constructor.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(
         #[ORM\ManyToOne(targetEntity: 'App\Entity\User', inversedBy: 'apiTokens')]

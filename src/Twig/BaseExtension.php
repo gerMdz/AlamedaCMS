@@ -17,7 +17,9 @@ use Twig\TwigFunction;
 class BaseExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
     protected $em;
+
     protected $ind_inicio = '{{';
+
     protected $ind_final = '}}';
 
     /**

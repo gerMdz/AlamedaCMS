@@ -17,8 +17,11 @@ use Ramsey\Uuid\UuidInterface;
 class BlocsFixes implements \Stringable
 {
     use CssClass;
+
     use ImageTrait;
+
     use TimestampableEntity;
+
     use IdentificadorTrait;
 
     #[ORM\Id]

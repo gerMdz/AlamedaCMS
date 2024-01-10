@@ -21,8 +21,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Entrada implements \Stringable
 {
     use TimestampableEntity;
+
     use OfertTrait;
+
     use LinksTrait;
+
     use CssClass;
 
     #[ORM\Id]
@@ -50,14 +53,14 @@ class Entrada implements \Stringable
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $publicadoAt = null;
 
-    #[ORM\OneToMany(targetEntity: EntradaReference::class, mappedBy: 'entrada')]
+    #[ORM\OneToMany(mappedBy: 'entrada', targetEntity: EntradaReference::class)]
     #[ORM\OrderBy(['posicion' => 'ASC'])]
     private ?Collection $entradaReferences;
 
     #[ORM\Column(type: 'integer')]
     private ?int $likes = 0;
 
-    #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'entrada', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(mappedBy: 'entrada', targetEntity: Comentario::class, fetch: 'EXTRA_LAZY')]
     #[ORM\OrderBy(['createdAt' => 'DESC'])]
     private ?Collection $comentarios;
 

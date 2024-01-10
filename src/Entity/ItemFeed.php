@@ -42,7 +42,7 @@ class ItemFeed
 
     #[ORM\ManyToOne(targetEntity: ChannelFeed::class, inversedBy: 'item')]
     #[ORM\JoinColumn(nullable: false)]
-    private $channelFeed;
+    private ?ChannelFeed $channelFeed = null;
 
     public function getId(): ?int
     {

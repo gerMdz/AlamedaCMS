@@ -16,7 +16,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Principal implements \Stringable
 {
     use TimestampableEntity;
+
     use ImageTrait;
+
     use CssClass;
 
     #[ORM\Id]
@@ -57,16 +59,16 @@ class Principal implements \Stringable
     private $section;
 
     #[ORM\ManyToOne(targetEntity: Principal::class, inversedBy: 'brote')]
-    private $principal;
+    private ?Principal $principal = null;
 
     #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'principal')]
     private $brote;
 
     #[ORM\ManyToOne(targetEntity: ModelTemplate::class, inversedBy: 'principals')]
-    private $modelTemplate;
+    private ?ModelTemplate $modelTemplate = null;
 
     #[ORM\ManyToOne(targetEntity: Ministerio::class, inversedBy: 'page')]
-    private $ministerio;
+    private ?Ministerio $ministerio = null;
 
     #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'principales')]
     #[ORM\OrderBy(['orden' => 'ASC'])]

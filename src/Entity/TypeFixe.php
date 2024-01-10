@@ -14,6 +14,7 @@ use Ramsey\Uuid\UuidInterface;
 class TypeFixe implements \Stringable
 {
     use TimestampableEntity;
+
     use IdentificadorTrait;
 
     #[ORM\Id]

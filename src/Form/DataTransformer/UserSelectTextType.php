@@ -14,6 +14,7 @@ use Symfony\Component\Routing\RouterInterface;
 class UserSelectTextType extends AbstractType
 {
     protected $userRepository;
+
     protected $router;
 
     /**
