@@ -112,8 +112,8 @@ class ReservaController extends AbstractController
             ];
             $arrayDatos2 = json_encode($arrayDato2);
 
-            $response->headers->setCookie(new Cookie($nombre, $arrayDatos, $time2));
-            $response->headers->setCookie(new Cookie($nombre2, $arrayDatos2, $time2));
+            $response->headers->setCookie(\Symfony\Component\HttpFoundation\Cookie::create($nombre, $arrayDatos, $time2));
+            $response->headers->setCookie(\Symfony\Component\HttpFoundation\Cookie::create($nombre2, $arrayDatos2, $time2));
             $response->sendHeaders();
 
             return $this->redirectToRoute('vista_reserva', [

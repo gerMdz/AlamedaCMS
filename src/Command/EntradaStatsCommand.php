@@ -12,11 +12,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class EntradaStatsCommand extends Command
 {
     protected static $defaultName = 'entrada:stats';
+    protected static $defaultDescription = 'Devuelve datos sobre una entrada';
 
     protected function configure()
     {
         $this
-            ->setDescription('Devuelve datos sobre una entrada')
             ->addArgument('identificador', InputArgument::REQUIRED, 'El identificador del artículo')
             ->addOption('format', null, InputOption::VALUE_REQUIRED, 'Formato de salida', 'text')
         ;
@@ -53,6 +53,6 @@ class EntradaStatsCommand extends Command
 
         $io->success('Recuerda que --help mostrará más opciones.');
 
-        return 0;
+        return \Symfony\Component\Console\Command\Command::SUCCESS;
     }
 }

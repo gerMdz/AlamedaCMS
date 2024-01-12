@@ -65,7 +65,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         // todo
     }
 
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(Request $request, AuthenticationException $authException = null): \Symfony\Component\HttpFoundation\Response
     {
         throw new \Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
     }

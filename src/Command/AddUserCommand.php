@@ -52,6 +52,7 @@ class AddUserCommand extends Command
     // to make your command lazily loaded, configure the $defaultName static property,
     // so it will be instantiated only when the command is actually called.
     protected static $defaultName = 'app:add-user';
+    protected static $defaultDescription = 'Crear usuarios y guardarlos en la base de datos';
 
     private SymfonyStyle $io;
 
@@ -63,7 +64,6 @@ class AddUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Crear usuarios y guardarlos en la base de datos')
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see https://symfony.com/doc/current/components/console/console_arguments.html
@@ -179,7 +179,7 @@ class AddUserCommand extends Command
             $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
         }
 
-        return 0;
+        return \Symfony\Component\Console\Command\Command::SUCCESS;
     }
 
     private function validateUserData($email, $plainPassword, $primerNombre): void
