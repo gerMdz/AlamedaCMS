@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Principal;
+use App\Repository\PrincipalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SitemapController extends AbstractController
 {
     #[Route(path: '/sitemap.xml', name: 'sitemap', defaults: ['_format' => 'xml'])]
-    public function index(Request $request): Response
+    public function index(Request $request, PrincipalRepository $principalRepository): Response
     {
         $hostname = $request->getSchemeAndHttpHost();
 
@@ -20,7 +21,9 @@ class SitemapController extends AbstractController
         // On ajoute les URLs "statiques"
         $urls[] = ['loc' => $this->generateUrl('reserva_index')];
 
-        foreach ($this->getDoctrine()->getRepository(Principal::class)->findAll() as $principal) {
+        $principals = $principalRepository->findAll();
+
+        foreach ($principals as $principal) {
             $urls[] = [
                 'loc' => $this->generateUrl('principal_ver', [
                     'linkRoute' => $principal->getLinkRoute(),

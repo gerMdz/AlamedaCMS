@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TipoContacto;
 use App\Form\TipoContactoType;
 use App\Repository\TipoContactoRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +23,13 @@ class TipoContactoController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'tipo_contacto_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $tipoContacto = new TipoContacto();
         $form = $this->createForm(TipoContactoType::class, $tipoContacto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($tipoContacto);
             $entityManager->flush();
 
@@ -51,13 +51,13 @@ class TipoContactoController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'tipo_contacto_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, TipoContacto $tipoContacto): Response
+    public function edit(Request $request, TipoContacto $tipoContacto, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TipoContactoType::class, $tipoContacto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('tipo_contacto_index');
         }
@@ -69,10 +69,9 @@ class TipoContactoController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'tipo_contacto_delete', methods: ['DELETE'])]
-    public function delete(Request $request, TipoContacto $tipoContacto): Response
+    public function delete(Request $request, TipoContacto $tipoContacto, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$tipoContacto->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($tipoContacto);
             $entityManager->flush();
         }

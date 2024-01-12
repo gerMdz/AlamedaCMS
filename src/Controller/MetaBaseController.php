@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\MetaBase;
 use App\Form\MetaBaseType;
 use App\Repository\MetaBaseRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,10 +70,9 @@ class MetaBaseController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'meta_base_delete', methods: ['DELETE'])]
-    public function delete(Request $request, MetaBase $metaBase): Response
+    public function delete(Request $request, MetaBase $metaBase, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$metaBase->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($metaBase);
             $entityManager->flush();
         }

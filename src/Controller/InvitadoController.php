@@ -61,14 +61,13 @@ class InvitadoController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'invitado_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $invitado = new Invitado();
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($invitado);
             $entityManager->flush();
 
@@ -90,13 +89,13 @@ class InvitadoController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'invitado_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Invitado $invitado): Response
+    public function edit(Request $request, Invitado $invitado, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('invitado_index');
         }
@@ -108,10 +107,9 @@ class InvitadoController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'invitado_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Invitado $invitado): Response
+    public function delete(Request $request, Invitado $invitado, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$invitado->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($invitado);
             $entityManager->flush();
         }

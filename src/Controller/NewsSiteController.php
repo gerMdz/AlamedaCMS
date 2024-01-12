@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\NewsSite;
 use App\Form\NewsSiteType;
 use App\Repository\NewsSiteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +23,13 @@ class NewsSiteController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'news_site_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $newsSite = new NewsSite();
         $form = $this->createForm(NewsSiteType::class, $newsSite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newsSite);
             $entityManager->flush();
 
@@ -51,13 +51,13 @@ class NewsSiteController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'news_site_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, NewsSite $newsSite): Response
+    public function edit(Request $request, NewsSite $newsSite, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(NewsSiteType::class, $newsSite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('news_site_index');
         }
@@ -69,10 +69,9 @@ class NewsSiteController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'news_site_delete', methods: ['POST'])]
-    public function delete(Request $request, NewsSite $newsSite): Response
+    public function delete(Request $request, NewsSite $newsSite, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$newsSite->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($newsSite);
             $entityManager->flush();
         }

@@ -4,9 +4,6 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
-    encoders:
-        App\Entity\User:
-            algorithm: auto
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords

@@ -28,7 +28,7 @@ class CelebracionController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'celebracion_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $celebracion = new Celebracion();
         $form = $this->createForm(CelebracionType::class, $celebracion);
@@ -47,7 +47,6 @@ class CelebracionController extends AbstractController
             $celebracion->setCreatedAt($ahora);
             $celebracion->setUpdatedAt($ahora);
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($celebracion);
             $entityManager->flush();
 
@@ -69,13 +68,13 @@ class CelebracionController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'celebracion_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Celebracion $celebracion): Response
+    public function edit(Request $request, Celebracion $celebracion, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CelebracionType::class, $celebracion);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('celebracion_index');
         }
@@ -87,10 +86,9 @@ class CelebracionController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'celebracion_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Celebracion $celebracion): Response
+    public function delete(Request $request, Celebracion $celebracion, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$celebracion->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($celebracion);
             $entityManager->flush();
         }

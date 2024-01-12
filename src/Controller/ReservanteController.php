@@ -6,6 +6,7 @@ use App\Entity\Reservante;
 use App\Form\Filter\ReservaByEmailFilterType;
 use App\Form\ReservanteType;
 use App\Repository\ReservanteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,7 @@ class ReservanteController extends AbstractController
     }
 
     #[Route(path: '/lectura', name: 'reserva_lectura', methods: ['GET', 'POST'])]
-    public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository): Response
+    public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ReservaByEmailFilterType::class);
         $form->handleRequest($request);
@@ -53,14 +54,13 @@ class ReservanteController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'reservante_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservante = new Reservante();
         $form = $this->createForm(ReservanteType::class, $reservante);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reservante);
             $entityManager->flush();
 
@@ -82,13 +82,13 @@ class ReservanteController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'reservante_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Reservante $reservante): Response
+    public function edit(Request $request, Reservante $reservante, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ReservanteType::class, $reservante);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('reservante_index');
         }
@@ -100,10 +100,9 @@ class ReservanteController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'reservante_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Reservante $reservante): Response
+    public function delete(Request $request, Reservante $reservante, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$reservante->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($reservante);
             $entityManager->flush();
         }
