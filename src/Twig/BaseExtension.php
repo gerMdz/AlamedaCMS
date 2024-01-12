@@ -43,17 +43,17 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('base_lema', [$this, 'lema']),
-            new TwigFunction('base_metaDescripcion', [$this, 'metaDescripcion']),
-            new TwigFunction('base_base', [$this, 'base']),
-            new TwigFunction('uploaded_asset', [$this, 'getUploadedAssetPath']),
-            new TwigFunction('capacidad_restante', [$this, 'capacidad_restante']),
-            new TwigFunction('capacidad_ocupada', [$this, 'capacidad_ocupada']),
-            new TwigFunction('redirection', [$this, 'redirection']),
-            new TwigFunction('completa_texto', [$this, 'completa_texto']),
-            new TwigFunction('completa_lugar', [$this, 'completa_lugar']),
-            new TwigFunction('form_suscripto_newsletter', [$this, 'form_suscripto_newsletter']),
-            new TwigFunction('booleano', [$this, 'booleano']),
+            new TwigFunction('base_lema', $this->lema(...)),
+            new TwigFunction('base_metaDescripcion', $this->metaDescripcion(...)),
+            new TwigFunction('base_base', $this->base(...)),
+            new TwigFunction('uploaded_asset', $this->getUploadedAssetPath(...)),
+            new TwigFunction('capacidad_restante', $this->capacidad_restante(...)),
+            new TwigFunction('capacidad_ocupada', $this->capacidad_ocupada(...)),
+            new TwigFunction('redirection', $this->redirection(...)),
+            new TwigFunction('completa_texto', $this->completa_texto(...)),
+            new TwigFunction('completa_lugar', $this->completa_lugar(...)),
+            new TwigFunction('form_suscripto_newsletter', $this->form_suscripto_newsletter(...)),
+            new TwigFunction('booleano', $this->booleano(...)),
         ];
     }
 

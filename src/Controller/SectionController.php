@@ -14,6 +14,7 @@ use App\Form\Step\Section\StepTwoType;
 use App\Repository\EntradaRepository;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\SectionRepository;
+use App\Repository\SourceApiRepository;
 use App\Service\Handler\SourceApi\HandlerSourceApi;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -179,7 +180,7 @@ class SectionController extends BaseController
     }
 
     #[Route(path: '/muestra/seccion/{id}')]
-    public function mostrarSection(Section $section, EntradaRepository $entradaRepository): Response
+    public function mostrarSection(Section $section, EntradaRepository $entradaRepository, SourceApiRepository $sourceApiRepository): Response
     {
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
@@ -189,7 +190,7 @@ class SectionController extends BaseController
 
         if ('api.html.twig' == $twig) {
             try {
-                $apiSource = $this->container->get('doctrine')->getRepository(SourceApi::class)->findBy([
+                $apiSource = $sourceApiRepository->findBy([
                  'identifier' => $section->getIdentificador(),
                 ]);
             } catch (NotFoundExceptionInterface|ContainerExceptionInterface) {
@@ -201,8 +202,10 @@ class SectionController extends BaseController
                 } catch (ClientExceptionInterface|DecodingExceptionInterface|ServerExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface) {
                 }
             }
+
         }
         $model = 'models/sections/'.$twig;
+
 
         return $this->render($model, [
             'entradas' => $entradas,
