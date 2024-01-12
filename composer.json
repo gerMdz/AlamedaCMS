@@ -17,7 +17,7 @@
         "doctrine/orm": "^2.10",
         "endroid/qr-code-bundle": "4.3.*",
         "erusev/parsedown": "^1.6",
-        "friendsofsymfony/ckeditor-bundle": "^2.2",
+        "friendsofsymfony/ckeditor-bundle": "^2.4",
         "gedmo/doctrine-extensions": "^v3.4.0",
         "knplabs/knp-markdown-bundle": "^1.8",
         "knplabs/knp-paginator-bundle": "^5.2",
@@ -37,14 +37,14 @@
         "symfony/dotenv": "6.1.*",
         "symfony/expression-language": "6.1.*",
         "symfony/flex": "^1.17.1",
-        "symfony/form": "^v5.4.0",
-        "symfony/framework-bundle": "^v5.4.0",
+        "symfony/form": "^v6.1.0",
+        "symfony/framework-bundle": "^v6.1.0",
         "symfony/http-client": "5.4.*",
         "symfony/intl": "6.1.*",
         "symfony/mailer": "6.1.*",
         "symfony/polyfill-intl-messageformatter": "^1.12",
         "symfony/polyfill-php72": "^1.15",
-        "symfony/property-access": "^v5.4.0",
+        "symfony/property-access": "^v6.1.0",
         "symfony/property-info": "5.4.*",
         "symfony/runtime": "6.1.*",
         "symfony/security-bundle": "6.1.*",
@@ -89,7 +89,7 @@
         },
         "sort-packages": true,
         "platform": {
-            "php": "8.0.2"
+            "php": "8.2"
         },
         "allow-plugins": {
             "endroid/installer": true,

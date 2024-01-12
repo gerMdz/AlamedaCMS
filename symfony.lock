@@ -147,9 +147,6 @@
     "ezyang/htmlpurifier": {
         "version": "v4.13.0"
     },
-    "friendsofphp/proxy-manager-lts": {
-        "version": "v1.0.0"
-    },
     "friendsofsymfony/ckeditor-bundle": {
         "version": "2.4",
         "recipe": {
@@ -234,9 +231,6 @@
     },
     "myclabs/deep-copy": {
         "version": "1.11.0"
-    },
-    "myclabs/php-enum": {
-        "version": "1.7.7"
     },
     "nikic/php-parser": {
         "version": "v4.5.0"
@@ -661,9 +655,6 @@
     "symfony/polyfill-php80": {
         "version": "v1.17.0"
     },
-    "symfony/polyfill-php81": {
-        "version": "v1.23.0"
-    },
     "symfony/process": {
         "version": "v4.4.10"
     },
@@ -718,6 +709,15 @@
     },
     "symfony/service-contracts": {
         "version": "v2.1.2"
+    },
+    "symfony/stimulus-bundle": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.8",
+            "ref": "9e33a8a3794b603fb4be6c04ee5ecab901ce549e"
+        }
     },
     "symfony/stopwatch": {
         "version": "v4.4.10"
