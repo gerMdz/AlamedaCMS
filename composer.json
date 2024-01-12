@@ -4,7 +4,7 @@
     "name": "germdz/alamedacms",
     "description": "CMS Sencillo con reservas por email, y manejo de usuarios, bootstrap en CSS",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.2.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",

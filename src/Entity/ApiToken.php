@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 
-#[ORM\Entity(repositoryClass: 'App\Repository\ApiTokenRepository')]
+#[ORM\Entity(repositoryClass: \App\Repository\ApiTokenRepository::class)]
 class ApiToken
 {
     #[ORM\Id]

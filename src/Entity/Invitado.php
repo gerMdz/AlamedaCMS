@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ORM\Entity(repositoryClass: 'App\Repository\InvitadoRepository')]
+#[ORM\Entity(repositoryClass: \App\Repository\InvitadoRepository::class)]
 class Invitado implements \Stringable
 {
     use TimestampableEntity;
@@ -14,7 +14,7 @@ class Invitado implements \Stringable
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

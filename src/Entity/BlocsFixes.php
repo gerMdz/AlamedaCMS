@@ -27,7 +27,7 @@ class BlocsFixes implements \Stringable
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private UuidInterface $id;
 
     #[ORM\ManyToMany(targetEntity: Principal::class, inversedBy: 'blocsFixes')]

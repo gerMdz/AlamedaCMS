@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: 'App\Repository\MetaBaseRepository')]
+#[ORM\Entity(repositoryClass: \App\Repository\MetaBaseRepository::class)]
 class MetaBase
 {
     #[ORM\Id]

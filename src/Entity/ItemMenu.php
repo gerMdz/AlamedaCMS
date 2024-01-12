@@ -22,7 +22,7 @@ class ItemMenu
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: 'Ramsey\Uuid\Doctrine\UuidGenerator')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
 
     #[ORM\ManyToMany(targetEntity: Roles::class, inversedBy: 'itemMenus')]
