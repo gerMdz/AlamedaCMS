@@ -129,7 +129,8 @@ class ReservaController extends AbstractController
     }
 
     #[Route(path: '/agregaInvitado/{id}', name: 'agrega_invitado', methods: ['GET', 'POST'])]
-    public function agregaInvitado(Reservante $reservante, Request $request): Response
+    public function agregaInvitado(Reservante             $reservante, Request $request,
+                                   EntityManagerInterface $entityManager): Response
     {
         $invitado = new Invitado();
         $invitado->setCelebracion($reservante->getCelebracion());
@@ -138,7 +139,6 @@ class ReservaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $email = $form['email']->getData();
 
             $invitado_existente = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($reservante->getCelebracion()->getId(), $email);
@@ -209,13 +209,12 @@ class ReservaController extends AbstractController
     }
 
     #[Route(path: '/{id}/completa', name: 'invitado_completa', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Invitado $invitado, Mailer $mailer): Response
+    public function edit(Request $request, Invitado $invitado, Mailer $mailer, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $email = $form['email']->getData();
             $existe = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($invitado->getCelebracion()->getId(), $email);
             if ($existe) {
@@ -226,7 +225,7 @@ class ReservaController extends AbstractController
                     'email' => $invitado->getEnlace()->getEmail(),
                 ]);
             }
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             if (null != $invitado->getEmail()) {
                 $mailer->sendReservaInvitadoMessage($invitado);
@@ -247,13 +246,14 @@ class ReservaController extends AbstractController
     }
 
     #[Route(path: '/{id}/completa_invitado', name: 'invitado_completa_self', methods: ['GET', 'POST'])]
-    public function editSelf(Request $request, Invitado $invitado, Mailer $mailer): Response
+    public function editSelf(Request $request, Invitado $invitado, Mailer $mailer,
+                             EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             $mailer->sendReservaInvitadoMessage($invitado);
 
@@ -299,11 +299,11 @@ class ReservaController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'reserva_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher): Response
+    public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher,
+                           EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservante->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reservante->getId(), $request->request->get('_token'))) {
             $celebracion = $reservante->getCelebracion();
-            $entityManager = $this->getDoctrine()->getManager();
 
             $invitados = $reservante->getInvitados();
             foreach ($invitados as $invitado) {
@@ -326,11 +326,10 @@ class ReservaController extends AbstractController
     }
 
     #[Route(path: '/cancela/{id}/invitado', name: 'cancela_invitado', methods: ['GET'])]
-    public function cancelaReserva(Invitado $invitado): Response
+    public function cancelaReserva(Invitado $invitado, EntityManagerInterface $entityManager): Response
     {
         $celebracion = $invitado->getCelebracion()->getId();
         $email = $invitado->getEnlace()->getEmail();
-        $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($invitado);
         $entityManager->flush();
         $this->addFlash('success', 'Se canceló reserva.');

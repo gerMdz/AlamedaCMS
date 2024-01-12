@@ -6,6 +6,7 @@ use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -24,9 +25,8 @@ class ZinicioController extends AbstractController
     }
 
     #[Route(path: '/', name: 'index')]
-    public function index()
+    public function index(EntityManagerInterface $em)
     {
-        $em = $this->getDoctrine()->getManager();
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
         if ('true' == $this->site_temporal) {

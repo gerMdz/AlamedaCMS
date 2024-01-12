@@ -67,7 +67,7 @@ class ModelTemplateController extends AbstractController
      */
     #[Route(path: '/new', name: 'model_template_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, UploaderHelper $uploaderHelper): Response
+    public function new(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $modelTemplate = new ModelTemplate();
         $form = $this->createForm(ModelTemplateType::class, $modelTemplate);
@@ -84,7 +84,6 @@ class ModelTemplateController extends AbstractController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
                 $modelTemplate->setImageFilename($newFilename);
             }
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($modelTemplate);
             $entityManager->flush();
 
@@ -110,7 +109,8 @@ class ModelTemplateController extends AbstractController
      */
     #[Route(path: '/{id}/edit', name: 'model_template_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(Request $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper): Response
+    public function edit(Request                $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper,
+                         EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ModelTemplateType::class, $modelTemplate);
         $form->handleRequest($request);
@@ -122,7 +122,7 @@ class ModelTemplateController extends AbstractController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $modelTemplate->getImageFilename());
                 $modelTemplate->setImageFilename($newFilename);
             }
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('model_template_index');
         }
@@ -135,10 +135,11 @@ class ModelTemplateController extends AbstractController
 
     #[Route(path: '/{id}', name: 'model_template_delete', methods: ['DELETE'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function delete(Request $request, ModelTemplate $modelTemplate): Response
+    public function delete(Request                $request, ModelTemplate $modelTemplate,
+                           EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$modelTemplate->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+        if ($this->isCsrfTokenValid('delete' . $modelTemplate->getId(), $request->request->get('_token'))) {
+
             $entityManager->remove($modelTemplate);
             $entityManager->flush();
         }
@@ -150,11 +151,11 @@ class ModelTemplateController extends AbstractController
     public function registerTemplate(string $pathTemplate, TypeBlockRepository $blockRepository, ModelTemplateRepository $modelTemplateRepository, EntityManagerInterface $em): JsonResponse
     {
         $models = [
-            $pathTemplate.'/modelEntrada' => 'entrada',
-            $pathTemplate.'/sections' => 'seccion',
-            $pathTemplate.'/models/principal' => 'page',
-            $pathTemplate.'/models/sections' => 'seccion',
-            $pathTemplate.'/models/entradas' => 'entrada',
+            $pathTemplate . '/modelEntrada' => 'entrada',
+            $pathTemplate . '/sections' => 'seccion',
+            $pathTemplate . '/models/principal' => 'page',
+            $pathTemplate . '/models/sections' => 'seccion',
+            $pathTemplate . '/models/entradas' => 'entrada',
         ];
         $temp = [];
         foreach ($models as $key => $value) {
@@ -180,7 +181,7 @@ class ModelTemplateController extends AbstractController
                     $em->persist($template);
                     $em->flush();
                 } else {
-                    $string = $string.' ya existe';
+                    $string = $string . ' ya existe';
                 }
 
                 array_push($temp, $string);
