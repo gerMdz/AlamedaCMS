@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ItemFeed;
 use App\Form\ItemFeedType;
 use App\Repository\ItemFeedRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +23,13 @@ class ItemFeedController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'item_feed_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $itemFeed = new ItemFeed();
         $form = $this->createForm(ItemFeedType::class, $itemFeed);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($itemFeed);
             $entityManager->flush();
 
@@ -51,13 +51,13 @@ class ItemFeedController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'item_feed_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, ItemFeed $itemFeed): Response
+    public function edit(Request $request, ItemFeed $itemFeed, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ItemFeedType::class, $itemFeed);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('item_feed_index');
         }
@@ -69,10 +69,9 @@ class ItemFeedController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'item_feed_delete', methods: ['DELETE'])]
-    public function delete(Request $request, ItemFeed $itemFeed): Response
+    public function delete(Request $request, ItemFeed $itemFeed, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$itemFeed->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($itemFeed);
             $entityManager->flush();
         }

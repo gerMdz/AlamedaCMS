@@ -30,14 +30,13 @@ class IndexAlamedaController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'index_alameda_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $indexAlameda = new IndexAlameda();
         $form = $this->createForm(IndexAlamedaType::class, $indexAlameda);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($indexAlameda);
             $entityManager->flush();
 
@@ -78,10 +77,9 @@ class IndexAlamedaController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'index_alameda_delete', methods: ['DELETE'])]
-    public function delete(Request $request, IndexAlameda $indexAlameda): Response
+    public function delete(Request $request, IndexAlameda $indexAlameda, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$indexAlameda->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+        if ($this->isCsrfTokenValid('delete' . $indexAlameda->getId(), $request->request->get('_token'))) {
             $entityManager->remove($indexAlameda);
             $entityManager->flush();
         }
@@ -134,7 +132,9 @@ class IndexAlamedaController extends AbstractController
      * @return RedirectResponse|Response
      */
     #[Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]
-    public function agregarSeccion(Request $request, IndexAlameda $indexAlameda, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, IndexAlamedaRepository $indexAlamedaRepository)
+    public function agregarSeccion(Request                $request, IndexAlameda $indexAlameda,
+                                   EntityManagerInterface $entityManager, SectionRepository $sectionRepository,
+                                   IndexAlamedaRepository $indexAlamedaRepository)
     {
         $form = $this->createForm(IndexSectionType::class, $indexAlameda);
         $form->handleRequest($request);
@@ -143,7 +143,6 @@ class IndexAlamedaController extends AbstractController
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $indexAlameda->addSection($seccion);
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($indexAlameda);
             $entityManager->flush();
 
