@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \String
     #[Groups('perfil')]
     private $avatarUrl;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity:ApiToken::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ApiToken::class, orphanRemoval: true)]
     private Collection $apiTokens;
 
     #[ORM\OneToMany(mappedBy: 'autor', targetEntity: PageIndex::class)]
@@ -112,8 +112,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \String
         return $this;
     }
 
-
-
     /**
      * The public representation of the user (e.g. a username, an email address, etc.).
      *
@@ -150,8 +148,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \String
     {
         return $this->password;
     }
-
-
 
     /**
      * @see UserInterface
@@ -495,6 +491,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \String
 
         return $this;
     }
-
-
 }

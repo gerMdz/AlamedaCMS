@@ -17,7 +17,6 @@ class EnlaceCorto
     #[ORM\Column(type: 'integer')]
     private $id;
 
-
     #[Gedmo\Slug(fields: ['linkRoute'])]
     #[ORM\Column(type: 'string', length: 150, unique: true, nullable: true)]
     private $linkRoute;
@@ -25,7 +24,7 @@ class EnlaceCorto
     #[ORM\Column(type: 'string', length: 255)]
     private $urlDestino;
 
-    #[ORM\ManyToOne( inversedBy: 'enlaceCortos')]
+    #[ORM\ManyToOne(inversedBy: 'enlaceCortos')]
     private ?User $usuario = null;
 
     public function getId(): ?int

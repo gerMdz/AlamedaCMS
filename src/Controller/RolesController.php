@@ -72,7 +72,6 @@ class RolesController extends AbstractController
     public function delete(Request $request, Roles $role, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$role->getId(), $request->request->get('_token'))) {
-
             $entityManager->remove($role);
             $entityManager->flush();
         }

@@ -58,6 +58,7 @@ class ButtonLinkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+
             return $this->redirectToRoute('button_link_index');
         }
 
@@ -71,7 +72,6 @@ class ButtonLinkController extends AbstractController
     public function delete(Request $request, ButtonLink $buttonLink, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$buttonLink->getId(), $request->request->get('_token'))) {
-
             $entityManager->remove($buttonLink);
             $entityManager->flush();
         }

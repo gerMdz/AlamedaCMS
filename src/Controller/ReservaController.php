@@ -112,8 +112,8 @@ class ReservaController extends AbstractController
             ];
             $arrayDatos2 = json_encode($arrayDato2);
 
-            $response->headers->setCookie(\Symfony\Component\HttpFoundation\Cookie::create($nombre, $arrayDatos, $time2));
-            $response->headers->setCookie(\Symfony\Component\HttpFoundation\Cookie::create($nombre2, $arrayDatos2, $time2));
+            $response->headers->setCookie(Cookie::create($nombre, $arrayDatos, $time2));
+            $response->headers->setCookie(Cookie::create($nombre2, $arrayDatos2, $time2));
             $response->sendHeaders();
 
             return $this->redirectToRoute('vista_reserva', [
@@ -129,8 +129,8 @@ class ReservaController extends AbstractController
     }
 
     #[Route(path: '/agregaInvitado/{id}', name: 'agrega_invitado', methods: ['GET', 'POST'])]
-    public function agregaInvitado(Reservante             $reservante, Request $request,
-                                   EntityManagerInterface $entityManager): Response
+    public function agregaInvitado(Reservante $reservante, Request $request,
+        EntityManagerInterface $entityManager): Response
     {
         $invitado = new Invitado();
         $invitado->setCelebracion($reservante->getCelebracion());
@@ -247,7 +247,7 @@ class ReservaController extends AbstractController
 
     #[Route(path: '/{id}/completa_invitado', name: 'invitado_completa_self', methods: ['GET', 'POST'])]
     public function editSelf(Request $request, Invitado $invitado, Mailer $mailer,
-                             EntityManagerInterface $entityManager): Response
+        EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
@@ -300,9 +300,9 @@ class ReservaController extends AbstractController
 
     #[Route(path: '/{id}', name: 'reserva_delete', methods: ['DELETE'])]
     public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher,
-                           EntityManagerInterface $entityManager): Response
+        EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $reservante->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$reservante->getId(), $request->request->get('_token'))) {
             $celebracion = $reservante->getCelebracion();
 
             $invitados = $reservante->getInvitados();

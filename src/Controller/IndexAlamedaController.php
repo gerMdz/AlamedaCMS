@@ -8,7 +8,6 @@ use App\Form\IndexSectionType;
 use App\Repository\IndexAlamedaRepository;
 use App\Repository\SectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -79,7 +78,7 @@ class IndexAlamedaController extends AbstractController
     #[Route(path: '/{id}', name: 'index_alameda_delete', methods: ['DELETE'])]
     public function delete(Request $request, IndexAlameda $indexAlameda, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $indexAlameda->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$indexAlameda->getId(), $request->request->get('_token'))) {
             $entityManager->remove($indexAlameda);
             $entityManager->flush();
         }
@@ -132,9 +131,9 @@ class IndexAlamedaController extends AbstractController
      * @return RedirectResponse|Response
      */
     #[Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]
-    public function agregarSeccion(Request                $request, IndexAlameda $indexAlameda,
-                                   EntityManagerInterface $entityManager, SectionRepository $sectionRepository,
-                                   IndexAlamedaRepository $indexAlamedaRepository)
+    public function agregarSeccion(Request $request, IndexAlameda $indexAlameda,
+        EntityManagerInterface $entityManager, SectionRepository $sectionRepository,
+        IndexAlamedaRepository $indexAlamedaRepository)
     {
         $form = $this->createForm(IndexSectionType::class, $indexAlameda);
         $form->handleRequest($request);

@@ -17,7 +17,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: \App\Repository\EntradaRepository::class)]
+#[ORM\Entity(repositoryClass: EntradaRepository::class)]
 class Entrada implements \Stringable
 {
     use TimestampableEntity;
@@ -42,7 +42,7 @@ class Entrada implements \Stringable
     #[Groups('mail')]
     private ?string $contenido = null;
 
-    #[ORM\ManyToOne( inversedBy: 'entradas')]
+    #[ORM\ManyToOne(inversedBy: 'entradas')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $autor = null;
 
@@ -85,7 +85,7 @@ class Entrada implements \Stringable
     #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $destacado = null;
 
-    #[ORM\ManyToOne( inversedBy: 'entradas')]
+    #[ORM\ManyToOne(inversedBy: 'entradas')]
     private ?ModelTemplate $modelTemplate = null;
 
     #[ORM\ManyToMany(targetEntity: Contacto::class, inversedBy: 'entradas')]

@@ -40,7 +40,7 @@ class ItemFeed
     #[ORM\Column(type: 'string', length: 255)]
     private $guid;
 
-    #[ORM\ManyToOne( inversedBy: 'item')]
+    #[ORM\ManyToOne(inversedBy: 'item')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ChannelFeed $channelFeed = null;
 

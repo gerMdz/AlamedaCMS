@@ -57,7 +57,7 @@ class EntradaController extends AbstractController
      */
     #[Route(path: '/agregarSeccion/{id}', name: 'entrada_agregar_seccion', methods: ['GET', 'POST'])]
     public function agregarSeccion(Request $request, Entrada $entrada, SectionRepository $sectionRepository,
-                                   EntityManagerInterface $entityManager)
+        EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(EntradaSectionType::class, $entrada);
         $form->handleRequest($request);

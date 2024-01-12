@@ -31,7 +31,7 @@ class Celebracion implements \Stringable
     #[ORM\Column(type: 'integer')]
     private $capacidad;
 
-    #[ORM\ManyToOne( inversedBy: 'celebracions')]
+    #[ORM\ManyToOne(inversedBy: 'celebracions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $creaEvento = null;
 
@@ -229,9 +229,6 @@ class Celebracion implements \Stringable
         return count($this->invitados->matching($criterio));
     }
 
-    /**
-     * @return Collection
-     */
     public function getWaitingLists(): Collection
     {
         return $this->waitingLists;
@@ -259,9 +256,6 @@ class Celebracion implements \Stringable
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function getGroupCelebrations(): Collection
     {
         return $this->groupCelebrations;

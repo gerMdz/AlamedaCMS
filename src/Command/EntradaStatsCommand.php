@@ -51,6 +51,6 @@ class EntradaStatsCommand extends Command
 
         $io->success('Recuerda que --help mostrará más opciones.');
 
-        return \Symfony\Component\Console\Command\Command::SUCCESS;
+        return Command::SUCCESS;
     }
 }

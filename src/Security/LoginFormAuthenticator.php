@@ -12,7 +12,6 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
@@ -29,8 +28,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements A
     public const LOGIN_ROUTE = 'app_login';
 
     public function __construct(private EntityManagerInterface $entityManager,
-                                private UrlGeneratorInterface  $urlGenerator, private UserRepository $userRepository,
-                                private RouterInterface        $router)
+        private UrlGeneratorInterface $urlGenerator, private UserRepository $userRepository,
+        private RouterInterface $router)
     {
     }
 
@@ -40,7 +39,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements A
             $this->router->generate('app_login')
         );
     }
-
 
     public function authenticate(Request $request): Passport
     {
@@ -87,7 +85,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements A
             $this->router->generate('app_login')
         );
     }
-
 
     protected function getLoginUrl(Request $request): string
     {

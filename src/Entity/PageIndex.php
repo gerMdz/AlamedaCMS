@@ -15,7 +15,7 @@ class PageIndex
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\ManyToOne( inversedBy: 'pageIndices')]
+    #[ORM\ManyToOne(inversedBy: 'pageIndices')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $autor = null;
 

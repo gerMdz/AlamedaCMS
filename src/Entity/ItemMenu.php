@@ -43,13 +43,13 @@ class ItemMenu
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $isActivo;
 
-    #[ORM\ManyToOne( inversedBy: 'itemMenus')]
+    #[ORM\ManyToOne(inversedBy: 'itemMenus')]
     private ?ItemMenu $parent = null;
 
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: ItemMenu::class)]
     private Collection $itemMenus;
 
-    #[ORM\ManyToOne( inversedBy: 'itemMenus')]
+    #[ORM\ManyToOne(inversedBy: 'itemMenus')]
     private ?Principal $pathInterno = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

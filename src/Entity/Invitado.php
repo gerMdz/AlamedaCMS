@@ -30,7 +30,7 @@ class Invitado implements \Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $apellido;
 
-    #[ORM\ManyToOne( inversedBy: 'invitados')]
+    #[ORM\ManyToOne(inversedBy: 'invitados')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Reservante $enlace = null;
 

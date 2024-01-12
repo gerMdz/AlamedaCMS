@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\IndexAlameda;
 use App\Entity\User;
 use App\Form\Model\UserRegistrationFormModel;
 use App\Form\Model\VoluntarioReservaRegistrationFormModel;
@@ -23,7 +22,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-
     #[Route(path: '/admin/ingreso', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -50,9 +48,9 @@ class SecurityController extends AbstractController
      * @return Response
      */
     #[Route(path: '/admin/registro', name: 'app_registro')]
-    public function register(Request                   $request, UserPasswordHasherInterface $userPasswordHasher,
-                             GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator,
-                             EntityManagerInterface    $entityManager)
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,
+        GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator,
+        EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
@@ -86,7 +84,6 @@ class SecurityController extends AbstractController
             );
         }
 
-
         return $this->render('security/register.html.twig', [
             'regristroForm' => $form,
         ]);
@@ -96,10 +93,10 @@ class SecurityController extends AbstractController
      * @return Response
      */
     #[Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]
-    public function registerVoluntarioReserva(Request                     $request,
-                                              UserPasswordHasherInterface $userPasswordHasher,
-                                              UserRepository              $userRepository,
-                                              EntityManagerInterface      $entityManager)
+    public function registerVoluntarioReserva(Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        UserRepository $userRepository,
+        EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(VoluntarioReservaRegistrationFormType::class);
         $form->handleRequest($request);
@@ -108,7 +105,7 @@ class SecurityController extends AbstractController
             /** @var VoluntarioReservaRegistrationFormModel $userModel */
             $userModel = $form->getData();
             $user = new User();
-            $email = strtolower($userModel->primerNombre) . '@alameda.ar';
+            $email = strtolower($userModel->primerNombre).'@alameda.ar';
             $isUser = $userRepository->findBy(['email' => $email]);
             if ($isUser) {
                 $this->addFlash('success', sprintf('El usuario %s ya existe', $user->getEmail()));
@@ -126,16 +123,13 @@ class SecurityController extends AbstractController
 
             $user->aceptaTerminos();
 
-
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Se agregó correctamente al usuario ' . $user->getEmail());
+            $this->addFlash('success', 'Se agregó correctamente al usuario '.$user->getEmail());
 
             return $this->redirectToRoute('app_registro_voluntario_reserva');
         }
-
-
 
         return $this->render('security/registerVoluntarioReserva.html.twig', [
             'regristroForm' => $form,

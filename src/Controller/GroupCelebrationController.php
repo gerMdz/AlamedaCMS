@@ -72,9 +72,9 @@ class GroupCelebrationController extends AbstractController
     }
 
     #[Route(path: '/{id}/remove/{celebracion}', name: 'group_celebration_remove_celebracion', methods: ['GET', 'POST'])]
-    public function removeCelebracion(Request                $request, GroupCelebration $groupCelebration,
-                                      CelebracionRepository  $celebracionRepository,
-                                      EntityManagerInterface $entityManager): Response
+    public function removeCelebracion(Request $request, GroupCelebration $groupCelebration,
+        CelebracionRepository $celebracionRepository,
+        EntityManagerInterface $entityManager): Response
     {
         $id_celebracion = $request->get('celebracion');
         $celebracion = $celebracionRepository->find($id_celebracion);
@@ -89,10 +89,10 @@ class GroupCelebrationController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'group_celebration_delete', methods: ['DELETE'])]
-    public function delete(Request                $request, GroupCelebration $groupCelebration,
-                           EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, GroupCelebration $groupCelebration,
+        EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $groupCelebration->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$groupCelebration->getId(), $request->request->get('_token'))) {
             $entityManager->remove($groupCelebration);
             $entityManager->flush();
         }

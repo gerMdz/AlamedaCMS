@@ -53,7 +53,7 @@ class Section implements \Stringable
     #[ORM\ManyToMany(targetEntity: IndexAlameda::class, mappedBy: 'section')]
     private Collection $indexAlamedas;
 
-    #[ORM\ManyToOne( inversedBy: 'sections')]
+    #[ORM\ManyToOne(inversedBy: 'sections')]
     private ?User $autor = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -67,7 +67,7 @@ class Section implements \Stringable
     #[Groups('main')]
     private ?int $orden = null;
 
-    #[ORM\ManyToOne( inversedBy: 'section')]
+    #[ORM\ManyToOne(inversedBy: 'section')]
     #[Groups('mail')]
     private ?Principal $principal = null;
 
@@ -75,7 +75,7 @@ class Section implements \Stringable
     #[Groups(['main', 'mail'])]
     private ?string $title = null;
 
-    #[ORM\ManyToOne( inversedBy: 'sections')]
+    #[ORM\ManyToOne(inversedBy: 'sections')]
     #[Groups('main')]
     private ?ModelTemplate $modelTemplate = null;
 

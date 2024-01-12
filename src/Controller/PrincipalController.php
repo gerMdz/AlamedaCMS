@@ -8,11 +8,8 @@ use App\Form\SectionAddType;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -46,7 +43,7 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     #[Route(path: '/new', name: 'principal_new', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
@@ -54,7 +51,7 @@ class PrincipalController extends BaseController
     {
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new DateTime('now');
+        $ahora = new \DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -91,7 +88,7 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     #[Route(path: '/new-for-assistant', name: 'principal_new_assistant', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
@@ -99,7 +96,7 @@ class PrincipalController extends BaseController
     {
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new DateTime('now');
+        $ahora = new \DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -136,12 +133,12 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     #[Route(path: '/{id}/edit', name: 'principal_edit', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper,
-                         EntityManagerInterface $entityManager): Response
+        EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PrincipalType::class, $principal);
         $form->handleRequest($request);
@@ -228,7 +225,7 @@ class PrincipalController extends BaseController
             $entityManager->persist($principal);
             $entityManager->flush();
 
-            if ( $this->requestStack->getSession()->get('principal_id')) {
+            if ($this->requestStack->getSession()->get('principal_id')) {
                 $this->requestStack->getSession()->remove('principal_id');
             }
 

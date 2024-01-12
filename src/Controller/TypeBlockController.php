@@ -6,7 +6,6 @@ use App\Entity\TypeBlock;
 use App\Form\TypeBlockType;
 use App\Repository\TypeBlockRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

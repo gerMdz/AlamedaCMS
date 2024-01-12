@@ -16,22 +16,21 @@ class Comentario
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne( inversedBy: 'comentarios')]
+    #[ORM\ManyToOne(inversedBy: 'comentarios')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $autor = null;
 
     #[ORM\Column(type: 'text', length: 8000, nullable: true)]
     private $contenido;
 
-    #[ORM\ManyToOne( inversedBy: 'comentarios')]
+    #[ORM\ManyToOne(inversedBy: 'comentarios')]
     private ?Entrada $entrada = null;
 
-    #[ORM\ManyToOne( inversedBy: 'comentarios')]
-    private ?Principal $principal =  null;
+    #[ORM\ManyToOne(inversedBy: 'comentarios')]
+    private ?Principal $principal = null;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $isDeleted = false;
-
 
     public function getId(): ?int
     {
@@ -97,6 +96,4 @@ class Comentario
 
         return $this;
     }
-
-
 }

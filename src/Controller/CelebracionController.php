@@ -8,7 +8,6 @@ use App\Form\GroupCelebrationAddType;
 use App\Repository\CelebracionRepository;
 use App\Repository\GroupCelebrationRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

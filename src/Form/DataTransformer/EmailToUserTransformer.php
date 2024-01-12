@@ -4,7 +4,6 @@ namespace App\Form\DataTransformer;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use LogicException;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -21,7 +20,6 @@ class EmailToUserTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param $value
      * @return mixed|string|null
      */
     public function transform($value): mixed
@@ -31,14 +29,13 @@ class EmailToUserTransformer implements DataTransformerInterface
         }
 
         if (!$value instanceof User) {
-            throw new LogicException('El UserSelectTextType solo puede usarse con un User objeto');
+            throw new \LogicException('El UserSelectTextType solo puede usarse con un User objeto');
         }
 
         return $value->getEmail();
     }
 
     /**
-     * @param $value
      * @return mixed|string
      */
     public function reverseTransform($value)

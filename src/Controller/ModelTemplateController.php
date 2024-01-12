@@ -9,7 +9,6 @@ use App\Repository\TypeBlockRepository;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -109,8 +108,8 @@ class ModelTemplateController extends AbstractController
      */
     #[Route(path: '/{id}/edit', name: 'model_template_edit', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
-    public function edit(Request                $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper,
-                         EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper,
+        EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ModelTemplateType::class, $modelTemplate);
         $form->handleRequest($request);
@@ -135,11 +134,10 @@ class ModelTemplateController extends AbstractController
 
     #[Route(path: '/{id}', name: 'model_template_delete', methods: ['DELETE'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
-    public function delete(Request                $request, ModelTemplate $modelTemplate,
-                           EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, ModelTemplate $modelTemplate,
+        EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $modelTemplate->getId(), $request->request->get('_token'))) {
-
+        if ($this->isCsrfTokenValid('delete'.$modelTemplate->getId(), $request->request->get('_token'))) {
             $entityManager->remove($modelTemplate);
             $entityManager->flush();
         }
@@ -151,11 +149,11 @@ class ModelTemplateController extends AbstractController
     public function registerTemplate(string $pathTemplate, TypeBlockRepository $blockRepository, ModelTemplateRepository $modelTemplateRepository, EntityManagerInterface $em): JsonResponse
     {
         $models = [
-            $pathTemplate . '/modelEntrada' => 'entrada',
-            $pathTemplate . '/sections' => 'seccion',
-            $pathTemplate . '/models/principal' => 'page',
-            $pathTemplate . '/models/sections' => 'seccion',
-            $pathTemplate . '/models/entradas' => 'entrada',
+            $pathTemplate.'/modelEntrada' => 'entrada',
+            $pathTemplate.'/sections' => 'seccion',
+            $pathTemplate.'/models/principal' => 'page',
+            $pathTemplate.'/models/sections' => 'seccion',
+            $pathTemplate.'/models/entradas' => 'entrada',
         ];
         $temp = [];
         foreach ($models as $key => $value) {
@@ -181,7 +179,7 @@ class ModelTemplateController extends AbstractController
                     $em->persist($template);
                     $em->flush();
                 } else {
-                    $string = $string . ' ya existe';
+                    $string = $string.' ya existe';
                 }
 
                 array_push($temp, $string);
