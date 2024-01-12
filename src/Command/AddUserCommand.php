@@ -55,7 +55,7 @@ class AddUserCommand extends Command
 
     private SymfonyStyle $io;
 
-    public function __construct(private EntityManagerInterface $entityManager, private UserPasswordHasherInterface $passwordEncoder, private Validator $validator, private UserRepository $users)
+    public function __construct(private EntityManagerInterface $entityManager, private UserPasswordHasherInterface $userPasswordHasher, private Validator $validator, private UserRepository $users)
     {
         parent::__construct();
     }
@@ -164,7 +164,7 @@ class AddUserCommand extends Command
         $user->setIsActive(true);
 
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords
-        $encodedPassword = $this->passwordEncoder->hashPassword($user, $plainPassword);
+        $encodedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
         $user->setPrimerNombre($primerNombre);
         $user->aceptaTerminos();
