@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/admin/celebracion')]
-#[IsGranted('ROLE_RESERVA')]
+#[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_RESERVA')]
 class CelebracionController extends AbstractController
 {
     #[Route(path: '/', name: 'celebracion_index', methods: ['GET'])]
@@ -55,7 +55,7 @@ class CelebracionController extends AbstractController
 
         return $this->render('celebracion/new.html.twig', [
             'celebracion' => $celebracion,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -81,7 +81,7 @@ class CelebracionController extends AbstractController
 
         return $this->render('celebracion/edit.html.twig', [
             'celebracion' => $celebracion,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -118,7 +118,7 @@ class CelebracionController extends AbstractController
 
         return $this->render('group_celebration/vistaAgregaGrupo.html.twig', [
             'celebracion' => $celebracion,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

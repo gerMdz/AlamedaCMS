@@ -24,7 +24,7 @@ class TypeBlockController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'type_block_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $typeBlock = new TypeBlock();
@@ -40,7 +40,7 @@ class TypeBlockController extends AbstractController
 
         return $this->render('type_block/new.html.twig', [
             'type_block' => $typeBlock,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -53,7 +53,7 @@ class TypeBlockController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'type_block_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TypeBlockType::class, $typeBlock);
@@ -67,12 +67,12 @@ class TypeBlockController extends AbstractController
 
         return $this->render('type_block/edit.html.twig', [
             'type_block' => $typeBlock,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
     #[Route(path: '/{id}', name: 'type_block_delete', methods: ['DELETE'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$typeBlock->getId(), $request->request->get('_token'))) {

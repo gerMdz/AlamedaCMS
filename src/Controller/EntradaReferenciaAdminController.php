@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class EntradaReferenciaAdminController extends AbstractController
 {
     #[Route(path: '/admin/entrada/{id}/referencia', name: 'admin_entrada_add_referencia', methods: ['POST'])]
-    #[IsGranted('MANAGE', subject: 'entrada')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'entrada')]
     public function uploadEntradaReference(Entrada $entrada, Request $request, UploaderHelper $helper, EntityManagerInterface $em, ValidatorInterface $validator): JsonResponse
     {
         /** @var UploadedFile $uploadedFile */
@@ -172,7 +172,7 @@ class EntradaReferenciaAdminController extends AbstractController
     }
 
     #[Route(path: '/admin/entrada/{id}/referencia/reorder', methods: 'POST', name: 'admin_entrada_reorder_referencia')]
-    #[IsGranted('MANAGE', subject: 'entrada')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'entrada')]
     public function reorderEntradaReferences(Entrada $entrada, EntityManagerInterface $entityManager, Request $request): JsonResponse
     {
         $orderedIds = json_decode($request->getContent(), true);

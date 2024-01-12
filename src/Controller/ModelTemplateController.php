@@ -66,7 +66,7 @@ class ModelTemplateController extends AbstractController
      * @throws \Exception
      */
     #[Route(path: '/new', name: 'model_template_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function new(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $modelTemplate = new ModelTemplate();
@@ -92,7 +92,7 @@ class ModelTemplateController extends AbstractController
 
         return $this->render('model_template/new.html.twig', [
             'model_template' => $modelTemplate,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -108,7 +108,7 @@ class ModelTemplateController extends AbstractController
      * @throws \Exception
      */
     #[Route(path: '/{id}/edit', name: 'model_template_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function edit(Request                $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper,
                          EntityManagerInterface $entityManager): Response
     {
@@ -129,12 +129,12 @@ class ModelTemplateController extends AbstractController
 
         return $this->render('model_template/edit.html.twig', [
             'model_template' => $modelTemplate,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
     #[Route(path: '/{id}', name: 'model_template_delete', methods: ['DELETE'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function delete(Request                $request, ModelTemplate $modelTemplate,
                            EntityManagerInterface $entityManager): Response
     {

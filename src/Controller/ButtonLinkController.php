@@ -38,7 +38,7 @@ class ButtonLinkController extends AbstractController
 
         return $this->render('button_link/new.html.twig', [
             'button_link' => $buttonLink,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -63,7 +63,7 @@ class ButtonLinkController extends AbstractController
 
         return $this->render('button_link/edit.html.twig', [
             'button_link' => $buttonLink,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

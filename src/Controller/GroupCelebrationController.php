@@ -41,7 +41,7 @@ class GroupCelebrationController extends AbstractController
 
         return $this->render('group_celebration/new.html.twig', [
             'group_celebration' => $groupCelebration,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -67,7 +67,7 @@ class GroupCelebrationController extends AbstractController
 
         return $this->render('group_celebration/edit.html.twig', [
             'group_celebration' => $groupCelebration,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -123,7 +123,7 @@ class GroupCelebrationController extends AbstractController
 
         return $this->render('celebracion/vistaAgregaCelebracion.html.twig', [
             'group_celebration' => $groupCelebration,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

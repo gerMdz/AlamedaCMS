@@ -38,7 +38,7 @@ class RelacionSectionEntradaController extends AbstractController
 
         return $this->render('relacion_section_entrada/new.html.twig', [
             'relacion_section_entrada' => $relacionSectionEntrada,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class RelacionSectionEntradaController extends AbstractController
 
         return $this->render('relacion_section_entrada/edit.html.twig', [
             'relacion_section_entrada' => $relacionSectionEntrada,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

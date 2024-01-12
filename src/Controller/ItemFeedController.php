@@ -38,7 +38,7 @@ class ItemFeedController extends AbstractController
 
         return $this->render('item_feed/new.html.twig', [
             'item_feed' => $itemFeed,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class ItemFeedController extends AbstractController
 
         return $this->render('item_feed/edit.html.twig', [
             'item_feed' => $itemFeed,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

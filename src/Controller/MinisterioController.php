@@ -38,7 +38,7 @@ class MinisterioController extends AbstractController
 
         return $this->render('ministerio/new.html.twig', [
             'ministerio' => $ministerio,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class MinisterioController extends AbstractController
 
         return $this->render('ministerio/edit.html.twig', [
             'ministerio' => $ministerio,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

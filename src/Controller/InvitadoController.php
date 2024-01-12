@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/admin/invitado')]
-#[IsGranted('ROLE_RESERVA')]
+#[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_RESERVA')]
 class InvitadoController extends AbstractController
 {
     #[Route(path: '/', name: 'invitado_index', methods: ['GET'])]
@@ -76,7 +76,7 @@ class InvitadoController extends AbstractController
 
         return $this->render('invitado/new.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -102,7 +102,7 @@ class InvitadoController extends AbstractController
 
         return $this->render('invitado/edit.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

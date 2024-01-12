@@ -37,7 +37,7 @@ class MetaBaseController extends AbstractController
             return $this->redirectToRoute('meta_base_index');
         }
 
-        return $this->renderForm('meta_base/new.html.twig', [
+        return $this->render('meta_base/new.html.twig', [
             'meta_base' => $metaBase,
             'form' => $form,
         ]);
@@ -65,7 +65,7 @@ class MetaBaseController extends AbstractController
 
         return $this->render('meta_base/edit.html.twig', [
             'meta_base' => $metaBase,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

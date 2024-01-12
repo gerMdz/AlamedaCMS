@@ -38,7 +38,7 @@ class TipoContactoController extends AbstractController
 
         return $this->render('tipo_contacto/new.html.twig', [
             'tipo_contacto' => $tipoContacto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class TipoContactoController extends AbstractController
 
         return $this->render('tipo_contacto/edit.html.twig', [
             'tipo_contacto' => $tipoContacto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

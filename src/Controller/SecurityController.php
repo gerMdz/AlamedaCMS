@@ -88,7 +88,7 @@ class SecurityController extends AbstractController
 
 
         return $this->render('security/register.html.twig', [
-            'regristroForm' => $form->createView(),
+            'regristroForm' => $form,
         ]);
     }
 
@@ -138,7 +138,7 @@ class SecurityController extends AbstractController
 
 
         return $this->render('security/registerVoluntarioReserva.html.twig', [
-            'regristroForm' => $form->createView(),
+            'regristroForm' => $form,
         ]);
     }
 }

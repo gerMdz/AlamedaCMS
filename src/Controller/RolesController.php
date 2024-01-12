@@ -38,7 +38,7 @@ class RolesController extends AbstractController
 
         return $this->render('roles/new.html.twig', [
             'role' => $role,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class RolesController extends AbstractController
 
         return $this->render('roles/edit.html.twig', [
             'role' => $role,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

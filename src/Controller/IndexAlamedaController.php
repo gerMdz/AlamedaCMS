@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/index/alameda')]
-#[IsGranted('ROLE_ADMIN')]
+#[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
 class IndexAlamedaController extends AbstractController
 {
     #[Route(path: '/', name: 'index_alameda_index', methods: ['GET'])]
@@ -45,7 +45,7 @@ class IndexAlamedaController extends AbstractController
 
         return $this->render('index_alameda/new.html.twig', [
             'index_alameda' => $indexAlameda,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -72,7 +72,7 @@ class IndexAlamedaController extends AbstractController
         return $this->render('index_alameda/edit.html.twig', [
             'index_alameda' => $indexAlameda,
             'datosIndex' => $indexAlameda,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -154,7 +154,7 @@ class IndexAlamedaController extends AbstractController
 
         return $this->render('index_alameda/vistaAgregaSection.html.twig', [
             'index' => $indexAlameda,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

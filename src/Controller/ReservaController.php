@@ -124,7 +124,7 @@ class ReservaController extends AbstractController
 
         return $this->render('reserva/vistaCreaReserva.html.twig', [
             'celebracion' => $celebracion,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -162,7 +162,7 @@ class ReservaController extends AbstractController
 
         return $this->render('reserva/newInvitado.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -241,7 +241,7 @@ class ReservaController extends AbstractController
 
         return $this->render('reserva/completaInvitado.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -266,7 +266,7 @@ class ReservaController extends AbstractController
 
         return $this->render('reserva/completaInvitadoSelf.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -294,7 +294,7 @@ class ReservaController extends AbstractController
         }
 
         return $this->render('reserva/consulta_reserva.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -374,7 +374,7 @@ class ReservaController extends AbstractController
 
         return $this->render('reserva/vistaAvisoReserva.html.twig', [
             'celebracion' => $celebracion,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

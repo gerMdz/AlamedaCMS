@@ -81,7 +81,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements A
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
-        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+        $request->getSession()->set(\Symfony\Component\Security\Http\SecurityRequestAttributes::AUTHENTICATION_ERROR, $exception);
 
         return new RedirectResponse(
             $this->router->generate('app_login')

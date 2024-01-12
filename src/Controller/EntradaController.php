@@ -74,7 +74,7 @@ class EntradaController extends AbstractController
 
         return $this->render('admin/entrada/vistaAgregaSection.html.twig', [
             'index' => $entrada,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

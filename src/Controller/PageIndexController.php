@@ -38,7 +38,7 @@ class PageIndexController extends AbstractController
 
         return $this->render('page_index/new.html.twig', [
             'page_index' => $pageIndex,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class PageIndexController extends AbstractController
 
         return $this->render('page_index/edit.html.twig', [
             'page_index' => $pageIndex,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

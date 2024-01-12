@@ -34,7 +34,7 @@ class SourceApiController extends AbstractController
             return $this->redirectToRoute('app_source_api_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/source_api/new.html.twig', [
+        return $this->render('admin/source_api/new.html.twig', [
             'source_api' => $sourceApi,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class SourceApiController extends AbstractController
             return $this->redirectToRoute('app_source_api_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/source_api/edit.html.twig', [
+        return $this->render('admin/source_api/edit.html.twig', [
             'source_api' => $sourceApi,
             'form' => $form,
         ]);

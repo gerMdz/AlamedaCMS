@@ -38,7 +38,7 @@ class ChannelFeedController extends AbstractController
 
         return $this->render('channel_feed/new.html.twig', [
             'channel_feed' => $channelFeed,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class ChannelFeedController extends AbstractController
 
         return $this->render('channel_feed/edit.html.twig', [
             'channel_feed' => $channelFeed,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

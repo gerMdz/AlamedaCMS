@@ -29,7 +29,7 @@ class PrincipalController extends BaseController
     }
 
     #[Route(path: '/', name: 'principal_index', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $bus = $request->get('busq');
@@ -49,7 +49,7 @@ class PrincipalController extends BaseController
      * @throws Exception
      */
     #[Route(path: '/new', name: 'principal_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function new(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $principal = new Principal();
@@ -86,7 +86,7 @@ class PrincipalController extends BaseController
 
         return $this->render('principal/new.html.twig', [
             'principal' => $principal,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -94,7 +94,7 @@ class PrincipalController extends BaseController
      * @throws Exception
      */
     #[Route(path: '/new-for-assistant', name: 'principal_new_assistant', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function newAssistant(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $principal = new Principal();
@@ -131,7 +131,7 @@ class PrincipalController extends BaseController
 
         return $this->render('principal/newAssistant.html.twig', [
             'principal' => $principal,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -139,7 +139,7 @@ class PrincipalController extends BaseController
      * @throws Exception
      */
     #[Route(path: '/{id}/edit', name: 'principal_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper,
                          EntityManagerInterface $entityManager): Response
     {
@@ -168,7 +168,7 @@ class PrincipalController extends BaseController
 
         return $this->render('principal/edit.html.twig', [
             'principal' => $principal,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -187,7 +187,7 @@ class PrincipalController extends BaseController
     }
 
     #[Route(path: '/{id}', name: 'principal_delete', methods: ['DELETE'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Principal $principal, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$principal->getId(), $request->request->get('_token'))) {
@@ -239,7 +239,7 @@ class PrincipalController extends BaseController
 
         return $this->render('principal/vistaAgregaSection.html.twig', [
             'principal' => $principal,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

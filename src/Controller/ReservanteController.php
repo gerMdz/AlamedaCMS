@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/admin/reservante')]
-#[IsGranted('ROLE_RESERVA')]
+#[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_RESERVA')]
 class ReservanteController extends AbstractController
 {
     #[Route(path: '/', name: 'reservante_index', methods: ['GET'])]
@@ -49,7 +49,7 @@ class ReservanteController extends AbstractController
         }
 
         return $this->render('reserva/lectura_reserva.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -69,7 +69,7 @@ class ReservanteController extends AbstractController
 
         return $this->render('reservante/new.html.twig', [
             'reservante' => $reservante,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -95,7 +95,7 @@ class ReservanteController extends AbstractController
 
         return $this->render('reservante/edit.html.twig', [
             'reservante' => $reservante,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

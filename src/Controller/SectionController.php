@@ -69,7 +69,7 @@ class SectionController extends BaseController
      * @throws \Exception
      */
     #[Route(path: '/new', name: 'admin_section_new')]
-    #[IsGranted('ROLE_EDITOR')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_EDITOR')]
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(SectionFormType::class);
@@ -106,7 +106,7 @@ class SectionController extends BaseController
         }
 
         return $this->render('admin/section_admin/new.html.twig', [
-            'sectionForm' => $form->createView(),
+            'sectionForm' => $form,
         ]);
     }
 
@@ -114,7 +114,7 @@ class SectionController extends BaseController
      * @throws \Exception
      */
     #[Route(path: '/{id}/edit', name: 'admin_section_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('MANAGE', subject: 'section')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'section')]
     public function edit(Request $request, Section $section, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(SectionFormType::class, $section);
@@ -134,7 +134,7 @@ class SectionController extends BaseController
 
         return $this->render('admin/section_admin/edit.html.twig', [
             'section' => $section,
-            'sectionForm' => $form->createView(),
+            'sectionForm' => $form,
         ]);
     }
 
@@ -226,7 +226,7 @@ class SectionController extends BaseController
      * @throws \Exception
      */
     #[Route(path: '/new/step1', name: 'admin_section_new_step1', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ESCRITOR')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
     public function newStepOne(Request $request): Response
     {
         $section = new Section();
@@ -247,12 +247,12 @@ class SectionController extends BaseController
 
         return $this->render('admin/section_admin/new_step1.html.twig', [
             'section' => $section,
-            'sectionForm' => $form->createView(),
+            'sectionForm' => $form,
         ]);
     }
 
     #[Route(path: '/new/step2/{id}', name: 'admin_section_new_step2', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ESCRITOR')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
     public function newStepTwo(
         Request $request,
         Section $section,
@@ -280,12 +280,12 @@ class SectionController extends BaseController
 
         return $this->render('admin/section_admin/new_step2.html.twig', [
             'section' => $section,
-            'sectionForm' => $form->createView(),
+            'sectionForm' => $form,
         ]);
     }
 
     #[Route(path: '/new/step3/{id}', name: 'admin_section_new_step3', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ESCRITOR')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
     public function newStepThree(Request $request, Section $section): Response
     {
         $section->setTitle($section->getName());
@@ -302,7 +302,7 @@ class SectionController extends BaseController
 
         return $this->render('admin/section_admin/new_step3.html.twig', [
             'section' => $section,
-            'sectionForm' => $form->createView(),
+            'sectionForm' => $form,
         ]);
     }
 
@@ -338,7 +338,7 @@ class SectionController extends BaseController
 
         return $this->render('admin/entrada/vistaAgregaSection.html.twig', [
             'index' => $entrada,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

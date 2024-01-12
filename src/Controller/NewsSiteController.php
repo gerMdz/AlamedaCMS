@@ -38,7 +38,7 @@ class NewsSiteController extends AbstractController
 
         return $this->render('news_site/new.html.twig', [
             'news_site' => $newsSite,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class NewsSiteController extends AbstractController
 
         return $this->render('news_site/edit.html.twig', [
             'news_site' => $newsSite,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

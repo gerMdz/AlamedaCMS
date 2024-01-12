@@ -34,7 +34,7 @@ class TypeFixeController extends AbstractController
             return $this->redirectToRoute('app_type_fixe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('type_fixe/new.html.twig', [
+        return $this->render('type_fixe/new.html.twig', [
             'type_fixe' => $typeFixe,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class TypeFixeController extends AbstractController
             return $this->redirectToRoute('app_type_fixe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('type_fixe/edit.html.twig', [
+        return $this->render('type_fixe/edit.html.twig', [
             'type_fixe' => $typeFixe,
             'form' => $form,
         ]);

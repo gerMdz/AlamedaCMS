@@ -38,7 +38,7 @@ class ContactoController extends AbstractController
 
         return $this->render('contacto/new.html.twig', [
             'contacto' => $contacto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -64,7 +64,7 @@ class ContactoController extends AbstractController
 
         return $this->render('contacto/edit.html.twig', [
             'contacto' => $contacto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

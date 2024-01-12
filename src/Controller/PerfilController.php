@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 /**
  * @method User|null getUser()
  */
-#[IsGranted('ROLE_USER')]
+#[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_USER')]
 class PerfilController extends BaseController
 {
     #[Route(path: 'web/perfil', name: 'app_perfil')]
@@ -72,7 +72,7 @@ class PerfilController extends BaseController
 
         return $this->render('security/change-password.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

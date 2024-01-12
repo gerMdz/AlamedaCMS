@@ -39,7 +39,7 @@ class EnlaceCortoController extends AbstractController
 
         return $this->render('enlace_corto/new.html.twig', [
             'enlace_corto' => $enlaceCorto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -71,7 +71,7 @@ class EnlaceCortoController extends AbstractController
 
         return $this->render('enlace_corto/edit.html.twig', [
             'enlace_corto' => $enlaceCorto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminUtilityController extends AbstractController
 {
     #[Route(path: '/admin/utility/user', methods: ['GET'], name: 'admin_utility_user')]
-    #[IsGranted('ROLE_ESCRITOR')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
     public function getUserEscritorApi(UserRepository $userRepository, Request $request): JsonResponse
     {
         $role = empty($request->query->get('role')) ? 'ROLE_NADA' : $request->query->get('role');
