@@ -9,11 +9,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[\Symfony\Component\Console\Attribute\AsCommand('entrada:stats', 'Devuelve datos sobre una entrada')]
 class EntradaStatsCommand extends Command
 {
-    protected static $defaultName = 'entrada:stats';
-    protected static $defaultDescription = 'Devuelve datos sobre una entrada';
-
     protected function configure()
     {
         $this

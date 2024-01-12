@@ -47,13 +47,9 @@ use function Symfony\Component\String\u;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
+#[\Symfony\Component\Console\Attribute\AsCommand('app:add-user', 'Crear usuarios y guardarlos en la base de datos')]
 class AddUserCommand extends Command
 {
-    // to make your command lazily loaded, configure the $defaultName static property,
-    // so it will be instantiated only when the command is actually called.
-    protected static $defaultName = 'app:add-user';
-    protected static $defaultDescription = 'Crear usuarios y guardarlos en la base de datos';
-
     private SymfonyStyle $io;
 
     public function __construct(private EntityManagerInterface $entityManager, private UserPasswordHasherInterface $userPasswordHasher, private Validator $validator, private UserRepository $users)
