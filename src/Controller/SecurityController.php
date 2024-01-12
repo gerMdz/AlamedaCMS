@@ -10,6 +10,7 @@ use App\Form\UserRegistrationFormType;
 use App\Form\VoluntarioReservaRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,18 +23,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    //    /**
-    //     * @Route("/login", name="app_login")
-    //     */
-    //    public function index()
-    //    {
-    //        $em = $this->getDoctrine()->getManager();
-    //        $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
-    //        return $this->render('security/index.html.twig', [
-    //            'datosIndex'=> $indexAlameda[0]
-    //
-    //        ]);
-    //    }
+
     #[Route(path: '/admin/ingreso', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -60,11 +50,9 @@ class SecurityController extends AbstractController
      * @return Response
      */
     #[Route(path: '/admin/registro', name: 'app_registro')]
-    public function register(
-        Request $request,
-        UserPasswordHasherInterface $userPasswordHasher,
-        GuardAuthenticatorHandler $authenticatorHandler,
-        LoginFormAuthenticator $formAuthenticator)
+    public function register(Request                   $request, UserPasswordHasherInterface $userPasswordHasher,
+                             GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator,
+                             EntityManagerInterface    $entityManager)
     {
         $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
@@ -86,9 +74,9 @@ class SecurityController extends AbstractController
             if (true === $userModel->aceptaTerminos) {
                 $user->aceptaTerminos();
             }
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             return $authenticatorHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -98,26 +86,6 @@ class SecurityController extends AbstractController
             );
         }
 
-        //        if ($request->isMethod('POST')) {
-        //            $user = new User();
-        //            $user->setEmail($request->request->get('email'));
-        //            $user->setPrimerNombre($request->request->get('primernombre'));
-        //            $user->setPassword($passwordEncoder->encodePassword(
-        //                $user,
-        //                $request->request->get('password')
-        //            ));
-        //            $user->setRoles(['ROLE_USER']);
-        //            $em = $this->getDoctrine()->getManager();
-        //            $em->persist($user);
-        //            $em->flush();
-        //
-        //            return $authenticatorHandler->authenticateUserAndHandleSuccess(
-        //                $user,
-        //                $request,
-        //                $formAuthenticator,
-        //                'main'
-        //            );
-        //        }
 
         return $this->render('security/register.html.twig', [
             'regristroForm' => $form->createView(),
@@ -128,10 +96,10 @@ class SecurityController extends AbstractController
      * @return Response
      */
     #[Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]
-    public function registerVoluntarioReserva(
-        Request $request,
-        UserPasswordHasherInterface $userPasswordHasher,
-        UserRepository $userRepository)
+    public function registerVoluntarioReserva(Request                     $request,
+                                              UserPasswordHasherInterface $userPasswordHasher,
+                                              UserRepository              $userRepository,
+                                              EntityManagerInterface      $entityManager)
     {
         $form = $this->createForm(VoluntarioReservaRegistrationFormType::class);
         $form->handleRequest($request);
@@ -140,7 +108,7 @@ class SecurityController extends AbstractController
             /** @var VoluntarioReservaRegistrationFormModel $userModel */
             $userModel = $form->getData();
             $user = new User();
-            $email = strtolower($userModel->primerNombre).'@alameda.ar';
+            $email = strtolower($userModel->primerNombre) . '@alameda.ar';
             $isUser = $userRepository->findBy(['email' => $email]);
             if ($isUser) {
                 $this->addFlash('success', sprintf('El usuario %s ya existe', $user->getEmail()));
@@ -158,35 +126,16 @@ class SecurityController extends AbstractController
 
             $user->aceptaTerminos();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
 
-            $this->addFlash('success', 'Se agregó correctamente al usuario '.$user->getEmail());
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Se agregó correctamente al usuario ' . $user->getEmail());
 
             return $this->redirectToRoute('app_registro_voluntario_reserva');
         }
 
-        //        if ($request->isMethod('POST')) {
-        //            $user = new User();
-        //            $user->setEmail($request->request->get('email'));
-        //            $user->setPrimerNombre($request->request->get('primernombre'));
-        //            $user->setPassword($passwordEncoder->encodePassword(
-        //                $user,
-        //                $request->request->get('password')
-        //            ));
-        //            $user->setRoles(['ROLE_USER']);
-        //            $em = $this->getDoctrine()->getManager();
-        //            $em->persist($user);
-        //            $em->flush();
-        //
-        //            return $authenticatorHandler->authenticateUserAndHandleSuccess(
-        //                $user,
-        //                $request,
-        //                $formAuthenticator,
-        //                'main'
-        //            );
-        //        }
+
 
         return $this->render('security/registerVoluntarioReserva.html.twig', [
             'regristroForm' => $form->createView(),

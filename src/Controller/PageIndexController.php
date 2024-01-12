@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\PageIndex;
 use App\Form\PageIndexType;
 use App\Repository\PageIndexRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +23,13 @@ class PageIndexController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'page_index_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $pageIndex = new PageIndex();
         $form = $this->createForm(PageIndexType::class, $pageIndex);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($pageIndex);
             $entityManager->flush();
 
@@ -51,13 +51,13 @@ class PageIndexController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'page_index_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, PageIndex $pageIndex): Response
+    public function edit(Request $request, PageIndex $pageIndex, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PageIndexType::class, $pageIndex);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('page_index_index');
         }
@@ -69,10 +69,9 @@ class PageIndexController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'page_index_delete', methods: ['DELETE'])]
-    public function delete(Request $request, PageIndex $pageIndex): Response
+    public function delete(Request $request, PageIndex $pageIndex, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$pageIndex->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($pageIndex);
             $entityManager->flush();
         }

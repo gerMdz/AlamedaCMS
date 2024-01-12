@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ministerio;
 use App\Form\MinisterioType;
 use App\Repository\MinisterioRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +23,13 @@ class MinisterioController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'ministerio_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $ministerio = new Ministerio();
         $form = $this->createForm(MinisterioType::class, $ministerio);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ministerio);
             $entityManager->flush();
 
@@ -51,13 +51,13 @@ class MinisterioController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'ministerio_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Ministerio $ministerio): Response
+    public function edit(Request $request, Ministerio $ministerio, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MinisterioType::class, $ministerio);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('ministerio_index');
         }
@@ -69,10 +69,9 @@ class MinisterioController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'ministerio_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Ministerio $ministerio): Response
+    public function delete(Request $request, Ministerio $ministerio, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$ministerio->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($ministerio);
             $entityManager->flush();
         }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TypeBlock;
 use App\Form\TypeBlockType;
 use App\Repository\TypeBlockRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,14 +25,13 @@ class TypeBlockController extends AbstractController
 
     #[Route(path: '/new', name: 'type_block_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $typeBlock = new TypeBlock();
         $form = $this->createForm(TypeBlockType::class, $typeBlock);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($typeBlock);
             $entityManager->flush();
 
@@ -54,13 +54,13 @@ class TypeBlockController extends AbstractController
 
     #[Route(path: '/{id}/edit', name: 'type_block_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(Request $request, TypeBlock $typeBlock): Response
+    public function edit(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TypeBlockType::class, $typeBlock);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('type_block_index');
         }
@@ -73,10 +73,9 @@ class TypeBlockController extends AbstractController
 
     #[Route(path: '/{id}', name: 'type_block_delete', methods: ['DELETE'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function delete(Request $request, TypeBlock $typeBlock): Response
+    public function delete(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$typeBlock->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($typeBlock);
             $entityManager->flush();
         }

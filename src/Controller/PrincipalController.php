@@ -50,7 +50,7 @@ class PrincipalController extends BaseController
      */
     #[Route(path: '/new', name: 'principal_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, UploaderHelper $uploaderHelper): Response
+    public function new(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $principal = new Principal();
         $user = $this->getUser();
@@ -78,7 +78,6 @@ class PrincipalController extends BaseController
             } else {
                 $principal->setLinkRoute($principal->getTitulo());
             }
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($principal);
             $entityManager->flush();
 
@@ -96,7 +95,7 @@ class PrincipalController extends BaseController
      */
     #[Route(path: '/new-for-assistant', name: 'principal_new_assistant', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function newAssistant(Request $request, UploaderHelper $uploaderHelper): Response
+    public function newAssistant(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $principal = new Principal();
         $user = $this->getUser();
@@ -124,7 +123,6 @@ class PrincipalController extends BaseController
             } else {
                 $principal->setLinkRoute($principal->getTitulo());
             }
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($principal);
             $entityManager->flush();
 
@@ -142,7 +140,8 @@ class PrincipalController extends BaseController
      */
     #[Route(path: '/{id}/edit', name: 'principal_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper): Response
+    public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper,
+                         EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PrincipalType::class, $principal);
         $form->handleRequest($request);
@@ -162,7 +161,7 @@ class PrincipalController extends BaseController
                 $principal->setLinkRoute($principal->getTitulo());
             }
 
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('admin');
         }
@@ -189,10 +188,9 @@ class PrincipalController extends BaseController
 
     #[Route(path: '/{id}', name: 'principal_delete', methods: ['DELETE'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function delete(Request $request, Principal $principal): Response
+    public function delete(Request $request, Principal $principal, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$principal->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($principal);
             $entityManager->flush();
         }
