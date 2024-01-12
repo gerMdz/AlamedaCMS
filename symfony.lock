@@ -575,12 +575,12 @@
         "version": "v4.4.10"
     },
     "symfony/mailer": {
-        "version": "5.4",
+        "version": "6.0",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "4.3",
-            "ref": "2bf89438209656b85b9a49238c4467bff1b1f939"
+            "ref": "bedeb3d54aa5404e29811c44346a1151f846f741"
         },
         "files": [
             "config/packages/mailer.yaml"
