@@ -1,12 +1,7 @@
 controllers:
     resource: ../src/Controller/
-    type: annotation
+    type: attribute
 
 kernel:
     resource: ../src/Kernel.php
     type: annotation
-
-#index:
-#    path: /
-#    controller: App\Controller\ZinicioController::index
-
