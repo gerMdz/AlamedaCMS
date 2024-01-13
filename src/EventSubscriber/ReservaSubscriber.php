@@ -12,7 +12,7 @@ class ReservaSubscriber implements EventSubscriberInterface
     /**
      * ReservaSubscriber constructor.
      */
-    public function __construct(private HandlerCelebracion $handlerCelebracion, private Mailer $mailer)
+    public function __construct(private readonly HandlerCelebracion $handlerCelebracion, private readonly Mailer $mailer)
     {
     }
 

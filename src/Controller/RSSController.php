@@ -13,7 +13,7 @@ class RSSController extends AbstractController
     /**
      * RSSController constructor.
      */
-    public function __construct(private string $site_podcasts)
+    public function __construct(private readonly string $site_podcasts)
     {
     }
 

@@ -52,7 +52,7 @@ class AddUserCommand extends Command
 {
     private SymfonyStyle $io;
 
-    public function __construct(private EntityManagerInterface $entityManager, private UserPasswordHasherInterface $userPasswordHasher, private Validator $validator, private UserRepository $users)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $userPasswordHasher, private readonly Validator $validator, private readonly UserRepository $users)
     {
         parent::__construct();
     }
@@ -113,7 +113,7 @@ class AddUserCommand extends Command
         if (null !== $email) {
             $this->io->text(' > <info>Email</info>: '.$email);
         } else {
-            $email = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
+            $email = $this->io->ask('Email', null, $this->validator->validateEmail(...));
             $input->setArgument('email', $email);
         }
 
@@ -122,7 +122,7 @@ class AddUserCommand extends Command
         if (null !== $password) {
             $this->io->text(' > <info>Password</info>: '.u('*')->repeat(u($password)->length()));
         } else {
-            $password = $this->io->askHidden('Password (your type will be hidden)', [$this->validator, 'validatePassword']);
+            $password = $this->io->askHidden('Password (your type will be hidden)', $this->validator->validatePassword(...));
             $input->setArgument('password', $password);
         }
 
@@ -131,7 +131,7 @@ class AddUserCommand extends Command
         if (null !== $primerNombre) {
             $this->io->text(' > <info>Primer Nombre</info>: '.$primerNombre);
         } else {
-            $primerNombre = $this->io->ask('Primer Nombre', null, [$this->validator, 'validatePrimerNombre']);
+            $primerNombre = $this->io->ask('Primer Nombre', null, $this->validator->validatePrimerNombre(...));
             $input->setArgument('primerNombre', $primerNombre);
         }
     }
@@ -156,7 +156,7 @@ class AddUserCommand extends Command
         // create the user and encode its password
         $user = new User();
         $user->setEmail($email);
-        $user->setRoles([$isAdmin ? 'ROLE_'.strtoupper($isAdmin) : 'ROLE_USER']);
+        $user->setRoles([$isAdmin ? 'ROLE_'.strtoupper((string) $isAdmin) : 'ROLE_USER']);
         $user->setIsActive(true);
 
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords

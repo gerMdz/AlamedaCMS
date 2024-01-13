@@ -20,7 +20,7 @@ class ZinicioController extends AbstractController
     /**
      * ZinicioController constructor.
      */
-    public function __construct(private string $site_temporal)
+    public function __construct(private readonly string $site_temporal)
     {
     }
 

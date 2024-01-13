@@ -25,7 +25,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     /**
      * BaseExtension constructor.
      */
-    public function __construct(EntityManagerInterface $em, private ContainerInterface $container)
+    public function __construct(EntityManagerInterface $em, private readonly ContainerInterface $container)
     {
         $this->em = $em;
     }
@@ -125,8 +125,8 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             if (false !== $inicio) {
                 $fin = strpos($campo, (string) $this->ind_final);
                 $servicio = substr($campo,
-                    $inicio + strlen($this->ind_inicio),
-                    $fin - ($inicio + strlen($this->ind_inicio)));
+                    $inicio + strlen((string) $this->ind_inicio),
+                    $fin - ($inicio + strlen((string) $this->ind_inicio)));
                 $campo = str_replace($this->ind_inicio.$servicio.$this->ind_final,
                     $this->addTexto(trim($servicio)), $campo);
 

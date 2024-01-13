@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/export')]
 class AdminExportController extends AbstractController
 {
-    public const FILENAME = 'AlamedaCMS';
+    final public const FILENAME = 'AlamedaCMS';
 
     #[Route(path: '/invitado/{id}', name: 'admin_export_invitado', methods: ['GET', 'POST'])]
     public function index(Celebracion $celebracion, InvitadoRepository $invitadoRepository): Response

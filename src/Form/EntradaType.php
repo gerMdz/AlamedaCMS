@@ -28,7 +28,7 @@ class EntradaType extends AbstractType
     /**
      * EntradaType constructor.
      */
-    public function __construct(private PrincipalRepository $principalRepository)
+    public function __construct(private readonly PrincipalRepository $principalRepository)
     {
     }
 

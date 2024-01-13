@@ -12,7 +12,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HandlerSourceApi
 {
-    public function __construct(private HttpClientInterface $client)
+    public function __construct(private readonly HttpClientInterface $client)
     {
     }
 

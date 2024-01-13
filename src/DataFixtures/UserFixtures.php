@@ -12,7 +12,7 @@ class UserFixtures extends BaseFixture
     /**
      * UserFixtures constructor.
      */
-    public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
+    public function __construct(private readonly UserPasswordHasherInterface $userPasswordHasher)
     {
     }
 

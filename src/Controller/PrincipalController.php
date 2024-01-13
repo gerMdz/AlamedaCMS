@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/principal')]
 class PrincipalController extends BaseController
 {
-    public function __construct(private RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
     }
 

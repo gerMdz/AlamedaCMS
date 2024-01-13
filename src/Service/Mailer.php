@@ -19,7 +19,7 @@ class Mailer
     /**
      * Mailer constructor.
      */
-    public function __construct(private MailerInterface $mailer, private Environment $twig, private WaitingListRepository $waitingListRepository)
+    public function __construct(private readonly MailerInterface $mailer, private readonly Environment $twig, private readonly WaitingListRepository $waitingListRepository)
     {
     }
 

@@ -14,7 +14,7 @@ class HandlerCelebracion
     /**
      * HandlerCelebracion constructor.
      */
-    public function __construct(private InvitadoRepository $invitadoRepository, private CelebracionRepository $celebracionRepository)
+    public function __construct(private readonly InvitadoRepository $invitadoRepository, private readonly CelebracionRepository $celebracionRepository)
     {
     }
 

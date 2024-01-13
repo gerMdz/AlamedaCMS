@@ -14,7 +14,7 @@ class User1Type extends AbstractType
     /**
      * User1Type constructor.
      */
-    public function __construct(private RolesRepository $rolesRepository)
+    public function __construct(private readonly RolesRepository $rolesRepository)
     {
     }
 

@@ -12,15 +12,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploaderHelper
 {
-    public const IMAGE_ENTRADA = 'image_entrada';
-    public const ENTRADA_REFERENCE = 'entrada_reference';
+    final public const IMAGE_ENTRADA = 'image_entrada';
+    final public const ENTRADA_REFERENCE = 'entrada_reference';
 
     /**
      * UploaderHelper constructor.
      */
-    public function __construct(private Filesystem $filesystem, private RequestStackContext $context,
-        private string $uploadedAssetsBaseUrl, private Filesystem $privateFilesystem,
-        private LoggerInterface $logger)
+    public function __construct(private readonly Filesystem $filesystem, private readonly RequestStackContext $context,
+        private readonly string $uploadedAssetsBaseUrl, private readonly Filesystem $privateFilesystem,
+        private readonly LoggerInterface $logger)
     {
     }
 

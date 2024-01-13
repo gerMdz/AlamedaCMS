@@ -53,6 +53,6 @@ xml;
 
     private static function xmlEscape($string)
     {
-        return str_replace(['&', '<', '>', '\'', '"'], ['&amp;', '&lt;', '&gt;', '&apos;', '&quot;'], $string);
+        return str_replace(['&', '<', '>', '\'', '"'], ['&amp;', '&lt;', '&gt;', '&apos;', '&quot;'], (string) $string);
     }
 }

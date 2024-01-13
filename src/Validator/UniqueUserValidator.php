@@ -11,7 +11,7 @@ class UniqueUserValidator extends ConstraintValidator
     /**
      * UniqueUserValidator constructor.
      */
-    public function __construct(private UserRepository $userRepository)
+    public function __construct(private readonly UserRepository $userRepository)
     {
     }
 

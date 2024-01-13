@@ -25,11 +25,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements A
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    final public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private EntityManagerInterface $entityManager,
-        private UrlGeneratorInterface $urlGenerator, private UserRepository $userRepository,
-        private RouterInterface $router)
+    public function __construct(private readonly EntityManagerInterface $entityManager,
+        private readonly UrlGeneratorInterface $urlGenerator, private readonly UserRepository $userRepository,
+        private readonly RouterInterface $router)
     {
     }
 

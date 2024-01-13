@@ -32,7 +32,7 @@ class AdminEntradaController extends BaseController
     /**
      * NO usado es opcional.
      */
-    public function __construct(private LoggerClient $loggerClient, private BoleanToDateHelper $boleanToDateHelper, private ManagerRegistry $managerRegistry)
+    public function __construct(private readonly LoggerClient $loggerClient, private readonly BoleanToDateHelper $boleanToDateHelper, private readonly ManagerRegistry $managerRegistry)
     {
     }
 

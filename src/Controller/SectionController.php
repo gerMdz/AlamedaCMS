@@ -43,7 +43,7 @@ class SectionController extends BaseController
     /**
      * SectionController constructor.
      */
-    public function __construct(private RequestStack $requestStack, private HandlerSourceApi $api)
+    public function __construct(private readonly RequestStack $requestStack, private readonly HandlerSourceApi $api)
     {
     }
 

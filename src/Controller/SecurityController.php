@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/admin/logout', name: 'app_logout')]
-    public function logout()
+    public function logout(): never
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
@@ -105,7 +105,7 @@ class SecurityController extends AbstractController
             /** @var VoluntarioReservaRegistrationFormModel $userModel */
             $userModel = $form->getData();
             $user = new User();
-            $email = strtolower($userModel->primerNombre).'@alameda.ar';
+            $email = strtolower((string) $userModel->primerNombre).'@alameda.ar';
             $isUser = $userRepository->findBy(['email' => $email]);
             if ($isUser) {
                 $this->addFlash('success', sprintf('El usuario %s ya existe', $user->getEmail()));

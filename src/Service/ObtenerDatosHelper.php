@@ -9,7 +9,7 @@ class ObtenerDatosHelper
     /**
      * ObtenerDatosHelper constructor.
      */
-    public function __construct(private RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
     }
 
@@ -29,7 +29,7 @@ class ObtenerDatosHelper
                 // una dirección ip que no sea del rango privado. En caso de no
                 // encontrarse ninguna se toma como valor el REMOTE_ADDR
 
-                $entries = preg_split('/[, ]/', $_SERVER['HTTP_X_FORWARDED_FOR']);
+                $entries = preg_split('/[, ]/', (string) $_SERVER['HTTP_X_FORWARDED_FOR']);
 
                 reset($entries);
                 foreach ($entries as $entry) {
@@ -43,7 +43,7 @@ class ObtenerDatosHelper
                             '/^172\.((1[6-9])|(2[0-9])|(3[0-1]))\..*/',
                             '/^10\..*/', ];
 
-                        $found_ip = preg_replace($private_ip, $client_ip, $ip_list[1]);
+                        $found_ip = preg_replace($private_ip, (string) $client_ip, $ip_list[1]);
 
                         if ($client_ip != $found_ip) {
                             $client_ip = $found_ip;

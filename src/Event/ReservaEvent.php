@@ -6,7 +6,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class ReservaEvent extends Event
 {
-    public const ANULA_RESERVA = 'anula.reserva.event';
+    final public const ANULA_RESERVA = 'anula.reserva.event';
 
     public function __construct(protected $data)
     {

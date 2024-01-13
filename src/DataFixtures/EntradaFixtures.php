@@ -29,7 +29,7 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
     /**
      * EntradaFixtures constructor.
      */
-    public function __construct(private UploaderHelper $uploaderHelper)
+    public function __construct(private readonly UploaderHelper $uploaderHelper)
     {
     }
 
