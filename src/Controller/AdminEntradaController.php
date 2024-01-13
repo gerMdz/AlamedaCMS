@@ -126,7 +126,7 @@ class AdminEntradaController extends BaseController
 
         $ip = $datosHelper->getIpCliente();
 
-        return $this->renderForm('admin/entrada/edit.html.twig', [
+        return $this->render('admin/entrada/edit.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form,
             'ip' => $ip,
@@ -152,7 +152,7 @@ class AdminEntradaController extends BaseController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->renderForm('admin/entrada/edit_contenido.html.twig', [
+        return $this->render('admin/entrada/edit_contenido.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form,
         ]);
@@ -214,7 +214,7 @@ class AdminEntradaController extends BaseController
             return $this->redirectToRoute('admin_entrada_index');
         }
 
-        return $this->renderForm('admin/entrada/new.html.twig', [
+        return $this->render('admin/entrada/new.html.twig', [
             'entradaForm' => $form,
             'entrada' => $entrada,
         ]);
@@ -247,7 +247,7 @@ class AdminEntradaController extends BaseController
             ]);
         }
 
-        return $this->renderForm('admin/entrada/new_step1.html.twig', [
+        return $this->render('admin/entrada/new_step1.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form,
         ]);
@@ -270,7 +270,7 @@ class AdminEntradaController extends BaseController
             ]);
         }
 
-        return $this->renderForm('admin/entrada/new_step2.html.twig', [
+        return $this->render('admin/entrada/new_step2.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form,
             'LinkRoutes' => $linkRoutes,
@@ -298,7 +298,7 @@ class AdminEntradaController extends BaseController
             ]);
         }
 
-        return $this->renderForm('admin/entrada/new_step3.html.twig', [
+        return $this->render('admin/entrada/new_step3.html.twig', [
             'entrada' => $entrada,
             'entradaForm' => $form,
         ]);
