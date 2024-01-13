@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class SectionVoter extends Voter
 {
-    public function __construct(private readonly Security $security)
+    public function __construct(private readonly \Symfony\Bundle\SecurityBundle\Security $security)
     {
     }
 
