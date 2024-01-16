@@ -12,6 +12,8 @@ liip_imagine:
     data_loader: flysystem_loader
 
     resolvers:
+        default:
+            web_path: ~
         flysystem_resolver:
             flysystem:
                 filesystem_service: oneup_flysystem.public_uploads_filesystem_filesystem
@@ -19,7 +21,8 @@ liip_imagine:
                 root_url: '%uploads_base_url%'
 
     # default cache resolver for saving thumbnails
-    cache: flysystem_resolver
+#    cache: flysystem_resolver
+    cache: ~
 
     filter_sets:
         #
