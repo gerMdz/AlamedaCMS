@@ -8,9 +8,9 @@ oneup_flysystem:
             local:
                 location: '%kernel.project_dir%/public/pre/%uploads_dir_name%'
     filesystems:
-#        default_filesystem:
-#            adapter: public_uploads_adapter
-#            alias: League\Flysystem\Filesystem
+        #        default_filesystem:
+        #            adapter: public_uploads_adapter
+        #            alias: League\Flysystem\Filesystem
         public_uploads_filesystem:
             adapter: public_uploads_adapter
             alias: League\Flysystem\Filesystem

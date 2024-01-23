@@ -18,9 +18,9 @@ class UploaderHelper
     /**
      * UploaderHelper constructor.
      */
-    public function __construct(private readonly Filesystem $filesystem, private readonly RequestStackContext $context,
-        private readonly string $uploadedAssetsBaseUrl, private readonly Filesystem $privateFilesystem,
-        private readonly LoggerInterface $logger)
+    public function __construct(private readonly Filesystem      $filesystem, private readonly RequestStackContext $context,
+                                private readonly string          $uploadedAssetsBaseUrl, private readonly Filesystem $privateFilesystem,
+                                private readonly LoggerInterface $logger)
     {
     }
 
@@ -30,7 +30,7 @@ class UploaderHelper
 
         if ($existingFilename) {
             try {
-                $result = $this->filesystem->delete(self::IMAGE_ENTRADA.'/'.$existingFilename);
+                $result = $this->filesystem->delete(self::IMAGE_ENTRADA . '/' . $existingFilename);
                 if (false === $result) {
                     throw new \Exception(sprintf('No se pudo borrar la imagen anterior "%s"', $existingFilename));
                 }
@@ -51,7 +51,7 @@ class UploaderHelper
     {
         // needed if you deploy under a subdirectory
         return $this->context
-                ->getBasePath().$this->uploadedAssetsBaseUrl.'/'.$path;
+                ->getBasePath() . $this->uploadedAssetsBaseUrl . '/' . $path;
     }
 
     private function uploadFile(File $file, string $directory, bool $isPublic)
@@ -61,11 +61,15 @@ class UploaderHelper
         } else {
             $originalFilename = $file->getFilename();
         }
-        $newFilename = Urlizer::urlize(pathinfo($originalFilename, PATHINFO_FILENAME)).'-'.uniqid().'.'.$file->guessExtension();
+
+        $newFilename = Urlizer::urlize(pathinfo($originalFilename, PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $file->guessExtension();
+
         $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
+
+
         $stream = fopen($file->getPathname(), 'r');
         $result = $filesystem->writeStream(
-            $directory.'/'.$newFilename,
+            $directory . '/' . $newFilename,
             $stream
         );
         if (false === $result) {

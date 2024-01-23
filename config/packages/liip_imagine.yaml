@@ -4,6 +4,8 @@ liip_imagine:
     #    # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
     #
+    twig:
+        mode: "lazy"
 
     loaders:
         flysystem_loader:
@@ -17,7 +19,7 @@ liip_imagine:
         flysystem_resolver:
             flysystem:
                 filesystem_service: oneup_flysystem.public_uploads_filesystem_filesystem
-                cache_prefix: media/cache
+                cache_prefix: uploads/media/cache
                 root_url: '%uploads_base_url%'
 
     # default cache resolver for saving thumbnails

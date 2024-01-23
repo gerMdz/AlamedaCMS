@@ -5,7 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     uploads_dir_name: 'uploads'
-    uploads_base_url: '%env(resolve:SITE_BASE_URL)%/%uploads_dir_name%'
+    uploads_base_url: '%env(SITE_BASE_UPLOADS)%'
     site_temporal: '%env(SITE_TEMPORAL)%'
     image_directory : '%kernel.project_dir%/public/image'
 
@@ -24,6 +24,8 @@ services:
             $uploadedAssetsBaseUrl: '%uploads_base_url%'
             $site_temporal: '%site_temporal%'
             $site_podcasts: '%env(resolve:URL_PODCAST)%'
+            $uploads_dir_name: '%uploads_dir_name%'
+            $filesystem: '@oneup_flysystem.public_uploads_filesystem_filesystem'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
