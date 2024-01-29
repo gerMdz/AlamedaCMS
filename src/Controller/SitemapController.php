@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Principal;
+use App\Repository\PrincipalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,22 +10,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SitemapController extends AbstractController
 {
-    /**
-     * @Route("/sitemap.xml", name="sitemap", defaults={"_format"="xml"})
-     * @param Request $request
-     * @return Response
-     */
-    public function index(Request $request): Response
+    #[Route(path: '/sitemap.xml', name: 'sitemap', defaults: ['_format' => 'xml'])]
+    public function index(Request $request, PrincipalRepository $principalRepository): Response
     {
         $hostname = $request->getSchemeAndHttpHost();
 
         $urls = [];
 
-// On ajoute les URLs "statiques"
+        // On ajoute les URLs "statiques"
         $urls[] = ['loc' => $this->generateUrl('reserva_index')];
 
+        $principals = $principalRepository->findAll();
 
-        foreach ($this->getDoctrine()->getRepository(Principal::class)->findAll() as $principal) {
+        foreach ($principals as $principal) {
             $urls[] = [
                 'loc' => $this->generateUrl('principal_ver', [
                     'linkRoute' => $principal->getLinkRoute(),
@@ -37,7 +34,7 @@ class SitemapController extends AbstractController
         $response = new Response(
             $this->renderView('sitemap/index.html.twig', ['urls' => $urls,
                 'hostname' => $hostname]),
-            200
+            Response::HTTP_OK
         );
 
         $response->headers->set('Content-Type', 'text/xml');

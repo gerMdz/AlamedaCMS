@@ -18,23 +18,19 @@ class AvisoType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('apellido', TextType::class, [
-                'label' => 'Apellido'
+                'label' => 'Apellido',
             ])
             ->add('nombre', TextType::class, [
                 'required' => false,
-                'label' => 'Nombre'
+                'label' => 'Nombre',
             ])
             ->add('celebracion', HiddenType::class, [
                 'property_path' => 'celebracion.id',
                 'attr' => [
-                    'class' => 'hidden'
-                ]
+                    'class' => 'hidden',
+                ],
             ])
-            ->add('save', SubmitType::class, array(
-                'label' => 'Avisarme',
-                'attr' => array('class' => 'btn btn-primary btn--pill')
-            )); // ;Final del builder
-
+            ->add('save', SubmitType::class, ['label' => 'Avisarme', 'attr' => ['class' => 'btn btn-primary btn--pill']]); // ;Final del builder
     }
 
     public function configureOptions(OptionsResolver $resolver)

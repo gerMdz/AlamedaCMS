@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Celebracion;
-use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\QueryBuilder;
@@ -28,13 +27,12 @@ class CelebracionRepository extends ServiceEntityRepository
             ->orderBy('c.fechaCelebracionAt', 'DESC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
-     /**
-      * @return QueryBuilder Returns an array of Celebracion objects
-      */
-
+    /**
+     * @return QueryBuilder Returns an array of Celebracion objects
+     */
     public function puedeMostrarse(): QueryBuilder
     {
         return $this->createQueryBuilder('c')
@@ -43,7 +41,7 @@ class CelebracionRepository extends ServiceEntityRepository
             ->andWhere('c.disponibleHastaAt >= :today')
             ->orderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('hab', true)
-            ->setParameter('today',new DateTime('now'))
+            ->setParameter('today', new \DateTime('now'))
         ;
     }
 
@@ -54,12 +52,9 @@ class CelebracionRepository extends ServiceEntityRepository
             ->andWhere('c.disponibleHastaAt >= :today')
             ->orderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('hab', true)
-            ->setParameter('today',new DateTime('now'))
+            ->setParameter('today', new \DateTime('now'))
         ;
     }
-
-
-
 
     /*
     public function findOneBySomeField($value): ?Celebracion
@@ -75,8 +70,9 @@ class CelebracionRepository extends ServiceEntityRepository
 
     private function sumar1hora()
     {
-        $datetime = new DateTime('now');
+        $datetime = new \DateTime('now');
         $datetime->modify('+1 hour');
+
         return $datetime;
     }
 
@@ -85,10 +81,10 @@ class CelebracionRepository extends ServiceEntityRepository
         return $qb ?: $this->createQueryBuilder('c');
     }
 
-    public static function createIsPresenteCriteria():Criteria
+    public static function createIsPresenteCriteria(): Criteria
     {
         return Criteria::create()
             ->andWhere(Criteria::expr()->eq('isPresente', true))
-            ;
+        ;
     }
 }

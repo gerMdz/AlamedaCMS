@@ -5,21 +5,16 @@ namespace App\Controller;
 use App\Entity\MetaBase;
 use App\Form\MetaBaseType;
 use App\Repository\MetaBaseRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/metabase")
- */
+#[Route(path: '/admin/metabase')]
 class MetaBaseController extends AbstractController
 {
-    /**
-     * @Route("/", name="meta_base_index", methods={"GET"})
-     * @param MetaBaseRepository $metaBaseRepository
-     * @return Response
-     */
+    #[Route(path: '/', name: 'meta_base_index', methods: ['GET'])]
     public function index(MetaBaseRepository $metaBaseRepository): Response
     {
         return $this->render('meta_base/index.html.twig', [
@@ -27,9 +22,7 @@ class MetaBaseController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="meta_base_new", methods={"GET","POST"})
-     */
+    #[Route(path: '/new', name: 'meta_base_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $metaBase = new MetaBase();
@@ -46,13 +39,11 @@ class MetaBaseController extends AbstractController
 
         return $this->render('meta_base/new.html.twig', [
             'meta_base' => $metaBase,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="meta_base_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'meta_base_show', methods: ['GET'])]
     public function show(MetaBase $metaBase): Response
     {
         return $this->render('meta_base/show.html.twig', [
@@ -60,9 +51,7 @@ class MetaBaseController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="meta_base_edit", methods={"GET","POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'meta_base_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, MetaBase $metaBase): Response
     {
         $form = $this->createForm(MetaBaseType::class, $metaBase);
@@ -70,22 +59,20 @@ class MetaBaseController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->container->get('doctrine')->getManager()->flush();
+
             return $this->redirectToRoute('meta_base_index');
         }
 
         return $this->render('meta_base/edit.html.twig', [
             'meta_base' => $metaBase,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="meta_base_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, MetaBase $metaBase): Response
+    #[Route(path: '/{id}', name: 'meta_base_delete', methods: ['DELETE'])]
+    public function delete(Request $request, MetaBase $metaBase, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$metaBase->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($metaBase);
             $entityManager->flush();
         }

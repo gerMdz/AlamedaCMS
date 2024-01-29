@@ -19,32 +19,28 @@ class ReservaByEmailFilterType extends AbstractType
         $builder
             ->add('celebracion', EntityType::class, [
                 'class' => Celebracion::class,
-                'query_builder' => function (CelebracionRepository $er) {
-                    return $er->puedeMostrarse();
-                },
+                'query_builder' => fn (CelebracionRepository $er) => $er->puedeMostrarse(),
                 'label' => 'Celebración',
                 'placeholder' => 'Seleccione Celebración',
                 'invalid_message' => 'Por favor ingrese una celebración',
                 'invalid_message_parameters' => 'Por favor ingrese celebración',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Por favor seleccione una celebración'
-                    ])
+                        'message' => 'Por favor seleccione una celebración',
+                    ]),
                 ],
-
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email Reserva',
                 'attr' => [
-                    'placeholder' => 'Por favor ingrese email de reserva'
+                    'placeholder' => 'Por favor ingrese email de reserva',
                 ],
-                'required'=>true,
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Por favor ingrese email de reserva'
+                        'message' => 'Por favor ingrese email de reserva',
                     ]),
                 ],
-
             ]);
     }
 

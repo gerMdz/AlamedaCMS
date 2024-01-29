@@ -8,52 +8,36 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=EntradaReferenceRepository::class)
- */
+#[ORM\Entity(repositoryClass: EntradaReferenceRepository::class)]
 class EntradaReference
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups("main")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    #[Groups('main')]
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Entrada::class, inversedBy="entradaReferences")
-     */
-    private $entrada;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("main")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('main')]
     private $filename;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"main", "input"})
-     * @Assert\NotBlank()
-     * @Assert\Length(max="100")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['main', 'input'])]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: '100')]
     private $originalFilename;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("main")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('main')]
     private $mimeType;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
     private $posicion = 0;
 
-    public function __construct(Entrada $entrada)
-    {
-        $this->entrada = $entrada;
+    public function __construct(
+        #[ORM\ManyToOne(targetEntity: Entrada::class, inversedBy: 'entradaReferences')]
+        private Entrada $entrada
+    ) {
     }
 
     public function getId(): ?int

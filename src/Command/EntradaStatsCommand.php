@@ -9,14 +9,12 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[\Symfony\Component\Console\Attribute\AsCommand('entrada:stats', 'Devuelve datos sobre una entrada')]
 class EntradaStatsCommand extends Command
 {
-    protected static $defaultName = 'entrada:stats';
-
     protected function configure()
     {
         $this
-            ->setDescription('Devuelve datos sobre una entrada')
             ->addArgument('identificador', InputArgument::REQUIRED, 'El identificador del artículo')
             ->addOption('format', null, InputOption::VALUE_REQUIRED, 'Formato de salida', 'text')
         ;
@@ -29,7 +27,7 @@ class EntradaStatsCommand extends Command
 
         $data = [
             'identificador' => $identificador,
-            'vistas' => rand(10, 100),
+            'vistas' => random_int(10, 100),
         ];
 
         if ($identificador) {
@@ -53,6 +51,6 @@ class EntradaStatsCommand extends Command
 
         $io->success('Recuerda que --help mostrará más opciones.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

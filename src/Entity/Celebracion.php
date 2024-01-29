@@ -4,93 +4,65 @@ namespace App\Entity;
 
 use App\Entity\Traits\OfertTrait;
 use App\Repository\CelebracionRepository;
-use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use IntlDateFormatter;
 
-/**
- * @ORM\Entity(repositoryClass=CelebracionRepository::class)
- */
-class Celebracion
+#[ORM\Entity(repositoryClass: CelebracionRepository::class)]
+class Celebracion implements \Stringable
 {
-
     use TimestampableEntity;
+
     use OfertTrait;
 
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="string", length=36)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $fechaCelebracionAt;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $nombre;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $capacidad;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="celebracions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $creaEvento;
+    #[ORM\ManyToOne(inversedBy: 'celebracions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $creaEvento = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Reservante::class, mappedBy="celebracion")
-     */
-    private $reservantes;
+    #[ORM\OneToMany(mappedBy: 'celebracion', targetEntity: Reservante::class)]
+    private Collection $reservantes;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Invitado::class, mappedBy="celebracion")
-     */
-    private $invitados;
+    #[ORM\OneToMany(targetEntity: Invitado::class, mappedBy: 'celebracion')]
+    private Collection $invitados;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $descripcion;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isHabilitada;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $imageQr;
 
-    /**
-     * @ORM\OneToMany(targetEntity=WaitingList::class, mappedBy="celebracion")
-     */
-    private $waitingLists;
+    #[ORM\OneToMany(targetEntity: WaitingList::class, mappedBy: 'celebracion')]
+    private Collection $waitingLists;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=GroupCelebration::class, mappedBy="celebraciones")
-     */
+    #[ORM\ManyToMany(targetEntity: GroupCelebration::class, mappedBy: 'celebraciones')]
     private $groupCelebrations;
 
-    public function __toString()
+    public function __toString(): string
     {
-        $formatter = new IntlDateFormatter('es_ES', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
+        $formatter = new \IntlDateFormatter('es_ES', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
         $formatter->setPattern(" d 'de' MMMM");
-//      return $this->getNombre() . ' ' . date_format($this->getFechaCelebracionAt(), 'd/M');
-      return $this->getNombre() . ' ' . $formatter->format($this->getFechaCelebracionAt());
+
+        //      return $this->getNombre() . ' ' . date_format($this->getFechaCelebracionAt(), 'd/M');
+        return $this->getNombre().' '.$formatter->format($this->getFechaCelebracionAt());
     }
 
     public function __construct()
@@ -101,19 +73,17 @@ class Celebracion
         $this->groupCelebrations = new ArrayCollection();
     }
 
-
-
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getFechaCelebracionAt(): ?DateTimeInterface
+    public function getFechaCelebracionAt(): ?\DateTimeInterface
     {
         return $this->fechaCelebracionAt;
     }
 
-    public function setFechaCelebracionAt(DateTimeInterface $fechaCelebracionAt): self
+    public function setFechaCelebracionAt(\DateTimeInterface $fechaCelebracionAt): self
     {
         $this->fechaCelebracionAt = $fechaCelebracionAt;
 
@@ -143,9 +113,6 @@ class Celebracion
 
         return $this;
     }
-
-
-
 
     public function getCreaEvento(): ?User
     {
@@ -255,18 +222,13 @@ class Celebracion
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getInvitadosPresentes(): ?int
     {
         $criterio = CelebracionRepository::createIsPresenteCriteria();
+
         return count($this->invitados->matching($criterio));
     }
 
-    /**
-     * @return Collection|WaitingList[]
-     */
     public function getWaitingLists(): Collection
     {
         return $this->waitingLists;
@@ -294,9 +256,6 @@ class Celebracion
         return $this;
     }
 
-    /**
-     * @return Collection|GroupCelebration[]
-     */
     public function getGroupCelebrations(): Collection
     {
         return $this->groupCelebrations;
@@ -320,6 +279,4 @@ class Celebracion
 
         return $this;
     }
-
-
 }

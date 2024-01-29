@@ -41,8 +41,8 @@ class PrincipalType extends AbstractType
             ])
             ->add('linkRoute', TextType::class, [
                 'label' => 'linkRoute',
-                'help' => 'Texto de la url '
-            ] )
+                'help' => 'Texto de la url ',
+            ])
             ->add('isLinkExterno', CheckboxType::class, [
                 'required' => false,
                 'label' => false,
@@ -77,8 +77,8 @@ class PrincipalType extends AbstractType
             ->add('autor', HiddenType::class, [
                 'property_path' => 'autor.id',
                 'attr' => [
-                    'class' => 'hidden'
-                ]
+                    'class' => 'hidden',
+                ],
             ])
             ->add(
                 'principal',
@@ -94,28 +94,25 @@ class PrincipalType extends AbstractType
                         'class' => 'select2-enable',
                         'placeholder' => 'Seleccione parent principal',
                     ],
-
                 ]
             )
             ->add('cssClass', TextType::class, [
-                'label'=> 'Css',
+                'label' => 'Css',
                 'help' => 'Agregar una clase css ya definida',
                 'required' => false,
             ])
             ->add('modelTemplate', EntityType::class, [
                 'class' => ModelTemplate::class,
-                'query_builder' => function (ModelTemplateRepository $er) {
-                    return $er->findModelTemplatesByBlock('page');
-                },
+                'query_builder' => fn (ModelTemplateRepository $er) => $er->findModelTemplatesByBlock('page'),
                 'required' => false,
                 'label' => 'Template',
-                'help'=>'Plantilla ya definida',
+                'help' => 'Plantilla ya definida',
                 'placeholder' => 'Seleccione el modelo principal de la página',
                 'attr' => [
-                    'class' => 'select2-enable'
-                ]
+                    'class' => 'select2-enable',
+                ],
             ])
-            ->add('isActive',CheckboxType::class, [
+            ->add('isActive', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Activa?',
                 'label_attr' => ['class' => 'checkbox-custom text-dark'],
@@ -124,7 +121,7 @@ class PrincipalType extends AbstractType
                 ],
             ])
 
-        ; //final del builder
+        ; // final del builder
     }
 
     public function configureOptions(OptionsResolver $resolver)

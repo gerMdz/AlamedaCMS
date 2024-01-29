@@ -20,7 +20,7 @@ class WaitingListRepository extends ServiceEntityRepository
         parent::__construct($registry, WaitingList::class);
     }
 
-    public function WaitingNotInvitado($id_celebracion, $invitados ): QueryBuilder
+    public function WaitingNotInvitado($id_celebracion, $invitados): QueryBuilder
     {
         $qb = $this->createQueryBuilder('w')
             ->leftJoin('w.celebracion', 'c')

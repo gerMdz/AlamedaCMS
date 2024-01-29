@@ -3,7 +3,6 @@
 namespace App\Form\Step\Section;
 
 use App\Entity\Section;
-
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -13,16 +12,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StepOneType extends AbstractType
 {
-
-    private $registry;
-
     /**
      * SectionFormType constructor.
-     * @param ManagerRegistry $registry
      */
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(private readonly ManagerRegistry $registry)
     {
-        $this->registry = $registry;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -55,7 +49,7 @@ class StepOneType extends AbstractType
                 'principal',
                 EntityType::class,
                 [
-                    'class' => 'App\Entity\Principal',
+                    'class' => \App\Entity\Principal::class,
                     'label' => 'Página?',
                     'choice_label' => 'linkRoute',
                     'placeholder' => 'Seleccione la página donde se insertará la sección',
@@ -69,7 +63,7 @@ class StepOneType extends AbstractType
         ; // Fin del builder
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [

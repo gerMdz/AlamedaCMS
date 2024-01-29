@@ -11,32 +11,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class RSSController extends AbstractController
 {
     /**
-     * @var string
-     */
-    private $site_podcasts;
-
-    /**
      * RSSController constructor.
-     * @param string $site_podcasts
      */
-    public function __construct(string $site_podcasts)
+    public function __construct(private readonly string $site_podcasts)
     {
-        $this->site_podcasts = $site_podcasts;
     }
 
-    /**
-     * @Route("/rss", name="rss-feed")
-     * @param ChannelFeedRepository $channelFeedRepository
-     * @return Response
-     */
+    #[Route(path: '/rss', name: 'rss-feed')]
     public function rss(ChannelFeedRepository $channelFeedRepository): Response
     {
-
         $channels = $channelFeedRepository->findFirst();
 
         $response = new Response();
-        $response->headers->set("Content-type", "text/xml");
+        $response->headers->set('Content-type', 'text/xml');
         $response->setContent(Xml::generate($channels, $this->site_podcasts));
+
         return $response;
     }
 }

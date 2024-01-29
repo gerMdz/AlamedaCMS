@@ -7,159 +7,109 @@ use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\EntradaRepository")
- */
-class Entrada
+#[ORM\Entity(repositoryClass: EntradaRepository::class)]
+class Entrada implements \Stringable
 {
     use TimestampableEntity;
+
     use OfertTrait;
+
     use LinksTrait;
+
     use CssClass;
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private ?int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("mail")
-     * @Assert\NotBlank
-     */
-
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('mail')]
+    #[Assert\NotBlank]
     private string $titulo;
 
-    /**
-     * @ORM\Column(type="text", length=8000, nullable=true)
-     * @Groups("mail")
-     */
-    private ?string $contenido;
+    #[ORM\Column(type: 'text', length: 8000, nullable: true)]
+    #[Groups('mail')]
+    private ?string $contenido = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="entradas")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?User $autor;
+    #[ORM\ManyToOne(inversedBy: 'entradas')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $autor = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("mail")
-     */
-    private ?string $imageFilename=null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('mail')]
+    private ?string $imageFilename = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private ?DateTimeInterface $publicadoAt;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $publicadoAt = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=EntradaReference::class, mappedBy="entrada")
-     * @ORM\OrderBy({"posicion"="ASC"})
-     */
+    #[ORM\OneToMany(mappedBy: 'entrada', targetEntity: EntradaReference::class)]
+    #[ORM\OrderBy(['posicion' => 'ASC'])]
     private ?Collection $entradaReferences;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private ?int $likes = 0;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="entrada", fetch="EXTRA_LAZY")
-     * @ORM\OrderBy({"createdAt" = "DESC"})
-     */
+    #[ORM\OneToMany(mappedBy: 'entrada', targetEntity: Comentario::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\OrderBy(['createdAt' => 'DESC'])]
     private ?Collection $comentarios;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="entradas")
-     */
+    #[ORM\ManyToMany(targetEntity: Principal::class, mappedBy: 'entradas')]
     private ?Collection $principals;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $eventoAt = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private ?DateTimeInterface $eventoAt;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $typeOrigin = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $typeOrigin;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $typeCarry = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $typeCarry;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $orden = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $orden;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $encabezado = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private ?bool $encabezado;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $destacado = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private ?bool $destacado;
+    #[ORM\ManyToOne(inversedBy: 'entradas')]
+    private ?ModelTemplate $modelTemplate = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="entradas")
-     */
-    private ?ModelTemplate $modelTemplate;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Contacto::class, inversedBy="entradas")
-     */
+    #[ORM\ManyToMany(targetEntity: Contacto::class, inversedBy: 'entradas')]
     private ?Collection $contacto;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private ?bool $isSinTitulo;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $isSinTitulo = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private ?bool $isPermanente;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $isPermanente = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $footer;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $footer = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="entradas")
-     */
+    #[ORM\ManyToMany(targetEntity: ButtonLink::class, inversedBy: 'entradas')]
     private ?Collection $button;
 
-    /**
-     * @ORM\Column(type="string", length=150, nullable=true, unique=true)
-     */
-    private ?string $identificador;
+    #[ORM\Column(type: 'string', length: 150, nullable: true, unique: true)]
+    private ?string $identificador = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="entradas")
-     * @JoinTable(name="section_entrada",
-     *     joinColumns={@JoinColumn(name="entrada_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="section_id", referencedColumnName="id")}
-     *     )
-     */
+    #[JoinTable(name: 'section_entrada')]
+    #[JoinColumn(name: 'entrada_id', referencedColumnName: 'id')]
+    #[InverseJoinColumn(name: 'section_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'entradas')]
     private Collection $sections;
 
     public function __construct()
@@ -175,7 +125,7 @@ class Entrada
     /**
      * @return string|null
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->titulo;
     }
@@ -217,6 +167,7 @@ class Entrada
     public function setAutor(?User $autor): self
     {
         $this->autor = $autor;
+
         return $this;
     }
 
@@ -228,27 +179,29 @@ class Entrada
     public function setImageFilename(?string $imageFilename): self
     {
         $this->imageFilename = $imageFilename;
+
         return $this;
     }
 
-    public function getPublicadoAt(): ?DateTimeInterface
+    public function getPublicadoAt(): ?\DateTimeInterface
     {
         return $this->publicadoAt;
     }
 
-    public function setPublicadoAt(?DateTimeInterface $publicadoAt): self
+    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
     {
         $this->publicadoAt = $publicadoAt;
+
         return $this;
     }
 
     public function getImagePath(): ?string
     {
-        return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
+        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 
     /**
-     * @return null|Collection|EntradaReference[]
+     * @return Collection|EntradaReference[]|null
      */
     public function getEntradaReferences(): ?Collection
     {
@@ -263,26 +216,29 @@ class Entrada
     public function setLikes(int $likes): self
     {
         $this->likes = $likes;
+
         return $this;
     }
 
     public function incrementaLikeCount(): self
     {
         $this->likes = $this->likes + 1;
+
         return $this;
     }
 
     /**
-     * @return null|Collection|Comentario[]
+     * @return Collection|Comentario[]|null
      */
     public function getComentariosNoDeleted(): ?Collection
     {
         $criterio = EntradaRepository::createNoDeletedCriteria();
+
         return $this->comentarios->matching($criterio);
     }
 
     /**
-     * @return null|Collection|Comentario[]
+     * @return Collection|Comentario[]|null
      */
     public function getComentarios(): ?Collection
     {
@@ -313,7 +269,7 @@ class Entrada
     }
 
     /**
-     * @return null|Collection|Principal[]
+     * @return Collection|Principal[]|null
      */
     public function getPrincipals(): ?Collection
     {
@@ -340,19 +296,17 @@ class Entrada
         return $this;
     }
 
-
-    public function getEventoAt(): ?DateTimeInterface
+    public function getEventoAt(): ?\DateTimeInterface
     {
         return $this->eventoAt;
     }
 
-    public function setEventoAt(?DateTimeInterface $eventoAt): self
+    public function setEventoAt(?\DateTimeInterface $eventoAt): self
     {
         $this->eventoAt = $eventoAt;
 
         return $this;
     }
-
 
     public function getTypeOrigin(): ?string
     {
@@ -427,7 +381,7 @@ class Entrada
     }
 
     /**
-     * @return null|Collection|Contacto[]
+     * @return Collection|Contacto[]|null
      */
     public function getContacto(): ?Collection
     {
@@ -474,7 +428,6 @@ class Entrada
         return $this;
     }
 
-
     public function getFooter(): ?string
     {
         return $this->footer;
@@ -488,7 +441,7 @@ class Entrada
     }
 
     /**
-     * @return null|Collection|ButtonLink[]
+     * @return Collection|ButtonLink[]|null
      */
     public function getButton(): ?Collection
     {
@@ -518,8 +471,8 @@ class Entrada
 
     public function setIdentificador(?string $identificador): self
     {
-        if(null === $identificador){
-            $identificador = str_replace(' ', '-',strip_tags($this->titulo));
+        if (null === $identificador) {
+            $identificador = str_replace(' ', '-', strip_tags($this->titulo));
         }
         $this->identificador = $identificador;
 
@@ -534,19 +487,21 @@ class Entrada
         return $this->sections;
     }
 
-    public function addSection(Section $section=null): self
+    public function addSection(Section $section = null): self
     {
-        if($section) {
+        if ($section) {
             if (!$this->sections->contains($section)) {
                 $this->sections[] = $section;
             }
         }
+
         return $this;
     }
 
     public function removeSection(Section $section): self
     {
         $this->sections->removeElement($section);
+
         return $this;
     }
 }

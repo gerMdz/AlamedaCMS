@@ -2,124 +2,80 @@
 
 namespace App\Entity;
 
-use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(
- *     fields={"email"},
- *     message="Este email ya está registrado"
- * )
- */
-class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: \App\Repository\UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'Este email ya está registrado')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface, \Stringable
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="string", length=40)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 40)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups("perfil")
-     * @Assert\NotBlank(message="Por Favor ingrese un email válido")
-     * @Assert\Email(message="Por Favor ingrese un email válido")
-     */
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Groups('perfil')]
+    #[Assert\NotBlank(message: 'Por Favor ingrese un email válido')]
+    #[Assert\Email(message: 'Por Favor ingrese un email válido')]
     private $email;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: 'json')]
     private $roles = [];
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("perfil")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('perfil')]
     private $primerNombre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $password = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("perfil")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('perfil')]
     private $twitterUsername;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("perfil")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('perfil')]
     private $avatarUrl;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ApiToken", mappedBy="user", orphanRemoval=true)
-     */
-    private $apiTokens;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ApiToken::class, orphanRemoval: true)]
+    private Collection $apiTokens;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PageIndex", mappedBy="autor")
-     */
-    private $pageIndices;
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: PageIndex::class)]
+    private Collection $pageIndices;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Entrada", mappedBy="autor")
-     */
-    private $entradas;
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Entrada::class)]
+    private Collection $entradas;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="autor")
-     */
-    private $principal;
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Principal::class)]
+    private Collection $principal;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="autor")
-     */
-    private $comentarios;
+    #[ORM\OneToMany(mappedBy: 'autor', targetEntity: Comentario::class)]
+    private Collection $comentarios;
 
-
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $aceptaTerminosAt;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="autor", fetch="EXTRA_LAZY")
-     */
-    private $sections;
+    #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'autor', fetch: 'EXTRA_LAZY')]
+    private Collection $sections;
 
-    /**
-     * @ORM\OneToMany(targetEntity=EnlaceCorto::class, mappedBy="usuario")
-     */
-    private $enlaceCortos;
+    #[ORM\OneToMany(targetEntity: EnlaceCorto::class, mappedBy: 'usuario')]
+    private Collection $enlaceCortos;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Celebracion::class, mappedBy="creaEvento")
-     */
-    private $celebracions;
+    #[ORM\OneToMany(targetEntity: Celebracion::class, mappedBy: 'creaEvento')]
+    private Collection $celebracions;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isDeleted;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isActive;
 
     public function __construct()
@@ -136,11 +92,10 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
 
     public function __toString(): string
     {
-        return $this->getPrimerNombre();
+        return (string) $this->getPrimerNombre();
     }
 
-
-    public function getId():?string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -158,11 +113,11 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
     }
 
     /**
-     * A visual identifier that represents this user.
+     * The public representation of the user (e.g. a username, an email address, etc.).
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
@@ -179,7 +134,6 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
         return array_unique($roles);
     }
 
-
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -193,14 +147,6 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
     public function getPassword(): ?string
     {
         return $this->password;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
-    {
-        // not needed for apps that do not check user passwords
     }
 
     /**
@@ -415,15 +361,14 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
         return $this;
     }
 
-    public function getAceptaTerminosAt(): ?DateTimeInterface
+    public function getAceptaTerminosAt(): ?\DateTimeInterface
     {
         return $this->aceptaTerminosAt;
     }
 
-
     public function aceptaTerminos()
     {
-        $this->aceptaTerminosAt = new DateTime();
+        $this->aceptaTerminosAt = new \DateTime();
     }
 
     /**
@@ -545,15 +490,5 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
         $this->isActive = $isActive;
 
         return $this;
-    }
-
-    /**
-     * The public representation of the user (e.g. a username, an email address, etc.)
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
     }
 }

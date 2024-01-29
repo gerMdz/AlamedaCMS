@@ -37,11 +37,9 @@ abstract class BaseFixture extends Fixture
      *           return $user;
      *      });
      *
-     * @param int $count
      * @param string $groupName tag these created objects with this group name,
      *                          and use this later with getRandomReference(s)
      *                          to fetch only from this specific group
-     * @param callable $factory
      */
     protected function createMany(int $count, string $groupName, callable $factory)
     {
@@ -65,7 +63,7 @@ abstract class BaseFixture extends Fixture
             $this->referencesIndex[$groupName] = [];
 
             foreach ($this->referenceRepository->getReferences() as $key => $ref) {
-                if (0 === strpos($key, $groupName.'_')) {
+                if (str_starts_with($key, $groupName.'_')) {
                     $this->referencesIndex[$groupName][] = $key;
                 }
             }

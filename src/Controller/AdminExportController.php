@@ -13,24 +13,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/export")
- */
-
+#[Route(path: '/admin/export')]
 class AdminExportController extends AbstractController
 {
-    const FILENAME = 'AlamedaCMS';
+    final public const FILENAME = 'AlamedaCMS';
 
-    /**
-     * @Route("/invitado/{id}", name="admin_export_invitado", methods={"GET", "POST"})
-     * @param Celebracion $celebracion
-     * @param InvitadoRepository $invitadoRepository
-     * @return Response
-     */
+    #[Route(path: '/invitado/{id}', name: 'admin_export_invitado', methods: ['GET', 'POST'])]
     public function index(Celebracion $celebracion, InvitadoRepository $invitadoRepository): Response
     {
         $dataColumns = $invitadoRepository->byCelebracionForExport($celebracion->getId());
-        $nameColumns =[
+        $nameColumns = [
             'ID',
             'Presente?',
             'Invitado ',
@@ -41,12 +33,12 @@ class AdminExportController extends AbstractController
             'Enlace?',
             'Invitó',
         ];
-        $titulo = $celebracion->getNombre() . '-' . date_format($celebracion->getFechaCelebracionAt(), 'd/M');
+        $titulo = $celebracion->getNombre().'-'.date_format($celebracion->getFechaCelebracionAt(), 'd/M');
 
         $filename = self::FILENAME.'-'.trim($titulo).'.xlsx';
         $spreadsheet = $this->createSpreadsheet($titulo, $nameColumns, $dataColumns);
-//        $contentType = 'text/csv';
-//        $writer = new Csv($spreadsheet);
+        //        $contentType = 'text/csv';
+        //        $writer = new Csv($spreadsheet);
         $contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
         $writer = new Xlsx($spreadsheet);
         $response = new StreamedResponse();
@@ -55,9 +47,10 @@ class AdminExportController extends AbstractController
         $response->setPrivate();
         $response->headers->addCacheControlDirective('no-cache', true);
         $response->headers->addCacheControlDirective('must-revalidate', true);
-        $response->setCallback(function() use ($writer) {
+        $response->setCallback(function () use ($writer) {
             $writer->save('php://output');
         });
+
         return $response;
     }
 
@@ -84,10 +77,10 @@ class AdminExportController extends AbstractController
         $i = 3; // Beginning row for active sheet
         foreach ($columnValues as $key => $columnValue) {
             $columnLetter = 'A';
-            foreach($columnValue as $k => $v) {
+            foreach ($columnValue as $k => $v) {
                 $sheet->setCellValue($columnLetter++.$i, $v);
             }
-            $i++;
+            ++$i;
         }
 
         // Autosize each column and set style to column titles
@@ -101,7 +94,7 @@ class AdminExportController extends AbstractController
             $sheet->getStyle($columnLetter.'2')->getFont()->setBold(true);
             // Autosize column
             $sheet->getColumnDimension($columnLetter)->setAutoSize(true);
-            $columnLetter++;
+            ++$columnLetter;
         }
 
         return $spreadsheet;
@@ -111,5 +104,4 @@ class AdminExportController extends AbstractController
     {
         return IOFactory::load($filename);
     }
-
 }
