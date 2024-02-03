@@ -171,7 +171,8 @@ class AdminEntradaController extends BaseController
         $user = $this->getUser();
         $entrada->setAutor($user);
         if ($request->get('section')) {
-            $entrada->addSection($this->container->get('doctrine')->getRepository(Section::class)->find($request->get('section')));
+            $entrada->addSection(
+                $this->managerRegistry->getRepository(Section::class)->find($request->get('section')));
         }
 
         $form = $this->createForm(EntradaType::class, $entrada);
