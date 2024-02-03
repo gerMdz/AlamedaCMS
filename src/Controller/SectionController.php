@@ -18,6 +18,7 @@ use App\Repository\SourceApiRepository;
 use App\Service\Handler\SourceApi\HandlerSourceApi;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -43,7 +44,8 @@ class SectionController extends BaseController
     /**
      * SectionController constructor.
      */
-    public function __construct(private readonly RequestStack $requestStack, private readonly HandlerSourceApi $api)
+    public function __construct(private readonly RequestStack $requestStack, private readonly HandlerSourceApi $api,
+                                private readonly ManagerRegistry $managerRegistry)
     {
     }
 
@@ -126,7 +128,7 @@ class SectionController extends BaseController
                 $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $section->getImageFilename());
                 $section->setImageFilename($newFilename);
             }
-            $this->container->get('doctrine')->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_list');
         }
@@ -233,9 +235,9 @@ class SectionController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $principal = $form['principal']->getData();
             $section->addPrincipale($principal);
-            $entityManager = $this->container->get('doctrine')->getManager();
-            $entityManager->persist($section);
-            $entityManager->flush();
+
+            $this->managerRegistry->getManager()->persist($section);
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step2', [
                 'id' => $section->getId(),
@@ -268,7 +270,7 @@ class SectionController extends BaseController
                 }
                 $this->requestStack->getSession()->remove('model_template_id');
             }
-            $this->container->get('doctrine')->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_new_step3', [
                 'id' => $section->getId(),
@@ -290,7 +292,7 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->container->get('doctrine')->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('admin_section_show', [
                 'id' => $section->getId(),
@@ -326,7 +328,7 @@ class SectionController extends BaseController
             $id_section = $form->get('section')->getData();
             $seccion = $sectionRepository->find($id_section);
             $entrada->addSection($seccion);
-            $entityManager = $this->container->get('doctrine')->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($entrada);
             $entityManager->flush();
 
