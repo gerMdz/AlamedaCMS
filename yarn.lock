@@ -1079,6 +1079,9 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+"@symfony/stimulus-bundle@file:vendor/symfony/stimulus-bundle/assets":
+  version "1.0.0"
+
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets":
   version "0.1.0"
 
@@ -2011,9 +2014,9 @@ ci-info@^3.2.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.9.0.tgz#4279a62028a7b1f262f3473fc9605f5e218c59b4"
   integrity sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==
 
-ckeditor4@ckeditor/ckeditor4-releases#full/latest:
-  version "4.23.0"
-  resolved "https://codeload.github.com/ckeditor/ckeditor4-releases/tar.gz/d7174a8484b0f368402329b604d48ab0cc13bc14"
+ckeditor4@ckeditor/ckeditor4-releases#full/4.22.1:
+  version "4.22.1"
+  resolved "https://codeload.github.com/ckeditor/ckeditor4-releases/tar.gz/8c07767a5e23ac04a08504e1fc12619a0bf8a4f7"
 
 ckeditor5@^21.0.0:
   version "21.0.0"
