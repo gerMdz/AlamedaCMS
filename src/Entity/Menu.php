@@ -34,9 +34,7 @@ class Menu
     #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'menu')]
     private $itemMenus;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: 'text', nullable: true)]
     private $content;
 
     public function __construct()

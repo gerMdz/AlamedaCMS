@@ -37,9 +37,7 @@ class Contacto implements \Stringable
     #[ORM\ManyToMany(targetEntity: Entrada::class, mappedBy: 'contacto')]
     private $entradas;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="contact")
-     */
+    #[ORM\OneToMany(targetEntity: Organization::class, mappedBy: 'contact')]
     private $organizations;
 
     public function __construct()

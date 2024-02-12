@@ -10,14 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/organization")
- */
+#[Route(path: '/admin/organization')]
 class OrganizationController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin_organization_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'admin_organization_index', methods: ['GET'])]
     public function index(OrganizationRepository $organizationRepository): Response
     {
         return $this->render('admin/organization/index.html.twig', [
@@ -25,9 +21,7 @@ class OrganizationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="admin_organization_new", methods={"GET", "POST"})
-     */
+    #[Route(path: '/new', name: 'admin_organization_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OrganizationRepository $organizationRepository): Response
     {
         $organization = new Organization();
@@ -46,9 +40,7 @@ class OrganizationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_organization_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'admin_organization_show', methods: ['GET'])]
     public function show(Organization $organization): Response
     {
         return $this->render('admin/organization/show.html.twig', [
@@ -56,9 +48,7 @@ class OrganizationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="admin_organization_edit", methods={"GET", "POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'admin_organization_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Organization $organization, OrganizationRepository $organizationRepository): Response
     {
         $form = $this->createForm(OrganizationType::class, $organization);
@@ -76,9 +66,7 @@ class OrganizationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_organization_delete", methods={"POST"})
-     */
+    #[Route(path: '/{id}', name: 'admin_organization_delete', methods: ['POST'])]
     public function delete(Request $request, Organization $organization, OrganizationRepository $organizationRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$organization->getId(), $request->request->get('_token'))) {

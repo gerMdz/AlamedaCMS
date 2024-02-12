@@ -8,65 +8,42 @@ use Symfony\UX\Turbo\Attribute\Broadcast;
 
 /**
  * @Broadcast()
- *
- * @ORM\Entity(repositoryClass=OrganizationRepository::class)
  */
+#[ORM\Entity(repositoryClass: OrganizationRepository::class)]
 class Organization
 {
-    /**
-     * @ORM\Id()
-     *
-     * @ORM\Column(type="string", length=40)
-     *
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     *
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 40)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=510)
-     */
+    #[ORM\Column(type: 'string', length: 510)]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=510)
-     */
+    #[ORM\Column(type: 'string', length: 510)]
     private $address1;
 
-    /**
-     * @ORM\Column(type="string", length=510, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 510, nullable: true)]
     private $address2;
 
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
+    #[ORM\Column(type: 'string', length: 20)]
     private $identifier;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $responsable;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $owner;
 
-    /**
-     * @ORM\Column(type="string", length=510, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 510, nullable: true)]
     private $email;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: 'boolean')]
     private $isActive;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Contacto::class, inversedBy="organizations")
-     */
+    #[ORM\ManyToOne(targetEntity: Contacto::class, inversedBy: 'organizations')]
     private $contact;
 
     public function getId(): ?string

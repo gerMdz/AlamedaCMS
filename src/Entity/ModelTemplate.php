@@ -40,9 +40,7 @@ class ModelTemplate implements \Stringable
     #[ORM\OneToMany(mappedBy: 'modelTemplate', targetEntity: Entrada::class)]
     private Collection $entradas;
 
-    /**
-     * @ORM\OneToMany(targetEntity=BarraNav::class, mappedBy="modelTemplate")
-     */
+    #[ORM\OneToMany(targetEntity: BarraNav::class, mappedBy: 'modelTemplate')]
     private $barraNavs;
 
     public function __construct()

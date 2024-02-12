@@ -11,16 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/barraNav")
- */
+#[Route(path: '/admin/barraNav')]
 class BarraNavController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin_barra_nav_index", methods={"GET"})
-     *
-     * @IsGranted("ROLE_ADMIN")
-     */
+    
+    #[Route(path: '/', name: 'admin_barra_nav_index', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(BarraNavRepository $barraNavRepository): Response
     {
         return $this->render('admin/barra_nav/index.html.twig', [
@@ -28,9 +24,7 @@ class BarraNavController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="admin_barra_nav_new", methods={"GET", "POST"})
-     */
+    #[Route(path: '/new', name: 'admin_barra_nav_new', methods: ['GET', 'POST'])]
     public function new(Request $request, BarraNavRepository $barraNavRepository): Response
     {
         $barraNav = new BarraNav();
@@ -49,9 +43,7 @@ class BarraNavController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_barra_nav_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'admin_barra_nav_show', methods: ['GET'])]
     public function show(BarraNav $barraNav): Response
     {
         return $this->render('admin/barra_nav/show.html.twig', [
@@ -59,9 +51,7 @@ class BarraNavController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="admin_barra_nav_edit", methods={"GET", "POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'admin_barra_nav_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, BarraNav $barraNav, BarraNavRepository $barraNavRepository): Response
     {
         $form = $this->createForm(BarraNavType::class, $barraNav);
@@ -79,9 +69,7 @@ class BarraNavController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_barra_nav_delete", methods={"POST"})
-     */
+    #[Route(path: '/{id}', name: 'admin_barra_nav_delete', methods: ['POST'])]
     public function delete(Request $request, BarraNav $barraNav, BarraNavRepository $barraNavRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$barraNav->getId(), $request->request->get('_token'))) {

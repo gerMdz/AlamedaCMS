@@ -91,9 +91,7 @@ class Principal implements \Stringable
     #[ORM\ManyToMany(targetEntity: BlocsFixes::class, mappedBy: 'page')]
     private Collection $blocsFixes;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=BarraNav::class, inversedBy="principals")
-     */
+    #[ORM\ManyToOne(targetEntity: BarraNav::class, inversedBy: 'principals')]
     private $navbar;
 
     public function __construct()

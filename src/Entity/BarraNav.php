@@ -11,67 +11,44 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
-/**
- * @ORM\Entity(repositoryClass=BarraNavRepository::class)
- */
+#[ORM\Entity(repositoryClass: BarraNavRepository::class)]
 class BarraNav
 {
     use TimestampableEntity;
 
     use CssClass;
 
-    /**
-     * @ORM\Id
-     *
-     * @ORM\GeneratedValue
-     *
-     * @ORM\Column(type="integer")
-     */
+    
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
+    #[ORM\Column(type: 'string', length: 100)]
     private $identifier;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+    #[ORM\Column(type: 'text')]
     private $content;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     */
+    #[ORM\ManyToOne(targetEntity: User::class)]
     private $author;
 
-    /**
-     * @ORM\Column(type="string", length=510, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 510, nullable: true)]
     private $imageFilename;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="barraNavs")
-     */
+    #[ORM\ManyToOne(targetEntity: ModelTemplate::class, inversedBy: 'barraNavs')]
     private $modelTemplate;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isIndex;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="navbar")
-     */
+    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'navbar')]
     private $principals;
 
     public function __construct()
