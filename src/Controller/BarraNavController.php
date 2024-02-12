@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/barraNav')]
 class BarraNavController extends AbstractController
 {
-    
     #[Route(path: '/', name: 'admin_barra_nav_index', methods: ['GET'])]
     #[IsGranted('ROLE_ADMIN')]
     public function index(BarraNavRepository $barraNavRepository): Response

@@ -61,7 +61,7 @@ class BarraNavType extends AbstractType
                 EntityType::class,
                 [
                     'class' => User::class,
-                    'choice_label' => fn(User $user) => sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail()),
+                    'choice_label' => fn (User $user) => sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail()),
                     'placeholder' => 'Seleccione Autor',
                     'invalid_message' => 'Por favor ingrese un autor',
                     'attr' => [
@@ -73,7 +73,7 @@ class BarraNavType extends AbstractType
                 EntityType::class,
                 [
                     'class' => ModelTemplate::class,
-                    'query_builder' => fn(ModelTemplateRepository $er) => $er->findByTypeSection(),
+                    'query_builder' => fn (ModelTemplateRepository $er) => $er->findByTypeSection(),
                     'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,
                     'attr' => [
