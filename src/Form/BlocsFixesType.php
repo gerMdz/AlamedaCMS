@@ -24,15 +24,15 @@ class BlocsFixesType extends AbstractType
                 'class' => Principal::class,
                 'multiple' => true,
                 'attr' => [
-                    'class' => 'select2-enable'
-                ]
+                    'class' => 'select2-enable',
+                ],
             ])
             ->add('section', EntityType::class, [
                 'class' => Section::class,
                 'multiple' => true,
                 'attr' => [
-                    'class' => 'select2-enable'
-                ]
+                    'class' => 'select2-enable',
+                ],
             ])
             ->add('indexAlameda')
             ->add('fixes_type')

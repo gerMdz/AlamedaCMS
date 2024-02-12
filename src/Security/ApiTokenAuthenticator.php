@@ -3,7 +3,6 @@
 namespace App\Security;
 
 use App\Repository\ApiTokenRepository;
-use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -15,18 +14,15 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 {
-    private $apiTokenRepository;
-
-    public function __construct(ApiTokenRepository $apiTokenRepository)
+    public function __construct(private readonly ApiTokenRepository $apiTokenRepository)
     {
-        $this->apiTokenRepository = $apiTokenRepository;
     }
 
     public function supports(Request $request)
     {
         // Reviso las cabeceras "Authorization: Bearer <token>"
         return $request->headers->has('Authorization')
-            && 0 === strpos($request->headers->get('Authorization'), 'Bearer ');
+            && str_starts_with($request->headers->get('Authorization'), 'Bearer ');
     }
 
     public function getCredentials(Request $request)
@@ -61,7 +57,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     {
         return new JsonResponse([
             'message' => $exception->getMessageKey(),
-        ], 401);
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_UNAUTHORIZED);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -69,9 +65,9 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         // todo
     }
 
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(Request $request, AuthenticationException $authException = null): \Symfony\Component\HttpFoundation\Response
     {
-        throw new Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
+        throw new \Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
     }
 
     public function supportsRememberMe()

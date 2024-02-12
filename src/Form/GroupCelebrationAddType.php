@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-
 use App\Entity\GroupCelebration;
 use App\Form\Model\GroupCelebrationsFormModel;
 use App\Repository\GroupCelebrationRepository;
@@ -17,24 +16,19 @@ class GroupCelebrationAddType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('groupCelebration', EntityType::class,[
-                'class'=>GroupCelebration::class,
+            ->add('groupCelebration', EntityType::class, [
+                'class' => GroupCelebration::class,
                 'mapped' => false,
                 'placeholder' => 'Seleccione grupo',
                 'label' => 'Grupos disponibles',
-                'query_builder' => function (GroupCelebrationRepository $er) {
-                    return $er->findByActive();
-                },
+                'query_builder' => fn (GroupCelebrationRepository $er) => $er->findByActive(),
 
-                'attr'=>[
+                'attr' => [
                     'class' => 'select2-enable',
-                    'placeholder' => 'Seleccione grupo'
-                ]
+                    'placeholder' => 'Seleccione grupo',
+                ],
             ])
-            ->add('save', SubmitType::class, array(
-                'label' => 'Agregar',
-                'attr' => array('class' => 'btn btn-primary btn--pill')
-            ))
+            ->add('save', SubmitType::class, ['label' => 'Agregar', 'attr' => ['class' => 'btn btn-primary btn--pill']])
         ;
     }
 

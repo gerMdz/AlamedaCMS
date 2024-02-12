@@ -5,31 +5,21 @@ namespace App\Entity;
 use App\Repository\RelacionSectionEntradaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=RelacionSectionEntradaRepository::class)
- */
+#[ORM\Entity(repositoryClass: RelacionSectionEntradaRepository::class)]
 class RelacionSectionEntrada
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Section::class, inversedBy="relacionSectionEntradas")
-     */
-    private $section;
+    #[ORM\ManyToOne(inversedBy: 'relacionSectionEntradas')]
+    private ?Section $section = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Entrada::class, inversedBy="relacionSectionEntradas")
-     */
-    private $entrada;
+    #[ORM\ManyToOne(inversedBy: 'relacionSectionEntradas')]
+    private ?Entrada $entrada = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    #[ORM\Column(type: 'integer', nullable: true)]
     private $orden;
 
     public function getId(): ?int

@@ -7,51 +7,33 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ButtonLinkRepository::class)
- */
-class ButtonLink
+#[ORM\Entity(repositoryClass: ButtonLinkRepository::class)]
+class ButtonLink implements \Stringable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $cssClass;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $linkRoute;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isLinkExterno;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $textButton;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, mappedBy="button")
-     */
+    #[ORM\ManyToMany(targetEntity: Section::class, mappedBy: 'button')]
     private $sections;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="button")
-     */
+    #[ORM\ManyToMany(targetEntity: Principal::class, mappedBy: 'button')]
     private $principals;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="button")
-     */
+    #[ORM\ManyToMany(targetEntity: Entrada::class, mappedBy: 'button')]
     private $entradas;
 
     public function __construct()
@@ -61,9 +43,9 @@ class ButtonLink
         $this->entradas = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-     return $this->textButton;
+        return (string) $this->textButton;
     }
 
     public function getId(): ?int

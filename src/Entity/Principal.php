@@ -12,125 +12,83 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=PrincipalRepository::class)
- */
-class Principal
+#[ORM\Entity(repositoryClass: PrincipalRepository::class)]
+class Principal implements \Stringable
 {
-
     use TimestampableEntity;
+
     use ImageTrait;
+
     use CssClass;
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private ?int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="principal")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?User $autor;
+    #[ORM\ManyToOne(inversedBy: 'principal')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $autor = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El título de la página, no debe estar en blanco")
-     * @Groups("mail")
-     */
-    private ?string $titulo;
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'El título de la página, no debe estar en blanco')]
+    #[Groups('mail')]
+    private ?string $titulo = null;
 
-    /**
-     * @ORM\Column(type="string", length=2550)
-     * @Groups("mail")
-     */
-    private ?string $contenido;
+    #[ORM\Column(type: 'string', length: 2550)]
+    #[Groups('mail')]
+    private ?string $contenido = null;
 
-    /**
-     * @ORM\Column(type="string", length=150, unique=true, nullable=true)
-     * @Groups("mail")
-     */
-    private ?string $linkRoute;
+    #[ORM\Column(type: 'string', length: 150, unique: true, nullable: true)]
+    #[Groups('mail')]
+    private ?string $linkRoute = null;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $likes = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $likes;
+    #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'principal')]
+    private Collection $comentarios;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="principal")
-     */
-    private $comentarios;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, inversedBy="principals")
-     */
+    #[ORM\ManyToMany(targetEntity: Entrada::class, inversedBy: 'principals')]
     private $entradas;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private ?bool $isActive;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $isActive = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="principal")
-     */
-    private $section;
+    #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'principal')]
+    private Collection $section;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="brote")
-     */
-    private $principal;
+    #[ORM\ManyToOne(inversedBy: 'brote')]
+    private ?Principal $principal = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Principal::class, mappedBy="principal")
-     */
-    private $brote;
+    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'principal')]
+    private Collection $brote;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="principals")
-     */
-    private $modelTemplate;
+    #[ORM\ManyToOne(inversedBy: 'principals')]
+    private ?ModelTemplate $modelTemplate = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Ministerio::class, inversedBy="page")
-     */
-    private $ministerio;
+    #[ORM\ManyToOne(inversedBy: 'page')]
+    private ?Ministerio $ministerio = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="principales")
-     * @ORM\OrderBy({"orden"="ASC"})
-     */
+    #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'principales')]
+    #[ORM\OrderBy(['orden' => 'ASC'])]
     private $secciones;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="principals")
-     */
+    #[ORM\ManyToMany(targetEntity: ButtonLink::class, inversedBy: 'principals')]
     private $button;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="pathInterno")
-     */
-    private $itemMenus;
+    #[ORM\OneToMany(targetEntity: ItemMenu::class, mappedBy: 'pathInterno')]
+    private Collection $itemMenus;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("mail")
-     */
-    private ?bool $isLinkExterno;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    #[Groups('mail')]
+    private ?bool $isLinkExterno = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("mail")
-     */
-    private ?string $linkPosting;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('mail')]
+    private ?string $linkPosting = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=BlocsFixes::class, mappedBy="page")
-     */
+    #[ORM\ManyToMany(targetEntity: BlocsFixes::class, mappedBy: 'page')]
     private Collection $blocsFixes;
 
     /**
@@ -149,9 +107,9 @@ class Principal
         $this->blocsFixes = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->titulo;
+        return (string) $this->titulo;
     }
 
     public function getId(): ?int
@@ -167,6 +125,7 @@ class Principal
     public function setAutor(?User $autor): self
     {
         $this->autor = $autor;
+
         return $this;
     }
 
@@ -178,6 +137,7 @@ class Principal
     public function setTitulo(string $titulo): self
     {
         $this->titulo = $titulo;
+
         return $this;
     }
 
@@ -200,9 +160,9 @@ class Principal
 
     public function setLinkRoute(?string $linkRoute): self
     {
-        ($linkRoute == null ? $linkRoute = strtolower(
+        null == $linkRoute ? $linkRoute = strtolower(
             str_replace(' ', '-', trim($this->titulo.'-'.$this->id))
-        ) : $linkRoute);
+        ) : $linkRoute;
         $this->linkRoute = strip_tags(strtolower(str_replace(' ', '-', trim($linkRoute))));
 
         return $this;
@@ -234,6 +194,7 @@ class Principal
             $this->comentarios[] = $comentario;
             $comentario->setPrincipal($this);
         }
+
         return $this;
     }
 
@@ -246,6 +207,7 @@ class Principal
                 $comentario->setPrincipal(null);
             }
         }
+
         return $this;
     }
 
@@ -262,6 +224,7 @@ class Principal
         if (!$this->entradas->contains($entrada)) {
             $this->entradas[] = $entrada;
         }
+
         return $this;
     }
 
@@ -300,6 +263,7 @@ class Principal
             $this->section[] = $section;
             $section->setPrincipal($this);
         }
+
         return $this;
     }
 
@@ -312,6 +276,7 @@ class Principal
                 $section->setPrincipal(null);
             }
         }
+
         return $this;
     }
 
@@ -341,6 +306,7 @@ class Principal
             $this->brote[] = $brote;
             $brote->setPrincipal($this);
         }
+
         return $this;
     }
 
@@ -365,6 +331,7 @@ class Principal
     public function setModelTemplate(?ModelTemplate $modelTemplate): self
     {
         $this->modelTemplate = $modelTemplate;
+
         return $this;
     }
 
@@ -393,12 +360,14 @@ class Principal
         if (!$this->secciones->contains($seccione)) {
             $this->secciones[] = $seccione;
         }
+
         return $this;
     }
 
     public function removeSeccione(Section $seccione): self
     {
         $this->secciones->removeElement($seccione);
+
         return $this;
     }
 
@@ -415,12 +384,14 @@ class Principal
         if (!$this->button->contains($button)) {
             $this->button[] = $button;
         }
+
         return $this;
     }
 
     public function removeButton(ButtonLink $button): self
     {
         $this->button->removeElement($button);
+
         return $this;
     }
 
@@ -438,6 +409,7 @@ class Principal
             $this->itemMenus[] = $itemMenu;
             $itemMenu->setPathInterno($this);
         }
+
         return $this;
     }
 
@@ -449,6 +421,7 @@ class Principal
                 $itemMenu->setPathInterno(null);
             }
         }
+
         return $this;
     }
 

@@ -2,36 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\Brote;
-
 use App\Entity\Principal;
 use App\Form\DataTransformer\UserSelectTextType;
-
 use App\Repository\UserRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Symfony\Component\Validator\Constraints\Image;
 
 class BroteType extends AbstractType
 {
     protected $role = 'ROLE_ESCRITOR';
 
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->add('titulo')
-            ->add('contenido', CKEditorType::class,[
+            ->add('contenido', CKEditorType::class, [
                 'config' => [
                     'uiColor' => '#ffffff',
-            ]
+            ],
             ])
             ->add('linkRoute')
             ->add('imageFilename')
@@ -41,14 +34,12 @@ class BroteType extends AbstractType
             ->add('createdAt')
             ->add('updatedAt')
             ->add('autor', UserSelectTextType::class, [
-                'finder_callback' => function (UserRepository $userRepository, string $email) {
-                    return $userRepository->findByRoleAndEmail($email, $this->role);
-                },
+                'finder_callback' => fn (UserRepository $userRepository, string $email) => $userRepository->findByRoleAndEmail($email, $this->role),
                 'attr' => [
 //                    'class'=>'js-user-autocomplete',
                     'data-role' => 'ROLE_ESCRITOR',
 //                    'data-autocomplete-url'=>$this->router->generate('admin_utility_user')
-                ]
+                ],
             ])
 
 //            ->add('autor', EntityType::class, [

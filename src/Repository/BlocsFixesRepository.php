@@ -4,8 +4,6 @@ namespace App\Repository;
 
 use App\Entity\BlocsFixes;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -22,8 +20,6 @@ class BlocsFixesRepository extends ServiceEntityRepository
         parent::__construct($registry, BlocsFixes::class);
     }
 
-    /**
-     */
     public function add(BlocsFixes $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
@@ -32,8 +28,6 @@ class BlocsFixesRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     */
     public function remove(BlocsFixes $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
@@ -42,9 +36,9 @@ class BlocsFixesRepository extends ServiceEntityRepository
         }
     }
 
-
     /**
      * @param string|null $bus Texto para búsqueda
+     *
      * @return QueryBuilder with all blocks fixes register
      */
     public function queryAllBlocsFixes(?string $bus): QueryBuilder
@@ -59,9 +53,8 @@ class BlocsFixesRepository extends ServiceEntityRepository
                 ->setParameter('search', '%'.strtoupper($bus).'%');
         }
 
-        return  $qb;
+        return $qb;
     }
-
 
     // /**
     //  * @return BlocsFixes[] Returns an array of BlocsFixes objects

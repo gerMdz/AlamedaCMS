@@ -10,78 +10,52 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=ItemMenuRepository::class)
- */
+#[ORM\Entity(repositoryClass: ItemMenuRepository::class)]
 class ItemMenu
 {
     use TimestampableEntity;
+
     use CssClass;
+
     use IdentificadorTrait;
 
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="string", length=36)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="itemMenus")
-     */
+    #[ORM\ManyToMany(targetEntity: Roles::class, inversedBy: 'itemMenus')]
     private $role;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $label;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $badge;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $icon;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isExterno;
 
-
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isActivo;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ItemMenu::class, inversedBy="itemMenus")
-     */
-    private $parent;
+    #[ORM\ManyToOne(inversedBy: 'itemMenus')]
+    private ?ItemMenu $parent = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="parent")
-     */
-    private $itemMenus;
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: ItemMenu::class)]
+    private Collection $itemMenus;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="itemMenus")
-     */
-    private $pathInterno;
+    #[ORM\ManyToOne(inversedBy: 'itemMenus')]
+    private ?Principal $pathInterno = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $pathLibre;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Menu::class, inversedBy="itemMenus")
-     */
+    #[ORM\ManyToMany(targetEntity: Menu::class, inversedBy: 'itemMenus')]
     private $menu;
 
     public function __construct()
@@ -167,8 +141,6 @@ class ItemMenu
 
         return $this;
     }
-
-
 
     public function getIsActivo(): ?bool
     {

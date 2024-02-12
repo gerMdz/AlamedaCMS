@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="{{ site_robot }}">
     {% if google_site_verification != '' %}
-        <meta name="google-site-verification" content="{{ google_site_verification }}">
+        <meta name="google_site_verification" content="{{ google_site_verification }}">
     {% endif %}
     <title>{% block title %}{{ base.siteName }} Bienvenido! {% endblock %}</title>
     {% set index = 'base' %}
@@ -88,7 +88,7 @@
         {{ message }}
     </div>
 {% endfor %}
-{% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+{% if is_granted('IS_IMPERSONATOR') %}
     <div class="alert alert-warning" style="position: fixed; bottom: 50px">
         Temporalmente
         <a href="{{ path('index', {'_switch_user': '_exit'}) }}">Salir modo </a>

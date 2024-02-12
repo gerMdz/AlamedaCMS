@@ -7,6 +7,7 @@ use App\Entity\IndexAlameda;
 use App\Entity\Principal;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,45 +19,35 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class ZinicioController extends AbstractController
 {
     /**
-     * @var bool
-     */
-    private $site_temporal;
-
-    /**
      * ZinicioController constructor.
-     * @param string $site_temporal
      */
-    public function __construct(string $site_temporal)
+    public function __construct(private readonly string $site_temporal)
     {
-        $this->site_temporal = $site_temporal;
     }
 
-    /**
-     * @Route("/", name="index")
-     */
-    public function index()
+    #[Route(path: '/', name: 'index')]
+    public function index(EntityManagerInterface $em)
     {
-        $em = $this->container->get('doctrine')->getManager();
         /** @var IndexAlameda $indexAlameda */
-        $indexAlameda = $em->getRepository(IndexAlameda::class)->findOneBy(['base'=>'index']);
-        if ($this->site_temporal == 'true') {
+        $indexAlameda = $em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
+        if ('true' == $this->site_temporal) {
             return $this->redirectToRoute('reserva_index');
-//            return $this->render('models/principal/temporalmente.html.twig', [
-//                'datosIndex' => null,
-//            ]);
+            //            return $this->render('models/principal/temporalmente.html.twig', [
+            //                'datosIndex' => null,
+            //            ]);
         }
         $vista = 'index';
-        if($indexAlameda->getTemplate()){
+        if ($indexAlameda->getTemplate()) {
             $vista = $indexAlameda->getTemplate();
         }
 
+        $blocsFixes = $indexAlameda->getBlocsFixes() ?? [];
 
             $blocsFixes = $indexAlameda->getBlocsFixes()?? [];
         $nav_bar = $em->getRepository(BarraNav::class)->findOneBy(['isIndex'=>'1']);
 
 
-
-        return $this->render('models/principal/'.$vista .'.html.twig', [
+        return $this->render('models/principal/'.$vista.'.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda,
             'blocsFixes' => $blocsFixes,
@@ -64,34 +55,25 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/ingreso", name="app_ingreso")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return RedirectResponse
-     */
+    #[Route(path: '/ingreso', name: 'app_ingreso')]
     public function ingreso(AuthenticationUtils $authenticationUtils): RedirectResponse
     {
         return $this->redirectToRoute('app_login');
     }
 
-    /**
-     * @Route("/reserva", name="app_reserva")
-     * @return RedirectResponse
-     */
+    #[Route(path: '/reserva', name: 'app_reserva')]
     public function app_reserva(): RedirectResponse
     {
         return $this->redirectToRoute('reserva_index');
     }
 
-    /**
-     * @Route("/test/index", name="test_index")
-     */
+    #[Route(path: '/test/index', name: 'test_index')]
     public function test_index(): Response
     {
         $em = $this->container->get('doctrine')->getManager();
         /** @var IndexAlameda $indexAlameda */
         $indexAlameda = $em->getRepository(IndexAlameda::class)->findAll();
-//        $blocsFixes = $em->getRepository(BlocsFixes::class)->findBy(['indexAlameda' => $indexAlameda[0]->getId()]);
+        //        $blocsFixes = $em->getRepository(BlocsFixes::class)->findBy(['indexAlameda' => $indexAlameda[0]->getId()]);
         $blocsFixes = $indexAlameda[0]->getBlocsFixes();
 
         return $this->render('models/principal/index-side-right.html.twig', [
@@ -101,12 +83,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/test/{linkRoute}", name="test_principal_ver", methods={"GET"})
-     * @param Principal $principal
-     * @param PrincipalRepository $principalRepository
-     * @return Response
-     */
+    #[Route(path: '/test/{linkRoute}', name: 'test_principal_ver', methods: ['GET'])]
     public function ver_test(Principal $principal, PrincipalRepository $principalRepository): Response
     {
         $vista = $principal->getModelTemplate();
@@ -124,13 +101,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{linkRoute}", name="principal_ver", methods={"GET"})
-     * @param Principal $principal
-     * @param PrincipalRepository $principalRepository
-     * @param SectionRepository $sectionRepository
-     * @return Response
-     */
+    #[Route(path: '/{linkRoute}', name: 'principal_ver', methods: ['GET'])]
     public function ver(
         Principal $principal,
         PrincipalRepository $principalRepository,
@@ -160,29 +131,20 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{linkRoute}/listado", name="principal_listado", methods={"GET"})
-     * @param Principal $principal
-     * @param PrincipalRepository $principalRepository
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
-     */
+    #[Route(path: '/{linkRoute}/listado', name: 'principal_listado', methods: ['GET'])]
     public function listado(
         Principal $principal,
         PrincipalRepository $principalRepository,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
-
         $query = $principalRepository->getQueryfindByPrincipalParentActive($principal);
 
         $principales = $paginator->paginate(
             $query, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            5/*limit per page*/
+            $request->query->getInt('page', 1)/* page number */,
+            5/* limit per page */
         );
-
 
         return $this->render('models/principal/listadoPrincipal.html.twig', [
             'principales' => $principales,
@@ -190,51 +152,38 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/contacto", name="contacto")
-     */
-    public function contacto()
+    #[Route(path: '/contacto', name: 'contacto')]
+    public function contacto(): Response
     {
         return $this->render('models/principal/contacto.html.twig', []);
     }
 
-    /**
-     * @Route("/avanza", name="avanza")
-     */
-    public function avanza()
+    #[Route(path: '/avanza', name: 'avanza')]
+    public function avanza(): Response
     {
         return $this->render('models/principal/avanza.html.twig', []);
     }
 
-    /**
-     * @Route("/grupospequeños", name="grupospequeños", options = {"utf8": true })
-     */
-    public function gpc()
+    #[Route(path: '/grupospequeños', name: 'grupospequeños', options: ['utf8' => true])]
+    public function gpc(): Response
     {
         return $this->render('models/principal/grupospequeños.html.twig', []);
     }
 
-    /**
-     * @Route("/ofrenda", name="ofrenda", options = {"utf8": true })
-     */
-    public function ofrenda()
+    #[Route(path: '/ofrenda', name: 'ofrenda', options: ['utf8' => true])]
+    public function ofrenda(): Response
     {
         return $this->render('models/principal/ofrenda.html.twig', []);
     }
 
-    /**
-     * @Route("/notas", name="notas", options = {"utf8": true })
-     */
+    #[Route(path: '/notas', name: 'notas', options: ['utf8' => true])]
     public function notas(): Response
     {
         return $this->render('models/principal/notas.html.twig', []);
     }
 
-    /**
-     * @Route("/oracion", name="oracion", options = {"utf8": true })
-     */
-    public function oracion()
+    #[Route(path: '/oracion', name: 'oracion', options: ['utf8' => true])]
+    public function oracion(): Response
     {
         return $this->render('models/principal/oracion.html.twig', []);
     }

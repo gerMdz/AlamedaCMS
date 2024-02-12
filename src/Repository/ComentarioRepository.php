@@ -20,41 +20,35 @@ class ComentarioRepository extends ServiceEntityRepository
         parent::__construct($registry, Comentario::class);
     }
 
-
-    /**
-     * @param string|null $qSearch
-     * @return QueryBuilder
-     */
-    public function searchQueryBuilder(?string $qSearch):QueryBuilder
+    public function searchQueryBuilder(?string $qSearch): QueryBuilder
     {
         $qb = $this->createQueryBuilder('c');
-        $qb->innerJoin('c.entrada','e')
+        $qb->innerJoin('c.entrada', 'e')
             ->addSelect('e');
-        $qb->innerJoin('c.autor','a')
+        $qb->innerJoin('c.autor', 'a')
             ->addSelect('a');
         if ($qSearch) {
             $qb->andWhere('c.contenido LIKE :qsearch OR a.primerNombre LIKE :qsearch OR e.titulo LIKE :qsearch')
-                ->setParameter('qsearch', '%' . $qSearch . '%')
+                ->setParameter('qsearch', '%'.$qSearch.'%')
             ;
         }
+
         return $qb
             ->orderBy('c.createdAt', 'DESC')
-            ;
+        ;
     }
 
-
     /**
-     * @param string|null $qSearch
      * @return Comentario[] Returns an array of Comentario objects
      */
-    public function findAllSearch(?string  $qSearch)
+    public function findAllSearch(?string $qSearch)
     {
         $qb = $this->searchQueryBuilder($qSearch);
+
         return $qb
             ->getQuery()
             ->getResult()
-            ;
-
+        ;
     }
 
     // /**

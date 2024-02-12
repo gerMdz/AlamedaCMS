@@ -36,7 +36,6 @@ class ReservanteRepository extends ServiceEntityRepository
     }
     */
 
-
     public function findOneByReserva($celebracion, $email): ?Reservante
     {
         return $this->createQueryBuilder('r')
@@ -48,5 +47,4 @@ class ReservanteRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-
 }

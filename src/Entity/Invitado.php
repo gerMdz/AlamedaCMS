@@ -2,77 +2,54 @@
 
 namespace App\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\InvitadoRepository")
- */
-class Invitado
+#[ORM\Entity(repositoryClass: \App\Repository\InvitadoRepository::class)]
+class Invitado implements \Stringable
 {
     use TimestampableEntity;
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="string", length=36)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
 
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("export_invitado")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('export_invitado')]
     private $telefono;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $dni;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $nombre;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $apellido;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Reservante::class, inversedBy="invitados")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $enlace;
+    #[ORM\ManyToOne(inversedBy: 'invitados')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Reservante $enlace = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Celebracion::class, inversedBy="invitados")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $celebracion;
+    #[ORM\ManyToOne(inversedBy: 'invitados')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Celebracion $celebracion = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $email;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isEnlace;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isPresente;
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->email . ' - ' .$this->apellido . ', '. $this->nombre;
+        return $this->email.' - '.$this->apellido.', '.$this->nombre;
     }
 
     public function getId(): ?string

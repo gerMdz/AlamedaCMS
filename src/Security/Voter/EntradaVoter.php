@@ -10,14 +10,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class EntradaVoter extends Voter
 {
-    private $security;
-
-    public function __construct(Security $security)
+    public function __construct(private readonly \Symfony\Bundle\SecurityBundle\Security $security)
     {
-        $this->security = $security;
     }
 
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
@@ -25,7 +22,7 @@ class EntradaVoter extends Voter
             && $subject instanceof Entrada;
     }
 
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         /**
          * @var Entrada $subject
@@ -51,7 +48,7 @@ class EntradaVoter extends Voter
                     return true;
                 }
 
-                 return false;
+                return false;
         }
 
         return false;

@@ -112,6 +112,18 @@ yarn-error.log
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 public/images/logo-solo.png
+/ROADMAP.md
+/.php-version
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+/tools/php-cs-fixer/vendor/
+/.php-cs-fixer.cache
+/tools/php-cs-fixer/composer.json
+/tools/php-cs-fixer/composer.lock
+/sqls/
+
 /public/custom/css/my.css
 /public/custom/js/my.js
 /public/custom/fonts/Molle-Italic.ttf

@@ -8,3 +8,7 @@ doctrine_migrations:
 #        # as migrations classes should NOT be autoloaded
 ##        'DoctrineMigrations': '%kernel.project_dir%/src/Migrations'
 #        'App\Migrations': '%kernel.project_dir%/src/Migrations'
+        # namespace is arbitrary but should be different from App\Migrations
+        # as migrations classes should NOT be autoloaded
+
+    enable_profiler: false

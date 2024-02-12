@@ -12,14 +12,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HandlerSourceApi
 {
-    private HttpClientInterface $client;
-
-    /**
-     * @param HttpClientInterface $client
-     */
-    public function __construct(HttpClientInterface $client)
+    public function __construct(private readonly HttpClientInterface $client)
     {
-        $this->client = $client;
     }
 
     /**
@@ -37,7 +31,5 @@ class HandlerSourceApi
         );
 
         return $response->toArray();
-
     }
-
 }

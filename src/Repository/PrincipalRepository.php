@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Principal;
-use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -22,10 +21,8 @@ class PrincipalRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $principal
      * @return Principal[] Returns an array of Principal objects
      */
-
     public function findByPrincipalParent($principal): array
     {
         return $this->createQueryBuilder('m')
@@ -36,12 +33,6 @@ class PrincipalRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-    /**
-     * @param $principal
-     * @return QueryBuilder
-     */
-
     public function getQueryfindByPrincipalParentActive($principal): QueryBuilder
     {
         return $this->createQueryBuilder('m')
@@ -51,7 +42,6 @@ class PrincipalRepository extends ServiceEntityRepository
 //            ->setParameter('boolean', true)
             ->orderBy('m.createdAt', 'DESC');
     }
-
 
     /*
     public function findOneBySomeField($value): ?Principal
@@ -79,10 +69,6 @@ class PrincipalRepository extends ServiceEntityRepository
         return $qb ?: $this->createQueryBuilder('p');
     }
 
-    /**
-     * @param string|null $qSearch
-     * @return QueryBuilder
-     */
     public function queryFindAllPrincipals(?string $qSearch): QueryBuilder
     {
         $qb = $this->createQueryBuilder('p')
@@ -95,20 +81,14 @@ class PrincipalRepository extends ServiceEntityRepository
                 'upper(p.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(p.linkRoute) LIKE :qsearch'
             )
                 ->setParameter('qsearch', '%'.strtoupper($qSearch).'%');
-        };
+        }
 
         return $qb;
     }
 
-    /**
-     * @param DateTime $fecha_inicial
-     * @param DateTime $fecha_final
-     * @param array|null $notPrincipals
-     * @return QueryBuilder
-     */
     public function principalByDateAndActiveAndModification(
-        DateTime $fecha_inicial,
-        DateTime $fecha_final,
+        \DateTime $fecha_inicial,
+        \DateTime $fecha_final,
         ?array $notPrincipals
     ): QueryBuilder {
         $qb = $this->createQueryBuilder('p')
@@ -134,7 +114,7 @@ class PrincipalRepository extends ServiceEntityRepository
                     ':inicio',
                     ':final'
                 ),
-                $qb->expr()->eq('s.disponible',  true)
+                $qb->expr()->eq('s.disponible', true)
             )
         )
             ->setParameter('inicio', $fecha_inicial)
@@ -153,10 +133,8 @@ class PrincipalRepository extends ServiceEntityRepository
             ->setParameter('inicio', $fecha_inicial)
             ->setParameter('final', $fecha_final);
 
-//        $qb->andWhere($qb->expr()->notIn('p.id', $notPrincipals));
+        //        $qb->andWhere($qb->expr()->notIn('p.id', $notPrincipals));
 
         return $qb;
-
-
     }
 }

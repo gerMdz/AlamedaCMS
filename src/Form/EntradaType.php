@@ -25,17 +25,13 @@ use Symfony\Component\Validator\Constraints\Image;
 
 class EntradaType extends AbstractType
 {
-
-    private PrincipalRepository $principalRepository;
-
     /**
      * EntradaType constructor.
-     * @param PrincipalRepository $principalRepository
      */
-    public function __construct(PrincipalRepository $principalRepository)
+    public function __construct(private readonly PrincipalRepository $principalRepository)
     {
-        $this->principalRepository = $principalRepository;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $linkRouteChoices = [];
@@ -174,7 +170,7 @@ class EntradaType extends AbstractType
             )
             ->add('linkRoute', EntityType::class, [
                     'class' => Principal::class,
-                    'mapped'=>false,
+                    'mapped' => false,
                     'required' => false,
                     'help' => 'Link a páginas internas del sistema',
 //                    'label'=>'Seleccione Link',
@@ -188,7 +184,6 @@ class EntradaType extends AbstractType
                     'row_attr' => [
                         'class' => 'form-floating',
                     ],
-
                 ]
             )
             ->add('linkPosting', TextType::class, [
@@ -257,9 +252,7 @@ class EntradaType extends AbstractType
                 EntityType::class,
                 [
                     'class' => User::class,
-                    'choice_label' => function (User $user) {
-                        return sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail());
-                    },
+                    'choice_label' => fn (User $user) => sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail()),
                     'placeholder' => 'Seleccione Autor',
                     'invalid_message' => 'Por favor ingrese un autor',
                     'attr' => [
@@ -272,9 +265,7 @@ class EntradaType extends AbstractType
                 EntityType::class,
                 [
                     'class' => ModelTemplate::class,
-                    'query_builder' => function (ModelTemplateRepository $er) {
-                        return $er->findByTypeEntrada();
-                    },
+                    'query_builder' => fn (ModelTemplateRepository $er) => $er->findByTypeEntrada(),
                     'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,
                     'attr' => [
@@ -282,7 +273,6 @@ class EntradaType extends AbstractType
                     ],
                 ]
             )
-
 
             //            Con steps hasta aquí
 
@@ -368,7 +358,7 @@ class EntradaType extends AbstractType
                 'row_attr' => [
                     'class' => 'form-floating',
                 ],
-                'help_attr'=> [
+                'help_attr' => [
                     'class' => ' text-secondary',
                 ],
             ])
@@ -419,12 +409,11 @@ class EntradaType extends AbstractType
                 'attr' => [
                     'class' => 'select2-enable',
                 ],
-
             ])
         ; // ; Final Builder
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [

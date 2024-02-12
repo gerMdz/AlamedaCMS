@@ -5,26 +5,15 @@ namespace App\DataFixtures;
 use App\Entity\ApiToken;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends BaseFixture
 {
-//    public function load(ObjectManager $manager)
-//    {
-//        // $product = new Product();
-//        // $manager->persist($product);
-//
-//        $manager->flush();
-//    }
-
-    private $userPasswordEncoder;
-
     /**
      * UserFixtures constructor.
      */
-    public function __construct(UserPasswordEncoderInterface $userPasswordEncoder)
+    public function __construct(private readonly UserPasswordHasherInterface $userPasswordHasher)
     {
-        $this->userPasswordEncoder = $userPasswordEncoder;
     }
 
     protected function loadData(ObjectManager $manager)
@@ -33,7 +22,7 @@ class UserFixtures extends BaseFixture
             $user = new User();
             $user->setEmail(sprintf('alameda%d@alameda.com', $i));
             $user->setPrimerNombre($this->faker->firstName);
-            $user->setPassword($this->userPasswordEncoder->encodePassword(
+            $user->setPassword($this->userPasswordHasher->hashPassword(
                 $user,
                 'Ninguna'
             ));
@@ -60,7 +49,7 @@ class UserFixtures extends BaseFixture
             }
             $user->setRoles(['ROLE_ADMIN']);
             $user->aceptaTerminos();
-            $user->setPassword($this->userPasswordEncoder->encodePassword(
+            $user->setPassword($this->userPasswordHasher->hashPassword(
                 $user,
                 'Ninguna'
             ));
@@ -76,7 +65,7 @@ class UserFixtures extends BaseFixture
                 $user->setTwitterUsername($this->faker->userName);
             }
             $user->setRoles(['ROLE_ESCRITOR']);
-            $user->setPassword($this->userPasswordEncoder->encodePassword(
+            $user->setPassword($this->userPasswordHasher->hashPassword(
                 $user,
                 'Ninguna'
             ));

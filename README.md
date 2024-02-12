@@ -8,6 +8,12 @@
 
 > Incluye el módulo de reservas ([payunpile](https://github.com/gerMdz/payunpile)) y de enlaces ([incalinks](https://germdz.github.io/incalinks/))
 
+#### Detalle v4.0.0
+
+Por los cambios realizados en el manejo de las miniaturas hay que cambiar o reubicar las imagenes de caches en media/cache/resolver o media/caches según corresponda.
+
+
+
 ## Empezando
 
 Para usar AlamedaCMS debes bajarlo de [github](https://github.com/gerMdz/AlamedaCMS.git), y luego bajar sus dependencias de paquetes.
