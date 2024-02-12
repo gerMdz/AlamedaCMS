@@ -7,8 +7,6 @@ use App\Entity\Traits\ImageTrait;
 use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
-use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,9 +17,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Section implements \Stringable
 {
     use OfertTrait;
+
     use ImageTrait;
+
     use LinksTrait;
+
     use CssClass;
+
     use TimestampableEntity;
 
     #[ORM\Id]
@@ -100,7 +102,7 @@ class Section implements \Stringable
         $this->indexAlamedas = new ArrayCollection();
         $this->principales = new ArrayCollection();
         $this->button = new ArrayCollection();
-        $this->createdAt = new DateTime();
+        $this->createdAt = new \DateTime();
         $this->markAsUpdated();
         $this->entradas = new ArrayCollection();
     }
@@ -170,12 +172,12 @@ class Section implements \Stringable
         return $this;
     }
 
-    public function getDisponibleAt(): ?DateTimeInterface
+    public function getDisponibleAt(): ?\DateTimeInterface
     {
         return $this->disponibleAt;
     }
 
-    public function setDisponibleAt(?DateTimeInterface $disponibleAt): self
+    public function setDisponibleAt(?\DateTimeInterface $disponibleAt): self
     {
         $this->disponibleAt = $disponibleAt;
 
@@ -347,7 +349,7 @@ class Section implements \Stringable
 
     public function markAsUpdated()
     {
-        $this->updatedAt = new DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**

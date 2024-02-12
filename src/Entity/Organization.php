@@ -8,14 +8,18 @@ use Symfony\UX\Turbo\Attribute\Broadcast;
 
 /**
  * @Broadcast()
+ *
  * @ORM\Entity(repositoryClass=OrganizationRepository::class)
  */
 class Organization
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\Column(type="string", length=40)
+     *
      * @ORM\GeneratedValue(strategy="CUSTOM")
+     *
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;

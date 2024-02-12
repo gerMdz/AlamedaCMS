@@ -41,14 +41,11 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[Route(path: '/admin/section')]
 class SectionController extends BaseController
 {
-
-
-
     /**
      * SectionController constructor.
      */
     public function __construct(private readonly RequestStack $requestStack, private readonly HandlerSourceApi $api,
-                                private readonly ManagerRegistry $managerRegistry)
+        private readonly ManagerRegistry $managerRegistry)
     {
     }
 
@@ -125,7 +122,6 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             if ($uploadedFile) {

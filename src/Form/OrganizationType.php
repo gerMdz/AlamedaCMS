@@ -8,7 +8,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -45,7 +44,7 @@ class OrganizationType extends AbstractType
                 'row_attr' => [
                     'class' => 'form-floating',
                 ],
-                'help'=>'Datos extra como piso o descripciones de la dirección'
+                'help' => 'Datos extra como piso o descripciones de la dirección',
             ])
             ->add('identifier', TextType::class, [
                 'label' => 'Identificador',
@@ -55,7 +54,7 @@ class OrganizationType extends AbstractType
                 'row_attr' => [
                     'class' => 'form-floating',
                 ],
-                'help'=>'Palabra clave única'
+                'help' => 'Palabra clave única',
             ])
             ->add('responsable', TextType::class, [
                 'label' => 'Responsable',
@@ -74,7 +73,7 @@ class OrganizationType extends AbstractType
                 'row_attr' => [
                     'class' => 'form-floating',
                 ],
-                'help'=>'Cuando la organización depende de otra organización o persona'
+                'help' => 'Cuando la organización depende de otra organización o persona',
             ])
             ->add('email', EmailType::class, [
                 'label' => '@',
@@ -84,23 +83,23 @@ class OrganizationType extends AbstractType
                 'row_attr' => [
                     'class' => 'form-floating',
                 ],
-                'help'=>'Correo principal de comunicación '
+                'help' => 'Correo principal de comunicación ',
             ])
             ->add('isActive', CheckboxType::class, [
                 'label_attr' => [
                     'class' => 'checkbox-switch',
                 ],
-                'label'=> 'Está activo',
+                'label' => 'Está activo',
                 'attr' => [
                     'placeholder' => 'Activo',
                 ],
                 'row_attr' => [
                     'class' => 'form-floating',
                 ],
-                'help'=>'Activar la organización para que los datos sean visibles'
+                'help' => 'Activar la organización para que los datos sean visibles',
             ])
             ->add('contact', EntityType::class, [
-                'class'=> Contacto::class,
+                'class' => Contacto::class,
                 'label' => 'Contactos extras',
                 'attr' => [
                     'placeholder' => 'Contactos',
@@ -108,7 +107,7 @@ class OrganizationType extends AbstractType
                 'row_attr' => [
                     'class' => 'form-select',
                 ],
-                'help'=>'Agregar contactos ya creados que estén vinculados'
+                'help' => 'Agregar contactos ya creados que estén vinculados',
             ])
         ;
     }

@@ -17,11 +17,14 @@ use Symfony\UX\Turbo\Attribute\Broadcast;
 class BarraNav
 {
     use TimestampableEntity;
+
     use CssClass;
 
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -209,6 +212,6 @@ class BarraNav
 
     public function getImagePath(): ?string
     {
-        return UploaderHelper::IMAGE_ENTRADA . '/' . $this->getImageFilename();
+        return UploaderHelper::IMAGE_ENTRADA.'/'.$this->getImageFilename();
     }
 }

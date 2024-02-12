@@ -43,15 +43,14 @@ class ZinicioController extends AbstractController
 
         $blocsFixes = $indexAlameda->getBlocsFixes() ?? [];
 
-            $blocsFixes = $indexAlameda->getBlocsFixes()?? [];
-        $nav_bar = $em->getRepository(BarraNav::class)->findOneBy(['isIndex'=>'1']);
-
+        $blocsFixes = $indexAlameda->getBlocsFixes() ?? [];
+        $nav_bar = $em->getRepository(BarraNav::class)->findOneBy(['isIndex' => '1']);
 
         return $this->render('models/principal/'.$vista.'.html.twig', [
             'controller_name' => 'InicioController',
             'datosIndex' => $indexAlameda,
             'blocsFixes' => $blocsFixes,
-            'nav_bar' => $nav_bar
+            'nav_bar' => $nav_bar,
         ]);
     }
 
@@ -120,8 +119,7 @@ class ZinicioController extends AbstractController
         }
         $secciones = $sectionRepository->queryFindSectionsByPrincipal($principal->getId())->getQuery()->getResult();
         $em = $this->container->get('doctrine')->getManager();
-        $nav_bar = $em->getRepository(BarraNav::class)->findOneBy(['isIndex'=>'1']);
-
+        $nav_bar = $em->getRepository(BarraNav::class)->findOneBy(['isIndex' => '1']);
 
         return $this->render('models/principal/'.$vista.'.html.twig', [
             'principal' => $visual,
