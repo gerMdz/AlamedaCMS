@@ -104,7 +104,8 @@ class ZinicioController extends AbstractController
     public function ver(
         Principal $principal,
         PrincipalRepository $principalRepository,
-        SectionRepository $sectionRepository
+        SectionRepository $sectionRepository,
+        EntityManagerInterface $em
     ): Response {
         $vista = $principal->getModelTemplate();
         $blocsFixes = $principal->getBlocsFixes();
@@ -118,7 +119,7 @@ class ZinicioController extends AbstractController
             $visual = $principal;
         }
         $secciones = $sectionRepository->queryFindSectionsByPrincipal($principal->getId())->getQuery()->getResult();
-        $em = $this->container->get('doctrine')->getManager();
+
         $nav_bar = $em->getRepository(BarraNav::class)->findOneBy(['isIndex' => '1']);
 
         return $this->render('models/principal/'.$vista.'.html.twig', [
