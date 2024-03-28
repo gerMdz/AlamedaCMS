@@ -7,53 +7,39 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=RolesRepository::class)
- * @ORM\HasLifecycleCallbacks()
- */
-class Roles
+#[ORM\Entity(repositoryClass: RolesRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+class Roles implements \Stringable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nombre;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $nombre;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $identificador;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $identificador;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $descripcion;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $descripcion;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isActivo;
+    #[ORM\Column(type: 'boolean')]
+    private bool $isActivo;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="rol")
-     */
-    private $itemMenus;
+    #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'role')]
+    private ArrayCollection $itemMenus;
+
 
     public function __construct()
     {
         $this->itemMenus = new ArrayCollection();
     }
 
-
     public function __toString(): string
     {
-        return $this->getIdentificador();
+        return (string) $this->getIdentificador();
     }
 
 //    public function __construct()
@@ -84,14 +70,14 @@ class Roles
         return $this->identificador;
     }
 
-//    public function setIdentificador(string $nombre): self
-//    {
-//
-////        $this->identificador = $identificador;
-//        $this->identificador = 'ROLE_'.$this->getNombre();
-//
-//        return $this;
-//    }
+    //    public function setIdentificador(string $nombre): self
+    //    {
+    //
+    // //        $this->identificador = $identificador;
+    //        $this->identificador = 'ROLE_'.$this->getNombre();
+    //
+    //        return $this;
+    //    }
 
     public function getDescripcion(): ?string
     {
@@ -105,10 +91,8 @@ class Roles
         return $this;
     }
 
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
     public function setIdentificador(): void
     {
         $this->identificador = 'ROLE_'.$this->nombre;
@@ -127,7 +111,7 @@ class Roles
     }
 
     /**
-     * @return Collection<int, ItemMenu>
+     * @return Collection
      */
     public function getItemMenus(): Collection
     {
@@ -138,7 +122,7 @@ class Roles
     {
         if (!$this->itemMenus->contains($itemMenu)) {
             $this->itemMenus[] = $itemMenu;
-            $itemMenu->addRol($this);
+            $itemMenu->addRole($this);
         }
 
         return $this;
@@ -147,15 +131,9 @@ class Roles
     public function removeItemMenu(ItemMenu $itemMenu): self
     {
         if ($this->itemMenus->removeElement($itemMenu)) {
-            $itemMenu->removeRol($this);
+            $itemMenu->removeRole($this);
         }
 
         return $this;
     }
-
-
-
-
-
-
 }

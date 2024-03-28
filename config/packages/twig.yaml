@@ -1,4 +1,5 @@
 twig:
+    file_name_pattern: '*.twig'
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
@@ -13,7 +14,13 @@ twig:
         facebook_tag_enable: '%env(FACEBOOK_PIXEL_ENABLE)%'
         google_tag_manager_id: '%env(resolve:GOOGLE_TAG_MANAGER_ID)%'
         google_tag_enable: '%env(resolve:GOOGLE_TAG_ENABLE)%'
+        google_site_verification: '%env(resolve:GOOGLE_SITE_VERIFICATION)%'
         mautic_enable: '%env(resolve:MAUTIC_ENABLE)%'
         mautic_site: '%env(resolve:MAUTIC_SITE)%'
+        site_robot: '%env(resolve:SITE_ROBOT)%'
 
 
+
+when@test:
+    twig:
+        strict_variables: true

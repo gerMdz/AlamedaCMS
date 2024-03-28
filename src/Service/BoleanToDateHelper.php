@@ -2,16 +2,14 @@
 
 namespace App\Service;
 
-use DateTime;
-
 class BoleanToDateHelper
 {
     private $boolean;
 
-    public function setDatatimeForTrue(bool $boolean): ?DateTime
+    public function setDatatimeForTrue(bool $boolean): ?\DateTime
     {
         if (true == $boolean) {
-            return new DateTime('now');
+            return new \DateTime('now');
         }
 
         return null;

@@ -1,20 +1,11 @@
 <?php
 
-
 namespace App\Rss;
-
 
 use App\Entity\ChannelFeed;
 
-
 class Xml
 {
-
-    /**
-     * @param ChannelFeed $channelFeed
-     * @param $site_podcasts
-     * @return string
-     */
     public static function generate(ChannelFeed $channelFeed, string $site_podcasts): string
     {
         $title = self::xmlEscape($channelFeed->getTitle());
@@ -36,10 +27,9 @@ class Xml
     <link>{$link}</link>
 xml;
         foreach ($channelFeed->getItem() as $post) {
-
             $titleItem = self::xmlEscape($post->getTitle());
             $descripcionItem = self::xmlEscape($post->getDescripcion());
-            $url = $site_podcasts .'/' .  self::xmlEscape($post->getLinkUrl());
+            $url = $site_podcasts.'/'.self::xmlEscape($post->getLinkUrl());
             $type = self::xmlEscape($post->getLinkType());
             $longitud = self::xmlEscape($post->getLinkLongitud());
             $duration = $post->getDuracion()->format('H:i:s');
@@ -56,13 +46,13 @@ xml;
 </item>
 xml;
         }
-        $xml .= "</channel></rss>";
+        $xml .= '</channel></rss>';
 
         return $xml;
     }
 
     private static function xmlEscape($string)
     {
-        return str_replace(array('&', '<', '>', '\'', '"'), array('&amp;', '&lt;', '&gt;', '&apos;', '&quot;'), $string);
+        return str_replace(['&', '<', '>', '\'', '"'], ['&amp;', '&lt;', '&gt;', '&apos;', '&quot;'], (string) $string);
     }
 }

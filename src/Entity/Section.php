@@ -7,136 +7,94 @@ use App\Entity\Traits\ImageTrait;
 use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\SectionRepository;
-use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ORM\Entity(repositoryClass=SectionRepository::class)
- */
-class Section
+#[ORM\Entity(repositoryClass: SectionRepository::class)]
+class Section implements \Stringable
 {
     use OfertTrait;
+
     use ImageTrait;
+
     use LinksTrait;
+
     use CssClass;
+
     use TimestampableEntity;
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups("main")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    #[Groups('main')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("main")
-     */
-    private ?string $name;
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('main')]
+    private ?string $name = null;
 
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    #[Groups('main')]
+    private ?string $identificador = null;
 
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     * @Groups("main")
-     */
-    private ?string $identificador;
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $disponible = null;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private ?bool $disponible;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $columns = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $columns;
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups('main')]
+    private ?string $description = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Groups("main")
-     */
-    private ?string $description;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private ?DateTimeInterface $disponibleAt;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=IndexAlameda::class, mappedBy="section")
-     */
+    #[ORM\ManyToMany(targetEntity: IndexAlameda::class, mappedBy: 'section')]
     private Collection $indexAlamedas;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sections")
-     */
-    private ?User $autor;
+    #[ORM\ManyToOne(inversedBy: 'sections')]
+    private ?User $autor = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $template;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $template = null;
 
-    /**
-     * @ORM\Column(type="text", length=8000, nullable=true)
-     * @Groups("mail")
-     */
-    private ?string $contenido;
+    #[ORM\Column(type: 'text', length: 8000, nullable: true)]
+    #[Groups('mail')]
+    private ?string $contenido = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Groups("main")
-     */
-    private ?int $orden;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Groups('main')]
+    private ?int $orden = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="section")
-     * @Groups("mail")
-     */
-    private ?Principal $principal;
+    #[ORM\ManyToOne(inversedBy: 'section')]
+    #[Groups('mail')]
+    private ?Principal $principal = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"main", "mail"})
-     */
-    private ?string $title;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['main', 'mail'])]
+    private ?string $title = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class, inversedBy="sections")
-     * @Groups("main")
-     */
-    private ?ModelTemplate $modelTemplate;
+    #[ORM\ManyToOne(inversedBy: 'sections')]
+    #[Groups('main')]
+    private ?ModelTemplate $modelTemplate = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Principal::class, mappedBy="secciones")
-     * @Groups("mail")
-     */
+    #[ORM\ManyToMany(targetEntity: Principal::class, mappedBy: 'secciones')]
+    #[Groups('mail')]
     private Collection $principales;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ButtonLink::class, inversedBy="sections")
-     */
+    #[ORM\ManyToMany(targetEntity: ButtonLink::class, inversedBy: 'sections')]
     private Collection $button;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="sections")
-     */
+    #[ORM\ManyToMany(targetEntity: Entrada::class, mappedBy: 'sections')]
     private Collection $entradas;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $footer;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $footer = null;
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->name;
+        return (string) $this->name;
     }
 
     public function __construct()
@@ -144,7 +102,7 @@ class Section
         $this->indexAlamedas = new ArrayCollection();
         $this->principales = new ArrayCollection();
         $this->button = new ArrayCollection();
-        $this->createdAt = new DateTime();
+        $this->createdAt = new \DateTime();
         $this->markAsUpdated();
         $this->entradas = new ArrayCollection();
     }
@@ -214,22 +172,17 @@ class Section
         return $this;
     }
 
-    public function getDisponibleAt(): ?DateTimeInterface
+    public function getDisponibleAt(): ?\DateTimeInterface
     {
         return $this->disponibleAt;
     }
 
-    public function setDisponibleAt(?DateTimeInterface $disponibleAt): self
+    public function setDisponibleAt(?\DateTimeInterface $disponibleAt): self
     {
         $this->disponibleAt = $disponibleAt;
 
         return $this;
     }
-
-
-
-
-
 
     /**
      * @return Collection|IndexAlameda[]
@@ -259,8 +212,6 @@ class Section
         return $this;
     }
 
-
-
     public function getAutor(): ?User
     {
         return $this->autor;
@@ -272,8 +223,6 @@ class Section
 
         return $this;
     }
-
-
 
     public function getTemplate(): ?string
     {
@@ -400,7 +349,7 @@ class Section
 
     public function markAsUpdated()
     {
-        $this->updatedAt = new DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -441,6 +390,4 @@ class Section
 
         return $this;
     }
-
-
 }

@@ -7,52 +7,34 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ContactoRepository::class)
- */
-class Contacto
+#[ORM\Entity(repositoryClass: ContactoRepository::class)]
+class Contacto implements \Stringable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=TipoContacto::class, inversedBy="contactos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $tipo;
+    #[ORM\ManyToOne(inversedBy: 'contactos')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TipoContacto $tipo = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $linkRoute;
 
-    /**
-     * @ORM\Column(type="string", length=510, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 510, nullable: true)]
     private $textoMensaje;
 
-    /**
-     * @ORM\Column(type="string", length=510, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 510, nullable: true)]
     private $textoPagina;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Ministerio::class, inversedBy="contactos")
-     */
+    #[ORM\ManyToMany(targetEntity: Ministerio::class, inversedBy: 'contactos')]
     private $ministerio;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $nombre;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Entrada::class, mappedBy="contacto")
-     */
+    #[ORM\ManyToMany(targetEntity: Entrada::class, mappedBy: 'contacto')]
     private $entradas;
 
     public function __construct()
@@ -61,11 +43,10 @@ class Contacto
         $this->entradas = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->nombre;
+        return (string) $this->nombre;
     }
-
 
     public function getId(): ?int
     {
@@ -182,6 +163,4 @@ class Contacto
 
         return $this;
     }
-
-
 }

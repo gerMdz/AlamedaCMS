@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Section;
-use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\NonUniqueResultException;
@@ -32,8 +31,6 @@ class SectionRepository extends ServiceEntityRepository
     }
 
     /**
-     *
-     * @return QueryBuilder
      * @throws QueryException
      */
     public function findDisponible(): QueryBuilder
@@ -44,7 +41,7 @@ class SectionRepository extends ServiceEntityRepository
         return $this->addIsDisponibleQueryBuilder()
 //            ->getQuery()
 //            ->getResult()
-            ;
+        ;
     }
 
     private function addIsDisponibleQueryBuilder(QueryBuilder $qb = null): QueryBuilder
@@ -66,14 +63,26 @@ class SectionRepository extends ServiceEntityRepository
         return $qb;
     }
 
-
-    public function getSections(): QueryBuilder
+    public function getSections(?string $qSearch): QueryBuilder
     {
-        return $this->createQueryBuilder('s')
+        $qb = $this->createQueryBuilder('s')
             ->orderBy('s.updatedAt', 'DESC')
             ->addOrderBy('s.name', 'ASC');
-    }
+        if ($qSearch) {
+            $qb->leftJoin('s.autor', 'a')
+                ->addSelect('a');
+            $qb->leftJoin('s.entradas', 'e')
+                ->addSelect('e');
+            $qb->leftJoin('s.principales', 'p')
+                ->addSelect('p');
+            $qb->andWhere(
+                'UPPER(s.contenido) LIKE :qsearch OR upper(a.primerNombre) LIKE :qsearch OR upper(s.title) LIKE :qsearch OR upper(p.titulo) LIKE :qsearch OR upper(e.titulo) LIKE :qsearch'
+            )
+                ->setParameter('qsearch', '%'.mb_strtoupper($qSearch).'%');
+        }
 
+        return $qb;
+    }
 
     // /**
     //  * @return Section[] Returns an array of Section objects
@@ -92,8 +101,7 @@ class SectionRepository extends ServiceEntityRepository
     }
     */
 
-
-    public function findOneBySomeField($section, $entrada): ?Section
+    public function findOneBySomeField($section, $entrada)
     {
         try {
             return $this->createQueryBuilder('s')
@@ -104,7 +112,8 @@ class SectionRepository extends ServiceEntityRepository
                 ->setParameter('section', $entrada)
                 ->getQuery()
                 ->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException $exception) {
+            return $exception->getMessage();
         }
     }
 
@@ -120,11 +129,10 @@ class SectionRepository extends ServiceEntityRepository
     }
 
     public function sectionByDateAndActiveAndModification(
-        $fecha_inicial ,
-        $fecha_final ,
+        $fecha_inicial,
+        $fecha_final,
         ?array $notSection
     ): QueryBuilder {
-
         $qb = $this->createQueryBuilder('s')
             ->select()
             ->andWhere('s.disponible = true');
@@ -142,6 +150,4 @@ class SectionRepository extends ServiceEntityRepository
 
         return $qb;
     }
-
-
 }

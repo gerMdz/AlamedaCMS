@@ -6,96 +6,63 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\IndexAlamedaRepository")
- */
-class IndexAlameda
+#[ORM\Entity(repositoryClass: \App\Repository\IndexAlamedaRepository::class)]
+class IndexAlameda implements \Stringable
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $lema;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $lema = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $lemaPrincipal;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $lemaPrincipal = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $lemaSinEspacio;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $lemaSinEspacio = null;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $metaDescripcion = null;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $metaAutor = null;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $metaTitle = null;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $metaType = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $metaDescripcion;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $metaUrl = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $metaAutor;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $metaImage = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $metaTitle;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $base = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $metaType;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $metaUrl;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $metaImage;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $base;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Section::class, inversedBy="indexAlamedas")
-     * @ORM\OrderBy({"orden"="ASC"})
-     */
+    #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'indexAlamedas')]
+    #[ORM\OrderBy(['orden' => 'ASC'])]
     private $section;
 
-    /**
-     * @ORM\OneToMany(targetEntity=BlocsFixes::class, mappedBy="indexAlameda")
-     */
+    #[ORM\OneToMany(targetEntity: BlocsFixes::class, mappedBy: 'indexAlameda')]
     private Collection $blocs_fixes;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ModelTemplate::class)
-     */
-    private ?ModelTemplate $template;
+    #[ORM\ManyToOne()]
+    private ?ModelTemplate $template = null;
 
     public function __construct()
     {
         $this->section = new ArrayCollection();
         $this->blocs_fixes = new ArrayCollection();
     }
-    public function __toString()
+
+    public function __toString(): string
     {
-     return $this->base;
+        return (string) $this->base;
     }
 
     public function getId(): ?int
@@ -138,12 +105,6 @@ class IndexAlameda
 
         return $this;
     }
-
-
-
-
-
-
 
     public function getMetaDescripcion(): ?string
     {
@@ -256,7 +217,7 @@ class IndexAlameda
     }
 
     /**
-     * @return Collection|BlocsFixes[]
+     * @return ArrayCollection<int, BlocsFixes>
      */
     public function getBlocsFixes(): Collection
     {

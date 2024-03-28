@@ -5,21 +5,16 @@ namespace App\Controller;
 use App\Entity\Contacto;
 use App\Form\ContactoType;
 use App\Repository\ContactoRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/contacto")
- */
+#[Route(path: '/admin/contacto')]
 class ContactoController extends AbstractController
 {
-    /**
-     * @Route("/", name="contacto_index", methods={"GET"})
-     * @param ContactoRepository $contactoRepository
-     * @return Response
-     */
+    #[Route(path: '/', name: 'contacto_index', methods: ['GET'])]
     public function index(ContactoRepository $contactoRepository): Response
     {
         return $this->render('contacto/list.html.twig', [
@@ -27,19 +22,14 @@ class ContactoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="contacto_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
-     */
-    public function new(Request $request): Response
+    #[Route(path: '/new', name: 'contacto_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $contacto = new Contacto();
         $form = $this->createForm(ContactoType::class, $contacto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contacto);
             $entityManager->flush();
 
@@ -48,15 +38,11 @@ class ContactoController extends AbstractController
 
         return $this->render('contacto/new.html.twig', [
             'contacto' => $contacto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="contacto_show", methods={"GET"})
-     * @param Contacto $contacto
-     * @return Response
-     */
+    #[Route(path: '/{id}', name: 'contacto_show', methods: ['GET'])]
     public function show(Contacto $contacto): Response
     {
         return $this->render('contacto/show.html.twig', [
@@ -64,39 +50,28 @@ class ContactoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="contacto_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Contacto $contacto
-     * @return Response
-     */
-    public function edit(Request $request, Contacto $contacto): Response
+    #[Route(path: '/{id}/edit', name: 'contacto_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Contacto $contacto, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ContactoType::class, $contacto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('contacto_index');
         }
 
         return $this->render('contacto/edit.html.twig', [
             'contacto' => $contacto,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="contacto_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Contacto $contacto
-     * @return Response
-     */
-    public function delete(Request $request, Contacto $contacto): Response
+    #[Route(path: '/{id}', name: 'contacto_delete', methods: ['DELETE'])]
+    public function delete(Request $request, Contacto $contacto, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$contacto->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($contacto);
             $entityManager->flush();
         }

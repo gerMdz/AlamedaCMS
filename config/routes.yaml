@@ -1,6 +1,8 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
 
 index:
     path: /
@@ -17,3 +19,6 @@ homepage:
 #index:
 #    path: /
 #    defaults: { _controller: 'App\Controller\DefaultController::index' }
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation

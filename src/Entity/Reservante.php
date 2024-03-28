@@ -7,71 +7,50 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ReservanteRepository::class)
- */
-class Reservante
+#[ORM\Entity(repositoryClass: ReservanteRepository::class)]
+class Reservante implements \Stringable
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="string", length=36)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
     private $id;
-    /**
-     * @ORM\ManyToOne(targetEntity=Celebracion::class, inversedBy="reservantes")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $celebracion;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\ManyToOne(inversedBy: 'reservantes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Celebracion $celebracion = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $apellido;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $nombre;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $telefono;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $isPresente;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $documento;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Invitado::class, mappedBy="enlace")
-     * @ORM\OrderBy({"nombre"= "ASC"})
-     */
-    private $invitados;
+    #[ORM\OneToMany(mappedBy: 'enlace', targetEntity: Invitado::class)]
+    #[ORM\OrderBy(['nombre' => 'ASC'])]
+    private Collection $invitados;
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->email . ' - ' .$this->apellido . ', '. $this->getNombre();
+        return $this->email.' - '.$this->apellido.', '.$this->getNombre();
     }
 
     public function __construct()
     {
         $this->invitados = new ArrayCollection();
     }
-
-
 
     public function getId(): ?string
     {
@@ -191,6 +170,4 @@ class Reservante
 
         return $this;
     }
-
-
 }

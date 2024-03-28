@@ -1,7 +1,11 @@
+# Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+
 liip_imagine:
     #    # valid drivers options include "gd" or "gmagick" or "imagick"
-    #    driver: "gd"
+    driver: "gd"
     #
+    twig:
+        mode: "lazy"
 
     loaders:
         flysystem_loader:
@@ -12,14 +16,17 @@ liip_imagine:
     data_loader: flysystem_loader
 
     resolvers:
+        default:
+            web_path: ~
         flysystem_resolver:
             flysystem:
                 filesystem_service: oneup_flysystem.public_uploads_filesystem_filesystem
-                cache_prefix: media/cache
+                cache_prefix: uploads/media/cache
                 root_url: '%uploads_base_url%'
 
     # default cache resolver for saving thumbnails
-    cache: flysystem_resolver
+#    cache: flysystem_resolver
+    cache: ~
 
     filter_sets:
         #

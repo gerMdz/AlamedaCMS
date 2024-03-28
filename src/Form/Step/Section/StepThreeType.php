@@ -1,46 +1,34 @@
 <?php
 
-
 namespace App\Form\Step\Section;
 
-
 use App\Entity\Section;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StepThreeType extends AbstractType
 {
-
-    private $registry;
-
     /**
      * SectionFormType constructor.
-     * @param ManagerRegistry $registry
      */
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(private readonly ManagerRegistry $registry)
     {
-        $this->registry = $registry;
     }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('cssClass', null, [
                 'label' => 'Clase css',
-                'help' => 'Las plantillas pueden aceptar class adicional, tenga en cuenta que debe ser una clase ya definida '
+                'help' => 'Las plantillas pueden aceptar class adicional, tenga en cuenta que debe ser una clase ya definida ',
             ])
             ->add('contenido', CKEditorType::class, [
-                'label'=>'Contenido',
-                'help' =>'Opcional. El contenido de la sección se verá reflejado según la plantilla que elija',
+                'label' => 'Contenido',
+                'help' => 'Opcional. El contenido de la sección se verá reflejado según la plantilla que elija',
                 'required' => false,
                 'config' => [
                     'uiColor' => '#fafafa'],
@@ -59,12 +47,9 @@ class StepThreeType extends AbstractType
             ])
 
         ; // Fin del builder
-
-
     }
 
-
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [
@@ -72,5 +57,4 @@ class StepThreeType extends AbstractType
             ]
         );
     }
-
 }

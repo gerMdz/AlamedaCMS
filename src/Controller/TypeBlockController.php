@@ -5,22 +5,16 @@ namespace App\Controller;
 use App\Entity\TypeBlock;
 use App\Form\TypeBlockType;
 use App\Repository\TypeBlockRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/typeblock")
- */
+#[Route(path: '/admin/typeblock')]
 class TypeBlockController extends AbstractController
 {
-    /**
-     * @Route("/", name="type_block_index", methods={"GET"})
-     * @param TypeBlockRepository $typeBlockRepository
-     * @return Response
-     */
+    #[Route(path: '/', name: 'type_block_index', methods: ['GET'])]
     public function index(TypeBlockRepository $typeBlockRepository): Response
     {
         return $this->render('type_block/index.html.twig', [
@@ -28,20 +22,15 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="type_block_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function new(Request $request): Response
+    #[Route(path: '/new', name: 'type_block_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $typeBlock = new TypeBlock();
         $form = $this->createForm(TypeBlockType::class, $typeBlock);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($typeBlock);
             $entityManager->flush();
 
@@ -50,15 +39,11 @@ class TypeBlockController extends AbstractController
 
         return $this->render('type_block/new.html.twig', [
             'type_block' => $typeBlock,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="type_block_show", methods={"GET"})
-     * @param TypeBlock $typeBlock
-     * @return Response
-     */
+    #[Route(path: '/{id}', name: 'type_block_show', methods: ['GET'])]
     public function show(TypeBlock $typeBlock): Response
     {
         return $this->render('type_block/show.html.twig', [
@@ -66,41 +51,30 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="type_block_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param TypeBlock $typeBlock
-     * @return Response
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function edit(Request $request, TypeBlock $typeBlock): Response
+    #[Route(path: '/{id}/edit', name: 'type_block_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+    public function edit(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TypeBlockType::class, $typeBlock);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('type_block_index');
         }
 
         return $this->render('type_block/edit.html.twig', [
             'type_block' => $typeBlock,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="type_block_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param TypeBlock $typeBlock
-     * @return Response
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function delete(Request $request, TypeBlock $typeBlock): Response
+    #[Route(path: '/{id}', name: 'type_block_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+    public function delete(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$typeBlock->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($typeBlock);
             $entityManager->flush();
         }

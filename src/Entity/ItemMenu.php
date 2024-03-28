@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+use AllowDynamicProperties;
 use App\Entity\Traits\CssClass;
 use App\Entity\Traits\IdentificadorTrait;
 use App\Repository\ItemMenuRepository;
@@ -9,92 +11,62 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 
-/**
- * @ORM\Entity(repositoryClass=ItemMenuRepository::class)
- */
+#[AllowDynamicProperties] #[ORM\Entity(repositoryClass: ItemMenuRepository::class)]
 class ItemMenu
 {
     use TimestampableEntity;
+
     use CssClass;
+
     use IdentificadorTrait;
 
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="string", length=36)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private ?string $id;
 
+    #[ORM\ManyToMany(targetEntity: Roles::class, inversedBy: 'itemMenus')]
+    private ArrayCollection $role;
 
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $label;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $badge;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $icon;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isExterno;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isActivo;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ItemMenu::class, inversedBy="itemMenus")
-     */
-    private ?ItemMenu $parent;
+    #[ORM\ManyToOne(inversedBy: 'itemMenus')]
+    private ?ItemMenu $parent = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ItemMenu::class, mappedBy="parent")
-     */
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: ItemMenu::class)]
     private Collection $itemMenus;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Principal::class, inversedBy="itemMenus")
-     */
-    private ?Principal $pathInterno;
+    #[ORM\ManyToOne(inversedBy: 'itemMenus')]
+    private ?Principal $pathInterno = null;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $pathLibre;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Menu::class, inversedBy="itemMenus")
-     */
-    private Collection $menu;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $orderitem;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="itemMenus")
-     */
-    private $rol;
+    #[ORM\ManyToMany(targetEntity: Menu::class, inversedBy: 'itemMenus')]
+    private ArrayCollection $menu;
 
     public function __construct()
     {
-
+        $this->role = new ArrayCollection();
         $this->itemMenus = new ArrayCollection();
         $this->menu = new ArrayCollection();
-        $this->rol = new ArrayCollection();
+
     }
 
     public function __toString()
@@ -107,11 +79,29 @@ class ItemMenu
         return $this->id;
     }
 
+    /**
+     * @return Collection
+     */
+    public function getRole(): Collection
+    {
+        return $this->role;
+    }
 
+    public function addRole(Roles $role): self
+    {
+        if (!$this->role->contains($role)) {
+            $this->role[] = $role;
+        }
 
+        return $this;
+    }
 
+    public function removeRole(Roles $role): self
+    {
+        $this->role->removeElement($role);
 
-
+        return $this;
+    }
 
     public function getLabel(): ?string
     {
@@ -161,8 +151,6 @@ class ItemMenu
         return $this;
     }
 
-
-
     public function getIsActivo(): ?bool
     {
         return $this->isActivo;
@@ -188,7 +176,7 @@ class ItemMenu
     }
 
     /**
-     * @return Collection|self[]
+     * @return Collection
      */
     public function getItemMenus(): Collection
     {
@@ -247,7 +235,7 @@ class ItemMenu
     }
 
     /**
-     * @return Collection|Menu[]
+     * @return Collection
      */
     public function getMenu(): Collection
     {
@@ -283,9 +271,9 @@ class ItemMenu
     }
 
     /**
-     * @return Collection<int, Roles>
+     * @return array
      */
-    public function getRol(): Collection
+    public function getRol(): array
     {
         return $this->rol;
     }

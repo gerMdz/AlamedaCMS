@@ -6,13 +6,10 @@ use App\Entity\Entrada;
 use App\Entity\EntradaReference;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -24,17 +21,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class EntradaReferenciaAdminController extends AbstractController
 {
-    /**
-     * @Route("/admin/entrada/{id}/referencia", name="admin_entrada_add_referencia", methods={"POST"})
-     * @IsGranted("MANAGE", subject="entrada")
-     *
-     * @param Entrada $entrada
-     * @param Request $request
-     * @param UploaderHelper $helper
-     * @param EntityManagerInterface $em
-     * @param ValidatorInterface $validator
-     */
-    public function uploadEntradaReference(Entrada $entrada, Request $request, UploaderHelper $helper, EntityManagerInterface $em, ValidatorInterface $validator)
+    #[Route(path: '/admin/entrada/{id}/referencia', name: 'admin_entrada_add_referencia', methods: ['POST'])]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'entrada')]
+    public function uploadEntradaReference(Entrada $entrada, Request $request, UploaderHelper $helper, EntityManagerInterface $em, ValidatorInterface $validator): JsonResponse
     {
         /** @var UploadedFile $uploadedFile */
         $uploadedFile = $request->files->get('reference');
@@ -42,7 +31,7 @@ class EntradaReferenciaAdminController extends AbstractController
         $nopermitidos = $validator->validate(
             $uploadedFile, [
                 new NotBlank([
-                        'message' => 'Por favor seleccione una archivo 📁'
+                        'message' => 'Por favor seleccione una archivo 📁',
                     ]
                 ),
                 new File([
@@ -55,23 +44,22 @@ class EntradaReferenciaAdminController extends AbstractController
                         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                         'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                        'text/plain'
-                    ]
-                ])
+                        'text/plain',
+                    ],
+                ]),
             ]
         );
 
         if ($nopermitidos->count() > 0) {
             return $this->json($nopermitidos, 400);
-//            $nopermitido = $nopermitidos[0];
-//            $this->addFlash('error', $nopermitido->getMessage());
-//            return $this->redirectToRoute('admin_entrada_edit', [
-//                'id' => $entrada->getId(),
-//            ]);
+            //            $nopermitido = $nopermitidos[0];
+            //            $this->addFlash('error', $nopermitido->getMessage());
+            //            return $this->redirectToRoute('admin_entrada_edit', [
+            //                'id' => $entrada->getId(),
+            //            ]);
         }
 
         $filename = $helper->uploadEntradaReference($uploadedFile);
-
 
         $entradaReference = new EntradaReference($entrada);
         $entradaReference->setFilename($filename);
@@ -85,40 +73,32 @@ class EntradaReferenciaAdminController extends AbstractController
             201,
             [],
             [
-                'groups'=>['main']
+                'groups' => ['main'],
             ]
-
-
         );
 
-//        return $this->redirectToRoute('admin_entrada_edit', [
-//            'id' => $entrada->getId(),
-//        ]);
+        //        return $this->redirectToRoute('admin_entrada_edit', [
+        //            'id' => $entrada->getId(),
+        //        ]);
     }
 
-    /**
-     * @Route("/admin/entrada/{id}/referencia", methods="GET", name="admin_entrada_list_referencia")
-     * @param Entrada $entrada
-     * @return JsonResponse
-     */
-    public function getEntradaReferences(Entrada $entrada)
+    #[Route(path: '/admin/entrada/{id}/referencia', methods: 'GET', name: 'admin_entrada_list_referencia')]
+    public function getEntradaReferences(Entrada $entrada): JsonResponse
     {
         return $this->json(
             $entrada->getEntradaReferences(),
             200,
             [],
             [
-                'groups' => ['main']
+                'groups' => ['main'],
             ]
         );
     }
 
     /**
-     * @Route("/descargas/referencias/{filename}", name="entrada_download_reference", methods={"GET"})
-     * @param EntradaReference $reference
-     * @param UploaderHelper $uploaderHelper
      * @return StreamedResponse
      */
+    #[Route(path: '/descargas/referencias/{filename}', name: 'entrada_download_reference', methods: ['GET'])]
     public function downloadEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper)
     {
         $response = new StreamedResponse(function () use ($reference, $uploaderHelper) {
@@ -129,24 +109,22 @@ class EntradaReferenciaAdminController extends AbstractController
         $response->headers->set('Content-Type', $reference->getMimeType());
         $disposition = HeaderUtils::makeDisposition(
             HeaderUtils::DISPOSITION_ATTACHMENT,
-//Si queremos previzualizar el documento comentar la fila anterior y descomentar la siguiente
-//            HeaderUtils::DISPOSITION_INLINE,
+            // Si queremos previzualizar el documento comentar la fila anterior y descomentar la siguiente
+            //            HeaderUtils::DISPOSITION_INLINE,
             $reference->getoriginalFilename()
         );
         $response->headers->set('Content-Disposition', $disposition);
 
-//        dd($reference);
+        //        dd($reference);
         return $response;
     }
 
     /**
-     * @Route("/admin/entrada/references/{id}", name="admin_entrada_delete_reference", methods={"DELETE"})
-     * @param EntradaReference $reference
-     * @param UploaderHelper $uploaderHelper
-     * @param EntityManagerInterface $entityManager
      * @return Response
-     * @throws Exception
+     *
+     * @throws \Exception
      */
+    #[Route(path: '/admin/entrada/references/{id}', name: 'admin_entrada_delete_reference', methods: ['DELETE'])]
     public function deleteEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager)
     {
         $entrada = $reference->getEntrada();
@@ -157,20 +135,11 @@ class EntradaReferenciaAdminController extends AbstractController
 
         $uploaderHelper->deleteFile($reference->getImagePath(), false);
 
-        return new Response(null, 204);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    /**
-     * @Route("/admin/entrada/references/{id}", name="admin_entrada_update_reference", methods={"PUT"})
-     * @param EntradaReference $reference
-     * @param UploaderHelper $uploaderHelper
-     * @param EntityManagerInterface $entityManager
-     * @param SerializerInterface $serializer
-     * @param Request $request
-     * @param ValidatorInterface $validator
-     * @return JsonResponse
-     */
-    public function updateEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager, SerializerInterface $serializer, Request $request, ValidatorInterface $validator)
+    #[Route(path: '/admin/entrada/references/{id}', name: 'admin_entrada_update_reference', methods: ['PUT'])]
+    public function updateEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager, SerializerInterface $serializer, Request $request, ValidatorInterface $validator): JsonResponse
     {
         $entrada = $reference->getEntrada();
         $this->denyAccessUnlessGranted('MANAGE', $entrada);
@@ -181,40 +150,33 @@ class EntradaReferenciaAdminController extends AbstractController
             'json',
             [
                 'object_to_populate' => $reference,
-                'groups' => ['input']
+                'groups' => ['input'],
                 ]
         );
         $notAssert = $validator->validate($reference);
         if ($notAssert->count() > 0) {
             return $this->json($notAssert, 400);
         }
-         $entityManager->persist($reference);
-         $entityManager->flush();
+        $entityManager->persist($reference);
+        $entityManager->flush();
 
         return $this->json(
             $reference,
             200,
             [],
             [
-                'groups' => ['main']
+                'groups' => ['main'],
             ]
         );
-
     }
 
-    /**
-     * @Route("/admin/entrada/{id}/referencia/reorder", methods="POST", name="admin_entrada_reorder_referencia")
-     * @IsGranted("MANAGE", subject="entrada")
-     * @param Entrada $entrada
-     * @param EntityManagerInterface $entityManager
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function reorderEntradaReferences(Entrada $entrada, EntityManagerInterface $entityManager, Request $request)
+    #[Route(path: '/admin/entrada/{id}/referencia/reorder', methods: 'POST', name: 'admin_entrada_reorder_referencia')]
+    #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'entrada')]
+    public function reorderEntradaReferences(Entrada $entrada, EntityManagerInterface $entityManager, Request $request): JsonResponse
     {
         $orderedIds = json_decode($request->getContent(), true);
 
-        if ($orderedIds === null) {
+        if (null === $orderedIds) {
             return $this->json(['detail' => 'Datos Inválidos'], 400);
         }
 
@@ -232,7 +194,7 @@ class EntradaReferenciaAdminController extends AbstractController
             200,
             [],
             [
-                'groups' => ['main']
+                'groups' => ['main'],
             ]
         );
     }

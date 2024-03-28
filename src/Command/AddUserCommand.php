@@ -14,7 +14,6 @@ namespace App\Command;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Utils\Validator;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -25,6 +24,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
+
 use function Symfony\Component\String\u;
 
 /**
@@ -47,39 +47,19 @@ use function Symfony\Component\String\u;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
+#[\Symfony\Component\Console\Attribute\AsCommand('app:add-user', 'Crear usuarios y guardarlos en la base de datos')]
 class AddUserCommand extends Command
 {
-    // to make your command lazily loaded, configure the $defaultName static property,
-    // so it will be instantiated only when the command is actually called.
-    protected static $defaultName = 'app:add-user';
-
-    /**
-     * @var SymfonyStyle
-     */
     private SymfonyStyle $io;
 
-    private EntityManagerInterface $entityManager;
-    private UserPasswordHasherInterface $passwordEncoder;
-    private Validator $validator;
-    private UserRepository $users;
-
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $encoder, Validator $validator, UserRepository $users)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $userPasswordHasher, private readonly Validator $validator, private readonly UserRepository $users)
     {
         parent::__construct();
-
-        $this->entityManager = $em;
-        $this->passwordEncoder = $encoder;
-        $this->validator = $validator;
-        $this->users = $users;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this
-            ->setDescription('Crear usuarios y guardarlos en la base de datos')
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see https://symfony.com/doc/current/components/console/console_arguments.html
@@ -133,7 +113,7 @@ class AddUserCommand extends Command
         if (null !== $email) {
             $this->io->text(' > <info>Email</info>: '.$email);
         } else {
-            $email = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
+            $email = $this->io->ask('Email', null, $this->validator->validateEmail(...));
             $input->setArgument('email', $email);
         }
 
@@ -142,17 +122,16 @@ class AddUserCommand extends Command
         if (null !== $password) {
             $this->io->text(' > <info>Password</info>: '.u('*')->repeat(u($password)->length()));
         } else {
-            $password = $this->io->askHidden('Password (your type will be hidden)', [$this->validator, 'validatePassword']);
+            $password = $this->io->askHidden('Password (your type will be hidden)', $this->validator->validatePassword(...));
             $input->setArgument('password', $password);
         }
-
 
         // Ask for the primer nombre if it's not defined
         $primerNombre = $input->getArgument('primerNombre');
         if (null !== $primerNombre) {
             $this->io->text(' > <info>Primer Nombre</info>: '.$primerNombre);
         } else {
-            $primerNombre = $this->io->ask('Primer Nombre', null, [$this->validator, 'validatePrimerNombre']);
+            $primerNombre = $this->io->ask('Primer Nombre', null, $this->validator->validatePrimerNombre(...));
             $input->setArgument('primerNombre', $primerNombre);
         }
     }
@@ -177,26 +156,26 @@ class AddUserCommand extends Command
         // create the user and encode its password
         $user = new User();
         $user->setEmail($email);
-        $user->setRoles([$isAdmin ? 'ROLE_'.strtoupper($isAdmin) : 'ROLE_USER']);
+        $user->setRoles([$isAdmin ? 'ROLE_'.strtoupper((string) $isAdmin) : 'ROLE_USER']);
         $user->setIsActive(true);
 
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords
-        $encodedPassword = $this->passwordEncoder->hashPassword($user, $plainPassword);
+        $encodedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
         $user->setPrimerNombre($primerNombre);
-        $user->aceptaTerminos( new DateTime('now'));
+        $user->aceptaTerminos();
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        $this->io->success(sprintf('%s was successfully created: %s ', $isAdmin ? $isAdmin . ' user' : 'User', $user->getEmail()));
+        $this->io->success(sprintf('%s was successfully created: %s ', $isAdmin ? $isAdmin.' user' : 'User', $user->getEmail()));
 
         $event = $stopwatch->stop('add-user-command');
         if ($output->isVerbose()) {
             $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     private function validateUserData($email, $plainPassword, $primerNombre): void
@@ -212,7 +191,6 @@ class AddUserCommand extends Command
         $this->validator->validatePassword($plainPassword);
         $this->validator->validateEmail($email);
         $this->validator->validatePrimerNombre($primerNombre);
-
     }
 
     /**

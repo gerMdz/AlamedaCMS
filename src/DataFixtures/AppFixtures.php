@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->creaDatosIndex($manager);
     }
@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
         $inicio->setMetaTitle('Iglesia Alameda');
         $inicio->setMetaImage('cabecera_index.jpg');
         $inicio->setMetaType('website');
-        $inicio->setMetaUrl('https://iglesiaalameda.com');
+        $inicio->setMetaUrl('https://alamedacms.com');
         $inicio->setBase('index');
 
         $base = new MetaBase();

@@ -37,11 +37,10 @@ class ChannelFeedRepository extends ServiceEntityRepository
     }
     */
 
-
     /**
-     * @return ChannelFeed|null
+     * @return float|int|mixed|string|void|null
      */
-    public function findFirst(): ?ChannelFeed
+    public function findFirst()
     {
         try {
             return $this->createQueryBuilder('c')
@@ -50,8 +49,7 @@ class ChannelFeedRepository extends ServiceEntityRepository
                 ->setMaxResults(1)
                 ->getQuery()
                 ->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
         }
     }
-
 }

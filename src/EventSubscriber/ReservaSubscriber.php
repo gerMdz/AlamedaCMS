@@ -9,30 +9,21 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class ReservaSubscriber implements EventSubscriberInterface
 {
-    private $handlerCelebracion;
-    private $mailer;
-
     /**
      * ReservaSubscriber constructor.
-     * @param HandlerCelebracion $handlerCelebracion
-     * @param Mailer $mailer
      */
-    public function __construct(HandlerCelebracion $handlerCelebracion, Mailer $mailer)
+    public function __construct(private readonly HandlerCelebracion $handlerCelebracion, private readonly Mailer $mailer)
     {
-        $this->handlerCelebracion = $handlerCelebracion;
-        $this->mailer = $mailer;
     }
 
     public function onAnulaReservaEvent($event)
     {
-        if($this->handlerCelebracion->hayLugar($event->getData())){
-
+        if ($this->handlerCelebracion->hayLugar($event->getData())) {
             try {
                 $this->mailer->sendAvisoLugarMessage($event->getData());
-            } catch (TransportExceptionInterface $e) {
+            } catch (TransportExceptionInterface) {
             }
         }
-
     }
 
     public static function getSubscribedEvents(): array

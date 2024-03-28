@@ -113,6 +113,19 @@ yarn-error.log
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+public/images/logo-solo.png
+/ROADMAP.md
+/.php-version
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+/tools/php-cs-fixer/vendor/
+/.php-cs-fixer.cache
+/tools/php-cs-fixer/composer.json
+/tools/php-cs-fixer/composer.lock
+/sqls/
+
 
 ###> phpunit/phpunit ###
 

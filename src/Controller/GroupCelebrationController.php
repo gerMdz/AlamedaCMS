@@ -14,16 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/grupoCelebracion")
- */
+#[Route(path: '/admin/grupoCelebracion')]
 class GroupCelebrationController extends AbstractController
 {
-    /**
-     * @Route("/", name="group_celebration_index", methods={"GET"})
-     * @param GroupCelebrationRepository $groupCelebrationRepository
-     * @return Response
-     */
+    #[Route(path: '/', name: 'group_celebration_index', methods: ['GET'])]
     public function index(GroupCelebrationRepository $groupCelebrationRepository): Response
     {
         return $this->render('group_celebration/index.html.twig', [
@@ -31,19 +25,14 @@ class GroupCelebrationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="group_celebration_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return Response
-     */
-    public function new(Request $request): Response
+    #[Route(path: '/new', name: 'group_celebration_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $groupCelebration = new GroupCelebration();
         $form = $this->createForm(GroupCelebrationType::class, $groupCelebration);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($groupCelebration);
             $entityManager->flush();
 
@@ -52,15 +41,11 @@ class GroupCelebrationController extends AbstractController
 
         return $this->render('group_celebration/new.html.twig', [
             'group_celebration' => $groupCelebration,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="group_celebration_show", methods={"GET"})
-     * @param GroupCelebration $groupCelebration
-     * @return Response
-     */
+    #[Route(path: '/{id}', name: 'group_celebration_show', methods: ['GET'])]
     public function show(GroupCelebration $groupCelebration): Response
     {
         return $this->render('group_celebration/show.html.twig', [
@@ -68,61 +53,46 @@ class GroupCelebrationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="group_celebration_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @return Response
-     */
-    public function edit(Request $request, GroupCelebration $groupCelebration): Response
+    #[Route(path: '/{id}/edit', name: 'group_celebration_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, GroupCelebration $groupCelebration, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(GroupCelebrationType::class, $groupCelebration);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('group_celebration_index');
         }
 
         return $this->render('group_celebration/edit.html.twig', [
             'group_celebration' => $groupCelebration,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}/remove/{celebracion}", name="group_celebration_remove_celebracion", methods={"GET","POST"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @param CelebracionRepository $celebracionRepository
-     * @return Response
-     */
-    public function removeCelebracion(Request $request, GroupCelebration $groupCelebration, CelebracionRepository $celebracionRepository): Response
+    #[Route(path: '/{id}/remove/{celebracion}', name: 'group_celebration_remove_celebracion', methods: ['GET', 'POST'])]
+    public function removeCelebracion(Request $request, GroupCelebration $groupCelebration,
+        CelebracionRepository $celebracionRepository,
+        EntityManagerInterface $entityManager): Response
     {
         $id_celebracion = $request->get('celebracion');
         $celebracion = $celebracionRepository->find($id_celebracion);
 
         $groupCelebration->removeCelebracione($celebracion);
 
-        $this->getDoctrine()->getManager()->flush();
-
+        $entityManager->flush();
 
         return $this->render('group_celebration/show.html.twig', [
             'group_celebration' => $groupCelebration,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="group_celebration_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @return Response
-     */
-    public function delete(Request $request, GroupCelebration $groupCelebration): Response
+    #[Route(path: '/{id}', name: 'group_celebration_delete', methods: ['DELETE'])]
+    public function delete(Request $request, GroupCelebration $groupCelebration,
+        EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $groupCelebration->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+        if ($this->isCsrfTokenValid('delete'.$groupCelebration->getId(), $request->request->get('_token'))) {
             $entityManager->remove($groupCelebration);
             $entityManager->flush();
         }
@@ -131,21 +101,15 @@ class GroupCelebrationController extends AbstractController
     }
 
     /**
-     * @Route("/agregarCelebracion/{id}", name="grupo_agregar_celebracion", methods={"GET", "POST"})
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @param EntityManagerInterface $em
-     * @param GroupCelebrationRepository $groupCelebrationRepository
-     * @param CelebracionRepository $celebracionRepository
      * @return RedirectResponse|Response
      */
+    #[Route(path: '/agregarCelebracion/{id}', name: 'grupo_agregar_celebracion', methods: ['GET', 'POST'])]
     public function agregarCelebracion(Request $request, GroupCelebration $groupCelebration, EntityManagerInterface $em, GroupCelebrationRepository $groupCelebrationRepository, CelebracionRepository $celebracionRepository)
     {
         $form = $this->createForm(CelebrationAddType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $id_celebracion = $form->get('celebration')->getData();
             $celebracion = $celebracionRepository->find($id_celebracion);
             $celebracion->addGroupCelebration($groupCelebration);
@@ -153,13 +117,13 @@ class GroupCelebrationController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('group_celebration_show', [
-                'id' => $groupCelebration->getId()
+                'id' => $groupCelebration->getId(),
             ]);
         }
 
         return $this->render('celebracion/vistaAgregaCelebracion.html.twig', [
             'group_celebration' => $groupCelebration,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

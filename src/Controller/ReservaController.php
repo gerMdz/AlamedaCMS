@@ -25,55 +25,42 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/reserva")
- */
+#[Route(path: '/reserva')]
 class ReservaController extends AbstractController
 {
-    /**
-     * @Route("/ver", name="reserva_index")
-     * @param CelebracionRepository $celebracionRepository
-     * @param GroupCelebrationRepository $groupCelebrationRepository
-     * @return Response
-     */
+    #[Route(path: '/ver', name: 'reserva_index')]
     public function index(CelebracionRepository $celebracionRepository, GroupCelebrationRepository $groupCelebrationRepository): Response
     {
-
         $grupos = $groupCelebrationRepository->puedeMostrarse()->getQuery()->getResult();
         if (!$grupos) {
             $grupos = null;
         }
+
         return $this->render('reserva/index.html.twig', [
             'celebraciones' => $celebracionRepository->puedeMostrarse()->getQuery()->getResult(),
-            'grupos' => $grupos
+            'grupos' => $grupos,
         ]);
     }
 
-
     /**
-     * @Route("/creaReserva/{id}", name="crea_reserva" )
-     * @param Celebracion $celebracion
-     * @param Request $request
-     * @param EntityManagerInterface $em
-     * @param Mailer $mailer
-     * @return Response
      * @throws TransportExceptionInterface
      */
+    #[Route(path: '/creaReserva/{id}', name: 'crea_reserva')]
     public function creaReserva(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $reservante = new Reservante();
         $reservante->setCelebracion($celebracion);
         $form = $this->createForm(ReservanteType::class, $reservante, [
-            'attr' => ['id' => 'formReserva']
+            'attr' => ['id' => 'formReserva'],
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $reservado = $em->getRepository(Reservante::class)->findOneByReserva($celebracion->getId(), $reservante->getEmail());
 
             if ($reservado) {
                 $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
+
                 return $this->redirectToRoute('reserva_index');
             }
 
@@ -92,7 +79,7 @@ class ReservaController extends AbstractController
 
             $invitados = $form['acompanantes']->getData();
             if ($invitados > 0) {
-                for ($i = 0; $i < $invitados; $i++) {
+                for ($i = 0; $i < $invitados; ++$i) {
                     $invitadoplus = new Invitado();
                     $invitadoplus->setCelebracion($celebracion);
                     $invitadoplus->setEnlace($reservante);
@@ -115,42 +102,35 @@ class ReservaController extends AbstractController
 
             $nombre = 'email';
             $arrayDato = [
-                $reservante->getEmail()
+                $reservante->getEmail(),
             ];
             $arrayDatos = json_encode($arrayDato);
 
             $nombre2 = 'celebracion';
             $arrayDato2 = [
-                $reservante->getCelebracion()->getFechaCelebracionAt()
+                $reservante->getCelebracion()->getFechaCelebracionAt(),
             ];
             $arrayDatos2 = json_encode($arrayDato2);
 
-            $response->headers->setCookie(new Cookie($nombre, $arrayDatos, $time2));
-            $response->headers->setCookie(new Cookie($nombre2, $arrayDatos2, $time2));
+            $response->headers->setCookie(Cookie::create($nombre, $arrayDatos, $time2));
+            $response->headers->setCookie(Cookie::create($nombre2, $arrayDatos2, $time2));
             $response->sendHeaders();
 
             return $this->redirectToRoute('vista_reserva', [
                 'celebracion' => $reservante->getCelebracion()->getId(),
                 'email' => $reservante->getEmail(),
             ]);
-
         }
 
         return $this->render('reserva/vistaCreaReserva.html.twig', [
             'celebracion' => $celebracion,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
-
     }
 
-
-    /**
-     * @Route("/agregaInvitado/{id}", name="agrega_invitado", methods={"GET", "POST"})
-     * @param Reservante $reservante
-     * @param Request $request
-     * @return Response
-     */
-    public function agregaInvitado(Reservante $reservante, Request $request): Response
+    #[Route(path: '/agregaInvitado/{id}', name: 'agrega_invitado', methods: ['GET', 'POST'])]
+    public function agregaInvitado(Reservante $reservante, Request $request,
+        EntityManagerInterface $entityManager): Response
     {
         $invitado = new Invitado();
         $invitado->setCelebracion($reservante->getCelebracion());
@@ -159,15 +139,15 @@ class ReservaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $email = $form['email']->getData();
 
             $invitado_existente = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($reservante->getCelebracion()->getId(), $email);
 
             if ($invitado_existente) {
                 $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
+
                 return $this->redirectToRoute('agrega_invitado', [
-                    'id' => $reservante->getId()
+                    'id' => $reservante->getId(),
                 ]);
             }
 
@@ -176,43 +156,30 @@ class ReservaController extends AbstractController
 
             return $this->redirectToRoute('vista_reserva', [
                 'celebracion' => $invitado->getCelebracion()->getId(),
-                'email' => $invitado->getEnlace()->getEmail()
+                'email' => $invitado->getEnlace()->getEmail(),
             ]);
         }
 
         return $this->render('reserva/newInvitado.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/vistaReserva/{celebracion}/{email}", name="vista_reserva")
-     * @param ReservanteRepository $reservanteRepository
-     * @param string $celebracion
-     * @param string $email
-     * @return Response
-     */
+    #[Route(path: '/vistaReserva/{celebracion}/{email}', name: 'vista_reserva')]
     public function vistaReserva(ReservanteRepository $reservanteRepository, string $celebracion, string $email): Response
     {
         $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
 
         return $this->render('reserva/reservante.html.twig', [
-            'reservante' => $reservante
+            'reservante' => $reservante,
         ]);
     }
 
-    /**
-     * @Route("/vistaReserva/{celebracion}/{email}/presente", name="vista_reserva_presente")
-     * @param ReservanteRepository $reservanteRepository
-     * @param string $celebracion
-     * @param string $email
-     * @param EntityManagerInterface $em
-     * @return Response
-     */
+    #[Route(path: '/vistaReserva/{celebracion}/{email}/presente', name: 'vista_reserva_presente')]
     public function vistaReservaPresente(ReservanteRepository $reservanteRepository, string $celebracion, string $email, EntityManagerInterface $em): Response
     {
-        if ($this->isGranted("ROLE_RESERVA")) {
+        if ($this->isGranted('ROLE_RESERVA')) {
             $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
             $invitados = $reservante->getInvitados();
             foreach ($invitados as $invitado) {
@@ -224,150 +191,119 @@ class ReservaController extends AbstractController
             $em->flush();
 
             return $this->render('reserva/reservante.html.twig', [
-                'reservante' => $reservante
+                'reservante' => $reservante,
             ]);
         } else {
             return $this->redirectToRoute('admin');
         }
     }
 
-    /**
-     * @Route("/vistaReservaInvitado/{invitado}/{email}", name="vista_reserva_invitado")
-     * @param InvitadoRepository $invitadoRepository
-     * @param string $invitado
-     * @return Response
-     */
+    #[Route(path: '/vistaReservaInvitado/{invitado}/{email}', name: 'vista_reserva_invitado')]
     public function vistaReservaInvitado(InvitadoRepository $invitadoRepository, string $invitado): Response
     {
         $invitado = $invitadoRepository->find($invitado);
+
         return $this->render('reserva/invitado.html.twig', [
-            'invitado' => $invitado
+            'invitado' => $invitado,
         ]);
     }
 
-    /**
-     * @Route("/{id}/completa", name="invitado_completa", methods={"GET","POST"})
-     * @param Request $request
-     * @param Invitado $invitado
-     * @param Mailer $mailer
-     * @return Response
-     */
-    public function edit(Request $request, Invitado $invitado, Mailer $mailer): Response
+    #[Route(path: '/{id}/completa', name: 'invitado_completa', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Invitado $invitado, Mailer $mailer, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $entityManager = $this->getDoctrine()->getManager();
             $email = $form['email']->getData();
             $existe = $entityManager->getRepository(Invitado::class)->findOneByCelebracionEmail($invitado->getCelebracion()->getId(), $email);
             if ($existe) {
                 $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
+
                 return $this->redirectToRoute('vista_reserva', [
                     'celebracion' => $invitado->getCelebracion()->getId(),
-                    'email' => $invitado->getEnlace()->getEmail()
+                    'email' => $invitado->getEnlace()->getEmail(),
                 ]);
             }
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
-            if ($invitado->getEmail() != null) {
+            if (null != $invitado->getEmail()) {
                 $mailer->sendReservaInvitadoMessage($invitado);
             }
 
             $this->addFlash('success', 'Se ha guardado el cambio');
+
             return $this->redirectToRoute('vista_reserva', [
                 'celebracion' => $invitado->getCelebracion()->getId(),
-                'email' => $invitado->getEnlace()->getEmail()
+                'email' => $invitado->getEnlace()->getEmail(),
             ]);
         }
 
         return $this->render('reserva/completaInvitado.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}/completa_invitado", name="invitado_completa_self", methods={"GET","POST"})
-     * @param Request $request
-     * @param Invitado $invitado
-     * @param Mailer $mailer
-     * @return Response
-     */
-    public function editSelf(Request $request, Invitado $invitado, Mailer $mailer): Response
+    #[Route(path: '/{id}/completa_invitado', name: 'invitado_completa_self', methods: ['GET', 'POST'])]
+    public function editSelf(Request $request, Invitado $invitado, Mailer $mailer,
+        EntityManagerInterface $entityManager): Response
     {
-
         $form = $this->createForm(InvitadoType::class, $invitado);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             $mailer->sendReservaInvitadoMessage($invitado);
 
             return $this->redirectToRoute('vista_reserva_invitado',
                 [
                     'invitado' => $invitado->getId(),
-                    'email' => $invitado->getEmail()
+                    'email' => $invitado->getEmail(),
                 ]);
         }
 
         return $this->render('reserva/completaInvitadoSelf.html.twig', [
             'invitado' => $invitado,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-
-    /**
-     * @Route("/consulta", name="reserva_consulta", methods={"GET","POST"})
-     * @param Request $request
-     * @param ReservanteRepository $reservanteRepository
-     * @return Response
-     */
+    #[Route(path: '/consulta', name: 'reserva_consulta', methods: ['GET', 'POST'])]
     public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository): Response
     {
-
         $form = $this->createForm(ReservaByEmailFilterType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $celebracion = $form['celebracion']->getData();
             $email = $form['email']->getData();
             $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
             if (!$reservante) {
                 $this->addFlash('info', 'No se encontró reserva');
+
                 return $this->redirectToRoute('reserva_consulta');
             }
 
             return $this->redirectToRoute('vista_reserva',
                 [
                     'celebracion' => $reservante->getCelebracion()->getId(),
-                    'email' => $reservante->getEmail()
+                    'email' => $reservante->getEmail(),
                 ]);
         }
 
         return $this->render('reserva/consulta_reserva.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
-
-    /**
-     * @Route("/{id}", name="reserva_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Reservante $reservante
-     * @param EventDispatcherInterface $dispatcher
-     * @return Response
-     */
-    public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher): Response
+    #[Route(path: '/{id}', name: 'reserva_delete', methods: ['DELETE'])]
+    public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher,
+        EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $reservante->getId(), $request->request->get('_token'))) {
-
+        if ($this->isCsrfTokenValid('delete'.$reservante->getId(), $request->request->get('_token'))) {
             $celebracion = $reservante->getCelebracion();
-            $entityManager = $this->getDoctrine()->getManager();
 
             $invitados = $reservante->getInvitados();
             foreach ($invitados as $invitado) {
@@ -384,61 +320,46 @@ class ReservaController extends AbstractController
             $response = new Response();
             $response->headers->clearCookie('email');
             $response->headers->removeCookie('email');
-
-
         }
 
         return $this->redirectToRoute('reserva_index');
     }
 
-
-    /**
-     * @Route("/cancela/{id}/invitado", name="cancela_invitado", methods={"GET"})
-     * @param Invitado $invitado
-     * @return Response
-     */
-    public function cancelaReserva(Invitado $invitado): Response
+    #[Route(path: '/cancela/{id}/invitado', name: 'cancela_invitado', methods: ['GET'])]
+    public function cancelaReserva(Invitado $invitado, EntityManagerInterface $entityManager): Response
     {
         $celebracion = $invitado->getCelebracion()->getId();
         $email = $invitado->getEnlace()->getEmail();
-        $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($invitado);
         $entityManager->flush();
         $this->addFlash('success', 'Se canceló reserva.');
 
-
         return $this->redirectToRoute('vista_reserva',
             [
                 'celebracion' => $celebracion,
-                'email' => $email
+                'email' => $email,
             ]);
     }
 
-
     /**
-     * @Route("/avisarme/{celebracion}", name="add_to_waiting_list")
-     * @param Celebracion $celebracion
-     * @param Request $request
-     * @param EntityManagerInterface $em
-     * @param Mailer $mailer
-     * @return Response
      * @throws TransportExceptionInterface
      */
+    #[Route(path: '/avisarme/{celebracion}', name: 'add_to_waiting_list')]
     public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $espera = new WaitingList();
         $espera->setCelebracion($celebracion);
         $form = $this->createForm(AvisoType::class, $espera, [
-            'attr' => ['id' => 'formAviso']
+            'attr' => ['id' => 'formAviso'],
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $reservado = $em->getRepository(Reservante::class)->findOneByReserva($celebracion->getId(), $espera->getEmail());
 
             if ($reservado) {
                 $this->addFlash('success', 'Ya se encuentra una reservación para esta celebracion y con ese mail');
+
                 return $this->redirectToRoute('reserva_index');
             }
 
@@ -446,13 +367,14 @@ class ReservaController extends AbstractController
             $em->flush();
             $mailer->sendAvisoRegistroReservaMessage($espera);
             $this->addFlash('success', 'Se ha guardado su registro');
+
             return $this->redirectToRoute('reserva_index', [
             ]);
         }
 
         return $this->render('reserva/vistaAvisoReserva.html.twig', [
             'celebracion' => $celebracion,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }

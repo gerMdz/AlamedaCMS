@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use AllowDynamicProperties;
 use App\Entity\Traits\CssClass;
 use App\Entity\Traits\IdentificadorTrait;
 use App\Repository\MenuRepository;
@@ -9,45 +10,36 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 
-/**
- * @ORM\Entity(repositoryClass=MenuRepository::class)
- */
+#[AllowDynamicProperties] #[ORM\Entity(repositoryClass: MenuRepository::class)]
 class Menu
 {
     use TimestampableEntity;
     use CssClass;
     use IdentificadorTrait;
 
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="string", length=36)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private ?string $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column]
     private ?string $nombre;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ItemMenu::class, mappedBy="menu")
-     */
-    private Collection $itemMenus;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $identificador = null;
+
+    #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'menu')]
+    private ArrayCollection $itemMenus;
 
     public function __construct()
     {
         $this->itemMenus = new ArrayCollection();
     }
 
-    public function __toString()
-    {
-     return $this->nombre;
-    }
-
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -90,6 +82,4 @@ class Menu
 
         return $this;
     }
-
-
 }
