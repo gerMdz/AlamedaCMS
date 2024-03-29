@@ -12,20 +12,20 @@ class Ministerio implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $nombre;
+    #[ORM\Column]
+    private ?string $nombre;
 
     #[ORM\OneToMany(mappedBy: 'ministerio', targetEntity: Principal::class)]
     private Collection $page;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $referente;
+    #[ORM\Column]
+    private ?string $referente;
 
     #[ORM\ManyToMany(targetEntity: Contacto::class, mappedBy: 'ministerio')]
-    private $contactos;
+    private Collection $contactos;
 
     public function __construct()
     {

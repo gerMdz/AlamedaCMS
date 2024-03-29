@@ -13,28 +13,28 @@ class ButtonLink implements \Stringable
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $cssClass;
+    #[ORM\Column(nullable: true)]
+    private ?string $cssClass;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $linkRoute;
+    #[ORM\Column]
+    private ?string $linkRoute;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private $isLinkExterno;
+    #[ORM\Column(nullable: true)]
+    private ?bool $isLinkExterno;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $textButton;
+    #[ORM\Column]
+    private ?string $textButton;
 
     #[ORM\ManyToMany(targetEntity: Section::class, mappedBy: 'button')]
-    private $sections;
+    private Collection $sections;
 
     #[ORM\ManyToMany(targetEntity: Principal::class, mappedBy: 'button')]
-    private $principals;
+    private Collection $principals;
 
     #[ORM\ManyToMany(targetEntity: Entrada::class, mappedBy: 'button')]
-    private $entradas;
+    private Collection $entradas;
 
     public function __construct()
     {

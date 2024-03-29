@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait IdentificadorTrait
 {
-    #[ORM\Column(type: 'string', length: 150, unique: true)]
+    #[ORM\Column(unique: true)]
     private ?string $identificador;
 
     public function getIdentificador(): ?string

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait CssClass
 {
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $cssClass;
 
     public function getCssClass(): ?string

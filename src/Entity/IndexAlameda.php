@@ -12,42 +12,42 @@ class IndexAlameda implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $lema = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $lemaPrincipal = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $lemaSinEspacio = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $metaDescripcion = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $metaAutor = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $metaTitle = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $metaType = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $metaUrl = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $metaImage = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $base = null;
 
     #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'indexAlamedas')]
     #[ORM\OrderBy(['orden' => 'ASC'])]
-    private ArrayCollection $section;
+    private Collection $section;
 
     #[ORM\OneToMany(mappedBy: 'indexAlameda', targetEntity: BlocsFixes::class)]
     private Collection $blocs_fixes;

@@ -2,26 +2,30 @@
 
 namespace App\Entity;
 
+use App\Repository\ApiTokenRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
-#[ORM\Entity(repositoryClass: \App\Repository\ApiTokenRepository::class)]
+#[ORM\Entity(repositoryClass: ApiTokenRepository::class)]
 class ApiToken
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $token;
+    #[ORM\Column]
+    private ?string $token;
 
-    #[ORM\Column(type: 'datetime')]
-    private $expiraAt;
+    #[ORM\Column]
+    private ?DateTime $expiraAt;
 
     /**
      * ApiToken constructor.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(
         #[ORM\ManyToOne(inversedBy: 'apiTokens')]
@@ -29,7 +33,7 @@ class ApiToken
         private readonly User $user)
     {
         $this->token = bin2hex(random_bytes(60));
-        $this->expiraAt = new \DateTime('+3 hour');
+        $this->expiraAt = new DateTime('+3 hour');
     }
 
     public function getId(): ?int
@@ -42,7 +46,7 @@ class ApiToken
         return $this->token;
     }
 
-    public function getExpiraAt(): ?\DateTimeInterface
+    public function getExpiraAt(): ?DateTimeInterface
     {
         return $this->expiraAt;
     }
@@ -52,15 +56,15 @@ class ApiToken
         return $this->user;
     }
 
-    public function renuevaExpirasAt()
+    public function renuevaExpirasAt(): void
     {
-        $this->expiraAt = new \DateTime('+1 hour');
+        $this->expiraAt = new DateTime('+1 hour');
     }
 
     public function isExpired(): bool
     {
         return false;
 
-        return $this->getExpiraAt() <= new \DateTime();
+        return $this->getExpiraAt() <= new DateTime();
     }
 }

@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -27,8 +28,8 @@ class BlocsFixes implements \Stringable
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
-    private UuidInterface $id;
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    private ?UuidInterface $id;
 
     #[ORM\ManyToMany(targetEntity: Principal::class, inversedBy: 'blocsFixes')]
     private Collection $page;
@@ -36,10 +37,10 @@ class BlocsFixes implements \Stringable
     #[ORM\ManyToMany(targetEntity: Section::class)]
     private Collection $section;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne()]
+    #[ORM\ManyToOne]
     private ?TypeFixe $fixes_type = null;
 
     #[ORM\JoinTable(name: 'blocs_fixes_index_alameda')]

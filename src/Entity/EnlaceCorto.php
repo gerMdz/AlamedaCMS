@@ -14,15 +14,15 @@ class EnlaceCorto
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column]
+    private ?int $id;
 
     #[Gedmo\Slug(fields: ['linkRoute'])]
-    #[ORM\Column(type: 'string', length: 150, unique: true, nullable: true)]
-    private $linkRoute;
+    #[ORM\Column(length: 150, unique: true, nullable: true)]
+    private ?string $linkRoute;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $urlDestino;
+    #[ORM\Column]
+    private ?string $urlDestino;
 
     #[ORM\ManyToOne(inversedBy: 'enlaceCortos')]
     private ?User $usuario = null;

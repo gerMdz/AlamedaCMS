@@ -13,29 +13,29 @@ class Contacto implements \Stringable
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'contactos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?TipoContacto $tipo = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $linkRoute;
+    #[ORM\Column]
+    private ?string $linkRoute;
 
-    #[ORM\Column(type: 'string', length: 510, nullable: true)]
-    private $textoMensaje;
+    #[ORM\Column(length: 510, nullable: true)]
+    private ?string $textoMensaje;
 
-    #[ORM\Column(type: 'string', length: 510, nullable: true)]
-    private $textoPagina;
+    #[ORM\Column(length: 510, nullable: true)]
+    private ?string $textoPagina;
 
     #[ORM\ManyToMany(targetEntity: Ministerio::class, inversedBy: 'contactos')]
-    private $ministerio;
+    private Collection $ministerio;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $nombre;
+    #[ORM\Column]
+    private ?string $nombre;
 
     #[ORM\ManyToMany(targetEntity: Entrada::class, mappedBy: 'contacto')]
-    private $entradas;
+    private Collection $entradas;
 
     public function __construct()
     {

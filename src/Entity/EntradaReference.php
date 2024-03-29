@@ -15,24 +15,24 @@ class EntradaReference
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     #[Groups('main')]
-    private $id;
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     #[Groups('main')]
-    private $filename;
+    private ?string $filename;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     #[Groups(['main', 'input'])]
     #[Assert\NotBlank]
     #[Assert\Length(max: '100')]
-    private $originalFilename;
+    private ?string $originalFilename;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     #[Groups('main')]
-    private $mimeType;
+    private ?string $mimeType;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private $posicion = 0;
+    #[ORM\Column(nullable: true)]
+    private ?int $posicion = 0;
 
     public function __construct(
         #[ORM\ManyToOne(targetEntity: Entrada::class, inversedBy: 'entradaReferences')]
@@ -86,7 +86,7 @@ class EntradaReference
         return $this;
     }
 
-    public function getImagePath()
+    public function getImagePath(): string
     {
         return UploaderHelper::ENTRADA_REFERENCE.'/'.$this->getFilename();
     }

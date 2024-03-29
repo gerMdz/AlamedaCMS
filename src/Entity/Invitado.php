@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\InvitadoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ORM\Entity(repositoryClass: \App\Repository\InvitadoRepository::class)]
+#[ORM\Entity(repositoryClass: InvitadoRepository::class)]
 class Invitado implements \Stringable
 {
     use TimestampableEntity;
@@ -14,21 +16,21 @@ class Invitado implements \Stringable
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
-    private $id;
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    private ?string $id = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Groups('export_invitado')]
-    private $telefono;
+    private ?string $telefono;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $dni;
+    #[ORM\Column(nullable: true)]
+    private ?string $dni;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $nombre;
+    #[ORM\Column(nullable: true)]
+    private ?string $nombre;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $apellido;
+    #[ORM\Column(nullable: true)]
+    private ?string $apellido;
 
     #[ORM\ManyToOne(inversedBy: 'invitados')]
     #[ORM\JoinColumn(nullable: false)]
@@ -38,14 +40,14 @@ class Invitado implements \Stringable
     #[ORM\JoinColumn(nullable: false)]
     private ?Celebracion $celebracion = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $email;
+    #[ORM\Column(nullable: true)]
+    private ?string $email;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private $isEnlace;
+    #[ORM\Column(nullable: true)]
+    private ?bool $isEnlace;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private $isPresente;
+    #[ORM\Column(nullable: true)]
+    private ?bool $isPresente;
 
     public function __toString(): string
     {

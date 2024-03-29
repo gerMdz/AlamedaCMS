@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ItemFeedRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ItemFeedRepository::class)]
@@ -10,35 +11,35 @@ class ItemFeed
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    #[ORM\Column]
+    private ?string $title;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $descripcion;
+    #[ORM\Column]
+    private ?string $descripcion;
 
-    #[ORM\Column(type: 'datetime')]
-    private $pubDateAt;
+    #[ORM\Column]
+    private ?DateTimeInterface $pubDateAt;
 
-    #[ORM\Column(type: 'string', length: 510)]
-    private $linkUrl;
+    #[ORM\Column(length: 510)]
+    private ?string $linkUrl;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $linkType;
+    #[ORM\Column]
+    private ?string $linkType;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $linkLength;
+    #[ORM\Column]
+    private ?string $linkLength;
 
-    #[ORM\Column(type: 'integer')]
-    private $linkLongitud;
+    #[ORM\Column]
+    private ?int $linkLongitud;
 
     #[ORM\Column(type: 'time')]
-    private $duracion;
+    private ?DateTimeInterface $duracion;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $guid;
+    #[ORM\Column]
+    private ?string $guid;
 
     #[ORM\ManyToOne(inversedBy: 'item')]
     #[ORM\JoinColumn(nullable: false)]
@@ -73,12 +74,12 @@ class ItemFeed
         return $this;
     }
 
-    public function getPubDateAt(): ?\DateTimeInterface
+    public function getPubDateAt(): ?DateTimeInterface
     {
         return $this->pubDateAt;
     }
 
-    public function setPubDateAt(\DateTimeInterface $pubDateAt): self
+    public function setPubDateAt(DateTimeInterface $pubDateAt): self
     {
         $this->pubDateAt = $pubDateAt;
 
@@ -133,12 +134,12 @@ class ItemFeed
         return $this;
     }
 
-    public function getDuracion(): ?\DateTimeInterface
+    public function getDuracion(): ?DateTimeInterface
     {
         return $this->duracion;
     }
 
-    public function setDuracion(\DateTimeInterface $duracion): self
+    public function setDuracion(DateTimeInterface $duracion): self
     {
         $this->duracion = $duracion;
 

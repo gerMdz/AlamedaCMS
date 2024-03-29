@@ -12,28 +12,28 @@ class ChannelFeed implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    #[ORM\Column]
+    private ?string $title;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $autor;
+    #[ORM\Column]
+    private ?string $autor;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $owner;
+    #[ORM\Column]
+    private ?string $owner;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $descripcion;
+    #[ORM\Column]
+    private ?string $descripcion;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $image;
+    #[ORM\Column(nullable: true)]
+    private ?string $image;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $link;
+    #[ORM\Column]
+    private ?string $link;
 
-    #[ORM\OneToMany(targetEntity: ItemFeed::class, mappedBy: 'channelFeed')]
+    #[ORM\OneToMany(mappedBy: 'channelFeed', targetEntity: ItemFeed::class)]
     private Collection $item;
 
     public function __construct()

@@ -9,35 +9,35 @@ class MetaBase
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $lema;
+    #[ORM\Column(nullable: true)]
+    private ?string $lema;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $lemaPrincipal;
+    #[ORM\Column]
+    private ?string $lemaPrincipal;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $metaDescripcion;
+    #[ORM\Column]
+    private ?string $metaDescripcion;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $metaAutor;
+    #[ORM\Column(nullable: true)]
+    private ?string $metaAutor;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $metaTitle;
+    #[ORM\Column]
+    private ?string $metaTitle;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $metaType;
+    #[ORM\Column]
+    private ?string $metaType;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $metaUrl;
+    #[ORM\Column]
+    private ?string $metaUrl;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $siteName;
+    #[ORM\Column]
+    private ?string $siteName;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $base = 'index';
+    #[ORM\Column]
+    private ?string $base = 'index';
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $favicon = null;

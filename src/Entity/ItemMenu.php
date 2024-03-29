@@ -21,7 +21,7 @@ class ItemMenu implements \Stringable
     use IdentificadorTrait;
 
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\Column(length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private ?string $id = null;
@@ -29,19 +29,19 @@ class ItemMenu implements \Stringable
     #[ORM\ManyToMany(targetEntity: Roles::class, inversedBy: 'itemMenus')]
     private ArrayCollection $role;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column]
     private ?string $label = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $badge = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $icon = null;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?bool $isExterno = null;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?bool $isActivo = null;
 
     #[ORM\ManyToOne(inversedBy: 'itemMenus')]
@@ -53,11 +53,11 @@ class ItemMenu implements \Stringable
     #[ORM\ManyToOne(inversedBy: 'itemMenus')]
     private ?Principal $pathInterno = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $pathLibre = null;
 
     #[ORM\ManyToMany(targetEntity: Menu::class, inversedBy: 'itemMenus')]
-    private ArrayCollection $menu;
+    private Collection $menu;
 
     public function __construct()
     {

@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Entity\Traits\OfertTrait;
 use App\Repository\CelebracionRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 #[ORM\Entity(repositoryClass: CelebracionRepository::class)]
 class Celebracion implements \Stringable
@@ -17,19 +19,19 @@ class Celebracion implements \Stringable
     use OfertTrait;
 
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\Column(length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
-    private $id;
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    private ?string $id = null;
 
-    #[ORM\Column(type: 'datetime')]
-    private $fechaCelebracionAt;
+    #[ORM\Column]
+    private ?DateTimeInterface $fechaCelebracionAt;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $nombre;
+    #[ORM\Column(nullable: true)]
+    private ?string $nombre;
 
-    #[ORM\Column(type: 'integer')]
-    private $capacidad;
+    #[ORM\Column]
+    private ?int $capacidad;
 
     #[ORM\ManyToOne(inversedBy: 'celebracions')]
     #[ORM\JoinColumn(nullable: false)]
@@ -38,23 +40,23 @@ class Celebracion implements \Stringable
     #[ORM\OneToMany(mappedBy: 'celebracion', targetEntity: Reservante::class)]
     private Collection $reservantes;
 
-    #[ORM\OneToMany(targetEntity: Invitado::class, mappedBy: 'celebracion')]
+    #[ORM\OneToMany(mappedBy: 'celebracion', targetEntity: Invitado::class)]
     private Collection $invitados;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $descripcion;
+    #[ORM\Column(nullable: true)]
+    private ?string $descripcion;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private $isHabilitada;
+    #[ORM\Column(nullable: true)]
+    private ?bool $isHabilitada;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $imageQr;
+    #[ORM\Column(nullable: true)]
+    private ?string $imageQr;
 
-    #[ORM\OneToMany(targetEntity: WaitingList::class, mappedBy: 'celebracion')]
+    #[ORM\OneToMany(mappedBy: 'celebracion', targetEntity: WaitingList::class)]
     private Collection $waitingLists;
 
     #[ORM\ManyToMany(targetEntity: GroupCelebration::class, mappedBy: 'celebraciones')]
-    private $groupCelebrations;
+    private Collection $groupCelebrations;
 
     public function __toString(): string
     {
@@ -78,12 +80,12 @@ class Celebracion implements \Stringable
         return $this->id;
     }
 
-    public function getFechaCelebracionAt(): ?\DateTimeInterface
+    public function getFechaCelebracionAt(): ?DateTimeInterface
     {
         return $this->fechaCelebracionAt;
     }
 
-    public function setFechaCelebracionAt(\DateTimeInterface $fechaCelebracionAt): self
+    public function setFechaCelebracionAt(DateTimeInterface $fechaCelebracionAt): self
     {
         $this->fechaCelebracionAt = $fechaCelebracionAt;
 
