@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use AllowDynamicProperties;
 use App\Entity\Traits\CssClass;
 use App\Entity\Traits\IdentificadorTrait;
 use App\Repository\MenuRepository;
@@ -12,11 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 
-#[AllowDynamicProperties] #[ORM\Entity(repositoryClass: MenuRepository::class)]
+#[\AllowDynamicProperties] #[ORM\Entity(repositoryClass: MenuRepository::class)]
 class Menu
 {
     use TimestampableEntity;
+
     use CssClass;
+
     use IdentificadorTrait;
 
     #[ORM\Id]
@@ -27,7 +28,6 @@ class Menu
 
     #[ORM\Column]
     private ?string $nombre;
-
 
     #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'menu')]
     private ArrayCollection $itemMenus;
@@ -54,9 +54,6 @@ class Menu
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function getItemMenus(): Collection
     {
         return $this->itemMenus;

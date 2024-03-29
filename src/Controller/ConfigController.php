@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class ConfigController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/config', name: 'config')]
-    public function index(): \Symfony\Component\HttpFoundation\Response
+    #[Route(path: '/config', name: 'config')]
+    public function index(): Response
     {
         return $this->render('config/index.html.twig', [
             'controller_name' => 'ConfigController',

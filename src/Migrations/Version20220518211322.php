@@ -20,16 +20,16 @@ final class Version20220518211322 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-//        $this->addSql('ALTER TABLE brote_entrada DROP FOREIGN KEY FK_5BF3296BEC13593E');
-//        $this->addSql('ALTER TABLE comentario DROP FOREIGN KEY FK_4B91E702EC13593E');
-//        $this->addSql('DROP TABLE brote');
-//        $this->addSql('DROP TABLE brote_entrada');
-//        $this->addSql('DROP INDEX IDX_4B91E702EC13593E ON comentario');
-//        $this->addSql('ALTER TABLE comentario DROP brote_id');
-//        $this->addSql('ALTER TABLE index_alameda DROP horario1, DROP horario2, DROP texto_versiculo, DROP versiculo');
-//        $this->addSql('ALTER TABLE item_menu ADD orderitem INT DEFAULT NULL');
-//        $this->addSql('ALTER TABLE menu CHANGE identificador identificador VARCHAR(150) NOT NULL');
-//        $this->addSql('CREATE UNIQUE INDEX UNIQ_7D053A93A8255881 ON menu (identificador)');
+        //        $this->addSql('ALTER TABLE brote_entrada DROP FOREIGN KEY FK_5BF3296BEC13593E');
+        //        $this->addSql('ALTER TABLE comentario DROP FOREIGN KEY FK_4B91E702EC13593E');
+        //        $this->addSql('DROP TABLE brote');
+        //        $this->addSql('DROP TABLE brote_entrada');
+        //        $this->addSql('DROP INDEX IDX_4B91E702EC13593E ON comentario');
+        //        $this->addSql('ALTER TABLE comentario DROP brote_id');
+        //        $this->addSql('ALTER TABLE index_alameda DROP horario1, DROP horario2, DROP texto_versiculo, DROP versiculo');
+        //        $this->addSql('ALTER TABLE item_menu ADD orderitem INT DEFAULT NULL');
+        //        $this->addSql('ALTER TABLE menu CHANGE identificador identificador VARCHAR(150) NOT NULL');
+        //        $this->addSql('CREATE UNIQUE INDEX UNIQ_7D053A93A8255881 ON menu (identificador)');
         $this->addSql('ALTER TABLE meta_base ADD favicon LONGTEXT DEFAULT NULL');
     }
 

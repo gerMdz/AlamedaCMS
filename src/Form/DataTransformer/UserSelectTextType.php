@@ -13,9 +13,9 @@ use Symfony\Component\Routing\RouterInterface;
 
 class UserSelectTextType extends AbstractType
 {
-    protected $userRepository;
+    protected UserRepository $userRepository;
 
-    protected $router;
+    protected RouterInterface $router;
 
     /**
      * UserSelectTextType constructor.
@@ -26,7 +26,7 @@ class UserSelectTextType extends AbstractType
         $this->router = $router;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new EmailToUserTransformer(
             $this->userRepository,
@@ -39,17 +39,17 @@ class UserSelectTextType extends AbstractType
         return TextType::class;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-           'invalid_message' => 'Usuario no encontrado',
+            'invalid_message' => 'Usuario no encontrado',
             'finder_callback' => fn (UserRepository $userRepository, string $email) => $userRepository->findOneBy(['email' => $email]),
             'attr' => [
             ],
         ]);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $attr = $view->vars['attr'];
         $class = isset($attr['class']) ? $attr['class'].' ' : '';

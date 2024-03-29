@@ -44,18 +44,18 @@ class SectionRepository extends ServiceEntityRepository
         ;
     }
 
-    private function addIsDisponibleQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function addIsDisponibleQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('s.disponible = true');
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function getOrCreateQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('s');
     }
 
-    private function getQueryBuilderOrderByUpdate(QueryBuilder $qb = null): QueryBuilder
+    private function getQueryBuilderOrderByUpdate(?QueryBuilder $qb = null): QueryBuilder
     {
         $qb = $this->getOrCreateQueryBuilder();
         $qb->orderBy('s.updatedAt', 'DESC');

@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class DefaultController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/default', name: 'default')]
-    public function index(): \Symfony\Component\HttpFoundation\Response
+    #[Route(path: '/default', name: 'default')]
+    public function index(): Response
     {
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',

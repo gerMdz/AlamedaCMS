@@ -31,7 +31,6 @@ class Roles implements \Stringable
     #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'role')]
     private ArrayCollection $itemMenus;
 
-
     public function __construct()
     {
         $this->itemMenus = new ArrayCollection();
@@ -42,11 +41,11 @@ class Roles implements \Stringable
         return (string) $this->getIdentificador();
     }
 
-//    public function __construct()
-//    {
-//        $nombre = $this->nombre;
-//        $this->identificador = 'ROLE_'.$this->nombre;
-//    }
+    //    public function __construct()
+    //    {
+    //        $nombre = $this->nombre;
+    //        $this->identificador = 'ROLE_'.$this->nombre;
+    //    }
 
     public function getId(): ?int
     {
@@ -110,9 +109,6 @@ class Roles implements \Stringable
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function getItemMenus(): Collection
     {
         return $this->itemMenus;

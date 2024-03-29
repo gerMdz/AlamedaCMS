@@ -26,7 +26,7 @@ class ApiToken
     public function __construct(
         #[ORM\ManyToOne(inversedBy: 'apiTokens')]
         #[ORM\JoinColumn(nullable: false)]
-        private User $user)
+        private readonly User $user)
     {
         $this->token = bin2hex(random_bytes(60));
         $this->expiraAt = new \DateTime('+3 hour');

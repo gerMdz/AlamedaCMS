@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints\Image;
 
 class SectionFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', null, [
@@ -51,9 +51,9 @@ class SectionFormType extends AbstractType
                 'label' => 'Inicia',
                 'html5' => true,
                 'required' => false,
-//                'format' => 'yyyy-MM-dd HH:mm',
-//                'attr' => ['class' => 'datetimepicker']
-                 'attr' => ['class' => 'form-control '],
+                //                'format' => 'yyyy-MM-dd HH:mm',
+                //                'attr' => ['class' => 'datetimepicker']
+                'attr' => ['class' => 'form-control '],
                 'input' => 'datetime',
             ])
             ->add('columns', IntegerType::class, [
@@ -143,7 +143,7 @@ class SectionFormType extends AbstractType
             ]); // ; Final del builder
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Section::class,

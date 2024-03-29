@@ -104,11 +104,11 @@ class AdminController extends AbstractController
         return
             $this->json(
                 [
-//                    'entradas'=>$entradas,
-//                    'secciones' => $secciones,
+                    //                    'entradas'=>$entradas,
+                    //                    'secciones' => $secciones,
                     'principales' => $principales], 200, [], [
-                'groups' => ['mail'],
-            ]
+                        'groups' => ['mail'],
+                    ]
             )
         ;
     }

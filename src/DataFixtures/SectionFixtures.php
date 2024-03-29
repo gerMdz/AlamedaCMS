@@ -11,23 +11,21 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class SectionFixtures extends BaseFixture implements DependentFixtureInterface
 {
-    private static $sectionTitles = [
-        'Ejmplo1',
-        'Ejmplo2',
-        'Ejmplo3',
-        'Ejmplo4',
-
+    private static array $sectionTitles = [
+        'Ejemplo1',
+        'Ejemplo2',
+        'Ejemplo3',
+        'Ejemplo4',
     ];
-    private static $sectionImages = [
+
+    private static array $sectionImages = [
         '01-Ante-lo-inesperado.jpg',
         '02-Indomita.jpg',
         '03-Rescate-en-las-llamas.jpg',
     ];
+
     private UploaderHelper $uploaderHelper;
 
-    /**
-     * @param UploaderHelper $uploaderHelper
-     */
     public function __construct(UploaderHelper $uploaderHelper)
     {
         $this->uploaderHelper = $uploaderHelper;
@@ -35,7 +33,7 @@ class SectionFixtures extends BaseFixture implements DependentFixtureInterface
 
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(10, 'main_section', function ($count) use ($manager) {
+        $this->createMany(10, 'main_section', function ($count) {
             $section = new Section();
             $section->setTitle($this->faker->randomElement(self::$sectionTitles))
                 ->setContenido($this->faker->realText(100))
@@ -67,7 +65,6 @@ class SectionFixtures extends BaseFixture implements DependentFixtureInterface
         return $this->uploaderHelper
             ->uploadEntradaImage(new File($targetPath), false);
     }
-
 
     public function getDependencies(): array
     {

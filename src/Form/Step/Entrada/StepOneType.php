@@ -14,35 +14,35 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StepOneType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
                 'titulo',
                 CKEditorType::class, [
-                'required' => true,
-                'config' => [
-                    'uiColor' => '#ffffff',
-//                    'toolbar' => 'full',
-                    'language' => 'es',
-                    'input_sync' => true,
-                ],
-                'attr' => [
-                    'required' => false,
-                    'class' => 'form-control',
-                ],
-            ])
+                    'required' => true,
+                    'config' => [
+                        'uiColor' => '#ffffff',
+                        //                    'toolbar' => 'full',
+                        'language' => 'es',
+                        'input_sync' => true,
+                    ],
+                    'attr' => [
+                        'required' => false,
+                        'class' => 'form-control',
+                    ],
+                ])
             ->add('contenido', CKEditorType::class, [
                 'required' => false,
                 'config' => [
                     'uiColor' => '#ffffff',
-//                    'toolbar' => 'full',
+                    //                    'toolbar' => 'full',
                     'language' => 'es',
                 ],
                 'attr' => [
                     'required' => false,
                     'rows' => 10,
-//                    'class' => 'form-control',
+                    //                    'class' => 'form-control',
                 ],
             ])
             ->add(
@@ -80,7 +80,7 @@ class StepOneType extends AbstractType
         ; // Fin del builder
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [

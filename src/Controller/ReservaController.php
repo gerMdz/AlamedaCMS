@@ -23,13 +23,14 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[\Symfony\Component\Routing\Attribute\Route(path: '/reserva')]
+#[Route(path: '/reserva')]
 class ReservaController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/ver', name: 'reserva_index')]
-    public function index(CelebracionRepository $celebracionRepository, GroupCelebrationRepository $groupCelebrationRepository): Response
+    #[Route(path: '/ver', name: 'reserva_index')]
+    public function index(CelebracionRepository $celebracionRepository,
+                          GroupCelebrationRepository $groupCelebrationRepository): Response
     {
         $grupos = $groupCelebrationRepository->puedeMostrarse()->getQuery()->getResult();
         if (!$grupos) {
@@ -45,7 +46,7 @@ class ReservaController extends AbstractController
     /**
      * @throws TransportExceptionInterface
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/creaReserva/{id}', name: 'crea_reserva')]
+    #[Route(path: '/creaReserva/{id}', name: 'crea_reserva')]
     public function creaReserva(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $reservante = new Reservante();
@@ -128,7 +129,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregaInvitado/{id}', name: 'agrega_invitado', methods: ['GET', 'POST'])]
+    #[Route(path: '/agregaInvitado/{id}', name: 'agrega_invitado', methods: ['GET', 'POST'])]
     public function agregaInvitado(Reservante $reservante, Request $request,
         EntityManagerInterface $entityManager): Response
     {
@@ -166,7 +167,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/vistaReserva/{celebracion}/{email}', name: 'vista_reserva')]
+    #[Route(path: '/vistaReserva/{celebracion}/{email}', name: 'vista_reserva')]
     public function vistaReserva(ReservanteRepository $reservanteRepository, string $celebracion, string $email): Response
     {
         $reservante = $reservanteRepository->findOneByReserva($celebracion, $email);
@@ -176,7 +177,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/vistaReserva/{celebracion}/{email}/presente', name: 'vista_reserva_presente')]
+    #[Route(path: '/vistaReserva/{celebracion}/{email}/presente', name: 'vista_reserva_presente')]
     public function vistaReservaPresente(ReservanteRepository $reservanteRepository, string $celebracion, string $email, EntityManagerInterface $em): Response
     {
         if ($this->isGranted('ROLE_RESERVA')) {
@@ -198,7 +199,7 @@ class ReservaController extends AbstractController
         }
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/vistaReservaInvitado/{invitado}/{email}', name: 'vista_reserva_invitado')]
+    #[Route(path: '/vistaReservaInvitado/{invitado}/{email}', name: 'vista_reserva_invitado')]
     public function vistaReservaInvitado(InvitadoRepository $invitadoRepository, string $invitado): Response
     {
         $invitado = $invitadoRepository->find($invitado);
@@ -208,7 +209,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/completa', name: 'invitado_completa', methods: ['GET', 'POST'])]
+    #[Route(path: '/{id}/completa', name: 'invitado_completa', methods: ['GET', 'POST'])]
     public function edit(Request $request, Invitado $invitado, Mailer $mailer, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
@@ -245,7 +246,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/completa_invitado', name: 'invitado_completa_self', methods: ['GET', 'POST'])]
+    #[Route(path: '/{id}/completa_invitado', name: 'invitado_completa_self', methods: ['GET', 'POST'])]
     public function editSelf(Request $request, Invitado $invitado, Mailer $mailer,
         EntityManagerInterface $entityManager): Response
     {
@@ -270,7 +271,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/consulta', name: 'reserva_consulta', methods: ['GET', 'POST'])]
+    #[Route(path: '/consulta', name: 'reserva_consulta', methods: ['GET', 'POST'])]
     public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository): Response
     {
         $form = $this->createForm(ReservaByEmailFilterType::class);
@@ -298,7 +299,7 @@ class ReservaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'reserva_delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}', name: 'reserva_delete', methods: ['DELETE'])]
     public function delete(Request $request, Reservante $reservante, EventDispatcherInterface $dispatcher,
         EntityManagerInterface $entityManager): Response
     {
@@ -325,7 +326,7 @@ class ReservaController extends AbstractController
         return $this->redirectToRoute('reserva_index');
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/cancela/{id}/invitado', name: 'cancela_invitado', methods: ['GET'])]
+    #[Route(path: '/cancela/{id}/invitado', name: 'cancela_invitado', methods: ['GET'])]
     public function cancelaReserva(Invitado $invitado, EntityManagerInterface $entityManager): Response
     {
         $celebracion = $invitado->getCelebracion()->getId();
@@ -344,7 +345,7 @@ class ReservaController extends AbstractController
     /**
      * @throws TransportExceptionInterface
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/avisarme/{celebracion}', name: 'add_to_waiting_list')]
+    #[Route(path: '/avisarme/{celebracion}', name: 'add_to_waiting_list')]
     public function addToWaitingList(Celebracion $celebracion, Request $request, EntityManagerInterface $em, Mailer $mailer): Response
     {
         $espera = new WaitingList();
@@ -368,8 +369,7 @@ class ReservaController extends AbstractController
             $mailer->sendAvisoRegistroReservaMessage($espera);
             $this->addFlash('success', 'Se ha guardado su registro');
 
-            return $this->redirectToRoute('reserva_index', [
-            ]);
+            return $this->redirectToRoute('reserva_index');
         }
 
         return $this->render('reserva/vistaAvisoReserva.html.twig', [

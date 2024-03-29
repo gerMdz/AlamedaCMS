@@ -13,22 +13,23 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[\Symfony\Component\Routing\Attribute\Route(path: '/index/alameda')]
-#[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+#[Route(path: '/index/alameda')]
+#[IsGranted('ROLE_ADMIN')]
 class IndexAlamedaController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'index_alameda_index', methods: ['GET'])]
+    #[Route(path: '/', name: 'index_alameda_index', methods: ['GET'])]
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
         return $this->render('index_alameda/index.html.twig', [
             'index_alamedas' => $indexAlamedaRepository->findBy(['base' => 'index']),
-//            'datosIndex' => $indexAlamedaRepository->findAll()[0],
+            //            'datosIndex' => $indexAlamedaRepository->findAll()[0],
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'index_alameda_new', methods: ['GET', 'POST'])]
+    #[Route(path: '/new', name: 'index_alameda_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $indexAlameda = new IndexAlameda();
@@ -48,7 +49,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'index_alameda_show', methods: ['GET'])]
+    #[Route(path: '/{id}', name: 'index_alameda_show', methods: ['GET'])]
     public function show(IndexAlameda $indexAlameda): Response
     {
         return $this->render('index_alameda/show.html.twig', [
@@ -56,7 +57,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'index_alameda_edit', methods: ['GET', 'POST'])]
+    #[Route(path: '/{id}/edit', name: 'index_alameda_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, IndexAlameda $indexAlameda): Response
     {
         $form = $this->createForm(IndexAlamedaType::class, $indexAlameda);
@@ -75,10 +76,10 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'index_alameda_delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}', name: 'index_alameda_delete', methods: ['DELETE'])]
     public function delete(Request $request, IndexAlameda $indexAlameda, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$indexAlameda->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $indexAlameda->getId(), $request->request->get('_token'))) {
             $entityManager->remove($indexAlameda);
             $entityManager->flush();
         }
@@ -86,7 +87,7 @@ class IndexAlamedaController extends AbstractController
         return $this->redirectToRoute('index_alameda_index');
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/index/section/{id}', methods: 'GET', name: 'admin_index_list_section')]
+    #[Route(path: '/admin/index/section/{id}', name: 'admin_index_list_section', methods: 'GET')]
     public function getSectionPrincipal(IndexAlameda $indexAlameda): JsonResponse
     {
         return $this->json(
@@ -99,8 +100,9 @@ class IndexAlamedaController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/index/section/{id}/reorder', methods: 'POST', name: 'admin_principal_reorder_section')]
-    public function reorderPrincipalSections(IndexAlameda $indexAlameda, EntityManagerInterface $entityManager, Request $request): JsonResponse
+    #[Route(path: '/admin/index/section/{id}/reorder', name: 'admin_principal_reorder_section', methods: 'POST')]
+    public function reorderPrincipalSections(IndexAlameda $indexAlameda, EntityManagerInterface $entityManager,
+                                             Request      $request): JsonResponse
     {
         $orderedIds = json_decode($request->getContent(), true);
 
@@ -128,12 +130,17 @@ class IndexAlamedaController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param IndexAlameda $indexAlameda
+     * @param EntityManagerInterface $entityManager
+     * @param SectionRepository $sectionRepository
+     * @param IndexAlamedaRepository $indexAlamedaRepository
      * @return RedirectResponse|Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]
-    public function agregarSeccion(Request $request, IndexAlameda $indexAlameda,
-        EntityManagerInterface $entityManager, SectionRepository $sectionRepository,
-        IndexAlamedaRepository $indexAlamedaRepository)
+    #[Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]
+    public function agregarSeccion(Request                $request, IndexAlameda $indexAlameda,
+                                   EntityManagerInterface $entityManager, SectionRepository $sectionRepository,
+                                   IndexAlamedaRepository $indexAlamedaRepository): RedirectResponse|Response
     {
         $form = $this->createForm(IndexSectionType::class, $indexAlameda);
         $form->handleRequest($request);

@@ -10,18 +10,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GroupCelebrationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('isActivo', CheckboxType::class, [
-        'required' => false,
-        'label' => 'Activo?',
-        'label_attr' => ['class' => 'checkbox-custom text-dark'],
-//                'help' => 'Disponible?',
-        'attr' => [
-            'class' => 'form-check-input ',
-        ],
-    ])
+                'required' => false,
+                'label' => 'Activo?',
+                'label_attr' => ['class' => 'checkbox-custom text-dark'],
+                //                'help' => 'Disponible?',
+                'attr' => [
+                    'class' => 'form-check-input ',
+                ],
+            ])
             ->add('baseCss')
             ->add('btonCss')
             ->add('imageBg')

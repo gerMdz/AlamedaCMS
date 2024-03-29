@@ -3,8 +3,10 @@
 namespace App\Security;
 
 use App\Repository\ApiTokenRepository;
+use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
@@ -18,14 +20,14 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     {
     }
 
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
         // Reviso las cabeceras "Authorization: Bearer <token>"
         return $request->headers->has('Authorization')
             && str_starts_with($request->headers->get('Authorization'), 'Bearer ');
     }
 
-    public function getCredentials(Request $request)
+    public function getCredentials(Request $request): string
     {
         $authorizationHeader = $request->headers->get('Authorization');
 
@@ -48,16 +50,16 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         return $token->getUser();
     }
 
-    public function checkCredentials($credentials, UserInterface $user)
+    public function checkCredentials($credentials, UserInterface $user): true
     {
         return true;
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): JsonResponse
     {
         return new JsonResponse([
             'message' => $exception->getMessageKey(),
-        ], \Symfony\Component\HttpFoundation\Response::HTTP_UNAUTHORIZED);
+        ], Response::HTTP_UNAUTHORIZED);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -65,12 +67,12 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         // todo
     }
 
-    public function start(Request $request, AuthenticationException $authException = null): \Symfony\Component\HttpFoundation\Response
+    public function start(Request $request, ?AuthenticationException $authException = null): Response
     {
-        throw new \Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
+        throw new Exception('No utilizado: se utiliza el punto de entrada de otro autenticador');
     }
 
-    public function supportsRememberMe()
+    public function supportsRememberMe(): false
     {
         return false;
     }

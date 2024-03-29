@@ -8,12 +8,12 @@ use App\Repository\SourceApiRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/source_api')]
+#[Route(path: '/admin/source_api')]
 class SourceApiController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'app_source_api_index', methods: ['GET'])]
+    #[Route(path: '/', name: 'app_source_api_index', methods: ['GET'])]
     public function index(SourceApiRepository $sourceApiRepository): Response
     {
         return $this->render('admin/source_api/index.html.twig', [
@@ -21,7 +21,7 @@ class SourceApiController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'app_source_api_new', methods: ['GET', 'POST'])]
+    #[Route(path: '/new', name: 'app_source_api_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SourceApiRepository $sourceApiRepository): Response
     {
         $sourceApi = new SourceApi();
@@ -40,7 +40,7 @@ class SourceApiController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'app_source_api_show', methods: ['GET'])]
+    #[Route(path: '/{id}', name: 'app_source_api_show', methods: ['GET'])]
     public function show(SourceApi $sourceApi): Response
     {
         return $this->render('admin/source_api/show.html.twig', [
@@ -48,7 +48,7 @@ class SourceApiController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'app_source_api_edit', methods: ['GET', 'POST'])]
+    #[Route(path: '/{id}/edit', name: 'app_source_api_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, SourceApi $sourceApi, SourceApiRepository $sourceApiRepository): Response
     {
         $form = $this->createForm(SourceApiType::class, $sourceApi);
@@ -66,7 +66,7 @@ class SourceApiController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'app_source_api_delete', methods: ['POST'])]
+    #[Route(path: '/{id}', name: 'app_source_api_delete', methods: ['POST'])]
     public function delete(Request $request, SourceApi $sourceApi, SourceApiRepository $sourceApiRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$sourceApi->getId(), $request->request->get('_token'))) {

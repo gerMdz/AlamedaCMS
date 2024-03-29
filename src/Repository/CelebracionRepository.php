@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Celebracion;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\QueryBuilder;
@@ -41,7 +42,7 @@ class CelebracionRepository extends ServiceEntityRepository
             ->andWhere('c.disponibleHastaAt >= :today')
             ->orderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('hab', true)
-            ->setParameter('today', new \DateTime('now'))
+            ->setParameter('today', new DateTime('now'))
         ;
     }
 
@@ -52,7 +53,7 @@ class CelebracionRepository extends ServiceEntityRepository
             ->andWhere('c.disponibleHastaAt >= :today')
             ->orderBy('c.fechaCelebracionAt', 'ASC')
             ->setParameter('hab', true)
-            ->setParameter('today', new \DateTime('now'))
+            ->setParameter('today', new DateTime('now'))
         ;
     }
 
@@ -68,15 +69,15 @@ class CelebracionRepository extends ServiceEntityRepository
     }
     */
 
-    private function sumar1hora()
+    private function sumar1hora(): DateTime
     {
-        $datetime = new \DateTime('now');
+        $datetime = new DateTime('now');
         $datetime->modify('+1 hour');
 
         return $datetime;
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    private function getOrCreateQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('c');
     }

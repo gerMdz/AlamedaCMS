@@ -161,11 +161,6 @@ class AdminEntradaController extends BaseController
     }
 
     /**
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @param UploaderHelper $uploaderHelper
-     * @return RedirectResponse|Response
-     *
      * @throws Exception
      */
     #[Route(path: '/admin/entrada/new', name: 'admin_entrada_new')]
@@ -288,7 +283,7 @@ class AdminEntradaController extends BaseController
      */
     #[Route(path: '/admin/new/step3/{id}', name: 'admin_entrada_new_step3', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ESCRITOR')]
-    public function newStepThree(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
+    public function newStepThree(Request $request, Entrada $entrada): Response
     {
         $form = $this->createForm(StepThreeType::class, $entrada);
         $form->handleRequest($request);
@@ -376,6 +371,7 @@ class AdminEntradaController extends BaseController
     {
         $link = strtolower(str_replace(' ', '-', trim($titulo)));
         $link = strtolower(str_replace('<p>', '', trim($link)));
+
         return strtolower(str_replace('</p>', '', trim($link)));
     }
 

@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserRegistrationFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email', EmailType::class)
@@ -33,16 +33,16 @@ class UserRegistrationFormType extends AbstractType
                 'required' => true,
             ])
             ->add('aceptaTerminos', CheckboxType::class, [
-                    'label' => 'Acepto',
-                    'help' => 'Acepta los términos de una amable conviviencia (Serás parte de nuestra comunidad virtual)',
-                ]
+                'label' => 'Acepto',
+                'help' => 'Acepta los términos de una amable convivencia (Serás parte de nuestra comunidad virtual)',
+            ]
             )
 //            ->add('twitterUsername')
 //            ->add('avatarUrl')
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => UserRegistrationFormModel::class,

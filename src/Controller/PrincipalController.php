@@ -8,7 +8,9 @@ use App\Form\SectionAddType;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
 use App\Service\UploaderHelper;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,17 +18,18 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/principal')]
+#[Route(path: '/admin/principal')]
 class PrincipalController extends BaseController
 {
     public function __construct(private readonly RequestStack $requestStack)
     {
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'principal_index', methods: ['GET'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+    #[Route(path: '/', name: 'principal_index', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(PrincipalRepository $principalRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $bus = $request->get('busq');
@@ -43,15 +46,15 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'principal_new', methods: ['GET', 'POST'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+    #[Route(path: '/new', name: 'principal_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new \DateTime('now');
+        $ahora = new DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -88,15 +91,15 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new-for-assistant', name: 'principal_new_assistant', methods: ['GET', 'POST'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+    #[Route(path: '/new-for-assistant', name: 'principal_new_assistant', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function newAssistant(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
         $principal = new Principal();
         $user = $this->getUser();
-        $ahora = new \DateTime('now');
+        $ahora = new DateTime('now');
         $principal->setAutor($user);
         $principal->setCreatedAt($ahora);
         $principal->setUpdatedAt($ahora);
@@ -133,12 +136,12 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'principal_edit', methods: ['GET', 'POST'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
-    public function edit(Request $request, Principal $principal, UploaderHelper $uploaderHelper,
-        EntityManagerInterface $entityManager): Response
+    #[Route(path: '/{id}/edit', name: 'principal_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function edit(Request                $request, Principal $principal, UploaderHelper $uploaderHelper,
+                         EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PrincipalType::class, $principal);
         $form->handleRequest($request);
@@ -169,7 +172,7 @@ class PrincipalController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/show', name: 'principal_show', methods: ['GET'])]
+    #[Route(path: '/{id}/show', name: 'principal_show', methods: ['GET'])]
     public function show(Principal $principal, PrincipalRepository $repository): Response
     {
         $brotes = $repository->findByPrincipalParent($principal);
@@ -183,11 +186,11 @@ class PrincipalController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'principal_delete', methods: ['DELETE'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
+    #[Route(path: '/{id}', name: 'principal_delete', methods: ['DELETE'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Principal $principal, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$principal->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $principal->getId(), $request->request->get('_token'))) {
             $entityManager->remove($principal);
             $entityManager->flush();
         }
@@ -195,7 +198,7 @@ class PrincipalController extends BaseController
         return $this->redirectToRoute('principal_index');
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/section/{id}', methods: 'GET', name: 'admin_principal_list_section')]
+    #[Route(path: '/section/{id}', name: 'admin_principal_list_section', methods: 'GET')]
     public function getSectionPrincipal(Principal $principal): JsonResponse
     {
         return $this->json(
@@ -209,10 +212,15 @@ class PrincipalController extends BaseController
     }
 
     /**
+     * @param Request $request
+     * @param Principal $principal
+     * @param EntityManagerInterface $entityManager
+     * @param SectionRepository $sectionRepository
      * @return RedirectResponse|Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregarSeccion/{id}', name: 'principal_agregar_seccion', methods: ['GET', 'POST'])]
-    public function agregarSeccion(Request $request, Principal $principal, EntityManagerInterface $entityManager, SectionRepository $sectionRepository, PrincipalRepository $principalRepository)
+    #[Route(path: '/agregarSeccion/{id}', name: 'principal_agregar_seccion', methods: ['GET', 'POST'])]
+    public function agregarSeccion(Request           $request, Principal $principal, EntityManagerInterface $entityManager,
+                                   SectionRepository $sectionRepository): RedirectResponse|Response
     {
         $form = $this->createForm(SectionAddType::class);
         $form->handleRequest($request);

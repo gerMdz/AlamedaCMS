@@ -9,12 +9,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/itemfeed')]
+#[Route(path: '/admin/itemfeed')]
 class ItemFeedController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'item_feed_index', methods: ['GET'])]
+    #[Route(path: '/', name: 'item_feed_index', methods: ['GET'])]
     public function index(ItemFeedRepository $itemFeedRepository): Response
     {
         return $this->render('item_feed/index.html.twig', [
@@ -22,7 +22,7 @@ class ItemFeedController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'item_feed_new', methods: ['GET', 'POST'])]
+    #[Route(path: '/new', name: 'item_feed_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $itemFeed = new ItemFeed();
@@ -42,7 +42,7 @@ class ItemFeedController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'item_feed_show', methods: ['GET'])]
+    #[Route(path: '/{id}', name: 'item_feed_show', methods: ['GET'])]
     public function show(ItemFeed $itemFeed): Response
     {
         return $this->render('item_feed/show.html.twig', [
@@ -50,7 +50,7 @@ class ItemFeedController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'item_feed_edit', methods: ['GET', 'POST'])]
+    #[Route(path: '/{id}/edit', name: 'item_feed_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ItemFeed $itemFeed, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ItemFeedType::class, $itemFeed);
@@ -68,7 +68,7 @@ class ItemFeedController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'item_feed_delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}', name: 'item_feed_delete', methods: ['DELETE'])]
     public function delete(Request $request, ItemFeed $itemFeed, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$itemFeed->getId(), $request->request->get('_token'))) {

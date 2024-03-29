@@ -8,19 +8,21 @@ use App\Entity\Entrada;
 use App\Service\UploaderHelper;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
+use Random\RandomException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
 class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
 {
-    private static $entradaTitles = [
+    private static array $entradaTitles = [
         'Ante lo Inesperado',
         'Indomita',
         'Rescate en las llamas',
         'Maravillas cotidianas',
     ];
 
-    private static $entradaImages = [
+    private static array $entradaImages = [
         '01-Ante-lo-inesperado.jpg',
         '02-Indomita.jpg',
         '03-Rescate-en-las-llamas.jpg',
@@ -33,7 +35,7 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
     {
     }
 
-    protected function loadData(ObjectManager $manager)
+    protected function loadData(ObjectManager $manager): void
     {
         $this->createMany(10, 'main_entradas', function ($count) {
             $entrada = new Entrada();
@@ -50,13 +52,15 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
                 ->setImageFilename($imageFilename)
                 ->setLinkRoute($link);
 
-
             return $entrada;
         });
 
         $manager->flush();
     }
 
+    /**
+     * @throws Exception
+     */
     private function fakeUploadImage(): string
     {
         $randomImage = $this->faker->randomElement(self::$entradaImages);
@@ -68,13 +72,14 @@ class EntradaFixtures extends BaseFixture implements DependentFixtureInterface
             ->uploadEntradaImage(new File($targetPath), false);
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
-//            TagFixture::class,
+            //            TagFixture::class,
             UserFixtures::class,
         ];
     }
+
     public static function getGroups(): array
     {
         return ['groupentradas'];

@@ -11,16 +11,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * @method User|null getUser()
  */
-#[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_USER')]
+#[IsGranted('ROLE_USER')]
 class PerfilController extends BaseController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: 'web/perfil', name: 'app_perfil')]
+    #[Route(path: 'web/perfil', name: 'app_perfil')]
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
         return $this->render('perfil/perfil_index.html.twig', [
@@ -28,7 +29,7 @@ class PerfilController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/api/perfil', name: 'api_perfil')]
+    #[Route(path: '/api/perfil', name: 'api_perfil')]
     public function apiPerfil(): JsonResponse
     {
         $user = $this->getUser();
@@ -38,7 +39,7 @@ class PerfilController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/web/cambiopassword/{email}', name: 'app_changepassword')]
+    #[Route(path: '/web/cambiopassword/{email}', name: 'app_changepassword')]
     public function changePassword(
         Request $request, User $user,
         UserPasswordHasherInterface $userPasswordHasher,

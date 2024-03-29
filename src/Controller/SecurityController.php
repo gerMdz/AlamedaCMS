@@ -10,19 +10,20 @@ use App\Form\VoluntarioReservaRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
+use LogicException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/ingreso', name: 'app_login')]
+    #[Route(path: '/admin/ingreso', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         try {
@@ -38,19 +39,24 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/logout', name: 'app_logout')]
+    #[Route(path: '/admin/logout', name: 'app_logout')]
     public function logout(): never
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     /**
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
+     * @param GuardAuthenticatorHandler $authenticatorHandler
+     * @param LoginFormAuthenticator $formAuthenticator
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/registro', name: 'app_registro')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,
-        GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator,
-        EntityManagerInterface $entityManager)
+    #[Route(path: '/admin/registro', name: 'app_registro')]
+    public function register(Request                   $request, UserPasswordHasherInterface $userPasswordHasher,
+                             GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator,
+                             EntityManagerInterface    $entityManager): Response
     {
         $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
@@ -90,13 +96,17 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
+     * @param UserRepository $userRepository
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]
-    public function registerVoluntarioReserva(Request $request,
-        UserPasswordHasherInterface $userPasswordHasher,
-        UserRepository $userRepository,
-        EntityManagerInterface $entityManager)
+    #[Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]
+    public function registerVoluntarioReserva(Request                     $request,
+                                              UserPasswordHasherInterface $userPasswordHasher,
+                                              UserRepository              $userRepository,
+                                              EntityManagerInterface      $entityManager): Response
     {
         $form = $this->createForm(VoluntarioReservaRegistrationFormType::class);
         $form->handleRequest($request);
@@ -105,7 +115,7 @@ class SecurityController extends AbstractController
             /** @var VoluntarioReservaRegistrationFormModel $userModel */
             $userModel = $form->getData();
             $user = new User();
-            $email = strtolower((string) $userModel->primerNombre).'@alameda.ar';
+            $email = strtolower((string)$userModel->primerNombre) . '@alameda.ar';
             $isUser = $userRepository->findBy(['email' => $email]);
             if ($isUser) {
                 $this->addFlash('success', sprintf('El usuario %s ya existe', $user->getEmail()));
@@ -126,7 +136,7 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Se agregó correctamente al usuario '.$user->getEmail());
+            $this->addFlash('success', 'Se agregó correctamente al usuario ' . $user->getEmail());
 
             return $this->redirectToRoute('app_registro_voluntario_reserva');
         }

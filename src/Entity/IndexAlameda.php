@@ -2,17 +2,18 @@
 
 namespace App\Entity;
 
+use App\Repository\IndexAlamedaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: \App\Repository\IndexAlamedaRepository::class)]
+#[ORM\Entity(repositoryClass: IndexAlamedaRepository::class)]
 class IndexAlameda implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $lema = null;
@@ -46,12 +47,12 @@ class IndexAlameda implements \Stringable
 
     #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'indexAlamedas')]
     #[ORM\OrderBy(['orden' => 'ASC'])]
-    private $section;
+    private ArrayCollection $section;
 
-    #[ORM\OneToMany(targetEntity: BlocsFixes::class, mappedBy: 'indexAlameda')]
+    #[ORM\OneToMany(mappedBy: 'indexAlameda', targetEntity: BlocsFixes::class)]
     private Collection $blocs_fixes;
 
-    #[ORM\ManyToOne()]
+    #[ORM\ManyToOne]
     private ?ModelTemplate $template = null;
 
     public function __construct()
@@ -191,7 +192,7 @@ class IndexAlameda implements \Stringable
     }
 
     /**
-     * @return Collection|Section[]
+     * @return Collection
      */
     public function getSection(): Collection
     {
@@ -225,7 +226,6 @@ class IndexAlameda implements \Stringable
     }
 
     /**
-     * @param BlocsFixes $blocsFix
      * @return $this
      */
     public function addBlocsFix(BlocsFixes $blocsFix): self

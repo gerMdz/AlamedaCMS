@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[\Symfony\Component\Routing\Attribute\Route(path: '/entrada')]
+#[Route(path: '/entrada')]
 class EntradaController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{linkRoute}', name: 'entrada_ver', methods: ['GET'])]
+    #[Route(path: '/{linkRoute}', name: 'entrada_ver', methods: ['GET'])]
     public function ver(Entrada $entrada, EntradaRepository $er): Response
     {
         $entrada = $er->findOneBy(['linkRoute' => $entrada->getLinkRoute()]);
@@ -25,12 +25,12 @@ class EntradaController extends AbstractController
             throw $this->createNotFoundException(sprintf('No se encontró la entrada "%s"', $entrada));
         }
 
-        return $this->render('entrada/link.html.twig', [
+        return $this->render('admin/entrada/link.html.twig', [
             'entrada' => $entrada,
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/count/{id}/like', name: 'entrada_toggle_like', methods: ['POST'])]
+    #[Route(path: '/count/{id}/like', name: 'entrada_toggle_like', methods: ['POST'])]
     public function toggleArticleHeart(Entrada $entrada, EntityManagerInterface $em): JsonResponse
     {
         $entrada->incrementaLikeCount();
@@ -39,7 +39,7 @@ class EntradaController extends AbstractController
         return new JsonResponse(['like' => $entrada->getLikes()]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/entrada/section/{id}', methods: 'GET', name: 'admin_entrada_list_section')]
+    #[Route(path: '/admin/entrada/section/{id}', name: 'admin_entrada_list_section', methods: 'GET')]
     public function getSectionPrincipal(Entrada $entrada): JsonResponse
     {
         return $this->json(
@@ -53,11 +53,15 @@ class EntradaController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param Entrada $entrada
+     * @param SectionRepository $sectionRepository
+     * @param EntityManagerInterface $entityManager
      * @return RedirectResponse|Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregarSeccion/{id}', name: 'entrada_agregar_seccion', methods: ['GET', 'POST'])]
+    #[Route(path: '/agregarSeccion/{id}', name: 'entrada_agregar_seccion', methods: ['GET', 'POST'])]
     public function agregarSeccion(Request $request, Entrada $entrada, SectionRepository $sectionRepository,
-        EntityManagerInterface $entityManager)
+        EntityManagerInterface $entityManager): RedirectResponse|Response
     {
         $form = $this->createForm(EntradaSectionType::class, $entrada);
         $form->handleRequest($request);

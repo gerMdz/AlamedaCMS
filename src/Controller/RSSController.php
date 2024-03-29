@@ -6,7 +6,7 @@ use App\Repository\ChannelFeedRepository;
 use App\Rss\Xml;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class RSSController extends AbstractController
 {
@@ -17,7 +17,7 @@ class RSSController extends AbstractController
     {
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/rss', name: 'rss-feed')]
+    #[Route(path: '/rss', name: 'rss-feed')]
     public function rss(ChannelFeedRepository $channelFeedRepository): Response
     {
         $channels = $channelFeedRepository->findFirst();

@@ -2,11 +2,16 @@
 
 namespace App\Service;
 
+use Exception;
 use Gedmo\Sluggable\Util\Urlizer;
-use League\Flysystem\FileNotFoundException;
+
 use League\Flysystem\Filesystem;
+use League\Flysystem\FilesystemException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Asset\Context\RequestStackContext;
+
+//use Symfony\Component\Filesystem\Exception\FileNotFoundException;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -24,16 +29,17 @@ class UploaderHelper
     {
     }
 
+    /**
+     * @throws FilesystemException
+     */
     public function uploadEntradaImage(File $file, ?string $existingFilename): string
     {
         $newFilename = $this->uploadFile($file, self::IMAGE_ENTRADA, true);
 
         if ($existingFilename) {
             try {
-                $result = $this->filesystem->delete(self::IMAGE_ENTRADA . '/' . $existingFilename);
-                if (false === $result) {
-                    throw new \Exception(sprintf('No se pudo borrar la imagen anterior "%s"', $existingFilename));
-                }
+                $this->filesystem->delete(self::IMAGE_ENTRADA . '/' . $existingFilename);
+
             } catch (FileNotFoundException) {
                 $this->logger->alert(sprintf('No se pudo borrar "%s" imagen perdida', $existingFilename));
             }
@@ -54,7 +60,7 @@ class UploaderHelper
                 ->getBasePath() . $this->uploadedAssetsBaseUrl . '/' . $path;
     }
 
-    private function uploadFile(File $file, string $directory, bool $isPublic)
+    private function uploadFile(File $file, string $directory, bool $isPublic): string
     {
         if ($file instanceof UploadedFile) {
             $originalFilename = $file->getClientOriginalName();
@@ -66,14 +72,13 @@ class UploaderHelper
 
         $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
 
-
         $stream = fopen($file->getPathname(), 'r');
         $result = $filesystem->writeStream(
             $directory . '/' . $newFilename,
             $stream
         );
         if (false === $result) {
-            throw new \Exception(sprintf('No se pudo escribir el archivo cargado "%s"', $newFilename));
+            throw new Exception(sprintf('No se pudo escribir el archivo cargado "%s"', $newFilename));
         }
         if (is_resource($stream)) {
             fclose($stream);
@@ -88,18 +93,23 @@ class UploaderHelper
         $resource = $filesystem->readStream($path);
 
         if (false === $resource) {
-            throw new \Exception(sprintf('Error al abrir secuencia para "%s"', $path));
+            throw new Exception(sprintf('Error al abrir secuencia para "%s"', $path));
         }
 
         return $resource;
     }
 
-    public function deleteFile(string $path, bool $isPublic)
+    /**
+     * @throws FilesystemException
+     * @throws Exception
+     */
+    public function deleteFile(string $path, bool $isPublic): void
     {
         $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
-        $result = $filesystem->delete($path);
-        if (false === $result) {
-            throw new \Exception(sprintf('Error borrando "%s"', $path));
+        try {
+            $filesystem->delete($path);
+        } catch (Exception $e) {
+            throw new Exception(sprintf('Error al eliminar "%s": %s', $path, $e->getMessage()));
         }
     }
 }

@@ -18,7 +18,9 @@ use App\Repository\SourceApiRepository;
 use App\Service\Handler\SourceApi\HandlerSourceApi;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\QueryException;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -28,7 +30,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -38,18 +41,18 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 /**
  * Class SectionController.
  */
-#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/section')]
+#[Route(path: '/admin/section')]
 class SectionController extends BaseController
 {
     /**
      * SectionController constructor.
      */
-    public function __construct(private readonly RequestStack $requestStack, private readonly HandlerSourceApi $api,
+    public function __construct(private readonly RequestStack    $requestStack, private readonly HandlerSourceApi $api,
                                 private readonly ManagerRegistry $managerRegistry)
     {
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'admin_section_list')]
+    #[Route(path: '/', name: 'admin_section_list')]
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
         $bus = $request->get('busq');
@@ -67,10 +70,10 @@ class SectionController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'admin_section_new')]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_EDITOR')]
+    #[Route(path: '/new', name: 'admin_section_new')]
+    #[IsGranted('ROLE_EDITOR')]
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(SectionFormType::class);
@@ -112,10 +115,10 @@ class SectionController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'admin_section_edit', methods: ['GET', 'POST'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'section')]
+    #[Route(path: '/{id}/edit', name: 'admin_section_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('MANAGE', subject: 'section')]
     public function edit(Request $request, Section $section, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(SectionFormType::class, $section);
@@ -139,7 +142,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/index/{id}', name: 'admin_index_delete_section', methods: ['DELETE'])]
+    #[Route(path: '/index/{id}', name: 'admin_index_delete_section', methods: ['DELETE'])]
     public function deleteIndexSection(Section $section, EntityManagerInterface $entityManager): Response
     {
         $indexAlameda = $section->getIndexAlamedas();
@@ -151,12 +154,13 @@ class SectionController extends BaseController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/entrada/{id}/{entrada}', name: 'admin_entrada_delete_section', methods: ['DELETE'])]
+    #[Route(path: '/entrada/{id}/{entrada}', name: 'admin_entrada_delete_section', methods: ['DELETE'])]
     public function deleteEntradaSection(
-        Section $section,
-        Entrada $entrada,
+        Section                $section,
+        Entrada                $entrada,
         EntityManagerInterface $entityManager
-    ): Response {
+    ): Response
+    {
         $section->removeEntrada($entrada);
 
         $entityManager->flush();
@@ -164,12 +168,13 @@ class SectionController extends BaseController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/principal/{id}/{principal}', name: 'admin_principal_delete_section', methods: ['DELETE'])]
+    #[Route(path: '/principal/{id}/{principal}', name: 'admin_principal_delete_section', methods: ['DELETE'])]
     public function deletePrincipalSection(
-        Section $section,
-        Principal $principal,
+        Section                $section,
+        Principal              $principal,
         EntityManagerInterface $entityManager
-    ): Response {
+    ): Response
+    {
         if (null !== $principal->getSecciones()) {
             $section->removePrincipale($principal);
         }
@@ -180,19 +185,23 @@ class SectionController extends BaseController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/muestra/seccion/{id}')]
-    public function mostrarSection(Section $section, EntradaRepository $entradaRepository, SourceApiRepository $sourceApiRepository): Response
+    /**
+     * @throws QueryException
+     */
+    #[Route(path: '/muestra/seccion/{id}')]
+    public function mostrarSection(Section             $section, EntradaRepository $entradaRepository,
+                                   SourceApiRepository $sourceApiRepository): Response
     {
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
 
-        $twig = $section->getModelTemplate().'.html.twig';
+        $twig = $section->getModelTemplate() . '.html.twig';
         $response_api = null;
         $apiSource = null;
 
         if ('api.html.twig' == $twig) {
             try {
                 $apiSource = $sourceApiRepository->findBy([
-                 'identifier' => $section->getIdentificador(),
+                    'identifier' => $section->getIdentificador(),
                 ]);
             } catch (NotFoundExceptionInterface|ContainerExceptionInterface) {
             }
@@ -204,7 +213,7 @@ class SectionController extends BaseController
                 }
             }
         }
-        $model = 'models/sections/'.$twig;
+        $model = 'models/sections/' . $twig;
 
         return $this->render($model, [
             'entradas' => $entradas,
@@ -213,7 +222,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'admin_section_show', methods: ['GET'])]
+    #[Route(path: '/{id}', name: 'admin_section_show', methods: ['GET'])]
     public function show(Section $section): Response
     {
         return $this->render('admin/section_admin/show.html.twig', [
@@ -222,10 +231,10 @@ class SectionController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new/step1', name: 'admin_section_new_step1', methods: ['GET', 'POST'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
+    #[Route(path: '/new/step1', name: 'admin_section_new_step1', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function newStepOne(Request $request): Response
     {
         $section = new Section();
@@ -250,13 +259,14 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new/step2/{id}', name: 'admin_section_new_step2', methods: ['GET', 'POST'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
+    #[Route(path: '/new/step2/{id}', name: 'admin_section_new_step2', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function newStepTwo(
-        Request $request,
-        Section $section,
+        Request                 $request,
+        Section                 $section,
         ModelTemplateRepository $modelTemplateRepository
-    ): Response {
+    ): Response
+    {
         $section->setTitle($section->getName());
         $form = $this->createForm(StepTwoType::class, $section);
         $form->handleRequest($request);
@@ -283,8 +293,8 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new/step3/{id}', name: 'admin_section_new_step3', methods: ['GET', 'POST'])]
-    #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
+    #[Route(path: '/new/step3/{id}', name: 'admin_section_new_step3', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ESCRITOR')]
     public function newStepThree(Request $request, Section $section): Response
     {
         $section->setTitle($section->getName());
@@ -305,8 +315,15 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/test/api/{identifier}', name: 'admin_section_test_api', methods: ['GET', 'POST'])]
-    public function getDataSourceApi(SourceApi $api)
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws ClientExceptionInterface
+     */
+    #[Route(path: '/test/api/{identifier}', name: 'admin_section_test_api', methods: ['GET', 'POST'])]
+    public function getDataSourceApi(SourceApi $api): JsonResponse
     {
         return new JsonResponse($this->api->fetchSourceApi($api));
     }
@@ -314,12 +331,14 @@ class SectionController extends BaseController
     /**
      * La idea es agregar una entrada ya creada a una sección, falta el modal que selecciona la entrada.
      *
-     * @param Entrada $section
-     *
+     * @param Request $request
+     * @param Section $section
+     * @param SectionRepository $sectionRepository
      * @return RedirectResponse|Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregarEntrada/{id}', name: 'section_agregar_entrada', methods: ['GET', 'POST'])]
-    public function agregarSeccion(Request $request, Section $section, EntradaRepository $entradaRepository)
+    #[Route(path: '/agregarEntrada/{id}', name: 'section_agregar_entrada', methods: ['GET', 'POST'])]
+    public function agregarSeccion(Request           $request, Section $section,
+                                   SectionRepository $sectionRepository): RedirectResponse|Response
     {
         $form = $this->createForm(EntradaSectionType::class, $section);
         $form->handleRequest($request);

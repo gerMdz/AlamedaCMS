@@ -9,12 +9,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/roles')]
+#[Route(path: '/admin/roles')]
 class RolesController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'roles_list', methods: ['GET'])]
+    #[Route(path: '/', name: 'roles_list', methods: ['GET'])]
     public function list(RolesRepository $rolesRepository): Response
     {
         return $this->render('roles/list.html.twig', [
@@ -22,7 +22,7 @@ class RolesController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'roles_new', methods: ['GET', 'POST'])]
+    #[Route(path: '/new', name: 'roles_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $role = new Roles();
@@ -42,7 +42,7 @@ class RolesController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'roles_show', methods: ['GET'])]
+    #[Route(path: '/{id}', name: 'roles_show', methods: ['GET'])]
     public function show(Roles $role): Response
     {
         return $this->render('roles/show.html.twig', [
@@ -50,7 +50,7 @@ class RolesController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'roles_edit', methods: ['GET', 'POST'])]
+    #[Route(path: '/{id}/edit', name: 'roles_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Roles $role, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(RolesType::class, $role);
@@ -68,7 +68,7 @@ class RolesController extends AbstractController
         ]);
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'roles_delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}', name: 'roles_delete', methods: ['DELETE'])]
     public function delete(Request $request, Roles $role, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$role->getId(), $request->request->get('_token'))) {

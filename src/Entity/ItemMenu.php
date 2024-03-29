@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-
-use AllowDynamicProperties;
 use App\Entity\Traits\CssClass;
 use App\Entity\Traits\IdentificadorTrait;
 use App\Repository\ItemMenuRepository;
@@ -13,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 
-#[AllowDynamicProperties] #[ORM\Entity(repositoryClass: ItemMenuRepository::class)]
+#[\AllowDynamicProperties] #[ORM\Entity(repositoryClass: ItemMenuRepository::class)]
 class ItemMenu
 {
     use TimestampableEntity;
@@ -66,7 +64,6 @@ class ItemMenu
         $this->role = new ArrayCollection();
         $this->itemMenus = new ArrayCollection();
         $this->menu = new ArrayCollection();
-
     }
 
     public function __toString()
@@ -79,9 +76,6 @@ class ItemMenu
         return $this->id;
     }
 
-    /**
-     * @return Collection
-     */
     public function getRole(): Collection
     {
         return $this->role;
@@ -175,9 +169,6 @@ class ItemMenu
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function getItemMenus(): Collection
     {
         return $this->itemMenus;
@@ -234,9 +225,6 @@ class ItemMenu
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     public function getMenu(): Collection
     {
         return $this->menu;
@@ -270,9 +258,6 @@ class ItemMenu
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getRol(): array
     {
         return $this->rol;

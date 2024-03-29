@@ -7,6 +7,7 @@ use App\Entity\Traits\LinksTrait;
 use App\Entity\Traits\OfertTrait;
 use App\Repository\EntradaRepository;
 use App\Service\UploaderHelper;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -43,7 +44,7 @@ class Entrada implements \Stringable
     private ?string $contenido = null;
 
     #[ORM\ManyToOne(inversedBy: 'entradas')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[JoinColumn(nullable: false)]
     private ?User $autor = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -51,7 +52,7 @@ class Entrada implements \Stringable
     private ?string $imageFilename = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $publicadoAt = null;
+    private ?DateTimeInterface $publicadoAt = null;
 
     #[ORM\OneToMany(mappedBy: 'entrada', targetEntity: EntradaReference::class)]
     #[ORM\OrderBy(['posicion' => 'ASC'])]
@@ -68,7 +69,7 @@ class Entrada implements \Stringable
     private ?Collection $principals;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $eventoAt = null;
+    private ?DateTimeInterface $eventoAt = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $typeOrigin = null;
@@ -103,7 +104,7 @@ class Entrada implements \Stringable
     #[ORM\ManyToMany(targetEntity: ButtonLink::class, inversedBy: 'entradas')]
     private ?Collection $button;
 
-    #[ORM\Column(type: 'string', length: 150, nullable: true, unique: true)]
+    #[ORM\Column(type: 'string', length: 150, unique: true, nullable: true)]
     private ?string $identificador = null;
 
     #[JoinTable(name: 'section_entrada')]
@@ -123,7 +124,7 @@ class Entrada implements \Stringable
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     public function __toString(): string
     {
@@ -183,12 +184,12 @@ class Entrada implements \Stringable
         return $this;
     }
 
-    public function getPublicadoAt(): ?\DateTimeInterface
+    public function getPublicadoAt(): ?DateTimeInterface
     {
         return $this->publicadoAt;
     }
 
-    public function setPublicadoAt(?\DateTimeInterface $publicadoAt): self
+    public function setPublicadoAt(?DateTimeInterface $publicadoAt): self
     {
         $this->publicadoAt = $publicadoAt;
 
@@ -201,7 +202,7 @@ class Entrada implements \Stringable
     }
 
     /**
-     * @return Collection|EntradaReference[]|null
+     * @return Collection|null
      */
     public function getEntradaReferences(): ?Collection
     {
@@ -228,7 +229,7 @@ class Entrada implements \Stringable
     }
 
     /**
-     * @return Collection|Comentario[]|null
+     * @return Collection|null
      */
     public function getComentariosNoDeleted(): ?Collection
     {
@@ -238,7 +239,7 @@ class Entrada implements \Stringable
     }
 
     /**
-     * @return Collection|Comentario[]|null
+     * @return Collection|null
      */
     public function getComentarios(): ?Collection
     {
@@ -269,7 +270,7 @@ class Entrada implements \Stringable
     }
 
     /**
-     * @return Collection|Principal[]|null
+     * @return Collection|null
      */
     public function getPrincipals(): ?Collection
     {
@@ -296,12 +297,12 @@ class Entrada implements \Stringable
         return $this;
     }
 
-    public function getEventoAt(): ?\DateTimeInterface
+    public function getEventoAt(): ?DateTimeInterface
     {
         return $this->eventoAt;
     }
 
-    public function setEventoAt(?\DateTimeInterface $eventoAt): self
+    public function setEventoAt(?DateTimeInterface $eventoAt): self
     {
         $this->eventoAt = $eventoAt;
 
@@ -381,7 +382,7 @@ class Entrada implements \Stringable
     }
 
     /**
-     * @return Collection|Contacto[]|null
+     * @return Collection|null
      */
     public function getContacto(): ?Collection
     {
@@ -441,7 +442,7 @@ class Entrada implements \Stringable
     }
 
     /**
-     * @return Collection|ButtonLink[]|null
+     * @return Collection|null
      */
     public function getButton(): ?Collection
     {
@@ -487,7 +488,7 @@ class Entrada implements \Stringable
         return $this->sections;
     }
 
-    public function addSection(Section $section = null): self
+    public function addSection(?Section $section = null): self
     {
         if ($section) {
             if (!$this->sections->contains($section)) {

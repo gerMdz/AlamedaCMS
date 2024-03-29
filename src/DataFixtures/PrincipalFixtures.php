@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class PrincipalFixtures extends BaseFixture implements DependentFixtureInterface
 {
-    private static $principalTitles = [
+    private static array $principalTitles = [
         'grupospequeños',
         'ofrenda',
         'notas',
@@ -17,7 +17,7 @@ class PrincipalFixtures extends BaseFixture implements DependentFixtureInterface
         'avanza',
     ];
 
-    protected function loadData(ObjectManager $manager)
+    protected function loadData(ObjectManager $manager): void
     {
         // $product = new Product();
         // $manager->persist($product);
@@ -37,10 +37,10 @@ class PrincipalFixtures extends BaseFixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
-//            TagFixture::class,
+            //            TagFixture::class,
             UserFixtures::class,
             EntradaFixtures::class,
         ];

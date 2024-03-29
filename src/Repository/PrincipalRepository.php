@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Principal;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -64,7 +65,7 @@ class PrincipalRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function getOrCreateQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('p');
     }
@@ -87,8 +88,8 @@ class PrincipalRepository extends ServiceEntityRepository
     }
 
     public function principalByDateAndActiveAndModification(
-        \DateTime $fecha_inicial,
-        \DateTime $fecha_final,
+        DateTime $fecha_inicial,
+        DateTime $fecha_final,
         ?array $notPrincipals
     ): QueryBuilder {
         $qb = $this->createQueryBuilder('p')

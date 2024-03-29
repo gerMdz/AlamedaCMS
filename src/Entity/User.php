@@ -189,7 +189,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \String
         return $this;
     }
 
-    public function getAvatarUrl(string $size = null): ?string
+    public function getAvatarUrl(?string $size = null): ?string
     {
         $url = 'https://robohash.org/'.$this->getEmail().'?set=set2';
         if ($size) {

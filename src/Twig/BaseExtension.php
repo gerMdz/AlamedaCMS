@@ -17,19 +17,15 @@ use Twig\TwigFunction;
 
 class BaseExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
+    protected string $ind_inicio = '{{';
 
-
-    protected string $ind_inicio = "{{";
-    protected string $ind_final = "}}";
+    protected string $ind_final = '}}';
 
     /**
      * BaseExtension constructor.
-     * @param EntityManagerInterface $em
-     * @param ContainerInterface $container
      */
     public function __construct(private readonly EntityManagerInterface $em, private readonly ContainerInterface $container)
     {
-
     }
 
     public function getFilters(): array
@@ -69,6 +65,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     public function metaDescripcion(): ?string
     {
         $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
+
         //        return $base->getMetaDescripcion();
         return $base->getMetaDescripcion() ?? '';
     }
@@ -82,7 +79,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         );
     }
 
-
     public function getUploadedAssetPath(string $path): string
     {
         return $this->container
@@ -94,6 +90,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     {
         $invitados = $this->container->get(EntityManagerInterface::class)->getRepository(Invitado::class)
             ->countByCelebracion($celebracion);
+
         return $cantidad - $invitados;
     }
 
@@ -111,7 +108,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         ];
     }
 
-    public function redirection(string $link = null): void
+    public function redirection(?string $link = null): void
     {
         if ('' === ($link ?? '')) {
             throw new InvalidArgumentException('No se puede redireccionar a una URL vacía.');
@@ -122,8 +119,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
 
     public function completa_texto(string $campo): array|string
     {
-
-
         do {
             $inicio = strpos($campo, $this->ind_inicio);
 
@@ -132,7 +127,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
                 $servicio = substr($campo,
                     $inicio + strlen($this->ind_inicio),
                     $fin - ($inicio + strlen($this->ind_inicio)));
-                $campo = str_replace($this->ind_inicio . $servicio . $this->ind_final,
+                $campo = str_replace($this->ind_inicio.$servicio.$this->ind_final,
                     $this->addTexto(trim($servicio)), $campo);
 
                 $encuentro = true;
@@ -161,8 +156,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     }
 
     /**
-     * @param string $type
-     * @param string $fuente
      * @return array|string|void
      */
     public function form_suscripto_newsletter(string $type, string $fuente)
@@ -175,10 +168,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         }
     }
 
-    /**
-     * @param string $fuente
-     * @return string
-     */
     protected function divScript(string $fuente): string
     {
         $crea_formulario = $this->container->get(EntityManagerInterface::class)
@@ -188,10 +177,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return $crea_formulario[0]->getSrcCodigo();
     }
 
-    /**
-     * @param string $fuente
-     * @return array
-     */
     protected function divIframe(string $fuente): array
     {
         $crea_formulario = $this->container->get(EntityManagerInterface::class)
@@ -201,10 +186,6 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return [$crea_formulario[0]->getSrcCodigo(), $crea_formulario[0]->getSrcParameters()];
     }
 
-    /**
-     * @param $data
-     * @return string
-     */
     public function booleano($data): string
     {
         $icono = '<i class="fa fa-close fa-2x text-danger"> </i>';

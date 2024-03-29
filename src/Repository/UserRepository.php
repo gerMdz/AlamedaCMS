@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -25,7 +26,7 @@ class UserRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function findByRoleAndEmail($email, $role)
+    public function findByRoleAndEmail($email, $role): array
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.email = :email')
@@ -38,7 +39,7 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByRoleAutor()
+    public function findByRoleAutor(): QueryBuilder
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.roles LIKE :roles')
@@ -47,7 +48,7 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllEmailsRoleAlfa(string $query, string $role = null, int $limit = 5)
+    public function findAllEmailsRoleAlfa(string $query, ?string $role = null, int $limit = 5)
     {
         $qb = $this->createQueryBuilder('u');
 

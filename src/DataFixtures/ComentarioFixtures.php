@@ -8,8 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class ComentarioFixtures extends BaseFixture implements DependentFixtureInterface
 {
-
-    protected function loadData(ObjectManager $manager)
+    protected function loadData(ObjectManager $manager): void
     {
         $this->createMany(100, 'main_comentarios', function ($count) {
             $comment = new Comentario();
@@ -26,10 +25,10 @@ class ComentarioFixtures extends BaseFixture implements DependentFixtureInterfac
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
-//            TagFixture::class,
+            //            TagFixture::class,
             UserFixtures::class,
             EntradaFixtures::class,
         ];

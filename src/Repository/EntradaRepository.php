@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Entrada;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\QueryException;
@@ -96,7 +97,7 @@ class EntradaRepository extends ServiceEntityRepository
             )
             ->andWhere('e.publicadoAt is not null')
             ->andWhere('s.id = :section')
-            ->setParameter('today', new \DateTime('now'))
+            ->setParameter('today', new DateTime('now'))
             ->setParameter('section', $seccion)
             ->getQuery()
             ->getResult();
@@ -127,7 +128,7 @@ class EntradaRepository extends ServiceEntityRepository
         ;
     }
     */
-    private function addIsPublishedQueryBuilder(QueryBuilder $qb = null, $user = null): QueryBuilder
+    private function addIsPublishedQueryBuilder(?QueryBuilder $qb = null, $user = null): QueryBuilder
     {
         $qb = $this->getOrCreateQueryBuilder($qb)
             ->andWhere('e.publicadoAt IS NOT NULL');
@@ -139,13 +140,13 @@ class EntradaRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    private function addIsDisponibleForSeccion($seccion, QueryBuilder $qb = null): QueryBuilder
+    private function addIsDisponibleForSeccion($seccion, ?QueryBuilder $qb = null): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('s.publicadoAt IS NOT NULL');
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function getOrCreateQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('e');
     }

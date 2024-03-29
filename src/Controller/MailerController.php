@@ -12,14 +12,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class MailerController extends AbstractController
 {
     /**
      * @throws TransportExceptionInterface
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/email/{id}', name: 'envia_mail')]
+    #[Route(path: '/email/{id}', name: 'envia_mail')]
     public function sendEmail(MailerInterface $mailer, Reservante $reservante): RedirectResponse
     {
         $email = $reservante->getEmail();
@@ -50,7 +50,7 @@ class MailerController extends AbstractController
      *
      * @throws TransportExceptionInterface
      */
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/email_invitado/{id}', name: 'envia_mail_invitado')]
+    #[Route(path: '/email_invitado/{id}', name: 'envia_mail_invitado')]
     public function sendEmailInvitado(MailerInterface $mailer, Invitado $reservante)
     {
         $email = $reservante->getEmail();
@@ -73,5 +73,6 @@ class MailerController extends AbstractController
             ]); // ; final de email
 
         $mailer->send($email);
+
     }
 }

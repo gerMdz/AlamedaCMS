@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EntradaComplexType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -38,7 +38,7 @@ class EntradaComplexType extends AbstractType
                     'required' => false,
                     'config' => [
                         'uiColor' => '#ffffff',
-                    'toolbar' => 'full',
+                        'toolbar' => 'full',
                         'language' => 'es',
                     ],
                     'label_attr' => [
@@ -53,7 +53,7 @@ class EntradaComplexType extends AbstractType
             ); // ; Final Builder
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Entrada::class,
