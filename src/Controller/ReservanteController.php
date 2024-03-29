@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/reservante')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/reservante')]
 #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_RESERVA')]
 class ReservanteController extends AbstractController
 {
-    #[Route(path: '/', name: 'reservante_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'reservante_index', methods: ['GET'])]
     public function index(ReservanteRepository $reservanteRepository): Response
     {
         return $this->render('reservante/index.html.twig', [
@@ -24,7 +24,7 @@ class ReservanteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/lectura', name: 'reserva_lectura', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/lectura', name: 'reserva_lectura', methods: ['GET', 'POST'])]
     public function consultaReserva(Request $request, ReservanteRepository $reservanteRepository, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ReservaByEmailFilterType::class);
@@ -52,7 +52,7 @@ class ReservanteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'reservante_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'reservante_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservante = new Reservante();
@@ -72,7 +72,7 @@ class ReservanteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'reservante_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'reservante_show', methods: ['GET'])]
     public function show(Reservante $reservante): Response
     {
         return $this->render('reservante/show.html.twig', [
@@ -80,7 +80,7 @@ class ReservanteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'reservante_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'reservante_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reservante $reservante, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ReservanteType::class, $reservante);
@@ -98,7 +98,7 @@ class ReservanteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'reservante_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'reservante_delete', methods: ['DELETE'])]
     public function delete(Request $request, Reservante $reservante, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$reservante->getId(), $request->request->get('_token'))) {

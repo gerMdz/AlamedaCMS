@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/metabase')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/metabase')]
 class MetaBaseController extends AbstractController
 {
-    #[Route(path: '/', name: 'meta_base_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'meta_base_index', methods: ['GET'])]
     public function index(MetaBaseRepository $metaBaseRepository): Response
     {
         return $this->render('meta_base/index.html.twig', [
@@ -22,7 +22,7 @@ class MetaBaseController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'meta_base_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'meta_base_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $metaBase = new MetaBase();
@@ -43,7 +43,7 @@ class MetaBaseController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'meta_base_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'meta_base_show', methods: ['GET'])]
     public function show(MetaBase $metaBase): Response
     {
         return $this->render('meta_base/show.html.twig', [
@@ -51,7 +51,7 @@ class MetaBaseController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'meta_base_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'meta_base_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, MetaBase $metaBase): Response
     {
         $form = $this->createForm(MetaBaseType::class, $metaBase);
@@ -69,7 +69,7 @@ class MetaBaseController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'meta_base_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'meta_base_delete', methods: ['DELETE'])]
     public function delete(Request $request, MetaBase $metaBase, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$metaBase->getId(), $request->request->get('_token'))) {

@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/relacion/section/entrada')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/relacion/section/entrada')]
 class RelacionSectionEntradaController extends AbstractController
 {
-    #[Route(path: '/', name: 'relacion_section_entrada_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'relacion_section_entrada_index', methods: ['GET'])]
     public function index(RelacionSectionEntradaRepository $relacionSectionEntradaRepository): Response
     {
         return $this->render('relacion_section_entrada/index.html.twig', [
@@ -22,7 +22,7 @@ class RelacionSectionEntradaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'relacion_section_entrada_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'relacion_section_entrada_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $relacionSectionEntrada = new RelacionSectionEntrada();
@@ -42,7 +42,7 @@ class RelacionSectionEntradaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'relacion_section_entrada_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'relacion_section_entrada_show', methods: ['GET'])]
     public function show(RelacionSectionEntrada $relacionSectionEntrada): Response
     {
         return $this->render('relacion_section_entrada/show.html.twig', [
@@ -50,7 +50,7 @@ class RelacionSectionEntradaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'relacion_section_entrada_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'relacion_section_entrada_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, RelacionSectionEntrada $relacionSectionEntrada, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(RelacionSectionEntradaType::class, $relacionSectionEntrada);
@@ -68,7 +68,7 @@ class RelacionSectionEntradaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'relacion_section_entrada_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'relacion_section_entrada_delete', methods: ['DELETE'])]
     public function delete(Request $request, RelacionSectionEntrada $relacionSectionEntrada, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$relacionSectionEntrada->getId(), $request->request->get('_token'))) {

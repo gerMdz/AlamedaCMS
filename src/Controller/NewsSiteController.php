@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/news-site')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/news-site')]
 class NewsSiteController extends AbstractController
 {
-    #[Route(path: '/', name: 'news_site_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'news_site_index', methods: ['GET'])]
     public function index(NewsSiteRepository $newsSiteRepository): Response
     {
         return $this->render('news_site/index.html.twig', [
@@ -22,7 +22,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'news_site_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'news_site_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $newsSite = new NewsSite();
@@ -42,7 +42,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'news_site_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'news_site_show', methods: ['GET'])]
     public function show(NewsSite $newsSite): Response
     {
         return $this->render('news_site/show.html.twig', [
@@ -50,7 +50,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'news_site_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'news_site_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, NewsSite $newsSite, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(NewsSiteType::class, $newsSite);
@@ -68,7 +68,7 @@ class NewsSiteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'news_site_delete', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'news_site_delete', methods: ['POST'])]
     public function delete(Request $request, NewsSite $newsSite, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$newsSite->getId(), $request->request->get('_token'))) {

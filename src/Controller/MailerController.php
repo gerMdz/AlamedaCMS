@@ -19,7 +19,7 @@ class MailerController extends AbstractController
     /**
      * @throws TransportExceptionInterface
      */
-    #[Route(path: '/email/{id}', name: 'envia_mail')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/email/{id}', name: 'envia_mail')]
     public function sendEmail(MailerInterface $mailer, Reservante $reservante): RedirectResponse
     {
         $email = $reservante->getEmail();
@@ -50,7 +50,7 @@ class MailerController extends AbstractController
      *
      * @throws TransportExceptionInterface
      */
-    #[Route(path: '/email_invitado/{id}', name: 'envia_mail_invitado')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/email_invitado/{id}', name: 'envia_mail_invitado')]
     public function sendEmailInvitado(MailerInterface $mailer, Invitado $reservante)
     {
         $email = $reservante->getEmail();

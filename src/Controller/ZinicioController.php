@@ -24,7 +24,7 @@ class ZinicioController extends AbstractController
     {
     }
 
-    #[Route(path: '/', name: 'index')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'index')]
     public function index(EntityManagerInterface $em)
     {
         /** @var IndexAlameda $indexAlameda */
@@ -49,19 +49,19 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/ingreso', name: 'app_ingreso')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/ingreso', name: 'app_ingreso')]
     public function ingreso(AuthenticationUtils $authenticationUtils): RedirectResponse
     {
         return $this->redirectToRoute('app_login');
     }
 
-    #[Route(path: '/reserva', name: 'app_reserva')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/reserva', name: 'app_reserva')]
     public function app_reserva(): RedirectResponse
     {
         return $this->redirectToRoute('reserva_index');
     }
 
-    #[Route(path: '/test/index', name: 'test_index')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/test/index', name: 'test_index')]
     public function test_index(): Response
     {
         $em = $this->container->get('doctrine')->getManager();
@@ -77,7 +77,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/test/{linkRoute}', name: 'test_principal_ver', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/test/{linkRoute}', name: 'test_principal_ver', methods: ['GET'])]
     public function ver_test(Principal $principal, PrincipalRepository $principalRepository): Response
     {
         $vista = $principal->getModelTemplate();
@@ -95,7 +95,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{linkRoute}', name: 'principal_ver', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{linkRoute}', name: 'principal_ver', methods: ['GET'])]
     public function ver(
         Principal $principal,
         PrincipalRepository $principalRepository,
@@ -118,7 +118,7 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{linkRoute}/listado', name: 'principal_listado', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{linkRoute}/listado', name: 'principal_listado', methods: ['GET'])]
     public function listado(
         Principal $principal,
         PrincipalRepository $principalRepository,
@@ -139,37 +139,37 @@ class ZinicioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/contacto', name: 'contacto')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/contacto', name: 'contacto')]
     public function contacto(): Response
     {
         return $this->render('models/principal/contacto.html.twig', []);
     }
 
-    #[Route(path: '/avanza', name: 'avanza')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/avanza', name: 'avanza')]
     public function avanza(): Response
     {
         return $this->render('models/principal/avanza.html.twig', []);
     }
 
-    #[Route(path: '/grupospequeños', name: 'grupospequeños', options: ['utf8' => true])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/grupospequeños', name: 'grupospequeños', options: ['utf8' => true])]
     public function gpc(): Response
     {
         return $this->render('models/principal/grupospequeños.html.twig', []);
     }
 
-    #[Route(path: '/ofrenda', name: 'ofrenda', options: ['utf8' => true])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/ofrenda', name: 'ofrenda', options: ['utf8' => true])]
     public function ofrenda(): Response
     {
         return $this->render('models/principal/ofrenda.html.twig', []);
     }
 
-    #[Route(path: '/notas', name: 'notas', options: ['utf8' => true])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/notas', name: 'notas', options: ['utf8' => true])]
     public function notas(): Response
     {
         return $this->render('models/principal/notas.html.twig', []);
     }
 
-    #[Route(path: '/oracion', name: 'oracion', options: ['utf8' => true])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/oracion', name: 'oracion', options: ['utf8' => true])]
     public function oracion(): Response
     {
         return $this->render('models/principal/oracion.html.twig', []);

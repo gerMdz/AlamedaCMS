@@ -22,7 +22,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/admin/ingreso', name: 'app_login')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/ingreso', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         try {
@@ -38,7 +38,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/admin/logout', name: 'app_logout')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/logout', name: 'app_logout')]
     public function logout(): never
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
@@ -47,7 +47,7 @@ class SecurityController extends AbstractController
     /**
      * @return Response
      */
-    #[Route(path: '/admin/registro', name: 'app_registro')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/registro', name: 'app_registro')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,
         GuardAuthenticatorHandler $authenticatorHandler, LoginFormAuthenticator $formAuthenticator,
         EntityManagerInterface $entityManager)
@@ -92,7 +92,7 @@ class SecurityController extends AbstractController
     /**
      * @return Response
      */
-    #[Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]
     public function registerVoluntarioReserva(Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
         UserRepository $userRepository,

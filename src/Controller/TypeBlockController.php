@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/typeblock')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/typeblock')]
 class TypeBlockController extends AbstractController
 {
-    #[Route(path: '/', name: 'type_block_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'type_block_index', methods: ['GET'])]
     public function index(TypeBlockRepository $typeBlockRepository): Response
     {
         return $this->render('type_block/index.html.twig', [
@@ -22,7 +22,7 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'type_block_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'type_block_new', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -43,7 +43,7 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'type_block_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'type_block_show', methods: ['GET'])]
     public function show(TypeBlock $typeBlock): Response
     {
         return $this->render('type_block/show.html.twig', [
@@ -51,7 +51,7 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'type_block_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'type_block_edit', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {
@@ -70,7 +70,7 @@ class TypeBlockController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'type_block_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'type_block_delete', methods: ['DELETE'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, TypeBlock $typeBlock, EntityManagerInterface $entityManager): Response
     {

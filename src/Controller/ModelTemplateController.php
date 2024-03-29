@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/modeltemplate')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/modeltemplate')]
 class ModelTemplateController extends AbstractController
 {
     /**
@@ -29,7 +29,7 @@ class ModelTemplateController extends AbstractController
     {
     }
 
-    #[Route(path: '/', name: 'model_template_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'model_template_index', methods: ['GET'])]
     public function index(ModelTemplateRepository $modelTemplateRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $modelTemplate = $modelTemplateRepository->findAllModelTemplates();
@@ -44,7 +44,7 @@ class ModelTemplateController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{block}', name: 'model_template_index_block', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{block}', name: 'model_template_index_block', methods: ['GET'])]
     public function indexBlock(ModelTemplateRepository $modelTemplateRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $block = $request->get('block');
@@ -64,7 +64,7 @@ class ModelTemplateController extends AbstractController
     /**
      * @throws \Exception
      */
-    #[Route(path: '/new', name: 'model_template_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'model_template_new', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function new(Request $request, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager): Response
     {
@@ -95,7 +95,7 @@ class ModelTemplateController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/show', name: 'model_template_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/show', name: 'model_template_show', methods: ['GET'])]
     public function show(ModelTemplate $modelTemplate): Response
     {
         return $this->render('model_template/show.html.twig', [
@@ -106,7 +106,7 @@ class ModelTemplateController extends AbstractController
     /**
      * @throws \Exception
      */
-    #[Route(path: '/{id}/edit', name: 'model_template_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'model_template_edit', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper,
         EntityManagerInterface $entityManager): Response
@@ -132,7 +132,7 @@ class ModelTemplateController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'model_template_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'model_template_delete', methods: ['DELETE'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, ModelTemplate $modelTemplate,
         EntityManagerInterface $entityManager): Response
@@ -145,7 +145,7 @@ class ModelTemplateController extends AbstractController
         return $this->redirectToRoute('model_template_index');
     }
 
-    #[Route(path: '/registerTemplate/all', name: 'register_template', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/registerTemplate/all', name: 'register_template', methods: ['GET', 'POST'])]
     public function registerTemplate(string $pathTemplate, TypeBlockRepository $blockRepository, ModelTemplateRepository $modelTemplateRepository, EntityManagerInterface $em): JsonResponse
     {
         $models = [
@@ -189,7 +189,7 @@ class ModelTemplateController extends AbstractController
         return new JsonResponse($temp);
     }
 
-    #[Route(path: 'createBlockFromModelTemplate/{id}', name: 'model_template_create_block', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: 'createBlockFromModelTemplate/{id}', name: 'model_template_create_block', methods: ['GET', 'POST'])]
     public function createBlockFromModelTemplate(ModelTemplate $modelTemplate): RedirectResponse
     {
         $this->requestStack->getSession()->set('model_template_id', $modelTemplate->getId());

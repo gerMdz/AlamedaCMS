@@ -14,11 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/invitado')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/invitado')]
 #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_RESERVA')]
 class InvitadoController extends AbstractController
 {
-    #[Route(path: '/', name: 'invitado_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'invitado_index', methods: ['GET'])]
     public function index(InvitadoRepository $invitadoRepository, PaginatorInterface $paginator, Request $request, CelebracionRepository $celebracionRepository): Response
     {
         $q = $request->query->get('c');
@@ -43,7 +43,7 @@ class InvitadoController extends AbstractController
     /**
      * @return JsonResponse
      */
-    #[Route(path: '/update_ausente', name: 'invitado_update_ausente', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/update_ausente', name: 'invitado_update_ausente', methods: ['GET'])]
     public function updateAusente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $entityManager)
     {
         $q = $request->query->get('c');
@@ -59,7 +59,7 @@ class InvitadoController extends AbstractController
         return new JsonResponse(['ausentes' => $ausentes]);
     }
 
-    #[Route(path: '/new', name: 'invitado_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'invitado_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $invitado = new Invitado();
@@ -79,7 +79,7 @@ class InvitadoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'invitado_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'invitado_show', methods: ['GET'])]
     public function show(Invitado $invitado): Response
     {
         return $this->render('invitado/show.html.twig', [
@@ -87,7 +87,7 @@ class InvitadoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'invitado_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'invitado_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Invitado $invitado, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(InvitadoType::class, $invitado);
@@ -105,7 +105,7 @@ class InvitadoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'invitado_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'invitado_delete', methods: ['DELETE'])]
     public function delete(Request $request, Invitado $invitado, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$invitado->getId(), $request->request->get('_token'))) {
@@ -119,7 +119,7 @@ class InvitadoController extends AbstractController
     /**
      * @return JsonResponse
      */
-    #[Route(path: '/cambia_presente', name: 'cambia_presente', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/cambia_presente', name: 'cambia_presente', methods: ['GET', 'POST'])]
     public function cambiaPresente(Request $request, InvitadoRepository $invitadoRepository, EntityManagerInterface $em)
     {
         $id = $request->get('id');

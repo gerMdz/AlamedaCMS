@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class EntradaReferenciaAdminController extends AbstractController
 {
-    #[Route(path: '/admin/entrada/{id}/referencia', name: 'admin_entrada_add_referencia', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/entrada/{id}/referencia', name: 'admin_entrada_add_referencia', methods: ['POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'entrada')]
     public function uploadEntradaReference(Entrada $entrada, Request $request, UploaderHelper $helper, EntityManagerInterface $em, ValidatorInterface $validator): JsonResponse
     {
@@ -82,7 +82,7 @@ class EntradaReferenciaAdminController extends AbstractController
         //        ]);
     }
 
-    #[Route(path: '/admin/entrada/{id}/referencia', methods: 'GET', name: 'admin_entrada_list_referencia')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/entrada/{id}/referencia', methods: 'GET', name: 'admin_entrada_list_referencia')]
     public function getEntradaReferences(Entrada $entrada): JsonResponse
     {
         return $this->json(
@@ -98,7 +98,7 @@ class EntradaReferenciaAdminController extends AbstractController
     /**
      * @return StreamedResponse
      */
-    #[Route(path: '/descargas/referencias/{filename}', name: 'entrada_download_reference', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/descargas/referencias/{filename}', name: 'entrada_download_reference', methods: ['GET'])]
     public function downloadEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper)
     {
         $response = new StreamedResponse(function () use ($reference, $uploaderHelper) {
@@ -124,7 +124,7 @@ class EntradaReferenciaAdminController extends AbstractController
      *
      * @throws \Exception
      */
-    #[Route(path: '/admin/entrada/references/{id}', name: 'admin_entrada_delete_reference', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/entrada/references/{id}', name: 'admin_entrada_delete_reference', methods: ['DELETE'])]
     public function deleteEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager)
     {
         $entrada = $reference->getEntrada();
@@ -138,7 +138,7 @@ class EntradaReferenciaAdminController extends AbstractController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[Route(path: '/admin/entrada/references/{id}', name: 'admin_entrada_update_reference', methods: ['PUT'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/entrada/references/{id}', name: 'admin_entrada_update_reference', methods: ['PUT'])]
     public function updateEntradaReference(EntradaReference $reference, UploaderHelper $uploaderHelper, EntityManagerInterface $entityManager, SerializerInterface $serializer, Request $request, ValidatorInterface $validator): JsonResponse
     {
         $entrada = $reference->getEntrada();
@@ -170,7 +170,7 @@ class EntradaReferenciaAdminController extends AbstractController
         );
     }
 
-    #[Route(path: '/admin/entrada/{id}/referencia/reorder', methods: 'POST', name: 'admin_entrada_reorder_referencia')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/entrada/{id}/referencia/reorder', methods: 'POST', name: 'admin_entrada_reorder_referencia')]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'entrada')]
     public function reorderEntradaReferences(Entrada $entrada, EntityManagerInterface $entityManager, Request $request): JsonResponse
     {

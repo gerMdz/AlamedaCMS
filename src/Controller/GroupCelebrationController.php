@@ -14,10 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/grupoCelebracion')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/grupoCelebracion')]
 class GroupCelebrationController extends AbstractController
 {
-    #[Route(path: '/', name: 'group_celebration_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'group_celebration_index', methods: ['GET'])]
     public function index(GroupCelebrationRepository $groupCelebrationRepository): Response
     {
         return $this->render('group_celebration/index.html.twig', [
@@ -25,7 +25,7 @@ class GroupCelebrationController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'group_celebration_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'group_celebration_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $groupCelebration = new GroupCelebration();
@@ -45,7 +45,7 @@ class GroupCelebrationController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'group_celebration_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'group_celebration_show', methods: ['GET'])]
     public function show(GroupCelebration $groupCelebration): Response
     {
         return $this->render('group_celebration/show.html.twig', [
@@ -53,7 +53,7 @@ class GroupCelebrationController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'group_celebration_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'group_celebration_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, GroupCelebration $groupCelebration, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(GroupCelebrationType::class, $groupCelebration);
@@ -71,7 +71,7 @@ class GroupCelebrationController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/remove/{celebracion}', name: 'group_celebration_remove_celebracion', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/remove/{celebracion}', name: 'group_celebration_remove_celebracion', methods: ['GET', 'POST'])]
     public function removeCelebracion(Request $request, GroupCelebration $groupCelebration,
         CelebracionRepository $celebracionRepository,
         EntityManagerInterface $entityManager): Response
@@ -88,7 +88,7 @@ class GroupCelebrationController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'group_celebration_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'group_celebration_delete', methods: ['DELETE'])]
     public function delete(Request $request, GroupCelebration $groupCelebration,
         EntityManagerInterface $entityManager): Response
     {
@@ -103,7 +103,7 @@ class GroupCelebrationController extends AbstractController
     /**
      * @return RedirectResponse|Response
      */
-    #[Route(path: '/agregarCelebracion/{id}', name: 'grupo_agregar_celebracion', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregarCelebracion/{id}', name: 'grupo_agregar_celebracion', methods: ['GET', 'POST'])]
     public function agregarCelebracion(Request $request, GroupCelebration $groupCelebration, EntityManagerInterface $em, GroupCelebrationRepository $groupCelebrationRepository, CelebracionRepository $celebracionRepository)
     {
         $form = $this->createForm(CelebrationAddType::class);

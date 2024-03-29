@@ -38,7 +38,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 /**
  * Class SectionController.
  */
-#[Route(path: '/admin/section')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/section')]
 class SectionController extends BaseController
 {
     /**
@@ -49,7 +49,7 @@ class SectionController extends BaseController
     {
     }
 
-    #[Route(path: '/', name: 'admin_section_list')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'admin_section_list')]
     public function list(SectionRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
         $bus = $request->get('busq');
@@ -69,7 +69,7 @@ class SectionController extends BaseController
     /**
      * @throws \Exception
      */
-    #[Route(path: '/new', name: 'admin_section_new')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'admin_section_new')]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_EDITOR')]
     public function new(EntityManagerInterface $em, Request $request, UploaderHelper $uploaderHelper): Response
     {
@@ -114,7 +114,7 @@ class SectionController extends BaseController
     /**
      * @throws \Exception
      */
-    #[Route(path: '/{id}/edit', name: 'admin_section_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'admin_section_edit', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('MANAGE', subject: 'section')]
     public function edit(Request $request, Section $section, UploaderHelper $uploaderHelper): Response
     {
@@ -139,7 +139,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[Route(path: '/index/{id}', name: 'admin_index_delete_section', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/index/{id}', name: 'admin_index_delete_section', methods: ['DELETE'])]
     public function deleteIndexSection(Section $section, EntityManagerInterface $entityManager): Response
     {
         $indexAlameda = $section->getIndexAlamedas();
@@ -151,7 +151,7 @@ class SectionController extends BaseController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[Route(path: '/entrada/{id}/{entrada}', name: 'admin_entrada_delete_section', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/entrada/{id}/{entrada}', name: 'admin_entrada_delete_section', methods: ['DELETE'])]
     public function deleteEntradaSection(
         Section $section,
         Entrada $entrada,
@@ -164,7 +164,7 @@ class SectionController extends BaseController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[Route(path: '/principal/{id}/{principal}', name: 'admin_principal_delete_section', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/principal/{id}/{principal}', name: 'admin_principal_delete_section', methods: ['DELETE'])]
     public function deletePrincipalSection(
         Section $section,
         Principal $principal,
@@ -180,7 +180,7 @@ class SectionController extends BaseController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[Route(path: '/muestra/seccion/{id}')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/muestra/seccion/{id}')]
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository, SourceApiRepository $sourceApiRepository): Response
     {
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());
@@ -213,7 +213,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'admin_section_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'admin_section_show', methods: ['GET'])]
     public function show(Section $section): Response
     {
         return $this->render('admin/section_admin/show.html.twig', [
@@ -224,7 +224,7 @@ class SectionController extends BaseController
     /**
      * @throws \Exception
      */
-    #[Route(path: '/new/step1', name: 'admin_section_new_step1', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new/step1', name: 'admin_section_new_step1', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
     public function newStepOne(Request $request): Response
     {
@@ -250,7 +250,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[Route(path: '/new/step2/{id}', name: 'admin_section_new_step2', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new/step2/{id}', name: 'admin_section_new_step2', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
     public function newStepTwo(
         Request $request,
@@ -283,7 +283,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[Route(path: '/new/step3/{id}', name: 'admin_section_new_step3', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new/step3/{id}', name: 'admin_section_new_step3', methods: ['GET', 'POST'])]
     #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ESCRITOR')]
     public function newStepThree(Request $request, Section $section): Response
     {
@@ -305,7 +305,7 @@ class SectionController extends BaseController
         ]);
     }
 
-    #[Route(path: '/test/api/{identifier}', name: 'admin_section_test_api', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/test/api/{identifier}', name: 'admin_section_test_api', methods: ['GET', 'POST'])]
     public function getDataSourceApi(SourceApi $api)
     {
         return new JsonResponse($this->api->fetchSourceApi($api));
@@ -318,7 +318,7 @@ class SectionController extends BaseController
      *
      * @return RedirectResponse|Response
      */
-    #[Route(path: '/agregarEntrada/{id}', name: 'section_agregar_entrada', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregarEntrada/{id}', name: 'section_agregar_entrada', methods: ['GET', 'POST'])]
     public function agregarSeccion(Request $request, Section $section, EntradaRepository $entradaRepository)
     {
         $form = $this->createForm(EntradaSectionType::class, $section);

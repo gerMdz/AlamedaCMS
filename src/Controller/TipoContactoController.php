@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/tipocontacto')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/tipocontacto')]
 class TipoContactoController extends AbstractController
 {
-    #[Route(path: '/', name: 'tipo_contacto_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'tipo_contacto_index', methods: ['GET'])]
     public function index(TipoContactoRepository $tipoContactoRepository): Response
     {
         return $this->render('tipo_contacto/index.html.twig', [
@@ -22,7 +22,7 @@ class TipoContactoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'tipo_contacto_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'tipo_contacto_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $tipoContacto = new TipoContacto();
@@ -42,7 +42,7 @@ class TipoContactoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'tipo_contacto_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'tipo_contacto_show', methods: ['GET'])]
     public function show(TipoContacto $tipoContacto): Response
     {
         return $this->render('tipo_contacto/show.html.twig', [
@@ -50,7 +50,7 @@ class TipoContactoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'tipo_contacto_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'tipo_contacto_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TipoContacto $tipoContacto, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TipoContactoType::class, $tipoContacto);
@@ -68,7 +68,7 @@ class TipoContactoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'tipo_contacto_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'tipo_contacto_delete', methods: ['DELETE'])]
     public function delete(Request $request, TipoContacto $tipoContacto, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$tipoContacto->getId(), $request->request->get('_token'))) {

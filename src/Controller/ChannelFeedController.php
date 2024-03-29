@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/channelfeed')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/channelfeed')]
 class ChannelFeedController extends AbstractController
 {
-    #[Route(path: '/', name: 'channel_feed_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'channel_feed_index', methods: ['GET'])]
     public function index(ChannelFeedRepository $channelFeedRepository): Response
     {
         return $this->render('channel_feed/index.html.twig', [
@@ -22,7 +22,7 @@ class ChannelFeedController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'channel_feed_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'channel_feed_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $channelFeed = new ChannelFeed();
@@ -42,7 +42,7 @@ class ChannelFeedController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'channel_feed_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'channel_feed_show', methods: ['GET'])]
     public function show(ChannelFeed $channelFeed): Response
     {
         return $this->render('channel_feed/show.html.twig', [
@@ -50,7 +50,7 @@ class ChannelFeedController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'channel_feed_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'channel_feed_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ChannelFeed $channelFeed, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ChannelFeedType::class, $channelFeed);
@@ -68,7 +68,7 @@ class ChannelFeedController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'channel_feed_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'channel_feed_delete', methods: ['DELETE'])]
     public function delete(Request $request, ChannelFeed $channelFeed, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$channelFeed->getId(), $request->request->get('_token'))) {

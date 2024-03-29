@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/ministerio')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/ministerio')]
 class MinisterioController extends AbstractController
 {
-    #[Route(path: '/', name: 'ministerio_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'ministerio_index', methods: ['GET'])]
     public function index(MinisterioRepository $ministerioRepository): Response
     {
         return $this->render('ministerio/index.html.twig', [
@@ -22,7 +22,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'ministerio_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'ministerio_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $ministerio = new Ministerio();
@@ -42,7 +42,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'ministerio_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'ministerio_show', methods: ['GET'])]
     public function show(Ministerio $ministerio): Response
     {
         return $this->render('ministerio/show.html.twig', [
@@ -50,7 +50,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'ministerio_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'ministerio_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Ministerio $ministerio, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MinisterioType::class, $ministerio);
@@ -68,7 +68,7 @@ class MinisterioController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'ministerio_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'ministerio_delete', methods: ['DELETE'])]
     public function delete(Request $request, Ministerio $ministerio, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$ministerio->getId(), $request->request->get('_token'))) {

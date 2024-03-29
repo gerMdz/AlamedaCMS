@@ -2,18 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\Entrada;
-use App\Entity\Section;
 use App\Repository\EntradaRepository;
 use App\Repository\MetaBaseRepository;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
+use DateTime;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class AdminController extends AbstractController
 {
@@ -70,7 +69,7 @@ class AdminController extends AbstractController
         SectionRepository $sectionRepository,
         PrincipalRepository $principalRepository
     ): JsonResponse {
-        $fecha_final = new \DateTime('now');
+        $fecha_final = new DateTime('now');
         $fecha = clone $fecha_final;
         $fecha_inicial = $fecha->modify('-7 days');
         //        $entradas = $entradaRepository->entradasByDateAndActiveAndModification($fecha_inicial, $fecha_final)->getQuery(

@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/enlaces')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/admin/enlaces')]
 class EnlaceCortoController extends AbstractController
 {
-    #[Route(path: '/', name: 'enlace_corto_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'enlace_corto_index', methods: ['GET'])]
     public function index(EnlaceCortoRepository $enlaceCortoRepository): Response
     {
         return $this->render('enlace_corto/index.html.twig', [
@@ -23,7 +23,7 @@ class EnlaceCortoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'enlace_corto_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'enlace_corto_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $enlaceCorto = new EnlaceCorto();
@@ -43,13 +43,13 @@ class EnlaceCortoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{linkRoute}', name: 'enlace_corto_acceso', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{linkRoute}', name: 'enlace_corto_acceso', methods: ['GET'])]
     public function acceso(EnlaceCorto $enlaceCorto): Response
     {
         return $this->redirect($enlaceCorto->getUrlDestino());
     }
 
-    #[Route(path: '/{linkRoute}/vista', name: 'enlace_corto_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{linkRoute}/vista', name: 'enlace_corto_show', methods: ['GET'])]
     public function show(EnlaceCorto $enlaceCorto): Response
     {
         return $this->render('enlace_corto/show.html.twig', [
@@ -57,7 +57,7 @@ class EnlaceCortoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'enlace_corto_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'enlace_corto_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, EnlaceCorto $enlaceCorto, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(EnlaceCortoType::class, $enlaceCorto);
@@ -75,7 +75,7 @@ class EnlaceCortoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'enlace_corto_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'enlace_corto_delete', methods: ['DELETE'])]
     public function delete(Request $request, EnlaceCorto $enlaceCorto, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$enlaceCorto->getId(), $request->request->get('_token'))) {
@@ -86,7 +86,7 @@ class EnlaceCortoController extends AbstractController
         return $this->redirectToRoute('enlace_corto_index');
     }
 
-    #[Route(path: '/{enlace}', name: 'enlace_corto_pagina', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{enlace}', name: 'enlace_corto_pagina', methods: ['GET'])]
     public function irEnlace(string $enlace): RedirectResponse
     {
         return $this->redirect(

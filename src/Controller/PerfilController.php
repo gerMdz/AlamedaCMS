@@ -20,7 +20,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_USER')]
 class PerfilController extends BaseController
 {
-    #[Route(path: 'web/perfil', name: 'app_perfil')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: 'web/perfil', name: 'app_perfil')]
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
         return $this->render('perfil/perfil_index.html.twig', [
@@ -28,7 +28,7 @@ class PerfilController extends BaseController
         ]);
     }
 
-    #[Route(path: '/api/perfil', name: 'api_perfil')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/api/perfil', name: 'api_perfil')]
     public function apiPerfil(): JsonResponse
     {
         $user = $this->getUser();
@@ -38,7 +38,7 @@ class PerfilController extends BaseController
         ]);
     }
 
-    #[Route(path: '/web/cambiopassword/{email}', name: 'app_changepassword')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/web/cambiopassword/{email}', name: 'app_changepassword')]
     public function changePassword(
         Request $request, User $user,
         UserPasswordHasherInterface $userPasswordHasher,

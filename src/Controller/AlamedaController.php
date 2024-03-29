@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/alameda')]
 class AlamedaController extends AbstractController
@@ -14,8 +14,7 @@ class AlamedaController extends AbstractController
     {
         $ruta = $name.'.html.twig';
 
-        return $this->render('alameda/'.$ruta, [
-        ]);
+        return $this->render('alameda/'.$ruta);
     }
 
     #[Route(path: '/', name: 'alameda')]

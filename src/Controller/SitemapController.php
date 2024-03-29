@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SitemapController extends AbstractController
 {
-    #[Route(path: '/sitemap.xml', name: 'sitemap', defaults: ['_format' => 'xml'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/sitemap.xml', name: 'sitemap', defaults: ['_format' => 'xml'])]
     public function index(Request $request, PrincipalRepository $principalRepository): Response
     {
         $hostname = $request->getSchemeAndHttpHost();

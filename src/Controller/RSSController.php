@@ -17,7 +17,7 @@ class RSSController extends AbstractController
     {
     }
 
-    #[Route(path: '/rss', name: 'rss-feed')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/rss', name: 'rss-feed')]
     public function rss(ChannelFeedRepository $channelFeedRepository): Response
     {
         $channels = $channelFeedRepository->findFirst();

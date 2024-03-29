@@ -15,11 +15,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/index/alameda')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/index/alameda')]
 #[\Symfony\Component\Security\Http\Attribute\IsGranted('ROLE_ADMIN')]
 class IndexAlamedaController extends AbstractController
 {
-    #[Route(path: '/', name: 'index_alameda_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'index_alameda_index', methods: ['GET'])]
     public function index(IndexAlamedaRepository $indexAlamedaRepository): Response
     {
         return $this->render('index_alameda/index.html.twig', [
@@ -28,7 +28,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'index_alameda_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'index_alameda_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $indexAlameda = new IndexAlameda();
@@ -48,7 +48,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'index_alameda_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'index_alameda_show', methods: ['GET'])]
     public function show(IndexAlameda $indexAlameda): Response
     {
         return $this->render('index_alameda/show.html.twig', [
@@ -56,7 +56,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'index_alameda_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'index_alameda_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, IndexAlameda $indexAlameda): Response
     {
         $form = $this->createForm(IndexAlamedaType::class, $indexAlameda);
@@ -75,7 +75,7 @@ class IndexAlamedaController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'index_alameda_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'index_alameda_delete', methods: ['DELETE'])]
     public function delete(Request $request, IndexAlameda $indexAlameda, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$indexAlameda->getId(), $request->request->get('_token'))) {
@@ -86,7 +86,7 @@ class IndexAlamedaController extends AbstractController
         return $this->redirectToRoute('index_alameda_index');
     }
 
-    #[Route(path: '/admin/index/section/{id}', methods: 'GET', name: 'admin_index_list_section')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/index/section/{id}', methods: 'GET', name: 'admin_index_list_section')]
     public function getSectionPrincipal(IndexAlameda $indexAlameda): JsonResponse
     {
         return $this->json(
@@ -99,7 +99,7 @@ class IndexAlamedaController extends AbstractController
         );
     }
 
-    #[Route(path: '/admin/index/section/{id}/reorder', methods: 'POST', name: 'admin_principal_reorder_section')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/admin/index/section/{id}/reorder', methods: 'POST', name: 'admin_principal_reorder_section')]
     public function reorderPrincipalSections(IndexAlameda $indexAlameda, EntityManagerInterface $entityManager, Request $request): JsonResponse
     {
         $orderedIds = json_decode($request->getContent(), true);
@@ -130,7 +130,7 @@ class IndexAlamedaController extends AbstractController
     /**
      * @return RedirectResponse|Response
      */
-    #[Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]
     public function agregarSeccion(Request $request, IndexAlameda $indexAlameda,
         EntityManagerInterface $entityManager, SectionRepository $sectionRepository,
         IndexAlamedaRepository $indexAlamedaRepository)

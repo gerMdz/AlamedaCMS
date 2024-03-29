@@ -28,8 +28,6 @@ class Menu
     #[ORM\Column]
     private ?string $nombre;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private ?string $identificador = null;
 
     #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'menu')]
     private ArrayCollection $itemMenus;
@@ -57,7 +55,7 @@ class Menu
     }
 
     /**
-     * @return Collection|ItemMenu[]
+     * @return Collection
      */
     public function getItemMenus(): Collection
     {

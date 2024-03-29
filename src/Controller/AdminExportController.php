@@ -11,7 +11,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/admin/export')]
 class AdminExportController extends AbstractController
@@ -45,8 +45,8 @@ class AdminExportController extends AbstractController
         $response->headers->set('Content-Type', $contentType);
         $response->headers->set('Content-Disposition', 'attachment;filename="'.$filename.'"');
         $response->setPrivate();
-        $response->headers->addCacheControlDirective('no-cache', true);
-        $response->headers->addCacheControlDirective('must-revalidate', true);
+        $response->headers->addCacheControlDirective('no-cache');
+        $response->headers->addCacheControlDirective('must-revalidate');
         $response->setCallback(function () use ($writer) {
             $writer->save('php://output');
         });
@@ -54,7 +54,7 @@ class AdminExportController extends AbstractController
         return $response;
     }
 
-    protected function createSpreadsheet(string $titulo, array $nameColumns, array $dataColumns)
+    protected function createSpreadsheet(string $titulo, array $nameColumns, array $dataColumns): Spreadsheet
     {
         $spreadsheet = new Spreadsheet();
         // Get active sheet - also possible to retrieve a specific sheet
@@ -100,7 +100,7 @@ class AdminExportController extends AbstractController
         return $spreadsheet;
     }
 
-    protected function loadFile($filename)
+    protected function loadFile($filename): Spreadsheet
     {
         return IOFactory::load($filename);
     }

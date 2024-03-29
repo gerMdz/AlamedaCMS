@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/page/index')]
+#[\Symfony\Component\Routing\Attribute\Route(path: '/page/index')]
 class PageIndexController extends AbstractController
 {
-    #[Route(path: '/', name: 'page_index_index', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'page_index_index', methods: ['GET'])]
     public function index(PageIndexRepository $pageIndexRepository): Response
     {
         return $this->render('page_index/index.html.twig', [
@@ -22,7 +22,7 @@ class PageIndexController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/new', name: 'page_index_new', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/new', name: 'page_index_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $pageIndex = new PageIndex();
@@ -42,7 +42,7 @@ class PageIndexController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'page_index_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'page_index_show', methods: ['GET'])]
     public function show(PageIndex $pageIndex): Response
     {
         return $this->render('page_index/show.html.twig', [
@@ -50,7 +50,7 @@ class PageIndexController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}/edit', name: 'page_index_edit', methods: ['GET', 'POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}/edit', name: 'page_index_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, PageIndex $pageIndex, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PageIndexType::class, $pageIndex);
@@ -68,7 +68,7 @@ class PageIndexController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'page_index_delete', methods: ['DELETE'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/{id}', name: 'page_index_delete', methods: ['DELETE'])]
     public function delete(Request $request, PageIndex $pageIndex, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$pageIndex->getId(), $request->request->get('_token'))) {
