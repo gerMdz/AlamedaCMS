@@ -99,8 +99,6 @@ class EntradaReferenciaAdminController extends AbstractController
     }
 
     /**
-     * @param EntradaReference $reference
-     * @param UploaderHelper $uploaderHelper
      * @return StreamedResponse
      */
     #[Route(path: '/descargas/referencias/{filename}', name: 'entrada_download_reference', methods: ['GET'])]
@@ -125,9 +123,6 @@ class EntradaReferenciaAdminController extends AbstractController
     }
 
     /**
-     * @param EntradaReference $reference
-     * @param UploaderHelper $uploaderHelper
-     * @param EntityManagerInterface $entityManager
      * @return Response
      *
      * @throws Exception

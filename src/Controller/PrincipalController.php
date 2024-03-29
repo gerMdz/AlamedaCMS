@@ -212,10 +212,6 @@ class PrincipalController extends BaseController
     }
 
     /**
-     * @param Request $request
-     * @param Principal $principal
-     * @param EntityManagerInterface $entityManager
-     * @param SectionRepository $sectionRepository
      * @return RedirectResponse|Response
      */
     #[Route(path: '/agregarSeccion/{id}', name: 'principal_agregar_seccion', methods: ['GET', 'POST'])]

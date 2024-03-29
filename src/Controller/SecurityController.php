@@ -46,11 +46,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param UserPasswordHasherInterface $userPasswordHasher
      * @param GuardAuthenticatorHandler $authenticatorHandler
-     * @param LoginFormAuthenticator $formAuthenticator
-     * @param EntityManagerInterface $entityManager
      * @return Response
      */
     #[Route(path: '/admin/registro', name: 'app_registro')]
@@ -96,10 +92,6 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param UserPasswordHasherInterface $userPasswordHasher
-     * @param UserRepository $userRepository
-     * @param EntityManagerInterface $entityManager
      * @return Response
      */
     #[Route(path: '/admin/registro_voluntario_reserva', name: 'app_registro_voluntario_reserva')]

@@ -12,9 +12,18 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
-class ApiTokenAuthenticator extends AbstractGuardAuthenticator
+/**
+ * Revisar
+ * https://symfony.com/doc/6.4/security/custom_authenticator.html
+ *
+ */
+
+class ApiTokenAuthenticator extends AbstractAuthenticator
 {
     public function __construct(private readonly ApiTokenRepository $apiTokenRepository)
     {
@@ -24,7 +33,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     {
         // Reviso las cabeceras "Authorization: Bearer <token>"
         return $request->headers->has('Authorization')
-            && str_starts_with($request->headers->get('Authorization'), 'Bearer ');
+            && str_starts_with((string) $request->headers->get('Authorization'), 'Bearer ');
     }
 
     public function getCredentials(Request $request): string
@@ -32,7 +41,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         $authorizationHeader = $request->headers->get('Authorization');
 
         // Salto todo el "Bearer "
-        return substr($authorizationHeader, 7);
+        return substr((string) $authorizationHeader, 7);
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
@@ -62,9 +71,9 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         ], Response::HTTP_UNAUTHORIZED);
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?Response
     {
-        // todo
+        return null;
     }
 
     public function start(Request $request, ?AuthenticationException $authException = null): Response
@@ -76,4 +85,11 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     {
         return false;
     }
+
+    public function authenticate(Request $request): Passport
+    {
+        // TODO: Implement authenticate() method.
+    }
+
+
 }

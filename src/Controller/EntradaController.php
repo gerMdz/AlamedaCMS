@@ -53,10 +53,6 @@ class EntradaController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param Entrada $entrada
-     * @param SectionRepository $sectionRepository
-     * @param EntityManagerInterface $entityManager
      * @return RedirectResponse|Response
      */
     #[Route(path: '/agregarSeccion/{id}', name: 'entrada_agregar_seccion', methods: ['GET', 'POST'])]

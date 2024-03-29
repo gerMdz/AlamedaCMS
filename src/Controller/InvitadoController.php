@@ -43,9 +43,6 @@ class InvitadoController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param InvitadoRepository $invitadoRepository
-     * @param EntityManagerInterface $entityManager
      * @return JsonResponse
      */
     #[Route(path: '/update_ausente', name: 'invitado_update_ausente', methods: ['GET'])]
@@ -122,9 +119,6 @@ class InvitadoController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param InvitadoRepository $invitadoRepository
-     * @param EntityManagerInterface $em
      * @return JsonResponse
      */
     #[Route(path: '/cambia_presente', name: 'cambia_presente', methods: ['GET', 'POST'])]

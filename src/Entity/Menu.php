@@ -24,10 +24,10 @@ class Menu
     #[ORM\Column(type: 'string', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
-    private ?string $id;
+    private ?string $id = null;
 
     #[ORM\Column]
-    private ?string $nombre;
+    private ?string $nombre = null;
 
     #[ORM\ManyToMany(targetEntity: ItemMenu::class, mappedBy: 'menu')]
     private ArrayCollection $itemMenus;

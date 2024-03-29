@@ -130,11 +130,6 @@ class IndexAlamedaController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param IndexAlameda $indexAlameda
-     * @param EntityManagerInterface $entityManager
-     * @param SectionRepository $sectionRepository
-     * @param IndexAlamedaRepository $indexAlamedaRepository
      * @return RedirectResponse|Response
      */
     #[Route(path: '/agregarSeccion/{id}', name: 'index_agregar_seccion', methods: ['GET', 'POST'])]

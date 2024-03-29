@@ -101,10 +101,6 @@ class GroupCelebrationController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param GroupCelebration $groupCelebration
-     * @param EntityManagerInterface $em
-     * @param CelebracionRepository $celebracionRepository
      * @return RedirectResponse|Response
      */
     #[Route(path: '/agregarCelebracion/{id}', name: 'grupo_agregar_celebracion', methods: ['GET', 'POST'])]

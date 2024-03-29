@@ -11,14 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/menu")
- */
+#[Route(path: '/admin/menu')]
 class MenuController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_menu_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'app_menu_index', methods: ['GET'])]
     public function index(MenuRepository $menuRepository): Response
     {
         return $this->render('admin/menu/index.html.twig', [
@@ -26,9 +22,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="app_menu_new", methods={"GET", "POST"})
-     */
+    #[Route(path: '/new', name: 'app_menu_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $menu = new Menu();
@@ -48,9 +42,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_menu_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'app_menu_show', methods: ['GET'])]
     public function show(Menu $menu): Response
     {
         return $this->render('admin/menu/show.html.twig', [
@@ -58,9 +50,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="app_menu_edit", methods={"GET", "POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'app_menu_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Menu $menu, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MenuType::class, $menu);
@@ -78,9 +68,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_menu_delete", methods={"POST"})
-     */
+    #[Route(path: '/{id}', name: 'app_menu_delete', methods: ['POST'])]
     public function delete(Request $request, Menu $menu, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$menu->getId(), $request->request->get('_token'))) {

@@ -24,11 +24,8 @@ class SectionFixtures extends BaseFixture implements DependentFixtureInterface
         '03-Rescate-en-las-llamas.jpg',
     ];
 
-    private UploaderHelper $uploaderHelper;
-
-    public function __construct(UploaderHelper $uploaderHelper)
+    public function __construct(private readonly UploaderHelper $uploaderHelper)
     {
-        $this->uploaderHelper = $uploaderHelper;
     }
 
     public function loadData(ObjectManager $manager): void
@@ -40,7 +37,7 @@ class SectionFixtures extends BaseFixture implements DependentFixtureInterface
                 ->setDescription('Perfecta descripción')
                 ->setName('Gran Nombre')
                 ->setFooter('Un excelente final');
-            $section->setIdentificador(strtolower($section->getTitle()));
+            $section->setIdentificador(strtolower((string) $section->getTitle()));
             // publish most articles
 
             $imageFilename = $this->fakeUploadImage();

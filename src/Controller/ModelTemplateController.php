@@ -197,6 +197,6 @@ class ModelTemplateController extends AbstractController
         $this->requestStack->getSession()->set('model_template_id', $modelTemplate->getId());
         $entity = $modelTemplate->getBlock()->getEntity();
 
-        return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower($entity)));
+        return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower((string) $entity)));
     }
 }

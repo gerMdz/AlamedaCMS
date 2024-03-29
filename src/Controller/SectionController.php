@@ -331,9 +331,6 @@ class SectionController extends BaseController
     /**
      * La idea es agregar una entrada ya creada a una sección, falta el modal que selecciona la entrada.
      *
-     * @param Request $request
-     * @param Section $section
-     * @param SectionRepository $sectionRepository
      * @return RedirectResponse|Response
      */
     #[Route(path: '/agregarEntrada/{id}', name: 'section_agregar_entrada', methods: ['GET', 'POST'])]

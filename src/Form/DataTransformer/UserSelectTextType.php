@@ -13,17 +13,11 @@ use Symfony\Component\Routing\RouterInterface;
 
 class UserSelectTextType extends AbstractType
 {
-    protected UserRepository $userRepository;
-
-    protected RouterInterface $router;
-
     /**
      * UserSelectTextType constructor.
      */
-    public function __construct(UserRepository $userRepository, RouterInterface $router)
+    public function __construct(protected UserRepository $userRepository, protected RouterInterface $router)
     {
-        $this->userRepository = $userRepository;
-        $this->router = $router;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

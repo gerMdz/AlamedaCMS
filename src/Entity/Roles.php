@@ -14,16 +14,16 @@ class Roles implements \Stringable
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $nombre;
+    private ?string $nombre = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $identificador;
+    private ?string $identificador = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $descripcion;
+    private ?string $descripcion = null;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isActivo;

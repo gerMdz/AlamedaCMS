@@ -12,7 +12,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 #[\AllowDynamicProperties] #[ORM\Entity(repositoryClass: ItemMenuRepository::class)]
-class ItemMenu
+class ItemMenu implements \Stringable
 {
     use TimestampableEntity;
 
@@ -24,25 +24,25 @@ class ItemMenu
     #[ORM\Column(type: 'string', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
-    private ?string $id;
+    private ?string $id = null;
 
     #[ORM\ManyToMany(targetEntity: Roles::class, inversedBy: 'itemMenus')]
     private ArrayCollection $role;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $label;
+    private ?string $label = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $badge;
+    private ?string $badge = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $icon;
+    private ?string $icon = null;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private ?bool $isExterno;
+    private ?bool $isExterno = null;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private ?bool $isActivo;
+    private ?bool $isActivo = null;
 
     #[ORM\ManyToOne(inversedBy: 'itemMenus')]
     private ?ItemMenu $parent = null;
@@ -54,7 +54,7 @@ class ItemMenu
     private ?Principal $pathInterno = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $pathLibre;
+    private ?string $pathLibre = null;
 
     #[ORM\ManyToMany(targetEntity: Menu::class, inversedBy: 'itemMenus')]
     private ArrayCollection $menu;
@@ -66,9 +66,9 @@ class ItemMenu
         $this->menu = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->label;
+        return (string) $this->label;
     }
 
     public function getId(): ?string
