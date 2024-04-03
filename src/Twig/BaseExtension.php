@@ -65,9 +65,12 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
     public function metaDescripcion(): ?string
     {
         $base = $this->em->getRepository(IndexAlameda::class)->findOneBy(['base' => 'index']);
+        if ($base) {
+            return $base->getMetaDescripcion() ?? '';
+        }
 
-        //        return $base->getMetaDescripcion();
-        return $base->getMetaDescripcion() ?? '';
+        return 'No se ha indicado una paǵina base.';
+
     }
 
     public function base()
@@ -127,7 +130,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
                 $servicio = substr($campo,
                     $inicio + strlen($this->ind_inicio),
                     $fin - ($inicio + strlen($this->ind_inicio)));
-                $campo = str_replace($this->ind_inicio.$servicio.$this->ind_final,
+                $campo = str_replace($this->ind_inicio . $servicio . $this->ind_final,
                     $this->addTexto(trim($servicio)), $campo);
 
                 $encuentro = true;

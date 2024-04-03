@@ -8,6 +8,7 @@ use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -97,6 +98,7 @@ class ZinicioController extends AbstractController
 
     #[Route(path: '/{linkRoute}', name: 'principal_ver', methods: ['GET'])]
     public function ver(
+        #[MapEntity(mapping: ['linkRoute' => 'linkRoute'])]
         Principal $principal,
         PrincipalRepository $principalRepository,
         SectionRepository $sectionRepository
@@ -120,6 +122,7 @@ class ZinicioController extends AbstractController
 
     #[Route(path: '/{linkRoute}/listado', name: 'principal_listado', methods: ['GET'])]
     public function listado(
+        #[MapEntity(mapping: ['linkRoute' => 'linkRoute'])]
         Principal $principal,
         PrincipalRepository $principalRepository,
         PaginatorInterface $paginator,

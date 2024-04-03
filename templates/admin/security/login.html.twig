@@ -39,7 +39,7 @@
                 <section class="login_content">
                     <form method="post">
                         <h1>PANEL GENERAL <br/>
-                            <small class="pt-2">{{ base.siteName }}</small></h1>
+                            <small class="pt-2">{{ base.siteName|default('No se ha configurado el site name en las meta base') }}</small></h1>
                         <div>
                             <label for="inputEmail">Email</label>
                             <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
@@ -139,9 +139,9 @@
                 <div class="col-8 mx-auto text-center">
                     PANEL GENERAL <br/>
 
-                    {{ base.siteName }}
+                    {{ base.siteName|default('No se ha configurado el site name en las meta base') }}
                     <p>©{{ "now"|date("Y") }}
-                        {{ base.siteName|trans }}
+                        {{ base.siteName|default('No se ha configurado el site name en las meta base')|trans }}
                     </p>
 
                 </div>

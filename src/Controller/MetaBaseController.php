@@ -23,14 +23,13 @@ class MetaBaseController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'meta_base_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $metaBase = new MetaBase();
         $form = $this->createForm(MetaBaseType::class, $metaBase);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($metaBase);
             $entityManager->flush();
 
@@ -52,13 +51,13 @@ class MetaBaseController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'meta_base_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, MetaBase $metaBase): Response
+    public function edit(Request $request, MetaBase $metaBase, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MetaBaseType::class, $metaBase);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->container->get('doctrine')->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('meta_base_index');
         }

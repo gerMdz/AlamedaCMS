@@ -110,8 +110,8 @@ class ModelTemplateController extends AbstractController
      */
     #[Route(path: '/{id}/edit', name: 'model_template_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(Request $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper,
-        EntityManagerInterface $entityManager): Response
+    public function edit(Request                $request, ModelTemplate $modelTemplate, UploaderHelper $uploaderHelper,
+                         EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ModelTemplateType::class, $modelTemplate);
         $form->handleRequest($request);
@@ -136,10 +136,10 @@ class ModelTemplateController extends AbstractController
 
     #[Route(path: '/{id}', name: 'model_template_delete', methods: ['DELETE'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function delete(Request $request, ModelTemplate $modelTemplate,
-        EntityManagerInterface $entityManager): Response
+    public function delete(Request                $request, ModelTemplate $modelTemplate,
+                           EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$modelTemplate->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $modelTemplate->getId(), $request->request->get('_token'))) {
             $entityManager->remove($modelTemplate);
             $entityManager->flush();
         }
@@ -148,14 +148,16 @@ class ModelTemplateController extends AbstractController
     }
 
     #[Route(path: '/registerTemplate/all', name: 'register_template', methods: ['GET', 'POST'])]
-    public function registerTemplate(string $pathTemplate, TypeBlockRepository $blockRepository, ModelTemplateRepository $modelTemplateRepository, EntityManagerInterface $em): JsonResponse
+    public function registerTemplate(string                  $pathTemplate, TypeBlockRepository $blockRepository,
+                                     ModelTemplateRepository $modelTemplateRepository,
+                                     EntityManagerInterface  $em): JsonResponse
     {
         $models = [
-            $pathTemplate.'/modelEntrada' => 'entrada',
-            $pathTemplate.'/sections' => 'seccion',
-            $pathTemplate.'/models/principal' => 'page',
-            $pathTemplate.'/models/sections' => 'seccion',
-            $pathTemplate.'/models/entradas' => 'entrada',
+            $pathTemplate . '/modelEntrada' => 'entrada',
+            $pathTemplate . '/sections' => 'seccion',
+            $pathTemplate . '/models/principal' => 'page',
+            $pathTemplate . '/models/sections' => 'seccion',
+            $pathTemplate . '/models/entradas' => 'entrada',
         ];
         $temp = [];
         foreach ($models as $key => $value) {
@@ -181,7 +183,7 @@ class ModelTemplateController extends AbstractController
                     $em->persist($template);
                     $em->flush();
                 } else {
-                    $string = $string.' ya existe';
+                    $string = $string . ' ya existe';
                 }
 
                 $temp[] = $string;
@@ -197,6 +199,6 @@ class ModelTemplateController extends AbstractController
         $this->requestStack->getSession()->set('model_template_id', $modelTemplate->getId());
         $entity = $modelTemplate->getBlock()->getEntity();
 
-        return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower((string) $entity)));
+        return $this->redirectToRoute(sprintf('admin_%s_new_step1', strtolower((string)$entity)));
     }
 }

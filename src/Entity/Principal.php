@@ -9,10 +9,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PrincipalRepository::class)]
+#[UniqueEntity(fields: ['linkRoute'], message: 'Debe ser único', errorPath: 'title')]
 class Principal implements \Stringable
 {
     use TimestampableEntity;
@@ -58,11 +60,9 @@ class Principal implements \Stringable
     #[ORM\OneToMany(targetEntity: Section::class, mappedBy: 'principal')]
     private Collection $section;
 
-    #[ORM\ManyToOne(inversedBy: 'brote')]
+    #[ORM\ManyToOne(inversedBy: 'id')]
     private ?Principal $principal = null;
 
-    #[ORM\OneToMany(targetEntity: Principal::class, mappedBy: 'principal')]
-    private Collection $brote;
 
     #[ORM\ManyToOne(inversedBy: 'principals')]
     private ?ModelTemplate $modelTemplate = null;
@@ -96,7 +96,6 @@ class Principal implements \Stringable
         $this->comentarios = new ArrayCollection();
         $this->entradas = new ArrayCollection();
         $this->section = new ArrayCollection();
-        $this->brote = new ArrayCollection();
         $this->button = new ArrayCollection();
         $this->itemMenus = new ArrayCollection();
         $this->blocsFixes = new ArrayCollection();
@@ -287,36 +286,7 @@ class Principal implements \Stringable
         return $this;
     }
 
-    /**
-     * @return Collection|self[]
-     */
-    public function getBrote(): Collection
-    {
-        return $this->brote;
-    }
 
-    public function addBrote(self $brote): self
-    {
-        if (!$this->brote->contains($brote)) {
-            $this->brote[] = $brote;
-            $brote->setPrincipal($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBrote(self $brote): self
-    {
-        if ($this->brote->contains($brote)) {
-            $this->brote->removeElement($brote);
-            // set the owning side to null (unless already changed)
-            if ($brote->getPrincipal() === $this) {
-                $brote->setPrincipal(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getModelTemplate(): ?ModelTemplate
     {

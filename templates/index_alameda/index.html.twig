@@ -1,6 +1,6 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Index {{ base.siteName }}{% endblock %}
+{% block title %}Index {{ base.siteName|default('No se ha configurado el site name en las meta base') }}{% endblock %}
 {% block nav %}
     {{ include('admin/_nav.html.twig',  {'marca_label': 'Secciones'}) }}
 {% endblock %}

@@ -10,9 +10,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="{{ base.siteName }},  {{ base_metaDescripcion() }}">
-    <meta name="author" content="{{ base.metaAutor }}">
-    <meta name="keywords" content="{{ base.siteName }},{{ base.lema }},{{ base_metaDescripcion() }}">
+    <meta name="description" content="{{ base.siteName|default('No se ha configurado el site name en las meta base') }},  {{ base_metaDescripcion() }}">
+    <meta name="author" content="{{ base.metaAutor|default('No se ha configurado el autor en las meta base') }}">
+    <meta name="keywords" content="{{ base.siteName|default('No se ha configurado el site name en las meta base') }},{{ base.lema|default('No se ha configurado el lema en las meta base') }},{{ base_metaDescripcion() }}">
     <title>
         {% block title %}{{ base.siteName }} Bienvenido! {% endblock %}
     </title>

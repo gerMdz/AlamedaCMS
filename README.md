@@ -28,6 +28,13 @@ yarn install
 
 ``
 
+### Para el Admin
+
+Crea tu propio usuario y datos de tu sitio
+
+[primeros_pasos.md](use-cases/for-admins/primeros_pasos.md)
+
+
 ### Guides: Jump right in
 
 Follow our handy guides to get started on the basics as quickly as possible:

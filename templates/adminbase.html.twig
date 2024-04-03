@@ -327,9 +327,9 @@
         <div class="pull-right">
             PANEL GENERAL <br/>
 
-            {{ base.siteName }}
+            {{ base.siteName|default('No se ha configurado el site name en las meta base') }}
             <p>©{{ "now"|date("Y") }}
-                {{ base.siteName|trans }}
+                {{ base.siteName|default('No se ha configurado el site name en las meta base')|trans }}
             </p>
 
         </div>

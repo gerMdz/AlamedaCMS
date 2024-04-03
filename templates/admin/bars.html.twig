@@ -9,7 +9,7 @@
                     <img class="rounded d-lg-none" src="{{ asset('/images/logo-solo.png') }}" style="width: 35px;"
                          alt="AlamedaCMS">
                     <span class="text-sm">
-                        {{ base.siteName }}
+                        {{ base.siteName|default('No se ha configurado el site name en las meta base') }}
                     </span>
                 </a>
             </div>
