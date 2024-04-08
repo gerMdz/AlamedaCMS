@@ -1,5 +1,18 @@
 {% extends 'base_material_kit.twig' %}
 {% block sections %}
+    <style>
+        @media (max-width: 767px) {
+            .div-reorder {
+                order: 1;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .div-reorder {
+                order: 3;
+            }
+        }
+    </style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -26,7 +39,7 @@
             <div class="col-sm-12 d-md-none mt-8">
 
             </div>
-            <div class="col-md-3 col-sm-12 ml-0 pl-0 mt-md-0 mt-sm-5 order-md-first order-lg-last">
+            <div class="col-md-3 col-sm-12 ml-0 pl-0 mt-md-0 mt-sm-5 div-reorder">
 
                 {% for fixes in blocsFixes %}
                     {% if fixes.fixesType == 'side-fixe-right' %}
