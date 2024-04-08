@@ -11,7 +11,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <div class="col-md-9 col-sm-12 mr-0 pr-0 mt-md-0 mb-sm-5 order-sm-2 order-lg-1">
+            <div class="col-md-9 col-sm-12 mr-0 pr-0 mt-md-0 mb-sm-5 order-sm-2 order-md-1 order-lg-1">
                 {% for section in datosIndex.section %}
                     {% if section.orden != 0%}
 
@@ -25,7 +25,7 @@
             <div class="col-sm-12 d-md-none mt-8">
 
             </div>
-            <div class="col-md-3 col-sm-12 ml-0 pl-0 mt-md-0 mt-sm-5 order-sm-1 order-lg-2">
+            <div class="col-md-3 col-sm-12 ml-0 pl-0 mt-md-0 mt-sm-5 order-sm-1 order-md-2 order-lg-2">
                 {% for fixes in blocsFixes %}
                     {% if fixes.fixesType == 'side-fixe-right' %}
                         {% for blocsection in fixes.section %}
