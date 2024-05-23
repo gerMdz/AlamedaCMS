@@ -18,6 +18,8 @@ twig:
         mautic_enable: '%env(resolve:MAUTIC_ENABLE)%'
         mautic_site: '%env(resolve:MAUTIC_SITE)%'
         site_robot: '%env(resolve:SITE_ROBOT)%'
+        google_syndication_enable: '%env(resolve:GOOGLE_SYNDICATION_ENABLE)%'
+        google_syndication_client: '%env(resolve:GOOGLE_SYNDICATION_CLIENT)%'
 
 
 

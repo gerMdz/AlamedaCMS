@@ -4,6 +4,9 @@
     {% if google_tag_enable == 'true' %}
         {% include('inicio/_etiqueta_global_google.html.twig') %}
     {% endif %}
+    {% if google_syndication_enable == 'true' %}
+        {% include('inicio/_etiqueta_google_syndication.html.twig') %}
+    {% endif %}
     {% set base = base_base() %}
     {% set version = 'now' | date('YmdH') %}
     <meta charset="utf-8">
