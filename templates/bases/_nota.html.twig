@@ -265,35 +265,50 @@
                 {#                </div> #}
 
                 <div class="col-sm-8 mx-auto text-center">
-                    <div class="col-sm-6"> Modelo Cultural</div>
-                    <div class="col-sm-6">Modelo Bíblico</div>
-                    <div class="col-sm-6">Gastar</div>
-                    <div class="col-sm-6">Dedicar</div>
-                    <div class="col-sm-6">Disfrutar</div>
-                    <div class="col-sm-6">{{ completa_lugar('nueve') | raw }}</div>
-                    <div class="col-sm-6">Pagar</div>
-                    <div class="col-sm-6">{{ completa_lugar('diez') | raw }}</div>
-                    <div class="col-sm-6">Ahorrar</div>
-                    <div class="col-sm-6">{{ completa_lugar('once') | raw }}</div>
-                    <div class="col-sm-6">Dar</div>
-                    <div class="col-sm-6">{{ completa_lugar('doce') | raw }}</div>
-                    <div class="col-sm-6">Planear</div>
-                    <div class="col-sm-6">{{ completa_lugar('trece') | raw }}</div>
+                    <div class="row">
+                        <div class="col-sm-6"><h5><b>Modelo Cultural</b></h5></div>
+                        <div class="col-sm-6"><h5><b>Modelo Bíblico</b></h5></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">Gastar</div>
+                        <div class="col-sm-6">Dedicar</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">Disfrutar</div>
+                        <div class="col-sm-6">{{ completa_lugar('nueve') | raw }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">Pagar</div>
+                        <div class="col-sm-6">{{ completa_lugar('diez') | raw }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">Ahorrar</div>
+                        <div class="col-sm-6">{{ completa_lugar('once') | raw }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">Dar</div>
+                        <div class="col-sm-6">{{ completa_lugar('doce') | raw }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">Planear</div>
+                        <div class="col-sm-6">{{ completa_lugar('trece') | raw }}</div>
+                    </div>
                 </div>
-                <div class="col-12 mx-auto text-center">
-                    <h5>Aprovecha estás ayudas gratuitas:</h5>
-                    <h6 class="ml-2"><b>Asesoramiento Financiero</b>: Envia la palabra
-                        <a href="https://api.whatsapp.com/send?phone=+5492615178081&amp;text=Asesoramiento"
-                           class="text-white "> “Asesoramiento” al 261 517 8081</a></h6>
-                    <h6 class="ml-2"><b>Celebremos la Recuperación</b>: Todos los viernes 20:45 hs Grupo de Orientación
-                    </h6>
-                    <h6 class="ml-2"><b>Puentes</b> (Mediación Comunitaria): Llamá al
-                        <a href="tel:+542614251182">4251182</a> , Martes y Jueves de 17 a 19hs</h6>
-                    <h6 class="ml-2"><b>Taller de Presupuesto y Desendeudamiento </b>:Jueves 27 de Junio 20 hs.</h6>
+            </div>
+            <div class="col-12 mx-auto text-left">
+                <h5>Aprovecha estás ayudas gratuitas:</h5>
+                <h6 class="ml-2"><b>Asesoramiento Financiero</b>: Envia la palabra <a
+                            href="https://api.whatsapp.com/send?phone=+5492615178081&amp;text=Asesoramiento">
+                        “Asesoramiento” al 261 517 8081</a></h6>
+                <h6 class="ml-2"><b>Celebremos la Recuperación</b>: Todos los viernes 20:45 hs Grupo de Orientación
+                </h6>
+                <h6 class="ml-2"><b>Puentes</b> (Mediación Comunitaria): Llamá al
+                    <a href="tel:+542614251182">4251182</a> , Martes y Jueves de 17 a 19hs</h6>
+                <h6 class="ml-2"><b>Taller de Presupuesto y Desendeudamiento </b>:Jueves 27 de Junio 20 hs.</h6>
 
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 {{ encore_entry_script_tags('nota_mensaje') }}
