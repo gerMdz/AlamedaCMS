@@ -4,6 +4,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('select2') }}
+    {{ encore_entry_link_tags('ckeditor5') }}
 {% endblock %}
 
 {% block contenpage %}
@@ -36,6 +37,7 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('select2') }}
+    {{ encore_entry_script_tags('ckeditor5') }}
 
     {#    <script type="application/javascript"> #}
     {#        $(function () { #}

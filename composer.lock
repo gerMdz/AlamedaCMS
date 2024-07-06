@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f51489d42b2c3aa6eaf0a95e327d5425",
+    "content-hash": "eaa3a9307a7d9635e9f867427986be2b",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -241,6 +241,62 @@
                 }
             ],
             "time": "2022-01-17T14:14:24+00:00"
+        },
+        {
+            "name": "daddl3/symfony-ckeditor-5-webpack",
+            "version": "0.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/daddl3/symfony-ckeditor-5-webpack-vite.git",
+                "reference": "c75127d1992a6d14930a1a2999f016b4955c6c0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/daddl3%2Fsymfony-ckeditor-5-webpack-vite/repository/archive.zip?sha=c75127d1992a6d14930a1a2999f016b4955c6c0a",
+                "reference": "c75127d1992a6d14930a1a2999f016b4955c6c0a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "symfony/config": "^6 | ^7",
+                "symfony/console": "^6 | ^7",
+                "symfony/dependency-injection": "^6 | ^7",
+                "symfony/form": "^6 | ^7",
+                "symfony/framework-bundle": "^6 | ^7",
+                "symfony/http-client": "^6 | ^7",
+                "symfony/http-kernel": "^6 | ^7",
+                "symfony/process": "^6 | ^7",
+                "symfony/security-csrf": "^6 | ^7",
+                "symfony/twig-bundle": "^6 | ^7"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.10",
+                "roave/security-advisories": "dev-latest",
+                "symfony/webpack-encore-bundle": "^2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "daddl3\\SymfonyCKEditor5WebpackViteBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "daddl3",
+                    "email": "dustin.meiner@meiner-dev.de"
+                }
+            ],
+            "description": "Symfony CKEditor5 Bundle for Webpack and Vite",
+            "homepage": "https://meiner-dev.de",
+            "support": {
+                "issues": "https://gitlab.com/daddl3/symfony-ckeditor-5-webpack-vite/-/issues",
+                "source": "https://gitlab.com/daddl3/symfony-ckeditor-5-webpack-vite/-/tree/0.0.8"
+            },
+            "time": "2024-06-28T08:23:55+00:00"
         },
         {
             "name": "dasprid/enum",

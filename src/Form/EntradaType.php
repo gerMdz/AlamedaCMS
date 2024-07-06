@@ -10,6 +10,7 @@ use App\Entity\Section;
 use App\Entity\User;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\PrincipalRepository;
+use daddl3\SymfonyCKEditor5WebpackViteBundle\Form\Ckeditor5TextareaType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -89,21 +90,24 @@ class EntradaType extends AbstractType
                     ],
                 ]
             )
-            ->add('titulo', CKEditorType::class,
+//            ->add('titulo', CKEditorType::class,
+            ->add('titulo', Ckeditor5TextareaType::class,
                 [
                     'required' => true,
-                    'config' => [
-                        'uiColor' => '#ffffff',
-//                    'toolbar' => 'full',
-                        'language' => 'es',
-                        'input_sync' => true,
-                    ],
+//                    'config' => [
+//                        'uiColor' => '#ffffff',
+////                    'toolbar' => 'full',
+//                        'language' => 'es',
+//                        'input_sync' => true,
+//                    ],
+
                     'label_attr' => [
                         'class' => 'text-primary',
                     ],
                     'help' => 'Título de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => true,
+                        'data-ckeditor5-config' => 'default',
 
 //                        'class' => 'form-control',
                     ],
@@ -252,7 +256,7 @@ class EntradaType extends AbstractType
                 EntityType::class,
                 [
                     'class' => User::class,
-                    'choice_label' => fn (User $user) => sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail()),
+                    'choice_label' => fn(User $user) => sprintf('(%s) %s', $user->getPrimerNombre(), $user->getEmail()),
                     'placeholder' => 'Seleccione Autor',
                     'invalid_message' => 'Por favor ingrese un autor',
                     'attr' => [
@@ -265,7 +269,7 @@ class EntradaType extends AbstractType
                 EntityType::class,
                 [
                     'class' => ModelTemplate::class,
-                    'query_builder' => fn (ModelTemplateRepository $er) => $er->findByTypeEntrada(),
+                    'query_builder' => fn(ModelTemplateRepository $er) => $er->findByTypeEntrada(),
                     'help' => 'Opcional, llama a un template específico, debe estar en sections creado',
                     'required' => false,
                     'attr' => [
@@ -362,7 +366,6 @@ class EntradaType extends AbstractType
                     'class' => ' text-secondary',
                 ],
             ])
-
             ->add('cssClass', TextType::class,
                 [
                     'help_attr' => [
@@ -409,8 +412,7 @@ class EntradaType extends AbstractType
                 'attr' => [
                     'class' => 'select2-enable',
                 ],
-            ])
-        ; // ; Final Builder
+            ]); // ; Final Builder
     }
 
     public function configureOptions(OptionsResolver $resolver): void

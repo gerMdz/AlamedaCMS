@@ -21,7 +21,11 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('ckeditor5') }}
+
+
     <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
+
 {% endblock %}
 {% block jslocal %}
     {{ encore_entry_script_tags('summernote') }}

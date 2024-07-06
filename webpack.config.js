@@ -2,6 +2,10 @@ const Encore = require('@symfony/webpack-encore');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
 const path = require('path');
+const addCKEditor = require('./vendor/daddl3/symfony-ckeditor-5-webpack/assets/js/ckeditor-webpack-entry');
+/** Emcore, sourceMap **/
+
+
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -33,6 +37,8 @@ Encore
     .addEntry('nota_mensaje', './assets/js/nota_mensaje.js')
     .addStyleEntry('loginStyle', './assets/css/styles.css')
     .addStyleEntry('perfilStyle', './assets/css/account.css')
+    .addEntry('ckeditor5', './vendor/daddl3/symfony-ckeditor-5-webpack/assets/js/ckeditor5.js')
+
 
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -101,9 +107,12 @@ Encore
     .enablePostCssLoader((options) => {
         // new option outlined here https://webpack.js.org/loaders/postcss-loader/
         options.postcssOptions = {
-            config: './postcss.config.js',
+            config: './postcss.config.js'
         }
     })
+    /** Emcore, sourceMap **/
+
+
 
     .copyFiles({
         from: './assets/images',
@@ -112,7 +121,12 @@ Encore
 
     })
     .copyFiles([
-        {from: './node_modules/ckeditor4/', to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false},
+        {
+            from: './node_modules/ckeditor4/',
+            to: 'ckeditor/[path][name].[ext]',
+            pattern: /\.(js|css)$/,
+            includeSubdirectories: false
+        },
         {from: './node_modules/ckeditor4/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},
         {from: './node_modules/ckeditor4/lang', to: 'ckeditor/lang/[path][name].[ext]'},
         {from: './node_modules/ckeditor4/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
@@ -132,5 +146,5 @@ Encore
 //         }
 //     }));
 // }
-
+addCKEditor(Encore, true);
 module.exports = Encore.getWebpackConfig();

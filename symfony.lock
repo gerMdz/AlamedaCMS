@@ -23,6 +23,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.5"
     },
+    "daddl3/symfony-ckeditor-5-webpack": {
+        "version": "0.0.8"
+    },
     "dama/doctrine-test-bundle": {
         "version": "6.7",
         "recipe": {

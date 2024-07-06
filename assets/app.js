@@ -36,4 +36,6 @@ const $ = require('jquery');
 
 
 
+
+
 console.log('Hola, y si, con webpack encore');
