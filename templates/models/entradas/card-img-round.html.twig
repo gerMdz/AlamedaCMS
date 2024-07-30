@@ -1,10 +1,12 @@
-<div class="col-md-4 mb-sm-4">
+<div class="{{ entrada.cssClass|default('col-md-4 mb-sm-4') }} ">
     <div class="pasos h-100">
         <div class="card card-plain bg-white h-100">
             <div class="col-sm-4 mx-auto text-center img-20">
-                <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
-                     alt="{{ entrada.titulo }}"
-                     class="img-raised rounded-circle img-fluid  ">
+                {% if (entrada.imageFilename is not null) %}
+                    <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                         alt="{{ entrada.titulo }}"
+                         class="img-raised rounded-circle img-fluid  ">
+                {% endif %}
             </div>
             {% if (entrada.linkRoute or entrada.linkPosting ) %}
             <a

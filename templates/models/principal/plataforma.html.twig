@@ -46,6 +46,7 @@
 {% block sections %}
     <main role="main" class="{{ principal.cssClass | default('bg-white') }}">
         {% for section in secciones %}
+
             {{ render(controller(
                 'App\\Controller\\SectionController::mostrarSection', {id: section.id}
             )) }}
