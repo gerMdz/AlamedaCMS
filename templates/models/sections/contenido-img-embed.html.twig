@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-6 order-first order-lg-last mb-4 mb-lg-0">
                     <!-- Mockup Browser -->
-                    <figure>
+                    <figure class="img-fluid">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                              viewBox="0 0 857 40" style="enable-background:new 0 0 857 40;" xml:space="preserve">
                   <g>
@@ -70,7 +70,7 @@
 
                         {% if (entrada.imageFilename) %}
                             <img alt="{{ entrada.linkRoute }}"
-                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_medium') }}"
+                                 src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_large') }}"
                                  class="img-fluid" />
                         {% endif %}
 

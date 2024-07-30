@@ -8,7 +8,12 @@
 
         {% for entrada in entradas %}
             {#  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'section':entrada } #}
-            {%  include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
+            {% if(entrada.modelTemplate) %}
+                {% set model = entrada.modelTemplate %}
+            {% else %}
+                {% set model = 'default' %}
+                {% endif %}
+            {%  include 'models/entradas/'~model~'.html.twig' ignore missing with { 'entrada':entrada } %}
         {% endfor %}
 
     </div>
