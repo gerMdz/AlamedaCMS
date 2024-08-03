@@ -1,0 +1,39 @@
+{% set base = base_base() %}
+<div class="bg-camino" style="height: 200px">
+</div>
+<footer class="footer mb-2">
+    <div class="container">
+
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                {#                <nav class="float-left">#}
+                {#                    <ul>#}
+                {#                        <li>#}
+                {#                            <a href="{{ path('index') }}">#}
+                {#                                {{ base.siteName }}#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </nav>#}
+                <div class="copyright float-left">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    <a href="{{ path('index') }}" target="_blank">{{ base.siteName }}</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+{#                <ul class="social-icons list-group list-group-horizontal">#}
+{#                    <li class="list-group-item"><a class="facebook" href="https://www.facebook.com/IglesiaAlameda"><i#}
+{#                                    class="fa fa-facebook"></i></a></li>#}
+{#                    <li class="list-group-item"><a class="youtube" href="https://youtube.com/user/IglesiaAlameda"><i class="fa fa-youtube"></i></a>#}
+{#                    </li>#}
+{#                    <li class="list-group-item"><a class="instagram" href="https://www.instagram.com/iglesialameda"><i#}
+{#                                    class="fa fa-instagram"></i></a></li>#}
+{#                </ul>#}
+            </div>
+        </div>
+    </div>
+</footer>

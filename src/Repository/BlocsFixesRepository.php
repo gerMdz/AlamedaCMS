@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\BlocsFixes;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -55,6 +56,42 @@ class BlocsFixesRepository extends ServiceEntityRepository
 
         return $qb;
     }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function getBlockFooterIndex()
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.fixes_type', 'ft')
+            ->andWhere('ft.identificador = :type')
+            ->setParameter('type', 'footer')
+            ->andWhere('b.indexAlameda = :index')
+            ->setParameter('index', 1)
+            ->orderBy('b.updatedAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function getBlockFooterPrincipal(string $principal)
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.fixes_type', 'ft')
+            ->leftJoin('b.page', 'p')
+            ->andWhere('ft.identificador = :type')
+            ->setParameter('type', 'footer')
+            ->andWhere('p.id = :principal')
+            ->setParameter('principal', $principal)
+            ->orderBy('b.updatedAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 
     // /**
     //  * @return BlocsFixes[] Returns an array of BlocsFixes objects

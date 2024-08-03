@@ -180,7 +180,7 @@ class SectionController extends BaseController
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[Route(path: '/muestra/seccion/{id}')]
+    #[Route(path: '/muestra/seccion/{id}', name: 'seccion_muestra', methods: ['GET'])]
     public function mostrarSection(Section $section, EntradaRepository $entradaRepository, SourceApiRepository $sourceApiRepository): Response
     {
         $entradas = $entradaRepository->findAllEntradasBySeccion($section->getId());

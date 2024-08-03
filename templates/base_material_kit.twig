@@ -29,7 +29,6 @@
     <meta property="og:description"
           content="{% block meta_og_description_content %}{{ base_metaDescripcion() }}{% endblock %}. {{ base.siteName }}"/>
     <meta property="og:site_name" content="{{ base.siteName }}"/>
-    {#    /<link rel="shortcut icon" href="{{ asset('/images/institucional/indice.png') }}" type="image/x-icon"> #}
     <title>{{ base.metaTitle }}</title>
     {% include('inicio/_favicon_html.twig') %}
     {% block icons %}
@@ -99,7 +98,10 @@
 
 
 {% block footer %}
-    {% include 'inicio/_footer_ar.html.twig' %}
+{#    {% include 'inicio/_footer_ar.html.twig' %}#}
+    {{ render(controller(
+        'App\\Controller\\FooterController::show', {principal: app.request.requesturi }
+    )) }}
     {% if mautic_enable == 'true' %}
         {% include('inicio/_etiqueta_global_mautic.html.twig') %}
     {% endif %}
@@ -111,16 +113,7 @@
     <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('material-kit/js/plugins/parallax.min.js') }}"></script>
-    {#         <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script> #}
-    {#    <script src="{{ asset('material-kit/js/core/jquery.min.js') }}"></script> #}
-    {#    <script src="{{ asset('material-kit/js/core/bootstrap-material-design.min.js') }}"></script> #}
-    {#     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.min.js') }}"></script> #}
     <script src="{{ asset('stream-ui-kit/assets/vendors/jquery.migrate.min.js') }}"></script>
-    {# <script src="{{ asset('stream-ui-kit/assets/vendors/popper.min.js') }}"></script> #}
-    {# <script src="{{ asset('stream-ui-kit/assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script> #}
-
-    {# <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script> #}
-    {# <script type="text/javascript" src="{{ asset('js/swiper.min.js') }}"></script> #}
 
 
     <!-- Components Vendor  -->

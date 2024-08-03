@@ -25,6 +25,7 @@ class BlocsFixesType extends AbstractType
                 'attr' => [
                     'class' => 'select2-enable',
                 ],
+                'required' => false,
             ])
             ->add('section', EntityType::class, [
                 'class' => Section::class,
@@ -32,6 +33,7 @@ class BlocsFixesType extends AbstractType
                 'attr' => [
                     'class' => 'select2-enable',
                 ],
+                'required' => false,
             ])
             ->add('indexAlameda')
             ->add('fixes_type')

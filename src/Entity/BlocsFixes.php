@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -27,7 +28,7 @@ class BlocsFixes implements \Stringable
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', length: 36)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: \Ramsey\Uuid\Doctrine\UuidGenerator::class)]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private UuidInterface $id;
 
     #[ORM\ManyToMany(targetEntity: Principal::class, inversedBy: 'blocsFixes')]
