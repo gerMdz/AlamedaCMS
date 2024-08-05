@@ -10,7 +10,7 @@
     <div class="container mt-5">
         <div class="row">
             {% for entrada in entradas %}
-                {%  include 'modelEntrada/'~entrada.modelTemplate~'.html.twig' with { 'section':entrada } %}
+                {%  include 'models/entradas/'~entrada.modelTemplate~'.html.twig' ignore missing with { 'entrada':entrada } %}
             {% endfor %}
         </div>
     </div>
