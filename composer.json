@@ -26,7 +26,7 @@
         "liip/imagine-bundle": "^2.7.4",
         "oneup/flysystem-bundle": "^4.11.2",
         "phpdocumentor/reflection-docblock": "^5.2",
-        "phpoffice/phpspreadsheet": "^1.15",
+        "phpoffice/phpspreadsheet": "^2.2",
         "ramsey/uuid-doctrine": "^1.6",
         "stof/doctrine-extensions-bundle": "^1.10.1",
         "symfony/apache-pack": "^1.0",
