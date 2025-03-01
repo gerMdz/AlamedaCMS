@@ -26,14 +26,14 @@
         text-align: center !important;
     }
 
-    h5.text-centrado {
+    h4.text-centrado, h5.text-centrado, h6.text-centrado {
         text-align: center !important;
-        font-weight: 300;
+
     }
 
-    /*.text-600 {*/
-    /*    font-weight: 600;*/
-    /*}*/
+    .text-600 {
+        font-weight: 600;
+    }
 </style>
 <div class="row mt-0">
     <div class="col-sm-12 col-md-10 col-lg-10 px-0 mx-auto mt-0">
@@ -57,12 +57,19 @@
                     {#                    </h5> #}
 
                     <p class="text-14-300 font-italic pl-4 text-centrado">
-                        “¡No se desalienten ni entristezcan, porque el gozo del SEÑOR es su fuerza!».”
+                        “Ustedes deben orar así:<br/>
+                        “’<u>Padre</u> nuestro que estás en el cielo,<br/>
+                        santificado sea tu nombre,”
+
                         <br/>
                         <small class="float-end">
-                            Nehemías 8:10 (NTV)
+                            Mateo 6:9 (NVI)
                         </small>
                     </p><br/>
+                    <h5 class="text-centrado text-600">
+                        DIOS ES {{ completa_lugar('uno') | raw }}, NO {{ completa_lugar('dos') | raw }}
+
+                    </h5>
                 </div>
 
                 {#            <h6 class="text-centrado"> #}
@@ -73,148 +80,150 @@
                 {#                SOY UN {{ completa_lugar('tres') | raw }}. #}
                 {#            </h5> #}
                 <h4 class="text-centrado text-600">
-                    COMO MANTENER TU ALEGRÍA
+                    PUEDO <b>CONECTARME</b> CON EL CIELO
+                    PORQUE...
                 </h4>
+                <h6 class="text-centrado text-600">
+                    PORQUE...
+                </h6>
+                <h5 class="text-izq text-600">
+                    1. ÉL ES {{ completa_lugar('tres') | raw }}
+                </h5>
                 <p class="text-14-300 font-italic pl-4 text-centrado">
-                    “Nada podrá quitarme este gozo.”
+                    “El SEÑOR es como un padre con sus hijos, <u>tierno y compasivo</u> con los que le temen.”
                     <br/>
                     <small class="float-end">
-                        Filipenses 1:18 (BAD)
+                        Salmos 103:13 (NTV)
                     </small>
                 </p><br/>
-
-                <h5 class="text-izq text-600">
-                    1. NECESITO UNA MEJOR {{ completa_lugar('uno') | raw }}. (VS. 12-14)
-                </h5>
-                <h6 class="text-izq text-600">
-                    La perspectiva de Pablo de sus <b>circunstancias</b>:
-                </h6>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    Mis amados hermanos, quiero que sepan que todo lo que me ha sucedido en este lugar <u>ha servido</u>
-                    para difundir la Buena Noticia.”
-                    <br/>
-                    <small class="float-end">
-                        Filipenses 1:12 (NTV)
-                    </small>
-                </p><br/>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “Ahora bien, sabemos que Dios dispone TODAS las cosas para el bien de quienes lo aman… “
-                    <br/>
-                    <small class="float-end">
-                        Romanos 8:28 (NVI)
-                    </small>
-                </p><br/>
-                <h6 class="text-izq text-600">
-                    LECCIÓN: {{ completa_lugar('dos') | raw }}
-                </h6>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “Aunque las higueras no florezcan y no haya uvas en las vides, aunque se pierda la cosecha de oliva
-                    y los campos queden vacíos y no den fruto, … ¡aun así me <u>alegraré en el SEÑOR!</u> ¡Me gozaré en
-                    el Dios de mi salvación!”
-                    <br/>
-                    <small class="float-end">
-                        Habacuc 3:17-18 (NTV)
-                    </small>
-                </p><br/>
-                <h5 class="text-izq text-600">
-                    2. NECESITO UNA CLARA {{ completa_lugar('tres') | raw }}. (VS. 15-18)
-                </h5>
-                <h6 class="text-izq text-600">
-                    La respuesta de Pablo a sus <b>críticos</b>:
-                </h6>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “Pero eso no importa porque LO VERDADERAMENTE IMPORTANTE es dar a conocer a Cristo, aunque algunos
-                    lo hagan por razones equivocadas. De todas maneras, me alegra que se hable acerca de Cristo. Y
-                    seguiré alegrándome”
-                    <br/>
-                    <small class="float-end">
-                        Filipenses 1:18 (PDT)
-                    </small>
-                </p><br/>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “«Estoy <u>ocupado en una gran tarea</u>, así que no puedo ir. ¿Por qué habría de dejar el trabajo
-                    para ir a encontrarme con ustedes?».”
-                    <br/>
-                    <small class="float-end">
-                        Nehemías 6:3 (NTV)
-                    </small>
-                </p><br/>
-                <h6 class="text-izq text-600">
-                    LECCIÓN: {{ completa_lugar('cuatro') | raw }}
-                </h6>
-                <h5 class="text-izq text-600">
-                    3. NECESITO UNA FUENTE DE {{ completa_lugar('cinco') | raw }}. (VS. 19-20)
-                </h5>
-                <h6 class="text-izq text-600">
-                    Fuente de fortaleza de Pablo:
-                </h6>
-
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “… Y todavía me alegraré más, pues yo sé que todo esto será para mi salvación, gracias a las
-                    oraciones de ustedes y a <u>la ayuda que me da el Espíritu de Jesucristo</u>. Pues espero firmemente
-                    que Dios no me dejará quedar mal...”
-                    <br/>
-                    <small class="float-end">
-                        Filipenses 1:18-20 (DHH)
-                    </small>
-                </p><br/>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “Todos los que beban del agua que yo doy no tendrán sed jamás. Esa agua se convierte en un manantial
-                    que <u>brota con frescura dentro</u> de ellos”
-                    <br/>
-                    <small class="float-end">
-                        Juan 4:14 (NTV)
-                    </small>
-                </p><br/>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “<u>Cristo me da fuerzas</u> para enfrentarme a toda clase de situaciones”
-                    <br/>
-                    <small class="float-end">
-                        Filipenses 4:13 (TLA)
-                    </small>
-                </p><br/>
-                <h6 class="text-izq text-600">
-                    LECCIÓN: {{ completa_lugar('seis') | raw }}
-                </h6>
-
-                <h5 class="text-izq text-600">
-                    4. NECESITO UN INALTERABLE {{ completa_lugar('siete') | raw }}. (VS. 20-26)
-                </h5>
-                <h6 class="text-izq text-600">
-                    La razón de Pablo para vivir:
-                </h6>
-
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “Porque Cristo es la razón de mi vida, y la muerte, por tanto, me resulta una ganancia.”
-                    <br/>
-                    <small class="float-end">
-                        Filipenses 1:21 (AF)
-                    </small>
-                </p><br/>
-                <p class="text-14-300 font-italic pl-4 text-izq">
-                    “No, hermanos, todavía no soy el que debo ser, pero eso sí, olvidando el pasado y con la mirada fija
-                    en lo que está por delante, me esfuerzo hasta lo último por llegar a la meta y recibir el premio que
-                    Dios nos llama a recibir en el cielo en virtud de lo que Jesucristo hizo por nosotros.”
-                    <br/>
-                    <small class="float-end">
-                        Filipenses 3:13-14 (BAD)
-                    </small>
-                </p><br/>
-                <h6 class="text-izq text-600">
-                    LECCIÓN: {{ completa_lugar('ocho') | raw }}
-                </h6>
-
-
-
-
                 <p class="text-14-300 font-italic pl-4 text-centrado">
-                    Jesús: “Se alegrarán, y nadie podrá robarles esa alegría.”
+                    “Pongan todas sus preocupaciones y ansiedades en las manos de Dios, porque <u>él cuida</u> de
+                    ustedes.”
                     <br/>
                     <small class="float-end">
-                        Juan 16:22 (NTV)
+                        1° Pedro 5:7 (NTV)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-centrado">
+                    “Así que no se preocupen por todo eso diciendo: “¿Qué comeremos?, ¿qué beberemos?, ... <u>su Padre
+                        celestial</u> ya conoce todas sus necesidades.”
+                    <br/>
+                    <small class="float-end">
+                        Mateo 6:31-32 (NTV)
                     </small>
                 </p><br/>
 
+                <h5 class="text-izq text-600">
+                    2. ÉL ES {{ completa_lugar('cuatro') | raw }}
+                </h5>
+
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Todo lo que es bueno y perfecto desciende a nosotros de parte de Dios nuestro Padre, ... <u>Él
+                        nunca cambia</u> ni varía como una sombra en movimiento.”
+                    <br/>
+                    <small class="float-end">
+                        Santiago 1:17 (NTV)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Si le somos infieles, <u>él permanece fiel</u>, pues no puede faltar a su palabra.”
+                    <br/>
+                    <small class="float-end">
+                        2° Timoteo 2:13 (BTI)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Dios jamás ... se retracta de sus promesas.”
+                    <br/>
+                    <small class="float-end">
+                        Romanos 11:29 (BAD)
+                    </small>
+                </p><br/>
+
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “En su amor <u>inagotable</u>, mi Dios estará a mi lado”
+                    <br/>
+                    <small class="float-end">
+                        Salmos 59:10 (NTV)
+                    </small>
+                </p><br/>
+
+                <h5 class="text-izq text-600">
+                    3. ÉL ES {{ completa_lugar('cinco') | raw }}
+                </h5>
+
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Esto lo hizo Dios para que todos lo busquen y... lo encuentren. En verdad, <u>él no está lejos</u>
+                    de ninguno de nosotros,”
+                    <br/>
+                    <small class="float-end">
+                        Hechos 17:27 (NVI)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “El Señor <u>está cerca</u> de los que piden su ayuda, de los que le piden de corazón.”
+                    <br/>
+                    <small class="float-end">
+                        Salmos 145:18 (VBL)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Si ustedes... saben dar buenos regalos a sus hijos, <u>cuánto más</u> su Padre celestial dará
+                    buenos regalos a quienes le pidan.”
+                    <br/>
+                    <small class="float-end">
+                        Mateo 7:11 (NTV)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “El SEÑOR está <u>cerca</u> de los que tienen quebrantado el corazón; él rescata a los de espíritu
+                    destrozado.”
+                    <br/>
+                    <small class="float-end">
+                        Salmos 34:18 (NTV)
+                    </small>
+                </p><br/>
+
+                <h5 class="text-izq text-600">
+                    4. ÉL ES {{ completa_lugar('seis') | raw }}
+                </h5>
+
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Pues nada es <u>imposible</u> para Dios.”
+                    <br/>
+                    <small class="float-end">
+                        Lucas 1:37 (NTV)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Gloria sea a Dios, quien por el formidable poder que actúa en nosotros puede bendecirnos
+                    infinitamente <u>más allá</u> de nuestras más sentidas oraciones, deseos, pensamientos y
+                    esperanzas.”
+                    <br/>
+                    <small class="float-end">
+                        Efesios 3:20 (BAD)
+                    </small>
+                </p><br/>
+                <h6 class="text-600 text-centrado">
+                    DIOS ENVIÓ A JESÚS PARA CONECTARNOS CON EL PADRE.
+                </h6>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    Dios está en un lado y la gente en el otro,<br/>
+                    y que <u>Jesucristo</u>, hombre también,<br/>
+                    está entre los dos para unirlos”
+                    <br/>
+                    <small class="float-end">
+                        1 Timoteo 2:5 (BAD)
+                    </small>
+                </p><br/>
+                <p class="text-14-300 font-italic pl-4 text-izq">
+                    “Ahora somos hijos de Dios<br/>
+                    por la fe en <u>Jesucristo</u>”
+                    <br/>
+                    <small class="float-end">
+                        Gálatas 3:26 (BAD)
+                    </small>
+                </p><br/>
 
 
                 {#                #}
