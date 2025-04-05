@@ -18,3 +18,21 @@ $(function () {
         }
     });
 });
+
+function esVisible(elemento) {
+    let esVisible = false;
+    if ($(elemento).is(':visible') && $(elemento).css("visibility") != "hidden" && $(elemento).css("opacity") > 0) {
+        esVisible = true;
+    }
+    return esVisible;
+}
+
+function muestra1(elementO2, elemento2) {
+    $(elementO2).show();
+    $(elemento2).hide();
+}
+
+function oculta1(elementO2, elemento2) {
+    $(elementO2).hide();
+    $(elemento2).show();
+}
