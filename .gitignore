@@ -122,3 +122,4 @@ phpstan.neon
 /tools/php-cs-fixer/composer.json
 /tools/php-cs-fixer/composer.lock
 /sqls/
+/notas/datas.md
