@@ -32,9 +32,14 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AdminEntradaController extends BaseController
 {
     /**
-     * NO usado es opcional.
+     * Constructor del controlador de entradas.
      */
-    public function __construct(private readonly LoggerClient $loggerClient, private readonly BoleanToDateHelper $boleanToDateHelper, private readonly ManagerRegistry $managerRegistry)
+    public function __construct(
+        private readonly LoggerClient $loggerClient, 
+        private readonly BoleanToDateHelper $boleanToDateHelper, 
+        private readonly ManagerRegistry $managerRegistry,
+        private readonly \App\Service\ErrorHandler $errorHandler
+    )
     {
     }
 
@@ -100,30 +105,55 @@ class AdminEntradaController extends BaseController
         UploaderHelper $uploaderHelper,
         ObtenerDatosHelper $datosHelper
     ): Response {
+        $context = ['id' => $entrada->getId(), 'titulo' => $entrada->getTitulo()];
         $form = $this->createForm(EntradaType::class, $entrada);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $boolean = $form['publicar']->getData();
-            $link = $form['linkRoute']->getData();
+            try {
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $form['imageFile']->getData();
+                $boolean = $form['publicar']->getData();
+                $link = $form['linkRoute']->getData();
 
-            $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
-            $entrada->setPublicadoAt($publicado);
+                $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
+                $entrada->setPublicadoAt($publicado);
 
-            $entrada->setLinkRoute($link);
+                $entrada->setLinkRoute($link);
 
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $entrada->getImageFilename());
-                $entrada->setImageFilename($newFilename);
+                if ($uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $entrada->getImageFilename());
+                    $entrada->setImageFilename($newFilename);
+                }
+
+                $this->managerRegistry->getManager()->flush();
+
+                $this->errorHandler->logInfo(
+                    'Se editó la entrada: ' . $entrada->getTitulo(),
+                    $context
+                );
+
+                $this->errorHandler->manejarError(
+                    'success', 
+                    'Se actualizó la entrada correctamente', 
+                    $context, 
+                    true
+                );
+
+                return $this->redirectToRoute('admin_entrada_index');
+            } catch (\Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'Error al actualizar la entrada',
+                    array_merge($context, ['error' => $e->getMessage()]),
+                    true
+                );
             }
-
-            $this->managerRegistry->getManager()->flush();
-
-            $this->loggerClient->logMessage('Se editó la entrada \"'.$entrada->getTitulo().'\"', '');
-
-            return $this->redirectToRoute('admin_entrada_index');
+        } elseif ($form->isSubmitted()) {
+            $this->errorHandler->manejarErrorValidacion(
+                'El formulario contiene errores. Por favor, revise los campos marcados.',
+                $context,
+                true
+            );
         }
 
         $ip = $datosHelper->getIpCliente();
@@ -144,14 +174,40 @@ class AdminEntradaController extends BaseController
     #[IsGranted('MANAGE', subject: 'entrada')]
     public function editComplex(Request $request, Entrada $entrada): Response
     {
+        $context = ['id' => $entrada->getId(), 'titulo' => $entrada->getTitulo()];
         $form = $this->createForm(EntradaComplexType::class, $entrada);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->managerRegistry->getManager()->flush();
-            $this->loggerClient->logMessage('Se editó la entrada \"'.$entrada->getTitulo().'\"', '');
+            try {
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_entrada_index');
+                $this->errorHandler->logInfo(
+                    'Se editó la entrada compleja: ' . $entrada->getTitulo(),
+                    $context
+                );
+
+                $this->errorHandler->manejarError(
+                    'success', 
+                    'Se actualizó la entrada correctamente', 
+                    $context, 
+                    true
+                );
+
+                return $this->redirectToRoute('admin_entrada_index');
+            } catch (\Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'Error al actualizar la entrada',
+                    array_merge($context, ['error' => $e->getMessage()]),
+                    true
+                );
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->errorHandler->manejarErrorValidacion(
+                'El formulario contiene errores. Por favor, revise los campos marcados.',
+                $context,
+                true
+            );
         }
 
         return $this->render('admin/entrada/edit_contenido.html.twig', [
@@ -212,7 +268,16 @@ class AdminEntradaController extends BaseController
             $em->persist($entrada);
             $em->flush();
 
-            $this->addFlash('success', 'Se agregó una entrada al sitio');
+            $this->errorHandler->logInfo(
+                'Se agregó una entrada al sitio: ' . $entrada->getTitulo(),
+                ['id' => $entrada->getId()]
+            );
+            $this->errorHandler->manejarError(
+                'success', 
+                'Se agregó una entrada al sitio', 
+                ['id' => $entrada->getId()], 
+                true
+            );
 
             return $this->redirectToRoute('admin_entrada_index');
         }
@@ -235,19 +300,39 @@ class AdminEntradaController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $section = $form['section']->getData();
-            $entrada->addSection($section);
-            if ($session_template = $this->container->get('request_stack')->getSession()->get('model_template_id')) {
-                if ($modelTemplate = $modelTemplateRepository->find($session_template)) {
-                    $entrada->setModelTemplate($modelTemplate);
+            try {
+                $section = $form['section']->getData();
+                $entrada->addSection($section);
+                if ($session_template = $this->container->get('request_stack')->getSession()->get('model_template_id')) {
+                    if ($modelTemplate = $modelTemplateRepository->find($session_template)) {
+                        $entrada->setModelTemplate($modelTemplate);
+                    }
                 }
-            }
-            $this->managerRegistry->getManager()->persist($entrada);
-            $this->managerRegistry->getManager()->flush();
+                $this->managerRegistry->getManager()->persist($entrada);
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_entrada_new_step2', [
-                'id' => $entrada->getId(),
-            ]);
+                $context = ['id' => $entrada->getId(), 'section' => $section->getNombre()];
+                $this->errorHandler->logInfo(
+                    'Se creó la entrada (paso 1): ' . $entrada->getId(),
+                    $context
+                );
+
+                return $this->redirectToRoute('admin_entrada_new_step2', [
+                    'id' => $entrada->getId(),
+                ]);
+            } catch (\Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'Error al crear la entrada (paso 1)',
+                    ['error' => $e->getMessage()],
+                    true
+                );
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->errorHandler->manejarErrorValidacion(
+                'El formulario contiene errores. Por favor, revise los campos marcados.',
+                [],
+                true
+            );
         }
 
         return $this->render('admin/entrada/new_step1.html.twig', [
@@ -260,17 +345,37 @@ class AdminEntradaController extends BaseController
     #[IsGranted('ROLE_ADMIN')]
     public function newStepTwo(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
     {
+        $context = ['id' => $entrada->getId()];
         $form = $this->createForm(StepTwoType::class, $entrada);
         $form->handleRequest($request);
 
         $linkRoutes = $principalRepository->getPrincipalSelect();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->managerRegistry->getManager()->flush();
+            try {
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_entrada_new_step3', [
-                'id' => $entrada->getId(),
-            ]);
+                $this->errorHandler->logInfo(
+                    'Se actualizó la entrada (paso 2): ' . $entrada->getId(),
+                    $context
+                );
+
+                return $this->redirectToRoute('admin_entrada_new_step3', [
+                    'id' => $entrada->getId(),
+                ]);
+            } catch (\Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'Error al actualizar la entrada (paso 2)',
+                    array_merge($context, ['error' => $e->getMessage()]),
+                    true
+                );
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->errorHandler->manejarErrorValidacion(
+                'El formulario contiene errores. Por favor, revise los campos marcados.',
+                $context,
+                true
+            );
         }
 
         return $this->render('admin/entrada/new_step2.html.twig', [
@@ -287,16 +392,43 @@ class AdminEntradaController extends BaseController
     #[IsGranted('ROLE_ESCRITOR')]
     public function newStepThree(Request $request, Entrada $entrada, PrincipalRepository $principalRepository): Response
     {
+        $context = ['id' => $entrada->getId(), 'titulo' => $entrada->getTitulo()];
         $form = $this->createForm(StepThreeType::class, $entrada);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->managerRegistry->getManager()->persist($entrada);
-            $this->managerRegistry->getManager()->flush();
+            try {
+                $this->managerRegistry->getManager()->persist($entrada);
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_entrada_index', [
-                'id' => $entrada->getId(),
-            ]);
+                $this->errorHandler->logInfo(
+                    'Se completó la creación de la entrada (paso 3): ' . $entrada->getTitulo(),
+                    $context
+                );
+
+                $this->errorHandler->manejarError(
+                    'success', 
+                    'Se creó la entrada correctamente', 
+                    $context, 
+                    true
+                );
+
+                return $this->redirectToRoute('admin_entrada_index', [
+                    'id' => $entrada->getId(),
+                ]);
+            } catch (\Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'Error al finalizar la creación de la entrada (paso 3)',
+                    array_merge($context, ['error' => $e->getMessage()]),
+                    true
+                );
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->errorHandler->manejarErrorValidacion(
+                'El formulario contiene errores. Por favor, revise los campos marcados.',
+                $context,
+                true
+            );
         }
 
         return $this->render('admin/entrada/new_step3.html.twig', [
@@ -324,45 +456,73 @@ class AdminEntradaController extends BaseController
     #[Route(path: '/admin/entrada/{id}/delete', name: 'entrada_delete', methods: ['DELETE', 'POST'])]
     public function delete(Request $request, Entrada $entrada): Response
     {
-        $status = 'error';
-        $msg = 'No se puede borrar esta entrada. Comuníquese con el administrador';
+        $context = ['id' => $entrada->getId(), 'titulo' => $entrada->getTitulo()];
 
-        if ($this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
-            $msg = 'No cuenta con los permisos para borrar esta entrada. Comuníquese con el administrador';
-
-            if ($this->getUser() === $entrada->getAutor() or $this->isGranted('ROLE_EDITOR')) {
-                foreach ($entrada->getPrincipals() as $principal) {
-                    $entrada->removePrincipal($principal);
-                }
-
-                foreach ($entrada->getSections() as $section) {
-                    $entrada->removeSection($section);
-                }
-
-                foreach ($entrada->getComentarios() as $comentario) {
-                    $entrada->removeComentario($comentario);
-                }
-
-                foreach ($entrada->getContacto() as $contacto) {
-                    $entrada->removeContacto($contacto);
-                }
-
-                foreach ($entrada->getButton() as $button) {
-                    $entrada->removeButton($button);
-                }
-
-                foreach ($entrada->getEntradaReferences() as $reference) {
-                    $this->managerRegistry->getManager()->remove($reference);
-                }
-
-                $this->managerRegistry->getManager()->remove($entrada);
-                $this->managerRegistry->getManager()->flush();
-                $status = 'success';
-                $msg = 'Se borro la entrada';
-            }
+        if (!$this->isCsrfTokenValid('delete'.$entrada->getId(), $request->request->get('_token'))) {
+            $this->errorHandler->manejarErrorValidacion(
+                'Token CSRF inválido al intentar borrar la entrada',
+                $context,
+                true
+            );
+            return $this->redirectToRoute('admin_entrada_index');
         }
 
-        $this->addFlash($status, $msg);
+        if (!($this->getUser() === $entrada->getAutor() || $this->isGranted('ROLE_EDITOR'))) {
+            $this->errorHandler->manejarErrorAutorizacion(
+                'borrar esta entrada',
+                $context,
+                true
+            );
+            return $this->redirectToRoute('admin_entrada_index');
+        }
+
+        try {
+            // Eliminar relaciones
+            foreach ($entrada->getPrincipals() as $principal) {
+                $entrada->removePrincipal($principal);
+            }
+
+            foreach ($entrada->getSections() as $section) {
+                $entrada->removeSection($section);
+            }
+
+            foreach ($entrada->getComentarios() as $comentario) {
+                $entrada->removeComentario($comentario);
+            }
+
+            foreach ($entrada->getContacto() as $contacto) {
+                $entrada->removeContacto($contacto);
+            }
+
+            foreach ($entrada->getButton() as $button) {
+                $entrada->removeButton($button);
+            }
+
+            foreach ($entrada->getEntradaReferences() as $reference) {
+                $this->managerRegistry->getManager()->remove($reference);
+            }
+
+            $this->managerRegistry->getManager()->remove($entrada);
+            $this->managerRegistry->getManager()->flush();
+
+            $this->errorHandler->logInfo(
+                'Se eliminó la entrada: ' . $entrada->getTitulo(),
+                $context
+            );
+
+            $this->errorHandler->manejarError(
+                'success', 
+                'Se eliminó la entrada correctamente', 
+                $context, 
+                true
+            );
+        } catch (\Exception $e) {
+            $this->errorHandler->manejarErrorDatabase(
+                'Error al eliminar la entrada',
+                array_merge($context, ['error' => $e->getMessage()]),
+                true
+            );
+        }
 
         return $this->redirectToRoute('admin_entrada_index');
     }

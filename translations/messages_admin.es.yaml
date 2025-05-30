@@ -12,6 +12,7 @@ backend:
     please_confirm: ¿Confirma su acción?
     choice_action: Seleccione una acción
     no_item_selected: No ha se ha seleccionado nana
+    form_errors: "Por favor corrija los siguientes errores:"
   menu:
     home: Home
     manage: Manage

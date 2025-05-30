@@ -1,4 +1,14 @@
 <div class="x_content">
+    {% if not entradaForm.vars.valid %}
+        <div class="alert alert-danger">
+            <strong>{{ "backend.global.error"|trans }}</strong> {{ "backend.global.form_errors"|trans }}
+            <ul>
+                {% for error in entradaForm.vars.errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     {{ form_start(entradaForm, {'attr': {'novalidate': 'novalidate'}}) }}
     <div class="row">
         <div class="col-sm-1"></div>
@@ -40,10 +50,28 @@
     </div>
     <div class="row">
         <div class="col-sm-4">
-            {{ form_row(entradaForm.titulo) }}
+            {{ form_label(entradaForm.titulo) }}
+            {{ form_widget(entradaForm.titulo) }}
+            {% if not entradaForm.titulo.vars.valid %}
+                <div class="invalid-feedback d-block">
+                    {% for error in entradaForm.titulo.vars.errors %}
+                        {{ error.message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{ form_help(entradaForm.titulo) }}
         </div>
         <div class="col-sm-8">
-            {{ form_row(entradaForm.contenido) }}
+            {{ form_label(entradaForm.contenido) }}
+            {{ form_widget(entradaForm.contenido) }}
+            {% if not entradaForm.contenido.vars.valid %}
+                <div class="invalid-feedback d-block">
+                    {% for error in entradaForm.contenido.vars.errors %}
+                        {{ error.message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{ form_help(entradaForm.contenido) }}
         </div>
     </div>
     <hr class="bg-primary"/>
