@@ -58,3 +58,16 @@ services:
         class: App\Form\TypeExtension\TextareaSizeExtension
         tags:
             - { name: form.type_extension }
+
+    # Configuración para inyectar el logger en servicios que usan LoggerTrait
+    App\Service\UploaderHelper:
+        calls:
+            - [setLogger, ['@logger']]
+
+    App\Service\LoggerClient:
+        calls:
+            - [setLogger, ['@logger']]
+
+    App\Service\ErrorHandler:
+        calls:
+            - [setLogger, ['@logger']]
