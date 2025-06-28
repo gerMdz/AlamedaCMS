@@ -71,3 +71,6 @@ services:
     App\Service\ErrorHandler:
         calls:
             - [setLogger, ['@logger']]
+    App\Helper\LoggerTrait:
+        calls:
+            - [setLogger, ['@logger']]
