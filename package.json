@@ -25,7 +25,9 @@
     },
     "license": "MIT",
     "private": true,
+    "packageManager": "yarn@1.22.15",
     "scripts": {
+        "setup:yarn": "corepack enable && corepack prepare yarn@1.22.15 --activate",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",

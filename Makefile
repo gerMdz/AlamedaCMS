@@ -66,3 +66,6 @@ yarn-encore: ## ejecuta yarn encore
 
 yarn-install: ## install yarn dependencies
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} yarn install
+
+yarn-setup: ## prepara Yarn 1.22.15 dentro del contenedor (Corepack)
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bash -lc 'corepack enable && corepack prepare yarn@1.22.15 --activate && yarn --version'

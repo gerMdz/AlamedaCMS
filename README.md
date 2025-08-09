@@ -95,6 +95,29 @@ composer install
 yarn install 
 ```
 
+### Yarn 1.22.15 (recomendado)
+
+Este proyecto requiere Yarn 1.22.15 para ejecutar correctamente `yarn install` y `yarn encore dev`.
+
+Si usas Node.js 16.10+ o 18+ con Corepack:
+
+1. Preparar Yarn local del proyecto (una sola vez):
+   ```bash
+   npm run setup:yarn
+   ```
+2. Verificar versión:
+   ```bash
+   yarn --version
+   # Debe mostrar 1.22.15
+   ```
+3. Instalar dependencias y compilar assets:
+   ```bash
+   yarn install
+   yarn encore dev
+   ```
+
+Alternativa sin Corepack (no recomendado): instala Yarn Classic globalmente 1.22.15 desde https://classic.yarnpkg.com/lang/en/docs/install/ y asegúrate de que `yarn --version` devuelva 1.22.15 antes de ejecutar los comandos.
+
 ## Requerimientos
 
 * PHP 7.2.9 o superior;
