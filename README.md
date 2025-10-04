@@ -172,3 +172,12 @@ Con licencia [MIT](https://github.com/gerMdz/AlamedaCMS/blob/AlamedaCMS/LICENSE)
 
 
 
+
+
+## Solución a cierres de PhpStorm con proyectos Vue grandes
+
+Si PhpStorm se cierra apenas arranca (especialmente en Ubuntu 24.04) al abrir este u otros proyectos con mucho Vue.js, consulta la guía:
+
+- docs/TROUBLESHOOTING_PhpStorm_JCEF.md
+
+Allí se explica cómo deshabilitar JCEF temporalmente o mitigar el problema (GPU/sandbox), y cómo actualizar PhpStorm/JBR.
