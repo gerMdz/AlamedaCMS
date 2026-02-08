@@ -3,7 +3,8 @@ import $ from 'jquery';
 const claves = [
     'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez',
     'once', 'doce', 'trece', 'catorce', 'quince', 'dieciseis', 'diecisiete',
-    'dieciocho', 'diecinueve', 'veinte', 'veintiuno', 'veintidos'
+    'dieciocho', 'diecinueve', 'veinte', 'veintiuno', 'veintidos', 'veintitres', 'veinticuatro',
+    'veinticinco'
 ];
 
 $(function () {
