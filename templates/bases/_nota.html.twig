@@ -44,59 +44,62 @@
             <div class="col-sm-11 mx-auto mb-3">
                 <div class="col-12 mx-auto text-center mb-0">
 
-                    <h4 class="text-centrado">
-                        Desafíos del Centenario
-                    </h4>
-                    {#                    <p class="text-14-300 font-italic pl-4 text-centrado"> #}
+                    {#                    <h4 class="text-centrado"> #}
+                    {#                        Desafíos del Centenario #}
+                    {#                    </h4> #}
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        Y ustedes, ¿quién dicen que soy? Pedro contestó:<br/>
+                        ¡Tú eres el <b>Mesías</b> enviado por Dios!
+                        <br/>
+                        <small class="float-end">
+                            Lucas 9:20
+                        </small>
+                    </p><br/>
+
+
+                    {#                    <ul class="text-left ml-5 pl-5"> #}
+
+                    {#                        <li> #}
+                    {#                            Alcanzar para Cristo al mayor número de personas. #}
+                    {#                        </li> #}
                     {#                    #}
-                    {#                        <br/> #}
-                    {#                        <small class="float-end"> #}
-                    {#                    #}
-                    {#                        </small> #}
-                    {#                    </p><br/> #}
 
-
-                    <ul class="text-left ml-5 pl-5">
-
-                        <li>
-                            Alcanzar para Cristo al mayor número de personas.
-                        </li>
-                        <li>
-                            Preparar nuestra Casa una multiplicación de personas.
-                        </li>
-                        <li>
-                            Comenzar la plantación de 10 nuevas iglesias.
-                        </li>
-
-                    </ul>
-                    <h4 class="text-centrado">
-                        Próximas acciones a realizar
-                    </h4>
-                    <ul class="text-left ml-5 pl-5">
-                        <li>
-                            25 días de Oración (A partir del lunes)
-                        </li>
-                        <li>
-                            Entrenamiento Evangelístico para 600 enviados. (23 y 24 de Marzo)
-                        </li>
-                        <li>
-                            Nuevo Espacio de Encuentro (Miércoles 20,30hs)
-                        </li>
-                        <li>
-                            Nuevo Centro de Seguimiento
-                        </li>
-                        <li>
-                            Nuevo Camino de Avance
-                        </li>
-                        <li>
-                            Relanzamiento del SDL (Próximo Martes)
-                        </li>
-                        <li>
-                            Ofrenda Centenario.
-                        </li>
-
-                    </ul>
-
+                    {#                    </ul> #}
+                    <div class="col-10">
+                        <div class="col-4">
+                            Mesías
+                        </div>
+                        <div class="col-4">
+                            Cristo
+                        </div>
+                        <div class="col-4">
+                            {{ completa_lugar('uno') | raw }}
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="col-4">
+                            Hebreo (mashiah)
+                        </div>
+                        <div class="col-4">
+                            Griego: (Xristos)
+                        </div>
+                        <div class="col-4">
+                            Español
+                        </div>
+                    </div>
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        "Hemos hallado al Mesías (que traducido es, Ungido)."
+                        <br/>
+                        <small class="float-end">
+                            Juan 1:40-41 (BXT) También Juan 4:25
+                        </small>
+                    </p><br/>
+                    <h6 class="text-izq text-600">
+                        En tiempos bíblicos se ungía al rey, al sacerdote y al profeta, y de ahí el término "ungido" se
+                        llegó a usar para mostrar que Dios había designado a una persona para algún trabajo especial. De
+                        acuerdo a 2 Samuel 7.12-16 se esperaba la venida de un rey que tuviese su trono "para siempre",
+                        el cual volvería a traer paz y prosperidad al pueblo
+                    </h6>
 
                     {#                <div class="col-12 mx-auto text-left ml-5 pl-5"> #}
                     {#                    <h6 class="texto-left ml-5"> #}
@@ -117,118 +120,149 @@
                     {#                </div> #}
 
                     <h4 class="text-centrado text-600">
-                        ¿Por qué vivir por la causa del evangelio?
+                        El Mesias esperado por los judíos
                     </h4>
-                    {#                <h6 class="text-centrado text-600"> #}
-                    {#                    Salmo de David, cuando huía de su hijo Absalón #}
-                    {#                </h6> #}
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        "Todos esperaban que el Mesías viniera pronto"
+                        <br/>
+                        <small class="float-end">
+                            Lucas 3:15 (NTV)
+                        </small>
+                    </p><br/>
+                    <div class="col-12 mx-auto text-left ml-5 pl-5">
+                        <h6 class="texto-left ml-5">
+                            Jesús cumplió profecías de mas de 700 años antes de manera exacta:
+                        </h6>
+                        <h6 class="texto-left ml-5">
+                            1. Nacimiento en {{ completa_lugar('dos') | raw }} (Miqueas 5:2)- Cumplida (Mateo 2:1-6 y Lu
+                            2:4-7)
+                        </h6>
+                        <h6 class="texto-left ml-5">
+                            2. Nacimiento de {{ completa_lugar('tres') | raw }} (Isaías 7:14) - Cumplida (Mateo 1:18-25
+                            y Lucas 1:26-35)
+                        </h6>
+                        <h6 class="texto-left ml-5">
+                            3. Tiempo preciso de {{ completa_lugar('cuatro') | raw }} (Daniel 9:24-27) - Cumplida (Jn
+                            1:29-34 y
+                            Lu 19:28-44)
+                        </h6>
+                        <h6 class="texto-left ml-5">
+                            4. {{ completa_lugar('cinco') | raw }} triunfal montado en un asno (Zacarías 9:9) - Cumplida
+                            (Mateo 21:1-11)
+                        </h6>
+                        <h6 class="texto-left ml-5">
+                            5. Traición por {{ completa_lugar('seis') | raw }} de plata (Zac 11:12-13) - Cumplida (Mt
+                            26:14-16 y 27:3-10)
+                        </h6>
+                        <h6 class="texto-left ml-5">
+                            6. Detalles de la {{ completa_lugar('siete') | raw }} (Salmo 22:16-18) - Cumplida (Juan
+                            19:23-24 y 20:25-27)
+                        </h6>
+                        <h6 class="texto-left ml-5">
+                            7. Sepultura en tumba de un {{ completa_lugar('ocho') | raw }} (Isaías 53:9) - Cumplida
+                            (Mateo 27:57-60)
+                        </h6>
+                    </div>
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        "Fue despreciado y rechazado... fue traspasado por nuestras rebeliones
+                        y aplastado por nuestros pecados. Fue golpeado para que nosotros
+                        estuviéramos en paz, fue azotado para que pudiéramos ser sanados.
+                        Todos nosotros nos hemos extraviado como ovejas; hemos dejado los
+                        caminos de Dios para seguir los nuestros. Sin embargo, el Señor puso
+                        sobre él los pecados de todos nosotros"
+                        <br/>
+                        <small class="float-end">
+                            Isaías 53:3-9 (NTV)
+                        </small>
+                    </p><br/>
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        La mujer dijo: Sé que el Mesías está por venir, al que llaman Cristo.
+                        Cuando él venga, nos explicará todas las cosas. Entonces Jesús le dijo:
+                        <b>¡YO SOY el Mesías!"</b>
+                        <br/>
+                        <small class="float-end">
+                            Juan 4:25-26 (NTV)
+                        </small>
+                    </p><br/>
 
-                    {#                <h5 class="text-izq text-600"> #}
-                    {#                    #}{#                    Examina tu {{ completa_lugar('uno') | raw }}. #}
-                    {#                    "Muchos son, Señor, mis enemigos; #}
-                    {#                    muchos son los que se me oponen, #}
-                    {#                    y muchos los que de mí aseguran: #}
-                    {#                    "Dios no lo salvará." #}
-                    {#                </h5> #}
+                    <h4 class="text-centrado text-600">
+                        El Mesías para todos
+                    </h4>
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        "Sepa pues con certidumbre <b>toda la casa de Israel</b>, que a este Jesús, a
+                        quien vosotros crucificasteis, Dios lo hizo Señor y <b>Mesías</b>."
+                        <br/>
+                        <small class="float-end">
+                            Hechos 2:36 (BXT)
+                        </small>
+                    </p><br/>
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        "Cada día, en el templo y <b>de casa en casa</b>, no cesaban de enseñar y
+                        proclamar que Jesús es el Mesías."
+                        <br/>
+                        <small class="float-end">
+                            Hechos 5:42 (BXT)
+                        </small>
+                    </p><br/>
+                    <p class="text-14-300 font-italic pl-4 text-centrado">
+                        "Dios no hace acepción de personas, sino que de <b>toda nación</b> se
+                        agrada del que le teme y hace justicia... <b>Jesús el Mesías, es Señor de
+                            todos</b>."
+                        <br/>
+                        <small class="float-end">
+                            Hechos 10:34-36 (BXT)
+                        </small>
+                    </p><br/>
 
+                    <h4 class="text-centrado text-600">
+                        Porque Jesús es mesías Ungido
+                    </h4>
                     <h5 class="text-izq text-600">
-                        1. Somos portadores de la {{ completa_lugar('uno') | raw }} más grande.
+                        El viene con {{ completa_lugar('nueve') | raw }}.
                     </h5>
                     <p class="text-14-300 font-italic pl-4 text-centrado">
-                        "Por eso mismo trabajamos y luchamos, porque hemos puesto nuestra <b>esperanza</b> en el Dios
-                        viviente..."
+                        "«Este hombre ha estado llevando al pueblo por mal camino... al afirmar que <b>él es el Mesías,
+                            un rey</b>»."
                         <br/>
                         <small class="float-end">
-                            1 Timoteo 4:10 (DHH)
+                            Lucas 23:2 (NTV)
                         </small>
                     </p><br/>
-                    <p class="text-14-300 font-italic pl-4 text-centrado">
-                        "Honren en su corazón a Cristo como Señor. Estén siempre preparados para responder a todo el que
-                        les pida razón de la <b>esperanza</b> que hay en ustedes."
-                        <br/>
-                        <small class="float-end">
-                            1 Pedro 3:15 (NVI)
-                        </small>
-                    </p><br/>
-
-                    <h6 class="text-izq text-600">
-                        En Cristo tenemos esperanza de
-                    </h6>
-                    <ul class="text-left ml-5 pl-5">
-                        <li>TRANSFORMACIÓN - 1 Pedro 1:3</li>
-                        <li>ADOPCIÓN - Colosenses 1:27</li>
-                        <li>PROTECCIÓN - 2 Corintios 1:10</li>
-                        <li>PROPÓSITO - Romanos 8.28</li>
-                        <li>UN LUGAR EN EL CIELO - Tito 1:2 - 1 Corintios 15:19</li>
-                        <li>FINAL VICTORIOSO - Tito 2:13 - Mateo 12:21</li>
-                    </ul>
 
                     <h5 class="text-izq text-600">
-                        2. Vivir para nuestro Rey es la {{ completa_lugar('dos') | raw }} más grande.
+                        El viene con {{ completa_lugar('diez') | raw }}.
                     </h5>
                     <p class="text-14-300 font-italic pl-4 text-centrado">
-                        "Los seguidores salieron para otros lugares y <b>le decían a la gente que cambiara</b> su manera
-                        de pensar y de vivir."
+                        "¿<b>Eres tú el Mesías a quien hemos esperado</b> o debemos seguir
+                        buscando a otro? Jesús les dijo: Regresen a Juan y cuéntenle lo
+                        que han oído y visto: <b>los ciegos ven, los cojos caminan bien, los
+                            leprosos son curados, los sordos oyen, los muertos resucitan</b>, y a
+                        los pobres se les predica la Buena Noticia."
                         <br/>
                         <small class="float-end">
-                            Marcos 6:12 (PDT)
+                            Mateo 11:2-5 (NTV)
                         </small>
                     </p><br/>
                     <p class="text-14-300 font-italic pl-4 text-centrado">
-                        "Si alguno quiere salvar su vida, la perderá, pero si alguno pierde su vida por mi causa y <b>por
-                            causa de la Buena Noticia</b>, la salvará."
+                        "«El Espíritu del SEÑOR está sobre mí, <b>porque me ha ungido</b> para
+                        llevar la <b>Buena Noticia a los pobres</b>. Me ha enviado a proclamar
+                        que <b>los cautivos serán liberados</b>, que <b>los ciegos verán</b>, que <b>los
+                            oprimidos serán puestos en libertad</b>, y que ha llegado el tiempo del
+                        favor del Señor»."
                         <br/>
                         <small class="float-end">
-                            Marcos 8:35 (VBL)
+                            Lucas 4:18-19 (NTV)
                         </small>
                     </p><br/>
-                    <h5 class="text-izq text-600">
-                        3. Porque nuestro Rey nos {{ completa_lugar('tres') | raw }} primero.
-                    </h5>
-                    <p class="text-14-300 font-italic pl-4 text-centrado">
-                        "Si amamos a Dios es porque Él nos amó primero."
-                        <br/>
-                        <small class="float-end">
-                            1 Juan 4:19 (BAD)
-                        </small>
-                    </p><br/>
-                    <p class="text-14-300 font-italic pl-4 text-centrado">
-                        "Tan sobreabundante es su amor que, con la sangre de su Hijo, borró nuestros pecados y nos
-                        salvó."
-                        <br/>
-                        <small class="float-end">
-                            Efesios 1:7 (BAD)
-                        </small>
-                    </p><br/>
-
-                    <p class="text-14-300 font-italic pl-4 text-centrado">
-                        «Y él murió por todos, para que los que viven <b>ya no vivan para sí</b>, sino para el que murió
-                        por ellos y fue resucitado.»
-                        <br/>
-                        <small class="float-end">
-                            2 Corintios 5:15
-                        </small>
-                    </p><br/>
-
-
-
-
                     <div class="col-sm-12 text-centrado">
-                                            <h4 class="text-centrado text-600">
-                                                La oración
-                                            </h4>
-
-                        {#                    <h6 class="text-centrado"> #}
-                        {#                        ¡Completa tu test de Forma!<br/> #}
-                        {#                        Esta semana: Facultades Espirituales.<br/> #}
-                        {#                        <a href="https://forma.alameda.ar/" target="_blank">https://forma.alameda.ar/</a> #}
-                        {#                    </h6> #}
-                                            <p class="texto-centrado font-italic pl-4">
-                                                "Señor, he sabido de tu fama; tus obras, Señor, me dejan pasmado.<br/>
-                                                <b>Realízalas de nuevo en nuestros días</b>,<br/>
-                                                dalas a conocer en nuestro tiempo"<br/>
-                                                Habacuc 3:2 (NVI)
-                                            </p>
+                        <p class="texto-centrado font-italic pl-4">
+                            "Toda lengua confiese que Jesús el Mesías es el Señor"<br/>
+                            <small>Filipenses 2:11 (BXT)</small>
+                        </p>
+                        <p class="texto-centrado font-italic pl-4">
+                            "Jesús el Mesías es el mismo, ayer, y hoy, y por los siglos."<br/>
+                            <small>Hebreos 13:8 (BXT)</small>
+                        </p>
                     </div>
 
 
