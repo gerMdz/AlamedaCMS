@@ -9,7 +9,7 @@ const claves = [
 
 $(function () {
     claves.forEach(clave => {
-        const valor = localStorage.getItem(`qeJ01P${clave}`);
+        const valor = localStorage.getItem(`qeJ02P${clave}`);
         const $input = $(`#p${clave}`);
         const $label = $(`#lp${clave}`);
         const $container = $(`#sinp${clave}`);
@@ -47,11 +47,11 @@ $(function () {
 
 function procesa(clave) {
     const val = $(`#p${clave}`).val();
-    localStorage.setItem(`qeJ01P${clave}`, JSON.stringify(val));
+    localStorage.setItem(`qeJ02P${clave}`, JSON.stringify(val));
 }
 
 function aceptado(clave) {
-    const val = JSON.parse(localStorage.getItem(`qeJ01P${clave}`));
+    const val = JSON.parse(localStorage.getItem(`qeJ02P${clave}`));
     const $label = $(`#lp${clave}`);
     const $container = $(`#sinp${clave}`);
     $label.addClass('fontTahu fa-2x text-info').html(val);
