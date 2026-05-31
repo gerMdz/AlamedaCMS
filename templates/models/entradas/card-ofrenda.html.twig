@@ -6,7 +6,7 @@
                 {{ entrada.contenido | raw }}
             </h3>
             {% if entrada.imageFilename != null %}
-            <img src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
+            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_600-300') }}"
                  class="img-fluid card-img-bottom " alt="AlamedaCMS">
             {%  endif %}
         </div>
