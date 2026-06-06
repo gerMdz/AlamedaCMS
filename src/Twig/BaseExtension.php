@@ -37,6 +37,7 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
             new TwigFilter('filter_name', [$this, 'doSomething']),
+            new TwigFilter('html_decode', $this->htmlDecode(...)),
         ];
     }
 
@@ -194,5 +195,10 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         }
 
         return $icono;
+    }
+
+    public function htmlDecode(?string $string): string
+    {
+        return html_entity_decode($string ?? '', ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8');
     }
 }
