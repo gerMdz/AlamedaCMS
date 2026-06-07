@@ -30,15 +30,15 @@ class ErrorHandler
 
     // Mensajes de error en español para cada tipo
     private const MENSAJES_ERROR = [
-        self::ERROR_VALIDACION => 'Error de validación: %s',
-        self::ERROR_AUTENTICACION => 'Error de autenticación: %s',
-        self::ERROR_AUTORIZACION => 'Error de autorización: No tienes permisos para %s',
+        self::ERROR_VALIDACION => '%s',
+        self::ERROR_AUTENTICACION => '%s',
+        self::ERROR_AUTORIZACION => 'No tienes permisos para %s',
         self::ERROR_NOTFOUND => 'No se encontró: %s',
-        self::ERROR_SISTEMA => 'Error del sistema: %s',
-        self::ERROR_DATABASE => 'Error de base de datos: %s',
-        self::ERROR_SERVICIO => 'Error en el servicio: %s',
-        self::ERROR_ARCHIVO_TAMANO => 'Error: El tamaño del archivo excede el límite permitido (%s)',
-        self::ERROR_ARCHIVO_NOMBRE => 'Error: El nombre del archivo excede el máximo de caracteres permitidos (%s)',
+        self::ERROR_SISTEMA => 'Sistema: %s',
+        self::ERROR_DATABASE => 'Base de datos: %s',
+        self::ERROR_SERVICIO => 'Servicio: %s',
+        self::ERROR_ARCHIVO_TAMANO => 'El tamaño del archivo excede el límite permitido (%s)',
+        self::ERROR_ARCHIVO_NOMBRE => 'El nombre del archivo excede el máximo de caracteres permitidos (%s)',
     ];
 
     private ?FlashBagInterface $flashBag;

@@ -7,12 +7,12 @@ use App\Form\PrincipalType;
 use App\Form\SectionAddType;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
+use App\Service\ErrorHandler;
 use App\Service\UploaderHelper;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route(path: '/admin/principal')]
 class PrincipalController extends BaseController
 {
-    public function __construct(private readonly RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack, private readonly ErrorHandler $errorHandler)
     {
     }
 
@@ -83,7 +83,11 @@ class PrincipalController extends BaseController
 
                 return $this->redirectToRoute('principal_index', [], Response::HTTP_SEE_OTHER);
             } catch (Exception $e) {
-                $this->addFlash('error', 'No se pudo guardar la página principal: ' . $e->getMessage());
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo guardar la página principal en este momento',
+                    ['error' => $e->getMessage()],
+                    true
+                );
             }
         }
 
@@ -131,7 +135,11 @@ class PrincipalController extends BaseController
 
                 return $this->redirectToRoute('admin');
             } catch (Exception $e) {
-                $this->addFlash('error', 'No se pudo guardar la página principal: ' . $e->getMessage());
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo guardar la página principal en este momento',
+                    ['error' => $e->getMessage()],
+                    true
+                );
             }
         }
 
@@ -171,7 +179,11 @@ class PrincipalController extends BaseController
 
                 return $this->redirectToRoute('principal_index', [], Response::HTTP_SEE_OTHER);
             } catch (Exception $e) {
-                $this->addFlash('error', 'No se pudo actualizar la página principal: ' . $e->getMessage());
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo actualizar la página principal en este momento',
+                    ['error' => $e->getMessage()],
+                    true
+                );
             }
         }
 
