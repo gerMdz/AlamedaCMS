@@ -79,6 +79,16 @@ class ErrorHandler
         // Formatear el mensaje según el tipo de error
         $mensajeFormateado = $this->formatearMensaje($tipo, $mensaje);
 
+        // Si hay un error técnico en el contexto, lo añadimos para ayudar a la depuración
+        $mensajeCompleto = $mensajeFormateado;
+        if (isset($contexto['error'])) {
+            $errorDetalle = $contexto['error'];
+            if ($errorDetalle instanceof \Throwable) {
+                $errorDetalle = $errorDetalle->getMessage();
+            }
+            $mensajeCompleto .= ' (' . $errorDetalle . ')';
+        }
+
         // Registrar el error en el log
         switch ($nivelLog) {
             case 'debug':
@@ -107,10 +117,10 @@ class ErrorHandler
 
         // Mostrar mensaje flash si es necesario
         if ($mostrarFlash && $this->flashBag) {
-            $this->flashBag->add('error', $mensajeFormateado);
+            $this->flashBag->add('error', $mensajeCompleto);
         }
 
-        return $mensajeFormateado;
+        return $mensajeCompleto;
     }
 
     /**
