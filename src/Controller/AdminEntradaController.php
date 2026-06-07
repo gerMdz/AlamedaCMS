@@ -143,7 +143,7 @@ class AdminEntradaController extends BaseController
                 return $this->redirectToRoute('admin_entrada_index');
             } catch (\Exception $e) {
                 $this->errorHandler->manejarErrorDatabase(
-                    'Error al actualizar la entrada',
+                    'No se pudo actualizar la entrada en este momento',
                     array_merge($context, ['error' => $e->getMessage()]),
                     true
                 );
@@ -197,7 +197,7 @@ class AdminEntradaController extends BaseController
                 return $this->redirectToRoute('admin_entrada_index');
             } catch (\Exception $e) {
                 $this->errorHandler->manejarErrorDatabase(
-                    'Error al actualizar la entrada',
+                    'No se pudo actualizar la entrada en este momento',
                     array_merge($context, ['error' => $e->getMessage()]),
                     true
                 );
@@ -283,7 +283,7 @@ class AdminEntradaController extends BaseController
                 return $this->redirectToRoute('admin_entrada_index');
             } catch (\Exception $e) {
                 $this->errorHandler->manejarErrorDatabase(
-                    'Error al agregar la entrada',
+                    'No se pudo guardar la entrada en este momento',
                     ['error' => $e->getMessage()],
                     true
                 );
