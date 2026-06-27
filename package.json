@@ -1,6 +1,6 @@
 {
     "devDependencies": {
-        "@babel/core": "^7.17.0",
+        "@babel/core": "^7.29.6",
         "@babel/preset-env": "^7.16.0",
         "@hotwired/stimulus": "^3.0.0",
         "@hotwired/turbo": "^8.0.21",
