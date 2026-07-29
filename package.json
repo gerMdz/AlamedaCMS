@@ -42,7 +42,7 @@
         "codemirror": "^5.59.0",
         "jquery": "^3.5.0",
         "popper.js": "^1.16.1",
-        "postcss": "^8.5.10",
+        "postcss": "^8.5.18",
         "select2": "^4.1.0-rc.0",
         "tinymce": "^7.9.3",
         "urix": "^0.1.0",
