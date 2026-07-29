@@ -67,7 +67,7 @@
                             {{ entrada.id }}
                         </td>
                         <td>
-                            T: {{ entrada.titulo | striptags | raw | u.truncate(20, '...') }}<br/>
+                            T: {{ entrada.titulo | striptags | html_decode | u.truncate(20, '...') }}<br/>
                             Lr:
                             <small><i>{{ entrada.linkRoute | u.truncate(20, '...') }}</i></small>
                         </td>
@@ -89,7 +89,7 @@
                                     {% for principal in section.principales %}
                                         <a href="{{ path('principal_show', {'id': principal.id}) }}">
                                             P:
-                                            <small><i>{{ principal.titulo | replace({'<p>':'', '</p>':''}) | raw | u.truncate(20, '...') }}</i></small>
+                                            <small><i>{{ principal.titulo | striptags | html_decode | u.truncate(20, '...') }}</i></small>
                                         </a>
                                         <br/>
                                     {% endfor %}

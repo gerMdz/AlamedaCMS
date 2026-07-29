@@ -143,7 +143,7 @@ class AdminEntradaController extends BaseController
                 return $this->redirectToRoute('admin_entrada_index');
             } catch (\Exception $e) {
                 $this->errorHandler->manejarErrorDatabase(
-                    'Error al actualizar la entrada',
+                    'No se pudo actualizar la entrada en este momento',
                     array_merge($context, ['error' => $e->getMessage()]),
                     true
                 );
@@ -197,7 +197,7 @@ class AdminEntradaController extends BaseController
                 return $this->redirectToRoute('admin_entrada_index');
             } catch (\Exception $e) {
                 $this->errorHandler->manejarErrorDatabase(
-                    'Error al actualizar la entrada',
+                    'No se pudo actualizar la entrada en este momento',
                     array_merge($context, ['error' => $e->getMessage()]),
                     true
                 );
@@ -237,49 +237,57 @@ class AdminEntradaController extends BaseController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Entrada $entrada */
-            $entrada = $form->getData();
+            try {
+                /** @var Entrada $entrada */
+                $entrada = $form->getData();
 
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $form['imageFile']->getData();
 
-            $link = $form['linkRoute']->getData();
+                $link = $form['linkRoute']->getData();
 
-            $titulo = $form['titulo']->getData();
+                $titulo = $form['titulo']->getData();
 
-            if (!$link and $titulo) {
-                $link = $this->limpiaLink($titulo);
-            } else {
-                $link = $link->getlinkRoute();
+                if (!$link and $titulo) {
+                    $link = $this->limpiaLink($titulo);
+                } else {
+                    $link = $link->getlinkRoute();
+                }
+
+                $entrada->setLinkRoute($link);
+
+                if ($uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                    $entrada->setImageFilename($newFilename);
+                }
+
+                $boolean = $form['publicar']->getData();
+
+                $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
+                $entrada->setPublicadoAt($publicado);
+
+                $em->persist($entrada);
+                $em->flush();
+
+                $this->errorHandler->logInfo(
+                    'Se agregó una entrada al sitio: ' . $entrada->getTitulo(),
+                    ['id' => $entrada->getId()]
+                );
+                $this->errorHandler->manejarError(
+                    'success',
+                    'Se agregó una entrada al sitio',
+                    ['id' => $entrada->getId()],
+                    true
+                );
+
+                return $this->redirectToRoute('admin_entrada_index');
+            } catch (\Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo guardar la entrada en este momento',
+                    ['error' => $e->getMessage()],
+                    true
+                );
             }
-
-            $entrada->setLinkRoute($link);
-
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
-                $entrada->setImageFilename($newFilename);
-            }
-
-            $boolean = $form['publicar']->getData();
-
-            $publicado = $this->boleanToDateHelper->setDatatimeForTrue($boolean);
-            $entrada->setPublicadoAt($publicado);
-
-            $em->persist($entrada);
-            $em->flush();
-
-            $this->errorHandler->logInfo(
-                'Se agregó una entrada al sitio: ' . $entrada->getTitulo(),
-                ['id' => $entrada->getId()]
-            );
-            $this->errorHandler->manejarError(
-                'success', 
-                'Se agregó una entrada al sitio', 
-                ['id' => $entrada->getId()], 
-                true
-            );
-
-            return $this->redirectToRoute('admin_entrada_index');
         }
 
         return $this->render('admin/entrada/new.html.twig', [
