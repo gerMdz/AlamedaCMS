@@ -1,12 +1,12 @@
 <div class="col-lg-3 col-md-6 mb-5 mx-auto">
     <div class="card h-90">
         <div class="card-body">
-            <h2 class="card-title">{{ entrada.titulo }}</h2>
+            <h2 class="card-title">{{ entrada.titulo | raw}}</h2>
             <h3 class="card-text">
-                {{ entrada.contenido | replace({'<p>':'', '</p>':''}) | raw }}
+                {{ entrada.contenido | raw }}
             </h3>
             {% if entrada.imageFilename != null %}
-            <img src="{{ entrada.imagePath|imagine_filter('squared_normal') }}"
+            <img src="{{ entrada.imagePath|imagine_filter('squared_thumbnail_600-300') }}"
                  class="img-fluid card-img-bottom " alt="AlamedaCMS">
             {%  endif %}
         </div>

@@ -7,12 +7,12 @@ use App\Form\PrincipalType;
 use App\Form\SectionAddType;
 use App\Repository\PrincipalRepository;
 use App\Repository\SectionRepository;
+use App\Service\ErrorHandler;
 use App\Service\UploaderHelper;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route(path: '/admin/principal')]
 class PrincipalController extends BaseController
 {
-    public function __construct(private readonly RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack, private readonly ErrorHandler $errorHandler)
     {
     }
 
@@ -62,26 +62,33 @@ class PrincipalController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Principal $principal */
-            $principal = $form->getData();
+            try {
+                /** @var Principal $principal */
+                $principal = $form->getData();
 
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $linkRoute = $form['linkRoute']->getData();
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $form['imageFile']->getData();
 
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
-                $principal->setImageFilename($newFilename);
+                if ($uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                    $principal->setImageFilename($newFilename);
+                }
+                if (null !== $principal->getLinkRoute()) {
+                    $principal->setLinkRoute($principal->getLinkRoute());
+                } else {
+                    $principal->setLinkRoute($principal->getTitulo());
+                }
+                $entityManager->persist($principal);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('principal_index', [], Response::HTTP_SEE_OTHER);
+            } catch (Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo guardar la página principal en este momento',
+                    ['error' => $e->getMessage()],
+                    true
+                );
             }
-            if (null !== $principal->getLinkRoute()) {
-                $principal->setLinkRoute($principal->getLinkRoute());
-            } else {
-                $principal->setLinkRoute($principal->getTitulo());
-            }
-            $entityManager->persist($principal);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('principal_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/principal/new.html.twig', [
@@ -107,26 +114,33 @@ class PrincipalController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Principal $principal */
-            $principal = $form->getData();
+            try {
+                /** @var Principal $principal */
+                $principal = $form->getData();
 
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $linkRoute = $form['linkRoute']->getData();
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $form['imageFile']->getData();
 
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
-                $principal->setImageFilename($newFilename);
+                if ($uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
+                    $principal->setImageFilename($newFilename);
+                }
+                if (null !== $principal->getLinkRoute()) {
+                    $principal->setLinkRoute($principal->getLinkRoute());
+                } else {
+                    $principal->setLinkRoute($principal->getTitulo());
+                }
+                $entityManager->persist($principal);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('admin');
+            } catch (Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo guardar la página principal en este momento',
+                    ['error' => $e->getMessage()],
+                    true
+                );
             }
-            if (null !== $principal->getLinkRoute()) {
-                $principal->setLinkRoute($principal->getLinkRoute());
-            } else {
-                $principal->setLinkRoute($principal->getTitulo());
-            }
-            $entityManager->persist($principal);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin');
         }
 
         return $this->render('admin/principal/newAssistant.html.twig', [
@@ -147,23 +161,30 @@ class PrincipalController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $linkRoute = $form['linkRoute']->getData();
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $principal->getImageFilename());
-                $principal->setImageFilename($newFilename);
+            try {
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $form['imageFile']->getData();
+                $linkRoute = $form['linkRoute']->getData();
+                if ($uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $principal->getImageFilename());
+                    $principal->setImageFilename($newFilename);
+                }
+
+                if ($linkRoute) {
+                    $principal->setLinkRoute($linkRoute);
+                } else {
+                    $principal->setLinkRoute($principal->getTitulo());
+                }
+                $entityManager->flush();
+
+                return $this->redirectToRoute('principal_index', [], Response::HTTP_SEE_OTHER);
+            } catch (Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo actualizar la página principal en este momento',
+                    ['error' => $e->getMessage()],
+                    true
+                );
             }
-
-            if ($linkRoute) {
-                $principal->setLinkRoute($linkRoute);
-            } else {
-                $principal->setLinkRoute($principal->getTitulo());
-            }
-
-            $entityManager->flush();
-
-            return $this->redirectToRoute('principal_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/principal/edit.html.twig', [
