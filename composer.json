@@ -60,7 +60,7 @@
         "symfony/webpack-encore-bundle": "^1.13",
         "symfony/yaml": "6.4.*",
         "symfonycasts/reset-password-bundle": "^1.17",
-        "tinymce/tinymce": "^7.6",
+        "tinymce/tinymce": "^8.9",
         "twig/cssinliner-extra": "^3.7",
         "twig/extra-bundle": "^3.1",
         "twig/intl-extra": "^3.1",
