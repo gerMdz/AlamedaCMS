@@ -6,7 +6,17 @@
 
 {% block title %}Edición Simple Entrada {{ entrada.id }} {% endblock %}
 {% block contenpage %}
-    <h5>Edición parcial Entrada</h5>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5>Edición parcial Entrada</h5>
+        <div>
+            <a href="{{ path('entrada_show', {'id': entrada.id}) }}" class="btn btn-sm btn-info">
+                <i class="fa fa-eye"></i> Vista previa / Publicar Nota
+            </a>
+        </div>
+    </div>
+    <div class="alert alert-light border small py-2 mb-3">
+        <strong>Tip para Notas del Mensaje:</strong> Usá marcadores como <code>{{ '{{uno}}' }}</code>, <code>{{ '{{dos}}' }}</code>, <code>{{ '{{tres}}' }}</code> (hasta <code>{{ '{{veinticinco}}' }}</code>) donde quieras que aparezca el campo interactivo para completar con estrella.
+    </div>
     {{ form_start(entradaForm) }}
     <div class="row">
         <div class="col-sm-8 mx-auto">
@@ -20,6 +30,14 @@
     <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
 
     {{ form_end(entradaForm) }}
+
+    <hr class="my-3"/>
+    <form method="post" action="{{ path('admin_entrada_publish_nota_twig', {'id': entrada.id}) }}" class="d-inline">
+        <input type="hidden" name="_token" value="{{ csrf_token('publish_nota_' ~ entrada.id) }}">
+        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Actualizar templates/bases/_nota.html.twig con el contenido guardado de esta entrada?');">
+            <i class="fas fa-upload"></i> Publicar contenido guardado en <code>_nota.html.twig</code>
+        </button>
+    </form>
 {% endblock %}
 
 {% block javascripts %}

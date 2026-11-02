@@ -1,0 +1,76 @@
+{% extends "admin/bars.html.twig" %}
+
+{% block title %}Importar Nota desde PDF{% endblock %}
+
+{% block contenpage %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 mx-auto">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <i class="far fa-file-pdf text-danger mr-2"></i>
+                            Transformar PDF en Entrada Editable (Nota del Mensaje)
+                        </h4>
+                        <hr/>
+                    </div>
+                    <div class="x_content">
+                        <div class="alert alert-info">
+                            <strong>¿Cómo funciona?</strong>
+                            <ul class="mb-0 mt-1">
+                                <li>Subí el archivo PDF de las notas del mensaje.</li>
+                                <li>El sistema extraerá el texto, detectará los espacios para completar (<code>_____</code>) convirtiéndolos en <code>{{ '{{uno}}' }}</code>, <code>{{ '{{dos}}' }}</code>, etc., y dará formato a los versículos y títulos.</li>
+                                <li>Se creará una <strong>Entrada editable</strong> y serás redirigido al editor para que puedas corregir cualquier detalle de la transformación antes de publicarla.</li>
+                            </ul>
+                        </div>
+
+                        <form method="post" action="{{ path('admin_entrada_import_pdf') }}" enctype="multipart/form-data">
+                            <div class="form-group mb-3">
+                                <label for="pdf_file" class="text-primary font-weight-bold">
+                                    Archivo PDF de la Nota <span class="text-danger">*</span>
+                                </label>
+                                <input type="file"
+                                       name="pdf_file"
+                                       id="pdf_file"
+                                       accept="application/pdf,.pdf"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="titulo" class="text-primary">
+                                    Título de la Entrada (opcional)
+                                </label>
+                                <input type="text"
+                                       name="titulo"
+                                       id="titulo"
+                                       class="form-control"
+                                       placeholder="Si lo dejás vacío, se tomará automáticamente la primera línea del PDF">
+                            </div>
+
+                            <div class="form-check mb-4">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       name="publicar_en_nota"
+                                       id="publicar_en_nota"
+                                       value="1">
+                                <label class="form-check-label text-dark" for="publicar_en_nota">
+                                    Actualizar también <code>templates/bases/_nota.html.twig</code> inmediatamente (podrás volver a publicarlo luego de editar)
+                                </label>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ path('admin_entrada_index') }}" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> Volver al listado
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-magic"></i> Transformar PDF y Editar Entrada
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
