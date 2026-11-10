@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Entrada;
+use App\Entity\EntradaReference;
 use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\EntradaComplexType;
@@ -16,6 +17,7 @@ use App\Repository\PrincipalRepository;
 use App\Service\BoleanToDateHelper;
 use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
+use App\Service\PdfToNotaService;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
@@ -443,6 +445,192 @@ class AdminEntradaController extends BaseController
             'entrada' => $entrada,
             'entradaForm' => $form,
         ]);
+    }
+
+    #[Route(path: '/admin/entrada/importar-pdf', name: 'admin_entrada_import_pdf', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ESCRITOR')]
+    public function importarNotaDesdePdf(
+        Request $request,
+        EntityManagerInterface $em,
+        UploaderHelper $uploaderHelper,
+        PdfToNotaService $pdfToNotaService
+    ): Response {
+        if ($request->isMethod('POST')) {
+            /** @var UploadedFile|null $pdfFile */
+            $pdfFile = $request->files->get('pdf_file');
+
+            if (!$pdfFile || !$pdfFile->isValid()) {
+                $this->errorHandler->manejarErrorValidacion(
+                    'Por favor seleccione un archivo PDF válido para transformar.',
+                    [],
+                    true
+                );
+
+                return $this->redirectToRoute('admin_entrada_import_pdf');
+            }
+
+            try {
+                $resultado = $pdfToNotaService->convertirPdfANota($pdfFile->getPathname());
+
+                $entrada = new Entrada();
+                $entrada->setAutor($this->getUser());
+
+                $tituloPersonalizado = trim((string) $request->request->get('titulo', ''));
+                $tituloFinal = '' !== $tituloPersonalizado ? $tituloPersonalizado : $resultado['titulo'];
+
+                $entrada->setTitulo($tituloFinal);
+                $entrada->setContenido($resultado['contenido']);
+                $entrada->setLinkRoute($this->limpiaLink($tituloFinal));
+
+                $em->persist($entrada);
+
+                // Guardar también el PDF como referencia adjunta a la entrada
+                $filename = $uploaderHelper->uploadEntradaReference($pdfFile);
+                $entradaReference = new EntradaReference($entrada);
+                $entradaReference->setFilename($filename);
+                $entradaReference->setoriginalFilename($pdfFile->getClientOriginalName() ?? $filename);
+                $entradaReference->setMimeType($pdfFile->getMimeType() ?? 'application/pdf');
+                $em->persist($entradaReference);
+
+                // Si el usuario marcó publicar directamente en _nota.html.twig
+                if ($request->request->getBoolean('publicar_en_nota')) {
+                    $pdfToNotaService->publicarEnTemplateNota($resultado['contenido']);
+                }
+
+                $em->flush();
+
+                $this->errorHandler->logInfo(
+                    'Se creó una entrada desde PDF: ' . $entrada->getTitulo(),
+                    ['id' => $entrada->getId(), 'campos' => $resultado['cantidadCampos']]
+                );
+
+                $this->errorHandler->manejarError(
+                    'success',
+                    sprintf(
+                        'PDF transformado en entrada editable (%d campos para completar detectados). Ahora podés revisar y corregir el contenido.',
+                        $resultado['cantidadCampos']
+                    ),
+                    ['id' => $entrada->getId()],
+                    true
+                );
+
+                return $this->redirectToRoute('admin_entrada_edit_complex', [
+                    'id' => $entrada->getId(),
+                ]);
+            } catch (\Exception $e) {
+                $this->errorHandler->manejarErrorDatabase(
+                    'No se pudo transformar el PDF: ' . $e->getMessage(),
+                    ['error' => $e->getMessage()],
+                    true
+                );
+            }
+        }
+
+        return $this->render('admin/entrada/import_pdf.html.twig');
+    }
+
+    #[Route(path: '/admin/entrada/{id}/convertir-referencia/{refId}', name: 'admin_entrada_convert_reference', methods: ['POST'])]
+    #[IsGranted('MANAGE', subject: 'entrada')]
+    public function convertirReferenciaANota(
+        Request $request,
+        Entrada $entrada,
+        int $refId,
+        EntityManagerInterface $em,
+        UploaderHelper $uploaderHelper,
+        PdfToNotaService $pdfToNotaService
+    ): Response {
+        if (!$this->isCsrfTokenValid('convert_ref_' . $entrada->getId(), $request->request->get('_token'))) {
+            $this->errorHandler->manejarErrorValidacion('Token CSRF inválido.', ['id' => $entrada->getId()], true);
+
+            return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
+        }
+
+        $referencia = $em->getRepository(EntradaReference::class)->find($refId);
+        if (!$referencia || $referencia->getEntrada()?->getId() !== $entrada->getId()) {
+            $this->errorHandler->manejarErrorValidacion('Referencia PDF no encontrada para esta entrada.', ['id' => $entrada->getId()], true);
+
+            return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
+        }
+
+        $tmpFile = tempnam(sys_get_temp_dir(), 'nota_pdf_');
+        try {
+            $stream = $uploaderHelper->readStream($referencia->getImagePath(), false);
+            $out = fopen($tmpFile, 'wb');
+            stream_copy_to_stream($stream, $out);
+            fclose($out);
+            if (is_resource($stream)) {
+                fclose($stream);
+            }
+
+            $resultado = $pdfToNotaService->convertirPdfANota($tmpFile);
+            $entrada->setContenido($resultado['contenido']);
+            $em->flush();
+
+            $this->errorHandler->manejarError(
+                'success',
+                sprintf(
+                    'Se transformó el PDF "%s" en contenido editable (%d campos detectados).',
+                    $referencia->getoriginalFilename(),
+                    $resultado['cantidadCampos']
+                ),
+                ['id' => $entrada->getId()],
+                true
+            );
+
+            return $this->redirectToRoute('admin_entrada_edit_complex', [
+                'id' => $entrada->getId(),
+            ]);
+        } catch (\Exception $e) {
+            $this->errorHandler->manejarErrorDatabase(
+                'Error al transformar la referencia PDF: ' . $e->getMessage(),
+                ['id' => $entrada->getId(), 'error' => $e->getMessage()],
+                true
+            );
+
+            return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
+        } finally {
+            if (is_file($tmpFile)) {
+                @unlink($tmpFile);
+            }
+        }
+    }
+
+    #[Route(path: '/admin/entrada/{id}/publicar-nota-twig', name: 'admin_entrada_publish_nota_twig', methods: ['POST'])]
+    #[IsGranted('MANAGE', subject: 'entrada')]
+    public function publicarNotaEnTwig(
+        Request $request,
+        Entrada $entrada,
+        PdfToNotaService $pdfToNotaService
+    ): Response {
+        if (!$this->isCsrfTokenValid('publish_nota_' . $entrada->getId(), $request->request->get('_token'))) {
+            $this->errorHandler->manejarErrorValidacion('Token CSRF inválido.', ['id' => $entrada->getId()], true);
+
+            return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
+        }
+
+        try {
+            $pdfToNotaService->publicarEnTemplateNota((string) $entrada->getContenido());
+
+            $this->errorHandler->logInfo(
+                'Se publicó la entrada como vista _nota.html.twig: ' . $entrada->getTitulo(),
+                ['id' => $entrada->getId()]
+            );
+
+            $this->errorHandler->manejarError(
+                'success',
+                'Se actualizó templates/bases/_nota.html.twig con el contenido de esta entrada.',
+                ['id' => $entrada->getId()],
+                true
+            );
+        } catch (\Exception $e) {
+            $this->errorHandler->manejarErrorDatabase(
+                'No se pudo actualizar _nota.html.twig: ' . $e->getMessage(),
+                ['id' => $entrada->getId(), 'error' => $e->getMessage()],
+                true
+            );
+        }
+
+        return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
     }
 
     #[Route(path: '/admin/entrada/{linkRoute}', name: 'entrada_admin_link')]

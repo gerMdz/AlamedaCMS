@@ -115,27 +115,24 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         echo "<meta http-equiv = 'refresh' content='5;url = $link' />";
     }
 
-    public function completa_texto(string $campo)
+    public function completa_texto(?string $campo): string
     {
-        $encontro = false;
+        if (null === $campo || '' === $campo) {
+            return '';
+        }
 
-        $i = 0;
-        do {
-            $inicio = strpos($campo, (string) $this->ind_inicio);
+        // Soportar tanto {{ completa_lugar('uno') | raw }} como {{uno}}
+        $campo = preg_replace_callback(
+            '/\{\{\s*completa_lugar\(\s*[\'"]([a-zA-Z0-9_]+)[\'"]\s*\)(?:\s*\|\s*raw)?\s*\}\}/u',
+            fn (array $matches) => $this->addTexto(trim($matches[1])),
+            $campo
+        ) ?? $campo;
 
-            if (false !== $inicio) {
-                $fin = strpos($campo, (string) $this->ind_final);
-                $servicio = substr($campo,
-                    $inicio + strlen((string) $this->ind_inicio),
-                    $fin - ($inicio + strlen((string) $this->ind_inicio)));
-                $campo = str_replace($this->ind_inicio.$servicio.$this->ind_final,
-                    $this->addTexto(trim($servicio)), $campo);
-
-                $encontro = true;
-            } else {
-                $encontro = false;
-            }
-        } while ($encontro && $i < 10);
+        $campo = preg_replace_callback(
+            '/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/u',
+            fn (array $matches) => $this->addTexto(trim($matches[1])),
+            $campo
+        ) ?? $campo;
 
         return $campo;
     }

@@ -161,9 +161,16 @@
                 <small>
                     <a href="{{ path('admin_entrada_edit_complex', {'id': entrada.id}) }}">
                         Editar </a>
-                </small><br/>
+                </small>
+                <form method="post" action="{{ path('admin_entrada_publish_nota_twig', {'id': entrada.id}) }}" class="d-inline ml-3">
+                    <input type="hidden" name="_token" value="{{ csrf_token('publish_nota_' ~ entrada.id) }}">
+                    <button type="submit" class="btn btn-xs btn-success" onclick="return confirm('¿Publicar el contenido de esta entrada en templates/bases/_nota.html.twig?');">
+                        <i class="fas fa-check-circle"></i> Publicar como Nota Activa (<code>_nota.html.twig</code>)
+                    </button>
+                </form>
+                <br/>
                 <div class="col-sm-10 mx-auto bg-white p-2">
-                    {{ entrada.contenido | raw }}
+                    {{ completa_texto(entrada.contenido) | raw }}
                 </div>
 
             </div>
@@ -172,7 +179,7 @@
         </div>
         <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 row ">
             {% for referencia in entrada.entradaReferences %}
-                <div class="col-sm-12">
+                <div class="col-sm-12 mb-2">
                     Link descarga
                     : {{ app.request.host }}{{ path('entrada_download_reference',{'filename': referencia.filename}) }}
                     <br/>
@@ -181,8 +188,18 @@
                        target="_blank"
                        class="card-link text-center">
                         <i class="far fa-file-pdf ml-5 mr-1"></i>
-                        <span class="text-alameda btn-icon ">Notas</span><br/>
+                        <span class="text-alameda btn-icon ">Notas ({{ referencia.originalFilename }})</span>
                     </a>
+                    <form method="post"
+                          action="{{ path('admin_entrada_convert_reference', {'id': entrada.id, 'refId': referencia.id}) }}"
+                          class="d-inline ml-3">
+                        <input type="hidden" name="_token" value="{{ csrf_token('convert_ref_' ~ entrada.id) }}">
+                        <button type="submit"
+                                class="btn btn-sm btn-outline-primary"
+                                onclick="return confirm('¿Transformar este PDF en contenido editable para esta entrada? Esto reemplazará el campo contenido actual.');">
+                            <i class="fas fa-magic"></i> Transformar PDF a contenido editable
+                        </button>
+                    </form>
                 </div>
             {% endfor %}
         </div>

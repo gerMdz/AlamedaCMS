@@ -28,6 +28,12 @@
                     Ver Publicados <span class="fa fa-eye"></span>
                 </a>
             </li>
+            <li class="list-inline-item">
+                <a href="{{ path('admin_entrada_import_pdf') }}"
+                   class="btn btn-sm btn-success btn-round">
+                    Importar Nota desde PDF <i class="far fa-file-pdf"></i>
+                </a>
+            </li>
         </ul>
         <div class="text-center align-items-center">
             {{ knp_pagination_render(entradas) }}
@@ -160,6 +166,12 @@
                 <a href="{{ path('admin_entrada_publicadas') }}"
                    class="btn btn-sm btn-info btn-round">
                     Ver Publicados <span class="fa fa-eye"></span>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="{{ path('admin_entrada_import_pdf') }}"
+                   class="btn btn-sm btn-success btn-round">
+                    Importar Nota desde PDF <i class="far fa-file-pdf"></i>
                 </a>
             </li>
         </ul>
