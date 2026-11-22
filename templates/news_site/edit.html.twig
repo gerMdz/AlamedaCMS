@@ -1,13 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Edit NewsSite{% endblock %}
 
-{% block body %}
-    <h1>Edit NewsSite</h1>
+{% block contenpage %}
+    <h2>Edit NewsSite</h2>
+    <div class="x_panel">
+        {{ include('news_site/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('news_site/_form.html.twig', {'button_label': 'Update'}) }}
+        <a href="{{ path('news_site_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
 
-    <a href="{{ path('news_site_index') }}">back to list</a>
-
-    {{ include('news_site/_delete_form.html.twig') }}
+        {{ include('news_site/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

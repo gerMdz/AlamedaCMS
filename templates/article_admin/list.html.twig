@@ -1,11 +1,12 @@
-{% extends 'content_base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
-{% block content_body %}
+{% block contenpage %}
     <a href="{{ path('admin_article_new') }}" class="btn btn-primary pull-right">
         Create <span class="fa fa-plus-circle"></span>
     </a>
     <h1>All Articles</h1>
 
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -34,4 +35,5 @@
             {% endfor %}
         </tbody>
     </table>
+    </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'content_base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="{{ asset('css/algolia-autocomplete.css') }}">
 {% endblock %}
 
-{% block content_body %}
-    <h1>Launch a new Article! 🚀</h1>
-
-    {{ include('article_admin/_form.html.twig', {
-        button_text: 'Create!'
-    }) }}
+{% block contenpage %}
+    <h2>Launch a new Article! 🚀</h2>
+    <div class="x_panel">
+        {{ include('article_admin/_form.html.twig', {
+            button_text: 'Create!'
+        }) }}
+    </div>
 {% endblock %}

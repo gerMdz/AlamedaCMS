@@ -1,22 +1,26 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}BlocsFixes{% endblock %}
 {% block breadcrumb %}
-    <li class="breadcrumb-item">
-        <span><a href="{{ path('admin') }}">Panel</a></span>
-    </li>
-    <li class="breadcrumb-item ">
-        <span>
-            <a href="{{ path('app_blocs_fixes_index') }}">
-                Bloques fijos (BlocsFixes)
-            </a>
-        </span>
-    </li>
-    <li class="breadcrumb-item active"><span>Detalle</span></li>
+    <nav aria-label="Ruta de navegación">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <span><a href="{{ path('admin') }}">Panel</a></span>
+            </li>
+            <li class="breadcrumb-item ">
+                <span>
+                    <a href="{{ path('app_blocs_fixes_index') }}">
+                        Bloques fijos (BlocsFixes)
+                    </a>
+                </span>
+            </li>
+            <li class="breadcrumb-item active"><span>Detalle</span></li>
+        </ol>
+    </nav>
 {% endblock %}
 
 
-    {% block content %}
+    {% block contenpage %}
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 show-article-container ">

@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}ButtonLink{% endblock %}
 
-{% block body %}
-    <h1>ButtonLink</h1>
+{% block contenpage %}
+    <h2>ButtonLink</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <tbody>
             <tr>
@@ -29,8 +30,9 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('button_link_index') }}">back to list</a>
+    <a href="{{ path('button_link_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
 
     <a href="{{ path('button_link_edit', {'id': button_link.id}) }}">edit</a>
 

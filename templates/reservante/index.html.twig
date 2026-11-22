@@ -1,9 +1,9 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Listado de Enlaces{% endblock %}
 
-{% block content %}
-    <h1>Listado de Enlaces (reservantes)</h1>
+{% block contenpage %}
+    <h2>Listado de Enlaces (reservantes)</h2>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -42,7 +42,7 @@
         </table>
     </div>
 
-    <a href="{{ path('reservante_new') }}">Agregar Reservante</a>
+    <a href="{{ path('reservante_new') }}" class="btn btn-sm btn-primary btn-round">Agregar Reservante</a>
     {{ include('admin/_modal.html.twig') }}
 {% endblock %}
 {% block javascripts %}

@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}TipoContacto index{% endblock %}
 
-{% block body %}
-    <h1>TipoContacto index</h1>
+{% block contenpage %}
+    <h2>TipoContacto index</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -36,6 +37,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('tipo_contacto_new') }}">Create new</a>
+    <a href="{{ path('tipo_contacto_new') }}" class="btn btn-sm btn-primary btn-round">Create new</a>
 {% endblock %}

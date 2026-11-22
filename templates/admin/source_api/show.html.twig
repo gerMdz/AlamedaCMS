@@ -1,10 +1,11 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}SourceApi{% endblock %}
 
-{% block content %}
-    <h1>SourceApi</h1>
+{% block contenpage %}
+    <h2>SourceApi</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <tbody>
             <tr>
@@ -45,6 +46,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <a href="{{ path('app_source_api_index') }}">
         {{ include('bases/_volver.html.twig') }}

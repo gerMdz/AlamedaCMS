@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}MetaBase{% endblock %}
 
-{% block body %}
-    <h1>MetaBase</h1>
+{% block contenpage %}
+    <h2>MetaBase</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <tbody>
             <tr>
@@ -45,8 +46,9 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('meta_base_index') }}">back to list</a>
+    <a href="{{ path('meta_base_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
 
     <a href="{{ path('meta_base_edit', {'id': meta_base.id}) }}">edit</a>
 

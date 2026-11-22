@@ -1,12 +1,13 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Vista Model Template{% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <h2>ModelTemplate <i>"{{ model_template.name }}"</i></h2>
 
     <div class="row">
         <div class="col-sm-7">
+            <div class="table-responsive">
             <table class="table">
                 <tbody>
                 <tr>
@@ -28,6 +29,7 @@
 
                 </tbody>
             </table>
+            </div>
         </div>
         <div class="col-sm-5">
             <h3>Imagen</h3>

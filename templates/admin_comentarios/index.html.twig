@@ -1,16 +1,16 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Administrar Comentarios{% endblock %}
 
-{% block content_class %}{{ parent() }} show-article-container-border-green{% endblock %}
 
-{% block content %}
+{% block contenpage %}
 
 
     <div class="row">
         <div class="col-sm-12">
             <h1>Gestionar Comentarios <small>{{ comentarios.getTotalItemCount }}</small></h1>
             {% include('default/_search.html.twig') %}
+            <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -54,6 +54,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            </div>
             <div class="text-center align-items-center">
             {{ knp_pagination_render(comentarios) }}
             </div>

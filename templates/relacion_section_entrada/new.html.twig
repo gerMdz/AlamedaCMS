@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}New RelacionSectionEntrada{% endblock %}
 
-{% block body %}
-    <h1>Create new RelacionSectionEntrada</h1>
+{% block contenpage %}
+    <h2>Create new RelacionSectionEntrada</h2>
+    <div class="x_panel">
+        {{ include('relacion_section_entrada/_form.html.twig') }}
 
-    {{ include('relacion_section_entrada/_form.html.twig') }}
-
-    <a href="{{ path('relacion_section_entrada_index') }}">back to list</a>
+        <a href="{{ path('relacion_section_entrada_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
+    </div>
 {% endblock %}

@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}New Reservante{% endblock %}
 
-{% block body %}
-    <h1>Create new Reservante</h1>
+{% block contenpage %}
+    <h2>Create new Reservante</h2>
+    <div class="x_panel">
+        {{ include('reservante/_form.html.twig') }}
 
-    {{ include('reservante/_form.html.twig') }}
-
-    <a href="{{ path('reservante_index') }}">back to list</a>
+        <a href="{{ path('reservante_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
+    </div>
 {% endblock %}

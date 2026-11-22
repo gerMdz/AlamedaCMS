@@ -1,8 +1,8 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Vista grupo de celebración{% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
@@ -10,7 +10,7 @@
                 <p class="card-category"> Listado </p>
             </div>
             <div class="card-body">
-                <a href="{{ path('group_celebration_new') }}">
+                <a href="{{ path('group_celebration_new') }}" class="btn btn-sm btn-primary btn-round">
                     {{ include ('bases/_crear_nuevo.html.twig' , {'button_label': 'Crear Grupo'}) }}
                 </a>
 
@@ -49,7 +49,8 @@
                         </tr>
                         </tbody>
                     </table>
-                    <table class="table table-responsive-sm table-striped ">
+                    <div class="table-responsive">
+                    <table class="table -sm table-striped ">
                         <thead>
                         <tr class="text-center">
                             <th>Nombre</th>
@@ -110,6 +111,7 @@
                         {% endfor %}
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
                 <a href="{{ path('group_celebration_index') }}">
