@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}New Ministerio{% endblock %}
 
-{% block body %}
-    <h1>Create new Ministerio</h1>
+{% block contenpage %}
+    <h2>Create new Ministerio</h2>
+    <div class="x_panel">
+        {{ include('ministerio/_form.html.twig') }}
 
-    {{ include('ministerio/_form.html.twig') }}
-
-    <a href="{{ path('ministerio_index') }}">back to list</a>
+        <a href="{{ path('ministerio_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
+    </div>
 {% endblock %}

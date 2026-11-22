@@ -1,8 +1,8 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Contactos - Listado{% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
@@ -11,9 +11,10 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <a href="{{ path('contacto_new') }}">
+                    <a href="{{ path('contacto_new') }}" class="btn btn-sm btn-primary btn-round">
                         {{ include('bases/_crear_nuevo.html.twig') }}
                     </a>
+                    <div class="table-responsive">
                     <table class="table">
                         <thead class=" text-primary">
                         <tr>
@@ -45,7 +46,8 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                    <a href="{{ path('contacto_new') }}">
+                    </div>
+                    <a href="{{ path('contacto_new') }}" class="btn btn-sm btn-primary btn-round">
                         {{ include('bases/_crear_nuevo.html.twig') }}
                     </a>
                 </div>

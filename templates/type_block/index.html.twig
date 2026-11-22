@@ -1,8 +1,8 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}TypeBlock index{% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
@@ -11,10 +11,11 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <a href="{{ path('type_block_new') }}">
+                    <a href="{{ path('type_block_new') }}" class="btn btn-sm btn-primary btn-round">
                         {{ include('bases/_crear_nuevo.html.twig') }}
                     </a>
 
+                    <div class="table-responsive">
                     <table class="table">
                         <thead class=" text-primary">
                         <tr>
@@ -50,8 +51,9 @@
                         {% endfor %}
                         </tbody>
                     </table>
+                    </div>
 
-                    <a href="{{ path('type_block_new') }}">
+                    <a href="{{ path('type_block_new') }}" class="btn btn-sm btn-primary btn-round">
                         {% include 'bases/_crear_nuevo.html.twig' %}
                     </a>
                 </div>

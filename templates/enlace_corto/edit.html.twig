@@ -1,23 +1,14 @@
-{% extends 'base_material_kit.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Edit EnlaceCorto{% endblock %}
 
-{% block sections %}
+{% block contenpage %}
+    <h2>Edit EnlaceCorto</h2>
+    <div class="x_panel">
+        {{ include('enlace_corto/_form.html.twig', {'button_label': 'Update'}) }}
 
-<main role="main" class="bg-white">
+        <a href="{{ path('enlace_corto_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
 
-
-    <!-- Contact Form -->
-    <section class="a-content-space-medium">
-        <div class="container">
-    <h1>Edit EnlaceCorto</h1>
-
-    {{ include('enlace_corto/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('enlace_corto_index') }}">back to list</a>
-
-    {{ include('enlace_corto/_delete_form.html.twig') }}
-        </div>
-    </section>
-</main>
+        {{ include('enlace_corto/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

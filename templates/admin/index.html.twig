@@ -1,34 +1,34 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Admin {% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="container-fluid">
+        <h2>Panel general</h2>
+        {% if is_granted('ROLE_RESERVA') %}
+            <div class="mb-3">
+                <a class="btn btn-sm btn-primary btn-round" href="{{ path('reserva_consulta') }}">
+                    Ver Reservas
+                </a>
+                <a class="btn btn-sm btn-info btn-round" href="{{ path('reserva_lectura') }}">
+                    Lectura QR
+                </a>
+            </div>
+        {% endif %}
         <div class="row">
             {% if (is_granted("ROLE_ADMIN_RESERVA")) %}
                 {% include 'admin/list_principal.html.twig' %}
                 {% include 'admin/list_metabase.html.twig' %}
             {% endif %}
-            {% if (is_granted("ROLE_RESERVA")) %}
-                <a class="btn btn-alameda" href="{{ path('reserva_consulta') }}">
-                    Ver Reservas
-                </a>
-                <a class="btn btn-alameda" href="{{ path('reserva_lectura') }}">
-                    Lectura QR
-                </a>
-            {% endif %}
-
         </div>
     </div>
 {% endblock %}
 
-{% block jslocal %}
+{% block javascripts %}
     {{ parent() }}
     <script>
-        $('#admin').addClass('active');
         $(function () {
-            $('[data-bs-toggle="tooltip"]').tooltip()
-        })
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
-
 {% endblock %}

@@ -1,13 +1,10 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 {% block title %}Celebraciones {{ base.siteName }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors_admin/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
 {% endblock %}
-{% block nav %}
-    {{ include('admin/_nav.html.twig',  {'marca_label': 'Celebraciones'}) }}
-{% endblock %}
-{% block content %}
+{% block contenpage %}
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-primary">
@@ -30,17 +27,11 @@
     </div>
 </div>
 {% endblock %}
-{% block jslocal %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('app') }}
-
-    <script>
-        $('#celebracion').addClass('active');
-    </script>
-{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('vendors_admin/vendors/moment/locale/es.js') }}"></script>
+    <script src="{{ asset('vendors_admin/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="application/javascript">
         $(function () {
             $('.datetimepicker').datetimepicker({
@@ -62,5 +53,9 @@
             });
         })
     </script>
-{% endblock %}
+    {{ encore_entry_script_tags('app') }}
 
+    <script>
+        $('#celebracion').addClass('active');
+    </script>
+{% endblock %}

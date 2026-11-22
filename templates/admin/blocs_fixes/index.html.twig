@@ -1,8 +1,8 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}BlocsFixes index{% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
@@ -15,6 +15,7 @@
                 </a>
             </div>
 
+            <div class="table-responsive">
             <table class="table">
                 <thead>
                 <tr>
@@ -55,8 +56,9 @@
                 {% endfor %}
                 </tbody>
             </table>
+            </div>
 
-            <a href="{{ path('app_blocs_fixes_new') }}">Create new</a>
+            <a href="{{ path('app_blocs_fixes_new') }}" class="btn btn-sm btn-primary btn-round">Create new</a>
         </div>
     </div>
 {% endblock %}

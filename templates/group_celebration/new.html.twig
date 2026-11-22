@@ -1,11 +1,12 @@
-{% extends 'base_admin_board.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Nuevo grupo de celebración{% endblock %}
 
-{% block content %}
-    <h1>Crear nuevo grupo de celebración</h1>
+{% block contenpage %}
+    <h2>Crear nuevo grupo de celebración</h2>
+    <div class="x_panel">
+        {{ include('group_celebration/_form.html.twig') }}
 
-    {{ include('group_celebration/_form.html.twig') }}
-
-    <a href="{{ path('group_celebration_index') }}">Volver al listado</a>
+        <a href="{{ path('group_celebration_index') }}" class="btn btn-sm btn-info btn-round">Volver al listado</a>
+    </div>
 {% endblock %}

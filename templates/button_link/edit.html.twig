@@ -1,13 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Edit ButtonLink{% endblock %}
 
-{% block body %}
-    <h1>Edit ButtonLink</h1>
+{% block contenpage %}
+    <h2>Edit ButtonLink</h2>
+    <div class="x_panel">
+        {{ include('button_link/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('button_link/_form.html.twig', {'button_label': 'Update'}) }}
+        <a href="{{ path('button_link_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
 
-    <a href="{{ path('button_link_index') }}">back to list</a>
-
-    {{ include('button_link/_delete_form.html.twig') }}
+        {{ include('button_link/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

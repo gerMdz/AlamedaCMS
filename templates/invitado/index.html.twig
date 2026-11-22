@@ -1,8 +1,8 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Invitados - Listado{% endblock %}
 
-{% block content %}
+{% block contenpage %}
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
@@ -84,7 +84,7 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="{{ path('invitado_new') }}">Agregar Invitado </a>
+                <a href="{{ path('invitado_new') }}" class="btn btn-sm btn-primary btn-round">Agregar Invitado </a>
                 <div class="text-center align-items-center">
                     {{ knp_pagination_render(invitados) }}
                 </div>

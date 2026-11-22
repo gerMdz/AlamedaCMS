@@ -1,17 +1,11 @@
-{% extends 'base_material_kit.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Enlace Cortos Listdo{% endblock %}
 
-{% block sections %}
+{% block contenpage %}
+    <h2>Enlace Cortos Listado</h2>
 
-<main role="main" class="bg-white">
-
-
-    <!-- Contact Form -->
-    <section class="a-content-space-medium">
-        <div class="container">
-    <h1>Enlace Cortos Listado</h1>
-
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -43,9 +37,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('enlace_corto_new') }}">Create new</a>
-        </div>
-    </section>
-</main>
+    <a href="{{ path('enlace_corto_new') }}" class="btn btn-sm btn-primary btn-round">Create new</a>
 {% endblock %}

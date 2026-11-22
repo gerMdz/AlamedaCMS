@@ -1,11 +1,12 @@
-{% extends 'content_base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
-{% block content_body %}
-    <h1>Edit the Article! 🚀</h1>
-
-    {{ include('article_admin/_form.html.twig', {
-        button_text: 'Update!'
-    }) }}
+{% block contenpage %}
+    <h2>Edit the Article! 🚀</h2>
+    <div class="x_panel">
+        {{ include('article_admin/_form.html.twig', {
+            button_text: 'Update!'
+        }) }}
+    </div>
 {% endblock %}
 
 {% block javascripts %}

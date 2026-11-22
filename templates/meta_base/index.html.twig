@@ -1,10 +1,11 @@
-{% extends 'meta_base/metabase.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Datos Metabase{% endblock %}
 
-{% block body %}
-    <h1>MetaBase index</h1>
+{% block contenpage %}
+    <h2>MetaBase index</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -40,11 +41,12 @@
         {% else %}
             <tr>
                 <td colspan="10">Todavía no tienes metabase</td>
-                <td><a href="{{ path('meta_base_new') }}">Crea tu primer metabase</a></td>
+                <td><a href="{{ path('meta_base_new') }}" class="btn btn-sm btn-primary btn-round">Crea tu primer metabase</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
 
 {% endblock %}

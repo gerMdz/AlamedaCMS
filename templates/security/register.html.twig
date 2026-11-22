@@ -1,4 +1,4 @@
-{% extends 'base_material_kit.twig' %}
+{% extends 'admin/bars.html.twig' %}
 {% form_theme registroForm _self %}
 {% block form_row %}
     {%- set widget_attr = {} -%}
@@ -30,52 +30,46 @@
 {% endblock %}
 
 {% block title %}Ingreso {{ base.siteName }} {% endblock %}
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('loginStyle') }}
-    <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-{% endblock %}
 
-{% block sections %}
+{% block contenpage %}
 
     {% if app.user %}
         <div class="mb-3">
-            Usted a ingresado como {{ app.user.username }}, <a href="{{ path('app_logout') }}"><i
+            Usted a ingresado como {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"><i
                         class="fas fa-sign-out-alt"></i> Salir</a>
         </div>
     {% endif %}
 
-    {{ form_start(regristroForm, {
+    {{ form_start(registroForm, {
         'attr':{
-            'class': 'form-signin'
+            'class': 'x_panel'
         }
     }) }}
     <h1 class="h3 mb-3 font-weight-normal">Registro de Usuarios de La Alameda </h1>
 
-    {# {{ form_widget(regristroForm) }} #}
+    {# {{ form_widget(registroForm) }} #}
 
-    {{ form_row(regristroForm.email, {
+    {{ form_row(registroForm.email, {
         attr: { placeholder: 'Email' }
     }) }}
-    {{ form_row(regristroForm.plainPassword.first, {
+    {{ form_row(registroForm.plainPassword.first, {
         attr: { placeholder: 'Clave' }
     }) }}
-    {{ form_row(regristroForm.plainPassword.second, {
+    {{ form_row(registroForm.plainPassword.second, {
         attr: { placeholder: 'Repita Clave ' }
     }) }}
-    {{ form_row(regristroForm.primerNombre, {
+    {{ form_row(registroForm.primerNombre, {
         attr: { placeholder: 'Nombre de usuario ' }
     }) }}
-    {{ form_row(regristroForm.aceptaTerminos) }}
+    {{ form_row(registroForm.aceptaTerminos) }}
     <button class="btn btn-lg btn-primary" type="submit">
         Registrar
     </button>
     {% if(is_granted("ROLE_ADMIN_RESERVA")) %}
-        {{ form_row(regristroForm.roles) }}
+        {{ form_row(registroForm.roles) }}
     {% endif %}
 
-    {{ form_end(regristroForm) }}
+    {{ form_end(registroForm) }}
 
     {# <form class="form-signin" method="post"> #}
 
@@ -109,6 +103,7 @@
     {# </form> #}
 {% endblock %}
 {% block javascripts %}
+    {{ parent() }}
     {{ encore_entry_script_tags('app') }}
     {{ encore_entry_script_tags('login') }}
 {% endblock %}

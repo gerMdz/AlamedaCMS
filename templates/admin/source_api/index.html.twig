@@ -1,10 +1,11 @@
-{% extends 'base_coreui.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}SourceApi index{% endblock %}
 
-{% block content %}
-    <h1>SourceApi index</h1>
+{% block contenpage %}
+    <h2>SourceApi index</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -48,8 +49,9 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('app_source_api_new') }}">
+    <a href="{{ path('app_source_api_new') }}" class="btn btn-sm btn-primary btn-round">
         {{ include('bases/_crear_nuevo.html.twig', {'button_label':'Enlazar nueva api'}) }}
     </a>
 {% endblock %}

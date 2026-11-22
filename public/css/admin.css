@@ -1,0 +1,45 @@
+.admin-content {
+    display: flow-root;
+}
+
+.admin-content .table thead {
+    color: #007bff;
+}
+
+.admin-content .table td {
+    overflow-wrap: anywhere;
+}
+
+.admin-content .btn:not(.btn-link):not(.dropdown-toggle):not(.input-group .btn):not(.btn-group .btn) {
+    border-radius: 30px;
+}
+
+.admin-content form button.btn:only-of-type:not([class*="btn-"]) {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.admin-content form button.btn:only-of-type:not([class*="btn-"]):hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.admin-content .card {
+    margin-bottom: 1rem;
+    border-color: #e6e9ed;
+}
+
+.admin-content .card-header {
+    background-color: #fff;
+    border-bottom-color: #e6e9ed;
+}
+
+.admin-content .card-title:last-child,
+.admin-content .card-category:last-child {
+    margin-bottom: 0;
+}
+
+.admin-content .gap-1 {
+    gap: .25rem;
+}

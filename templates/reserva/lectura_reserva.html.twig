@@ -1,10 +1,9 @@
-{% extends 'base_material_kit.twig' %}
+{% extends 'admin/bars.html.twig' %}
 {% block title %}
     Lectura QR Reservas
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('app') }}
     <style>
         #canvas {
             width: 100%;
@@ -29,54 +28,28 @@
 
 {% endblock %}
 
-{% block sections %}
-    <div class="page-header-30 header-filter mt-5" data-parallax="true"
-         style="background-image: url({{ asset('images/institucional/mix_auditorio.jpg') }})">
-        <div class="container">
-            <div class="row text-white">
-                <div class="col-md-6">
-                    <h2 class="title text-white-75">Iglesia de la Alameda</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block contenpage %}
+    <h2>Lectura QR de reservas</h2>
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="col-sm-4 mx-auto text-center">
                 <div class="alert alert-{{ label }} alert-dismissible">
                     {{ message }}
                 </div>
-                <a class="btn btn-alameda" href="{{ path('reserva_index') }}">
+                <a class="btn btn-sm btn-primary btn-round" href="{{ path('reserva_index') }}">
                     Puede reservar desde aquí
                 </a>
             </div>
         {% endfor %}
     {% endfor %}
-    <div class="main main-raised mt-lg-n60 mt-sm-5 ">
-        <div class="container">
-            <div class="section text-center">
-                <div class="row">
-                    <div class="col-md-12 ml-auto mr-auto">
-                        <div class="card">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title "> Lectura reserva </h4>
-                                <p class="card-category"></p>
-                                <br/>
-{#                                <div id="qr-reader" style="width:100%"></div>#}
-{#                                <div id="qr-reader-results"></div>#}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="x_panel">
     <div id="loadingMessage">🎥 No se puede acceder a la cámara ( Por favor, asegúrese de tener una cámara web habilitada)</div>
 
     <canvas id="canvas" hidden></canvas>
     <div id="output" hidden>
         <div id="outputMessage">No se detectó código QR.</div>
         <div hidden><b>Data:</b> <span id="outputData"></span></div>
+    </div>
     </div>
 
 {% endblock %}

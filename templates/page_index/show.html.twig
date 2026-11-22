@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}PageIndex{% endblock %}
 
-{% block body %}
-    <h1>PageIndex</h1>
+{% block contenpage %}
+    <h2>PageIndex</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <tbody>
             <tr>
@@ -17,8 +18,9 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('page_index_index') }}">back to list</a>
+    <a href="{{ path('page_index_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
 
     <a href="{{ path('page_index_edit', {'id': page_index.id}) }}">edit</a>
 

@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}New Invitado{% endblock %}
 
-{% block body %}
-    <h1>Create new Invitado</h1>
+{% block contenpage %}
+    <h2>Create new Invitado</h2>
+    <div class="x_panel">
+        {{ include('invitado/_form.html.twig') }}
 
-    {{ include('invitado/_form.html.twig') }}
-
-    <a href="{{ path('invitado_index') }}">back to list</a>
+        <a href="{{ path('invitado_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
+    </div>
 {% endblock %}

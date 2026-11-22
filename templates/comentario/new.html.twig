@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}New Comentario{% endblock %}
 
-{% block body %}
-    <h1>Create new Comentario</h1>
+{% block contenpage %}
+    <h2>Create new Comentario</h2>
+    <div class="x_panel">
+        {{ include('comentario/_form.html.twig') }}
 
-    {{ include('comentario/_form.html.twig') }}
-
-    <a href="{{ path('admin_comentarios') }}">back to list</a>
+        <a href="{{ path('admin_comentarios') }}">back to list</a>
+    </div>
 {% endblock %}

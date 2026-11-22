@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Roles listado{% endblock %}
 
-{% block body %}
-    <h1>Roles Listado</h1>
+{% block contenpage %}
+    <h2>Roles Listado</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -38,6 +39,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('roles_new') }}">Crear Nuevo</a>
+    <a href="{{ path('roles_new') }}" class="btn btn-sm btn-primary btn-round">Crear Nuevo</a>
 {% endblock %}

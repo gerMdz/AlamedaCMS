@@ -1,4 +1,4 @@
-{% extends 'base_material_kit.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 
 {% form_theme regristroForm _self %}
@@ -7,18 +7,12 @@
 
 {% block title %}Ingreso {{ base.siteName }} {% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('loginStyle') }}
-    <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-{% endblock %}
 
-{% block sections %}
+{% block contenpage %}
 
     {% if app.user %}
         <div class="mb-3">
-            Usted a ingresado como {{ app.user.username }}, <a href="{{ path('app_logout') }}"><i
+            Usted a ingresado como {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"><i
                         class="fas fa-sign-out-alt"></i> Salir</a>
         </div>
     {% endif %}
@@ -26,7 +20,7 @@
 
     {{ form_start(regristroForm, {
         'attr':{
-            'class': 'form-signin'
+            'class': 'x_panel'
         }
     }) }}
     <h1 class="h3 mb-3 font-weight-normal">Registro de Voluntarios de La Alameda </h1>

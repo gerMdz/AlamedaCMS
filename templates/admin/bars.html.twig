@@ -93,12 +93,27 @@
                                 <ul class="nav child_menu">
                                     <li><a href="{{ path('admin_list_user') }}">{{ "backend.menu.manage"|trans }}</a>
                                     </li>
+                                    <li><a href="{{ path('user_index') }}">Ver usuarios</a></li>
                                     <li>
                                         <a href="{{ path('roles_list') }}">{{ "backend.menu.roles"|trans }}</a>
                                     </li>
                                     <li>
                                         <a href="{{ path('app_registro') }}">{{ "backend.menu.register"|trans }}</a>
                                     </li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_RESERVA') %}
+                            <li>
+                                <a><i class="fa fa-calendar"></i> Reservas <span class="fa-solid fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ path('reserva_consulta') }}">Ver reservas</a></li>
+                                    <li><a href="{{ path('reserva_lectura') }}">Lectura QR</a></li>
+                                    {% if is_granted('ROLE_ADMIN_RESERVA') %}
+                                        <li><a href="{{ path('admin') }}">Panel general</a></li>
+                                        <li><a href="{{ path('celebracion_index') }}">Celebraciones</a></li>
+                                        <li><a href="{{ path('app_registro_voluntario_reserva') }}">Agregar voluntario</a></li>
+                                    {% endif %}
                                 </ul>
                             </li>
                         {% endif %}
@@ -268,6 +283,7 @@
 
                     <ul class="navbar-right">
 
+                        {% if app.user %}
                         <li class="nav-item dropdown open" style="padding-left: 15px;">
                             <a href="javascript:" class="user-profile dropdown-toggle" aria-haspopup="true"
                                id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -283,6 +299,7 @@
                                 </a>
                             </div>
                         </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>
@@ -310,7 +327,10 @@
                 <strong>{{ "backend.global.success"|trans }}</strong> {{ message|trans }}
             </div>
         {% endfor %}
-        {% block contenpage %}{% endblock %}
+        <div class="admin-content">
+            {% block breadcrumb %}{% endblock %}
+            {% block contenpage %}{% endblock %}
+        </div>
     </div>
     <!-- /page content -->
 {% endblock %}

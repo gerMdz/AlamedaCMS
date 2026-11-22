@@ -1,14 +1,11 @@
 <div class="col-12">
-    <div class="card my-4">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Principal</h6>
-                <p class="card-category"> Listado de páginas principales</p>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Páginas principales</h4>
         </div>
         <div class="card-footer">
 
-            <a href="{{ path('principal_new') }}" class="btn btn--pill btn-primary">
+            <a href="{{ path('principal_new') }}" class="btn btn-sm btn-primary btn-round">
                 <i class="fas fa-plus-circle"></i>
                 Crear nueva página principal</a>
             <a href="{{ path('principal_new_assistant') }}" class="btn btn-sm btn-primary btn-round">
@@ -48,7 +45,7 @@
                                         <p class="text-muted">
                                             {% if principal.principal.linkRoute is defined %}
                                                 <small>
-                                                    <a class="text-info" data-bs-toggle="tooltip"
+                                                    <a class="text-info" data-toggle="tooltip"
                                                        title="Ver linkRoute principal"
                                                        href="{{ path('principal_show', {'id': principal.principal.id}) }}">
                                                         {{ include('bases/_ver.html.twig', {'button_label': principal.principal.linkRoute  }) }}
@@ -82,7 +79,7 @@
                                 <div class="d-flex px-2 py-1">
                                     <div>
                                         {% if (principal.imageFilename != null) %}
-                                            <img class="avatar avatar-sm me-3 border-radius-lg" alt="{{ base.lema }}"
+                                            <img class="img-fluid rounded mr-3" alt="{{ base.lema }}"
                                                  src="{{ principal.imagePath|imagine_filter('squared_thumbnail_100') }}">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">

@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}RelacionSectionEntrada index{% endblock %}
 
-{% block body %}
-    <h1>RelacionSectionEntrada index</h1>
+{% block contenpage %}
+    <h2>RelacionSectionEntrada index</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -30,6 +31,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('relacion_section_entrada_new') }}">Create new</a>
+    <a href="{{ path('relacion_section_entrada_new') }}" class="btn btn-sm btn-primary btn-round">Create new</a>
 {% endblock %}

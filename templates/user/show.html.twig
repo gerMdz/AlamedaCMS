@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}User{% endblock %}
 
-{% block body %}
-    <h1>User</h1>
+{% block contenpage %}
+    <h2>User</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <tbody>
             <tr>
@@ -41,8 +42,9 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a href="{{ path('user_index') }}" class="btn btn-sm btn-info btn-round">back to list</a>
 
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
 

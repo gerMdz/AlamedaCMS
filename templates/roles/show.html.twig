@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/bars.html.twig' %}
 
 {% block title %}Roles{% endblock %}
 
-{% block body %}
-    <h1>Roles</h1>
+{% block contenpage %}
+    <h2>Roles</h2>
 
+    <div class="table-responsive">
     <table class="table">
         <tbody>
             <tr>
@@ -25,8 +26,9 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('roles_list') }}">
+    <a href="{{ path('roles_list') }}" class="btn btn-sm btn-info btn-round">
         <i class="fa fa-backward"> </i> Volver al listado
     </a>
 
