@@ -72,6 +72,13 @@ when@test:
 when@prod:
     monolog:
         handlers:
+            production_errors:
+                type: rotating_file
+                path: "%kernel.logs_dir%/prod-error.log"
+                level: error
+                max_files: 14
+                channels: ["!deprecation"]
+                formatter: monolog.formatter.json
             main:
                 type: fingers_crossed
                 action_level: error
