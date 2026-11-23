@@ -18,7 +18,6 @@
         "eckinox/tinymce-bundle": "^2.0",
         "endroid/qr-code-bundle": "4.3.*",
         "erusev/parsedown": "^1.6",
-        "friendsofsymfony/ckeditor-bundle": "^2.4",
         "gedmo/doctrine-extensions": "^v3.4.0",
         "knplabs/knp-paginator-bundle": "^5.2",
         "knplabs/knp-time-bundle": "^1.11",
@@ -119,8 +118,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "ckeditor:install": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

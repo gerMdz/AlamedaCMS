@@ -1,74 +1,57 @@
-import $ from 'jquery';
+function initNotaCampo(campo) {
+    const version = campo.closest('[data-nota-version]')?.dataset.notaVersion;
+    const clave = campo.dataset.notaCampo;
+    const storageKey = version ? `nota:${version}:${clave}` : `qdtm02P${clave}`;
+    const input = campo.querySelector('[data-nota-input]');
+    const respuesta = campo.querySelector('[data-nota-respuesta]');
+    const estrella = campo.querySelector('[data-nota-estrella]');
 
-const claves = [
-    'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez',
-    'once', 'doce', 'trece', 'catorce', 'quince', 'dieciseis', 'diecisiete',
-    'dieciocho', 'diecinueve', 'veinte', 'veintiuno', 'veintidos', 'veintitres', 'veinticuatro',
-    'veinticinco'
-];
+    function mostrarRespuesta(valor) {
+        respuesta.textContent = valor;
+        respuesta.hidden = false;
+        input.hidden = true;
+    }
 
-$(function () {
-    claves.forEach(clave => {
-        const valor = localStorage.getItem(`qdtm02P${clave}`);
-        const $input = $(`#p${clave}`);
-        const $label = $(`#lp${clave}`);
-        const $container = $(`#sinp${clave}`);
-        const $icon = $(`#xp${clave}`);
+    try {
+        const guardado = JSON.parse(localStorage.getItem(storageKey));
+        if (typeof guardado === 'string' && guardado !== '') {
+            input.value = guardado;
+            mostrarRespuesta(guardado);
+        }
+    } catch {
+        // The field remains usable when browser storage is unavailable.
+    }
 
-        // Si hay valor en localStorage, lo cargamos
-        if (valor !== null) {
-            $input.val(JSON.parse(valor));
-            muestra1($label, $container);
-            aceptado(clave);
-        } else {
-            oculta1($label, $container);
+    estrella.addEventListener('click', () => {
+        if (!respuesta.hidden) {
+            respuesta.hidden = true;
+            input.hidden = false;
+            input.focus();
+            return;
         }
 
-        // Acción del ícono (estrella)
-        $icon.on('click', () => {
-            const val = $input.val();
-            if (!val) {
-                $input.attr('placeholder', 'Aquí debés completar la idea');
-                return;
-            }
+        const valor = input.value.trim();
+        if (valor === '') {
+            input.placeholder = 'Aquí debés completar la idea';
+            input.focus();
+            return;
+        }
 
-            procesa(clave);
-            $icon.toggleClass('fa-star-o fa-star');
-
-            if (esVisible($label)) {
-                muestra1($container, $label);
-            } else {
-                aceptado(clave);
-                oculta1($container, $label);
-            }
-        });
+        mostrarRespuesta(valor);
+        try {
+            localStorage.setItem(storageKey, JSON.stringify(valor));
+        } catch {
+            // Keep the answer visible for this page visit.
+        }
     });
-});
-
-function procesa(clave) {
-    const val = $(`#p${clave}`).val();
-    localStorage.setItem(`qdtm02P${clave}`, JSON.stringify(val));
 }
 
-function aceptado(clave) {
-    const val = JSON.parse(localStorage.getItem(`qdtm02P${clave}`));
-    const $label = $(`#lp${clave}`);
-    const $container = $(`#sinp${clave}`);
-    $label.addClass('fontTahu fa-2x text-info').html(val);
-    $container.hide();
+function initNota() {
+    document.querySelectorAll('[data-nota-campo]').forEach(initNotaCampo);
 }
 
-function muestra1(selector1, selector2) {
-    $(selector1).show();
-    $(selector2).hide();
-}
-
-function oculta1(selector1, selector2) {
-    $(selector1).hide();
-    $(selector2).show();
-}
-
-function esVisible(el) {
-    const $el = $(el);
-    return $el.is(':visible') && $el.css("visibility") !== "hidden" && parseFloat($el.css("opacity")) > 0;
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNota, {once: true});
+} else {
+    initNota();
 }

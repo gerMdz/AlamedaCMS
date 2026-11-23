@@ -16,7 +16,8 @@ node_modules
 npm-debug.log
 yarn-error.log
 /public/uploads/
-/src/Migrations/
+/src/Migrations/*
+!/src/Migrations/Version20261122230000.php
 /assets/fonts/univers/
 /assets/css/foundation-icons/.DS_Store
 

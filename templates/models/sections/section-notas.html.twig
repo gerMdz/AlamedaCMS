@@ -11,7 +11,7 @@
             <div class="col-sm-12">
                 <div class="show-article-container p-3">
                         <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
-                            {% include('bases/_nota.html.twig') %}
+                            {% include 'bases/_nota.html.twig' with {contenido: entrada.contenido} only %}
                             <hr class="border-bottom"/>
                         </div>
                 </div>
@@ -35,7 +35,6 @@
                 </h5>
                 <div class="middle-0">
                     <i class="fas fa-quote-left mr-5"></i><br/>
-                    {{ entrada.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }}
                     <i class="fas fa-quote-right ml-5"></i>
                 </div>
                 <div class="btn-group bottom-0 justify-content-between border-alameda border-alameda-top border-alameda-bottom pt-1 ">

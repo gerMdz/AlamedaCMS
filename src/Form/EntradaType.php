@@ -11,7 +11,6 @@ use App\Entity\User;
 use App\Repository\ModelTemplateRepository;
 use App\Repository\PrincipalRepository;
 use Eckinox\TinymceBundle\Form\Type\TinymceType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

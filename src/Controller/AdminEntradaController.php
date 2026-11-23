@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Entrada;
 use App\Entity\EntradaReference;
+use App\Entity\NotaVigente;
 use App\Entity\Principal;
 use App\Entity\Section;
 use App\Form\EntradaComplexType;
@@ -19,10 +20,12 @@ use App\Service\LoggerClient;
 use App\Service\ObtenerDatosHelper;
 use App\Service\PdfToNotaService;
 use App\Service\UploaderHelper;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -135,11 +138,9 @@ class AdminEntradaController extends BaseController
                     $context
                 );
 
-                $this->errorHandler->manejarError(
-                    'success', 
-                    'Se actualizó la entrada correctamente', 
-                    $context, 
-                    true
+                $this->errorHandler->notificarExito(
+                    'Se actualizó la entrada correctamente',
+                    $context
                 );
 
                 return $this->redirectToRoute('admin_entrada_index');
@@ -172,9 +173,9 @@ class AdminEntradaController extends BaseController
      *
      * @throws \Exception
      */
-    #[Route(path: '/admin/entrada/{id}/edit-complex', name: 'admin_entrada_edit_complex')]
+    #[Route(path: '/admin/entrada/{id}/edit-complex', name: 'admin_entrada_edit_complex', methods: ['GET', 'POST'])]
     #[IsGranted('MANAGE', subject: 'entrada')]
-    public function editComplex(Request $request, Entrada $entrada): Response
+    public function editComplex(Request $request, Entrada $entrada, EntityManagerInterface $em): Response
     {
         $context = ['id' => $entrada->getId(), 'titulo' => $entrada->getTitulo()];
         $form = $this->createForm(EntradaComplexType::class, $entrada);
@@ -182,19 +183,35 @@ class AdminEntradaController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->managerRegistry->getManager()->flush();
+                $publicar = $form->get('guardarYPublicar')->isClicked();
+                if ($publicar && trim((string) $entrada->getContenido()) === '') {
+                    $form->get('contenido')->addError(new FormError('Ingresá contenido antes de publicar la nota.'));
+
+                    return $this->render('admin/entrada/edit_contenido.html.twig', [
+                        'entrada' => $entrada,
+                        'entradaForm' => $form,
+                    ]);
+                }
+
+                if ($publicar) {
+                    $this->guardarNotaVigente($entrada, $em);
+                } else {
+                    $em->flush();
+                }
 
                 $this->errorHandler->logInfo(
-                    'Se editó la entrada compleja: ' . $entrada->getTitulo(),
+                    ($publicar ? 'Se guardó y publicó la nota: ' : 'Se editó la entrada compleja: ') . $entrada->getTitulo(),
                     $context
                 );
 
-                $this->errorHandler->manejarError(
-                    'success', 
-                    'Se actualizó la entrada correctamente', 
-                    $context, 
-                    true
+                $this->errorHandler->notificarExito(
+                    $publicar ? 'La nota ya está publicada.' : 'Se actualizó la entrada correctamente',
+                    $context
                 );
+
+                if ($publicar) {
+                    return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
+                }
 
                 return $this->redirectToRoute('admin_entrada_index');
             } catch (\Exception $e) {
@@ -275,11 +292,9 @@ class AdminEntradaController extends BaseController
                     'Se agregó una entrada al sitio: ' . $entrada->getTitulo(),
                     ['id' => $entrada->getId()]
                 );
-                $this->errorHandler->manejarError(
-                    'success',
+                $this->errorHandler->notificarExito(
                     'Se agregó una entrada al sitio',
-                    ['id' => $entrada->getId()],
-                    true
+                    ['id' => $entrada->getId()]
                 );
 
                 return $this->redirectToRoute('admin_entrada_index');
@@ -416,11 +431,9 @@ class AdminEntradaController extends BaseController
                     $context
                 );
 
-                $this->errorHandler->manejarError(
-                    'success', 
-                    'Se creó la entrada correctamente', 
-                    $context, 
-                    true
+                $this->errorHandler->notificarExito(
+                    'Se creó la entrada correctamente',
+                    $context
                 );
 
                 return $this->redirectToRoute('admin_entrada_index', [
@@ -456,6 +469,12 @@ class AdminEntradaController extends BaseController
         PdfToNotaService $pdfToNotaService
     ): Response {
         if ($request->isMethod('POST')) {
+            if (!$this->isCsrfTokenValid('importar_nota_pdf', $request->request->get('_token'))) {
+                $this->errorHandler->manejarErrorValidacion('Token CSRF inválido.', [], true);
+
+                return $this->redirectToRoute('admin_entrada_import_pdf');
+            }
+
             /** @var UploadedFile|null $pdfFile */
             $pdfFile = $request->files->get('pdf_file');
 
@@ -492,11 +511,6 @@ class AdminEntradaController extends BaseController
                 $entradaReference->setMimeType($pdfFile->getMimeType() ?? 'application/pdf');
                 $em->persist($entradaReference);
 
-                // Si el usuario marcó publicar directamente en _nota.html.twig
-                if ($request->request->getBoolean('publicar_en_nota')) {
-                    $pdfToNotaService->publicarEnTemplateNota($resultado['contenido']);
-                }
-
                 $em->flush();
 
                 $this->errorHandler->logInfo(
@@ -504,14 +518,12 @@ class AdminEntradaController extends BaseController
                     ['id' => $entrada->getId(), 'campos' => $resultado['cantidadCampos']]
                 );
 
-                $this->errorHandler->manejarError(
-                    'success',
+                $this->errorHandler->notificarExito(
                     sprintf(
                         'PDF transformado en entrada editable (%d campos para completar detectados). Ahora podés revisar y corregir el contenido.',
                         $resultado['cantidadCampos']
                     ),
-                    ['id' => $entrada->getId()],
-                    true
+                    ['id' => $entrada->getId()]
                 );
 
                 return $this->redirectToRoute('admin_entrada_edit_complex', [
@@ -566,15 +578,13 @@ class AdminEntradaController extends BaseController
             $entrada->setContenido($resultado['contenido']);
             $em->flush();
 
-            $this->errorHandler->manejarError(
-                'success',
+            $this->errorHandler->notificarExito(
                 sprintf(
                     'Se transformó el PDF "%s" en contenido editable (%d campos detectados).',
                     $referencia->getoriginalFilename(),
                     $resultado['cantidadCampos']
                 ),
-                ['id' => $entrada->getId()],
-                true
+                ['id' => $entrada->getId()]
             );
 
             return $this->redirectToRoute('admin_entrada_edit_complex', [
@@ -595,12 +605,12 @@ class AdminEntradaController extends BaseController
         }
     }
 
-    #[Route(path: '/admin/entrada/{id}/publicar-nota-twig', name: 'admin_entrada_publish_nota_twig', methods: ['POST'])]
+    #[Route(path: '/admin/entrada/{id}/publicar-nota', name: 'admin_entrada_publish_nota', methods: ['POST'])]
     #[IsGranted('MANAGE', subject: 'entrada')]
-    public function publicarNotaEnTwig(
+    public function publicarNota(
         Request $request,
         Entrada $entrada,
-        PdfToNotaService $pdfToNotaService
+        EntityManagerInterface $em
     ): Response {
         if (!$this->isCsrfTokenValid('publish_nota_' . $entrada->getId(), $request->request->get('_token'))) {
             $this->errorHandler->manejarErrorValidacion('Token CSRF inválido.', ['id' => $entrada->getId()], true);
@@ -608,29 +618,45 @@ class AdminEntradaController extends BaseController
             return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
         }
 
+        if (trim((string) $entrada->getContenido()) === '') {
+            $this->errorHandler->manejarErrorValidacion('Ingresá contenido antes de publicar la nota.', ['id' => $entrada->getId()], true);
+
+            return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
+        }
+
         try {
-            $pdfToNotaService->publicarEnTemplateNota((string) $entrada->getContenido());
+            $this->guardarNotaVigente($entrada, $em);
 
             $this->errorHandler->logInfo(
-                'Se publicó la entrada como vista _nota.html.twig: ' . $entrada->getTitulo(),
+                'Se publicó la nota: ' . $entrada->getTitulo(),
                 ['id' => $entrada->getId()]
             );
 
-            $this->errorHandler->manejarError(
-                'success',
-                'Se actualizó templates/bases/_nota.html.twig con el contenido de esta entrada.',
-                ['id' => $entrada->getId()],
-                true
+            $this->errorHandler->notificarExito(
+                'La nota ya está publicada.',
+                ['id' => $entrada->getId()]
             );
         } catch (\Exception $e) {
             $this->errorHandler->manejarErrorDatabase(
-                'No se pudo actualizar _nota.html.twig: ' . $e->getMessage(),
+                'No se pudo publicar la nota: ' . $e->getMessage(),
                 ['id' => $entrada->getId(), 'error' => $e->getMessage()],
                 true
             );
         }
 
         return $this->redirectToRoute('entrada_show', ['id' => $entrada->getId()]);
+    }
+
+    private function guardarNotaVigente(Entrada $entrada, EntityManagerInterface $em): void
+    {
+        $em->wrapInTransaction(static function () use ($entrada, $em): void {
+            $nota = $em->find(NotaVigente::class, NotaVigente::ID, LockMode::PESSIMISTIC_WRITE);
+            if (!$nota) {
+                throw new \RuntimeException('Falta la nota inicial. Ejecutá la migración de notas antes de publicar.');
+            }
+
+            $nota->publicar($entrada);
+        });
     }
 
     #[Route(path: '/admin/entrada/{linkRoute}', name: 'entrada_admin_link')]
@@ -706,11 +732,9 @@ class AdminEntradaController extends BaseController
                 $context
             );
 
-            $this->errorHandler->manejarError(
-                'success', 
-                'Se eliminó la entrada correctamente', 
-                $context, 
-                true
+            $this->errorHandler->notificarExito(
+                'Se eliminó la entrada correctamente',
+                $context
             );
         } catch (\Exception $e) {
             $this->errorHandler->manejarErrorDatabase(
