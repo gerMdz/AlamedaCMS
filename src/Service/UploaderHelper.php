@@ -4,12 +4,12 @@ namespace App\Service;
 
 use App\Helper\LoggerTrait;
 use App\Service\ErrorHandler;
-use Gedmo\Sluggable\Util\Urlizer;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem;
 use Symfony\Component\Asset\Context\RequestStackContext;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class UploaderHelper
 {
@@ -137,7 +137,9 @@ class UploaderHelper
             throw new \Exception($errorMsg);
         }
 
-        $newFilename = Urlizer::urlize(pathinfo($originalFilename, PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $file->guessExtension();
+        $basename = pathinfo($originalFilename, PATHINFO_FILENAME);
+        $slug = (new AsciiSlugger())->slug($basename)->lower()->toString();
+        $newFilename = ($slug === '' ? 'archivo' : $slug) . '-' . uniqid() . '.' . $file->guessExtension();
 
         $filesystem = $isPublic ? $this->filesystem : $this->privateFilesystem;
 
