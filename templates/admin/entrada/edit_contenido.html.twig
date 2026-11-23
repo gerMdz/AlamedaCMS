@@ -1,8 +1,4 @@
 {% extends "admin/bars.html.twig" %}
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('tinymce_config') }}
-{% endblock %}
 
 {% block title %}Edición Simple Entrada {{ entrada.id }} {% endblock %}
 {% block contenpage %}
@@ -10,7 +6,7 @@
         <h5>Edición parcial Entrada</h5>
         <div>
             <a href="{{ path('entrada_show', {'id': entrada.id}) }}" class="btn btn-sm btn-info">
-                <i class="fa fa-eye"></i> Vista previa / Publicar Nota
+                <i class="fa fa-eye"></i> Vista previa del contenido guardado
             </a>
         </div>
     </div>
@@ -29,27 +25,7 @@
     </div>
     <button class="btn btn-primary btn--pill">{{ button_label|default('Guardar') }}</button>
 
+    {{ form_widget(entradaForm.guardarYPublicar) }}
     {{ form_end(entradaForm) }}
 
-    <hr class="my-3"/>
-    <form method="post" action="{{ path('admin_entrada_publish_nota_twig', {'id': entrada.id}) }}" class="d-inline">
-        <input type="hidden" name="_token" value="{{ csrf_token('publish_nota_' ~ entrada.id) }}">
-        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Actualizar templates/bases/_nota.html.twig con el contenido guardado de esta entrada?');">
-            <i class="fas fa-upload"></i> Publicar contenido guardado en <code>_nota.html.twig</code>
-        </button>
-    </form>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('app') }}
-    {{ encore_entry_script_tags('tinymce_config') }}
-    <script src="{{ asset('js/admin_entrada_form.js') }}"></script>
-    <script src="{{ asset('bundles/tinymce/ext/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ asset('bundles/tinymce/ext/tinymce-webcomponent.js') }}"></script>
-    <script src="{{ asset('bundles/tinymce/ext/tinymce/plugins/help/js/i18n/keynav/es.js') }}"></script>
-    <script src="{{ asset('bundles/tinymce/ext/tinymce/skins/content/default/content.js') }}"></script>
-{% endblock %}
-{% block jslocal %}
-    {{ encore_entry_script_tags('summernote') }}
 {% endblock %}

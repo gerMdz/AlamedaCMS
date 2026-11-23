@@ -162,15 +162,15 @@
                     <a href="{{ path('admin_entrada_edit_complex', {'id': entrada.id}) }}">
                         Editar </a>
                 </small>
-                <form method="post" action="{{ path('admin_entrada_publish_nota_twig', {'id': entrada.id}) }}" class="d-inline ml-3">
+                <form method="post" action="{{ path('admin_entrada_publish_nota', {'id': entrada.id}) }}" class="d-inline ml-3">
                     <input type="hidden" name="_token" value="{{ csrf_token('publish_nota_' ~ entrada.id) }}">
-                    <button type="submit" class="btn btn-xs btn-success" onclick="return confirm('¿Publicar el contenido de esta entrada en templates/bases/_nota.html.twig?');">
-                        <i class="fas fa-check-circle"></i> Publicar como Nota Activa (<code>_nota.html.twig</code>)
+                    <button type="submit" class="btn btn-xs btn-success" onclick="return confirm('¿Publicar el contenido guardado como nota vigente?');">
+                        <i class="fas fa-check-circle"></i> Publicar como nota vigente
                     </button>
                 </form>
                 <br/>
                 <div class="col-sm-10 mx-auto bg-white p-2">
-                    {{ completa_texto(entrada.contenido) | raw }}
+                    {% include 'bases/_nota.html.twig' with {contenido: entrada.contenido} only %}
                 </div>
 
             </div>

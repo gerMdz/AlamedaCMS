@@ -13,11 +13,6 @@ class PdfToNotaService
         'veinticinco',
     ];
 
-    public function __construct(
-        private readonly string $pathTemplate
-    ) {
-    }
-
     /**
      * Extrae el texto de un archivo PDF y lo transforma en título y contenido HTML editable para una Entrada.
      *
@@ -130,7 +125,7 @@ class PdfToNotaService
                 }
                 $htmlBloques[] = sprintf(
                     "<h4 class=\"text-centrado text-600\">\n    %s\n</h4>",
-                    $bloque
+                    htmlspecialchars($bloque, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
                 );
                 continue;
             }
@@ -138,7 +133,7 @@ class PdfToNotaService
             // Puntos numerados o líneas con espacio para completar
             $htmlBloques[] = sprintf(
                 "<h5 class=\"text-izq text-600\">\n    %s\n</h5>",
-                $bloque
+                htmlspecialchars($bloque, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
             );
         }
 
@@ -167,89 +162,6 @@ HTML;
             'contenido' => $contenido,
             'cantidadCampos' => $indiceClave,
         ];
-    }
-
-    /**
-     * Convierte los marcadores {{uno}} de una Entrada editable a {{ completa_lugar('uno') | raw }}
-     * y actualiza templates/bases/_nota.html.twig.
-     */
-    public function publicarEnTemplateNota(string $contenidoEntrada): string
-    {
-        // Convertir {{uno}} o {{ uno }} en {{ completa_lugar('uno') | raw }}
-        $contenidoTwig = preg_replace_callback(
-            '/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/u',
-            function (array $matches): string {
-                return sprintf("{{ completa_lugar('%s') | raw }}", $matches[1]);
-            },
-            $contenidoEntrada
-        ) ?? $contenidoEntrada;
-
-        // Si el contenido aún no tiene el contenedor principal .card, lo envolvemos
-        if (!str_contains($contenidoTwig, 'col-sm-12 col-md-10 col-lg-10')) {
-            $contenidoTwig = <<<TWIG
-<div class="row mt-0">
-    <div class="col-sm-12 col-md-10 col-lg-10 px-0 mx-auto mt-0">
-        <div class="card mt-0 mb-1 py-2 px-3">
-            <div class="col-sm-11 mx-auto mb-3">
-                <div class="col-12 mx-auto text-center mb-0">
-$contenidoTwig
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-TWIG;
-        }
-
-        $plantillaCompleta = <<<TWIG
-<!--suppress TwigHardcodedStringInspection -->
-<style>
-    .nota-style {
-        border: 2px solid #9c27b0; /*borde: estilo y color*/
-        padding: 10px 10px 10px 2em; /*tamaño del fondo*/
-        border-radius: 30px 0 30px 0; /*ángulos de las 4 esquinas del borde/fondo*/
-        margin-bottom: 1em; /*espacio debajo de la etiqueta */
-        text-transform: uppercase;
-    }
-
-    p.text-14-300, h3, h4.text-14-300, small, h5.text-izq, h4.text-izq {
-        color: #1b1e24;
-        text-align: left !important;
-    }
-
-    .text-300 {
-        font-weight: 300 !important;
-    }
-
-    .text-14 {
-        font-size: 1.2em !important;
-    }
-
-    .text-centrado {
-        text-align: center !important;
-    }
-
-    h4.text-centrado, h5.text-centrado, h6.text-centrado {
-        text-align: center !important;
-
-    }
-
-    .texto-left {
-        text-align: left !important;
-    }
-
-    .text-600 {
-        font-weight: 600;
-    }
-</style>
-$contenidoTwig
-{{ encore_entry_script_tags('nota_mensaje') }}
-TWIG;
-
-        $rutaNotaTwig = rtrim($this->pathTemplate, '/') . '/bases/_nota.html.twig';
-        file_put_contents($rutaNotaTwig, $plantillaCompleta);
-
-        return $rutaNotaTwig;
     }
 
     private function esLineaDescartable(string $linea): bool
@@ -369,7 +281,10 @@ TWIG;
             $citaBiblica = trim($matches[2]);
         }
 
+        $textoVersiculo = htmlspecialchars($textoVersiculo, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
         if ('' !== $citaBiblica) {
+            $citaBiblica = htmlspecialchars($citaBiblica, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
             return <<<HTML
 <p class="text-14-300 font-italic pl-4 text-centrado">
     $textoVersiculo

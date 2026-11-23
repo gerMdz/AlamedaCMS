@@ -1,5 +1,5 @@
 {% extends 'base_material_kit.twig' %}
-{% block title %} {{ principal.titulo | upper }}  {% endblock %}
+{% block title %} {{ principal ? principal.titulo | upper : 'Notas del mensaje' }}  {% endblock %}
 {% block meta_description_content %}Notas del mensaje en La Alameda{% endblock %}
 {% block meta_keywords_content %}Notas, Mensaje, Fe{% endblock %}
 {% block sslocal %}
@@ -96,7 +96,7 @@
         {% include 'inicio/_nav.html.twig' %}
         <section class="js-parallax u-promo-block u-promo-block--mheight-500 u-overlay u-overlay--dark text-dark"
                  data-parallax="true"
-                 style="background-image: url({{ principal.imagePath|imagine_filter('squared_thumbnail_large_1920if') }}); background-repeat: repeat-y ; background-attachment: fixed">
+                 style="background-image: url({{ principal ? principal.imagePath|imagine_filter('squared_thumbnail_large_1920if') : '' }}); background-repeat: repeat-y ; background-attachment: fixed">
             <!-- Promo Content -->
             <div class="container u-overlay__inner u-ver-center u-content-space">
                 <div class="row justify-content-center">
@@ -119,6 +119,7 @@
 {% block sections %}
 
     <main role="main" class="{{ principal.cssClass | default('bg-white') }}">
+        {% if principal %}
         <section class="a-content-space-medium">
             <div class="container">
                 <div class="row ">
@@ -140,8 +141,9 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- Charlas -->
-        {% for section in principal.section %}
+        {% for section in principal ? principal.section : [] %}
         <section class="a-content-space-medium bg-fam text-center">
             <div class="container">
                 <div class="row">
@@ -192,20 +194,16 @@
                             </div>
                         {% endfor %}
 
-                    <div class="col-sm-12">
-                        <div class="show-article-container p-3 mt-4">
-
-                                <div class="comment-container d-inline-block p-0 m-0 align-top col-sm-12">
-                                    {% include('bases/_nota.html.twig') %}
-                                    <hr class="border-bottom"/>
-                                </div>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
         {% endfor %}
+        {% set nota = nota_vigente() %}
+        {% if nota %}
+            <div class="container">
+                {% include 'bases/_nota.html.twig' with {contenido: nota.contenido, titulo: nota.titulo, conservarRespuestas: nota.titulo is null} only %}
+            </div>
+        {% endif %}
     </main>
     <footer class="footer">
 {#        <div class="card-body">#}

@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Entrada;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Eckinox\TinymceBundle\Form\Type\TinymceType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +15,7 @@ class EntradaComplexType extends AbstractType
     {
         $builder
             ->add(
-                'titulo', TextareaType::class,
+                'titulo', TinymceType::class,
                 [
                     'required' => true,
 //                    'config' => [
@@ -29,15 +29,14 @@ class EntradaComplexType extends AbstractType
                     'help' => 'Título de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => true,
-                        'class' => 'input_title',
-                        'rows' => 10,
+                        'height' => 300,
 
                     ],
                 ]
             )
             ->add(
                 'contenido',
-                TextareaType::class,
+                TinymceType::class,
                 [
                     'required' => false,
 //                    'config' => [
@@ -51,11 +50,14 @@ class EntradaComplexType extends AbstractType
                     'help' => 'Contenido de la entrada, se muestra en pantalla',
                     'attr' => [
                         'required' => false,
-                        'rows' => 10,
-                        'class' => 'input_content',
+                        'height' => 300,
                     ],
                 ]
-            ); // ; Final Builder
+            )
+            ->add('guardarYPublicar', SubmitType::class, [
+                'label' => 'Guardar y publicar en Notas',
+                'attr' => ['class' => 'btn btn-success btn-round'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

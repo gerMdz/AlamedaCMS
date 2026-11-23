@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Principal;
 use App\Form\DataTransformer\UserSelectTextType;
 use App\Repository\UserRepository;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Eckinox\TinymceBundle\Form\Type\TinymceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -21,11 +21,7 @@ class BroteType extends AbstractType
     {
         $builder
             ->add('titulo')
-            ->add('contenido', CKEditorType::class, [
-                'config' => [
-                    'uiColor' => '#ffffff',
-            ],
-            ])
+            ->add('contenido', TinymceType::class)
             ->add('linkRoute')
             ->add('imageFilename')
             ->add('likes')

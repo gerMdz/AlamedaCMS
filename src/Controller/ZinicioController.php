@@ -162,10 +162,17 @@ class ZinicioController extends AbstractController
         return $this->render('models/principal/ofrenda.html.twig', []);
     }
 
-    #[Route(path: '/notas', name: 'notas', options: ['utf8' => true])]
-    public function notas(): Response
+    #[Route(path: '/notas', name: 'notas', options: ['utf8' => true], methods: ['GET'], priority: 1)]
+    public function notas(PrincipalRepository $principales): Response
     {
-        return $this->render('models/principal/notas.html.twig', []);
+        $principal = $principales->findOneBy(['linkRoute' => 'notas']);
+        $principalActivo = $principal
+            ? $principales->findOneBy(['principal' => $principal->getId(), 'isActive' => true])
+            : null;
+
+        return $this->render('models/principal/notas.html.twig', [
+            'principal' => $principalActivo ?? $principal,
+        ]);
     }
 
     #[Route(path: '/oracion', name: 'oracion', options: ['utf8' => true])]

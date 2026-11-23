@@ -6,9 +6,12 @@ use App\Entity\IndexAlameda;
 use App\Entity\Invitado;
 use App\Entity\MetaBase;
 use App\Entity\NewsSite;
+use App\Entity\NotaVigente;
 use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizer;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizerConfig;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -51,6 +54,9 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
             new TwigFunction('capacidad_restante', $this->capacidad_restante(...)),
             new TwigFunction('capacidad_ocupada', $this->capacidad_ocupada(...)),
             new TwigFunction('redirection', $this->redirection(...)),
+            new TwigFunction('nota_version', static fn (?string $contenido): string => hash('sha256', $contenido ?? '')),
+            new TwigFunction('nota_vigente', $this->notaVigente(...)),
+            new TwigFunction('renderiza_nota', $this->renderizaNota(...), ['is_safe' => ['html']]),
             new TwigFunction('completa_texto', $this->completa_texto(...)),
             new TwigFunction('completa_lugar', $this->completa_lugar(...)),
             new TwigFunction('form_suscripto_newsletter', $this->form_suscripto_newsletter(...)),
@@ -115,6 +121,29 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         echo "<meta http-equiv = 'refresh' content='5;url = $link' />";
     }
 
+    public function notaVigente(): ?NotaVigente
+    {
+        return $this->em->find(NotaVigente::class, NotaVigente::ID);
+    }
+
+    public function renderizaNota(?string $contenido): string
+    {
+        $sanitizer = new HtmlSanitizer((new HtmlSanitizerConfig())
+            ->allowSafeElements()
+            ->allowAttribute('class', '*')
+            ->allowRelativeLinks()
+            ->allowRelativeMedias()
+            ->withMaxInputLength(-1));
+        $html = $sanitizer->sanitize($contenido ?? '');
+
+        // Expand markers only in text, outside the already sanitized HTML tags and attributes.
+        return preg_replace_callback(
+            '~<(?:"[^"]*"|\'[^\']*\'|[^>"\'])*>|[^<]+~u',
+            fn (array $match): string => str_starts_with($match[0], '<') ? $match[0] : $this->completa_texto($match[0]),
+            $html
+        ) ?? $html;
+    }
+
     public function completa_texto(?string $campo): string
     {
         if (null === $campo || '' === $campo) {
@@ -142,15 +171,19 @@ class BaseExtension extends AbstractExtension implements ServiceSubscriberInterf
         return $this->addTexto(trim($lugar));
     }
 
-    private function addTexto($valor): string
+    private function addTexto(string $valor): string
     {
-        $texto = '<small><i class="fa fa-star" id="xp%s"> </i></small>
-    <label id="lp%s"> </label>
-    <label id="sinp%s">
-        <input id="p%s" class="input-group-sm " placeholder="puedes completar aquí">
-    </label>';
+        $clave = htmlspecialchars($valor, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
-        return sprintf($texto, $valor, $valor, $valor, $valor);
+        return <<<HTML
+<span data-nota-campo="$clave">
+    <button type="button" class="btn btn-sm btn-link" data-nota-estrella aria-label="Guardar o editar respuesta">
+        <i class="fa fa-star" aria-hidden="true"></i>
+    </button>
+    <span class="fontTahu fa-2x text-info" data-nota-respuesta hidden></span>
+    <input type="text" class="input-group-sm" data-nota-input aria-label="Respuesta" placeholder="puedes completar aquí">
+</span>
+HTML;
     }
 
     /**

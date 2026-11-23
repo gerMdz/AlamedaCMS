@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\ModelTemplate;
 use App\Entity\Principal;
 use App\Repository\ModelTemplateRepository;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
