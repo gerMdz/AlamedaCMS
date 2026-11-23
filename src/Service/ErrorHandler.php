@@ -58,6 +58,12 @@ class ErrorHandler
         $this->translator = $translator;
     }
 
+    public function notificarExito(string $mensaje, array $contexto = []): void
+    {
+        $this->logInfo($mensaje, $contexto);
+        $this->flashBag?->add('success', $mensaje);
+    }
+
     /**
      * Maneja un error y registra un mensaje de error.
      * 

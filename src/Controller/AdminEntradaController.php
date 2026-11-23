@@ -138,11 +138,9 @@ class AdminEntradaController extends BaseController
                     $context
                 );
 
-                $this->errorHandler->manejarError(
-                    'success', 
-                    'Se actualizó la entrada correctamente', 
-                    $context, 
-                    true
+                $this->errorHandler->notificarExito(
+                    'Se actualizó la entrada correctamente',
+                    $context
                 );
 
                 return $this->redirectToRoute('admin_entrada_index');
@@ -206,11 +204,9 @@ class AdminEntradaController extends BaseController
                     $context
                 );
 
-                $this->errorHandler->manejarError(
-                    'success', 
+                $this->errorHandler->notificarExito(
                     $publicar ? 'La nota ya está publicada.' : 'Se actualizó la entrada correctamente',
-                    $context, 
-                    true
+                    $context
                 );
 
                 if ($publicar) {
@@ -296,11 +292,9 @@ class AdminEntradaController extends BaseController
                     'Se agregó una entrada al sitio: ' . $entrada->getTitulo(),
                     ['id' => $entrada->getId()]
                 );
-                $this->errorHandler->manejarError(
-                    'success',
+                $this->errorHandler->notificarExito(
                     'Se agregó una entrada al sitio',
-                    ['id' => $entrada->getId()],
-                    true
+                    ['id' => $entrada->getId()]
                 );
 
                 return $this->redirectToRoute('admin_entrada_index');
@@ -437,11 +431,9 @@ class AdminEntradaController extends BaseController
                     $context
                 );
 
-                $this->errorHandler->manejarError(
-                    'success', 
-                    'Se creó la entrada correctamente', 
-                    $context, 
-                    true
+                $this->errorHandler->notificarExito(
+                    'Se creó la entrada correctamente',
+                    $context
                 );
 
                 return $this->redirectToRoute('admin_entrada_index', [
@@ -526,14 +518,12 @@ class AdminEntradaController extends BaseController
                     ['id' => $entrada->getId(), 'campos' => $resultado['cantidadCampos']]
                 );
 
-                $this->errorHandler->manejarError(
-                    'success',
+                $this->errorHandler->notificarExito(
                     sprintf(
                         'PDF transformado en entrada editable (%d campos para completar detectados). Ahora podés revisar y corregir el contenido.',
                         $resultado['cantidadCampos']
                     ),
-                    ['id' => $entrada->getId()],
-                    true
+                    ['id' => $entrada->getId()]
                 );
 
                 return $this->redirectToRoute('admin_entrada_edit_complex', [
@@ -588,15 +578,13 @@ class AdminEntradaController extends BaseController
             $entrada->setContenido($resultado['contenido']);
             $em->flush();
 
-            $this->errorHandler->manejarError(
-                'success',
+            $this->errorHandler->notificarExito(
                 sprintf(
                     'Se transformó el PDF "%s" en contenido editable (%d campos detectados).',
                     $referencia->getoriginalFilename(),
                     $resultado['cantidadCampos']
                 ),
-                ['id' => $entrada->getId()],
-                true
+                ['id' => $entrada->getId()]
             );
 
             return $this->redirectToRoute('admin_entrada_edit_complex', [
@@ -644,11 +632,9 @@ class AdminEntradaController extends BaseController
                 ['id' => $entrada->getId()]
             );
 
-            $this->errorHandler->manejarError(
-                'success',
+            $this->errorHandler->notificarExito(
                 'La nota ya está publicada.',
-                ['id' => $entrada->getId()],
-                true
+                ['id' => $entrada->getId()]
             );
         } catch (\Exception $e) {
             $this->errorHandler->manejarErrorDatabase(
@@ -746,11 +732,9 @@ class AdminEntradaController extends BaseController
                 $context
             );
 
-            $this->errorHandler->manejarError(
-                'success', 
-                'Se eliminó la entrada correctamente', 
-                $context, 
-                true
+            $this->errorHandler->notificarExito(
+                'Se eliminó la entrada correctamente',
+                $context
             );
         } catch (\Exception $e) {
             $this->errorHandler->manejarErrorDatabase(
