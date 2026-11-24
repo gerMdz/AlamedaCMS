@@ -24,6 +24,7 @@ use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -48,7 +49,7 @@ class SectionController extends BaseController
      * SectionController constructor.
      */
     public function __construct(private readonly RequestStack    $requestStack, private readonly HandlerSourceApi $api,
-                                private readonly ManagerRegistry $managerRegistry)
+                                private readonly ManagerRegistry $managerRegistry, private readonly LoggerInterface $logger)
     {
     }
 
@@ -81,32 +82,39 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Section $section */
-            $section = $form->getData();
+            try {
+                /** @var Section $section */
+                $section = $form->getData();
 
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $form['imageFile']->getData();
 
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, false);
-                $section->setImageFilename($newFilename);
-            }
-
-            if ($this->requestStack->getSession()->get('principal_id')) {
-                $principal_id = $this->requestStack->getSession()->get('principal_id');
-                $principal = $em->getRepository(Principal::class)->find($principal_id);
-                if ($principal) {
-                    $section->addPrincipale($principal);
+                if ($uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, null);
+                    $section->setImageFilename($newFilename);
                 }
-                $this->requestStack->getSession()->remove('principal_id');
+
+                if ($this->requestStack->getSession()->get('principal_id')) {
+                    $principal_id = $this->requestStack->getSession()->get('principal_id');
+                    $principal = $em->getRepository(Principal::class)->find($principal_id);
+                    if ($principal) {
+                        $section->addPrincipale($principal);
+                    }
+                    $this->requestStack->getSession()->remove('principal_id');
+                }
+
+                $em->persist($section);
+                $em->flush();
+
+                $this->addFlash('success', 'Sección creada. Gracias por su contribución');
+
+                return $this->redirectToRoute('admin_section_list');
+            } catch (\Exception $exception) {
+                $this->logger->error('No se pudo guardar la sección.', ['exception' => $exception]);
+                $this->addFlash('error', 'No se pudo guardar la sección. Intentá nuevamente.');
             }
-
-            $em->persist($section);
-            $em->flush();
-
-            $this->addFlash('success', 'Sección creada. Gracias por su contribución');
-
-            return $this->redirectToRoute('admin_section_list');
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Revisá los campos marcados antes de guardar la sección.');
         }
 
         return $this->render('admin/section_admin/new.html.twig', [
@@ -125,15 +133,24 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            if ($uploadedFile) {
-                $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $section->getImageFilename());
-                $section->setImageFilename($newFilename);
-            }
-            $this->managerRegistry->getManager()->flush();
+            try {
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $form['imageFile']->getData();
+                if ($uploadedFile) {
+                    $newFilename = $uploaderHelper->uploadEntradaImage($uploadedFile, $section->getImageFilename());
+                    $section->setImageFilename($newFilename);
+                }
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_section_list');
+                $this->addFlash('success', 'Sección actualizada correctamente.');
+
+                return $this->redirectToRoute('admin_section_list');
+            } catch (\Exception $exception) {
+                $this->logger->error('No se pudo guardar la sección.', ['exception' => $exception]);
+                $this->addFlash('error', 'No se pudo guardar la sección. Intentá nuevamente.');
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Revisá los campos marcados antes de guardar la sección.');
         }
 
         return $this->render('admin/section_admin/edit.html.twig', [
@@ -219,6 +236,7 @@ class SectionController extends BaseController
             'entradas' => $entradas,
             'section' => $section,
             'response_api' => $response_api,
+            'esPaginaNotas' => $this->requestStack->getMainRequest()?->attributes->get('_route') === 'notas',
         ]);
     }
 
@@ -242,15 +260,22 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $principal = $form['principal']->getData();
-            $section->addPrincipale($principal);
+            try {
+                $principal = $form['principal']->getData();
+                $section->addPrincipale($principal);
 
-            $this->managerRegistry->getManager()->persist($section);
-            $this->managerRegistry->getManager()->flush();
+                $this->managerRegistry->getManager()->persist($section);
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_section_new_step2', [
-                'id' => $section->getId(),
-            ]);
+                return $this->redirectToRoute('admin_section_new_step2', [
+                    'id' => $section->getId(),
+                ]);
+            } catch (\Exception $exception) {
+                $this->logger->error('No se pudo guardar la sección.', ['exception' => $exception]);
+                $this->addFlash('error', 'No se pudo guardar la sección. Intentá nuevamente.');
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Revisá los campos marcados antes de guardar la sección.');
         }
 
         return $this->render('admin/section_admin/new_step1.html.twig', [
@@ -269,19 +294,26 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $model_template_id = $this->requestStack->getSession()->get('model_template_id');
-            if ($model_template_id) {
-                $model_template = $modelTemplateRepository->find($model_template_id);
-                if ($model_template) {
-                    $section->setModelTemplate($model_template);
+            try {
+                $model_template_id = $this->requestStack->getSession()->get('model_template_id');
+                if ($model_template_id) {
+                    $model_template = $modelTemplateRepository->find($model_template_id);
+                    if ($model_template) {
+                        $section->setModelTemplate($model_template);
+                    }
+                    $this->requestStack->getSession()->remove('model_template_id');
                 }
-                $this->requestStack->getSession()->remove('model_template_id');
-            }
-            $this->managerRegistry->getManager()->flush();
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_section_new_step3', [
-                'id' => $section->getId(),
-            ]);
+                return $this->redirectToRoute('admin_section_new_step3', [
+                    'id' => $section->getId(),
+                ]);
+            } catch (\Exception $exception) {
+                $this->logger->error('No se pudo guardar la sección.', ['exception' => $exception]);
+                $this->addFlash('error', 'No se pudo guardar la sección. Intentá nuevamente.');
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Revisá los campos marcados antes de guardar la sección.');
         }
 
         return $this->render('admin/section_admin/new_step2.html.twig', [
@@ -299,11 +331,20 @@ class SectionController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->managerRegistry->getManager()->flush();
+            try {
+                $this->managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('admin_section_show', [
-                'id' => $section->getId(),
-            ]);
+                $this->addFlash('success', 'Sección creada correctamente.');
+
+                return $this->redirectToRoute('admin_section_show', [
+                    'id' => $section->getId(),
+                ]);
+            } catch (\Exception $exception) {
+                $this->logger->error('No se pudo guardar la sección.', ['exception' => $exception]);
+                $this->addFlash('error', 'No se pudo guardar la sección. Intentá nuevamente.');
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Revisá los campos marcados antes de guardar la sección.');
         }
 
         return $this->render('admin/section_admin/new_step3.html.twig', [
