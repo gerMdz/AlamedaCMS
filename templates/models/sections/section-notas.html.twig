@@ -6,7 +6,8 @@
             {% set entradas = section.entradas %}
         {% endif %}
 
-        {% set nota = app.request and app.request.attributes.get('_route') == 'notas' ? nota_vigente() : null %}
+        {% set esPaginaNotas = esPaginaNotas ?? (app.request and app.request.attributes.get('_route') == 'notas') %}
+        {% set nota = esPaginaNotas ? nota_vigente() : null %}
         {% for entrada in entradas %}
         <div class="row">
             <div class="col-sm-12">

@@ -25,11 +25,16 @@
         <!-- Promo Content -->
         <div class="container-fluid sinZ-index px-0">
             <div class="row justify-content-center">
-                <div class="col-12 m-0 text-center">
-                        <img src="{{section.imagePath|imagine_filter('squared_thumbnail_large_notas')}}" class="imagen-responsive" alt="Responsive image">
-                </div>
+                {% set titulo = section.title|striptags|html_decode|trim %}
+                {% if section.imageFilename %}
+                    <div class="col-12 m-0 text-center">
+                        <img src="{{ section.imagePath|imagine_filter('squared_thumbnail_large_notas') }}" class="imagen-responsive" alt="">
+                    </div>
+                {% endif %}
                 <div class="col-md-6 col-sm-12 mx-auto text-center card-title">
-                    <h2 class="">{{ section.title | replace({'<p>':'', '</p>':'<br/>'}) | raw }} </h2>
+                    {% if titulo %}
+                        <h2 class="card-title text-uppercase">{{ titulo }}</h2>
+                    {% endif %}
                     <small>{{ section.contenido | replace({'<p>':'', '</p>':'<br/>'}) | raw }} </small>
                 </div>
             </div>
